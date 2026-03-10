@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
 
   <!-- Favicon (SVG) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2309090B'/><rect x='8' y='8' width='84' height='84' rx='12' fill='none' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='66' font-family='Arial' font-weight='900' font-size='44' fill='%23D4AF37' text-anchor='middle'>VS</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2309090B'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23F0D96E'/><stop offset='50%25' stop-color='%23D4AF37'/><stop offset='100%25' stop-color='%23A07828'/></linearGradient></defs><path d='M22 20 L50 85 L56 85 L34 32 Z' fill='url(%23g)'/><path d='M78 20 L50 85 L44 85 L66 32 Z' fill='url(%23g)'/><path d='M63 24 Q78 24 78 38 Q78 48 63 51 Q48 54 48 64 Q48 78 62 78 L66 78 Q78 78 78 72' fill='none' stroke='url(%23g)' stroke-width='5' stroke-linecap='round'/></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,17 +77,18 @@
     }
 
     .nav-brand-mark {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--accent);
-      border-radius: 8px;
+      width: 38px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      font-size: 0.9rem;
-      color: var(--accent);
+    }
+
+    .nav-brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.3));
     }
 
     .nav-brand-text {
@@ -1075,19 +1076,20 @@
     }
 
     .loader-mark {
-      width: 60px;
-      height: 60px;
-      border: 2px solid var(--accent);
-      border-radius: 12px;
+      width: 70px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      font-size: 1.2rem;
-      color: var(--accent);
       margin: 0 auto 16px;
       animation: loaderPulse 1.2s ease-in-out infinite;
+    }
+
+    .loader-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
     }
 
     @keyframes loaderPulse {
@@ -1213,7 +1215,7 @@
   <!-- LOADING SCREEN -->
   <div class="loader" id="loader">
     <div class="loader-content">
-      <div class="loader-mark">VS</div>
+      <div class="loader-mark"><img src="assets/vs-logo.svg" alt="VS Logo"></div>
       <div class="loader-text">Velonyx Systems</div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
@@ -1222,7 +1224,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-brand">
-      <div class="nav-brand-mark">VS</div>
+      <div class="nav-brand-mark"><img src="assets/vs-logo-shield.svg" alt="VS Logo"></div>
       <div class="nav-brand-text">VELONYX <span>SYSTEMS</span></div>
     </a>
     <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">

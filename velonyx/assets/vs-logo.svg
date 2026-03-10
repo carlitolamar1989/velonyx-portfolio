@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0D96E"/>
+      <stop offset="40%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#A07828"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- VS Monogram - V -->
+  <path d="M32 30 L80 135 L88 135 L55 50 Z" fill="url(#goldG)" filter="url(#glow2)"/>
+  <path d="M128 30 L80 135 L72 135 L105 50 Z" fill="url(#goldG)" filter="url(#glow2)"/>
+
+  <!-- VS Monogram - S integrated -->
+  <path d="M102 36 Q126 36 126 56 Q126 72 100 77 Q74 82 74 98 Q74 118 98 118 L106 118 Q128 118 128 106"
+        fill="none" stroke="url(#goldG)" stroke-width="7.5" stroke-linecap="round" filter="url(#glow2)"/>
+</svg>

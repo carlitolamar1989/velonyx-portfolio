@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8CC6E"/>
+      <stop offset="50%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#B8952F"/>
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0D96E"/>
+      <stop offset="40%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#A07828"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#8B6914;stop-opacity:0.7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="outerGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#D4AF37" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Shield shape -->
+  <path d="M100 10 L185 45 L185 120 Q185 180 100 218 Q15 180 15 120 L15 45 Z"
+        fill="none" stroke="url(#shieldGrad)" stroke-width="3.5" filter="url(#outerGlow)"/>
+
+  <!-- Inner shield accent line -->
+  <path d="M100 22 L175 52 L175 118 Q175 172 100 207 Q25 172 25 118 L25 52 Z"
+        fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.35"/>
+
+  <!-- VS Monogram - V -->
+  <path d="M58 72 L100 162 L108 162 L82 92 Z" fill="url(#goldGrad2)" filter="url(#glow)"/>
+  <path d="M142 72 L100 162 L92 162 L118 92 Z" fill="url(#goldGrad2)" filter="url(#glow)"/>
+
+  <!-- VS Monogram - S integrated with V -->
+  <path d="M118 78 Q138 78 138 96 Q138 110 115 114 Q92 118 92 132 Q92 150 112 150 L120 150 Q140 150 140 140"
+        fill="none" stroke="url(#goldGrad2)" stroke-width="7" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- Small decorative dots at shield top -->
+  <circle cx="100" cy="32" r="2" fill="#D4AF37" opacity="0.6"/>
+</svg>
