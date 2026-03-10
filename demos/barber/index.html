@@ -1020,6 +1020,390 @@ img { display: block; max-width: 100%; }
     flex-direction: column;
   }
 }
+
+/* ========== PRECIOUS METAL / GLOSSY / GLOW LAYER ========== */
+
+/* --- Metallic gradient keyframes --- */
+@keyframes metallicShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sweepShine {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes btnSweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* --- 1. METALLIC GRADIENT TEXT on headings --- */
+.section-title,
+.hero-title,
+.hero-title .word,
+.step-title,
+.modal-title,
+.footer-brand,
+.nav-brand {
+  background: linear-gradient(135deg, #C8A96E 0%, #F5E6C8 18%, #D4BC8A 30%, #A8884A 50%, #F5E6C8 65%, #C8A96E 80%, #8B6914 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 6s ease infinite;
+}
+
+.nav-brand span {
+  -webkit-text-fill-color: var(--gold-light);
+}
+
+.footer-brand span {
+  -webkit-text-fill-color: var(--gold-light);
+}
+
+/* --- 5. METALLIC SECTION LABELS / DIVIDERS --- */
+.section-label,
+.hero-label {
+  background: linear-gradient(135deg, #C8A96E, #F5E6C8, #D4BC8A, #F5E6C8, #C8A96E);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 5s ease infinite;
+}
+
+/* Metallic divider lines */
+.services::before,
+.gallery::before,
+.payment::before,
+.how-it-works::before,
+.trust::before,
+.footer-divider {
+  background: linear-gradient(90deg, transparent, rgba(200,169,110,0.25), rgba(245,230,200,0.35), rgba(200,169,110,0.25), transparent) !important;
+}
+
+/* --- Stat numbers metallic --- */
+.stat-number {
+  background: linear-gradient(135deg, #C8A96E 0%, #F5E6C8 25%, #D4BC8A 50%, #F5E6C8 75%, #C8A96E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 5s ease infinite;
+}
+
+/* Service price metallic */
+.service-price {
+  background: linear-gradient(135deg, #C8A96E, #F5E6C8, #C8A96E);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 4s ease infinite;
+}
+
+/* --- 2. GLOSSY CARD SURFACES --- */
+.service-card {
+  background: linear-gradient(165deg, rgba(26,60,52,0.97), rgba(15,42,35,0.99));
+  border: 1px solid rgba(200,169,110,0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    0 2px 12px rgba(0,0,0,0.3);
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200,169,110,0.04),
+    rgba(245,240,232,0.06),
+    rgba(200,169,110,0.04),
+    transparent
+  );
+  transition: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.service-card:hover::after {
+  animation: sweepShine 0.8s ease forwards;
+}
+
+.service-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 0 30px rgba(200,169,110,0.12),
+    0 8px 40px rgba(200,169,110,0.08);
+  border-color: rgba(200,169,110,0.25);
+}
+
+/* Payment cards glossy */
+.payment-card {
+  background: linear-gradient(165deg, rgba(26,60,52,0.97), rgba(15,42,35,0.99));
+  border: 1px solid rgba(200,169,110,0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    0 2px 8px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.payment-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200,169,110,0.04),
+    rgba(245,240,232,0.06),
+    rgba(200,169,110,0.04),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.payment-card:hover::after {
+  animation: sweepShine 0.8s ease forwards;
+}
+
+.payment-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 0 30px rgba(200,169,110,0.12),
+    0 8px 32px rgba(200,169,110,0.08);
+  border-color: rgba(200,169,110,0.3);
+}
+
+/* --- 8. PRICE CARDS (step cards) glossy --- */
+.step {
+  background: linear-gradient(165deg, rgba(26,60,52,0.15), rgba(15,42,35,0.08));
+  border: 1px solid rgba(200,169,110,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  padding: 32px 20px;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.step:hover {
+  border-color: rgba(200,169,110,0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 0 25px rgba(200,169,110,0.08);
+}
+
+/* --- Stats glossy surface --- */
+.stat {
+  background: linear-gradient(165deg, rgba(26,60,52,0.08), rgba(15,42,35,0.04));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  transition: box-shadow 0.4s ease;
+}
+
+.stat:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 0 20px rgba(200,169,110,0.06);
+}
+
+/* --- Modal glossy --- */
+.modal {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 0 60px rgba(200,169,110,0.1),
+    0 25px 80px rgba(0,0,0,0.5);
+  border: 1px solid rgba(200,169,110,0.2);
+}
+
+/* --- 3. 3D METALLIC BUTTONS --- */
+.hero-cta {
+  background: linear-gradient(180deg, #D4BC8A 0%, #C8A96E 30%, #B8963C 60%, #A8884A 100%);
+  border: 1px solid rgba(245,230,200,0.3);
+  color: var(--black);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+  box-shadow:
+    0 0 20px rgba(200,169,110,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 4px rgba(0,0,0,0.15),
+    0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-cta:hover {
+  background: linear-gradient(180deg, #F5E6C8 0%, #D4BC8A 30%, #C8A96E 60%, #B8963C 100%);
+  color: var(--black);
+  box-shadow:
+    0 0 40px rgba(200,169,110,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -2px 4px rgba(0,0,0,0.12),
+    0 6px 25px rgba(0,0,0,0.3);
+  border-color: rgba(245,230,200,0.5);
+}
+
+.hero-cta:hover::before {
+  animation: btnSweep 0.7s ease forwards;
+}
+
+/* Nav CTA metallic */
+.nav-cta {
+  border: 1px solid rgba(200,169,110,0.5) !important;
+  box-shadow: 0 0 10px rgba(200,169,110,0.08);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.nav-cta:hover {
+  background: linear-gradient(180deg, #D4BC8A, #C8A96E, #B8963C) !important;
+  color: var(--black) !important;
+  box-shadow: 0 0 25px rgba(200,169,110,0.25);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+}
+
+/* Modal copy button metallic */
+.modal-copy {
+  background: linear-gradient(180deg, #D4BC8A, #C8A96E, #B8963C);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    inset 0 -1px 3px rgba(0,0,0,0.15),
+    0 2px 8px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(245,230,200,0.2);
+}
+
+.modal-copy:hover {
+  opacity: 1 !important;
+  background: linear-gradient(180deg, #F5E6C8, #D4BC8A, #C8A96E);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    0 0 15px rgba(200,169,110,0.2);
+}
+
+/* --- 4. GLOW EFFECTS ON HOVER --- */
+
+/* Service icon glow */
+.service-card:hover .service-icon {
+  box-shadow: 0 0 20px rgba(200,169,110,0.15);
+}
+
+/* Step number enhanced glow */
+.step:hover .step-number {
+  box-shadow: 0 0 35px rgba(200,169,110,0.18), 0 0 10px rgba(200,169,110,0.08);
+}
+
+/* Nav link hover glow */
+.nav-links a:hover {
+  text-shadow: 0 0 12px rgba(200,169,110,0.3);
+}
+
+/* Footer link glow */
+.footer-link:hover {
+  text-shadow: 0 0 10px rgba(200,169,110,0.2);
+}
+
+/* --- 6. ENHANCED BORDERS --- */
+.modal-email-box {
+  border: 1px solid rgba(200,169,110,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-email-box:hover {
+  border-color: rgba(200,169,110,0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    0 0 15px rgba(200,169,110,0.06);
+}
+
+.step-number {
+  border: 1px solid rgba(200,169,110,0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* --- 7. GALLERY IMAGE BORDER GLOW --- */
+.gallery-item {
+  border: 1px solid rgba(200,169,110,0);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  border-color: rgba(200,169,110,0.2);
+  box-shadow: 0 0 30px rgba(200,169,110,0.12), 0 0 60px rgba(200,169,110,0.05);
+}
+
+.gallery-item::after {
+  border: 1px solid rgba(200,169,110,0);
+  box-shadow: inset 0 0 30px rgba(200,169,110,0);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover::after {
+  border-color: rgba(200,169,110,0.3);
+  box-shadow: inset 0 0 40px rgba(200,169,110,0.06);
+}
+
+/* --- Hero tagline metallic italic --- */
+.hero-tagline {
+  background: linear-gradient(135deg, #E8E0D0, #F5F0E8, #D4BC8A, #F5F0E8, #E8E0D0);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 7s ease infinite;
+}
+
+/* --- Scrolled navbar subtle glow --- */
+.navbar.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3), 0 0 30px rgba(200,169,110,0.03);
+  border-bottom: 1px solid rgba(200,169,110,0.12) !important;
+}
+
+/* --- Service name mini metallic --- */
+.service-name {
+  background: linear-gradient(135deg, #F5F0E8 0%, #E8E0D0 40%, #F5F0E8 60%, #D4BC8A 80%, #F5F0E8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallicShimmer 8s ease infinite;
+}
+
+/* --- Payment name subtle metallic --- */
+.payment-name {
+  background: linear-gradient(135deg, #F5F0E8, #E8E0D0, #F5F0E8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 </style>
 </head>
 <body>

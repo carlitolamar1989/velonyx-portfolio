@@ -1224,6 +1224,411 @@ h1, h2, h3, h4 {
     font-size: 2rem;
   }
 }
+
+/* ==========================================================
+   PRECIOUS METAL / GLOSSY / ULTRA-REALISTIC GLOW UPGRADE
+   ========================================================== */
+
+/* ---------- Metallic gradient for headings / section titles ---------- */
+.section-title,
+.hero-title,
+.pricing-name,
+.contact-cta .section-title,
+.nav-brand,
+.footer-brand {
+  background: linear-gradient(135deg, #A05A3A 0%, #E8B090 25%, #C4785B 50%, #F0C8A8 75%, #8B4A2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Keep the hero-title em metallic but slightly brighter */
+.hero-title em {
+  background: linear-gradient(135deg, #C4785B 0%, #F0C8A8 40%, #E8B090 60%, #C4785B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Metallic section labels / dividers ---------- */
+.section-label,
+.hero-label,
+.overlay-label,
+.pricing-badge,
+.stat-label {
+  background: linear-gradient(135deg, #A05A3A 0%, #E8B090 30%, #C4785B 60%, #F0C8A8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pricing badge needs visible background, so override */
+.pricing-badge {
+  -webkit-text-fill-color: #fff;
+  background: linear-gradient(135deg, #A05A3A, #C4785B, #E8B090, #C4785B);
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  border: 1px solid rgba(196, 120, 91, 0.25);
+  box-shadow: 0 2px 8px rgba(196, 120, 91, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Sweep / shine keyframes ---------- */
+@keyframes sweepShine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+@keyframes btnSweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ---------- Glossy card surfaces (service, payment, pricing) ---------- */
+.service-card,
+.payment-card,
+.pricing-card {
+  background: linear-gradient(160deg, rgba(255,255,255,0.85) 0%, rgba(250,248,245,0.65) 100%);
+  border: 1px solid rgba(196, 120, 91, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+              0 1px 3px rgba(42, 42, 42, 0.04);
+  overflow: hidden;
+}
+
+/* Glossy sweep pseudo-element on cards */
+.service-card::after,
+.payment-card::after,
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.25) 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.service-card:hover::after,
+.payment-card:hover::after,
+.pricing-card:hover::after {
+  animation: sweepShine 0.7s ease forwards;
+}
+
+/* Warm glow on hover for cards */
+.service-card:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+              0 12px 40px rgba(42, 42, 42, 0.06),
+              0 0 25px rgba(196, 120, 91, 0.15);
+  border-color: rgba(196, 120, 91, 0.2);
+}
+
+.payment-card:hover {
+  border-color: rgba(196, 120, 91, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+              0 8px 28px rgba(196, 120, 91, 0.08),
+              0 0 25px rgba(196, 120, 91, 0.15);
+}
+
+.pricing-card:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+              0 16px 48px rgba(42, 42, 42, 0.07),
+              0 0 25px rgba(196, 120, 91, 0.15);
+  border-color: rgba(196, 120, 91, 0.2);
+}
+
+/* Featured pricing card enhanced glossy treatment */
+.pricing-card.featured {
+  background: linear-gradient(160deg, #fff 0%, rgba(250, 248, 245, 0.95) 100%);
+  border-color: rgba(196, 120, 91, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              0 20px 60px rgba(196, 120, 91, 0.1),
+              0 0 20px rgba(196, 120, 91, 0.08);
+}
+
+.pricing-card.featured:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              0 24px 64px rgba(196, 120, 91, 0.14),
+              0 0 30px rgba(196, 120, 91, 0.2);
+}
+
+/* ---------- 3D Metallic buttons ---------- */
+.btn-primary {
+  background: linear-gradient(160deg, #3A3A3A 0%, #2A2A2A 40%, #1A1A1A 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 15px rgba(42, 42, 42, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-primary:hover::before {
+  animation: btnSweep 0.6s ease forwards;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(160deg, #D08B6B 0%, #C4785B 35%, #A05A3A 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 22px rgba(196, 120, 91, 0.35),
+              0 0 25px rgba(196, 120, 91, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+/* CTA large button metallic treatment */
+.btn-cta-large {
+  background: linear-gradient(160deg, #D08B6B 0%, #C4785B 35%, #A05A3A 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 20px rgba(196, 120, 91, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta-large::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.12) 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-cta-large:hover::before {
+  animation: btnSweep 0.6s ease forwards;
+}
+
+.btn-cta-large:hover {
+  background: linear-gradient(160deg, #3A3A3A 0%, #2A2A2A 40%, #1A1A1A 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 22px rgba(42, 42, 42, 0.3),
+              0 0 20px rgba(42, 42, 42, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Featured pricing button metallic */
+.pricing-card.featured .btn-pricing {
+  background: linear-gradient(160deg, #D08B6B 0%, #C4785B 35%, #A05A3A 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(196, 120, 91, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card.featured .btn-pricing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pricing-card.featured .btn-pricing:hover::before {
+  animation: btnSweep 0.6s ease forwards;
+}
+
+.pricing-card.featured .btn-pricing:hover {
+  background: linear-gradient(160deg, #3A3A3A 0%, #2A2A2A 40%, #1A1A1A 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(42, 42, 42, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Non-featured pricing button hover glow */
+.btn-pricing {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-pricing:hover {
+  box-shadow: 0 4px 16px rgba(42, 42, 42, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary button subtle enhancement */
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(196, 120, 91, 0.4);
+  box-shadow: 0 0 20px rgba(196, 120, 91, 0.1);
+}
+
+/* Nav CTA button gloss */
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-cta:hover {
+  box-shadow: 0 4px 14px rgba(42, 42, 42, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------- Gallery / portfolio image glow on hover ---------- */
+.masonry-item {
+  border: 1px solid transparent;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.masonry-item:hover {
+  border-color: rgba(196, 120, 91, 0.2);
+  box-shadow: 0 0 25px rgba(196, 120, 91, 0.15),
+              0 8px 30px rgba(42, 42, 42, 0.08);
+}
+
+/* Glossy frame effect -- inner shine on images */
+.masonry-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.masonry-item:hover::before {
+  opacity: 1;
+}
+
+/* ---------- About image glossy frame ---------- */
+.about-image {
+  border: 1px solid rgba(196, 120, 91, 0.1);
+  box-shadow: 0 2px 8px rgba(42, 42, 42, 0.04);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.about-image:hover {
+  border-color: rgba(196, 120, 91, 0.2);
+  box-shadow: 0 0 25px rgba(196, 120, 91, 0.12),
+              0 8px 30px rgba(42, 42, 42, 0.06);
+}
+
+/* ---------- Enhanced borders on interactive elements ---------- */
+.service-card,
+.payment-card,
+.pricing-card {
+  transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+}
+
+/* ---------- Modal glossy treatment ---------- */
+.modal {
+  background: linear-gradient(160deg, #fff 0%, rgba(250, 248, 245, 0.97) 100%);
+  border: 1px solid rgba(196, 120, 91, 0.1);
+  box-shadow: 0 25px 80px rgba(42, 42, 42, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Stat numbers metallic ---------- */
+.stat-number {
+  background: linear-gradient(135deg, #A05A3A 0%, #E8B090 30%, #C4785B 60%, #F0C8A8 85%, #8B4A2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Footer divider glow ---------- */
+.footer {
+  border-image: linear-gradient(90deg, transparent 0%, rgba(196, 120, 91, 0.15) 25%, rgba(196, 120, 91, 0.25) 50%, rgba(196, 120, 91, 0.15) 75%, transparent 100%) 1;
+}
+
+/* ---------- Scrolled nav subtle bottom glow ---------- */
+.nav.scrolled {
+  box-shadow: 0 1px 0 rgba(196, 120, 91, 0.08),
+              0 4px 16px rgba(42, 42, 42, 0.04);
+}
+
+/* ---------- Price metallic ---------- */
+.pricing-price {
+  background: linear-gradient(135deg, #A05A3A, #E8B090, #C4785B, #F0C8A8, #8B4A2D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Service card top-bar becomes metallic ---------- */
+.service-card::before {
+  background: linear-gradient(90deg, #A05A3A, #E8B090, #C4785B, #F0C8A8, #8B4A2D);
+  z-index: 2;
+}
+
+/* ---------- Overlay title in gallery - subtle metallic ---------- */
+.masonry-overlay .overlay-title {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
 </style>
 </head>
 <body>
