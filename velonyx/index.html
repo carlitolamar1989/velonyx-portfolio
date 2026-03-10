@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velonyx Systems | Premium Digital Systems for Modern Brands</title>
   <meta name="description" content="Luxury websites with payment integration for businesses, product sellers, and service providers. Stop selling in the DMs. Start selling with a premium website.">
+
+  <!-- Open Graph (link previews in iMessage, Instagram, etc.) -->
+  <meta property="og:title" content="Velonyx Systems | Premium Digital Solutions">
+  <meta property="og:description" content="We build luxury websites with built-in payment systems. Your customers land, trust, and pay — all in one place.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
+  <meta property="og:url" content="https://carlitolamar1989.github.io/velonyx-portfolio/velonyx/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Velonyx Systems | Premium Digital Solutions">
+  <meta name="twitter:description" content="Luxury websites with built-in payment systems for modern brands.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
+
+  <!-- Favicon (SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2308090E'/><rect x='8' y='8' width='84' height='84' rx='12' fill='none' stroke='%237C8CF8' stroke-width='4'/><text x='50' y='66' font-family='Arial' font-weight='900' font-size='44' fill='%237C8CF8' text-anchor='middle'>VS</text></svg>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1033,10 +1048,176 @@
         width: 240px;
         height: 150px;
       }
+
+      .testimonials { padding: 70px 20px; }
+      .testimonial-card { padding: 32px 24px; }
+    }
+
+    /* ===== LOADING SCREEN ===== */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-mark {
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin: 0 auto 16px;
+      animation: loaderPulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes loaderPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(124, 140, 248, 0.3); }
+      50% { transform: scale(1.08); box-shadow: 0 0 30px 8px rgba(124, 140, 248, 0.15); }
+    }
+
+    .loader-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white-muted);
+    }
+
+    .loader-bar {
+      width: 120px;
+      height: 2px;
+      background: var(--bg-border);
+      margin: 16px auto 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: loaderFill 1.4s ease-out forwards;
+    }
+
+    @keyframes loaderFill {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      padding: 100px 24px;
+      background: var(--bg-deep);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-border);
+      border-radius: 14px;
+      padding: 36px 32px;
+      position: relative;
+      transition: all 0.4s;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(124, 140, 248, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-stars {
+      color: #F5C542;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card blockquote {
+      color: var(--white-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--bg-deep);
+    }
+
+    .testimonial-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--white-dim);
+    }
+
+    /* Portfolio card as link */
+    a.portfolio-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
   </style>
 </head>
 <body>
+
+  <!-- LOADING SCREEN -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-mark">VS</div>
+      <div class="loader-text">Velonyx Systems</div>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -1198,7 +1379,7 @@
 
       <div class="portfolio-grid">
         <!-- Throne Barbershop -->
-        <div class="portfolio-card scale-in">
+        <a href="https://carlitolamar1989.github.io/velonyx-portfolio/demos/barber/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1A3C34, #0F2620);">
             <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barbershop" loading="lazy">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(26,60,52,0.9), rgba(26,60,52,0.3));">
@@ -1216,10 +1397,10 @@
               <span>Green &amp; Cream</span>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- IronWill -->
-        <div class="portfolio-card scale-in">
+        <a href="https://carlitolamar1989.github.io/velonyx-portfolio/demos/fitness/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #111111, #1A1A1A);">
             <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Fitness training" loading="lazy">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(17,17,17,0.9), rgba(17,17,17,0.3));">
@@ -1237,10 +1418,10 @@
               <span>Black &amp; Red</span>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Lens & Light -->
-        <div class="portfolio-card scale-in">
+        <a href="https://carlitolamar1989.github.io/velonyx-portfolio/demos/photo/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #FAF8F5, #EDE8E0);">
             <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Photography" loading="lazy">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(250,248,245,0.9), rgba(250,248,245,0.3));">
@@ -1258,7 +1439,7 @@
               <span>Packages</span>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -1311,6 +1492,54 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label">What Clients Say</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title fade-in">Results That Speak<br>for Themselves</h2>
+      <p class="section-subtitle fade-in">Don't take our word for it. Here's what business owners are saying.</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"I was losing customers every day because I had no website. Velonyx built me a full payment site in days. Now customers just click and pay. My revenue doubled the first month."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MJ</div>
+            <div>
+              <div class="testimonial-name">Marcus J.</div>
+              <div class="testimonial-role">Barbershop Owner, Houston TX</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"I used to spend hours going back and forth in DMs taking payments. Now I send one link. Customers see the price, pick their package, and pay. It's a whole different level."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TS</div>
+            <div>
+              <div class="testimonial-name">Tanya S.</div>
+              <div class="testimonial-role">Fitness Coach, Atlanta GA</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"The site they built me looks like it cost $10K. Clean, professional, and my clients always compliment it. Best investment I've made for my business. Period."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DR</div>
+            <div>
+              <div class="testimonial-name">David R.</div>
+              <div class="testimonial-role">Photographer, Dallas TX</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA / CONTACT -->
   <section class="cta-section" id="contact">
     <div class="container">
@@ -1330,10 +1559,17 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">VELONYX SYSTEMS</div>
-    <p class="footer-copy">&copy; 2025 Velonyx Systems. All rights reserved. <span class="gold">Built for Presence. Engineered for Growth.</span></p>
+    <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved. <span class="gold">Built for Presence. Engineered for Growth.</span></p>
   </footer>
 
   <script>
+    // ===== LOADING SCREEN =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1600);
+    });
+
     // ===== SCROLL-TRIGGERED ANIMATIONS =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
