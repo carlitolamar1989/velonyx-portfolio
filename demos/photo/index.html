@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lens & Light Studio | We Don't Take Photos. We Tell Stories.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #FAF8F5;
+  --charcoal: #2A2A2A;
+  --terracotta: #C4785B;
+  --terracotta-light: rgba(196, 120, 91, 0.12);
+  --heading: 'Cormorant Garamond', Georgia, serif;
+  --body: 'Work Sans', -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1, h2, h3, h4 {
+  font-family: var(--heading);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.section-label {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--heading);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--charcoal);
+  margin-bottom: 1.2rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #6b6b6b;
+  max-width: 520px;
+  line-height: 1.8;
+}
+
+/* ========== ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-stagger.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes heroFadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ========== NAVIGATION ========== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.4rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+.nav.scrolled {
+  background: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(42, 42, 42, 0.06);
+  padding: 1rem 3rem;
+}
+
+.nav-brand {
+  font-family: var(--heading);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--charcoal);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.4rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--terracotta);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--terracotta);
+}
+
+.nav-cta {
+  font-family: var(--body) !important;
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 0.6rem 1.6rem !important;
+  border: 1px solid var(--charcoal) !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-cta:hover {
+  background: var(--charcoal) !important;
+  color: var(--cream) !important;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+/* Mobile menu button */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--charcoal);
+  transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -5px);
+}
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-content {
+  padding: 8rem 4rem 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-label {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--heading);
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--terracotta);
+}
+
+.hero-subtitle {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #6b6b6b;
+  max-width: 400px;
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.7s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.9s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  background: var(--charcoal);
+  color: var(--cream);
+  border: 1px solid var(--charcoal);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-primary:hover {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  background: transparent;
+  color: var(--charcoal);
+  border: 1px solid rgba(42, 42, 42, 0.25);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--charcoal);
+}
+
+.hero-image-wrap {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--cream) 0%, rgba(250, 248, 245, 0.15) 30%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 2;
+  opacity: 0;
+  animation: heroFadeIn 1s ease 1.5s forwards;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--terracotta);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--charcoal);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.scroll-text {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* ========== PORTFOLIO GALLERY ========== */
+.gallery {
+  padding: 8rem 6rem;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.gallery-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.masonry {
+  columns: 3;
+  column-gap: 1.4rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.masonry-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 42, 42, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.masonry-item:hover img {
+  transform: scale(1.06);
+}
+
+.masonry-item:hover .masonry-overlay {
+  opacity: 1;
+}
+
+.masonry-overlay .overlay-label {
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.5rem;
+}
+
+.masonry-overlay .overlay-title {
+  font-family: var(--heading);
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #fff;
+}
+
+/* ========== SERVICES ========== */
+.services {
+  padding: 7rem 6rem;
+  background: #fff;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.services-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  padding: 2.4rem 1.8rem;
+  border: 1px solid rgba(42, 42, 42, 0.07);
+  position: relative;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--terracotta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:hover {
+  box-shadow: 0 12px 40px rgba(42, 42, 42, 0.06);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1.4rem;
+  display: block;
+}
+
+.service-card h3 {
+  font-family: var(--heading);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+
+.service-card p {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #777;
+  line-height: 1.7;
+}
+
+/* ========== PACKAGES & PRICING ========== */
+.pricing {
+  padding: 7rem 6rem;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.pricing-card {
+  padding: 3rem 2.4rem;
+  border: 1px solid rgba(42, 42, 42, 0.08);
+  text-align: center;
+  position: relative;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  background: var(--cream);
+}
+
+.pricing-card:hover {
+  box-shadow: 0 16px 48px rgba(42, 42, 42, 0.07);
+  transform: translateY(-4px);
+}
+
+.pricing-card.featured {
+  border-color: var(--terracotta);
+  background: #fff;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(196, 120, 91, 0.1);
+}
+
+.pricing-card.featured:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 24px 64px rgba(196, 120, 91, 0.14);
+}
+
+.pricing-badge {
+  display: inline-block;
+  font-family: var(--body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--terracotta);
+  padding: 0.35rem 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.pricing-name {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+
+.pricing-price {
+  font-family: var(--heading);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  margin-bottom: 1.8rem;
+  line-height: 1;
+}
+
+.pricing-price span {
+  font-size: 1.4rem;
+  vertical-align: top;
+  position: relative;
+  top: 0.4rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2.4rem;
+}
+
+.pricing-features li {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #666;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(42, 42, 42, 0.05);
+}
+
+.pricing-features li:last-child {
+  border-bottom: none;
+}
+
+.btn-pricing {
+  display: inline-block;
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(42, 42, 42, 0.2);
+  background: transparent;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-pricing:hover {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--cream);
+}
+
+.pricing-card.featured .btn-pricing {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+}
+
+.pricing-card.featured .btn-pricing:hover {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+
+/* ========== PAYMENT ========== */
+.payment {
+  padding: 7rem 6rem;
+  background: #fff;
+}
+
+.payment-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.payment-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.payment-card {
+  padding: 2rem 1.4rem;
+  border: 1px solid rgba(42, 42, 42, 0.08);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  background: var(--cream);
+  position: relative;
+}
+
+.payment-card:hover {
+  border-color: var(--terracotta);
+  box-shadow: 0 8px 28px rgba(196, 120, 91, 0.08);
+  transform: translateY(-3px);
+}
+
+.payment-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.payment-card h4 {
+  font-family: var(--heading);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+
+.payment-card p {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: #999;
+}
+
+/* Zelle Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 42, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: #fff;
+  padding: 3rem 3.5rem;
+  max-width: 440px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.35s ease;
+}
+
+.modal-backdrop.active .modal {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--charcoal);
+}
+
+.modal h3 {
+  font-family: var(--heading);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+}
+
+.modal p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #666;
+  margin-bottom: 1.6rem;
+  line-height: 1.7;
+}
+
+.modal .zelle-info {
+  background: var(--cream);
+  padding: 1.4rem;
+  margin-bottom: 1.6rem;
+  border: 1px solid rgba(42, 42, 42, 0.06);
+}
+
+.modal .zelle-info .zelle-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.4rem;
+}
+
+.modal .zelle-info .zelle-detail {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--charcoal);
+}
+
+.modal .btn-primary {
+  width: 100%;
+  justify-content: center;
+  border: none;
+}
+
+/* ========== ABOUT ========== */
+.about {
+  padding: 7rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.about-image::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 50%;
+  height: 50%;
+  border: 1px solid var(--terracotta);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.about-content .section-label {
+  text-align: left;
+}
+
+.about-content .section-title {
+  text-align: left;
+}
+
+.about-text {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.9;
+  margin-bottom: 2.8rem;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--heading);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* ========== CONTACT CTA ========== */
+.contact-cta {
+  padding: 9rem 6rem;
+  text-align: center;
+  background: #fff;
+  position: relative;
+}
+
+.contact-cta .section-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+
+.contact-cta .section-subtitle {
+  margin: 0 auto 2.8rem;
+  text-align: center;
+}
+
+.btn-cta-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1.2rem 3rem;
+  background: var(--terracotta);
+  color: #fff;
+  border: 1px solid var(--terracotta);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-cta-large:hover {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+
+.btn-cta-large svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.btn-cta-large:hover svg {
+  transform: translateX(4px);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: 3.5rem 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(42, 42, 42, 0.07);
+}
+
+.footer-brand {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.footer-links a {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--terracotta);
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: #aaa;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    padding: 10rem 3rem 4rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-image-wrap {
+    height: 50vh;
+    order: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+  }
+
+  .hero-image-overlay {
+    background: linear-gradient(to top, var(--cream) 30%, rgba(250, 248, 245, 0.7) 70%, rgba(250, 248, 245, 0.4) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    justify-content: flex-end;
+    padding-bottom: 6rem;
+  }
+
+  .hero-scroll-indicator {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .masonry {
+    columns: 2;
+  }
+
+  .about-grid {
+    gap: 3rem;
+  }
+
+  .gallery, .services, .pricing, .payment, .about, .contact-cta {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .footer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .nav {
+    padding: 1.2rem 2rem;
+  }
+
+  .nav.scrolled {
+    padding: 0.9rem 2rem;
+  }
+
+  .payment-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--cream);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.06);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+    order: -1;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image img {
+    height: 360px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+  }
+
+  .payment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-content {
+    padding: 8rem 1.6rem 4rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .masonry {
+    columns: 1;
+  }
+
+  .gallery, .services, .pricing, .payment, .about, .contact-cta {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .footer {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .payment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand">Lens & Light</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-label">Lens & Light Studio</div>
+    <h1 class="hero-title">We Don't Take<br>Photos. We Tell<br><em>Stories.</em></h1>
+    <p class="hero-subtitle">Crafting timeless images that capture the essence of your most meaningful moments. Every frame, intentional. Every story, unforgettable.</p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">View Our Work
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="btn-secondary">Book a Session</a>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-image-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1600&q=80" alt="Photographer at work in golden light" loading="eager">
+  </div>
+  <div class="hero-scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ========== PORTFOLIO GALLERY ========== -->
+<section class="gallery" id="portfolio">
+  <div class="gallery-header reveal">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Our Portfolio</h2>
+    <p class="section-subtitle">A curated collection of our favorite stories told through the lens. Each project is a collaboration, a connection, a moment preserved.</p>
+  </div>
+
+  <div class="masonry">
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Elegant portrait in natural light">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Portrait</span>
+        <span class="overlay-title">Soleil Collection</span>
+      </div>
+    </div>
+
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Romantic wedding celebration">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Wedding</span>
+        <span class="overlay-title">The Andersons</span>
+      </div>
+    </div>
+
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Fashion lifestyle editorial">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Lifestyle</span>
+        <span class="overlay-title">Autumn Editorial</span>
+      </div>
+    </div>
+
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80" alt="Artistic portrait composition">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Portrait</span>
+        <span class="overlay-title">Luminance Series</span>
+      </div>
+    </div>
+
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&q=80" alt="Creative studio photography">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Brand</span>
+        <span class="overlay-title">Studio Sessions</span>
+      </div>
+    </div>
+
+    <div class="masonry-item reveal-stagger">
+      <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&q=80" alt="Behind the scenes photography">
+      <div class="masonry-overlay">
+        <span class="overlay-label">Behind the Scenes</span>
+        <span class="overlay-title">The Process</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">Every project begins with a conversation. We tailor our approach to your vision, ensuring every detail is intentional.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal-stagger">
+      <span class="service-icon">&#9673;</span>
+      <h3>Portrait Sessions</h3>
+      <p>Intimate, personal portraits that reveal character and emotion. Natural light. Timeless compositions. Your story, authentically told.</p>
+    </div>
+
+    <div class="service-card reveal-stagger">
+      <span class="service-icon">&#9734;</span>
+      <h3>Event Coverage</h3>
+      <p>From weddings to galas, we document the moments that matter. Unobtrusive presence, extraordinary results.</p>
+    </div>
+
+    <div class="service-card reveal-stagger">
+      <span class="service-icon">&#9830;</span>
+      <h3>Brand Photography</h3>
+      <p>Elevate your brand with imagery that speaks. Product shots, lifestyle content, and visual narratives that convert.</p>
+    </div>
+
+    <div class="service-card reveal-stagger">
+      <span class="service-icon">&#9654;</span>
+      <h3>Video Production</h3>
+      <p>Cinematic storytelling in motion. Short films, brand videos, and highlight reels crafted with editorial precision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PACKAGES & PRICING ========== -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header reveal">
+    <div class="section-label">Investment</div>
+    <h2 class="section-title">Packages & Pricing</h2>
+    <p class="section-subtitle">Transparent pricing for exceptional work. Each package is designed to deliver a complete, polished experience.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card reveal-stagger">
+      <div class="pricing-name">Essential</div>
+      <div class="pricing-price"><span>$</span>350</div>
+      <ul class="pricing-features">
+        <li>1-Hour Session</li>
+        <li>15 Edited Photos</li>
+        <li>1 Location</li>
+        <li>Online Gallery</li>
+        <li>Print Release</li>
+      </ul>
+      <a href="#payment" class="btn-pricing">Select Package</a>
+    </div>
+
+    <div class="pricing-card featured reveal-stagger">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-name">Signature</div>
+      <div class="pricing-price"><span>$</span>650</div>
+      <ul class="pricing-features">
+        <li>2-Hour Session</li>
+        <li>30 Edited Photos</li>
+        <li>2 Outfits / Looks</li>
+        <li>2 Locations</li>
+        <li>Online Gallery</li>
+        <li>Print Release</li>
+      </ul>
+      <a href="#payment" class="btn-pricing">Select Package</a>
+    </div>
+
+    <div class="pricing-card reveal-stagger">
+      <div class="pricing-name">Luxury</div>
+      <div class="pricing-price"><span>$</span>1,200</div>
+      <ul class="pricing-features">
+        <li>Full-Day Session</li>
+        <li>Unlimited Photos</li>
+        <li>Unlimited Locations</li>
+        <li>Video Highlight Reel</li>
+        <li>Online Gallery</li>
+        <li>Print Release</li>
+      </ul>
+      <a href="#payment" class="btn-pricing">Select Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PAYMENT ========== -->
+<section class="payment" id="payment">
+  <div class="payment-header reveal">
+    <div class="section-label">Book & Pay</div>
+    <h2 class="section-title">Secure Your Session</h2>
+    <p class="section-subtitle">Choose your preferred payment method below. A 50% deposit is required to reserve your date.</p>
+  </div>
+
+  <div class="payment-grid">
+    <div class="payment-card reveal-stagger">
+      <span class="payment-icon">&#36;</span>
+      <h4>CashApp</h4>
+      <p>$LensAndLight</p>
+    </div>
+
+    <div class="payment-card reveal-stagger" id="zelleCard">
+      <span class="payment-icon">&#9993;</span>
+      <h4>Zelle</h4>
+      <p>Tap for details</p>
+    </div>
+
+    <div class="payment-card reveal-stagger">
+      <span class="payment-icon">&#9400;</span>
+      <h4>PayPal</h4>
+      <p>@LensAndLight</p>
+    </div>
+
+    <div class="payment-card reveal-stagger">
+      <span class="payment-icon">&#8744;</span>
+      <h4>Venmo</h4>
+      <p>@LensAndLight</p>
+    </div>
+
+    <div class="payment-card reveal-stagger">
+      <span class="payment-icon">&#9645;</span>
+      <h4>Card</h4>
+      <p>Visa / MC / Amex</p>
+    </div>
+  </div>
+</section>
+
+<!-- Zelle Modal -->
+<div class="modal-backdrop" id="zelleModal">
+  <div class="modal">
+    <button class="modal-close" id="zelleClose">&times;</button>
+    <div class="section-label">Payment Details</div>
+    <h3>Pay via Zelle</h3>
+    <p>Send your deposit or full payment directly through Zelle using the details below.</p>
+    <div class="zelle-info">
+      <div class="zelle-label">Registered Name</div>
+      <div class="zelle-detail">Lens & Light Studio LLC</div>
+    </div>
+    <div class="zelle-info">
+      <div class="zelle-label">Email Address</div>
+      <div class="zelle-detail">payments@lensandlight.com</div>
+    </div>
+    <div style="height: 1rem;"></div>
+    <button class="btn-primary" onclick="document.getElementById('zelleModal').classList.remove('active');">Got It</button>
+  </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-image reveal">
+      <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&q=80" alt="Photographer behind the scenes" id="aboutImg">
+    </div>
+    <div class="about-content">
+      <div class="section-label reveal">Our Story</div>
+      <h2 class="section-title reveal">The Eye Behind the Lens</h2>
+      <p class="about-text reveal">What started as a love affair with light and shadow has grown into a full-service photography studio dedicated to the art of visual storytelling. We believe that every person, every event, every brand has a story worth telling beautifully.</p>
+      <p class="about-text reveal">Over the years, we've had the privilege of capturing life's most meaningful moments. From intimate portraits to grand celebrations, our approach remains the same: listen deeply, observe carefully, and create images that resonate for a lifetime.</p>
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-number" data-target="8">0</div>
+          <div class="stat-label">Years</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">Sessions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="200" data-suffix="+">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT CTA ========== -->
+<section class="contact-cta" id="contact">
+  <div class="section-label reveal">Get in Touch</div>
+  <h2 class="section-title reveal">Let's Create Something<br>Beautiful</h2>
+  <p class="section-subtitle reveal">Ready to tell your story? We'd love to hear from you. Reach out and let's start planning your session.</p>
+  <a href="mailto:hello@lensandlight.com" class="btn-cta-large reveal">
+    Start a Conversation
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-brand">Lens & Light Studio</div>
+  <div class="footer-links">
+    <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:hello@lensandlight.com">hello@lensandlight.com</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Lens & Light Studio. All rights reserved.</div>
+</footer>
+
+<script>
+// ========== NAVBAR SCROLL EFFECT ==========
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// ========== MOBILE MENU ==========
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ========== SCROLL REVEAL ==========
+const revealElements = document.querySelectorAll('.reveal');
+const staggerElements = document.querySelectorAll('.reveal-stagger');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Staggered reveal for gallery items and cards
+const staggerObserver = new IntersectionObserver((entries) => {
+  const visibleEntries = entries.filter(e => e.isIntersecting);
+  visibleEntries.forEach((entry, i) => {
+    setTimeout(() => {
+      entry.target.classList.add('visible');
+      staggerObserver.unobserve(entry.target);
+    }, i * 120);
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -30px 0px'
+});
+
+staggerElements.forEach(el => staggerObserver.observe(el));
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ========== COUNT UP ANIMATION ==========
+let statsCounted = false;
+
+function countUp(element, target, suffix) {
+  const duration = 2000;
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    element.textContent = current + (suffix || '');
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = target + (suffix || '');
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !statsCounted) {
+      statsCounted = true;
+      document.querySelectorAll('.stat-number').forEach(stat => {
+        const target = parseInt(stat.dataset.target);
+        const suffix = stat.dataset.suffix || '';
+        countUp(stat, target, suffix);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+
+const statsSection = document.querySelector('.about-stats');
+if (statsSection) statsObserver.observe(statsSection);
+
+// ========== PARALLAX ON ABOUT IMAGE ==========
+const aboutImg = document.getElementById('aboutImg');
+const aboutSection = document.querySelector('.about');
+
+window.addEventListener('scroll', () => {
+  if (!aboutSection) return;
+  const rect = aboutSection.getBoundingClientRect();
+  const windowH = window.innerHeight;
+
+  if (rect.top < windowH && rect.bottom > 0) {
+    const progress = (windowH - rect.top) / (windowH + rect.height);
+    const translate = (progress - 0.5) * 40;
+    aboutImg.style.transform = `translateY(${translate}px)`;
+  }
+});
+
+// ========== ZELLE MODAL ==========
+const zelleCard = document.getElementById('zelleCard');
+const zelleModal = document.getElementById('zelleModal');
+const zelleClose = document.getElementById('zelleClose');
+
+zelleCard.addEventListener('click', () => {
+  zelleModal.classList.add('active');
+});
+
+zelleClose.addEventListener('click', () => {
+  zelleModal.classList.remove('active');
+});
+
+zelleModal.addEventListener('click', (e) => {
+  if (e.target === zelleModal) {
+    zelleModal.classList.remove('active');
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    zelleModal.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>
