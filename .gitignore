@@ -3,3 +3,12 @@
 *.swo
 .env
 node_modules/
+
+# Sensitive business documents (not for public repo)
+business-docs/
+
+# Draft content (LinkedIn/Medium posts - not for public repo)
+content/
+
+# Backend source (deployed separately to AWS Lambda)
+velonyx-website/backend/

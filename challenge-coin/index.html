@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Diego Sector Prosecutions — Challenge Coin Design</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0d1f17 0%, #1a3328 50%, #0d1f17 100%);
+      color: #e8e4dc;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #c9a227;
+    }
+    .coins {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .coin-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .coin-wrap span {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a9a8e;
+    }
+    .shield-coin {
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5)) drop-shadow(0 0 1px rgba(201,162,39,0.3));
+    }
+  </style>
+</head>
+<body>
+  <h1>U.S. Border Patrol — San Diego Sector Prosecutions</h1>
+  <div class="coins">
+    <div class="coin-wrap">
+      <span>Obverse</span>
+      <svg class="shield-coin" width="280" height="320" viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield path: rounded top, pointed bottom, tactical -->
+        <defs>
+          <linearGradient id="shieldGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#1B4D3E"/>
+            <stop offset="50%" style="stop-color:#234F3E"/>
+            <stop offset="100%" style="stop-color:#152f26"/>
+          </linearGradient>
+          <linearGradient id="gold" x1="0%" y1="0%" x2="1" y2="1">
+            <stop offset="0%" style="stop-color:#e8d48a"/>
+            <stop offset="50%" style="stop-color:#c9a227"/>
+            <stop offset="100%" style="stop-color:#9a7b1a"/>
+          </linearGradient>
+          <linearGradient id="goldDim" x1="0%" y1="0%" x2="0%" y2="1">
+            <stop offset="0%" style="stop-color:#a89050"/>
+            <stop offset="100%" style="stop-color:#6b5a2a"/>
+          </linearGradient>
+        </defs>
+        <!-- Shield border (rope/reeded edge effect) -->
+        <path d="M140 12 L260 52 L260 168 Q260 280 140 308 Q20 280 20 168 L20 52 Z" fill="none" stroke="url(#gold)" stroke-width="4"/>
+        <!-- Shield face -->
+        <path d="M140 16 L256 54 L256 166 Q256 274 140 300 Q24 274 24 166 L24 54 Z" fill="url(#shieldGreen)" stroke="url(#gold)" stroke-width="2"/>
+        <!-- Inner border -->
+        <path d="M140 28 L244 62 L244 162 Q244 258 140 282 Q36 258 36 162 L36 62 Z" fill="none" stroke="url(#goldDim)" stroke-width="1.5" opacity="0.8"/>
+        <!-- Angular scales of justice + tactical base (gravitas) -->
+        <g transform="translate(140, 158)">
+          <!-- Heavy geometric base (gravitas) -->
+          <path d="M-24 72 L24 72 L28 82 L-28 82 Z" fill="none" stroke="url(#gold)" stroke-width="2.8"/>
+          <path d="M-12 58 L12 58 L14 72 L-14 72 Z" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
+          <!-- Central pillar -->
+          <path d="M-5 42 L5 42 L6 58 L-6 58 Z" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
+          <!-- Beam -->
+          <line x1="-48" y1="-20" x2="48" y2="-20" stroke="url(#gold)" stroke-width="3" stroke-linecap="square"/>
+          <!-- Left pan -->
+          <line x1="-48" y1="-20" x2="-48" y2="4" stroke="url(#gold)" stroke-width="2.5"/>
+          <path d="M-56 8 L-40 8 L-40 18 L-56 18 Z" fill="none" stroke="url(#gold)" stroke-width="2"/>
+          <!-- Right pan -->
+          <line x1="48" y1="-20" x2="48" y2="4" stroke="url(#gold)" stroke-width="2.5"/>
+          <path d="M40 8 L56 8 L56 18 L40 18 Z" fill="none" stroke="url(#gold)" stroke-width="2"/>
+        </g>
+        <!-- Minimal laurel arcs (thin, not softening) -->
+        <path d="M70 90 Q140 70 210 90" fill="none" stroke="url(#goldDim)" stroke-width="1.2" opacity="0.7"/>
+        <path d="M70 220 Q140 240 210 220" fill="none" stroke="url(#goldDim)" stroke-width="1.2" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="coin-wrap">
+      <span>Reverse</span>
+      <svg class="shield-coin" width="280" height="320" viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="shieldGreen2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#1B4D3E"/>
+            <stop offset="50%" style="stop-color:#234F3E"/>
+            <stop offset="100%" style="stop-color:#152f26"/>
+          </linearGradient>
+          <linearGradient id="gold2" x1="0%" y1="0%" x2="1" y2="1">
+            <stop offset="0%" style="stop-color:#e8d48a"/>
+            <stop offset="50%" style="stop-color:#c9a227"/>
+            <stop offset="100%" style="stop-color:#9a7b1a"/>
+          </linearGradient>
+          <linearGradient id="goldDim2" x1="0%" y1="0%" x2="0%" y2="1">
+            <stop offset="0%" style="stop-color:#a89050"/>
+            <stop offset="100%" style="stop-color:#6b5a2a"/>
+          </linearGradient>
+        </defs>
+        <path d="M140 12 L260 52 L260 168 Q260 280 140 308 Q20 280 20 168 L20 52 Z" fill="none" stroke="url(#gold2)" stroke-width="4"/>
+        <path d="M140 16 L256 54 L256 166 Q256 274 140 300 Q24 274 24 166 L24 54 Z" fill="url(#shieldGreen2)" stroke="url(#gold2)" stroke-width="2"/>
+        <path d="M140 28 L244 62 L244 162 Q244 258 140 282 Q36 258 36 162 L36 62 Z" fill="none" stroke="url(#goldDim2)" stroke-width="1.5" opacity="0.8"/>
+        <!-- Top: U.S. BORDER PATROL -->
+        <text x="140" y="78" text-anchor="middle" fill="url(#gold2)" font-family="Georgia, serif" font-size="14" font-weight="bold" letter-spacing="0.14em">U.S. BORDER PATROL</text>
+        <!-- Center: SAN DIEGO SECTOR PROSECUTIONS -->
+        <text x="140" y="158" text-anchor="middle" fill="#e8e4dc" font-family="Georgia, serif" font-size="13" font-weight="bold" letter-spacing="0.06em">SAN DIEGO SECTOR</text>
+        <text x="140" y="178" text-anchor="middle" fill="#e8e4dc" font-family="Georgia, serif" font-size="13" font-weight="bold" letter-spacing="0.06em">PROSECUTIONS</text>
+        <!-- Motto -->
+        <text x="140" y="218" text-anchor="middle" fill="url(#gold2)" font-family="Georgia, serif" font-size="10" font-weight="bold" letter-spacing="0.04em">ENFORCE IMMIGRATION LAW.</text>
+        <text x="140" y="234" text-anchor="middle" fill="url(#gold2)" font-family="Georgia, serif" font-size="10" font-weight="bold" letter-spacing="0.04em">PROSECUTE ALL.</text>
+        <text x="140" y="254" text-anchor="middle" fill="url(#gold2)" font-family="Georgia, serif" font-size="12" font-weight="bold" letter-spacing="0.08em">AMERICA FIRST.</text>
+      </svg>
+    </div>
+  </div>
+  <p style="font-size: 0.7rem; color: #6a7a6e; letter-spacing: 0.1em;">Challenge coin design — San Diego Sector Prosecutions</p>
+</body>
+</html>
