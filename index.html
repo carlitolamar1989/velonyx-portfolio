@@ -320,21 +320,25 @@
       50% { opacity: 0.5; transform: scale(1.5); }
     }
 
-    .hero h1 {
+    .hero-h1-top, .hero-h2-bottom {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       font-weight: 900;
       line-height: 1.08;
-      margin-bottom: 0;
+      margin: 0;
       letter-spacing: -0.5px;
     }
+    .hero-h2-bottom {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+    }
 
-    .hero h1 .gold {
+    .hero-h1-top .gold, .hero-h2-bottom .gold {
       background: var(--gold-shine);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero h1 .line {
+    .hero-h1-top .line, .hero-h2-bottom .line {
       display: block;
       perspective: 600px;
     }
@@ -1411,7 +1415,8 @@
       .mobile-menu-btn { display: flex; }
 
       .hero { padding: 100px 20px 60px; min-height: auto; }
-      .hero h1 { font-size: 2rem; }
+      .hero-h1-top { font-size: 2rem; }
+      .hero-h2-bottom { font-size: 1.6rem; }
       .hero-logo { width: 240px; }
       .about-watermark { width: 250px; }
       .hero-sub { font-size: 1rem; }
@@ -2219,12 +2224,14 @@
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-eyebrow"><span class="dot"></span> Premium Digital Systems</div>
-      <h1>
+      <h1 class="hero-h1-top">
         <span class="line">Stop Selling in the DMs.</span>
-        <span class="line"><span class="gold">Start Selling with a</span></span>
-        <span class="line"><span class="gold">Premium Website.</span></span>
       </h1>
       <img src="assets/vs-logo-gold-2.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
+      <h2 class="hero-h2-bottom">
+        <span class="line"><span class="gold">Start Selling with a</span></span>
+        <span class="line"><span class="gold">Premium Website.</span></span>
+      </h2>
       <p class="hero-sub">We build luxury websites with built-in payment systems for businesses, product sellers, and service providers. Your customers land, trust, and pay &mdash; all in one place.</p>
       <div class="hero-buttons">
         <a href="#" class="btn-primary" onclick="event.preventDefault();openBooking()">Book a Consultation</a>
@@ -2733,7 +2740,7 @@
       const eyebrow = document.querySelector('.hero-eyebrow');
       eyebrow.classList.add('pop-in');
 
-      const heroLines = document.querySelectorAll('.hero h1 .line');
+      const heroLines = document.querySelectorAll('.hero-h1-top .line, .hero-h2-bottom .line');
       let totalCharDelay = 0;
 
       heroLines.forEach((line, lineIdx) => {
