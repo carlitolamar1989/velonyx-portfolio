@@ -514,6 +514,7 @@
       position: absolute;
       inset: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 1;
@@ -1286,6 +1287,96 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
+    /* ===== LOGO THROUGHOUT SITE ===== */
+
+    /* Hero logo (centered between headline and subtitle) */
+    .hero-logo {
+      width: 160px;
+      height: auto;
+      margin: 10px auto 20px;
+      display: block;
+      opacity: 0;
+      transform: scale(0.5);
+      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.2));
+      animation: none;
+    }
+    .hero-logo.revealed {
+      animation: logoReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, logoGlow 3s ease-in-out 1.5s infinite;
+    }
+    @keyframes logoReveal {
+      0% { opacity: 0; transform: scale(0.5) rotateY(90deg); filter: drop-shadow(0 0 0 transparent); }
+      50% { opacity: 1; transform: scale(1.1) rotateY(-10deg); }
+      100% { opacity: 1; transform: scale(1) rotateY(0); filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.2)); }
+    }
+    @keyframes logoGlow {
+      0%, 100% { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.15)); }
+      50% { filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.7)) drop-shadow(0 0 80px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 120px rgba(56, 189, 248, 0.1)); }
+    }
+
+    /* Section logo watermark */
+    .section-logo-mark {
+      display: block;
+      width: 60px;
+      height: auto;
+      margin: 0 auto 20px;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
+      transition: all 0.5s;
+    }
+    .section-logo-mark:hover {
+      opacity: 1;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.2));
+      transform: scale(1.08);
+    }
+
+    /* About section background watermark */
+    .about-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: auto;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .about { position: relative; overflow: hidden; }
+    .about .container { position: relative; z-index: 1; }
+
+    /* Footer logo */
+    .footer-logo {
+      width: 50px;
+      height: auto;
+      margin: 0 auto 12px;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+      transition: all 0.4s;
+    }
+    .footer-logo:hover {
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      transform: scale(1.1);
+    }
+
+    /* CTA section logo */
+    .cta-logo {
+      width: 70px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
+    /* Image divider logo overlay */
+    .divider-logo {
+      width: 50px;
+      height: auto;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      animation: logoGlow 4s ease-in-out infinite;
+    }
+
     /* Glow pulse on hero buttons after entrance */
     @keyframes glowPulse {
       0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255,255,255,0.25); }
@@ -1317,6 +1408,8 @@
 
       .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero h1 { font-size: 2rem; }
+      .hero-logo { width: 110px; }
+      .about-watermark { width: 250px; }
       .hero-sub { font-size: 1rem; }
 
       .hero-buttons {
@@ -2087,7 +2180,7 @@
   <div class="loader" id="loader">
     <div class="loader-warp" id="loaderWarp"></div>
     <div class="loader-content">
-      <div class="loader-mark"><img src="assets/vs-logo.png" alt="VS Logo"></div>
+      <div class="loader-mark"><img src="assets/vs-logo-gold-1.png" alt="Velonyx Systems"></div>
       <div class="loader-text">Velonyx Systems</div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
@@ -2099,7 +2192,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-brand">
-      <div class="nav-brand-mark"><img src="assets/vs-logo-shield.png" alt="VS Logo"></div>
+      <div class="nav-brand-mark"><img src="assets/vs-logo-gold-1.png" alt="Velonyx Systems"></div>
       <div class="nav-brand-text">VELONYX <span>SYSTEMS</span></div>
     </a>
     <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
@@ -2127,6 +2220,7 @@
         <span class="line"><span class="gold">Start Selling with a</span></span>
         <span class="line"><span class="gold">Premium Website.</span></span>
       </h1>
+      <img src="assets/vs-logo-gold-2.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
       <p class="hero-sub">We build luxury websites with built-in payment systems for businesses, product sellers, and service providers. Your customers land, trust, and pay &mdash; all in one place.</p>
       <div class="hero-buttons">
         <a href="#" class="btn-primary" onclick="event.preventDefault();openBooking()">Book a Consultation</a>
@@ -2149,6 +2243,7 @@
   <div class="image-divider">
     <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80" alt="Digital workspace" loading="lazy">
     <div class="image-divider-text">
+      <img src="assets/vs-logo-gold-1.png" alt="Velonyx Systems" class="divider-logo">
       <h3 class="fade-in">Your brand deserves <span>better than the DMs</span></h3>
     </div>
   </div>
@@ -2156,6 +2251,7 @@
   <!-- SERVICES -->
   <section class="services cyber-reveal" id="services">
     <div class="container">
+      <img src="assets/vs-logo-gold-1.png" alt="" class="section-logo-mark">
       <div class="section-label">What We Build</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Everything Your Business<br>Needs Online</h2>
@@ -2314,6 +2410,7 @@
   <div class="image-divider">
     <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80" alt="Team working on digital projects" loading="lazy">
     <div class="image-divider-text">
+      <img src="assets/vs-logo-gold-2.png" alt="Velonyx Systems" class="divider-logo">
       <h3 class="fade-in">Built with precision. <span>Designed to convert.</span></h3>
     </div>
   </div>
@@ -2414,6 +2511,7 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
+    <img src="assets/vs-logo-gold-1.png" alt="" class="about-watermark">
     <div class="container">
       <div class="section-label">About Velonyx</div>
       <div class="section-divider"></div>
@@ -2493,6 +2591,7 @@
   <section class="cta-section" id="contact">
     <div class="container">
       <div class="cta-card fade-in">
+        <img src="assets/vs-logo-gold-2.png" alt="Velonyx Systems" class="cta-logo">
         <div class="section-label">Let's Build</div>
         <h2>Ready to Stop Losing Customers<br>in the <span class="gold">DMs</span>?</h2>
         <p>Book a free consultation. We'll talk about your business, what you need, and how we can build it. No pressure, no commitment &mdash; just a conversation.</p>
@@ -2507,6 +2606,7 @@
 
   <!-- FOOTER -->
   <footer>
+    <img src="assets/vs-logo-gold-1.png" alt="Velonyx Systems" class="footer-logo">
     <div class="footer-brand">VELONYX SYSTEMS</div>
     <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved. <span class="gold">Built for Presence. Engineered for Growth.</span></p>
   </footer>
@@ -2652,6 +2752,11 @@
 
         totalCharDelay = 300 + lineIdx * 300 + chars.length * 25;
       });
+
+      // Hero logo reveal (3D flip-in with glow)
+      setTimeout(() => {
+        document.getElementById('heroLogo').classList.add('revealed');
+      }, totalCharDelay + 50);
 
       // Typewriter subtitle
       const heroSub = document.querySelector('.hero-sub');
