@@ -1370,9 +1370,13 @@
 
     /* Image divider logo overlay */
     .divider-logo {
-      width: 50px;
+      width: 60px;
+      max-width: 60px;
       height: auto;
+      max-height: 50px;
+      object-fit: contain;
       margin-bottom: 12px;
+      flex-shrink: 0;
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
       animation: logoGlow 4s ease-in-out infinite;
     }
