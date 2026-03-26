@@ -330,10 +330,17 @@
     }
     .hero-h2-bottom {
       font-size: clamp(2rem, 4.5vw, 3.4rem);
-      margin-bottom: 4px;
+      margin-top: -20px;
+      margin-bottom: 0;
     }
 
     .hero-h1-top .gold, .hero-h2-bottom .gold {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-h1-top .char, .hero-h2-bottom .gold .char {
       background: var(--gold-shine);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -348,7 +355,7 @@
       font-size: 1.15rem;
       color: var(--white-muted);
       max-width: 580px;
-      margin: 0 auto 16px;
+      margin: 8px auto 14px;
       font-weight: 300;
       line-height: 1.7;
       opacity: 0;
