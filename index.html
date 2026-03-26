@@ -300,7 +300,6 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 36px;
-      animation: fadeInDown 0.8s ease-out;
       background-image: var(--gold-shine);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -337,13 +336,7 @@
     }
     .hero h1 .line {
       display: block;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .hero h1 .line.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      perspective: 600px;
     }
 
     .hero-sub {
@@ -688,9 +681,9 @@
 
     .process-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      max-width: 960px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 48px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
@@ -1112,6 +1105,196 @@
     }
     .scale-in.visible { opacity: 1; transform: scale(1); }
 
+    /* ===== ULTRA ANIMATION SYSTEM ===== */
+
+    /* Character-by-character reveal */
+    .char-wrap { display: inline-block; overflow: hidden; }
+    .char-wrap .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%) rotateX(-80deg);
+      filter: blur(6px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .char-wrap .char.revealed {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+      filter: blur(0);
+    }
+
+    /* Typewriter cursor */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: cursorBlink 0.7s step-end infinite;
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Gold shimmer sweep on section titles */
+    .shimmer-sweep {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-sweep::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(247, 225, 123, 0.25), rgba(212, 175, 55, 0.4), rgba(247, 225, 123, 0.25), transparent);
+      transform: skewX(-20deg);
+      pointer-events: none;
+    }
+    .shimmer-sweep.active::after {
+      animation: shimmerPass 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    @keyframes shimmerPass {
+      0% { left: -150%; }
+      100% { left: 150%; }
+    }
+
+    /* 3D card flip entrance */
+    .flip-in {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-30deg) translateX(-40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .flip-in.visible {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0) translateX(0);
+    }
+
+    /* Velocity slide (comes in fast, decelerates) */
+    .velocity-in {
+      opacity: 0;
+      transform: translateX(-120px) scaleX(1.15);
+      filter: blur(4px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .velocity-in.visible {
+      opacity: 1;
+      transform: translateX(0) scaleX(1);
+      filter: blur(0);
+    }
+
+    /* Spring bounce entrance */
+    .spring-up {
+      opacity: 0;
+      transform: translateY(60px) scale(0.9);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .spring-up.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Cyber scan line on sections */
+    .cyber-reveal {
+      position: relative;
+      overflow: hidden;
+    }
+    .cyber-reveal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-light), var(--accent), transparent);
+      box-shadow: 0 0 20px var(--accent), 0 0 60px rgba(212, 175, 55, 0.3);
+      z-index: 10;
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    .cyber-reveal.scanned::before {
+      animation: cyberScan 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    @keyframes cyberScan {
+      0% { transform: translateX(-100%); opacity: 1; }
+      100% { transform: translateX(100%); opacity: 0; }
+    }
+
+    /* Speed lines background */
+    .speed-lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.4;
+    }
+    .speed-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+      animation: speedDash linear infinite;
+    }
+    @keyframes speedDash {
+      0% { transform: translateX(-100vw); }
+      100% { transform: translateX(100vw); }
+    }
+
+    /* Upgraded loader with warp effect */
+    .loader-warp {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .warp-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.6) 40%, rgba(247, 225, 123, 0.9) 50%, rgba(212, 175, 55, 0.6) 60%, transparent 100%);
+      transform-origin: left center;
+      animation: warpBurst 1.2s ease-in forwards;
+      opacity: 0;
+    }
+    @keyframes warpBurst {
+      0% { width: 0; opacity: 0; }
+      30% { opacity: 1; }
+      100% { width: 150vw; opacity: 0; }
+    }
+
+    .loader-reveal {
+      animation: loaderSlideUp 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes loaderSlideUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100%); opacity: 0; }
+    }
+
+    /* Hero eyebrow spring entrance */
+    .hero-eyebrow {
+      opacity: 0;
+      transform: scale(0) translateY(20px);
+    }
+    .hero-eyebrow.pop-in {
+      animation: springPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes springPop {
+      0% { opacity: 0; transform: scale(0) translateY(20px); }
+      60% { opacity: 1; transform: scale(1.15) translateY(-4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Glow pulse on hero buttons after entrance */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255,255,255,0.25); }
+      50% { box-shadow: 0 4px 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255,255,255,0.25); }
+    }
+    .hero-buttons.reveal .btn-primary {
+      animation: glowPulse 2.5s ease-in-out 1.5s infinite;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
@@ -1149,6 +1332,11 @@
 
       .services, .process, .portfolio, .about, .cta-section {
         padding: 70px 20px;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        max-width: 400px;
       }
 
       .portfolio-grid {
@@ -1897,12 +2085,16 @@
 
   <!-- LOADING SCREEN -->
   <div class="loader" id="loader">
+    <div class="loader-warp" id="loaderWarp"></div>
     <div class="loader-content">
       <div class="loader-mark"><img src="assets/vs-logo.png" alt="VS Logo"></div>
       <div class="loader-text">Velonyx Systems</div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
   </div>
+
+  <!-- Speed lines background -->
+  <div class="speed-lines" id="speedLines"></div>
 
   <!-- NAV -->
   <nav>
@@ -1962,11 +2154,11 @@
   </div>
 
   <!-- SERVICES -->
-  <section class="services" id="services">
+  <section class="services cyber-reveal" id="services">
     <div class="container">
       <div class="section-label">What We Build</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">Everything Your Business<br>Needs Online</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Everything Your Business<br>Needs Online</h2>
       <p class="section-subtitle fade-in">From concept to launch. One partner. No headaches.</p>
 
       <div class="services-grid">
@@ -2016,11 +2208,11 @@
   </section>
 
   <!-- PROCESS -->
-  <section class="process" id="process">
+  <section class="process cyber-reveal" id="process">
     <div class="container">
       <div class="section-label">Our Process</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">From Conversation to Launch</h2>
+      <h2 class="section-title shimmer-sweep fade-in">From Conversation to Launch</h2>
       <p class="section-subtitle fade-in">Simple, transparent, and fast. Here's how we work.</p>
 
       <div class="process-steps">
@@ -2049,11 +2241,11 @@
   </section>
 
   <!-- PRICING -->
-  <section class="pricing" id="pricing">
+  <section class="pricing cyber-reveal" id="pricing">
     <div class="container">
       <div class="section-label">Investment</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Simple, Transparent Pricing</h2>
       <p class="section-subtitle fade-in">No hidden fees. No surprises. Pick the package that fits your business.</p>
 
       <div class="pricing-grid">
@@ -2127,11 +2319,11 @@
   </div>
 
   <!-- PORTFOLIO -->
-  <section class="portfolio" id="work">
+  <section class="portfolio cyber-reveal" id="work">
     <div class="container">
       <div class="section-label">Our Work</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">Featured Projects</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Featured Projects</h2>
       <p class="section-subtitle fade-in">Three industries. Three distinct brands. All built by Velonyx.</p>
 
       <div class="portfolio-grid">
@@ -2225,7 +2417,7 @@
     <div class="container">
       <div class="section-label">About Velonyx</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">Built for Presence.<br>Engineered for Growth.</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Built for Presence.<br>Engineered for Growth.</h2>
       <div class="about-content fade-in">
         <p><strong>Velonyx Systems</strong> builds premium digital infrastructure for businesses that are ready to stop relying on DMs and phone calls to make money.</p>
         <p>We specialize in working with service providers, product sellers, and independent business owners who have the talent and the audience &mdash; but need the technology to match. We build the digital front door that your customers walk through to pay you.</p>
@@ -2254,7 +2446,7 @@
     <div class="container">
       <div class="section-label">What Clients Say</div>
       <div class="section-divider"></div>
-      <h2 class="section-title fade-in">Results That Speak<br>for Themselves</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Results That Speak<br>for Themselves</h2>
       <p class="section-subtitle fade-in">Don't take our word for it. Here's what business owners are saying.</p>
 
       <div class="testimonials-grid">
@@ -2382,43 +2574,148 @@
   </div>
 
   <script>
-    // ===== LOADING SCREEN =====
+    // ===== CINEMATIC LOADING SEQUENCE =====
+    (function() {
+      const loaderWarp = document.getElementById('loaderWarp');
+      const lineCount = 40;
+      for (let i = 0; i < lineCount; i++) {
+        const line = document.createElement('div');
+        line.className = 'warp-line';
+        const angle = (i / lineCount) * 360;
+        const delay = Math.random() * 0.6;
+        line.style.cssText = `transform: rotate(${angle}deg); animation-delay: ${delay}s; height: ${Math.random() > 0.7 ? 2 : 1}px;`;
+        loaderWarp.appendChild(line);
+      }
+    })();
+
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-      }, 1600);
+        const loader = document.getElementById('loader');
+        loader.classList.add('loader-reveal');
+        loader.addEventListener('animationend', () => {
+          loader.style.display = 'none';
+        });
+        startHeroSequence();
+      }, 1800);
     });
 
-    // ===== SCROLL-TRIGGERED ANIMATIONS =====
+    // ===== SPEED LINES BACKGROUND =====
+    (function() {
+      const container = document.getElementById('speedLines');
+      for (let i = 0; i < 12; i++) {
+        const line = document.createElement('div');
+        line.className = 'speed-line';
+        const top = Math.random() * 100;
+        const width = 100 + Math.random() * 300;
+        const duration = 4 + Math.random() * 8;
+        const delay = Math.random() * 6;
+        line.style.cssText = `top: ${top}%; width: ${width}px; animation-duration: ${duration}s; animation-delay: ${delay}s;`;
+        container.appendChild(line);
+      }
+    })();
+
+    // ===== HERO CINEMATIC ENTRANCE =====
+    function splitTextToChars(el) {
+      const text = el.textContent;
+      el.innerHTML = '';
+      const wrap = document.createElement('span');
+      wrap.className = 'char-wrap';
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+        wrap.appendChild(span);
+      }
+      el.appendChild(wrap);
+      return wrap.querySelectorAll('.char');
+    }
+
+    function startHeroSequence() {
+      const eyebrow = document.querySelector('.hero-eyebrow');
+      eyebrow.classList.add('pop-in');
+
+      const heroLines = document.querySelectorAll('.hero h1 .line');
+      let totalCharDelay = 0;
+
+      heroLines.forEach((line, lineIdx) => {
+        const goldSpan = line.querySelector('.gold');
+        const targets = goldSpan || line;
+        const chars = splitTextToChars(targets);
+
+        setTimeout(() => {
+          chars.forEach((char, ci) => {
+            setTimeout(() => {
+              char.classList.add('revealed');
+            }, ci * 25);
+          });
+        }, 300 + lineIdx * 300);
+
+        totalCharDelay = 300 + lineIdx * 300 + chars.length * 25;
+      });
+
+      // Typewriter subtitle
+      const heroSub = document.querySelector('.hero-sub');
+      const subText = heroSub.textContent;
+      heroSub.textContent = '';
+      heroSub.style.opacity = '1';
+      heroSub.style.transform = 'translateY(0)';
+
+      const cursor = document.createElement('span');
+      cursor.className = 'typewriter-cursor';
+
+      setTimeout(() => {
+        heroSub.appendChild(cursor);
+        let charIdx = 0;
+        const typeSpeed = 18;
+        function typeNext() {
+          if (charIdx < subText.length) {
+            heroSub.insertBefore(document.createTextNode(subText[charIdx]), cursor);
+            charIdx++;
+            setTimeout(typeNext, typeSpeed);
+          } else {
+            setTimeout(() => { cursor.style.display = 'none'; }, 2000);
+          }
+        }
+        typeNext();
+      }, totalCharDelay + 200);
+
+      // Buttons spring in
+      setTimeout(() => {
+        document.querySelector('.hero-buttons').classList.add('reveal');
+      }, totalCharDelay + 600);
+    }
+
+    // ===== SCROLL-TRIGGERED ANIMATIONS (UPGRADED) =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const parent = entry.target.parentElement;
-          const siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
+          const siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up');
           let index = Array.from(siblings).indexOf(entry.target);
-          entry.target.style.transitionDelay = (index * 0.12) + 's';
+          entry.target.style.transitionDelay = (index * 0.15) + 's';
           entry.target.classList.add('visible');
+
+          if (entry.target.classList.contains('shimmer-sweep')) {
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, index * 150 + 400);
+          }
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up').forEach(el => observer.observe(el));
 
-    // ===== HERO TEXT REVEAL (word by word) =====
-    const heroLines = document.querySelectorAll('.hero h1 .line');
-    heroLines.forEach((line, i) => {
-      setTimeout(() => {
-        line.classList.add('reveal');
-      }, 400 + i * 200);
-    });
+    // ===== CYBER SCAN LINE ON SECTIONS =====
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('scanned')) {
+          entry.target.classList.add('scanned');
+        }
+      });
+    }, { threshold: 0.15 });
 
-    // Hero sub + buttons reveal
-    setTimeout(() => {
-      document.querySelector('.hero-sub').classList.add('reveal');
-    }, 1100);
-    setTimeout(() => {
-      document.querySelector('.hero-buttons').classList.add('reveal');
-    }, 1300);
+    document.querySelectorAll('.cyber-reveal').forEach(el => sectionObserver.observe(el));
 
     // ===== PARALLAX ON SCROLL =====
     const parallaxImages = document.querySelectorAll('.parallax-img');
@@ -2426,13 +2723,9 @@
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-
-      // Hero background parallax
       if (heroBg) {
         heroBg.style.transform = 'scale(1.1) translateY(' + (scrollY * 0.3) + 'px)';
       }
-
-      // Image divider parallax
       parallaxImages.forEach(img => {
         const rect = img.parentElement.getBoundingClientRect();
         const speed = 0.3;
@@ -2441,7 +2734,7 @@
       });
     }, { passive: true });
 
-    // ===== ANIMATED COUNTERS =====
+    // ===== ANIMATED COUNTERS (UPGRADED - faster, blur effect) =====
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2450,16 +2743,19 @@
           const suffix = el.dataset.suffix || '';
           if (!target) return;
 
+          el.style.filter = 'blur(4px)';
+          el.style.transition = 'filter 0.3s';
           let current = 0;
-          const increment = target / 40;
+          const increment = target / 25;
           const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
               current = target;
               clearInterval(timer);
+              el.style.filter = 'blur(0)';
             }
             el.textContent = Math.floor(current) + suffix;
-          }, 30);
+          }, 20);
 
           counterObserver.unobserve(el);
         }
@@ -2472,7 +2768,7 @@
     const hero = document.querySelector('.hero');
     if (hero) {
       const glow = document.createElement('div');
-      glow.style.cssText = 'position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,0.12) 0%,rgba(56,189,248,0.03) 40%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);transition:opacity 0.3s;opacity:0;z-index:1;';
+      glow.style.cssText = 'position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,0.15) 0%,rgba(56,189,248,0.04) 40%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.15s,top 0.15s,opacity 0.3s;opacity:0;z-index:1;will-change:left,top;';
       hero.appendChild(glow);
       hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
@@ -2483,32 +2779,46 @@
       hero.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
     }
 
-    // ===== SERVICE CARD TILT =====
-    document.querySelectorAll('.service-card').forEach(card => {
+    // ===== 3D TILT ON CARDS =====
+    document.querySelectorAll('.service-card, .pricing-card, .testimonial-card').forEach(card => {
+      card.style.transformStyle = 'preserve-3d';
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `translateY(-6px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+        const baseTransform = card.classList.contains('pricing-card') ? 'translateY(-8px)' : 'translateY(-6px)';
+        card.style.transform = `${baseTransform} rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
+        card.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        setTimeout(() => { card.style.transition = ''; }, 500);
+      });
+    });
+
+    // ===== MAGNETIC HOVER ON BUTTONS =====
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2 - 2}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
       });
     });
 
     // ===== NAV SCROLL EFFECT =====
-    let lastScroll = 0;
     const navEl = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 100) {
+      if (window.scrollY > 100) {
         navEl.style.borderBottomColor = 'rgba(212, 175, 55, 0.2)';
         navEl.style.background = 'rgba(9, 9, 11, 0.95)';
       } else {
         navEl.style.borderBottomColor = 'rgba(212, 175, 55, 0.1)';
         navEl.style.background = 'rgba(9, 9, 11, 0.88)';
       }
-      lastScroll = currentScroll;
     }, { passive: true });
 
     // ===== SCROLL PROGRESS BAR =====
@@ -2601,13 +2911,14 @@
       }
     });
 
-    // ===== HERO PARTICLE CONSTELLATION =====
+    // ===== HERO PARTICLE CONSTELLATION (UPGRADED) =====
     const pCanvas = document.getElementById('heroParticles');
     if (pCanvas) {
       const pCtx = pCanvas.getContext('2d');
       let dots = [];
-      const dotCount = window.innerWidth < 768 ? 25 : 50;
-      const connectDist = 130;
+      let mouseX = -1000, mouseY = -1000;
+      const dotCount = window.innerWidth < 768 ? 30 : 70;
+      const connectDist = 140;
 
       function sizeCanvas() {
         const heroEl = pCanvas.parentElement;
@@ -2621,30 +2932,59 @@
           dots.push({
             x: Math.random() * pCanvas.width,
             y: Math.random() * pCanvas.height,
-            vx: (Math.random() - 0.5) * 0.35,
-            vy: (Math.random() - 0.5) * 0.35,
-            r: Math.random() * 1.5 + 0.5,
-            isGold: Math.random() > 0.65
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2 + 0.5,
+            isGold: Math.random() > 0.55,
+            pulse: Math.random() * Math.PI * 2
           });
         }
       }
+
+      pCanvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = pCanvas.parentElement.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
 
       function renderParticles() {
         pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
 
         for (let i = 0; i < dots.length; i++) {
           const d = dots[i];
+
+          const dx2m = mouseX - d.x;
+          const dy2m = mouseY - d.y;
+          const distMouse = Math.sqrt(dx2m * dx2m + dy2m * dy2m);
+          if (distMouse < 200) {
+            const force = (200 - distMouse) / 200 * 0.02;
+            d.vx += dx2m * force;
+            d.vy += dy2m * force;
+          }
+
+          d.vx *= 0.99;
+          d.vy *= 0.99;
           d.x += d.vx;
           d.y += d.vy;
+          d.pulse += 0.02;
+
           if (d.x < 0) d.x = pCanvas.width;
           if (d.x > pCanvas.width) d.x = 0;
           if (d.y < 0) d.y = pCanvas.height;
           if (d.y > pCanvas.height) d.y = 0;
 
+          const pulseR = d.r * (1 + Math.sin(d.pulse) * 0.3);
           pCtx.beginPath();
-          pCtx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-          pCtx.fillStyle = d.isGold ? 'rgba(212, 175, 55, 0.5)' : 'rgba(56, 189, 248, 0.25)';
+          pCtx.arc(d.x, d.y, pulseR, 0, Math.PI * 2);
+          pCtx.fillStyle = d.isGold ? 'rgba(212, 175, 55, 0.6)' : 'rgba(56, 189, 248, 0.3)';
           pCtx.fill();
+
+          if (d.isGold && d.r > 1.5) {
+            pCtx.beginPath();
+            pCtx.arc(d.x, d.y, pulseR + 4, 0, Math.PI * 2);
+            pCtx.fillStyle = 'rgba(212, 175, 55, 0.08)';
+            pCtx.fill();
+          }
 
           for (let j = i + 1; j < dots.length; j++) {
             const d2 = dots[j];
@@ -2652,14 +2992,14 @@
             const dy = d.y - d2.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < connectDist) {
-              const alpha = (1 - dist / connectDist) * 0.12;
+              const alpha = (1 - dist / connectDist) * 0.15;
               pCtx.beginPath();
               pCtx.moveTo(d.x, d.y);
               pCtx.lineTo(d2.x, d2.y);
               pCtx.strokeStyle = (d.isGold || d2.isGold)
                 ? 'rgba(212, 175, 55, ' + alpha + ')'
                 : 'rgba(56, 189, 248, ' + (alpha * 0.5) + ')';
-              pCtx.lineWidth = 0.5;
+              pCtx.lineWidth = 0.6;
               pCtx.stroke();
             }
           }
