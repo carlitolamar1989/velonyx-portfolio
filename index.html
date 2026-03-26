@@ -208,7 +208,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 100px 24px 40px;
+      padding: 90px 24px 30px;
       position: relative;
       overflow: hidden;
     }
@@ -216,8 +216,8 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80') center/cover no-repeat;
-      opacity: 0.12;
+      background: radial-gradient(ellipse at 50% 40%, #0e0e12 0%, #08080A 60%, #050507 100%);
+      opacity: 1;
       transform: scale(1.1);
       transition: transform 0.1s linear;
     }
@@ -330,6 +330,7 @@
     }
     .hero-h2-bottom {
       font-size: clamp(2rem, 4.5vw, 3.4rem);
+      margin-bottom: 4px;
     }
 
     .hero-h1-top .gold, .hero-h2-bottom .gold {
@@ -347,7 +348,7 @@
       font-size: 1.15rem;
       color: var(--white-muted);
       max-width: 580px;
-      margin: 0 auto 28px;
+      margin: 0 auto 16px;
       font-weight: 300;
       line-height: 1.7;
       opacity: 0;
@@ -1297,7 +1298,7 @@
     .hero-logo {
       width: min(580px, 80vw);
       height: auto;
-      margin: -20px auto -15px;
+      margin: -20px auto -30px;
       display: block;
       opacity: 0;
       transform: scale(0.5);
