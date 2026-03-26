@@ -33,9 +33,10 @@
       --blue-glow: rgba(56, 189, 248, 0.12);
       --bg-deep: #08080A;
       --bg-base: #0C0C0F;
-      --cosmos-section-a: rgba(5, 7, 14, 0.82);
-      --cosmos-section-b: rgba(8, 10, 18, 0.8);
+      /* One veil over the global cosmos — same everywhere for visual continuity */
+      --cosmos-veil: rgba(4, 6, 14, 0.76);
       --cosmos-fade: rgba(3, 5, 12, 0.92);
+      --cosmos-section-blur: blur(6px) saturate(1.08);
       --bg-card: #111114;
       --bg-card-glossy: linear-gradient(165deg, rgba(22,22,26,0.97) 0%, rgba(12,12,15,0.99) 100%);
       --bg-border: #1E1E22;
@@ -148,8 +149,8 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      background: rgba(4, 6, 14, 0.78);
-      backdrop-filter: blur(30px) saturate(1.4);
+      background: rgba(4, 6, 14, 0.72);
+      backdrop-filter: var(--cosmos-section-blur);
       border-bottom: 1px solid rgba(212, 175, 55, 0.12);
       box-shadow: 0 4px 30px rgba(0,0,0,0.4), 0 1px 0 rgba(212, 175, 55, 0.06) inset;
     }
@@ -603,8 +604,8 @@
     /* ===== PROBLEM / HOOK ===== */
     .problem {
       padding: 100px 24px;
-      background: var(--cosmos-section-b);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -642,8 +643,8 @@
     /* ===== SERVICES ===== */
     .services {
       padding: 100px 24px;
-      background: var(--cosmos-section-a);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -748,7 +749,10 @@
     /* ===== PROCESS ===== */
     .process {
       padding: 100px 24px;
-      background: var(--bg-base);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
+      position: relative;
+      z-index: 1;
     }
 
     .process-steps {
@@ -802,8 +806,8 @@
     /* ===== PORTFOLIO ===== */
     .portfolio {
       padding: 100px 24px;
-      background: var(--cosmos-section-a);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -933,8 +937,8 @@
     /* ===== SHOWCASE IMAGE STRIP ===== */
     .showcase-strip {
       padding: 80px 24px;
-      background: var(--cosmos-section-b);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       overflow: hidden;
       position: relative;
       z-index: 1;
@@ -972,8 +976,8 @@
     /* ===== ABOUT ===== */
     .about {
       padding: 100px 24px;
-      background: var(--cosmos-section-b);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       overflow: hidden;
       z-index: 1;
@@ -1031,8 +1035,8 @@
     /* ===== CTA / CONTACT ===== */
     .cta-section {
       padding: 100px 24px;
-      background: var(--cosmos-section-a);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -1042,8 +1046,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at center, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 30% 70%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+        radial-gradient(ellipse at 50% 40%, rgba(212, 175, 55, 0.07) 0%, transparent 48%),
+        radial-gradient(ellipse at 50% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -1129,8 +1133,8 @@
 
     footer {
       padding: 40px 24px 28px;
-      background: var(--cosmos-section-b);
-      backdrop-filter: blur(10px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       border-top: 1px solid rgba(212, 175, 55, 0.12);
       text-align: center;
       position: relative;
@@ -1627,8 +1631,8 @@
     /* ===== TESTIMONIALS ===== */
     .testimonials {
       padding: 100px 24px;
-      background: var(--cosmos-section-a);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -2051,8 +2055,8 @@
     /* ===== PRICING SECTION ===== */
     .pricing {
       padding: 100px 24px;
-      background: var(--cosmos-section-a);
-      backdrop-filter: blur(8px);
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
       position: relative;
       z-index: 1;
     }
@@ -2062,8 +2066,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 25% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 75% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% 40%, rgba(212, 175, 55, 0.07) 0%, transparent 48%),
+        radial-gradient(ellipse at 50% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
