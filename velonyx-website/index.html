@@ -107,6 +107,20 @@
       display: block;
     }
 
+    /*
+     * Single fixed veil over the entire viewport — one surface, no seams.
+     * Per-section backdrop-filter caused visible banding between sections.
+     */
+    .cosmos-veil-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: var(--cosmos-veil);
+      backdrop-filter: var(--cosmos-section-blur);
+      -webkit-backdrop-filter: var(--cosmos-section-blur);
+    }
+
     h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
 
     /* Metallic gold text effect */
@@ -149,8 +163,9 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      background: rgba(4, 6, 14, 0.72);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: rgba(4, 6, 14, 0.82);
+      backdrop-filter: blur(14px) saturate(1.06);
+      -webkit-backdrop-filter: blur(14px) saturate(1.06);
       border-bottom: 1px solid rgba(212, 175, 55, 0.12);
       box-shadow: 0 4px 30px rgba(0,0,0,0.4), 0 1px 0 rgba(212, 175, 55, 0.06) inset;
     }
@@ -262,7 +277,7 @@
       text-align: center;
       padding: 90px 24px 30px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
       overflow: hidden;
     }
 
@@ -542,7 +557,7 @@
       width: 100%;
       height: 360px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
       overflow: hidden;
     }
 
@@ -604,10 +619,9 @@
     /* ===== PROBLEM / HOOK ===== */
     .problem {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .problem-text {
@@ -643,10 +657,9 @@
     /* ===== SERVICES ===== */
     .services {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .services-grid {
@@ -749,10 +762,9 @@
     /* ===== PROCESS ===== */
     .process {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .process-steps {
@@ -806,10 +818,9 @@
     /* ===== PORTFOLIO ===== */
     .portfolio {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .portfolio-grid {
@@ -937,11 +948,10 @@
     /* ===== SHOWCASE IMAGE STRIP ===== */
     .showcase-strip {
       padding: 80px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       overflow: hidden;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .showcase-row {
@@ -976,11 +986,10 @@
     /* ===== ABOUT ===== */
     .about {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
       overflow: hidden;
-      z-index: 1;
+      z-index: 2;
     }
 
     .about-content {
@@ -1035,10 +1044,9 @@
     /* ===== CTA / CONTACT ===== */
     .cta-section {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .cta-section::before {
@@ -1133,12 +1141,11 @@
 
     footer {
       padding: 40px 24px 28px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       border-top: 1px solid rgba(212, 175, 55, 0.12);
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .footer-copy {
@@ -1318,7 +1325,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
       overflow: hidden;
       opacity: 0.35;
     }
@@ -1631,10 +1638,9 @@
     /* ===== TESTIMONIALS ===== */
     .testimonials {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .testimonials-grid {
@@ -2055,10 +2061,9 @@
     /* ===== PRICING SECTION ===== */
     .pricing {
       padding: 100px 24px;
-      background: var(--cosmos-veil);
-      backdrop-filter: var(--cosmos-section-blur);
+      background: transparent;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .pricing::before {
@@ -2276,6 +2281,7 @@
     <div class="cosmos-milkyway"></div>
     <canvas id="cosmosCanvas"></canvas>
   </div>
+  <div class="cosmos-veil-layer" aria-hidden="true"></div>
 
   <!-- SCROLL PROGRESS BAR -->
   <div class="scroll-progress" id="scrollProgress"></div>
