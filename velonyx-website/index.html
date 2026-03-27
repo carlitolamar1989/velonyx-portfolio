@@ -75,14 +75,6 @@
         radial-gradient(ellipse 80% 50% at 50% -10%, rgba(20, 35, 70, 0.5) 0%, transparent 55%),
         linear-gradient(180deg, #02040c 0%, #050810 22%, #080a16 55%, #04060e 100%);
     }
-    .cosmos-backdrop canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
     /*
      * Single fixed veil over the entire viewport — one surface, no seams.
      * Per-section backdrop-filter caused visible banding between sections.
@@ -107,6 +99,16 @@
       z-index: 2;
       pointer-events: none;
       overflow: hidden;
+    }
+    /* Stars drawn above Milky Way bands = one consistent galactic layer */
+    .cosmos-milkyway-flow .cosmos-stars-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: block;
     }
     .cosmw-band {
       position: absolute;
@@ -2336,14 +2338,13 @@
 </head>
 <body>
 
-  <div class="cosmos-backdrop" aria-hidden="true">
-    <canvas id="cosmosCanvas"></canvas>
-  </div>
+  <div class="cosmos-backdrop" aria-hidden="true"></div>
   <div class="cosmos-veil-layer" aria-hidden="true"></div>
   <div class="cosmos-milkyway-flow" aria-hidden="true">
     <div class="cosmw-band cosmw-band--primary"></div>
     <div class="cosmw-band cosmw-band--secondary"></div>
     <div class="cosmw-band cosmw-band--accent"></div>
+    <canvas id="cosmosCanvas" class="cosmos-stars-layer"></canvas>
   </div>
 
   <!-- SCROLL PROGRESS BAR -->
@@ -2866,7 +2867,7 @@
       function spawn() {
         stars = [];
         const area = w * h;
-        const count = Math.min(520, Math.max(200, Math.floor(area / 4200)));
+        const count = Math.min(580, Math.max(220, Math.floor(area / 3800)));
         for (let i = 0; i < count; i++) {
           const roll = Math.random();
           let hue = 'w';
@@ -2890,9 +2891,9 @@
         for (const s of stars) {
           const tw = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * s.spd + s.tw));
           let fill;
-          if (s.hue === 'g') fill = 'rgba(252, 230, 150, ' + (0.38 + tw * 0.62) + ')';
-          else if (s.hue === 'c') fill = 'rgba(147, 220, 255, ' + (0.3 + tw * 0.58) + ')';
-          else fill = 'rgba(255, 255, 255, ' + (0.12 + tw * 0.42) + ')';
+          if (s.hue === 'g') fill = 'rgba(252, 230, 150, ' + (0.45 + tw * 0.55) + ')';
+          else if (s.hue === 'c') fill = 'rgba(186, 230, 255, ' + (0.38 + tw * 0.52) + ')';
+          else fill = 'rgba(255, 255, 255, ' + (0.2 + tw * 0.5) + ')';
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
           ctx.fillStyle = fill;
