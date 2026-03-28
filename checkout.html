@@ -350,6 +350,65 @@
     }
 
     /* Financing nudge */
+    /* ── Two-path payment blocks ── */
+    .pay-option-block {
+      max-width: 580px; margin: 0 auto 0;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; padding: 30px 28px;
+    }
+    .bnpl-option-block {
+      border-color: rgba(212,175,55,0.15);
+      background: rgba(212,175,55,0.02);
+    }
+    .pay-option-label {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    }
+    .pay-option-tag {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .deposit-tag { background: rgba(99,91,255,0.15); color: #9B92FF; border: 1px solid rgba(99,91,255,0.3); }
+    .bnpl-tag { background: rgba(212,175,55,0.12); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+    .pay-option-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white);
+    }
+    .pay-option-desc {
+      font-size: 0.84rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 4px;
+    }
+    .pay-option-desc strong { color: rgba(255,255,255,0.75); }
+
+    .pay-or-divider {
+      max-width: 580px; margin: 20px auto;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .pay-or-divider::before, .pay-or-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
+    }
+    .pay-or-divider span {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .bnpl-grid-simple {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 0;
+    }
+
+    .btn-bnpl {
+      width: 100%; padding: 17px; border-radius: 12px;
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
+      color: #0a0a0a; border: none; cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all 0.28s; letter-spacing: 0.3px;
+    }
+    .btn-bnpl:hover { box-shadow: 0 8px 36px rgba(212,175,55,0.35); transform: translateY(-2px); }
+
+    @media (max-width: 480px) {
+      .bnpl-grid-simple { grid-template-columns: 1fr; }
+      .pay-option-label { flex-wrap: wrap; }
+    }
+
     .financing-nudge {
       max-width: 580px; margin: 24px auto 0;
       background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.12);
@@ -446,93 +505,84 @@
 
       <!-- STEP 2: Payment -->
       <section class="payment-section">
-        <div class="step-heading"><span>Step 2</span> &nbsp;— Complete Your Payment</div>
+        <div class="step-heading"><span>Step 2</span> &nbsp;— Choose How You'd Like to Pay</div>
 
-        <div class="payment-card">
+        <!-- ── OPTION A: Deposit by Card ── -->
+        <div class="pay-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag deposit-tag">Option A</span>
+            <span class="pay-option-title">Pay 50% Deposit Today — 50% at Launch</span>
+          </div>
+          <div class="pay-option-desc">Pay half now to reserve your project. We start building immediately. The remaining balance is invoiced when your site goes live.</div>
 
-          <!-- Order summary -->
-          <div class="payment-summary">
+          <div class="payment-summary" style="margin:18px 0 16px;">
             <div>
-              <div class="summary-label">Package</div>
-              <div class="summary-name" id="stripe-plan-name">Growth</div>
+              <div class="summary-label">Deposit Due Today</div>
+              <div class="summary-name" id="deposit-plan-name">Growth Package</div>
             </div>
-            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
+            <div class="summary-amount" id="deposit-plan-amount">$1,750</div>
           </div>
 
-          <!-- Stripe primary -->
-          <div class="stripe-header">
-            <div class="stripe-logo-pill">⚡ Stripe — Secure Checkout</div>
-            <p>Pay with any card, Apple Pay, or Google Pay. Encrypted &amp; PCI-compliant.</p>
-          </div>
-
-          <div class="accepted-methods">
+          <div class="accepted-methods" style="margin-bottom:20px;">
             <div class="method-badge">💳 Visa</div>
             <div class="method-badge">💳 Mastercard</div>
             <div class="method-badge">💳 Amex</div>
             <div class="method-badge"> Apple Pay</div>
             <div class="method-badge">🟢 Google Pay</div>
-            <div class="method-badge" style="color:#FFB6C1;">K Klarna</div>
-            <div class="method-badge" style="color:#34C759;">✦ Affirm</div>
-            <div class="method-badge" style="color:#B3E38C;">⬡ Afterpay</div>
           </div>
 
-          <!-- BNPL expandable section -->
-          <div class="bnpl-section" id="bnplSection">
-            <div class="bnpl-header" onclick="toggleBnpl()">
-              <div class="bnpl-header-left">
-                <div>
-                  <div class="label">Buy Now, Pay Later</div>
-                  <div class="sub">Split into 4 interest-free payments — included in Stripe checkout</div>
-                </div>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div class="bnpl-pills">
-                  <span class="bnpl-pill klarna">Klarna</span>
-                  <span class="bnpl-pill affirm">Affirm</span>
-                  <span class="bnpl-pill afterpay">Afterpay</span>
-                </div>
-                <span class="bnpl-chevron">▾</span>
-              </div>
-            </div>
-            <div class="bnpl-body">
-              <div class="bnpl-body-inner">
-                <div class="bnpl-grid">
-                  <div class="bnpl-card klarna">
-                    <div class="provider">Klarna</div>
-                    <div class="bnpl-amount" id="klarna-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                  <div class="bnpl-card affirm">
-                    <div class="provider">Affirm</div>
-                    <div class="bnpl-amount" id="affirm-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                  <div class="bnpl-card afterpay">
-                    <div class="provider">Afterpay</div>
-                    <div class="bnpl-amount" id="afterpay-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                </div>
-                <div class="bnpl-note">
-                  These options appear automatically on the Stripe checkout screen. No extra steps needed — just click "Pay Now" below and select your preferred provider. Approval is instant. Terms and eligibility set by each lender.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()" style="margin-top:24px;">
+          <button class="btn-stripe" id="depositBtn" onclick="depositCheckout()">
             🔒 &nbsp;Pay Deposit &amp; Reserve My Project
           </button>
-          <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
-          <div style="text-align:center;font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:10px;">50% deposit due today · remaining 50% due at launch · we contact you within 24 hours</div>
-
-
+          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+          <div style="text-align:center;font-size:0.76rem;color:rgba(255,255,255,0.3);margin-top:8px;">50% deposit today &nbsp;·&nbsp; remaining 50% invoiced at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
         </div>
 
-        <!-- Financing nudge -->
-        <div class="financing-nudge">
-          <p><strong>Want to split it into payments?</strong><br>Klarna, Affirm &amp; Afterpay are available at the next step — instant approval, no account needed, 0% interest on Pay-in-4.</p>
-          <a href="financing.html" class="btn-financing">See How It Works →</a>
+        <!-- ── DIVIDER ── -->
+        <div class="pay-or-divider"><span>or</span></div>
+
+        <!-- ── OPTION B: Pay in Full via BNPL ── -->
+        <div class="pay-option-block bnpl-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag bnpl-tag">Option B</span>
+            <span class="pay-option-title">Pay in Full via Buy Now, Pay Later</span>
+          </div>
+          <div class="pay-option-desc">Use Klarna, Affirm, or Afterpay to cover the <strong>full project cost</strong>. The lender pays us in full today — you repay the lender in easy installments. Nothing owed at launch.</div>
+
+          <div class="payment-summary" style="margin:18px 0 16px;">
+            <div>
+              <div class="summary-label">Full Amount (via Lender)</div>
+              <div class="summary-name" id="stripe-plan-name">Growth Package</div>
+            </div>
+            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
+          </div>
+
+          <div class="bnpl-grid-simple">
+            <div class="bnpl-card klarna">
+              <div class="provider">Klarna</div>
+              <div class="bnpl-amount" id="klarna-amount">$875</div>
+              <div class="bnpl-term">× 4 payments · 0% interest</div>
+            </div>
+            <div class="bnpl-card affirm">
+              <div class="provider">Affirm</div>
+              <div class="bnpl-amount" id="affirm-amount">$875</div>
+              <div class="bnpl-term">× 4 payments · 0% interest</div>
+            </div>
+            <div class="bnpl-card afterpay">
+              <div class="provider">Afterpay</div>
+              <div class="bnpl-amount" id="afterpay-amount">$875</div>
+              <div class="bnpl-term">× 4 payments · 0% interest</div>
+            </div>
+          </div>
+
+          <div class="bnpl-note" style="margin:16px 0 20px;">
+            Klarna, Affirm, and Afterpay appear as payment options on the next screen. Select your provider, get instant approval, and you're done — nothing more is owed to Velonyx at launch.
+          </div>
+
+          <button class="btn-bnpl" id="stripeBtn" onclick="stripeCheckout()">
+            ✦ &nbsp;Pay in Full via BNPL — <span id="bnpl-full-amount">$3,500</span>
+          </button>
+          <div class="security-note" style="margin-top:10px;">Klarna &nbsp;·&nbsp; Affirm &nbsp;·&nbsp; Afterpay &nbsp;·&nbsp; Powered by Stripe &nbsp;·&nbsp; Instant Approval</div>
         </div>
 
       </section>
@@ -564,19 +614,27 @@
 
   <script>
     // ── CONFIG ──────────────────────────────────────────────────
-    // After creating a free Stripe account at stripe.com:
-    //   1. Dashboard → Payment Links → Create a link for each package
-    //   2. Copy the buy.stripe.com/... URL and paste below
-    const STRIPE_PAYMENT_LINKS = {
+
+    // FULL-PRICE links (used for BNPL — Klarna/Affirm/Afterpay)
+    // Lender pays Velonyx the full amount; client repays lender over time
+    const STRIPE_BNPL_LINKS = {
       starter: 'https://buy.stripe.com/6oU3cx0IZfl0e2i6qucs800',
       growth:  'https://buy.stripe.com/8x23cx1N30q63nE4imcs801',
       premium: 'https://buy.stripe.com/eVqaEZ3Vba0Ge2ig14cs802',
     };
 
+    // DEPOSIT links (50% — used for card / Apple Pay / Google Pay)
+    // Replace these with your real buy.stripe.com deposit links
+    const STRIPE_DEPOSIT_LINKS = {
+      starter: 'https://buy.stripe.com/DEPOSIT_STARTER',
+      growth:  'https://buy.stripe.com/DEPOSIT_GROWTH',
+      premium: 'https://buy.stripe.com/DEPOSIT_PREMIUM',
+    };
+
     const PLANS = {
-      starter: { name: 'Starter',  display: '$1,500' },
-      growth:  { name: 'Growth',   display: '$3,500' },
-      premium: { name: 'Premium',  display: '$6,000' },
+      starter: { name: 'Starter',  full: '$1,500', deposit: '$750',   pkg: 'Starter Package' },
+      growth:  { name: 'Growth',   full: '$3,500', deposit: '$1,750', pkg: 'Growth Package'  },
+      premium: { name: 'Premium',  full: '$6,000', deposit: '$3,000', pkg: 'Premium Package' },
     };
 
     let currentPlan = 'growth';
@@ -598,7 +656,7 @@
       updateAmounts();
     }
 
-    // BNPL installment amounts (price ÷ 4)
+    // BNPL installment amounts (full price ÷ 4)
     const BNPL_AMOUNTS = {
       starter: '$375',
       growth:  '$875',
@@ -607,21 +665,33 @@
 
     function updateAmounts() {
       const p = PLANS[currentPlan];
-      document.getElementById('stripe-plan-name').textContent   = p.name;
-      document.getElementById('stripe-plan-amount').textContent = p.display;
-      // Update BNPL installment amounts
+      // Deposit block
+      document.getElementById('deposit-plan-name').textContent  = p.pkg;
+      document.getElementById('deposit-plan-amount').textContent = p.deposit;
+      // BNPL block
+      document.getElementById('stripe-plan-name').textContent   = p.pkg;
+      document.getElementById('stripe-plan-amount').textContent = p.full;
+      document.getElementById('bnpl-full-amount').textContent   = p.full;
+      // BNPL installment amounts
       const installment = BNPL_AMOUNTS[currentPlan];
       document.getElementById('klarna-amount').textContent   = installment;
       document.getElementById('affirm-amount').textContent   = installment;
       document.getElementById('afterpay-amount').textContent = installment;
     }
 
-    function toggleBnpl() {
-      document.getElementById('bnplSection').classList.toggle('open');
+    // Card/Apple Pay/Google Pay → deposit link
+    function depositCheckout() {
+      const link = STRIPE_DEPOSIT_LINKS[currentPlan];
+      if (!link || link.includes('DEPOSIT_')) {
+        alert('Deposit payment links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your booking.');
+        return;
+      }
+      window.location.href = link;
     }
 
+    // BNPL → full-price link
     function stripeCheckout() {
-      const link = STRIPE_PAYMENT_LINKS[currentPlan];
+      const link = STRIPE_BNPL_LINKS[currentPlan];
       if (!link) return;
       window.location.href = link;
     }
