@@ -136,42 +136,16 @@
     .plan-card.active .plan-check { border-color: var(--gold); background: var(--gold); color: #000; }
     .plan-card.active .plan-check::after { content: '✓'; }
 
-    /* ── Payment tabs ── */
+    /* ── Payment section ── */
     .payment-section { padding-bottom: 80px; }
-    .payment-tabs {
-      display: flex; gap: 12px; justify-content: center;
-      margin-bottom: 40px; flex-wrap: wrap;
-    }
-    .payment-tab {
-      display: flex; align-items: center; gap: 10px;
-      padding: 13px 28px; border-radius: 50px;
-      border: 1px solid var(--glass-border); background: var(--glass);
-      cursor: pointer; transition: all 0.25s;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 600;
-      color: var(--white-muted);
-    }
-    .payment-tab:hover { border-color: rgba(212,175,55,0.3); color: var(--white); }
-    .payment-tab.active {
-      border-color: var(--gold); color: var(--gold);
-      background: rgba(212,175,55,0.07);
-      box-shadow: 0 0 20px rgba(212,175,55,0.1);
-    }
-    .tab-icon { font-size: 1.15rem; }
 
-    /* ── Panels ── */
-    .payment-panel { display: none; animation: fadeUp 0.3s ease; }
-    .payment-panel.active { display: block; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
     .payment-card {
       max-width: 580px; margin: 0 auto;
       background: rgba(255,255,255,0.025); border: 1px solid var(--glass-border);
       border-radius: 24px; padding: 48px 44px;
     }
 
-    /* Shared: summary box */
+    /* Order summary */
     .payment-summary {
       background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.14);
       border-radius: 12px; padding: 18px 22px;
@@ -186,25 +160,27 @@
       -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* ── Stripe ── */
-    .stripe-header { text-align: center; margin-bottom: 32px; }
+    /* Stripe primary block */
+    .stripe-header { text-align: center; margin-bottom: 28px; }
     .stripe-logo-pill {
       display: inline-flex; align-items: center; gap: 8px;
       background: #635BFF; color: #fff;
       padding: 8px 22px; border-radius: 10px;
       font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .stripe-header p { color: var(--white-muted); font-size: 0.9rem; }
+    .stripe-header p { color: var(--white-muted); font-size: 0.88rem; }
+
     .accepted-methods {
       display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
     .method-badge {
       padding: 6px 14px; border-radius: 6px;
       background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
       font-size: 0.78rem; color: var(--white-muted);
     }
+
     .btn-stripe {
       width: 100%; padding: 17px; border-radius: 12px;
       background: linear-gradient(135deg, #5850EC, #635BFF 50%, #7B6FFF);
@@ -213,101 +189,107 @@
       display: flex; align-items: center; justify-content: center; gap: 10px;
       transition: all 0.28s; letter-spacing: 0.3px;
     }
-    .btn-stripe:hover {
-      box-shadow: 0 8px 36px rgba(99,91,255,0.45);
-      transform: translateY(-2px);
-    }
+    .btn-stripe:hover { box-shadow: 0 8px 36px rgba(99,91,255,0.45); transform: translateY(-2px); }
     .btn-stripe:active { transform: translateY(0); }
+
     .security-note {
       display: flex; align-items: center; gap: 6px; justify-content: center;
-      color: var(--white-muted); font-size: 0.78rem; margin-top: 14px;
+      color: var(--white-muted); font-size: 0.76rem; margin-top: 12px;
     }
-    .setup-note {
-      background: rgba(99,91,255,0.08); border: 1px solid rgba(99,91,255,0.2);
-      border-radius: 10px; padding: 16px 18px; margin-top: 20px;
-      font-size: 0.82rem; color: var(--white-muted); line-height: 1.6;
-    }
-    .setup-note a { color: #7B6FFF; }
 
-    /* ── Shared: copy row ── */
-    .copy-row { display: flex; gap: 8px; margin-bottom: 24px; }
+    /* Divider */
+    .alt-divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 32px 0 24px;
+    }
+    .alt-divider::before, .alt-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--glass-border);
+    }
+    .alt-divider span { color: var(--white-muted); font-size: 0.78rem; white-space: nowrap; }
+
+    /* Zelle secondary block */
+    .zelle-block {
+      background: rgba(107,47,173,0.06); border: 1px solid rgba(107,47,173,0.18);
+      border-radius: 16px; padding: 24px 26px;
+    }
+    .zelle-block-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+    }
+    .zelle-icon-sm {
+      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, #6B2FAD, #8E3FCC);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 900; color: #fff;
+    }
+    .zelle-block-header .zelle-title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.98rem;
+    }
+    .zelle-block-header .zelle-sub { color: var(--white-muted); font-size: 0.8rem; margin-top: 2px; }
+
+    .copy-row { display: flex; gap: 8px; margin-bottom: 16px; }
     .copy-input {
-      flex: 1; padding: 12px 16px;
+      flex: 1; padding: 11px 14px;
       background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-      border-radius: 10px; color: var(--white); font-size: 0.92rem;
+      border-radius: 9px; color: var(--white); font-size: 0.9rem;
       font-family: 'DM Sans', sans-serif; outline: none;
     }
     .btn-copy {
-      padding: 12px 20px; border-radius: 10px;
-      border: 1px solid var(--gold); background: transparent;
-      color: var(--gold); cursor: pointer; font-weight: 600; font-size: 0.85rem;
+      padding: 11px 18px; border-radius: 9px;
+      border: 1px solid rgba(107,47,173,0.5); background: transparent;
+      color: #9B3FD9; cursor: pointer; font-weight: 600; font-size: 0.82rem;
       transition: all 0.2s; white-space: nowrap;
     }
-    .btn-copy:hover { background: rgba(212,175,55,0.1); }
-    .btn-copy.copied { background: rgba(212,175,55,0.15); }
+    .btn-copy:hover { background: rgba(107,47,173,0.1); }
+    .btn-copy.copied { background: rgba(107,47,173,0.15); }
 
-    /* ── Shared: steps list ── */
-    .payment-steps { list-style: none; margin: 0 0 26px; }
+    .payment-steps { list-style: none; margin: 0 0 18px; }
     .payment-steps li {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 10px 0; border-bottom: 1px solid var(--glass-border);
-      font-size: 0.88rem; color: var(--white-muted); line-height: 1.5;
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.85rem; color: var(--white-muted); line-height: 1.5;
     }
     .payment-steps li:last-child { border-bottom: none; }
     .step-num {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.28);
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      background: rgba(107,47,173,0.15); border: 1px solid rgba(107,47,173,0.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.68rem; font-weight: 800; color: var(--gold); flex-shrink: 0; margin-top: 1px;
+      font-size: 0.65rem; font-weight: 800; color: #9B3FD9;
     }
     .hl { color: var(--white); font-weight: 600; }
 
-    /* ── Cash App button ── */
-    .btn-cashapp {
-      width: 100%; padding: 16px; border-radius: 12px;
-      background: #00D64F; color: #000; border: none; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.98rem; font-weight: 800;
-      transition: all 0.28s; display: flex; align-items: center; justify-content: center; gap: 8px;
-      text-decoration: none;
-    }
-    .btn-cashapp:hover { background: #00EC58; box-shadow: 0 8px 32px rgba(0,214,79,0.35); transform: translateY(-2px); }
-
-    /* ── Zelle button ── */
     .btn-zelle {
-      width: 100%; padding: 16px; border-radius: 12px;
+      width: 100%; padding: 14px; border-radius: 10px;
       background: linear-gradient(135deg, #6B2FAD, #8E3FCC);
       color: #fff; border: none; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.98rem; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 700;
       transition: all 0.28s; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .btn-zelle:hover { box-shadow: 0 8px 32px rgba(107,47,173,0.45); transform: translateY(-2px); }
+    .btn-zelle:hover { box-shadow: 0 6px 24px rgba(107,47,173,0.4); transform: translateY(-1px); }
 
-    /* App header icons */
-    .app-icon {
-      width: 64px; height: 64px; border-radius: 18px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.9rem; margin: 0 auto 18px;
-    }
-    .app-icon.cashapp { background: #00D64F; }
-    .app-icon.zelle   { background: linear-gradient(135deg, #6B2FAD, #8E3FCC); }
-
-    .app-identifier {
-      text-align: center; margin-bottom: 20px;
-    }
-    .app-identifier .sub { color: var(--white-muted); font-size: 0.85rem; margin-bottom: 4px; }
-    .app-identifier .value {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 900;
-    }
-    .app-identifier .value.cashapp-green { color: #00D64F; }
-    .app-identifier .value.zelle-purple  { color: #9B3FD9; }
-
-    /* After payment note */
     .after-note {
       background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.1);
-      border-radius: 12px; padding: 18px 20px; margin-top: 22px;
-      font-size: 0.82rem; color: var(--white-muted); line-height: 1.65;
+      border-radius: 10px; padding: 14px 18px; margin-top: 18px;
+      font-size: 0.8rem; color: var(--white-muted); line-height: 1.6;
     }
-    .after-note strong { color: var(--gold); display: block; margin-bottom: 5px; font-size: 0.86rem; }
+    .after-note strong { color: var(--gold); display: block; margin-bottom: 4px; font-size: 0.83rem; }
+
+    /* Financing nudge */
+    .financing-nudge {
+      max-width: 580px; margin: 24px auto 0;
+      background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 14px; padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .financing-nudge p { font-size: 0.88rem; color: var(--white-muted); line-height: 1.5; }
+    .financing-nudge p strong { color: var(--white); }
+    .btn-financing {
+      padding: 10px 22px; border-radius: 50px; white-space: nowrap;
+      border: 1px solid rgba(212,175,55,0.4); background: transparent;
+      color: var(--gold); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: none;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-financing:hover { background: rgba(212,175,55,0.08); }
 
     /* ── Trust bar ── */
     .trust-bar {
@@ -386,139 +368,80 @@
         </div>
       </section>
 
-      <!-- STEP 2: Payment method -->
+      <!-- STEP 2: Payment -->
       <section class="payment-section">
-        <div class="step-heading"><span>Step 2</span> &nbsp;— Choose How You'd Like to Pay</div>
+        <div class="step-heading"><span>Step 2</span> &nbsp;— Complete Your Payment</div>
 
-        <div class="payment-tabs">
-          <div class="payment-tab active" data-tab="stripe" onclick="selectTab(this)">
-            <span class="tab-icon">💳</span> Card / Stripe
-          </div>
-          <div class="payment-tab" data-tab="cashapp" onclick="selectTab(this)">
-            <span class="tab-icon">💚</span> Cash App
-          </div>
-          <div class="payment-tab" data-tab="zelle" onclick="selectTab(this)">
-            <span class="tab-icon">💜</span> Zelle
-          </div>
-        </div>
+        <div class="payment-card">
 
-        <!-- ══ STRIPE PANEL ══ -->
-        <div class="payment-panel active" id="panel-stripe">
-          <div class="payment-card">
-            <div class="stripe-header">
-              <div class="stripe-logo-pill">⚡ Stripe</div>
-              <p>Secure, encrypted checkout. Visa, Mastercard, Amex, Apple Pay &amp; Google Pay accepted.</p>
+          <!-- Order summary -->
+          <div class="payment-summary">
+            <div>
+              <div class="summary-label">Package</div>
+              <div class="summary-name" id="stripe-plan-name">Growth</div>
             </div>
+            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
+          </div>
 
-            <div class="payment-summary">
+          <!-- Stripe primary -->
+          <div class="stripe-header">
+            <div class="stripe-logo-pill">⚡ Stripe — Secure Checkout</div>
+            <p>Pay with any card, Apple Pay, or Google Pay. Encrypted &amp; PCI-compliant.</p>
+          </div>
+
+          <div class="accepted-methods">
+            <div class="method-badge">💳 Visa</div>
+            <div class="method-badge">💳 Mastercard</div>
+            <div class="method-badge">💳 Amex</div>
+            <div class="method-badge"> Apple Pay</div>
+            <div class="method-badge">🟢 Google Pay</div>
+          </div>
+
+          <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()">
+            🔒 &nbsp;Pay Now — Secure Checkout
+          </button>
+          <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+
+          <!-- Zelle secondary -->
+          <div class="alt-divider"><span>or pay via bank transfer</span></div>
+
+          <div class="zelle-block">
+            <div class="zelle-block-header">
+              <div class="zelle-icon-sm">Z</div>
               <div>
-                <div class="summary-label">Package</div>
-                <div class="summary-name" id="stripe-plan-name">Growth</div>
+                <div class="zelle-title">Zelle — Bank Transfer</div>
+                <div class="zelle-sub">Direct bank-to-bank. No fees. Instant transfer.</div>
               </div>
-              <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
-            </div>
-
-            <div class="accepted-methods">
-              <div class="method-badge">💳 Visa</div>
-              <div class="method-badge">💳 Mastercard</div>
-              <div class="method-badge">💳 Amex</div>
-              <div class="method-badge"> Apple Pay</div>
-              <div class="method-badge">🟢 Google Pay</div>
-            </div>
-
-            <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()">
-              🔒 Proceed to Secure Checkout
-            </button>
-            <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
-
-            <div class="setup-note" id="stripeSetupNote" style="display:none;">
-              <strong style="color:#7B6FFF;">⚙️ Stripe Payment Links Not Configured Yet</strong><br>
-              To activate card payments, <a href="https://stripe.com" target="_blank">create a free Stripe account</a>, generate a Payment Link for each package, and paste the URLs into <code>checkout.html</code> under <code>STRIPE_PAYMENT_LINKS</code>.<br><br>
-              In the meantime, please use Cash App or Zelle, or contact us at <a href="mailto:admin@velonyxsystems.com" style="color:var(--gold);">admin@velonyxsystems.com</a>.
-            </div>
-          </div>
-        </div>
-
-        <!-- ══ CASH APP PANEL ══ -->
-        <div class="payment-panel" id="panel-cashapp">
-          <div class="payment-card">
-            <div class="app-icon cashapp">💵</div>
-
-            <div class="app-identifier">
-              <div class="sub">Send Cash App payment to</div>
-              <div class="value cashapp-green">$VelonyxSystems</div>
-            </div>
-
-            <div class="payment-summary">
-              <div>
-                <div class="summary-label">Amount to Send</div>
-                <div class="summary-name" id="cashapp-plan-name">Growth Package</div>
-              </div>
-              <div class="summary-amount" id="cashapp-plan-amount">$3,500</div>
-            </div>
-
-            <div class="copy-row">
-              <input class="copy-input" id="ca-tag-input" value="$VelonyxSystems" readonly>
-              <button class="btn-copy" id="ca-tag-btn" onclick="copyText('ca-tag-input', 'ca-tag-btn', 'Copy $Tag')">Copy $Tag</button>
-            </div>
-
-            <ul class="payment-steps">
-              <li><span class="step-num">1</span>Open Cash App and tap <span class="hl">Pay</span></li>
-              <li><span class="step-num">2</span>Search <span class="hl">$VelonyxSystems</span> and enter the amount shown above</li>
-              <li><span class="step-num">3</span>In the note field, write your <span class="hl">name + package</span> (e.g. "John — Growth")</li>
-              <li><span class="step-num">4</span>Send and <span class="hl">screenshot your confirmation</span></li>
-            </ul>
-
-            <a href="https://cash.app/$VelonyxSystems" target="_blank" class="btn-cashapp">
-              💵 &nbsp;Open Cash App →
-            </a>
-
-            <div class="after-note">
-              <strong>After sending payment:</strong>
-              Email your confirmation screenshot to <strong style="color:var(--white);">admin@velonyxsystems.com</strong> with your name and the package you chose. You'll receive a project kickoff email within 2 hours during business hours.
-            </div>
-          </div>
-        </div>
-
-        <!-- ══ ZELLE PANEL ══ -->
-        <div class="payment-panel" id="panel-zelle">
-          <div class="payment-card">
-            <div class="app-icon zelle" style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:900; color:#fff;">Z</div>
-
-            <div class="app-identifier">
-              <div class="sub">Send Zelle payment to</div>
-              <div class="value zelle-purple">admin@velonyxsystems.com</div>
-            </div>
-
-            <div class="payment-summary">
-              <div>
-                <div class="summary-label">Amount to Send</div>
-                <div class="summary-name" id="zelle-plan-name">Growth Package</div>
-              </div>
-              <div class="summary-amount" id="zelle-plan-amount">$3,500</div>
             </div>
 
             <div class="copy-row">
               <input class="copy-input" id="zelle-email-input" value="admin@velonyxsystems.com" readonly>
-              <button class="btn-copy" id="zelle-email-btn" onclick="copyText('zelle-email-input', 'zelle-email-btn', 'Copy Email')">Copy Email</button>
+              <button class="btn-copy" id="zelle-email-btn" onclick="copyText('zelle-email-input', 'zelle-email-btn', 'Copy Email')">Copy</button>
             </div>
 
             <ul class="payment-steps">
               <li><span class="step-num">1</span>Open your bank app and go to <span class="hl">Zelle</span></li>
-              <li><span class="step-num">2</span>Search <span class="hl">admin@velonyxsystems.com</span></li>
-              <li><span class="step-num">3</span>Enter the amount and add your <span class="hl">name + package</span> in the memo</li>
-              <li><span class="step-num">4</span>Send and <span class="hl">screenshot your confirmation</span></li>
+              <li><span class="step-num">2</span>Send <span class="hl" id="zelle-plan-amount">$3,500</span> to <span class="hl">admin@velonyxsystems.com</span></li>
+              <li><span class="step-num">3</span>Add your <span class="hl">name + package</span> in the memo field</li>
+              <li><span class="step-num">4</span>Email your confirmation screenshot to <span class="hl">admin@velonyxsystems.com</span></li>
             </ul>
 
             <button class="btn-zelle" onclick="window.open('https://www.zellepay.com/how-it-works','_blank')">
-              💜 &nbsp;Open Zelle →
+              Open Zelle →
             </button>
 
             <div class="after-note">
-              <strong>After sending payment:</strong>
-              Email your confirmation screenshot to <strong style="color:var(--white);">admin@velonyxsystems.com</strong> with your name and the package you chose. You'll receive a project kickoff email within 2 hours during business hours.
+              <strong>After sending via Zelle:</strong>
+              Email your confirmation to admin@velonyxsystems.com with your name and package. You'll receive a project kickoff email within 2 hours during business hours.
             </div>
           </div>
+
+        </div>
+
+        <!-- Financing nudge -->
+        <div class="financing-nudge">
+          <p><strong>Need to spread out the cost?</strong><br>Apply for financing — one application, 30+ lenders, check your rate in 60 seconds with no credit score impact.</p>
+          <a href="financing.html" class="btn-financing">🏦 &nbsp;Apply for Financing →</a>
         </div>
 
       </section>
@@ -582,28 +505,14 @@
 
     function updateAmounts() {
       const p = PLANS[currentPlan];
-      document.getElementById('stripe-plan-name').textContent  = p.name;
+      document.getElementById('stripe-plan-name').textContent   = p.name;
       document.getElementById('stripe-plan-amount').textContent = p.display;
-      document.getElementById('cashapp-plan-name').textContent  = p.name + ' Package';
-      document.getElementById('cashapp-plan-amount').textContent = p.display;
-      document.getElementById('zelle-plan-name').textContent   = p.name + ' Package';
       document.getElementById('zelle-plan-amount').textContent  = p.display;
-    }
-
-    function selectTab(tab) {
-      document.querySelectorAll('.payment-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.payment-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
     }
 
     function stripeCheckout() {
       const link = STRIPE_PAYMENT_LINKS[currentPlan];
-      if (!link) {
-        document.getElementById('stripeSetupNote').style.display = 'block';
-        document.getElementById('stripeBtn').style.opacity = '0.5';
-        return;
-      }
+      if (!link) return;
       window.location.href = link;
     }
 
