@@ -510,46 +510,13 @@
           </button>
           <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
 
-          <!-- Zelle secondary -->
-          <div class="alt-divider"><span>or pay via bank transfer</span></div>
-
-          <div class="zelle-block">
-            <div class="zelle-block-header">
-              <div class="zelle-icon-sm">Z</div>
-              <div>
-                <div class="zelle-title">Zelle — Bank Transfer</div>
-                <div class="zelle-sub">Direct bank-to-bank. No fees. Instant transfer.</div>
-              </div>
-            </div>
-
-            <div class="copy-row">
-              <input class="copy-input" id="zelle-email-input" value="admin@velonyxsystems.com" readonly>
-              <button class="btn-copy" id="zelle-email-btn" onclick="copyText('zelle-email-input', 'zelle-email-btn', 'Copy Email')">Copy</button>
-            </div>
-
-            <ul class="payment-steps">
-              <li><span class="step-num">1</span>Open your bank app and go to <span class="hl">Zelle</span></li>
-              <li><span class="step-num">2</span>Send <span class="hl" id="zelle-plan-amount">$3,500</span> to <span class="hl">admin@velonyxsystems.com</span></li>
-              <li><span class="step-num">3</span>Add your <span class="hl">name + package</span> in the memo field</li>
-              <li><span class="step-num">4</span>Email your confirmation screenshot to <span class="hl">admin@velonyxsystems.com</span></li>
-            </ul>
-
-            <button class="btn-zelle" onclick="window.open('https://www.zellepay.com/how-it-works','_blank')">
-              Open Zelle →
-            </button>
-
-            <div class="after-note">
-              <strong>After sending via Zelle:</strong>
-              Email your confirmation to admin@velonyxsystems.com with your name and package. You'll receive a project kickoff email within 2 hours during business hours.
-            </div>
-          </div>
 
         </div>
 
         <!-- Financing nudge -->
         <div class="financing-nudge">
-          <p><strong>Need to spread out the cost?</strong><br>Apply for financing — one application, 30+ lenders, check your rate in 60 seconds with no credit score impact.</p>
-          <a href="financing.html" class="btn-financing">🏦 &nbsp;Apply for Financing →</a>
+          <p><strong>Want to split it into payments?</strong><br>Klarna, Affirm &amp; Afterpay are available at the next step — instant approval, no account needed, 0% interest on Pay-in-4.</p>
+          <a href="financing.html" class="btn-financing">See How It Works →</a>
         </div>
 
       </section>
@@ -622,7 +589,6 @@
       const p = PLANS[currentPlan];
       document.getElementById('stripe-plan-name').textContent   = p.name;
       document.getElementById('stripe-plan-amount').textContent = p.display;
-      document.getElementById('zelle-plan-amount').textContent  = p.display;
       // Update BNPL installment amounts
       const installment = BNPL_AMOUNTS[currentPlan];
       document.getElementById('klarna-amount').textContent   = installment;

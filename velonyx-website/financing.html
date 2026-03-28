@@ -112,6 +112,11 @@
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .provider-hero-pill:hover { transform: translateY(-3px); }
+    .provider-hero-pill.stripe {
+      background: rgba(99,91,255,0.1); border: 1.5px solid rgba(99,91,255,0.3); color: #7B6FFF;
+    }
+    .provider-hero-pill.stripe:hover { box-shadow: 0 8px 32px rgba(99,91,255,0.2); }
+    .stripe .pill-dot { background: #635BFF; }
     .provider-hero-pill.klarna {
       background: var(--klarna-bg); border: 1.5px solid var(--klarna-border); color: var(--klarna);
     }
@@ -397,6 +402,9 @@
       <p>Split your package into easy installments with your choice of provider. No account needed. Instant approval. Zero interest on Pay-in-4.</p>
 
       <div class="hero-providers">
+        <div class="provider-hero-pill stripe">
+          <span class="pill-dot"></span> stripe
+        </div>
         <div class="provider-hero-pill klarna">
           <span class="pill-dot"></span> klarna
         </div>
