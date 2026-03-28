@@ -1537,6 +1537,58 @@ img { max-width: 100%; display: block; }
 
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+/* ── Stripe pay block ── */
+.stripe-pay-block {
+  max-width: 620px; margin: 0 auto;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,75,43,0.2);
+  border-radius: 16px; padding: 40px 36px;
+  box-shadow: 0 0 80px rgba(255,75,43,0.05);
+}
+.stripe-pay-top {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px; margin-bottom: 14px;
+}
+.stripe-badge {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.1rem; letter-spacing: 0.08em;
+  color: var(--red);
+}
+.stripe-cards { display: flex; gap: 7px; flex-wrap: wrap; }
+.card-badge {
+  padding: 4px 11px; border-radius: 6px; font-size: 0.7rem; font-weight: 700;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(245,245,245,0.55);
+}
+.stripe-pay-desc {
+  color: rgba(245,245,245,0.45); font-size: 0.87rem; line-height: 1.65; margin-bottom: 28px;
+}
+.btn-enroll-now {
+  display: block; width: 100%; padding: 16px; border-radius: 10px; text-align: center;
+  background: linear-gradient(135deg, #CC3A22, #FF4B2B, #FF7A5C, #FF4B2B, #CC3A22);
+  color: #fff; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.1rem;
+  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+  transition: all 0.3s ease; box-shadow: 0 4px 24px rgba(255,75,43,0.3);
+}
+.btn-enroll-now:hover { box-shadow: 0 8px 40px rgba(255,75,43,0.5); transform: translateY(-2px); }
+.bnpl-hint {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.76rem; color: rgba(245,245,245,0.35);
+}
+.bnpl-hint strong { color: rgba(245,245,245,0.65); font-weight: 700; }
+
+/* ── Velonyx badge ── */
+.velonyx-badge {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,75,43,0.08);
+  font-size: 0.72rem; color: rgba(245,245,245,0.25); letter-spacing: 0.5px;
+}
+.velonyx-badge a {
+  color: rgba(255,75,43,0.55); text-decoration: none; font-weight: 700;
+  letter-spacing: 0.5px; transition: color 0.25s;
+}
+.velonyx-badge a:hover { color: var(--red); }
 </style>
 </head>
 <body>
@@ -1711,63 +1763,35 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="section-header fade-up">
       <span class="section-label">Secure Checkout</span>
-      <h2 class="section-title">Payment Options</h2>
-      <p class="section-subtitle">Choose your preferred payment method to get started.</p>
+      <h2 class="section-title">Enroll &amp; Pay Online</h2>
+      <p class="section-subtitle">Secured by Stripe — used by Amazon, Google, and millions of businesses. Your payment info is always protected.</p>
       <div class="section-divider"></div>
     </div>
-    <div class="payment-grid">
-      <a href="#" class="payment-card" data-delay="0" onclick="return false;">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+
+    <div class="stripe-pay-block fade-up">
+      <div class="stripe-pay-top">
+        <div class="stripe-badge">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#FF4B2B" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#FF4B2B" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Stripe Secure Payment</span>
         </div>
-        <h3>Credit/Debit</h3>
-        <p>Visa, Mastercard, Amex</p>
-      </a>
-      <a href="#" class="payment-card" data-delay="100" onclick="return false;">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <div class="stripe-cards">
+          <span class="card-badge">Visa</span>
+          <span class="card-badge">Mastercard</span>
+          <span class="card-badge">Amex</span>
+          <span class="card-badge"> Apple Pay</span>
+          <span class="card-badge">🟢 Google Pay</span>
         </div>
-        <h3>PayPal</h3>
-        <p>Secure online payment</p>
-      </a>
-      <a href="#" class="payment-card" data-delay="200" onclick="return false;">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>CashApp</h3>
-        <p>Send to $IronWillTraining</p>
-      </a>
-      <div class="payment-card" data-delay="300" id="zelleCard" style="cursor:pointer;">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 16 12 13 21 10 3 7 12 2 12"/></svg>
-        </div>
-        <h3>Zelle</h3>
-        <p>Quick bank transfer</p>
       </div>
-      <a href="#" class="payment-card" data-delay="400" onclick="return false;">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Venmo</h3>
-        <p>@IronWillTraining</p>
-      </a>
+      <p class="stripe-pay-desc">Your card info is never stored on our servers. All transactions are 256-bit SSL encrypted and PCI-DSS compliant.</p>
+      <a href="#programs" class="btn-enroll-now">Start Training Now &nbsp;→</a>
+      <div class="bnpl-hint">
+        <span>💪 Split into 4 interest-free payments with</span>
+        <strong>Klarna</strong> <strong>Affirm</strong> <strong>Afterpay</strong>
+        <span>— available at checkout</span>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- ===================== ZELLE MODAL ===================== -->
-<div class="modal-overlay" id="zelleModal">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
-    <h3>Pay via Zelle</h3>
-    <p>Send your payment to the email below. Include your name and selected plan in the memo.</p>
-    <div class="copy-field">
-      <input type="text" value="pay@ironwilltraining.com" id="zelleEmail" readonly>
-      <button class="copy-btn" id="copyBtn">Copy</button>
-    </div>
-    <div class="copy-success" id="copySuccess">Copied to clipboard!</div>
-  </div>
-</div>
 
 <!-- ===================== TESTIMONIALS ===================== -->
 <section class="section testimonials" id="testimonials">
@@ -1932,6 +1956,10 @@ img { max-width: 100%; display: block; }
       <p>&copy; 2025 IronWill Training. All rights reserved.</p>
       <p>Built with discipline.</p>
     </div>
+    <div class="velonyx-badge">
+      <span>Digital experience built by</span>
+      <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a>
+    </div>
   </div>
 </footer>
 
@@ -2095,59 +2123,6 @@ img { max-width: 100%; display: block; }
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
-  });
-
-  // ===================== ZELLE MODAL =====================
-  var zelleCard = document.getElementById('zelleCard');
-  var zelleModal = document.getElementById('zelleModal');
-  var modalClose = document.getElementById('modalClose');
-  var copyBtn = document.getElementById('copyBtn');
-  var copySuccess = document.getElementById('copySuccess');
-  var zelleEmail = document.getElementById('zelleEmail');
-
-  zelleCard.addEventListener('click', function() {
-    zelleModal.classList.add('active');
-  });
-
-  modalClose.addEventListener('click', function() {
-    zelleModal.classList.remove('active');
-    copySuccess.classList.remove('show');
-  });
-
-  zelleModal.addEventListener('click', function(e) {
-    if (e.target === zelleModal) {
-      zelleModal.classList.remove('active');
-      copySuccess.classList.remove('show');
-    }
-  });
-
-  copyBtn.addEventListener('click', function() {
-    zelleEmail.select();
-    zelleEmail.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(zelleEmail.value).then(function() {
-      copySuccess.classList.add('show');
-      copyBtn.textContent = 'Copied!';
-      setTimeout(function() {
-        copySuccess.classList.remove('show');
-        copyBtn.textContent = 'Copy';
-      }, 2500);
-    }).catch(function() {
-      document.execCommand('copy');
-      copySuccess.classList.add('show');
-      copyBtn.textContent = 'Copied!';
-      setTimeout(function() {
-        copySuccess.classList.remove('show');
-        copyBtn.textContent = 'Copy';
-      }, 2500);
-    });
-  });
-
-  // Close modal on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && zelleModal.classList.contains('active')) {
-      zelleModal.classList.remove('active');
-      copySuccess.classList.remove('show');
-    }
   });
 
 })();

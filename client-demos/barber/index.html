@@ -1404,6 +1404,58 @@ img { display: block; max-width: 100%; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Stripe pay block ── */
+.stripe-pay-block {
+  max-width: 620px; margin: 0 auto;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(200,169,110,0.18);
+  border-radius: 20px; padding: 40px 36px;
+  box-shadow: 0 0 80px rgba(200,169,110,0.05);
+}
+.stripe-pay-top {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px; margin-bottom: 14px;
+}
+.stripe-badge {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600;
+  color: var(--gold);
+}
+.stripe-cards { display: flex; gap: 7px; flex-wrap: wrap; }
+.card-badge {
+  padding: 4px 11px; border-radius: 6px; font-size: 0.7rem; font-weight: 700;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(245,240,232,0.6);
+}
+.stripe-pay-desc {
+  color: rgba(245,240,232,0.5); font-size: 0.87rem; line-height: 1.65; margin-bottom: 28px;
+}
+.btn-book-pay {
+  display: block; width: 100%; padding: 16px; border-radius: 12px; text-align: center;
+  background: linear-gradient(135deg, #B8911F, #C8A96E, #E2CC72, #C8A96E, #B8911F);
+  color: #0A0A0A; font-family: 'Lato', sans-serif; font-size: 0.92rem; font-weight: 900;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  transition: all 0.3s ease; box-shadow: 0 4px 24px rgba(200,169,110,0.3);
+}
+.btn-book-pay:hover { box-shadow: 0 8px 40px rgba(200,169,110,0.5); transform: translateY(-2px); }
+.bnpl-hint {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.76rem; color: rgba(245,240,232,0.38);
+}
+.bnpl-hint strong { color: rgba(245,240,232,0.65); font-weight: 700; }
+
+/* ── Velonyx badge ── */
+.velonyx-badge {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(200,169,110,0.08);
+  font-size: 0.72rem; color: rgba(245,240,232,0.28); letter-spacing: 0.5px;
+}
+.velonyx-badge a {
+  color: rgba(200,169,110,0.5); text-decoration: none; font-weight: 700;
+  letter-spacing: 0.5px; transition: color 0.25s;
+}
+.velonyx-badge a:hover { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -1525,70 +1577,35 @@ img { display: block; max-width: 100%; }
 <section class="payment" id="payment">
   <div class="container">
     <div class="payment-header reveal">
-      <p class="section-label">Quick Pay</p>
-      <h2 class="section-title">Choose Your Payment Method</h2>
-      <p class="section-subtitle">Secure, fast, and seamless. Pay your way before your visit.</p>
+      <p class="section-label">Secure Checkout</p>
+      <h2 class="section-title">Book & Pay Online</h2>
+      <p class="section-subtitle">Encrypted &amp; secured by Stripe — the same platform trusted by Apple, Amazon, and millions of businesses worldwide.</p>
     </div>
 
-    <div class="payment-grid">
-      <a href="https://cash.app/$ThroneBarber" target="_blank" rel="noopener" class="payment-card reveal" data-delay="0">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#00D632" stroke-width="1.5"/><path d="M15 9.5a3 3 0 00-3-2.5c-1.8 0-3 1-3 2.5s1.2 2.2 3 2.5c1.8.3 3 1.2 3 2.5a3 3 0 01-3 2.5c-1.8 0-3-1-3-2.5M12 6v1m0 10v1" stroke="#00D632" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="stripe-pay-block reveal" data-delay="100">
+      <div class="stripe-pay-top">
+        <div class="stripe-badge">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="11" width="18" height="11" rx="2" stroke="var(--gold)" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Stripe Secure Payment</span>
         </div>
-        <p class="payment-name">CashApp</p>
-        <p class="payment-handle">$ThroneBarber</p>
-      </a>
-
-      <div class="payment-card reveal" data-delay="100" id="zelleCard" role="button" tabindex="0">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#6D1ED4" stroke-width="1.5"/><path d="M8 8h8l-8 8h8" stroke="#6D1ED4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="stripe-cards">
+          <span class="card-badge">Visa</span>
+          <span class="card-badge">Mastercard</span>
+          <span class="card-badge">Amex</span>
+          <span class="card-badge"> Apple Pay</span>
+          <span class="card-badge">🟢 Google Pay</span>
         </div>
-        <p class="payment-name">Zelle</p>
-        <p class="payment-handle">Tap to copy email</p>
       </div>
-
-      <a href="https://paypal.me/ThroneBarber" target="_blank" rel="noopener" class="payment-card reveal" data-delay="200">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 21l1.5-9h5c3.5 0 6-2.5 5.5-6S16 3 13 3H7.5L5 21h2z" stroke="#0070BA" stroke-width="1.5" fill="none"/><path d="M10 12h4c3 0 5-2 4.5-5" stroke="#0070BA" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <p class="payment-name">PayPal</p>
-        <p class="payment-handle">@ThroneBarber</p>
-      </a>
-
-      <a href="https://venmo.com/ThroneBarber" target="_blank" rel="noopener" class="payment-card reveal" data-delay="300">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#008CFF" stroke-width="1.5"/><path d="M15 7c.5.8.7 1.6.7 2.7 0 3.3-2.8 7.6-5.1 10.3H7l-2-12.5 3.5-.3.8 6.5c.8-1.3 1.8-3.4 1.8-4.8 0-1-.2-1.7-.4-2.3L15 7z" fill="#008CFF"/></svg>
-        </div>
-        <p class="payment-name">Venmo</p>
-        <p class="payment-handle">@ThroneBarber</p>
-      </a>
-
-      <a href="#payment" class="payment-card reveal" data-delay="400">
-        <div class="payment-icon">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="var(--gold)" stroke-width="1.5"/><line x1="2" y1="10" x2="22" y2="10" stroke="var(--gold)" stroke-width="1.5"/></svg>
-        </div>
-        <p class="payment-name">Card</p>
-        <p class="payment-handle">Debit / Credit</p>
-      </a>
+      <p class="stripe-pay-desc">Your card info is never stored on our site. All transactions are PCI-DSS compliant and fully encrypted.</p>
+      <a href="#book" class="btn-book-pay">Book Your Throne &nbsp;→</a>
+      <div class="bnpl-hint">
+        <span>💳 Split into 4 interest-free payments with</span>
+        <strong>Klarna</strong> <strong>Affirm</strong> <strong>Afterpay</strong>
+        <span>— available at checkout</span>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- ==================== ZELLE MODAL ==================== -->
-<div class="modal-overlay" id="zelleModal">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Close modal">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <h3 class="modal-title">Pay via Zelle</h3>
-    <p class="modal-subtitle">Send payment to the email below</p>
-    <div class="modal-email-box">
-      <span class="modal-email" id="zelleEmail">throne@thronebarber.com</span>
-      <button class="modal-copy" id="copyBtn">Copy</button>
-    </div>
-    <p class="modal-note">Include your name and service in the memo</p>
-  </div>
-</div>
 
 <!-- ==================== HOW IT WORKS ==================== -->
 <section class="how-it-works" id="how-it-works">
@@ -1659,6 +1676,10 @@ img { display: block; max-width: 100%; }
       </div>
       <div class="footer-divider"></div>
       <p class="footer-copy">&copy; 2025 Throne Barbershop. All rights reserved.</p>
+      <div class="velonyx-badge">
+        <span>Digital experience built by</span>
+        <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -1820,63 +1841,6 @@ img { display: block; max-width: 100%; }
 
   counters.forEach(function(counter) {
     counterObserver.observe(counter);
-  });
-
-  /* ========== ZELLE MODAL ========== */
-  const zelleCard = document.getElementById('zelleCard');
-  const zelleModal = document.getElementById('zelleModal');
-  const modalClose = document.getElementById('modalClose');
-  const copyBtn = document.getElementById('copyBtn');
-  const zelleEmail = document.getElementById('zelleEmail');
-
-  zelleCard.addEventListener('click', function() {
-    zelleModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-
-  zelleCard.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      zelleModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  function closeModal() {
-    zelleModal.classList.remove('active');
-    document.body.style.overflow = '';
-    copyBtn.textContent = 'Copy';
-  }
-
-  modalClose.addEventListener('click', closeModal);
-
-  zelleModal.addEventListener('click', function(e) {
-    if (e.target === zelleModal) closeModal();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && zelleModal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  copyBtn.addEventListener('click', function() {
-    const email = zelleEmail.textContent;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(email).then(function() {
-        copyBtn.textContent = 'Copied!';
-        setTimeout(function() { copyBtn.textContent = 'Copy'; }, 2000);
-      });
-    } else {
-      var range = document.createRange();
-      range.selectNode(zelleEmail);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-      document.execCommand('copy');
-      window.getSelection().removeAllRanges();
-      copyBtn.textContent = 'Copied!';
-      setTimeout(function() { copyBtn.textContent = 'Copy'; }, 2000);
-    }
   });
 
   /* ========== SMOOTH SCROLL ========== */
