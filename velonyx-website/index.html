@@ -2326,6 +2326,46 @@
       color: var(--white-muted);
     }
 
+    /* ── Payment & Financing Partners ── */
+    .payment-partners {
+      margin-top: 52px;
+      text-align: center;
+    }
+    .partners-label {
+      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold-muted); margin-bottom: 28px;
+    }
+    .partners-row {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+      max-width: 860px; margin: 0 auto 20px;
+    }
+    .partner-tile {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      cursor: default; text-decoration: none;
+      transition: transform 0.25s;
+    }
+    .partner-tile:hover { transform: translateY(-3px); }
+    a.partner-tile { cursor: pointer; }
+    .partner-logo { display: block; height: 36px; width: auto; border-radius: 7px; }
+    .partner-sub {
+      font-size: 0.7rem; color: var(--white-muted); font-weight: 500;
+      white-space: nowrap;
+    }
+    .partner-featured .partner-logo {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+      height: 40px;
+    }
+    .partner-featured .partner-sub { color: var(--white); font-weight: 600; }
+    .partner-finance .partner-logo {
+      filter: drop-shadow(0 0 8px rgba(212,175,55,0.3));
+    }
+    .partners-disclaimer {
+      font-size: 0.72rem; color: rgba(255,255,255,0.3);
+      max-width: 560px; margin: 0 auto; line-height: 1.6;
+    }
+    .partners-disclaimer a { color: var(--gold-muted); text-decoration: none; }
+    .partners-disclaimer a:hover { color: var(--gold); }
+
     @media (max-width: 768px) {
       .booking-modal { padding: 36px 24px; }
       .booking-form .form-row { grid-template-columns: 1fr; }
@@ -2577,7 +2617,73 @@
       </div>
 
       <p class="pricing-note fade-in"><strong>Need ongoing maintenance?</strong> Add a monthly support plan starting at $150/mo for updates, fixes, content changes, and priority support. Every site includes 30 days of free support after launch.</p>
-      <p class="pricing-note fade-in" style="margin-top:16px;">💳 <strong>Payment options:</strong> Stripe (card, Apple Pay, Google Pay) and Zelle bank transfer. &nbsp;|&nbsp; 🏦 <a href="financing.html" style="color:var(--gold);text-decoration:none;font-weight:600;">Apply for financing</a> — one application, 30+ lenders, check your rate in 60 seconds.</p>
+
+      <!-- PAYMENT & FINANCING PARTNERS -->
+      <div class="payment-partners fade-in">
+        <div class="partners-label">Flexible Payment &amp; Financing Options</div>
+
+        <div class="partners-row">
+
+          <!-- Stripe -->
+          <div class="partner-tile" title="Pay by card, Apple Pay, or Google Pay">
+            <svg class="partner-logo" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="32" rx="6" fill="#635BFF"/>
+              <text x="40" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.5">stripe</text>
+            </svg>
+            <span class="partner-sub">Cards &amp; Wallets</span>
+          </div>
+
+          <!-- Klarna -->
+          <div class="partner-tile partner-featured" title="Pay in 4 interest-free installments with Klarna">
+            <svg class="partner-logo" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="32" rx="6" fill="#FFB3C7"/>
+              <text x="40" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="#000000" letter-spacing="0.5">klarna</text>
+            </svg>
+            <span class="partner-sub">Pay in 4 · 0% Interest</span>
+          </div>
+
+          <!-- Affirm -->
+          <div class="partner-tile partner-featured" title="Split payments with Affirm — 0% APR options available">
+            <svg class="partner-logo" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="32" rx="6" fill="#0FA0EA"/>
+              <text x="40" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="#ffffff" letter-spacing="0.5">affirm</text>
+            </svg>
+            <span class="partner-sub">Pay Over Time · Low APR</span>
+          </div>
+
+          <!-- Afterpay -->
+          <div class="partner-tile partner-featured" title="4 interest-free payments with Afterpay">
+            <svg class="partner-logo" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="96" height="32" rx="6" fill="#B2FCE4"/>
+              <text x="48" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#000000" letter-spacing="0.3">afterpay</text>
+            </svg>
+            <span class="partner-sub">4 Payments · 0% Interest</span>
+          </div>
+
+          <!-- Zelle -->
+          <div class="partner-tile" title="Bank transfer via Zelle">
+            <svg class="partner-logo" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="32" rx="6" fill="#6B2FAD"/>
+              <text x="40" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="#ffffff" letter-spacing="0.5">zelle</text>
+            </svg>
+            <span class="partner-sub">Bank Transfer</span>
+          </div>
+
+          <!-- Financing -->
+          <a href="financing.html" class="partner-tile partner-finance" title="Apply for financing — 30+ lenders">
+            <svg class="partner-logo" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="32" rx="6" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+              <text x="40" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#D4AF37" letter-spacing="1">FINANCING</text>
+              <text x="40" y="26" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="600" fill="#D4AF37" letter-spacing="0.5">30+ Lenders</text>
+            </svg>
+            <span class="partner-sub" style="color:var(--gold);">Apply in 60 Seconds →</span>
+          </a>
+
+        </div>
+
+        <p class="partners-disclaimer">Buy Now Pay Later options (Klarna, Affirm, Afterpay) available at checkout via Stripe. Subject to approval. <a href="financing.html">Apply for long-term financing →</a></p>
+      </div>
+
     </div>
   </section>
 
