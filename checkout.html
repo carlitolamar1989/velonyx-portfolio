@@ -273,6 +273,67 @@
     }
     .after-note strong { color: var(--gold); display: block; margin-bottom: 4px; font-size: 0.83rem; }
 
+    /* ── BNPL section ── */
+    .bnpl-section {
+      margin: 28px 0 0;
+      border: 1px solid var(--glass-border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .bnpl-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; cursor: pointer;
+      background: rgba(255,255,255,0.02);
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .bnpl-header:hover { background: rgba(255,255,255,0.04); }
+    .bnpl-header-left { display: flex; align-items: center; gap: 12px; }
+    .bnpl-header-left .label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem;
+    }
+    .bnpl-header-left .sub { color: var(--white-muted); font-size: 0.78rem; margin-top: 2px; }
+    .bnpl-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bnpl-pill {
+      padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .bnpl-pill.klarna  { background: rgba(255,182,193,0.15); color: #FFB6C1; border: 1px solid rgba(255,182,193,0.25); }
+    .bnpl-pill.affirm  { background: rgba(52,199,89,0.12);  color: #34C759;  border: 1px solid rgba(52,199,89,0.25); }
+    .bnpl-pill.afterpay { background: rgba(179,227,140,0.12); color: #B3E38C; border: 1px solid rgba(179,227,140,0.25); }
+    .bnpl-chevron { color: var(--white-muted); font-size: 0.9rem; transition: transform 0.25s; }
+    .bnpl-section.open .bnpl-chevron { transform: rotate(180deg); }
+
+    .bnpl-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+      border-top: 0px solid var(--glass-border);
+    }
+    .bnpl-section.open .bnpl-body {
+      max-height: 600px;
+      border-top: 1px solid var(--glass-border);
+    }
+    .bnpl-body-inner { padding: 20px; }
+
+    .bnpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .bnpl-card {
+      border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px 14px;
+      text-align: center; background: rgba(255,255,255,0.02);
+    }
+    .bnpl-card .provider { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .bnpl-card.klarna  .provider { color: #FFB6C1; }
+    .bnpl-card.affirm  .provider { color: #34C759; }
+    .bnpl-card.afterpay .provider { color: #B3E38C; }
+    .bnpl-card .bnpl-amount {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 900;
+      background: var(--gold-shine); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .bnpl-card .bnpl-term { color: var(--white-muted); font-size: 0.72rem; margin-top: 4px; }
+    .bnpl-note {
+      font-size: 0.78rem; color: var(--white-muted); line-height: 1.6;
+      padding: 12px 14px; background: rgba(255,255,255,0.02);
+      border-radius: 8px; border: 1px solid var(--glass-border);
+    }
+
     /* Financing nudge */
     .financing-nudge {
       max-width: 580px; margin: 24px auto 0;
@@ -395,9 +456,56 @@
             <div class="method-badge">💳 Amex</div>
             <div class="method-badge"> Apple Pay</div>
             <div class="method-badge">🟢 Google Pay</div>
+            <div class="method-badge" style="color:#FFB6C1;">K Klarna</div>
+            <div class="method-badge" style="color:#34C759;">✦ Affirm</div>
+            <div class="method-badge" style="color:#B3E38C;">⬡ Afterpay</div>
           </div>
 
-          <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()">
+          <!-- BNPL expandable section -->
+          <div class="bnpl-section" id="bnplSection">
+            <div class="bnpl-header" onclick="toggleBnpl()">
+              <div class="bnpl-header-left">
+                <div>
+                  <div class="label">Buy Now, Pay Later</div>
+                  <div class="sub">Split into 4 interest-free payments — included in Stripe checkout</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="bnpl-pills">
+                  <span class="bnpl-pill klarna">Klarna</span>
+                  <span class="bnpl-pill affirm">Affirm</span>
+                  <span class="bnpl-pill afterpay">Afterpay</span>
+                </div>
+                <span class="bnpl-chevron">▾</span>
+              </div>
+            </div>
+            <div class="bnpl-body">
+              <div class="bnpl-body-inner">
+                <div class="bnpl-grid">
+                  <div class="bnpl-card klarna">
+                    <div class="provider">Klarna</div>
+                    <div class="bnpl-amount" id="klarna-amount">$875</div>
+                    <div class="bnpl-term">× 4 payments · 0% interest</div>
+                  </div>
+                  <div class="bnpl-card affirm">
+                    <div class="provider">Affirm</div>
+                    <div class="bnpl-amount" id="affirm-amount">$875</div>
+                    <div class="bnpl-term">× 4 payments · 0% interest</div>
+                  </div>
+                  <div class="bnpl-card afterpay">
+                    <div class="provider">Afterpay</div>
+                    <div class="bnpl-amount" id="afterpay-amount">$875</div>
+                    <div class="bnpl-term">× 4 payments · 0% interest</div>
+                  </div>
+                </div>
+                <div class="bnpl-note">
+                  These options appear automatically on the Stripe checkout screen. No extra steps needed — just click "Pay Now" below and select your preferred provider. Approval is instant. Terms and eligibility set by each lender.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()" style="margin-top:24px;">
             🔒 &nbsp;Pay Now — Secure Checkout
           </button>
           <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
@@ -503,11 +611,27 @@
       updateAmounts();
     }
 
+    // BNPL installment amounts (price ÷ 4)
+    const BNPL_AMOUNTS = {
+      starter: '$375',
+      growth:  '$875',
+      premium: '$1,500',
+    };
+
     function updateAmounts() {
       const p = PLANS[currentPlan];
       document.getElementById('stripe-plan-name').textContent   = p.name;
       document.getElementById('stripe-plan-amount').textContent = p.display;
       document.getElementById('zelle-plan-amount').textContent  = p.display;
+      // Update BNPL installment amounts
+      const installment = BNPL_AMOUNTS[currentPlan];
+      document.getElementById('klarna-amount').textContent   = installment;
+      document.getElementById('affirm-amount').textContent   = installment;
+      document.getElementById('afterpay-amount').textContent = installment;
+    }
+
+    function toggleBnpl() {
+      document.getElementById('bnplSection').classList.toggle('open');
     }
 
     function stripeCheckout() {
