@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block checkout from indexing
+Disallow: /checkout.html
+Disallow: /velonyx-website/
+
+# Sitemap
+Sitemap: https://velonyxsystems.com/sitemap.xml
