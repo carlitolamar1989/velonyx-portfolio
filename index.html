@@ -2327,6 +2327,23 @@
       text-align: center;
     }
 
+    .pricing-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .pricing-consult-link {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .pricing-consult-link:hover { color: var(--accent); }
+
     .pricing-note {
       text-align: center;
       color: var(--white-dim);
@@ -2498,15 +2515,15 @@
         <div class="service-card fade-in">
           <div class="service-icon">&#9733;</div>
           <h3>Payment Integration</h3>
-          <p>CashApp, Zelle, PayPal, Venmo, Stripe, Klarna &mdash; we connect every payment method your customers use. They click, they pay. You get paid. Automated.</p>
+          <p>Stripe-powered card payments, Apple Pay, and Google Pay built directly into your site. Your customers click and pay securely — you get deposited automatically.</p>
           <span class="service-tag">High Demand</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon">&#9879;</div>
-          <h3>Financing Integration</h3>
-          <p>Offer your customers financing options directly on your site. One application sent to 30+ lenders. Approval notifications come straight to you. Close more deals.</p>
-          <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">Game Changer — See How It Works →</span></a>
+          <h3>Buy Now, Pay Later</h3>
+          <p>Let your customers split payments into 4 interest-free installments through Klarna, Affirm, or Afterpay. Remove the price barrier and close more deals.</p>
+          <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works →</span></a>
         </div>
 
         <div class="service-card fade-in">
@@ -2526,7 +2543,7 @@
         <div class="service-card fade-in">
           <div class="service-icon">&#9888;</div>
           <h3>Digital Consulting</h3>
-          <p>Not sure what you need? We'll assess your business, audit your current setup, and tell you exactly what it takes to start converting online. No jargon. No BS.</p>
+          <p>Not sure where to start? We'll assess your business, audit your current setup, and give you a clear roadmap for converting online. Straightforward strategy, zero guesswork.</p>
           <span class="service-tag">Strategy</span>
         </div>
       </div>
@@ -2544,23 +2561,28 @@
       <div class="process-steps">
         <div class="process-step fade-in">
           <div class="process-num">1</div>
-          <h4>Consultation</h4>
-          <p>We talk about your business, your goals, and what you need. Free. No pressure. No commitment.</p>
+          <h4>Free Consultation</h4>
+          <p>We talk about your business, your goals, and exactly what you need. No pressure, no commitment — just a productive conversation.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">2</div>
-          <h4>Design &amp; Build</h4>
-          <p>We design and develop your site. You get a live preview link to review before anything goes public.</p>
+          <h4>Secure Your Project</h4>
+          <p>Ready to move forward? A 50% deposit locks in your spot and kickstarts the build. The remaining 50% is due at launch.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">3</div>
-          <h4>Refine</h4>
-          <p>Your feedback shapes the final product. We revise until you're 100% satisfied with every detail.</p>
+          <h4>Design &amp; Build</h4>
+          <p>We design and develop your site. You receive a live preview link to review every detail before anything goes public.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">4</div>
+          <h4>Refine</h4>
+          <p>Your feedback shapes the final product. We revise until you are 100% satisfied with every detail.</p>
+        </div>
+        <div class="process-step fade-in">
+          <div class="process-num">5</div>
           <h4>Launch</h4>
-          <p>We deploy your site, connect payments, and hand you a live link. Start sending customers to it immediately.</p>
+          <p>We deploy your site, connect payments, and hand you a live link. Start sending customers immediately.</p>
         </div>
       </div>
     </div>
@@ -2631,7 +2653,10 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> 1 round of revisions</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 5-7 business days</li>
           </ul>
-          <a href="checkout.html?plan=starter" class="btn-secondary pricing-cta">Get Started</a>
+          <div class="pricing-actions">
+            <a href="checkout.html?plan=starter" class="btn-secondary pricing-cta">Pay Deposit &amp; Start</a>
+            <a href="#" class="pricing-consult-link" onclick="event.preventDefault();openBooking()">Or book a free consultation →</a>
+          </div>
         </div>
 
         <!-- GROWTH (FEATURED) -->
@@ -2650,7 +2675,10 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> 3 rounds of revisions</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 7-10 business days</li>
           </ul>
-          <a href="checkout.html?plan=growth" class="btn-primary pricing-cta">Get Started</a>
+          <div class="pricing-actions">
+            <a href="checkout.html?plan=growth" class="btn-primary pricing-cta">Pay Deposit &amp; Start</a>
+            <a href="#" class="pricing-consult-link" onclick="event.preventDefault();openBooking()">Or book a free consultation →</a>
+          </div>
         </div>
 
         <!-- PREMIUM -->
@@ -2662,13 +2690,16 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> Everything in Growth, plus:</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited pages</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Advanced automation (email sequences, notifications)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Financing integration (30+ lenders)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Buy Now, Pay Later (Klarna, Affirm, Afterpay)</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Analytics dashboard</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Priority support &amp; same-day changes</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited revisions</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 10-14 business days</li>
           </ul>
-          <a href="checkout.html?plan=premium" class="btn-secondary pricing-cta">Get Started</a>
+          <div class="pricing-actions">
+            <a href="checkout.html?plan=premium" class="btn-secondary pricing-cta">Pay Deposit &amp; Start</a>
+            <a href="#" class="pricing-consult-link" onclick="event.preventDefault();openBooking()">Or book a free consultation →</a>
+          </div>
         </div>
 
       </div>
@@ -2864,8 +2895,9 @@
       <div class="cta-card fade-in">
         <div class="section-label">Let's Build</div>
         <h2>Ready to Stop Losing Customers<br>in the <span class="gold">DMs</span>?</h2>
-        <p>Book a free consultation. We'll talk about your business, what you need, and how we can build it. No pressure, no commitment &mdash; just a conversation.</p>
-        <a href="#" class="btn-primary" onclick="event.preventDefault();openBooking()">Book a Consultation</a>
+        <p>Start with a free consultation — we'll talk about your business, your goals, and the right package for you. No pressure, no commitment. Just a productive conversation.</p>
+        <a href="#" class="btn-primary" onclick="event.preventDefault();openBooking()">Book a Free Consultation</a>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);margin-top:14px;margin-bottom:0;">Already know what you need? <a href="#pricing" style="color:rgba(212,175,55,0.7);text-decoration:none;">View packages and pay your deposit →</a></p>
         <div class="cta-contact-methods">
           <a href="mailto:admin@velonyxsystems.com" class="cta-contact-method">&#9993; admin@velonyxsystems.com</a>
           <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" class="cta-contact-method">&#9733; @velonyxsystems</a>

@@ -409,19 +409,19 @@
     <div class="checkout-hero">
       <div class="checkout-label">Secure Checkout</div>
       <h1>Let's Build Your<br><span class="gold-text">Digital System.</span></h1>
-      <p>Select your package and choose how you'd like to pay. We'll kick off your project within 24 hours.</p>
+      <p>Select your package and pay your 50% deposit to reserve your project. We'll reach out within 24 hours to kick things off. The remaining 50% is due at launch.</p>
     </div>
 
     <div class="container">
 
       <!-- STEP 1: Plan selection -->
       <section class="plan-section">
-        <div class="step-heading"><span>Step 1</span> &nbsp;— Choose Your Package</div>
+        <div class="step-heading"><span>Step 1</span> &nbsp;— Choose Your Package <span style="font-size:0.75rem;font-weight:400;color:rgba(255,255,255,0.4);margin-left:8px;">(50% deposit due today — 50% at launch)</span></div>
         <div class="plan-grid">
 
           <div class="plan-card" data-plan="starter" data-price="1500" onclick="selectPlan(this)">
             <div class="plan-name">Starter</div>
-            <div class="plan-price">$1,500</div>
+            <div class="plan-price">$1,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($750 deposit today)</span></div>
             <div class="plan-desc">Clean single-page site with contact form, SSL, and custom domain. Live in 5–7 days.</div>
             <div class="plan-check"></div>
           </div>
@@ -429,15 +429,15 @@
           <div class="plan-card active" data-plan="growth" data-price="3500" onclick="selectPlan(this)">
             <div class="plan-badge">Most Popular</div>
             <div class="plan-name">Growth</div>
-            <div class="plan-price">$3,500</div>
-            <div class="plan-desc">Multi-page site, payment integration, booking system. What most clients choose.</div>
+            <div class="plan-price">$3,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($1,750 deposit today)</span></div>
+            <div class="plan-desc">Multi-page site, Stripe payments, BNPL, booking system. What most clients choose.</div>
             <div class="plan-check"></div>
           </div>
 
           <div class="plan-card" data-plan="premium" data-price="6000" onclick="selectPlan(this)">
             <div class="plan-name">Premium</div>
-            <div class="plan-price">$6,000</div>
-            <div class="plan-desc">Full digital system, automation, financing integration, analytics, unlimited pages.</div>
+            <div class="plan-price">$6,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($3,000 deposit today)</span></div>
+            <div class="plan-desc">Full digital system, automation, Buy Now Pay Later, analytics, unlimited pages.</div>
             <div class="plan-check"></div>
           </div>
 
@@ -521,9 +521,10 @@
           </div>
 
           <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()" style="margin-top:24px;">
-            🔒 &nbsp;Pay Now — Secure Checkout
+            🔒 &nbsp;Pay Deposit &amp; Reserve My Project
           </button>
           <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+          <div style="text-align:center;font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:10px;">50% deposit due today · remaining 50% due at launch · we contact you within 24 hours</div>
 
 
         </div>
@@ -539,10 +540,14 @@
       <!-- Trust bar -->
       <div class="trust-bar">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Encrypted</div>
-        <div class="trust-item"><span class="trust-icon">⚡</span> Project Starts in 24 Hours</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> We Contact You in 24 Hours</div>
         <div class="trust-item"><span class="trust-icon">✓</span> 30-Day Post-Launch Support</div>
         <div class="trust-item"><span class="trust-icon">💬</span> Direct Line to Your Developer</div>
         <div class="trust-item"><span class="trust-icon">🏆</span> Satisfaction Guaranteed</div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px;padding-bottom:16px;">
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.3);">Not ready to commit yet? <a href="/#contact" style="color:rgba(212,175,55,0.65);text-decoration:none;">Book a free consultation first →</a></p>
       </div>
 
     </div>
