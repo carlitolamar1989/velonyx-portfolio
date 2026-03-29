@@ -529,19 +529,19 @@
     <div class="checkout-hero">
       <div class="checkout-label">Secure Checkout</div>
       <h1>Let's Build Your<br><span class="gold-text">Digital System.</span></h1>
-      <p>Select your package and pay your 50% deposit to reserve your project. We'll reach out within 24 hours to kick things off. The remaining 50% is due at launch.</p>
+      <p>Select your package and choose how you'd like to pay. Pay in full and save 10%, put down a deposit, or finance it over time. We reach out within 24 hours to kick things off.</p>
     </div>
 
     <div class="container">
 
       <!-- STEP 1: Plan selection -->
       <section class="plan-section">
-        <div class="step-heading"><span>Step 1</span> &nbsp;— Choose Your Package <span style="font-size:0.75rem;font-weight:400;color:rgba(255,255,255,0.4);margin-left:8px;">(50% deposit due today — 50% at launch)</span></div>
+        <div class="step-heading"><span>Step 1</span> &nbsp;— Choose Your Package</div>
         <div class="plan-grid">
 
           <div class="plan-card" data-plan="starter" data-price="1500" onclick="selectPlan(this)">
             <div class="plan-name">Starter</div>
-            <div class="plan-price">$1,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($750 deposit today)</span></div>
+            <div class="plan-price">$1,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $1,350 paid in full</span></div>
             <div class="plan-desc">Clean single-page site with contact form, SSL, and custom domain. Live in 5–7 days.</div>
             <div class="plan-check"></div>
           </div>
@@ -549,14 +549,14 @@
           <div class="plan-card active" data-plan="growth" data-price="3500" onclick="selectPlan(this)">
             <div class="plan-badge">Most Popular</div>
             <div class="plan-name">Growth</div>
-            <div class="plan-price">$3,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($1,750 deposit today)</span></div>
+            <div class="plan-price">$3,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $3,150 paid in full</span></div>
             <div class="plan-desc">Multi-page site, Stripe payments, BNPL, booking system. What most clients choose.</div>
             <div class="plan-check"></div>
           </div>
 
           <div class="plan-card" data-plan="premium" data-price="6000" onclick="selectPlan(this)">
             <div class="plan-name">Premium</div>
-            <div class="plan-price">$6,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);">($3,000 deposit today)</span></div>
+            <div class="plan-price">$6,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $5,400 paid in full</span></div>
             <div class="plan-desc">Full digital system, automation, Buy Now Pay Later, analytics, unlimited pages.</div>
             <div class="plan-check"></div>
           </div>
@@ -568,13 +568,50 @@
       <section class="payment-section">
         <div class="step-heading"><span>Step 2</span> &nbsp;— Choose How You'd Like to Pay</div>
 
-        <!-- ── OPTION A: Deposit by Card ── -->
+        <!-- ── OPTION A: Pay in Full — Save 10% ── -->
         <div class="pay-option-block">
           <div class="pay-option-label">
-            <span class="pay-option-tag deposit-tag">Option A</span>
-            <span class="pay-option-title">Pay 50% Deposit Today — 50% at Launch</span>
+            <span class="pay-option-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3);">Option A</span>
+            <span class="pay-option-title">Pay in Full &mdash; Save 10%</span>
           </div>
-          <div class="pay-option-desc">Pay half now to reserve your project. We start building immediately. The remaining balance is invoiced when your site goes live.</div>
+          <div class="pay-option-desc">Pay the full amount today and save 10%. No remaining balance, no invoices &mdash; your project is fully paid and we start building immediately.</div>
+
+          <div class="payment-summary" style="margin:18px 0 16px;">
+            <div>
+              <div class="summary-label">Total Due Today <span style="color:#22c55e;font-size:0.72rem;margin-left:6px;">SAVE 10%</span></div>
+              <div class="summary-name" id="full-plan-name">Growth Package</div>
+            </div>
+            <div>
+              <div class="summary-amount" id="full-plan-amount">$3,150</div>
+              <div style="text-align:right;font-size:0.72rem;color:rgba(255,255,255,0.35);text-decoration:line-through;" id="full-plan-original">$3,500</div>
+            </div>
+          </div>
+
+          <div class="accepted-methods" style="margin-bottom:20px;">
+            <div class="method-badge">💳 Visa</div>
+            <div class="method-badge">💳 Mastercard</div>
+            <div class="method-badge">💳 Amex</div>
+            <div class="method-badge"> Apple Pay</div>
+            <div class="method-badge">🟢 Google Pay</div>
+          </div>
+
+          <button class="btn-stripe" id="fullPayBtn" onclick="fullCheckout()" style="background:linear-gradient(135deg,#166534 0%,#22c55e 100%);">
+            🔒 &nbsp;Pay in Full &amp; Save &mdash; <span id="full-btn-amount">$3,150</span>
+          </button>
+          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+          <div style="text-align:center;font-size:0.76rem;color:rgba(34,197,94,0.6);margin-top:8px;">You save <span id="full-savings">$350</span> &nbsp;·&nbsp; nothing owed at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
+        </div>
+
+        <!-- ── DIVIDER ── -->
+        <div class="pay-or-divider"><span>or</span></div>
+
+        <!-- ── OPTION B: 50% Deposit ── -->
+        <div class="pay-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag deposit-tag">Option B</span>
+            <span class="pay-option-title">Pay 50% Deposit &mdash; 50% at Launch</span>
+          </div>
+          <div class="pay-option-desc">Pay half now to reserve your project. We start building immediately. We send you a Stripe invoice for the remaining balance when your site is ready to launch.</div>
 
           <div class="payment-summary" style="margin:18px 0 16px;">
             <div>
@@ -602,13 +639,13 @@
         <!-- ── DIVIDER ── -->
         <div class="pay-or-divider"><span>or</span></div>
 
-        <!-- ── OPTION B: Pay in Full via BNPL ── -->
+        <!-- ── OPTION C: Finance via BNPL ── -->
         <div class="pay-option-block bnpl-option-block">
           <div class="pay-option-label">
-            <span class="pay-option-tag bnpl-tag">Option B</span>
-            <span class="pay-option-title">Pay in Full via Buy Now, Pay Later</span>
+            <span class="pay-option-tag bnpl-tag">Option C</span>
+            <span class="pay-option-title">Finance It &mdash; Pay Over Time</span>
           </div>
-          <div class="pay-option-desc">Use Klarna, Affirm, or Afterpay to cover the <strong>full project cost</strong>. The lender pays us in full today — you repay the lender in easy installments. Nothing owed at launch.</div>
+          <div class="pay-option-desc">Use Klarna, Affirm, or Afterpay to split the <strong>full project cost</strong> into 4 easy payments. The lender pays us in full &mdash; you repay them over time. Nothing owed to Velonyx at launch.</div>
 
           <div class="payment-summary" style="margin:18px 0 16px;">
             <div>
@@ -622,28 +659,28 @@
             <div class="bnpl-card klarna">
               <div class="provider">Klarna</div>
               <div class="bnpl-amount" id="klarna-amount">$875</div>
-              <div class="bnpl-term">× 4 payments · 0% interest</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
             </div>
             <div class="bnpl-card affirm">
               <div class="provider">Affirm</div>
               <div class="bnpl-amount" id="affirm-amount">$875</div>
-              <div class="bnpl-term">× 4 payments · 0% interest</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
             </div>
             <div class="bnpl-card afterpay">
               <div class="provider">Afterpay</div>
               <div class="bnpl-amount" id="afterpay-amount">$875</div>
-              <div class="bnpl-term">× 4 payments · 0% interest</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
             </div>
           </div>
 
           <div class="bnpl-note" style="margin:16px 0 20px;">
-            Klarna, Affirm, and Afterpay appear as payment options on the next screen. Select your provider, get instant approval, and you're done — nothing more is owed to Velonyx at launch.
+            Klarna, Affirm, and Afterpay appear as payment options on the next screen. Select your provider, get instant approval, and you're done &mdash; nothing more is owed to Velonyx at launch.
           </div>
 
           <button class="btn-bnpl" id="stripeBtn" onclick="stripeCheckout()">
-            ✦ &nbsp;Pay in Full via BNPL — <span id="bnpl-full-amount">$3,500</span>
+            ✦ &nbsp;Finance via BNPL &mdash; <span id="bnpl-full-amount">$3,500</span>
           </button>
-          <div class="security-note" style="margin-top:10px;">Klarna &nbsp;·&nbsp; Affirm &nbsp;·&nbsp; Afterpay &nbsp;·&nbsp; Powered by Stripe &nbsp;·&nbsp; Instant Approval</div>
+          <div class="security-note" style="margin-top:10px;">Klarna &nbsp;&middot;&nbsp; Affirm &nbsp;&middot;&nbsp; Afterpay &nbsp;&middot;&nbsp; Powered by Stripe &nbsp;&middot;&nbsp; Instant Approval</div>
         </div>
 
       </section>
@@ -716,7 +753,15 @@
   <script>
     // ── CONFIG ──────────────────────────────────────────────────
 
-    // FULL-PRICE links (used for BNPL — Klarna/Affirm/Afterpay)
+    // PAY-IN-FULL links (10% discount — card / Apple Pay / Google Pay)
+    // TODO: Create these Payment Links in Stripe Dashboard for the discounted amounts
+    const STRIPE_FULL_LINKS = {
+      starter: 'FULL_STARTER_LINK',   // $1,350 Payment Link — create in Stripe
+      growth:  'FULL_GROWTH_LINK',    // $3,150 Payment Link — create in Stripe
+      premium: 'FULL_PREMIUM_LINK',   // $5,400 Payment Link — create in Stripe
+    };
+
+    // BNPL links (full price — Klarna/Affirm/Afterpay)
     // Lender pays Velonyx the full amount; client repays lender over time
     const STRIPE_BNPL_LINKS = {
       starter: 'https://buy.stripe.com/6oU3cx0IZfl0e2i6qucs800',
@@ -724,7 +769,7 @@
       premium: 'https://buy.stripe.com/eVqaEZ3Vba0Ge2ig14cs802',
     };
 
-    // DEPOSIT links (50% — used for card / Apple Pay / Google Pay)
+    // DEPOSIT links (50% — card / Apple Pay / Google Pay)
     const STRIPE_DEPOSIT_LINKS = {
       starter: 'https://buy.stripe.com/5kQ4gB3Vbfl07DUaGKcs803',
       growth:  'https://buy.stripe.com/fZu5kFfDT5Kq8HY8yCcs804',
@@ -732,9 +777,9 @@
     };
 
     const PLANS = {
-      starter: { name: 'Starter',  full: '$1,500', deposit: '$750',   pkg: 'Starter Package' },
-      growth:  { name: 'Growth',   full: '$3,500', deposit: '$1,750', pkg: 'Growth Package'  },
-      premium: { name: 'Premium',  full: '$6,000', deposit: '$3,000', pkg: 'Premium Package' },
+      starter: { name: 'Starter',  full: '$1,500', discounted: '$1,350', savings: '$150', deposit: '$750',   pkg: 'Starter Package' },
+      growth:  { name: 'Growth',   full: '$3,500', discounted: '$3,150', savings: '$350', deposit: '$1,750', pkg: 'Growth Package'  },
+      premium: { name: 'Premium',  full: '$6,000', discounted: '$5,400', savings: '$600', deposit: '$3,000', pkg: 'Premium Package' },
     };
 
     let currentPlan = 'growth';
@@ -765,6 +810,12 @@
 
     function updateAmounts() {
       const p = PLANS[currentPlan];
+      // Pay-in-full block
+      document.getElementById('full-plan-name').textContent     = p.pkg;
+      document.getElementById('full-plan-amount').textContent   = p.discounted;
+      document.getElementById('full-plan-original').textContent = p.full;
+      document.getElementById('full-btn-amount').textContent    = p.discounted;
+      document.getElementById('full-savings').textContent       = p.savings;
       // Deposit block
       document.getElementById('deposit-plan-name').textContent  = p.pkg;
       document.getElementById('deposit-plan-amount').textContent = p.deposit;
@@ -777,6 +828,16 @@
       document.getElementById('klarna-amount').textContent   = installment;
       document.getElementById('affirm-amount').textContent   = installment;
       document.getElementById('afterpay-amount').textContent = installment;
+    }
+
+    // Pay in full (discounted) → full payment link
+    function fullCheckout() {
+      const link = STRIPE_FULL_LINKS[currentPlan];
+      if (!link || link.includes('FULL_')) {
+        alert('Pay-in-full links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your payment.');
+        return;
+      }
+      window.location.href = link;
     }
 
     // Card/Apple Pay/Google Pay → deposit link
