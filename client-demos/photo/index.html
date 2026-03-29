@@ -1701,7 +1701,7 @@ h1, h2, h3, h4 {
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+    <li><a href="#" class="nav-cta" onclick="event.preventDefault();openDemoBooking()">Book Now</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
     <span></span>
@@ -1720,7 +1720,7 @@ h1, h2, h3, h4 {
       <a href="#portfolio" class="btn-primary">View Our Work
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#contact" class="btn-secondary">Book a Session</a>
+      <a href="#" class="btn-secondary" onclick="event.preventDefault();openDemoBooking()">Book a Session</a>
     </div>
   </div>
   <div class="hero-image-wrap">
@@ -1846,7 +1846,7 @@ h1, h2, h3, h4 {
         <li>Online Gallery</li>
         <li>Print Release</li>
       </ul>
-      <a href="#payment" class="btn-pricing">Select Package</a>
+      <a href="#" class="btn-pricing" onclick="event.preventDefault();openDemoPay()">Select Package</a>
     </div>
 
     <div class="pricing-card featured reveal-stagger">
@@ -1861,7 +1861,7 @@ h1, h2, h3, h4 {
         <li>Online Gallery</li>
         <li>Print Release</li>
       </ul>
-      <a href="#payment" class="btn-pricing">Select Package</a>
+      <a href="#" class="btn-pricing" onclick="event.preventDefault();openDemoPay()">Select Package</a>
     </div>
 
     <div class="pricing-card reveal-stagger">
@@ -1875,7 +1875,7 @@ h1, h2, h3, h4 {
         <li>Online Gallery</li>
         <li>Print Release</li>
       </ul>
-      <a href="#payment" class="btn-pricing">Select Package</a>
+      <a href="#" class="btn-pricing" onclick="event.preventDefault();openDemoPay()">Select Package</a>
     </div>
   </div>
 </section>
@@ -1903,7 +1903,7 @@ h1, h2, h3, h4 {
       </div>
     </div>
     <p class="stripe-pay-desc">Your card info is never stored on our site. All transactions are 256-bit SSL encrypted and fully PCI-DSS compliant.</p>
-    <a href="#contact" class="btn-reserve">Reserve Your Date &nbsp;→</a>
+    <a href="#" class="btn-reserve" onclick="event.preventDefault();openDemoBooking()">Reserve Your Date &nbsp;→</a>
     <div class="bnpl-hint">
       <span>📷 Split into 4 interest-free payments with</span>
       <strong>Klarna</strong> <strong>Affirm</strong> <strong>Afterpay</strong>
@@ -1946,7 +1946,7 @@ h1, h2, h3, h4 {
   <div class="section-label reveal">Get in Touch</div>
   <h2 class="section-title reveal">Let's Create Something<br>Beautiful</h2>
   <p class="section-subtitle reveal">Ready to tell your story? We'd love to hear from you. Reach out and let's start planning your session.</p>
-  <a href="mailto:hello@lensandlight.com" class="btn-cta-large reveal">
+  <a href="#" class="btn-cta-large reveal" onclick="event.preventDefault();openDemoBooking()">
     Start a Conversation
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
@@ -1957,7 +1957,7 @@ h1, h2, h3, h4 {
   <div class="footer-brand">Lens & Light Studio</div>
   <div class="footer-links">
     <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-    <a href="mailto:hello@lensandlight.com">hello@lensandlight.com</a>
+    <a href="#" onclick="event.preventDefault();openDemoBooking()">hello@lensandlight.com</a>
   </div>
   <div class="footer-copy">&copy; 2025 Lens &amp; Light Studio. All rights reserved.</div>
   <div class="velonyx-badge">
@@ -2103,5 +2103,111 @@ window.addEventListener('scroll', () => {
 
 </script>
 
+<!-- ═══════ VELONYX DEMO SYSTEM ═══════ -->
+<style>
+.demo-banner{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(135deg,#2A2A2A 0%,#1a1a1a 100%);border-bottom:1px solid rgba(196,120,91,0.3);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:12px;font-family:'Work Sans',sans-serif;font-size:0.82rem;color:#FAF8F5;}
+.demo-banner a{color:#C4785B;font-weight:700;text-decoration:none;transition:color 0.2s;}
+.demo-banner a:hover{color:#d99577;text-decoration:underline;}
+body{padding-top:42px;}
+.demo-overlay{display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+.demo-overlay.open{display:flex;}
+.demo-modal{background:#FAF8F5;border:1px solid rgba(196,120,91,0.2);border-radius:16px;max-width:480px;width:90%;padding:36px 32px;position:relative;max-height:90vh;overflow-y:auto;}
+.demo-modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#2A2A2A;font-size:1.5rem;cursor:pointer;opacity:0.4;transition:opacity 0.2s;}
+.demo-modal-close:hover{opacity:1;}
+.demo-modal h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#2A2A2A;margin-bottom:6px;font-style:italic;}
+.demo-modal p{font-size:0.88rem;color:rgba(42,42,42,0.6);margin-bottom:20px;line-height:1.5;}
+.demo-modal .demo-tag{display:inline-block;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:#C4785B;border:1px solid rgba(196,120,91,0.3);padding:4px 12px;border-radius:20px;margin-bottom:14px;}
+.demo-form label{display:block;font-size:0.75rem;color:rgba(42,42,42,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.demo-form input,.demo-form textarea,.demo-form select{width:100%;background:#fff;border:1px solid rgba(42,42,42,0.15);border-radius:8px;padding:12px 14px;color:#2A2A2A;font-family:'Work Sans',sans-serif;font-size:0.92rem;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
+.demo-form input:focus,.demo-form textarea:focus,.demo-form select:focus{border-color:rgba(196,120,91,0.5);}
+.demo-form textarea{resize:vertical;min-height:80px;}
+.demo-form select{appearance:none;cursor:pointer;}
+.demo-form button{width:100%;padding:14px;background:#C4785B;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.05rem;font-style:italic;border:none;border-radius:8px;cursor:pointer;transition:transform 0.15s,box-shadow 0.2s;}
+.demo-form button:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(196,120,91,0.3);}
+.demo-success{text-align:center;display:none;}
+.demo-success .demo-check{width:56px;height:56px;border-radius:50%;background:#C4785B;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 16px;color:#fff;}
+.demo-success h3{margin-bottom:10px;}
+.demo-success .demo-note{font-size:0.8rem;color:rgba(42,42,42,0.5);margin-top:16px;padding:12px;background:rgba(196,120,91,0.06);border:1px solid rgba(196,120,91,0.15);border-radius:8px;}
+.demo-success .demo-cta-link{display:inline-block;margin-top:18px;padding:12px 28px;background:#C4785B;color:#fff;font-weight:700;border-radius:8px;font-size:0.88rem;transition:transform 0.15s;}
+.demo-success .demo-cta-link:hover{transform:translateY(-1px);}
+.demo-pay-content{text-align:center;}
+.demo-pay-content .demo-stripe-icon{font-size:2.5rem;margin-bottom:12px;}
+.demo-pay-content h3{margin-bottom:8px;}
+.demo-pay-content .demo-features{text-align:left;margin:16px 0;padding:16px;background:rgba(196,120,91,0.06);border:1px solid rgba(196,120,91,0.12);border-radius:8px;}
+.demo-pay-content .demo-features li{font-size:0.85rem;color:rgba(42,42,42,0.7);margin-bottom:8px;list-style:none;padding-left:20px;position:relative;}
+.demo-pay-content .demo-features li::before{content:"✓";position:absolute;left:0;color:#C4785B;font-weight:700;}
+</style>
+
+<div class="demo-banner">
+  <span>You're viewing a live demo built by <strong>Velonyx Systems</strong></span>
+  <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener">Get a site like this →</a>
+</div>
+
+<div class="demo-overlay" id="demoBookingOverlay">
+  <div class="demo-modal">
+    <button class="demo-modal-close" onclick="closeDemoBooking()">&times;</button>
+    <div id="demoBookingForm">
+      <div class="demo-tag">Book a Session</div>
+      <h3>Let's Create Together</h3>
+      <p>Tell us about your vision and we'll craft the perfect session for you.</p>
+      <form class="demo-form" onsubmit="event.preventDefault();submitDemoBooking()">
+        <label>Full Name</label>
+        <input type="text" placeholder="Jane Smith" required>
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(555) 123-4567" required>
+        <label>Email</label>
+        <input type="email" placeholder="jane@example.com" required>
+        <label>Session Type</label>
+        <select required>
+          <option value="" disabled selected>Select a session...</option>
+          <option>Portrait Session — $350</option>
+          <option>Event Coverage — $650</option>
+          <option>Brand Photography — $650</option>
+          <option>Video Production — $1,200</option>
+        </select>
+        <label>Tell us about your project (optional)</label>
+        <textarea placeholder="What's the occasion? Any specific style or mood you're going for?"></textarea>
+        <button type="submit" id="demoBookBtn">Reserve Your Date</button>
+      </form>
+    </div>
+    <div class="demo-success" id="demoBookingSuccess">
+      <div class="demo-check">✓</div>
+      <h3>Session Reserved!</h3>
+      <p>You'd receive a confirmation email with session details and a reminder the day before.</p>
+      <div class="demo-note">This is a <strong>live demo</strong> by Velonyx Systems. In a real site, this booking would be saved and the client would receive an automatic confirmation.</div>
+      <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener" class="demo-cta-link">Want this for your business? →</a>
+    </div>
+  </div>
+</div>
+
+<div class="demo-overlay" id="demoPayOverlay">
+  <div class="demo-modal">
+    <button class="demo-modal-close" onclick="closeDemoPay()">&times;</button>
+    <div class="demo-pay-content">
+      <div class="demo-tag">Secure Payment</div>
+      <div class="demo-stripe-icon">🔒</div>
+      <h3>Stripe Checkout</h3>
+      <p>In a live Velonyx site, this button connects to Stripe for secure payment processing.</p>
+      <ul class="demo-features">
+        <li>Accept Visa, Mastercard, Amex, Apple Pay, Google Pay</li>
+        <li>Split payments with Klarna, Affirm, or Afterpay</li>
+        <li>256-bit SSL encryption — PCI-DSS compliant</li>
+        <li>Instant confirmation via SMS and email</li>
+        <li>50% deposit or pay-in-full options</li>
+      </ul>
+      <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener" class="demo-cta-link">Want this for your business? →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openDemoBooking(){document.getElementById('demoBookingOverlay').classList.add('open');document.getElementById('demoBookingForm').style.display='';document.getElementById('demoBookingSuccess').style.display='none';}
+function closeDemoBooking(){document.getElementById('demoBookingOverlay').classList.remove('open');}
+function submitDemoBooking(){var btn=document.getElementById('demoBookBtn');btn.textContent='Reserving...';btn.disabled=true;setTimeout(function(){document.getElementById('demoBookingForm').style.display='none';document.getElementById('demoBookingSuccess').style.display='block';btn.textContent='Reserve Your Date';btn.disabled=false;},1500);}
+function openDemoPay(){document.getElementById('demoPayOverlay').classList.add('open');}
+function closeDemoPay(){document.getElementById('demoPayOverlay').classList.remove('open');}
+document.querySelectorAll('.demo-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('open');});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDemoBooking();closeDemoPay();}});
+</script>
 </body>
 </html>
