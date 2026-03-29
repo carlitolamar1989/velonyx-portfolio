@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F838ZEJ22J');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="any" href="assets/vs-logo-monogram.png">
   <link rel="apple-touch-icon" href="assets/vs-logo-monogram.png">
   <title>Checkout — Velonyx Systems</title>
-  <meta name="description" content="Secure checkout for Velonyx Systems web design packages.">
+  <meta name="description" content="Secure checkout for Velonyx Systems web design packages. Pay by card, Apple Pay, or split into 4 payments with Klarna, Affirm, or Afterpay.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
+  <meta property="og:title" content="Checkout — Velonyx Systems">
+  <meta property="og:description" content="Complete your Velonyx Systems order. Pay securely via Stripe — cards, Apple Pay, Google Pay, or BNPL.">
+  <meta property="og:url" content="https://velonyxsystems.com/checkout.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Velonyx Systems">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
   <style>
@@ -343,6 +358,65 @@
     }
 
     /* Financing nudge */
+    /* ── Two-path payment blocks ── */
+    .pay-option-block {
+      max-width: 580px; margin: 0 auto 0;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; padding: 30px 28px;
+    }
+    .bnpl-option-block {
+      border-color: rgba(212,175,55,0.15);
+      background: rgba(212,175,55,0.02);
+    }
+    .pay-option-label {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    }
+    .pay-option-tag {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .deposit-tag { background: rgba(99,91,255,0.15); color: #9B92FF; border: 1px solid rgba(99,91,255,0.3); }
+    .bnpl-tag { background: rgba(212,175,55,0.12); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+    .pay-option-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white);
+    }
+    .pay-option-desc {
+      font-size: 0.84rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 4px;
+    }
+    .pay-option-desc strong { color: rgba(255,255,255,0.75); }
+
+    .pay-or-divider {
+      max-width: 580px; margin: 20px auto;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .pay-or-divider::before, .pay-or-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
+    }
+    .pay-or-divider span {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .bnpl-grid-simple {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 0;
+    }
+
+    .btn-bnpl {
+      width: 100%; padding: 17px; border-radius: 12px;
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
+      color: #0a0a0a; border: none; cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all 0.28s; letter-spacing: 0.3px;
+    }
+    .btn-bnpl:hover { box-shadow: 0 8px 36px rgba(212,175,55,0.35); transform: translateY(-2px); }
+
+    @media (max-width: 480px) {
+      .bnpl-grid-simple { grid-template-columns: 1fr; }
+      .pay-option-label { flex-wrap: wrap; }
+    }
+
     .financing-nudge {
       max-width: 580px; margin: 24px auto 0;
       background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.12);
@@ -359,6 +433,59 @@
       transition: all 0.2s; display: inline-block;
     }
     .btn-financing:hover { background: rgba(212,175,55,0.08); }
+
+    /* ── Step 3 Maintenance Upsell ── */
+    .maintenance-upsell-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      max-width: 580px; margin: 0 auto;
+    }
+    @media (max-width: 520px) { .maintenance-upsell-grid { grid-template-columns: 1fr; } }
+    .upsell-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; padding: 24px 22px; position: relative;
+    }
+    .upsell-featured {
+      border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.02);
+    }
+    .upsell-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060);
+      color: #0a0a0a; font-size: 0.62rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 14px; border-radius: 50px; white-space: nowrap;
+    }
+    .upsell-skip {
+      font-size: 0.72rem; color: rgba(255,255,255,0.25); cursor: pointer;
+      text-align: right; margin-bottom: 12px; transition: color 0.2s;
+    }
+    .upsell-skip:hover { color: rgba(255,255,255,0.5); }
+    .upsell-tier {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px;
+    }
+    .upsell-price {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 800;
+      color: var(--white); line-height: 1; margin-bottom: 16px;
+    }
+    .upsell-price span { font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+    .upsell-features {
+      list-style: none; margin: 0 0 20px; padding: 0;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+    .upsell-features li { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .btn-upsell {
+      display: block; width: 100%; padding: 12px; border-radius: 9px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.15); background: transparent;
+      color: var(--white); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-upsell:hover { background: rgba(255,255,255,0.06); }
+    .btn-upsell-gold {
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
+      border: none; color: #0a0a0a;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.2);
+    }
+    .btn-upsell-gold:hover { box-shadow: 0 6px 28px rgba(212,175,55,0.4); transform: translateY(-1px); color: #0a0a0a; }
 
     /* ── Trust bar ── */
     .trust-bar {
@@ -402,7 +529,7 @@
     <div class="checkout-hero">
       <div class="checkout-label">Secure Checkout</div>
       <h1>Let's Build Your<br><span class="gold-text">Digital System.</span></h1>
-      <p>Select your package and choose how you'd like to pay. We'll kick off your project within 24 hours.</p>
+      <p>Select your package and choose how you'd like to pay. Pay in full and save 10%, put down a deposit, or finance it over time. We reach out within 24 hours to kick things off.</p>
     </div>
 
     <div class="container">
@@ -414,7 +541,7 @@
 
           <div class="plan-card" data-plan="starter" data-price="1500" onclick="selectPlan(this)">
             <div class="plan-name">Starter</div>
-            <div class="plan-price">$1,500</div>
+            <div class="plan-price">$1,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $1,350 paid in full</span></div>
             <div class="plan-desc">Clean single-page site with contact form, SSL, and custom domain. Live in 5–7 days.</div>
             <div class="plan-check"></div>
           </div>
@@ -422,15 +549,15 @@
           <div class="plan-card active" data-plan="growth" data-price="3500" onclick="selectPlan(this)">
             <div class="plan-badge">Most Popular</div>
             <div class="plan-name">Growth</div>
-            <div class="plan-price">$3,500</div>
-            <div class="plan-desc">Multi-page site, payment integration, booking system. What most clients choose.</div>
+            <div class="plan-price">$3,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $3,150 paid in full</span></div>
+            <div class="plan-desc">Multi-page site, Stripe payments, BNPL, booking system. What most clients choose.</div>
             <div class="plan-check"></div>
           </div>
 
           <div class="plan-card" data-plan="premium" data-price="6000" onclick="selectPlan(this)">
             <div class="plan-name">Premium</div>
-            <div class="plan-price">$6,000</div>
-            <div class="plan-desc">Full digital system, automation, financing integration, analytics, unlimited pages.</div>
+            <div class="plan-price">$6,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $5,400 paid in full</span></div>
+            <div class="plan-desc">Full digital system, automation, Buy Now Pay Later, analytics, unlimited pages.</div>
             <div class="plan-check"></div>
           </div>
 
@@ -439,103 +566,176 @@
 
       <!-- STEP 2: Payment -->
       <section class="payment-section">
-        <div class="step-heading"><span>Step 2</span> &nbsp;— Complete Your Payment</div>
+        <div class="step-heading"><span>Step 2</span> &nbsp;— Choose How You'd Like to Pay</div>
 
-        <div class="payment-card">
+        <!-- ── OPTION A: Pay in Full — Save 10% ── -->
+        <div class="pay-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3);">Option A</span>
+            <span class="pay-option-title">Pay in Full &mdash; Save 10%</span>
+          </div>
+          <div class="pay-option-desc">Pay the full amount today and save 10%. No remaining balance, no invoices &mdash; your project is fully paid and we start building immediately.</div>
 
-          <!-- Order summary -->
-          <div class="payment-summary">
+          <div class="payment-summary" style="margin:18px 0 16px;">
             <div>
-              <div class="summary-label">Package</div>
-              <div class="summary-name" id="stripe-plan-name">Growth</div>
+              <div class="summary-label">Total Due Today <span style="color:#22c55e;font-size:0.72rem;margin-left:6px;">SAVE 10%</span></div>
+              <div class="summary-name" id="full-plan-name">Growth Package</div>
             </div>
-            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
+            <div>
+              <div class="summary-amount" id="full-plan-amount">$3,150</div>
+              <div style="text-align:right;font-size:0.72rem;color:rgba(255,255,255,0.35);text-decoration:line-through;" id="full-plan-original">$3,500</div>
+            </div>
           </div>
 
-          <!-- Stripe primary -->
-          <div class="stripe-header">
-            <div class="stripe-logo-pill">⚡ Stripe — Secure Checkout</div>
-            <p>Pay with any card, Apple Pay, or Google Pay. Encrypted &amp; PCI-compliant.</p>
-          </div>
-
-          <div class="accepted-methods">
+          <div class="accepted-methods" style="margin-bottom:20px;">
             <div class="method-badge">💳 Visa</div>
             <div class="method-badge">💳 Mastercard</div>
             <div class="method-badge">💳 Amex</div>
             <div class="method-badge"> Apple Pay</div>
             <div class="method-badge">🟢 Google Pay</div>
-            <div class="method-badge" style="color:#FFB6C1;">K Klarna</div>
-            <div class="method-badge" style="color:#34C759;">✦ Affirm</div>
-            <div class="method-badge" style="color:#B3E38C;">⬡ Afterpay</div>
           </div>
 
-          <!-- BNPL expandable section -->
-          <div class="bnpl-section" id="bnplSection">
-            <div class="bnpl-header" onclick="toggleBnpl()">
-              <div class="bnpl-header-left">
-                <div>
-                  <div class="label">Buy Now, Pay Later</div>
-                  <div class="sub">Split into 4 interest-free payments — included in Stripe checkout</div>
-                </div>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div class="bnpl-pills">
-                  <span class="bnpl-pill klarna">Klarna</span>
-                  <span class="bnpl-pill affirm">Affirm</span>
-                  <span class="bnpl-pill afterpay">Afterpay</span>
-                </div>
-                <span class="bnpl-chevron">▾</span>
-              </div>
-            </div>
-            <div class="bnpl-body">
-              <div class="bnpl-body-inner">
-                <div class="bnpl-grid">
-                  <div class="bnpl-card klarna">
-                    <div class="provider">Klarna</div>
-                    <div class="bnpl-amount" id="klarna-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                  <div class="bnpl-card affirm">
-                    <div class="provider">Affirm</div>
-                    <div class="bnpl-amount" id="affirm-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                  <div class="bnpl-card afterpay">
-                    <div class="provider">Afterpay</div>
-                    <div class="bnpl-amount" id="afterpay-amount">$875</div>
-                    <div class="bnpl-term">× 4 payments · 0% interest</div>
-                  </div>
-                </div>
-                <div class="bnpl-note">
-                  These options appear automatically on the Stripe checkout screen. No extra steps needed — just click "Pay Now" below and select your preferred provider. Approval is instant. Terms and eligibility set by each lender.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button class="btn-stripe" id="stripeBtn" onclick="stripeCheckout()" style="margin-top:24px;">
-            🔒 &nbsp;Pay Now — Secure Checkout
+          <button class="btn-stripe" id="fullPayBtn" onclick="fullCheckout()" style="background:linear-gradient(135deg,#166534 0%,#22c55e 100%);">
+            🔒 &nbsp;Pay in Full &amp; Save &mdash; <span id="full-btn-amount">$3,150</span>
           </button>
-          <div class="security-note">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
-
-
+          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+          <div style="text-align:center;font-size:0.76rem;color:rgba(34,197,94,0.6);margin-top:8px;">You save <span id="full-savings">$350</span> &nbsp;·&nbsp; nothing owed at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
         </div>
 
-        <!-- Financing nudge -->
-        <div class="financing-nudge">
-          <p><strong>Want to split it into payments?</strong><br>Klarna, Affirm &amp; Afterpay are available at the next step — instant approval, no account needed, 0% interest on Pay-in-4.</p>
-          <a href="financing.html" class="btn-financing">See How It Works →</a>
+        <!-- ── DIVIDER ── -->
+        <div class="pay-or-divider"><span>or</span></div>
+
+        <!-- ── OPTION B: 50% Deposit ── -->
+        <div class="pay-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag deposit-tag">Option B</span>
+            <span class="pay-option-title">Pay 50% Deposit &mdash; 50% at Launch</span>
+          </div>
+          <div class="pay-option-desc">Pay half now to reserve your project. We start building immediately. We send you a Stripe invoice for the remaining balance when your site is ready to launch.</div>
+
+          <div class="payment-summary" style="margin:18px 0 16px;">
+            <div>
+              <div class="summary-label">Deposit Due Today</div>
+              <div class="summary-name" id="deposit-plan-name">Growth Package</div>
+            </div>
+            <div class="summary-amount" id="deposit-plan-amount">$1,750</div>
+          </div>
+
+          <div class="accepted-methods" style="margin-bottom:20px;">
+            <div class="method-badge">💳 Visa</div>
+            <div class="method-badge">💳 Mastercard</div>
+            <div class="method-badge">💳 Amex</div>
+            <div class="method-badge"> Apple Pay</div>
+            <div class="method-badge">🟢 Google Pay</div>
+          </div>
+
+          <button class="btn-stripe" id="depositBtn" onclick="depositCheckout()">
+            🔒 &nbsp;Pay Deposit &amp; Reserve My Project
+          </button>
+          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
+          <div style="text-align:center;font-size:0.76rem;color:rgba(255,255,255,0.3);margin-top:8px;">50% deposit today &nbsp;·&nbsp; remaining 50% invoiced at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
         </div>
 
+        <!-- ── DIVIDER ── -->
+        <div class="pay-or-divider"><span>or</span></div>
+
+        <!-- ── OPTION C: Finance via BNPL ── -->
+        <div class="pay-option-block bnpl-option-block">
+          <div class="pay-option-label">
+            <span class="pay-option-tag bnpl-tag">Option C</span>
+            <span class="pay-option-title">Finance It &mdash; Pay Over Time</span>
+          </div>
+          <div class="pay-option-desc">Use Klarna, Affirm, or Afterpay to split the <strong>full project cost</strong> into 4 easy payments. The lender pays us in full &mdash; you repay them over time. Nothing owed to Velonyx at launch.</div>
+
+          <div class="payment-summary" style="margin:18px 0 16px;">
+            <div>
+              <div class="summary-label">Full Amount (via Lender)</div>
+              <div class="summary-name" id="stripe-plan-name">Growth Package</div>
+            </div>
+            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
+          </div>
+
+          <div class="bnpl-grid-simple">
+            <div class="bnpl-card klarna">
+              <div class="provider">Klarna</div>
+              <div class="bnpl-amount" id="klarna-amount">$875</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
+            </div>
+            <div class="bnpl-card affirm">
+              <div class="provider">Affirm</div>
+              <div class="bnpl-amount" id="affirm-amount">$875</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
+            </div>
+            <div class="bnpl-card afterpay">
+              <div class="provider">Afterpay</div>
+              <div class="bnpl-amount" id="afterpay-amount">$875</div>
+              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
+            </div>
+          </div>
+
+          <div class="bnpl-note" style="margin:16px 0 20px;">
+            Klarna, Affirm, and Afterpay appear as payment options on the next screen. Select your provider, get instant approval, and you're done &mdash; nothing more is owed to Velonyx at launch.
+          </div>
+
+          <button class="btn-bnpl" id="stripeBtn" onclick="stripeCheckout()">
+            ✦ &nbsp;Finance via BNPL &mdash; <span id="bnpl-full-amount">$3,500</span>
+          </button>
+          <div class="security-note" style="margin-top:10px;">Klarna &nbsp;&middot;&nbsp; Affirm &nbsp;&middot;&nbsp; Afterpay &nbsp;&middot;&nbsp; Powered by Stripe &nbsp;&middot;&nbsp; Instant Approval</div>
+        </div>
+
+      </section>
+
+      <!-- STEP 3: Add Maintenance -->
+      <section class="payment-section" style="margin-top:12px;">
+        <div class="step-heading"><span>Step 3</span> &nbsp;— Optional: Add a Monthly Maintenance Plan
+          <span style="font-size:0.72rem;font-weight:400;color:rgba(255,255,255,0.35);margin-left:8px;">First month free when added at launch</span>
+        </div>
+
+        <div class="maintenance-upsell-grid">
+
+          <div class="upsell-card">
+            <div class="upsell-skip" onclick="skipMaintenance()">Skip for now →</div>
+            <div class="upsell-tier">Basic Maintenance</div>
+            <div class="upsell-price">$150<span>/mo</span></div>
+            <ul class="upsell-features">
+              <li>✓ Content &amp; text updates</li>
+              <li>✓ Bug fixes &amp; patches</li>
+              <li>✓ Uptime monitoring</li>
+              <li>✓ Hosting management</li>
+              <li>✓ Monthly backup</li>
+            </ul>
+            <a href="https://buy.stripe.com/3cI14p2R71uae2ig14cs806" class="btn-upsell" target="_blank" rel="noopener">Add Basic — $150/mo</a>
+          </div>
+
+          <div class="upsell-card upsell-featured">
+            <div class="upsell-badge">Best Value</div>
+            <div class="upsell-tier">Priority Retainer</div>
+            <div class="upsell-price">$300<span>/mo</span></div>
+            <ul class="upsell-features">
+              <li>✓ Everything in Basic</li>
+              <li>✓ Priority updates — 48 hours</li>
+              <li>✓ Unlimited change requests</li>
+              <li>✓ Monthly analytics report</li>
+              <li>✓ Direct line to your developer</li>
+            </ul>
+            <a href="https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807" class="btn-upsell btn-upsell-gold" target="_blank" rel="noopener">Add Priority — $300/mo</a>
+          </div>
+
+        </div>
+        <p id="maintenanceSkipMsg" style="display:none;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:16px;">No maintenance plan added. You can always add one later at <a href="https://velonyxsystems.com/#pricing" style="color:rgba(212,175,55,0.6);text-decoration:none;">velonyxsystems.com</a>.</p>
       </section>
 
       <!-- Trust bar -->
       <div class="trust-bar">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Encrypted</div>
-        <div class="trust-item"><span class="trust-icon">⚡</span> Project Starts in 24 Hours</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> We Contact You in 24 Hours</div>
         <div class="trust-item"><span class="trust-icon">✓</span> 30-Day Post-Launch Support</div>
         <div class="trust-item"><span class="trust-icon">💬</span> Direct Line to Your Developer</div>
         <div class="trust-item"><span class="trust-icon">🏆</span> Satisfaction Guaranteed</div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px;padding-bottom:16px;">
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.3);">Not ready to commit yet? <a href="/book.html" style="color:rgba(212,175,55,0.65);text-decoration:none;">Book a free consultation first →</a></p>
       </div>
 
     </div>
@@ -552,19 +752,34 @@
 
   <script>
     // ── CONFIG ──────────────────────────────────────────────────
-    // After creating a free Stripe account at stripe.com:
-    //   1. Dashboard → Payment Links → Create a link for each package
-    //   2. Copy the buy.stripe.com/... URL and paste below
-    const STRIPE_PAYMENT_LINKS = {
+
+    // PAY-IN-FULL links (10% discount — card / Apple Pay / Google Pay)
+    // TODO: Create these Payment Links in Stripe Dashboard for the discounted amounts
+    const STRIPE_FULL_LINKS = {
+      starter: 'https://buy.stripe.com/aFaeVf8brb4K1fw026cs808',
+      growth:  'https://buy.stripe.com/9B65kF4Zf6Ou3nE16acs809',
+      premium: 'https://buy.stripe.com/28E6oJ9fvfl00bs7uycs80a',
+    };
+
+    // BNPL links (full price — Klarna/Affirm/Afterpay)
+    // Lender pays Velonyx the full amount; client repays lender over time
+    const STRIPE_BNPL_LINKS = {
       starter: 'https://buy.stripe.com/6oU3cx0IZfl0e2i6qucs800',
       growth:  'https://buy.stripe.com/8x23cx1N30q63nE4imcs801',
       premium: 'https://buy.stripe.com/eVqaEZ3Vba0Ge2ig14cs802',
     };
 
+    // DEPOSIT links (50% — card / Apple Pay / Google Pay)
+    const STRIPE_DEPOSIT_LINKS = {
+      starter: 'https://buy.stripe.com/5kQ4gB3Vbfl07DUaGKcs803',
+      growth:  'https://buy.stripe.com/fZu5kFfDT5Kq8HY8yCcs804',
+      premium: 'https://buy.stripe.com/eVqfZjajz7Sy4rI7uycs805',
+    };
+
     const PLANS = {
-      starter: { name: 'Starter',  display: '$1,500' },
-      growth:  { name: 'Growth',   display: '$3,500' },
-      premium: { name: 'Premium',  display: '$6,000' },
+      starter: { name: 'Starter',  full: '$1,500', discounted: '$1,350', savings: '$150', deposit: '$750',   pkg: 'Starter Package' },
+      growth:  { name: 'Growth',   full: '$3,500', discounted: '$3,150', savings: '$350', deposit: '$1,750', pkg: 'Growth Package'  },
+      premium: { name: 'Premium',  full: '$6,000', discounted: '$5,400', savings: '$600', deposit: '$3,000', pkg: 'Premium Package' },
     };
 
     let currentPlan = 'growth';
@@ -586,7 +801,7 @@
       updateAmounts();
     }
 
-    // BNPL installment amounts (price ÷ 4)
+    // BNPL installment amounts (full price ÷ 4)
     const BNPL_AMOUNTS = {
       starter: '$375',
       growth:  '$875',
@@ -595,23 +810,56 @@
 
     function updateAmounts() {
       const p = PLANS[currentPlan];
-      document.getElementById('stripe-plan-name').textContent   = p.name;
-      document.getElementById('stripe-plan-amount').textContent = p.display;
-      // Update BNPL installment amounts
+      // Pay-in-full block
+      document.getElementById('full-plan-name').textContent     = p.pkg;
+      document.getElementById('full-plan-amount').textContent   = p.discounted;
+      document.getElementById('full-plan-original').textContent = p.full;
+      document.getElementById('full-btn-amount').textContent    = p.discounted;
+      document.getElementById('full-savings').textContent       = p.savings;
+      // Deposit block
+      document.getElementById('deposit-plan-name').textContent  = p.pkg;
+      document.getElementById('deposit-plan-amount').textContent = p.deposit;
+      // BNPL block
+      document.getElementById('stripe-plan-name').textContent   = p.pkg;
+      document.getElementById('stripe-plan-amount').textContent = p.full;
+      document.getElementById('bnpl-full-amount').textContent   = p.full;
+      // BNPL installment amounts
       const installment = BNPL_AMOUNTS[currentPlan];
       document.getElementById('klarna-amount').textContent   = installment;
       document.getElementById('affirm-amount').textContent   = installment;
       document.getElementById('afterpay-amount').textContent = installment;
     }
 
-    function toggleBnpl() {
-      document.getElementById('bnplSection').classList.toggle('open');
+    // Pay in full (discounted) → full payment link
+    function fullCheckout() {
+      const link = STRIPE_FULL_LINKS[currentPlan];
+      if (!link || link.includes('FULL_')) {
+        alert('Pay-in-full links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your payment.');
+        return;
+      }
+      window.location.href = link;
     }
 
+    // Card/Apple Pay/Google Pay → deposit link
+    function depositCheckout() {
+      const link = STRIPE_DEPOSIT_LINKS[currentPlan];
+      if (!link || link.includes('DEPOSIT_')) {
+        alert('Deposit payment links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your booking.');
+        return;
+      }
+      window.location.href = link;
+    }
+
+    // BNPL → full-price link
     function stripeCheckout() {
-      const link = STRIPE_PAYMENT_LINKS[currentPlan];
+      const link = STRIPE_BNPL_LINKS[currentPlan];
       if (!link) return;
       window.location.href = link;
+    }
+
+    function skipMaintenance() {
+      document.querySelectorAll('.upsell-card').forEach(c => c.style.opacity = '0.4');
+      document.getElementById('maintenanceSkipMsg').style.display = 'block';
     }
 
     function copyText(inputId, btnId, originalLabel) {
