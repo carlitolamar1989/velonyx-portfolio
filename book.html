@@ -22,7 +22,7 @@
   <meta property="og:site_name" content="Velonyx Systems">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/vs-logo-2026.png">
+  <link rel="icon" type="image/png" sizes="any" href="assets/vs-logo-2026.png">
   <link rel="apple-touch-icon" href="assets/vs-logo-2026.png">
   <style>
     :root {
@@ -62,11 +62,19 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 800;
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 44px; width: 33px;
+      object-fit: cover; object-position: right center;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+    }
+    .nav-logo-text {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 800;
       letter-spacing: 2px; text-transform: uppercase;
       background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      text-decoration: none;
     }
     .nav-back {
       font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600;
@@ -181,7 +189,10 @@
   <div class="page-bg"></div>
 
   <nav>
-    <a href="/" class="nav-logo">Velonyx Systems</a>
+    <a href="/" class="nav-logo">
+      <img src="assets/vs-logo-2026.png" alt="Velonyx Systems">
+      <span class="nav-logo-text">Velonyx Systems</span>
+    </a>
     <a href="/" class="nav-back">← Back to Site</a>
   </nav>
 

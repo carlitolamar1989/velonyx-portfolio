@@ -34,7 +34,7 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/vs-logo-2026.png">
+  <link rel="icon" type="image/png" sizes="any" href="assets/vs-logo-2026.png">
   <link rel="apple-touch-icon" href="assets/vs-logo-2026.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,15 +256,15 @@
     }
 
     .nav-brand-mark {
-      width: 40px;
-      height: 48px;
+      width: 50px;
+      height: 60px;
       overflow: hidden;
       position: relative;
       flex-shrink: 0;
     }
 
     .nav-brand-mark img {
-      width: 80px;
+      width: 100px;
       height: auto;
       position: absolute;
       right: 0;
@@ -1470,11 +1470,11 @@
 
     /* Hero logo (centered between headline and subtitle) */
     .hero-logo {
-      width: min(300px, 72vw);
-      height: min(399px, 95.8vw);
+      width: min(400px, 85vw);
+      height: min(532px, 113vw);
       object-fit: cover;
       object-position: right center;
-      margin: -10px auto 1.75rem;
+      margin: -6px auto 1.75rem;
       display: block;
       opacity: 0;
       transform: scale(0.5);
@@ -1516,7 +1516,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px;
+      width: min(520px, 92vw);
       height: auto;
       opacity: 0.04;
       pointer-events: none;
@@ -1593,8 +1593,8 @@
       .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero-h1-top { font-size: 2rem; }
       .hero-h2-bottom { font-size: 1.6rem; }
-      .hero-logo { width: 240px; height: 319px; }
-      .about-watermark { width: 250px; }
+      .hero-logo { width: min(300px, 88vw); height: min(399px, 117vw); }
+      .about-watermark { width: min(300px, 85vw); }
       .hero-sub { font-size: 1rem; }
 
       .hero-buttons {
@@ -1663,8 +1663,8 @@
     }
 
     .loader-mark {
-      width: min(320px, 72vw);
-      height: min(426px, 95.8vw);
+      width: min(400px, 85vw);
+      height: min(532px, 113vw);
       overflow: hidden;
       position: relative;
       margin: 0 auto 16px;
