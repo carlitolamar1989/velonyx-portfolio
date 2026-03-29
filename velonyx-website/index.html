@@ -1455,12 +1455,26 @@
 
     /* ===== LOGO THROUGHOUT SITE ===== */
 
+    /* Decorative lines flanking the hero logo */
+    .hero-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 0.25rem auto 0.5rem;
+    }
+    .hero-logo-line {
+      flex: 0 1 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+    }
+
     /* Hero logo (centered between headline and subtitle) */
     .hero-logo {
-      width: min(320px, 55vw);
+      width: min(420px, 62vw);
       height: auto;
       object-fit: contain;
-      margin: 0.5rem auto 1.75rem;
+      margin: 0;
       display: block;
       opacity: 0;
       transform: scale(0.5);
@@ -1579,7 +1593,8 @@
       .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero-h1-top { font-size: 2rem; }
       .hero-h2-bottom { font-size: 1.6rem; }
-      .hero-logo { width: min(240px, 60vw); height: auto; }
+      .hero-logo { width: min(280px, 65vw); height: auto; }
+      .hero-logo-line { flex: 0 1 60px; }
       .about-watermark { width: min(300px, 85vw); }
       .hero-sub { font-size: 1rem; }
 
@@ -2437,7 +2452,11 @@
       <h1 class="hero-h1-top">
         <span class="line">Stop Selling in the DMs.</span>
       </h1>
-      <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-line"></div>
+        <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
+        <div class="hero-logo-line"></div>
+      </div>
       <h2 class="hero-h2-bottom">
         <span class="line"><span class="gold">Start Selling with a</span></span>
         <span class="line"><span class="gold">Premium Website.</span></span>
