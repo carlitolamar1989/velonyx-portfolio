@@ -110,8 +110,20 @@ Stripe **Payment Link** URLs are **public** by design (in `checkout.html`).
 ## Deployment
 
 - **Mechanism:** GitHub Actions workflow `Deploy to GitHub Pages` on every push to `main` (full repository root uploaded as the site artifact).
-- **Custom domain:** `CNAME` contains `velonyxsystems.com`; configure **Enforce HTTPS** and DNS (A/CNAME) in GitHub Pages + registrar (historically Namecheap).
+- **Custom domain:** Repo file `CNAME` is `velonyxsystems.com`. In **GitHub** → repo **Settings → Pages**: attach the custom domain and enable **Enforce HTTPS** once DNS validates.
 - **Repo:** Single repo; no monorepo packages. **Primary site files live at repository root**, not only under `velonyx-website/`.
+
+### Domain (Namecheap)
+
+- **Registrar:** Namecheap holds **`velonyxsystems.com`** (not configured inside this repo beyond `CNAME` for Pages).
+- **DNS:** At Namecheap (Advanced DNS), records must match **GitHub Pages** requirements: apex **A** records to GitHub’s IPs, **`www`** **CNAME** to `<user>.github.io` (see [GitHub: Configuring a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)). Add any **TXT** records GitHub shows for domain verification if prompted.
+- **HTTPS:** Provisioned by GitHub once DNS propagates; “DNS check in progress” / mixed `http` vs `https` is usually propagation or wrong `www` vs apex — align **Search Console / sitemap** with the canonical host (e.g. `www`).
+
+### Twilio
+
+- **Purpose:** Business phone **(877) 317-8643** — e.g. call forwarding to your cell and (if still wired) **SMS** from the legacy **AWS Lambda booking** flow (`BUSINESS-HUB.md` documents API Gateway, SES, and Twilio together).
+- **Not in repo:** Twilio **Account SID**, **Auth Token**, and phone number config live in the **Twilio Console** (`https://console.twilio.com`) and in **Lambda environment variables** if that stack is deployed — never commit them.
+- **Operational detail:** Table URLs, Lambda name, and AWS sign-in link are in **`BUSINESS-HUB.md`**; primary public booking today is **Calendly** on `book.html`.
 
 ---
 
