@@ -11,8 +11,8 @@
     gtag('config', 'G-F838ZEJ22J');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velonyx Systems | Premium Digital Systems for Modern Brands</title>
-  <meta name="description" content="Luxury websites with payment integration for businesses, product sellers, and service providers. Stop selling in the DMs. Start selling with a premium website.">
+  <title>Velonyx Systems | Your Legacy, Engineered With Precision.</title>
+  <meta name="description" content="Velonyx Systems — Your Legacy, Engineered With Precision. Premium luxury websites with built-in payments, booking systems, and full backend automation for entrepreneurs and small businesses.">
 
   <!-- SEO -->
   <meta name="robots" content="index, follow">
@@ -21,16 +21,16 @@
   <link rel="canonical" href="https://velonyxsystems.com/">
 
   <!-- Open Graph (link previews in iMessage, Instagram, etc.) -->
-  <meta property="og:title" content="Velonyx Systems | Premium Websites with Built-In Payments">
-  <meta property="og:description" content="We build luxury websites with payment integration for businesses. Stop selling in the DMs. Start selling with a premium website powered by Stripe, Klarna, and Affirm.">
+  <meta property="og:title" content="Velonyx Systems | Your Legacy, Engineered With Precision.">
+  <meta property="og:description" content="Velonyx Systems — Your Legacy, Engineered With Precision. Premium luxury websites with built-in payments, booking systems, and full backend automation for entrepreneurs and small businesses.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
   <meta property="og:url" content="https://velonyxsystems.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Velonyx Systems">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@velonyxsystems">
-  <meta name="twitter:title" content="Velonyx Systems | Premium Websites with Built-In Payments">
-  <meta name="twitter:description" content="Luxury websites with built-in payment systems. Stripe, Klarna, Affirm, Afterpay — all integrated.">
+  <meta name="twitter:title" content="Velonyx Systems | Your Legacy, Engineered With Precision.">
+  <meta name="twitter:description" content="Velonyx Systems — Your Legacy, Engineered With Precision. Premium luxury websites with built-in payments, booking systems, and full backend automation.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80">
 
   <!-- Favicon -->
@@ -292,6 +292,66 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    /* ===== BRAND SLOGAN STYLES ===== */
+    .nav-slogan {
+      font-size: 10px;
+      color: #C9A84C;
+      letter-spacing: 0.15em;
+      font-weight: 300;
+      font-family: 'DM Sans', sans-serif;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .hero-slogan {
+      color: #C9A84C;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: sloganFadeIn 0.8s ease 0.5s forwards;
+    }
+    @keyframes sloganFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .about-slogan-wrap {
+      margin: 40px auto;
+      text-align: center;
+      max-width: 500px;
+    }
+    .about-slogan-line {
+      height: 1px;
+      background: rgba(212, 175, 55, 0.3);
+      margin: 0 auto;
+      max-width: 200px;
+    }
+    .about-slogan {
+      color: #C9A84C;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 20px 0;
+    }
+    .pricing-slogan {
+      color: #C9A84C;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      font-weight: 300;
+      text-align: center;
+      margin-top: 6px;
+    }
+    .footer-slogan {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 8px;
     }
 
     .nav-links {
@@ -1588,6 +1648,7 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      .nav-slogan { font-size: 9px; }
       nav { padding: 14px 20px; }
 
       .nav-links {
@@ -2534,6 +2595,7 @@
     <a href="#" class="nav-brand">
       <div class="nav-brand-mark"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"></div>
       <div class="nav-brand-text">VELONYX <span>SYSTEMS</span></div>
+      <div class="nav-slogan">Your Legacy, Engineered With Precision.</div>
     </a>
     <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -2554,6 +2616,7 @@
     <div class="hero-grid"></div>
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
+      <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
       <div class="hero-eyebrow"><span class="dot"></span> Premium Digital Systems</div>
       <h1 class="hero-h1-top">
         <span class="line">Stop Selling in the DMs.</span>
@@ -2691,6 +2754,7 @@
       <div class="section-label">Investment</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Simple, Transparent Pricing</h2>
+      <div class="pricing-slogan fade-in">Your Legacy, Engineered With Precision.</div>
       <p class="section-subtitle fade-in">No hidden fees. No surprises. Pick the package that fits your business.</p>
 
       <!-- PAYMENT PARTNERS — shown right under heading -->
@@ -2960,6 +3024,12 @@
         <p>We specialize in working with service providers, product sellers, and independent business owners who have the talent and the audience &mdash; but need the technology to match. We build the digital front door that your customers walk through to pay you.</p>
         <p>Every site we build is designed to look <strong>luxury</strong>, work <strong>flawlessly</strong>, and convert <strong>visitors into paying customers</strong>. No templates. No cookie-cutter designs. Every project is custom.</p>
 
+        <div class="about-slogan-wrap fade-in">
+          <div class="about-slogan-line"></div>
+          <div class="about-slogan">Your Legacy, Engineered With Precision.</div>
+          <div class="about-slogan-line"></div>
+        </div>
+
         <div class="about-values">
           <div class="about-value scale-in">
             <div class="val-number" data-target="100" data-suffix="%">0%</div>
@@ -3046,7 +3116,8 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">VELONYX SYSTEMS</div>
-    <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved. <span class="gold">Built for Presence. Engineered for Growth.</span></p>
+    <div class="footer-slogan">Your Legacy, Engineered With Precision.</div>
+    <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved.</p>
   </footer>
 
   <!-- FLOATING BOOK BUTTON -->
