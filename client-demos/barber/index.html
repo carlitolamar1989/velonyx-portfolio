@@ -1477,7 +1477,7 @@ img { display: block; max-width: 100%; }
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#payment">Pay</a></li>
       <li><a href="#how-it-works">Process</a></li>
-      <li><a href="#payment" class="nav-cta">Book Now</a></li>
+      <li><a href="#" class="nav-cta" onclick="event.preventDefault();openDemoBooking()">Book Now</a></li>
     </ul>
     <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
@@ -1493,7 +1493,7 @@ img { display: block; max-width: 100%; }
     <p class="hero-label">Houston's Premier Barbershop</p>
     <h1 class="hero-title" id="heroTitle"></h1>
     <p class="hero-tagline">Where Kings Get Crowned.</p>
-    <a href="#payment" class="hero-cta">Book Your Throne</a>
+    <a href="#" class="hero-cta" onclick="event.preventDefault();openDemoBooking()">Book Your Throne</a>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -1605,7 +1605,7 @@ img { display: block; max-width: 100%; }
         </div>
       </div>
       <p class="stripe-pay-desc">Your card info is never stored on our site. All transactions are PCI-DSS compliant and fully encrypted.</p>
-      <a href="#book" class="btn-book-pay">Book Your Throne &nbsp;→</a>
+      <a href="#" class="btn-book-pay" onclick="event.preventDefault();openDemoBooking()">Book Your Throne &nbsp;→</a>
       <div class="bnpl-hint">
         <span>💳 Split into 4 interest-free payments with</span>
         <strong>Klarna</strong> <strong>Affirm</strong> <strong>Afterpay</strong>
@@ -1868,6 +1868,143 @@ img { display: block; max-width: 100%; }
   heroBg.style.transform = 'scale(1.1)';
 
 })();
+</script>
+
+<!-- ═══════ VELONYX DEMO SYSTEM ═══════ -->
+<style>
+/* Demo Banner */
+.demo-banner{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(135deg,#1A3C34 0%,#0F2A23 100%);border-bottom:1px solid rgba(200,169,110,0.3);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:12px;font-family:'Lato',sans-serif;font-size:0.82rem;color:#F5F0E8;}
+.demo-banner a{color:#C8A96E;font-weight:700;text-decoration:none;transition:color 0.2s;}
+.demo-banner a:hover{color:#D4BC8A;text-decoration:underline;}
+body{padding-top:42px;}
+
+/* Demo Modal Overlay */
+.demo-overlay{display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+.demo-overlay.open{display:flex;}
+.demo-modal{background:linear-gradient(135deg,#0F2A23 0%,#0A0A0A 100%);border:1px solid rgba(200,169,110,0.2);border-radius:16px;max-width:480px;width:90%;padding:36px 32px;position:relative;max-height:90vh;overflow-y:auto;}
+.demo-modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#F5F0E8;font-size:1.5rem;cursor:pointer;opacity:0.5;transition:opacity 0.2s;}
+.demo-modal-close:hover{opacity:1;}
+.demo-modal h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:#F5F0E8;margin-bottom:6px;}
+.demo-modal p{font-size:0.88rem;color:rgba(245,240,232,0.6);margin-bottom:20px;line-height:1.5;}
+.demo-modal .demo-tag{display:inline-block;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;border:1px solid rgba(200,169,110,0.3);padding:4px 12px;border-radius:20px;margin-bottom:14px;}
+
+/* Demo Form */
+.demo-form label{display:block;font-size:0.75rem;color:rgba(245,240,232,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.demo-form input,.demo-form textarea,.demo-form select{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.15);border-radius:8px;padding:12px 14px;color:#F5F0E8;font-family:'Lato',sans-serif;font-size:0.92rem;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
+.demo-form input:focus,.demo-form textarea:focus,.demo-form select:focus{border-color:rgba(200,169,110,0.5);}
+.demo-form textarea{resize:vertical;min-height:80px;}
+.demo-form select{appearance:none;cursor:pointer;}
+.demo-form select option{background:#0F2A23;color:#F5F0E8;}
+.demo-form button{width:100%;padding:14px;background:linear-gradient(135deg,#C8A96E 0%,#D4BC8A 100%);color:#0A0A0A;font-family:'Lato',sans-serif;font-weight:700;font-size:0.95rem;border:none;border-radius:8px;cursor:pointer;transition:transform 0.15s,box-shadow 0.2s;}
+.demo-form button:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,169,110,0.3);}
+
+/* Demo Success */
+.demo-success{text-align:center;display:none;}
+.demo-success .demo-check{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C8A96E,#D4BC8A);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 16px;color:#0A0A0A;}
+.demo-success h3{margin-bottom:10px;}
+.demo-success .demo-note{font-size:0.8rem;color:rgba(245,240,232,0.4);margin-top:16px;padding:12px;background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.1);border-radius:8px;}
+.demo-success .demo-cta-link{display:inline-block;margin-top:18px;padding:12px 28px;background:linear-gradient(135deg,#C8A96E,#D4BC8A);color:#0A0A0A;font-weight:700;border-radius:8px;font-size:0.88rem;transition:transform 0.15s;}
+.demo-success .demo-cta-link:hover{transform:translateY(-1px);}
+
+/* Payment Demo Modal */
+.demo-pay-content{text-align:center;}
+.demo-pay-content .demo-stripe-icon{font-size:2.5rem;margin-bottom:12px;}
+.demo-pay-content h3{margin-bottom:8px;}
+.demo-pay-content .demo-features{text-align:left;margin:16px 0;padding:16px;background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.1);border-radius:8px;}
+.demo-pay-content .demo-features li{font-size:0.85rem;color:rgba(245,240,232,0.7);margin-bottom:8px;list-style:none;padding-left:20px;position:relative;}
+.demo-pay-content .demo-features li::before{content:"✓";position:absolute;left:0;color:#C8A96E;font-weight:700;}
+</style>
+
+<!-- Demo Banner -->
+<div class="demo-banner">
+  <span>You're viewing a live demo built by <strong>Velonyx Systems</strong></span>
+  <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener">Get a site like this →</a>
+</div>
+
+<!-- Booking Demo Modal -->
+<div class="demo-overlay" id="demoBookingOverlay">
+  <div class="demo-modal">
+    <button class="demo-modal-close" onclick="closeDemoBooking()">&times;</button>
+    <div id="demoBookingForm">
+      <div class="demo-tag">Book an Appointment</div>
+      <h3>Reserve Your Seat</h3>
+      <p>Fill out the form below and we'll confirm your appointment.</p>
+      <form class="demo-form" onsubmit="event.preventDefault();submitDemoBooking()">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Smith" required>
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(555) 123-4567" required>
+        <label>Email</label>
+        <input type="email" placeholder="john@example.com" required>
+        <label>Service</label>
+        <select required>
+          <option value="" disabled selected>Select a service...</option>
+          <option>Classic Cut — $35</option>
+          <option>Beard Sculpt — $25</option>
+          <option>Hot Towel Shave — $40</option>
+          <option>The Lineup — $20</option>
+          <option>VIP Package — $75</option>
+        </select>
+        <label>Notes (optional)</label>
+        <textarea placeholder="Any preferences or special requests..."></textarea>
+        <button type="submit" id="demoBookBtn">Book Appointment</button>
+      </form>
+    </div>
+    <div class="demo-success" id="demoBookingSuccess">
+      <div class="demo-check">✓</div>
+      <h3>Appointment Confirmed!</h3>
+      <p>You'd receive an SMS confirmation and a reminder 1 hour before your appointment.</p>
+      <div class="demo-note">This is a <strong>live demo</strong> by Velonyx Systems. In a real site, this booking would be saved to a database and the client would receive an automatic text confirmation.</div>
+      <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener" class="demo-cta-link">Want this for your business? →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Demo Modal -->
+<div class="demo-overlay" id="demoPayOverlay">
+  <div class="demo-modal">
+    <button class="demo-modal-close" onclick="closeDemoPay()">&times;</button>
+    <div class="demo-pay-content">
+      <div class="demo-tag">Secure Payment</div>
+      <div class="demo-stripe-icon">🔒</div>
+      <h3>Stripe Checkout</h3>
+      <p>In a live Velonyx site, this button connects to Stripe for secure payment processing.</p>
+      <ul class="demo-features">
+        <li>Accept Visa, Mastercard, Amex, Apple Pay, Google Pay</li>
+        <li>Split payments with Klarna, Affirm, or Afterpay</li>
+        <li>256-bit SSL encryption &mdash; PCI-DSS compliant</li>
+        <li>Instant confirmation via SMS and email</li>
+        <li>Deposit or pay-in-full options</li>
+      </ul>
+      <a href="https://velonyxsystems.com/book.html" target="_blank" rel="noopener" class="demo-cta-link">Want this for your business? →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openDemoBooking(){
+  document.getElementById('demoBookingOverlay').classList.add('open');
+  document.getElementById('demoBookingForm').style.display='';
+  document.getElementById('demoBookingSuccess').style.display='none';
+}
+function closeDemoBooking(){document.getElementById('demoBookingOverlay').classList.remove('open');}
+function submitDemoBooking(){
+  var btn=document.getElementById('demoBookBtn');
+  btn.textContent='Booking...';btn.disabled=true;
+  setTimeout(function(){
+    document.getElementById('demoBookingForm').style.display='none';
+    document.getElementById('demoBookingSuccess').style.display='block';
+    btn.textContent='Book Appointment';btn.disabled=false;
+  },1500);
+}
+function openDemoPay(){document.getElementById('demoPayOverlay').classList.add('open');}
+function closeDemoPay(){document.getElementById('demoPayOverlay').classList.remove('open');}
+document.querySelectorAll('.demo-overlay').forEach(function(o){
+  o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('open');});
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeDemoBooking();closeDemoPay();}
+});
 </script>
 </body>
 </html>
