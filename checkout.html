@@ -426,6 +426,59 @@
     }
     .btn-financing:hover { background: rgba(212,175,55,0.08); }
 
+    /* ── Step 3 Maintenance Upsell ── */
+    .maintenance-upsell-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      max-width: 580px; margin: 0 auto;
+    }
+    @media (max-width: 520px) { .maintenance-upsell-grid { grid-template-columns: 1fr; } }
+    .upsell-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; padding: 24px 22px; position: relative;
+    }
+    .upsell-featured {
+      border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.02);
+    }
+    .upsell-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060);
+      color: #0a0a0a; font-size: 0.62rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 14px; border-radius: 50px; white-space: nowrap;
+    }
+    .upsell-skip {
+      font-size: 0.72rem; color: rgba(255,255,255,0.25); cursor: pointer;
+      text-align: right; margin-bottom: 12px; transition: color 0.2s;
+    }
+    .upsell-skip:hover { color: rgba(255,255,255,0.5); }
+    .upsell-tier {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px;
+    }
+    .upsell-price {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 800;
+      color: var(--white); line-height: 1; margin-bottom: 16px;
+    }
+    .upsell-price span { font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+    .upsell-features {
+      list-style: none; margin: 0 0 20px; padding: 0;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+    .upsell-features li { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .btn-upsell {
+      display: block; width: 100%; padding: 12px; border-radius: 9px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.15); background: transparent;
+      color: var(--white); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-upsell:hover { background: rgba(255,255,255,0.06); }
+    .btn-upsell-gold {
+      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
+      border: none; color: #0a0a0a;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.2);
+    }
+    .btn-upsell-gold:hover { box-shadow: 0 6px 28px rgba(212,175,55,0.4); transform: translateY(-1px); color: #0a0a0a; }
+
     /* ── Trust bar ── */
     .trust-bar {
       display: flex; gap: 36px; justify-content: center; flex-wrap: wrap;
@@ -587,6 +640,46 @@
 
       </section>
 
+      <!-- STEP 3: Add Maintenance -->
+      <section class="payment-section" style="margin-top:12px;">
+        <div class="step-heading"><span>Step 3</span> &nbsp;— Optional: Add a Monthly Maintenance Plan
+          <span style="font-size:0.72rem;font-weight:400;color:rgba(255,255,255,0.35);margin-left:8px;">First month free when added at launch</span>
+        </div>
+
+        <div class="maintenance-upsell-grid">
+
+          <div class="upsell-card">
+            <div class="upsell-skip" onclick="skipMaintenance()">Skip for now →</div>
+            <div class="upsell-tier">Basic Maintenance</div>
+            <div class="upsell-price">$150<span>/mo</span></div>
+            <ul class="upsell-features">
+              <li>✓ Content &amp; text updates</li>
+              <li>✓ Bug fixes &amp; patches</li>
+              <li>✓ Uptime monitoring</li>
+              <li>✓ Hosting management</li>
+              <li>✓ Monthly backup</li>
+            </ul>
+            <a href="https://buy.stripe.com/3cI14p2R71uae2ig14cs806" class="btn-upsell" target="_blank" rel="noopener">Add Basic — $150/mo</a>
+          </div>
+
+          <div class="upsell-card upsell-featured">
+            <div class="upsell-badge">Best Value</div>
+            <div class="upsell-tier">Priority Retainer</div>
+            <div class="upsell-price">$300<span>/mo</span></div>
+            <ul class="upsell-features">
+              <li>✓ Everything in Basic</li>
+              <li>✓ Priority updates — 48 hours</li>
+              <li>✓ Unlimited change requests</li>
+              <li>✓ Monthly analytics report</li>
+              <li>✓ Direct line to your developer</li>
+            </ul>
+            <a href="https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807" class="btn-upsell btn-upsell-gold" target="_blank" rel="noopener">Add Priority — $300/mo</a>
+          </div>
+
+        </div>
+        <p id="maintenanceSkipMsg" style="display:none;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:16px;">No maintenance plan added. You can always add one later at <a href="https://velonyxsystems.com/#pricing" style="color:rgba(212,175,55,0.6);text-decoration:none;">velonyxsystems.com</a>.</p>
+      </section>
+
       <!-- Trust bar -->
       <div class="trust-bar">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Encrypted</div>
@@ -693,6 +786,11 @@
       const link = STRIPE_BNPL_LINKS[currentPlan];
       if (!link) return;
       window.location.href = link;
+    }
+
+    function skipMaintenance() {
+      document.querySelectorAll('.upsell-card').forEach(c => c.style.opacity = '0.4');
+      document.getElementById('maintenanceSkipMsg').style.display = 'block';
     }
 
     function copyText(inputId, btnId, originalLabel) {
