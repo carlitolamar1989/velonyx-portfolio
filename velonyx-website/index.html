@@ -240,21 +240,18 @@
     }
 
     .nav-brand-mark {
-      width: 50px;
-      height: 60px;
-      overflow: hidden;
-      position: relative;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav-brand-mark img {
-      width: 100px;
-      height: auto;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: none !important;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.15));
       transition: filter 0.3s;
     }
@@ -1454,11 +1451,10 @@
 
     /* Hero logo (centered between headline and subtitle) */
     .hero-logo {
-      width: min(400px, 85vw);
-      height: min(532px, 113vw);
-      object-fit: cover;
-      object-position: right center;
-      margin: -6px auto 1.75rem;
+      width: min(220px, 50vw);
+      height: auto;
+      object-fit: contain;
+      margin: 0.5rem auto 1.75rem;
       display: block;
       opacity: 0;
       transform: scale(0.5);
@@ -1577,7 +1573,7 @@
       .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero-h1-top { font-size: 2rem; }
       .hero-h2-bottom { font-size: 1.6rem; }
-      .hero-logo { width: min(300px, 88vw); height: min(399px, 117vw); }
+      .hero-logo { width: min(180px, 45vw); height: auto; }
       .about-watermark { width: min(300px, 85vw); }
       .hero-sub { font-size: 1rem; }
 
@@ -1647,22 +1643,15 @@
     }
 
     .loader-mark {
-      width: min(400px, 85vw);
-      height: min(532px, 113vw);
-      overflow: hidden;
-      position: relative;
+      width: min(180px, 45vw);
       margin: 0 auto 16px;
       animation: loaderPulse 1.2s ease-in-out infinite;
     }
 
     .loader-mark img {
-      width: 200%;
+      width: 100%;
       height: auto;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: none !important;
+      display: block;
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.2));
     }
 
