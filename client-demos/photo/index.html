@@ -1694,9 +1694,80 @@ h1, h2, h3, h4 {
   letter-spacing: 0.5px; transition: color 0.25s;
 }
 .velonyx-badge a:hover { color: var(--terracotta); }
+
+/* ========== LOADER ========== */
+.site-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.site-loader.hidden {
+  animation: loaderFade 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes loaderFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+.loader-content { text-align: center; }
+.loader-brand {
+  font-family: var(--heading);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--charcoal);
+  animation: loaderPulse 1.4s ease-in-out infinite;
+}
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.loader-tagline {
+  font-family: var(--body);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-top: 12px;
+  font-weight: 500;
+}
+.loader-line {
+  width: 80px;
+  height: 1px;
+  background: rgba(196, 120, 91, 0.2);
+  margin: 20px auto 0;
+  overflow: hidden;
+  position: relative;
+}
+.loader-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--terracotta);
+  animation: loaderFill 1.4s ease-out forwards;
+}
+@keyframes loaderFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div class="site-loader" id="siteLoader">
+  <div class="loader-content">
+    <div class="loader-brand">Lens & Light</div>
+    <div class="loader-tagline">We Tell Stories</div>
+    <div class="loader-line"></div>
+  </div>
+</div>
 
 <!-- ========== NAVIGATION ========== -->
 <nav class="nav" id="nav">
@@ -1973,6 +2044,17 @@ h1, h2, h3, h4 {
 </footer>
 
 <script>
+// ========== LOADER ==========
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var loader = document.getElementById('siteLoader');
+    loader.classList.add('hidden');
+    loader.addEventListener('animationend', function() {
+      loader.style.display = 'none';
+    });
+  }, 1600);
+});
+
 // ========== NAVBAR SCROLL EFFECT ==========
 const nav = document.getElementById('nav');
 let lastScroll = 0;

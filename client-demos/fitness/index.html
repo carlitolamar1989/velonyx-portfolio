@@ -1602,9 +1602,87 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.5px; transition: color 0.25s;
 }
 .velonyx-badge a:hover { color: var(--red); }
+
+/* ===================== LOADER ===================== */
+.site-loader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, #1a1a1a 0%, #111111 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+.site-loader.hidden {
+  animation: loaderSlideUp 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes loaderSlideUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+.loader-content { text-align: center; }
+.loader-brand {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #D8D8D8, #FFFFFF, #E0E0E0, #FFFFFF, #C8C8C8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+.loader-brand span {
+  background: linear-gradient(135deg, #CC3A22, #FF8A6E, #FF4B2B, #FFB09A, #B33318);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.loader-tagline {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-gray);
+  margin-top: 8px;
+}
+.loader-bar {
+  width: 120px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  margin: 20px auto 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loader-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #FF4B2B, #FF8A6E);
+  border-radius: 2px;
+  animation: loaderFill 1.4s ease-out forwards;
+  box-shadow: 0 0 8px rgba(255, 75, 43, 0.4);
+}
+@keyframes loaderFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div class="site-loader" id="siteLoader">
+  <div class="loader-content">
+    <div class="loader-brand">IRON<span>WILL</span></div>
+    <div class="loader-tagline">Your Excuses End Here</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+</div>
 
 <!-- ===================== NAVIGATION ===================== -->
 <nav class="nav" id="nav">
@@ -1980,6 +2058,17 @@ img { max-width: 100%; display: block; }
 <script>
 (function() {
   'use strict';
+
+  // ===================== LOADER =====================
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('siteLoader');
+      loader.classList.add('hidden');
+      loader.addEventListener('animationend', function() {
+        loader.style.display = 'none';
+      });
+    }, 1800);
+  });
 
   // ===================== NAVIGATION =====================
   const nav = document.getElementById('nav');
