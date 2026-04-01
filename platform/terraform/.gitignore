@@ -1,0 +1,2 @@
+platform/terraform/.terraform/
+platform/terraform/terraform.tfstate*
