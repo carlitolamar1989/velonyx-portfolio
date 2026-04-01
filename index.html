@@ -1650,7 +1650,7 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .nav-slogan { font-size: 9px; }
+      .nav-slogan { display: none; }
       nav { padding: 14px 20px; }
 
       .nav-links {
@@ -2563,9 +2563,77 @@
       .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
       .pricing-card.featured { order: -1; }
     }
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(212, 175, 55, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s, height 0.25s, border-color 0.25s, background 0.25s;
+      mix-blend-mode: difference;
+      will-change: transform;
+    }
+    .cursor-ring.hover {
+      width: 56px;
+      height: 56px;
+      border-color: rgba(212, 175, 55, 0.8);
+      background: rgba(212, 175, 55, 0.08);
+    }
+    .cursor-dot {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      background: #D4AF37;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+
+    /* Hide custom cursor on touch devices */
+    @media (hover: none) and (pointer: coarse) {
+      .cursor-ring, .cursor-dot { display: none !important; }
+    }
+
+    /* ===== GLASSMORPHISM UPGRADE ===== */
+    .service-card,
+    .pricing-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ===== GSAP REVEAL OVERRIDES ===== */
+    .gsap-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      will-change: transform, opacity;
+    }
+
+    /* ===== SECTION DIVIDER GLOW ===== */
+    .section-glow-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 0 auto 40px;
+      opacity: 0;
+      transform: scaleX(0);
+    }
   </style>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
 
   <div class="cosmos-backdrop" aria-hidden="true"></div>
   <div class="cosmos-veil-layer" aria-hidden="true"></div>
@@ -3413,35 +3481,8 @@
       });
     }, { passive: true });
 
-    // ===== ANIMATED COUNTERS (UPGRADED - faster, blur effect) =====
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target);
-          const suffix = el.dataset.suffix || '';
-          if (!target) return;
-
-          el.style.filter = 'blur(4px)';
-          el.style.transition = 'filter 0.3s';
-          let current = 0;
-          const increment = target / 25;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              current = target;
-              clearInterval(timer);
-              el.style.filter = 'blur(0)';
-            }
-            el.textContent = Math.floor(current) + suffix;
-          }, 20);
-
-          counterObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.val-number[data-target]').forEach(el => counterObserver.observe(el));
+    // ===== ANIMATED COUNTERS =====
+    // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
 
     // ===== CURSOR GLOW (hero) =====
     const hero = document.querySelector('.hero');
@@ -3458,63 +3499,8 @@
       hero.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
     }
 
-    // ===== 3D TILT ON CARDS =====
-    document.querySelectorAll('.service-card, .pricing-card, .testimonial-card').forEach(card => {
-      card.style.transformStyle = 'preserve-3d';
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const baseTransform = card.classList.contains('pricing-card') ? 'translateY(-8px)' : 'translateY(-6px)';
-        card.style.transform = `${baseTransform} rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-        card.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        setTimeout(() => { card.style.transition = ''; }, 500);
-      });
-    });
-
-    // ===== MAGNETIC HOVER ON BUTTONS =====
-    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2 - 2}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
-    });
-
-    // ===== NAV SCROLL EFFECT =====
-    const navEl = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        navEl.style.borderBottomColor = 'rgba(212, 175, 55, 0.2)';
-        navEl.style.background = 'rgba(9, 9, 11, 0.95)';
-      } else {
-        navEl.style.borderBottomColor = 'rgba(212, 175, 55, 0.1)';
-        navEl.style.background = 'rgba(9, 9, 11, 0.88)';
-      }
-    }, { passive: true });
-
-    // ===== SCROLL PROGRESS BAR =====
-    const scrollProgress = document.getElementById('scrollProgress');
-    const floatingBook = document.getElementById('floatingBook');
-
-    window.addEventListener('scroll', () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / docHeight) * 100;
-      scrollProgress.style.width = progress + '%';
-
-      if (window.scrollY > window.innerHeight * 0.6) {
-        floatingBook.classList.add('visible');
-      } else {
-        floatingBook.classList.remove('visible');
-      }
-    }, { passive: true });
+    // ===== 3D TILT, MAGNETIC BUTTONS, NAV SCROLL, SCROLL PROGRESS =====
+    // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
 
     // ===== BOOKING MODAL =====
     const bookingOverlay = document.getElementById('bookingOverlay');
@@ -3691,6 +3677,378 @@
       renderParticles();
       window.addEventListener('resize', () => { sizeCanvas(); spawnDots(); });
     }
+  </script>
+
+  <!-- ===== GSAP PREMIUM ANIMATIONS ===== -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Wait for GSAP to load (deferred)
+    function initGSAP() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        setTimeout(initGSAP, 100);
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ===== CUSTOM CURSOR =====
+      const ring = document.getElementById('cursorRing');
+      const dot = document.getElementById('cursorDot');
+
+      if (ring && dot && window.matchMedia('(hover: hover)').matches) {
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
+
+        document.addEventListener('mousemove', function(e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        });
+
+        function animateRing() {
+          ringX += (mouseX - ringX) * 0.15;
+          ringY += (mouseY - ringY) * 0.15;
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+          requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // Hover effect on interactive elements
+        var hoverTargets = document.querySelectorAll('a, button, .service-card, .pricing-card, .nav-cta, input, select, textarea');
+        hoverTargets.forEach(function(el) {
+          el.addEventListener('mouseenter', function() { ring.classList.add('hover'); });
+          el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); });
+        });
+
+        // Hide default cursor
+        document.body.style.cursor = 'none';
+        document.querySelectorAll('a, button').forEach(function(el) { el.style.cursor = 'none'; });
+      }
+
+      // ===== GSAP SCROLL ANIMATIONS FOR ALL SECTIONS =====
+      // Upgrade existing fade-in elements with GSAP for smoother performance
+      gsap.utils.toArray('.services, .process, .portfolio, .about, .cta-section, .testimonials').forEach(function(section) {
+
+        // Section title entrance
+        var title = section.querySelector('.section-title');
+        if (title) {
+          gsap.fromTo(title,
+            { opacity: 0, y: 30, filter: 'blur(4px)' },
+            {
+              opacity: 1, y: 0, filter: 'blur(0px)',
+              duration: 0.9,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: title,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+
+        // Section label entrance
+        var label = section.querySelector('.section-label');
+        if (label) {
+          gsap.fromTo(label,
+            { opacity: 0, x: -20 },
+            {
+              opacity: 1, x: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: label,
+                start: 'top 88%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+
+        // Section divider line
+        var divider = section.querySelector('.section-divider');
+        if (divider) {
+          gsap.fromTo(divider,
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              duration: 0.8,
+              ease: 'power2.inOut',
+              scrollTrigger: {
+                trigger: divider,
+                start: 'top 88%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+
+        // Stagger cards/children
+        var cards = section.querySelectorAll('.service-card, .pricing-card, .process-step, .portfolio-card, .testimonial-card');
+        if (cards.length) {
+          gsap.fromTo(cards,
+            { opacity: 0, y: 50, scale: 0.95 },
+            {
+              opacity: 1, y: 0, scale: 1,
+              duration: 0.7,
+              stagger: 0.12,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: cards[0],
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      });
+
+      // ===== HERO PARALLAX DEPTH LAYERS =====
+      var heroContent = document.querySelector('.hero-content');
+      var heroGrid = document.querySelector('.hero-grid');
+      var heroGradient = document.querySelector('.hero-gradient-anim');
+
+      if (heroContent) {
+        gsap.to(heroContent, {
+          y: 120,
+          opacity: 0.3,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.5
+          }
+        });
+      }
+
+      if (heroGrid) {
+        gsap.to(heroGrid, {
+          y: 60,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.3
+          }
+        });
+      }
+
+      if (heroGradient) {
+        gsap.to(heroGradient, {
+          y: 40,
+          scale: 1.1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.2
+          }
+        });
+      }
+
+      // ===== IMAGE DIVIDER PARALLAX =====
+      gsap.utils.toArray('.image-divider').forEach(function(divider) {
+        var img = divider.querySelector('.parallax-img');
+        if (img) {
+          gsap.fromTo(img,
+            { y: -60 },
+            {
+              y: 60,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: divider,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.4
+              }
+            }
+          );
+        }
+
+        var text = divider.querySelector('.image-divider-text');
+        if (text) {
+          gsap.fromTo(text,
+            { y: 30, opacity: 0 },
+            {
+              y: 0, opacity: 1,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: divider,
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      });
+
+      // ===== PROBLEM SECTION — dramatic entrance =====
+      var bigQuote = document.querySelector('.big-quote');
+      if (bigQuote) {
+        gsap.fromTo(bigQuote,
+          { opacity: 0, scale: 0.96 },
+          {
+            opacity: 1, scale: 1,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: bigQuote,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+
+      // ===== SMOOTH MAGNETIC BUTTONS (GSAP upgrade) =====
+      document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta').forEach(function(btn) {
+        btn.addEventListener('mousemove', function(e) {
+          var rect = btn.getBoundingClientRect();
+          var x = e.clientX - rect.left - rect.width / 2;
+          var y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(btn, {
+            x: x * 0.2,
+            y: y * 0.25 - 2,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+        btn.addEventListener('mouseleave', function() {
+          gsap.to(btn, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)'
+          });
+        });
+      });
+
+      // ===== 3D CARD TILT (GSAP upgrade — smoother) =====
+      document.querySelectorAll('.service-card, .pricing-card, .testimonial-card').forEach(function(card) {
+        card.style.transformStyle = 'preserve-3d';
+
+        card.addEventListener('mousemove', function(e) {
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;
+          var y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(card, {
+            rotateX: -y * 10,
+            rotateY: x * 10,
+            y: -8,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+
+        card.addEventListener('mouseleave', function() {
+          gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            y: 0,
+            duration: 0.6,
+            ease: 'elastic.out(1, 0.6)'
+          });
+        });
+      });
+
+      // ===== SCROLL PROGRESS BAR (GSAP upgrade) =====
+      gsap.to('#scrollProgress', {
+        width: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.1
+        }
+      });
+
+      // ===== NAV BACKGROUND TRANSITION (GSAP) =====
+      ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'bottom 80px',
+        onEnter: function() {
+          gsap.to('nav', {
+            background: 'rgba(9, 9, 11, 0.97)',
+            borderBottomColor: 'rgba(212, 175, 55, 0.25)',
+            backdropFilter: 'blur(20px)',
+            duration: 0.4
+          });
+        },
+        onLeaveBack: function() {
+          gsap.to('nav', {
+            background: 'rgba(9, 9, 11, 0.88)',
+            borderBottomColor: 'rgba(212, 175, 55, 0.1)',
+            backdropFilter: 'blur(0px)',
+            duration: 0.4
+          });
+        }
+      });
+
+      // ===== COUNTER ANIMATIONS (GSAP upgrade — smooth easing) =====
+      document.querySelectorAll('.val-number[data-target]').forEach(function(el) {
+        var target = parseInt(el.dataset.target);
+        var suffix = el.dataset.suffix || '';
+        if (!target) return;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter: function() {
+            var obj = { val: 0 };
+            gsap.to(obj, {
+              val: target,
+              duration: 1.8,
+              ease: 'power2.out',
+              onUpdate: function() {
+                el.textContent = Math.floor(obj.val) + suffix;
+              }
+            });
+          }
+        });
+      });
+
+      // ===== FLOATING BOOK BUTTON (GSAP) =====
+      var floatingBook = document.getElementById('floatingBook');
+      if (floatingBook) {
+        ScrollTrigger.create({
+          trigger: '.hero',
+          start: 'bottom center',
+          onEnter: function() {
+            gsap.to(floatingBook, { opacity: 1, y: 0, duration: 0.4, ease: 'back.out(1.5)' });
+            floatingBook.classList.add('visible');
+          },
+          onLeaveBack: function() {
+            gsap.to(floatingBook, { opacity: 0, y: 20, duration: 0.3 });
+            floatingBook.classList.remove('visible');
+          }
+        });
+      }
+
+      // ===== SHIMMER SWEEP ON SCROLL =====
+      gsap.utils.toArray('.shimmer-sweep').forEach(function(el) {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 80%',
+          once: true,
+          onEnter: function() {
+            setTimeout(function() { el.classList.add('active'); }, 400);
+          }
+        });
+      });
+
+      // Refresh on load complete
+      ScrollTrigger.refresh();
+    }
+
+    initGSAP();
+  });
   </script>
 
 </body>
