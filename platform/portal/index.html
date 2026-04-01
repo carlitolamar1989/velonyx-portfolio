@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal — Velonyx Systems</title>
+  <meta name="description" content="Velonyx Systems Client Portal. Log in to manage your project, upload assets, and track your site build progress.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #08080A;
+      --bg-card: rgba(16, 16, 20, 0.85);
+      --gold: #D4AF37;
+      --gold-light: #E8C547;
+      --gold-dim: rgba(212, 175, 55, 0.15);
+      --white: #F5F5F5;
+      --white-muted: rgba(245, 245, 245, 0.6);
+      --white-dim: rgba(245, 245, 245, 0.35);
+      --error: #FF4B4B;
+      --success: #4BFF7B;
+    }
+
+    html { height: 100%; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== BACKGROUND ===== */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    }
+
+    /* ===== LOGIN CARD ===== */
+    .login-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      padding: 0 24px;
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-brand img {
+      width: 64px;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+    }
+
+    .login-brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .login-brand h1 span {
+      background: linear-gradient(135deg, #D4AF37, #F7E17B, #D4AF37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-brand .slogan {
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      font-weight: 300;
+      margin-top: 6px;
+    }
+
+    .login-brand .portal-label {
+      font-size: 0.75rem;
+      color: var(--white-dim);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .login-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 16px;
+      padding: 40px 36px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        inset 0 0 40px rgba(212, 175, 55, 0.02);
+    }
+
+    .login-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .login-card .subtitle {
+      font-size: 0.85rem;
+      color: var(--white-muted);
+      margin-bottom: 28px;
+    }
+
+    /* ===== FORM ===== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08), inset 0 0 20px rgba(212, 175, 55, 0.03);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(245, 245, 245, 0.2);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .form-options a {
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .form-options a:hover {
+      color: var(--gold-light);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #D4AF37 0%, #E8C547 50%, #D4AF37 100%);
+      background-size: 200% 200%;
+      color: #08080A;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login:hover {
+      background-position: 100% 0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-login .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(8, 8, 10, 0.3);
+      border-top-color: #08080A;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+
+    .btn-login.loading .btn-text { display: none; }
+    .btn-login.loading .spinner { display: inline-block; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== MESSAGES ===== */
+    .message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background: rgba(255, 75, 75, 0.08);
+      border: 1px solid rgba(255, 75, 75, 0.2);
+      color: var(--error);
+    }
+
+    .message.success {
+      display: block;
+      background: rgba(75, 255, 123, 0.08);
+      border: 1px solid rgba(75, 255, 123, 0.2);
+      color: var(--success);
+    }
+
+    /* ===== VIEW SWITCHING ===== */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ===== FOOTER ===== */
+    .login-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.75rem;
+      color: var(--white-dim);
+    }
+
+    .login-footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .powered-by {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.65rem;
+      color: rgba(245, 245, 245, 0.2);
+      letter-spacing: 0.15em;
+    }
+
+    .powered-by a {
+      color: rgba(212, 175, 55, 0.4);
+      text-decoration: none;
+    }
+
+    /* ===== VERIFICATION CODE ===== */
+    .code-inputs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .code-inputs input {
+      width: 48px;
+      height: 56px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', monospace;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 10px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .code-inputs input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    /* ===== PASSWORD TOGGLE ===== */
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--white-dim);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .password-toggle:hover {
+      color: var(--gold);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 32px 24px;
+      }
+
+      .login-brand h1 {
+        font-size: 1.2rem;
+      }
+
+      .code-inputs input {
+        width: 42px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Effects -->
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="login-wrapper">
+
+    <!-- Brand Header -->
+    <div class="login-brand">
+      <img src="/assets/vs-logo-shield-clean.png" alt="Velonyx Systems">
+      <h1>VELONYX <span>SYSTEMS</span></h1>
+      <div class="slogan">Your Legacy, Engineered With Precision.</div>
+      <div class="portal-label">Client Portal</div>
+    </div>
+
+    <!-- ========== LOGIN VIEW ========== -->
+    <div class="view active" id="loginView">
+      <div class="login-card">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Log in to manage your project and upload assets.</p>
+
+        <div class="message" id="loginMessage"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="loginEmail" placeholder="you@yourbusiness.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="password-wrap">
+              <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)">Show</button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <span></span>
+            <a href="#" onclick="showView('forgotView'); return false;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-login" id="loginBtn">
+            <span class="btn-text">Sign In</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <div class="login-footer">
+        First time here? <a href="#" onclick="showView('newPasswordView'); return false;">Set up your account</a>
+      </div>
+    </div>
+
+    <!-- ========== FIRST-TIME PASSWORD VIEW ========== -->
+    <div class="view" id="newPasswordView">
+      <div class="login-card">
+        <h2>Set Up Your Account</h2>
+        <p class="subtitle">Enter the temporary password from your welcome email, then create your own password.</p>
+
+        <div class="message" id="newPassMessage"></div>
+
+        <form id="newPasswordForm" onsubmit="handleNewPassword(event)">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="npEmail" placeholder="you@yourbusiness.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label>Temporary Password</label>
+            <div class="password-wrap">
+              <input type="password" id="npTempPassword" placeholder="From your welcome email" required>
+              <button type="button" class="password-toggle" onclick="togglePassword('npTempPassword', this)">Show</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Create New Password</label>
+            <div class="password-wrap">
+              <input type="password" id="npNewPassword" placeholder="Minimum 8 characters" required minlength="8">
+              <button type="button" class="password-toggle" onclick="togglePassword('npNewPassword', this)">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-login" id="newPassBtn">
+            <span class="btn-text">Set Password & Sign In</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <div class="login-footer">
+        Already have a password? <a href="#" onclick="showView('loginView'); return false;">Sign in</a>
+      </div>
+    </div>
+
+    <!-- ========== FORGOT PASSWORD VIEW ========== -->
+    <div class="view" id="forgotView">
+      <div class="login-card">
+        <h2>Reset Password</h2>
+        <p class="subtitle">Enter your email and we'll send you a verification code.</p>
+
+        <div class="message" id="forgotMessage"></div>
+
+        <form id="forgotForm" onsubmit="handleForgotPassword(event)">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="forgotEmail" placeholder="you@yourbusiness.com" required autocomplete="email">
+          </div>
+
+          <button type="submit" class="btn-login" id="forgotBtn">
+            <span class="btn-text">Send Reset Code</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <div class="login-footer">
+        Remember your password? <a href="#" onclick="showView('loginView'); return false;">Sign in</a>
+      </div>
+    </div>
+
+    <!-- ========== VERIFY CODE VIEW ========== -->
+    <div class="view" id="verifyView">
+      <div class="login-card">
+        <h2>Enter Verification Code</h2>
+        <p class="subtitle">We sent a 6-digit code to your email. Enter it below with your new password.</p>
+
+        <div class="message" id="verifyMessage"></div>
+
+        <form id="verifyForm" onsubmit="handleVerifyReset(event)">
+          <div class="code-inputs" id="codeInputs">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+          </div>
+
+          <div class="form-group">
+            <label>New Password</label>
+            <div class="password-wrap">
+              <input type="password" id="resetNewPassword" placeholder="Minimum 8 characters" required minlength="8">
+              <button type="button" class="password-toggle" onclick="togglePassword('resetNewPassword', this)">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-login" id="verifyBtn">
+            <span class="btn-text">Reset Password</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <div class="login-footer">
+        <a href="#" onclick="showView('loginView'); return false;">Back to sign in</a>
+      </div>
+    </div>
+
+    <!-- Powered By -->
+    <div class="powered-by">
+      <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> &nbsp;·&nbsp; Your Legacy, Engineered With Precision.
+    </div>
+
+  </div>
+
+  <script>
+    // =============================================
+    // VELONYX CLIENT PORTAL — AUTH LOGIC
+    // =============================================
+    // This connects to AWS Cognito via the hosted
+    // API. Config values come from Terraform outputs.
+    // =============================================
+
+    const CONFIG = {
+      API_URL: 'https://nlyswskjmg.execute-api.us-east-1.amazonaws.com',
+      COGNITO_POOL_ID: 'us-east-1_ay3p6aSiq',
+      COGNITO_CLIENT_ID: '6d20hbv2l715om3obg08cro371',
+      REGION: 'us-east-1',
+      DASHBOARD_URL: 'dashboard.html',
+    };
+
+    // ===== VIEW SWITCHING =====
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+      document.getElementById(viewId).classList.add('active');
+      // Clear messages
+      document.querySelectorAll('.message').forEach(function(m) {
+        m.className = 'message';
+        m.textContent = '';
+      });
+    }
+
+    function showMessage(elementId, text, type) {
+      var el = document.getElementById(elementId);
+      el.className = 'message ' + type;
+      el.textContent = text;
+    }
+
+    function setLoading(btnId, loading) {
+      var btn = document.getElementById(btnId);
+      if (loading) {
+        btn.classList.add('loading');
+        btn.disabled = true;
+      } else {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    // ===== PASSWORD TOGGLE =====
+    function togglePassword(inputId, btn) {
+      var input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+
+    // ===== CODE INPUT AUTO-ADVANCE =====
+    (function() {
+      var inputs = document.querySelectorAll('#codeInputs input');
+      inputs.forEach(function(input, idx) {
+        input.addEventListener('input', function() {
+          if (this.value && idx < inputs.length - 1) {
+            inputs[idx + 1].focus();
+          }
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Backspace' && !this.value && idx > 0) {
+            inputs[idx - 1].focus();
+          }
+        });
+        // Allow paste of full code
+        input.addEventListener('paste', function(e) {
+          e.preventDefault();
+          var paste = (e.clipboardData || window.clipboardData).getData('text').trim();
+          if (paste.length === 6 && /^\d+$/.test(paste)) {
+            inputs.forEach(function(inp, i) {
+              inp.value = paste[i] || '';
+            });
+            inputs[5].focus();
+          }
+        });
+      });
+    })();
+
+    function getCode() {
+      var inputs = document.querySelectorAll('#codeInputs input');
+      var code = '';
+      inputs.forEach(function(inp) { code += inp.value; });
+      return code;
+    }
+
+    // ===== COGNITO AUTH (using Cognito Hosted API) =====
+    // These functions call Cognito's InitiateAuth / RespondToAuthChallenge
+    // endpoints via the AWS SDK endpoint directly.
+
+    async function cognitoAuth(action, params) {
+      var endpoint = 'https://cognito-idp.' + CONFIG.REGION + '.amazonaws.com/';
+
+      var response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-amz-json-1.1',
+          'X-Amz-Target': 'AWSCognitoIdentityProviderService.' + action,
+        },
+        body: JSON.stringify(params),
+      });
+
+      var data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || data.__type || 'Authentication failed');
+      }
+
+      return data;
+    }
+
+    // ===== LOGIN =====
+    async function handleLogin(e) {
+      e.preventDefault();
+      setLoading('loginBtn', true);
+
+      var email = document.getElementById('loginEmail').value.trim();
+      var password = document.getElementById('loginPassword').value;
+
+      try {
+        var result = await cognitoAuth('InitiateAuth', {
+          AuthFlow: 'USER_PASSWORD_AUTH',
+          ClientId: CONFIG.COGNITO_CLIENT_ID,
+          AuthParameters: {
+            USERNAME: email,
+            PASSWORD: password,
+          },
+        });
+
+        // Check if new password required (first login)
+        if (result.ChallengeName === 'NEW_PASSWORD_REQUIRED') {
+          window._authSession = result.Session;
+          window._authEmail = email;
+          showView('newPasswordView');
+          document.getElementById('npEmail').value = email;
+          showMessage('newPassMessage', 'Please set a new password to continue.', 'success');
+          setLoading('loginBtn', false);
+          return;
+        }
+
+        // Success — store tokens and redirect
+        if (result.AuthenticationResult) {
+          sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
+          sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
+          sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
+          window.location.href = CONFIG.DASHBOARD_URL;
+        }
+
+      } catch (err) {
+        var msg = err.message;
+        if (msg.includes('Incorrect username or password')) {
+          msg = 'Invalid email or password. Please try again.';
+        } else if (msg.includes('User does not exist')) {
+          msg = 'No account found with that email.';
+        } else if (msg.includes('User is not confirmed')) {
+          msg = 'Please verify your email first. Check your inbox.';
+        }
+        showMessage('loginMessage', msg, 'error');
+      }
+
+      setLoading('loginBtn', false);
+    }
+
+    // ===== NEW PASSWORD (first-time setup) =====
+    async function handleNewPassword(e) {
+      e.preventDefault();
+      setLoading('newPassBtn', true);
+
+      var email = document.getElementById('npEmail').value.trim();
+      var tempPassword = document.getElementById('npTempPassword').value;
+      var newPassword = document.getElementById('npNewPassword').value;
+
+      try {
+        // If we have a session from a login challenge, respond to it
+        if (window._authSession) {
+          var result = await cognitoAuth('RespondToAuthChallenge', {
+            ChallengeName: 'NEW_PASSWORD_REQUIRED',
+            ClientId: CONFIG.COGNITO_CLIENT_ID,
+            Session: window._authSession,
+            ChallengeResponses: {
+              USERNAME: window._authEmail || email,
+              NEW_PASSWORD: newPassword,
+            },
+          });
+
+          if (result.AuthenticationResult) {
+            sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
+            sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
+            sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
+            window.location.href = CONFIG.DASHBOARD_URL;
+            return;
+          }
+        }
+
+        // Otherwise, try login with temp password first
+        var loginResult = await cognitoAuth('InitiateAuth', {
+          AuthFlow: 'USER_PASSWORD_AUTH',
+          ClientId: CONFIG.COGNITO_CLIENT_ID,
+          AuthParameters: {
+            USERNAME: email,
+            PASSWORD: tempPassword,
+          },
+        });
+
+        if (loginResult.ChallengeName === 'NEW_PASSWORD_REQUIRED') {
+          var result = await cognitoAuth('RespondToAuthChallenge', {
+            ChallengeName: 'NEW_PASSWORD_REQUIRED',
+            ClientId: CONFIG.COGNITO_CLIENT_ID,
+            Session: loginResult.Session,
+            ChallengeResponses: {
+              USERNAME: email,
+              NEW_PASSWORD: newPassword,
+            },
+          });
+
+          if (result.AuthenticationResult) {
+            sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
+            sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
+            sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
+            window.location.href = CONFIG.DASHBOARD_URL;
+          }
+        } else if (loginResult.AuthenticationResult) {
+          // Temp password was already their real password
+          sessionStorage.setItem('velonyx_access_token', loginResult.AuthenticationResult.AccessToken);
+          sessionStorage.setItem('velonyx_id_token', loginResult.AuthenticationResult.IdToken);
+          sessionStorage.setItem('velonyx_refresh_token', loginResult.AuthenticationResult.RefreshToken);
+          window.location.href = CONFIG.DASHBOARD_URL;
+        }
+
+      } catch (err) {
+        showMessage('newPassMessage', err.message, 'error');
+      }
+
+      setLoading('newPassBtn', false);
+    }
+
+    // ===== FORGOT PASSWORD =====
+    async function handleForgotPassword(e) {
+      e.preventDefault();
+      setLoading('forgotBtn', true);
+
+      var email = document.getElementById('forgotEmail').value.trim();
+      window._resetEmail = email;
+
+      try {
+        await cognitoAuth('ForgotPassword', {
+          ClientId: CONFIG.COGNITO_CLIENT_ID,
+          Username: email,
+        });
+
+        showView('verifyView');
+        showMessage('verifyMessage', 'Verification code sent to ' + email, 'success');
+
+      } catch (err) {
+        showMessage('forgotMessage', err.message, 'error');
+      }
+
+      setLoading('forgotBtn', false);
+    }
+
+    // ===== VERIFY RESET CODE =====
+    async function handleVerifyReset(e) {
+      e.preventDefault();
+      setLoading('verifyBtn', true);
+
+      var code = getCode();
+      var newPassword = document.getElementById('resetNewPassword').value;
+
+      if (code.length !== 6) {
+        showMessage('verifyMessage', 'Please enter the full 6-digit code.', 'error');
+        setLoading('verifyBtn', false);
+        return;
+      }
+
+      try {
+        await cognitoAuth('ConfirmForgotPassword', {
+          ClientId: CONFIG.COGNITO_CLIENT_ID,
+          Username: window._resetEmail,
+          ConfirmationCode: code,
+          Password: newPassword,
+        });
+
+        showView('loginView');
+        showMessage('loginMessage', 'Password reset successful. Sign in with your new password.', 'success');
+
+      } catch (err) {
+        showMessage('verifyMessage', err.message, 'error');
+      }
+
+      setLoading('verifyBtn', false);
+    }
+
+    // ===== CHECK IF ALREADY LOGGED IN =====
+    (function() {
+      var token = sessionStorage.getItem('velonyx_access_token');
+      if (token) {
+        window.location.href = CONFIG.DASHBOARD_URL;
+      }
+    })();
+  </script>
+
+</body>
+</html>
