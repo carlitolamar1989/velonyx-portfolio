@@ -12,3 +12,9 @@ content/
 
 # Backend source (deployed separately to AWS Lambda)
 velonyx-website/backend/
+
+# Terraform state and provider cache (sensitive — never commit)
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
