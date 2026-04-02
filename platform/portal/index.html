@@ -565,8 +565,24 @@
       COGNITO_POOL_ID: 'us-east-1_ay3p6aSiq',
       COGNITO_CLIENT_ID: '6d20hbv2l715om3obg08cro371',
       REGION: 'us-east-1',
-      DASHBOARD_URL: 'dashboard.html',
+      CLIENT_DASHBOARD_URL: 'dashboard.html',
+      ADMIN_DASHBOARD_URL: '/platform/admin/index.html',
     };
+
+    // ===== ROLE-BASED REDIRECT =====
+    function getRedirectUrl(idToken) {
+      try {
+        // Decode JWT payload (base64)
+        var payload = JSON.parse(atob(idToken.split('.')[1]));
+        var groups = payload['cognito:groups'] || [];
+        if (groups.indexOf('admins') !== -1) {
+          return CONFIG.ADMIN_DASHBOARD_URL;
+        }
+      } catch (e) {
+        console.log('Token decode error:', e);
+      }
+      return CONFIG.CLIENT_DASHBOARD_URL;
+    }
 
     // ===== VIEW SWITCHING =====
     function showView(viewId) {
@@ -702,7 +718,7 @@
           sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
           sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
           sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
-          window.location.href = CONFIG.DASHBOARD_URL;
+          window.location.href = getRedirectUrl(result.AuthenticationResult.IdToken || sessionStorage.getItem('velonyx_id_token'));
         }
 
       } catch (err) {
@@ -746,7 +762,7 @@
             sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
             sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
             sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
-            window.location.href = CONFIG.DASHBOARD_URL;
+            window.location.href = getRedirectUrl(result.AuthenticationResult.IdToken || sessionStorage.getItem('velonyx_id_token'));
             return;
           }
         }
@@ -776,14 +792,14 @@
             sessionStorage.setItem('velonyx_access_token', result.AuthenticationResult.AccessToken);
             sessionStorage.setItem('velonyx_id_token', result.AuthenticationResult.IdToken);
             sessionStorage.setItem('velonyx_refresh_token', result.AuthenticationResult.RefreshToken);
-            window.location.href = CONFIG.DASHBOARD_URL;
+            window.location.href = getRedirectUrl(result.AuthenticationResult.IdToken || sessionStorage.getItem('velonyx_id_token'));
           }
         } else if (loginResult.AuthenticationResult) {
           // Temp password was already their real password
           sessionStorage.setItem('velonyx_access_token', loginResult.AuthenticationResult.AccessToken);
           sessionStorage.setItem('velonyx_id_token', loginResult.AuthenticationResult.IdToken);
           sessionStorage.setItem('velonyx_refresh_token', loginResult.AuthenticationResult.RefreshToken);
-          window.location.href = CONFIG.DASHBOARD_URL;
+          window.location.href = getRedirectUrl(loginResult.AuthenticationResult.IdToken);
         }
 
       } catch (err) {
