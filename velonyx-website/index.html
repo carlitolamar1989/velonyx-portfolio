@@ -392,6 +392,23 @@
       box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(56, 189, 248, 0.1), inset 0 1px 0 rgba(255,255,255,0.3) !important;
     }
 
+    .nav-login {
+      border: 1px solid rgba(212, 175, 55, 0.3) !important;
+      padding: 9px 20px !important;
+      border-radius: 4px;
+      font-weight: 500 !important;
+      font-size: 0.75rem !important;
+      color: var(--gold) !important;
+      transition: all 0.3s !important;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-login:hover {
+      border-color: rgba(212, 175, 55, 0.6) !important;
+      background: rgba(212, 175, 55, 0.08) !important;
+      color: var(--accent) !important;
+    }
+
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -2676,6 +2693,7 @@
       <li><a href="#work" onclick="document.getElementById('navLinks').classList.remove('open')">Portfolio</a></li>
       <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
       <li><a href="/book.html" class="nav-cta">Book a Consultation</a></li>
+      <li><a href="/platform/portal/" class="nav-login">Client Login</a></li>
     </ul>
   </nav>
 
