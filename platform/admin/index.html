@@ -544,16 +544,16 @@
 
     <div class="sidebar-label">Management</div>
     <ul class="sidebar-nav">
-      <li><a href="#" class="active"><span class="nav-icon">&#9633;</span> Dashboard</a></li>
-      <li><a href="#"><span class="nav-icon">&#9734;</span> All Clients</a></li>
-      <li><a href="#"><span class="nav-icon">&#128196;</span> Projects</a></li>
-      <li><a href="#"><span class="nav-icon">&#128176;</span> Payments</a></li>
+      <li><a href="#" class="active" onclick="navTo('dashboard', this); return false;"><span class="nav-icon">&#9633;</span> Dashboard</a></li>
+      <li><a href="#" onclick="navTo('clients', this); return false;"><span class="nav-icon">&#9734;</span> All Clients</a></li>
+      <li><a href="#" onclick="navTo('projects', this); return false;"><span class="nav-icon">&#128196;</span> Projects</a></li>
+      <li><a href="#" onclick="navTo('payments', this); return false;"><span class="nav-icon">&#128176;</span> Payments</a></li>
     </ul>
 
     <div class="sidebar-label">Tools</div>
     <ul class="sidebar-nav">
-      <li><a href="#"><span class="nav-icon">&#128232;</span> Notifications</a></li>
-      <li><a href="#"><span class="nav-icon">&#128202;</span> Analytics</a></li>
+      <li><a href="#" onclick="navTo('notifications', this); return false;"><span class="nav-icon">&#128232;</span> Notifications</a></li>
+      <li><a href="#" onclick="navTo('analytics', this); return false;"><span class="nav-icon">&#128202;</span> Analytics</a></li>
       <li><a href="https://velonyxsystems.com" target="_blank"><span class="nav-icon">&#127760;</span> Live Site</a></li>
     </ul>
 
@@ -565,8 +565,11 @@
   <!-- MAIN -->
   <main class="main">
 
+    <!-- DASHBOARD VIEW (default) -->
+    <div class="admin-view" id="view-dashboard">
+
     <div class="page-header">
-      <h1>Welcome back, <span style="color:var(--gold)">Carlito</span></h1>
+      <h1>Welcome back, <span style="color:var(--gold)">Carlos</span></h1>
       <span class="date" id="currentDate"></span>
     </div>
 
@@ -623,6 +626,84 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    </div> <!-- end view-dashboard -->
+
+    <!-- CLIENTS VIEW -->
+    <div class="admin-view" id="view-clients" style="display:none;">
+      <div class="page-header"><h1>All <span style="color:var(--gold)">Clients</span></h1><button class="btn-add" onclick="openAddModal()">+ Add Client</button></div>
+      <div class="clients-table-wrap">
+        <table class="clients-table">
+          <thead><tr><th>Client</th><th>Package</th><th>Status</th><th>Uploads</th><th>Created</th><th>Actions</th></tr></thead>
+          <tbody id="allClientsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROJECTS VIEW (filtered active projects) -->
+    <div class="admin-view" id="view-projects" style="display:none;">
+      <div class="page-header"><h1>Active <span style="color:var(--gold)">Projects</span></h1></div>
+      <div class="clients-table-wrap">
+        <table class="clients-table">
+          <thead><tr><th>Client</th><th>Package</th><th>Status</th><th>Uploads</th><th>Actions</th></tr></thead>
+          <tbody id="projectsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAYMENTS VIEW -->
+    <div class="admin-view" id="view-payments" style="display:none;">
+      <div class="page-header"><h1>Payment <span style="color:var(--gold)">History</span></h1></div>
+      <div class="clients-table-wrap">
+        <table class="clients-table">
+          <thead><tr><th>Client</th><th>Package</th><th>Amount Paid</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody id="paymentsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS VIEW -->
+    <div class="admin-view" id="view-notifications" style="display:none;">
+      <div class="page-header"><h1>Send <span style="color:var(--gold)">Notification</span></h1></div>
+      <div style="max-width:500px;">
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.75rem;color:var(--white-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Select Client</label>
+          <select id="notifyClient" style="width:100%;padding:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.9rem;"></select>
+        </div>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.75rem;color:var(--white-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Message</label>
+          <textarea id="notifyMessage" rows="4" placeholder="Type your message..." style="width:100%;padding:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.9rem;resize:vertical;"></textarea>
+        </div>
+        <button class="btn-submit" onclick="sendNotification()" style="width:100%;">Send Notification</button>
+      </div>
+    </div>
+
+    <!-- ANALYTICS VIEW -->
+    <div class="admin-view" id="view-analytics" style="display:none;">
+      <div class="page-header"><h1>Business <span style="color:var(--gold)">Analytics</span></h1></div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Conversion Rate</div>
+          <div class="stat-value">—</div>
+          <div class="stat-sub">Consultations → Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Project Value</div>
+          <div class="stat-value" id="statAvgValue">$0</div>
+          <div class="stat-sub">Per client</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Completion</div>
+          <div class="stat-value" id="statAvgCompletion">0%</div>
+          <div class="stat-sub">Upload progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sites Launched</div>
+          <div class="stat-value" id="statAnalyticsLaunched">0</div>
+          <div class="stat-sub">All time</div>
+        </div>
+      </div>
+      <p style="color:var(--white-dim);font-size:0.85rem;margin-top:24px;">More analytics coming soon — Google Analytics integration, traffic per client site, and lead conversion tracking.</p>
     </div>
 
   </main>
@@ -977,6 +1058,126 @@
       var div = document.createElement('div');
       div.textContent = str || '';
       return div.innerHTML;
+    }
+
+    // ===== SIDEBAR NAVIGATION =====
+    function navTo(view, linkEl) {
+      // Hide all views
+      document.querySelectorAll('.admin-view').forEach(function(v) { v.style.display = 'none'; });
+
+      // Show selected view
+      var target = document.getElementById('view-' + view);
+      if (target) target.style.display = 'block';
+
+      // Update active link
+      document.querySelectorAll('.sidebar-nav a').forEach(function(a) { a.classList.remove('active'); });
+      if (linkEl) linkEl.classList.add('active');
+
+      // Populate view-specific content
+      if (view === 'clients') {
+        renderClientsTable('allClientsTableBody', allClients);
+      } else if (view === 'projects') {
+        var active = allClients.filter(function(c) { return c.projectStatus && c.projectStatus !== 'launched'; });
+        renderClientsTable('projectsTableBody', active);
+      } else if (view === 'payments') {
+        renderPaymentsTable();
+      } else if (view === 'notifications') {
+        populateNotifyDropdown();
+      } else if (view === 'analytics') {
+        updateAnalytics();
+      }
+    }
+
+    function renderClientsTable(tbodyId, clients) {
+      var tbody = document.getElementById(tbodyId);
+      if (!clients.length) {
+        tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">&#128188;</div><p>No clients to display.</p></div></td></tr>';
+        return;
+      }
+      tbody.innerHTML = '';
+      clients.forEach(function(c) {
+        var progress = c.checklistProgress ? c.checklistProgress.percentage : 0;
+        var created = c.createdAt ? new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="client-name-cell">' + escapeHtml(c.businessName || 'Unnamed') + '<br><span style="font-size:0.72rem;color:var(--white-dim)">' + escapeHtml(c.contactEmail || '') + '</span></td>' +
+          '<td>' + escapeHtml(c.packageType || '—') + '</td>' +
+          '<td><span class="status-badge ' + (c.projectStatus || 'intake') + '">' + (c.projectStatus || 'intake') + '</span></td>' +
+          '<td><div class="progress-mini"><div class="progress-mini-fill" style="width:' + progress + '%"></div></div><span style="font-size:0.75rem;color:var(--white-dim)">' + progress + '%</span></td>' +
+          '<td style="font-size:0.8rem;color:var(--white-dim)">' + created + '</td>' +
+          '<td><button class="btn-view" onclick="viewClient(\'' + c.clientId + '\')">View</button><button class="btn-status" onclick="openStatusModal(\'' + c.clientId + '\', \'' + escapeHtml(c.businessName || '') + '\', \'' + (c.projectStatus || 'intake') + '\')">Update</button></td>';
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderPaymentsTable() {
+      var tbody = document.getElementById('paymentsTableBody');
+      if (!allClients.length) {
+        tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">&#128176;</div><p>No payment records yet.</p></div></td></tr>';
+        return;
+      }
+      tbody.innerHTML = '';
+      allClients.forEach(function(c) {
+        var created = c.createdAt ? new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+        var amount = parseFloat(c.amountPaid) || 0;
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="client-name-cell">' + escapeHtml(c.businessName || 'Unnamed') + '</td>' +
+          '<td>' + escapeHtml(c.packageType || '—') + '</td>' +
+          '<td style="color:var(--gold);font-weight:600;">$' + amount.toLocaleString() + '</td>' +
+          '<td><span class="status-badge ' + (c.paymentStatus || 'pending') + '">' + (c.paymentStatus || 'pending') + '</span></td>' +
+          '<td style="font-size:0.8rem;color:var(--white-dim)">' + created + '</td>';
+        tbody.appendChild(tr);
+      });
+    }
+
+    function populateNotifyDropdown() {
+      var select = document.getElementById('notifyClient');
+      select.innerHTML = '<option value="">Select a client...</option>';
+      allClients.forEach(function(c) {
+        var opt = document.createElement('option');
+        opt.value = c.clientId;
+        opt.textContent = (c.businessName || 'Unnamed') + ' (' + (c.contactEmail || '') + ')';
+        select.appendChild(opt);
+      });
+    }
+
+    function updateAnalytics() {
+      var total = allClients.length || 1;
+      var revenue = allClients.reduce(function(s, c) { return s + (parseFloat(c.amountPaid) || 0); }, 0);
+      var avgVal = Math.round(revenue / total);
+      document.getElementById('statAvgValue').textContent = '$' + avgVal.toLocaleString();
+
+      var launched = allClients.filter(function(c) { return c.projectStatus === 'launched'; }).length;
+      document.getElementById('statAnalyticsLaunched').textContent = launched;
+
+      var avgProgress = Math.round(allClients.reduce(function(s, c) {
+        return s + (c.checklistProgress ? c.checklistProgress.percentage : 0);
+      }, 0) / total);
+      document.getElementById('statAvgCompletion').textContent = avgProgress + '%';
+    }
+
+    async function sendNotification() {
+      var clientId = document.getElementById('notifyClient').value;
+      var message = document.getElementById('notifyMessage').value.trim();
+      if (!clientId || !message) {
+        showToast('Select a client and enter a message', 'error');
+        return;
+      }
+      var client = allClients.find(function(c) { return c.clientId === clientId; });
+      try {
+        await apiCall('POST', '/notify', {
+          type: 'status_update',
+          clientEmail: client.contactEmail,
+          clientName: client.businessName,
+          clientPhone: client.contactPhone,
+          status: 'update',
+        });
+        showToast('Notification sent to ' + client.businessName, 'success');
+        document.getElementById('notifyMessage').value = '';
+      } catch (err) {
+        showToast('Failed to send: ' + err.message, 'error');
+      }
     }
 
     // ===== INIT =====
