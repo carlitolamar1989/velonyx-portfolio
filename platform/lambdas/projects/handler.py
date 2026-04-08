@@ -67,8 +67,14 @@ def lambda_handler(event, context):
         }
 
     if method == "GET":
+        params = event.get("queryStringParameters") or {}
+
+        # Admin requesting all clients
+        if is_admin and params.get("all") == "true":
+            return get_all_projects()
+
         # Admin can view any project, client can only view their own
-        query_client_id = event.get("queryStringParameters", {}).get("clientId", client_id)
+        query_client_id = params.get("clientId", client_id)
         if not is_admin:
             query_client_id = client_id
         return get_project(query_client_id)
@@ -91,6 +97,45 @@ def lambda_handler(event, context):
         "headers": HEADERS,
         "body": json.dumps({"error": "Not found"}),
     }
+
+
+def get_all_projects():
+    """Get all client projects (admin only). Returns list of all clients."""
+    table = dynamodb.Table(TABLE)
+
+    try:
+        response = table.scan()
+        items = response.get("Items", [])
+
+        # Handle pagination if table is large
+        while "LastEvaluatedKey" in response:
+            response = table.scan(ExclusiveStartKey=response["LastEvaluatedKey"])
+            items.extend(response.get("Items", []))
+
+        # Add checklist progress to each client
+        for item in items:
+            checklist = item.get("checklist", {})
+            completed = sum(1 for cat in CHECKLIST_CATEGORIES if checklist.get(cat["key"]))
+            total = len(CHECKLIST_CATEGORIES)
+            item["checklistProgress"] = {
+                "completed": completed,
+                "total": total,
+                "percentage": round((completed / total) * 100) if total else 0,
+            }
+
+        return {
+            "statusCode": 200,
+            "headers": HEADERS,
+            "body": json.dumps({"clients": items}, cls=DecimalEncoder),
+        }
+
+    except Exception as e:
+        print(f"Error scanning projects: {str(e)}")
+        return {
+            "statusCode": 500,
+            "headers": HEADERS,
+            "body": json.dumps({"error": "Failed to load clients"}),
+        }
 
 
 def get_project(client_id):
