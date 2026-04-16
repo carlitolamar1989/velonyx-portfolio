@@ -2758,7 +2758,7 @@
   <!-- HERO -->
   <main id="main-content">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.jpg" aria-hidden="true" tabindex="-1">
+    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.jpg" aria-hidden="true" tabindex="-1" preload="metadata" id="heroVideo">
       <source src="assets/velonyx_hero_web.mp4" type="video/mp4">
     </video>
     <div class="hero-video-overlay"></div>
@@ -2801,7 +2801,7 @@
 
   <!-- IMAGE DIVIDER 1 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80" alt="Digital workspace" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70" alt="Digital workspace" loading="lazy">
     <div class="image-divider-text">
       <h3 class="fade-in">Your brand deserves <span>better than the DMs</span></h3>
     </div>
@@ -3072,7 +3072,7 @@
 
   <!-- IMAGE DIVIDER 2 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80" alt="Team working on digital projects" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=70" alt="Team working on digital projects" loading="lazy">
     <div class="image-divider-text">
       <h3 class="fade-in">Built with precision. <span>Designed to convert.</span></h3>
     </div>
@@ -3385,7 +3385,8 @@
       function spawn() {
         stars = [];
         const area = w * h;
-        const count = Math.min(580, Math.max(220, Math.floor(area / 3800)));
+        const isMobile = window.innerWidth < 768;
+        const count = isMobile ? 80 : Math.min(200, Math.max(100, Math.floor(area / 8000)));
         for (let i = 0; i < count; i++) {
           const roll = Math.random();
           let hue = 'w';
@@ -3713,7 +3714,7 @@
       const pCtx = pCanvas.getContext('2d');
       let dots = [];
       let mouseX = -1000, mouseY = -1000;
-      const dotCount = window.innerWidth < 768 ? 30 : 70;
+      const dotCount = window.innerWidth < 768 ? 15 : 40;
       const connectDist = 140;
 
       function sizeCanvas() {
@@ -3822,19 +3823,32 @@
 
       gsap.registerPlugin(ScrollTrigger);
 
-      // ===== CURSOR GLOW (subtle ambient light, no delay) =====
+      // ===== CURSOR GLOW (throttled for performance) =====
       var cursorGlow = document.getElementById('cursorGlow');
 
       if (cursorGlow && window.matchMedia('(hover: hover)').matches) {
+        var glowRAF = null;
         document.addEventListener('mousemove', function(e) {
-          cursorGlow.style.left = e.clientX + 'px';
-          cursorGlow.style.top = e.clientY + 'px';
-          cursorGlow.style.opacity = '1';
-        });
+          if (glowRAF) return;
+          glowRAF = requestAnimationFrame(function() {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+            cursorGlow.style.opacity = '1';
+            glowRAF = null;
+          });
+        }, { passive: true });
 
         document.addEventListener('mouseleave', function() {
           cursorGlow.style.opacity = '0';
         });
+      }
+
+      // ===== PERFORMANCE: Pause video on mobile or when off-screen =====
+      var heroVideo = document.getElementById('heroVideo');
+      if (heroVideo && window.innerWidth < 768) {
+        heroVideo.pause();
+        heroVideo.removeAttribute('autoplay');
+        heroVideo.poster = 'assets/velonyx_hero_poster.jpg';
       }
 
       // ===== GSAP SCROLL ANIMATIONS FOR ALL SECTIONS =====
