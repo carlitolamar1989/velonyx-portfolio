@@ -61,7 +61,7 @@
       --bg-border: #1E1E22;
       --white: #F0EDE8;
       --white-muted: #B0AEA6;
-      --white-dim: #706E68;
+      --white-dim: #8F8D87;
       --success: #34D399;
       --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 22%, #B38728 45%, #FBF5B7 67%, #AA771C 100%);
       --gold-btn: linear-gradient(135deg, #D4AF37 0%, #F7E17B 35%, #D4AF37 65%, #B8860B 100%);
@@ -199,6 +199,52 @@
       .cosmw-band--primary,
       .cosmw-band--secondary,
       .cosmw-band--accent { animation: none; }
+      /* ADA: Disable ALL animations and transitions for users who prefer reduced motion */
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero-video { display: none; }
+      .speed-line { display: none; }
+      .loader { display: none; }
+    }
+
+    /* ===== ADA ACCESSIBILITY ===== */
+
+    /* Skip navigation link — hidden until focused */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #D4AF37;
+      color: #08080A;
+      padding: 12px 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 0 0 8px 8px;
+      z-index: 100001;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Focus indicators — visible on all interactive elements */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid #D4AF37;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
     }
 
     h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
@@ -416,6 +462,11 @@
       cursor: pointer;
       flex-direction: column;
       gap: 5px;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
     }
 
     .mobile-menu-btn span {
@@ -2653,6 +2704,9 @@
 </head>
 <body>
 
+  <!-- ADA: Skip Navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Cursor Glow -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
@@ -2702,8 +2756,9 @@
   </nav>
 
   <!-- HERO -->
+  <main id="main-content">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.jpg">
+    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.jpg" aria-hidden="true" tabindex="-1">
       <source src="assets/velonyx_hero_web.mp4" type="video/mp4">
     </video>
     <div class="hero-video-overlay"></div>
@@ -2817,27 +2872,27 @@
       <div class="process-steps">
         <div class="process-step fade-in">
           <div class="process-num">1</div>
-          <h4>Free Consultation</h4>
+          <h3>Free Consultation</h3>
           <p>We learn about your business, your goals, and what you need. No pressure, no commitment &mdash; just a real conversation about how we can help.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">2</div>
-          <h4>Secure Your Project</h4>
+          <h3>Secure Your Project</h3>
           <p>Ready to move forward? A 50% deposit reserves your spot and kicks off the build. The remaining 50% is due at launch.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">3</div>
-          <h4>Design &amp; Build</h4>
+          <h3>Design &amp; Build</h3>
           <p>We design and develop your site from scratch. You get a live preview link to review every detail before anything goes public.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">4</div>
-          <h4>Refine</h4>
+          <h3>Refine</h3>
           <p>Your feedback shapes the final product. We revise until you are completely satisfied with every detail.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">5</div>
-          <h4>Launch</h4>
+          <h3>Launch</h3>
           <p>We deploy your site, connect payments, and hand you a live link. Your business is online and ready to receive customers.</p>
         </div>
       </div>
@@ -3218,15 +3273,17 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">VELONYX SYSTEMS</div>
     <div class="footer-slogan">Your Legacy, Engineered With Precision.</div>
     <div style="display:flex;justify-content:center;gap:20px;margin:12px 0;flex-wrap:wrap;">
-      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.4);font-size:0.72rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;">SMS Terms &amp; Privacy</a>
-      <a href="/sms-opt-in.html" style="color:rgba(212,175,55,0.4);font-size:0.72rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;">SMS Opt-In</a>
-      <a href="mailto:admin@velonyxsystems.com" style="color:rgba(212,175,55,0.4);font-size:0.72rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;">admin@velonyxsystems.com</a>
-      <a href="tel:+18773178643" style="color:rgba(212,175,55,0.4);font-size:0.72rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;">(877) 317-8643</a>
+      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">SMS Terms &amp; Privacy</a>
+      <a href="/sms-opt-in.html" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">SMS Opt-In</a>
+      <a href="mailto:admin@velonyxsystems.com" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">admin@velonyxsystems.com</a>
+      <a href="tel:+18773178643" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">(877) 317-8643</a>
     </div>
     <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved.</p>
   </footer>
@@ -3240,13 +3297,13 @@
   </div>
 
   <!-- BOOKING MODAL -->
-  <div class="booking-overlay" id="bookingOverlay">
-    <div class="booking-backdrop" onclick="closeBooking()"></div>
+  <div class="booking-overlay" id="bookingOverlay" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+    <div class="booking-backdrop" onclick="closeBooking()" aria-hidden="true"></div>
     <div class="booking-modal">
-      <button class="booking-close" onclick="closeBooking()">&times;</button>
+      <button class="booking-close" onclick="closeBooking()" aria-label="Close booking form" style="min-width:44px;min-height:44px;">&times;</button>
       <div class="booking-header">
         <div class="section-label">Book a Consultation</div>
-        <h2>Let's Talk About Your Business</h2>
+        <h2 id="bookingTitle">Let's Talk About Your Business</h2>
         <p>Fill out the form below and we'll reach out within 24 hours.</p>
       </div>
       <form class="booking-form" id="bookingForm">
@@ -3297,7 +3354,7 @@
         </div>
         <button type="submit" class="btn-primary booking-submit" id="bookingSubmitBtn">Send My Request</button>
       </form>
-      <div class="booking-success" id="bookingSuccess">
+      <div class="booking-success" id="bookingSuccess" role="alert">
         <div class="success-icon">&#10003;</div>
         <h3>Request Received!</h3>
         <p>We'll reach out to you within 24 hours. Keep an eye on your email for a confirmation from Velonyx Systems.</p>
@@ -3561,18 +3618,39 @@
     const bookingSuccess = document.getElementById('bookingSuccess');
     const bookingSubmitBtn = document.getElementById('bookingSubmitBtn');
 
+    var _lastFocused = null;
+
     function openBooking() {
+      _lastFocused = document.activeElement;
       bookingOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+      // ADA: Focus the first input in the modal
+      setTimeout(function() {
+        var firstInput = bookingOverlay.querySelector('input, button, select, textarea');
+        if (firstInput) firstInput.focus();
+      }, 300);
     }
 
     function closeBooking() {
       bookingOverlay.classList.remove('active');
       document.body.style.overflow = '';
+      // ADA: Restore focus to the element that opened the modal
+      if (_lastFocused) _lastFocused.focus();
     }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeBooking();
+      // ADA: Trap focus inside modal when open
+      if (e.key === 'Tab' && bookingOverlay.classList.contains('active')) {
+        var focusable = bookingOverlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
     });
 
     bookingForm.addEventListener('submit', async (e) => {
