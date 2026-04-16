@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS Opt-In — Velonyx Systems</title>
+  <meta name="description" content="Velonyx Systems SMS opt-in consent form. By providing your phone number and checking the consent box, you agree to receive text messages.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-space: #020408;
+      --gold: #D4AF37;
+      --gold-light: #F0D060;
+      --white: #ffffff;
+      --white-dim: rgba(255,255,255,0.55);
+      --glass: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--deep-space);
+      color: var(--white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,175,55,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(56,189,248,0.04) 0%, transparent 60%),
+                  linear-gradient(180deg, #020408 0%, #040810 100%);
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 18px 32px;
+      background: rgba(2,4,8,0.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212,175,55,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo img {
+      height: 44px; width: 33px; object-fit: cover; object-position: right center;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+    }
+    .nav-logo-text {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-back {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.45); text-decoration: none; letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    main {
+      position: relative; z-index: 1;
+      padding: 110px 24px 60px;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .page-label {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800;
+      line-height: 1.15; color: var(--white); margin-bottom: 12px;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 0.95rem; color: var(--white-dim); line-height: 1.65;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      backdrop-filter: blur(12px);
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(212,175,55,0.4);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* SMS Consent Box — PROMINENTLY DISPLAYED */
+    .sms-consent-box {
+      background: rgba(212,175,55,0.06);
+      border: 2px solid rgba(212,175,55,0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .sms-consent-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .sms-consent-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .sms-consent-checkbox input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .sms-consent-checkbox span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.65;
+    }
+
+    .sms-consent-link {
+      display: block;
+      margin-top: 10px;
+      padding-left: 34px;
+      font-size: 0.72rem;
+    }
+
+    .sms-consent-link a {
+      color: rgba(212,175,55,0.5);
+      text-decoration: none;
+    }
+
+    .sms-consent-link a:hover {
+      color: var(--gold);
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #D4AF37, #E8C547, #D4AF37);
+      color: #08080A;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,175,55,0.35);
+    }
+
+    footer {
+      position: relative; z-index: 1;
+      padding: 28px 32px; margin-top: 40px;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.78rem; color: rgba(255,255,255,0.25);
+    }
+    footer a { color: rgba(212,175,55,0.5); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 20px; }
+      nav { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="assets/vs-logo-monogram.png" alt="Velonyx Systems">
+      <span class="nav-logo-text">Velonyx Systems</span>
+    </a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="page-label">Book a Consultation</div>
+      <h1 class="page-title">Let's Talk About <span>Your Business</span></h1>
+      <p class="page-subtitle">Fill out the form below and we'll reach out within 24 hours.</p>
+    </div>
+
+    <div class="form-card">
+      <form id="optInForm" onsubmit="event.preventDefault();">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 123-4567" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>What Service Are You Interested In?</label>
+          <select required>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Starter Website ($1,500)</option>
+            <option>Growth Package ($3,500)</option>
+            <option>Premium Package ($6,000)</option>
+            <option>Not sure yet — I'd like to discuss</option>
+          </select>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SMS CONSENT — PROMINENTLY DISPLAYED          -->
+        <!-- This is the opt-in checkbox for text messages -->
+        <!-- ============================================ -->
+        <div class="sms-consent-box">
+          <div class="sms-consent-label">SMS Consent</div>
+          <label class="sms-consent-checkbox">
+            <input type="checkbox" id="smsConsent" name="smsConsent" required>
+            <span>I agree to receive SMS text messages from Velonyx Systems at the phone number provided. Messages may include booking confirmations, project updates, and appointment reminders. Message frequency varies (typically 1-5 messages per project). Reply STOP to cancel. Reply HELP for help. Msg &amp; data rates may apply.</span>
+          </label>
+          <div class="sms-consent-link">
+            <a href="/sms-terms.html" target="_blank">View full SMS Terms &amp; Privacy Policy &rarr;</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Send My Request</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;margin-bottom:8px;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems LLC. All rights reserved.</span><br>
+    <span><a href="/">velonyxsystems.com</a> &nbsp;&middot;&nbsp; <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> &nbsp;&middot;&nbsp; (877) 317-8643</span><br>
+    <span style="margin-top:8px;display:inline-block;"><a href="/sms-terms.html">SMS Terms &amp; Consent</a></span>
+  </footer>
+</body>
+</html>
