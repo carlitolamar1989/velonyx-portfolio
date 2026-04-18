@@ -2,8 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F838ZEJ22J');</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted'){ window.__loadGA4(); }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Velonyx Systems</title>
   <meta name="description" content="Velonyx Systems privacy policy. How we collect, use, and protect your personal information.">
@@ -180,5 +190,7 @@
     <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
     <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a></span>
   </footer>
+  <!-- Cookie consent banner (GA4 gate) -->
+  <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
