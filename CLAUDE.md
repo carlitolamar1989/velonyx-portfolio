@@ -9,9 +9,9 @@
 
 ## Project Overview
 
-- **What it is:** Marketing and conversion site for **Velonyx Systems** — web design packages, Stripe checkout flows (deposit vs BNPL), financing explainer page, Calendly booking, portfolio demos.
-- **Tech stack:** Static **HTML/CSS/JS** (no React, no npm build). **GitHub Pages** for hosting. **Stripe Payment Links** (`buy.stripe.com/...`) for packages and maintenance subscriptions. **Calendly** embed for consultations. **Google Analytics 4** (measurement ID in HTML). Optional **AWS Lambda** code exists locally for Stripe Checkout sessions and (per `BUSINESS-HUB.md`) a legacy booking pipeline — **production checkout does not depend on that Lambda** today.
-- **Status:** Live. Packages, deposits, BNPL links, maintenance upsell links, SEO (`sitemap.xml`, `robots.txt`), and booking page are implemented. BNPL methods (Klarna/Affirm/Afterpay) may still be subject to **Stripe account approval**. Duplicate `velonyx-website/` tree is kept roughly in sync with root pages for reference.
+- **What it is:** Marketing and conversion site for **Velonyx Systems** — 4-tier web design packages, Stripe checkout flows (deposit vs BNPL), monthly Care subscription upsells, financing explainer, Calendly booking, portfolio demos, full legal pack (Privacy/Terms/MSA/SOW/SMS).
+- **Tech stack:** Static **HTML/CSS/JS** (no React, no npm build). **GitHub Pages** for hosting. **Stripe Payment Links** (`buy.stripe.com/...`) for build packages and recurring Care subscriptions. **Calendly** embed for consultations. **Google Analytics 4** — **gated by CCPA cookie consent banner** via `/assets/cookie-consent.js`. Optional **AWS Lambda** code exists locally for Stripe Checkout sessions and (per `BUSINESS-HUB.md`) a legacy booking pipeline — **production checkout does not depend on that Lambda** today.
+- **Status:** Launch-ready on branch `claude/zen-bouman`. 4-tier pricing live, Care subscriptions with live Stripe links, legal pack complete, cookie banner functional, consent checkboxes on public forms. Awaiting manual QA + explicit approval before merge to `main`.
 
 ---
 
@@ -61,24 +61,74 @@
 
 ```
 Cursor-Claude/
-├── index.html              # Main landing (canonical public site entry)
-├── checkout.html           # Plans + deposit/BNPL + maintenance upsell
-├── financing.html          # BNPL / pay-over-time messaging
-├── book.html               # Calendly embed
-├── assets/                 # Logos (vs-logo-2026.png primary), legacy PNGs
-├── client-demos/           # barber, fitness, photo — portfolio demos + GA
-├── scripts/                # remove_logo_bg.py
-├── sitemap.xml, robots.txt, CNAME   # SEO + Pages custom domain
+├── index.html              # Main landing — 4 build tiers + 4 Care tiers
+├── checkout.html           # 4 plan cards + deposit/BNPL + Care upsell (4 tiers)
+├── financing.html          # BNPL / pay-over-time messaging + Enterprise note
+├── book.html               # Calendly embed (supports ?tier=enterprise)
+├── privacy.html            # Privacy Policy (CCPA)
+├── terms.html              # Terms of Service
+├── msa.html                # Master Services Agreement reference
+├── sow.html                # Statement of Work template reference
+├── sms-terms.html          # SMS terms (Twilio compliance)
+├── sms-opt-in.html         # SMS opt-in consent form
+├── 404.html                # Brand-styled 404
+├── assets/
+│   ├── cookie-consent.js   # CCPA banner + GA4 gate (loaded on all public pages)
+│   ├── favicon-32.png, favicon-180.png
+│   └── vs-logo-*.png
+├── client-demos/           # barber, fitness, photo — portfolio demos
+├── platform/               # Client Connect: terraform + lambdas + portal + admin
+├── sitemap.xml, robots.txt, CNAME
 ├── .github/workflows/deploy.yml
-├── velonyx-website/        # Mirror: index, checkout, financing + assets (keep in sync if used)
-├── velonyx-website/backend/# gitignored — Lambda sources, local only
-├── BUSINESS-HUB.md         # Human ops notes (AWS URLs, Twilio, etc.)
-├── challenge-coin/         # Separate mini-project
-├── business-docs/, content/ # gitignored — local business/draft content
+├── velonyx-website/        # Mirror (keep in sync)
 └── CLAUDE.md               # This file
 ```
 
-**Most edited for marketing site:** `index.html`, `checkout.html`, `financing.html`, `book.html`, `assets/vs-logo-2026.*`, `sitemap.xml`.
+---
+
+## Pricing
+
+### Build tiers (one-time, all include 30-day support)
+
+| Tier | Price | Delivery | Key differentiators |
+|---|---|---|---|
+| **Starter** | $1,500 | 5–7 days | Single-page site + booking + payments |
+| **Growth** | $3,500 | 7–10 days | Multi-page + logo + BNPL + SMS automation |
+| **Premium** | $6,000 | 10–14 days | Everything in Growth + brand video + Client Portal + unlimited pages |
+| **Enterprise** | **Starting at $12,000** (Contact Us → `/book.html?tier=enterprise`) | Custom | Multi-user/multi-location Client Portal, custom integrations, dedicated PM, HIPAA-ready infra available, quarterly strategy reviews |
+
+### Care subscriptions (monthly, required to keep site live)
+
+| Tier | Price | Stripe Payment Link |
+|---|---|---|
+| **Standard Care** | $125/mo | `https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b` |
+| **Growth Care** | $225/mo | `https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c` |
+| **Premium Care** | $325/mo | `https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d` |
+| **Enterprise Care** | **Custom — Contact Us** (no Stripe link; Carlos invoices manually via Stripe Invoicing per engagement) | — |
+
+### Payment processing
+
+- **Stripe Payment Links** for cards, Apple Pay, Google Pay on all build tiers (full-pay, 50% deposit, BNPL) and recurring Care subscriptions.
+- **BNPL (Affirm / Klarna / Afterpay)** available via Stripe on build **pay-in-full only** — NOT for deposits, NOT for recurring Care subscriptions.
+- **Enterprise pricing** is always manual — Stripe Invoicing on a case-by-case basis. No preset Payment Link exists for Enterprise build or Enterprise Care.
+- **Pay-in-full discount:** 10% off one-time build fee.
+
+### Legacy maintenance links (archived, not rendered)
+
+Preserved in HTML comments for rollback only. Not referenced by any live UI:
+- `https://buy.stripe.com/3cI14p2R71uae2ig14cs806` (old $150/mo Standard Maintenance)
+- `https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807` (old $300/mo Priority Retainer)
+
+---
+
+## Compliance & Consent
+
+- **Legal pages:** `/privacy.html`, `/terms.html`, `/msa.html`, `/sow.html`, `/sms-terms.html`. All linked in footer of every public page.
+- **CCPA cookie banner:** `/assets/cookie-consent.js` loads on all 10 public pages with equal-weight Accept / Reject buttons. GA4 (`G-F838ZEJ22J`) does NOT load until user explicitly accepts. Choice stored in `localStorage.velonyx_cookie_consent`.
+- **Consent checkboxes (required, not pre-checked):**
+  - `index.html` booking modal — Privacy Policy + Terms checkbox AND separate SMS consent checkbox.
+  - `sms-opt-in.html` — SMS consent (Twilio requirement) AND separate Privacy/Terms checkbox.
+- **Intentionally excluded:** `client-demos/*` (portfolio demos), `platform/portal/*` and `platform/admin/*` (authenticated internal), `book.html` Calendly embed (Calendly handles its own consent flow).
 
 ---
 
@@ -99,11 +149,11 @@ Stripe **Payment Link** URLs are **public** by design (in `checkout.html`).
 
 ## Current Issues & TODOs
 
-- **Logo on site:** User reports background not appearing transparent in browser — verify `assets/vs-logo-2026.png` alpha in an image inspector; check CSS (`mix-blend-mode`, background on `img` wrappers) and cache-bust if CDN/browser caches old JPG.
+- **Post-deploy Stripe task:** Once `claude/zen-bouman` is merged to `main` and `/terms.html` is live at `velonyxsystems.com/terms.html`, enable "Require customers to accept your terms of service" on all 14 Payment Links (3 full-pay, 3 deposit, 3 BNPL, 3 Care, 2 legacy maintenance optional). Terms URL: `https://velonyxsystems.com/terms.html`.
 - **BNPL:** Confirm Klarna/Affirm/Afterpay enabled on the Stripe account for those links.
 - **`velonyx-website/backend/`:** Ignored by git — back up Lambda code and env outside the repo if you rely on it.
 - **`BUSINESS-HUB.md`:** May describe booking Lambda paths; live funnel emphasizes **Calendly** — reconcile docs with reality in AWS.
-- **`robots.txt`:** Disallows some paths (e.g. duplicate site folder if listed); verify Search Console property matches `www` vs apex in `sitemap.xml`.
+- **Client Connect end-to-end test:** Intake form → Lambda → DynamoDB → SES confirmation email hasn't been run with live AWS creds in this session. Test before relying on production intake.
 
 ---
 
