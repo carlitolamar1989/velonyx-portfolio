@@ -2683,7 +2683,7 @@
       max-width: 1320px; margin: 0 auto;
     }
     @media (max-width: 1100px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; gap: 18px; } }
-    @media (max-width: 640px) { .maintenance-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .maintenance-grid { grid-template-columns: 1fr; max-width: 420px; } }
     .maintenance-card.maintenance-enterprise { border-color: rgba(212,175,55,0.25); }
     .maintenance-card.maintenance-enterprise:hover { border-color: rgba(212,175,55,0.45); }
     .maintenance-card {
@@ -3190,12 +3190,9 @@
       <p class="pricing-note fade-in">Every package includes <strong>30 days of free support</strong> after launch. Starter &amp; Growth receive standard support. Premium receives priority support (48-hour response). After 30 days, add a Care plan to keep your site updated and supported.</p>
 
       <!--
-        ⚠️  CARE PLANS — PENDING STRIPE PAYMENT LINKS
-        TODO before merging to main:
-          1. Create 3 Stripe Payment Links ($125, $225, $325 monthly recurring)
-          2. Replace the 3 "#" hrefs below with the live buy.stripe.com URLs
-          3. Also update STRIPE_CARE_LINKS in checkout.html (Step 3 upsell block)
-        Legacy maintenance links (still valid, not rendered):
+        CARE PLANS — live Stripe Payment Links configured in the <a> tags below.
+        Legacy maintenance links (archived, no longer rendered anywhere on site;
+        preserved here for rollback/historical reference only):
           Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
           Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
       -->

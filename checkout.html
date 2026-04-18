@@ -451,7 +451,7 @@
       max-width: 1100px; margin: 0 auto;
     }
     @media (max-width: 1100px) { .maintenance-upsell-grid { grid-template-columns: repeat(2, 1fr); max-width: 580px; gap: 14px; } }
-    @media (max-width: 520px) { .maintenance-upsell-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .maintenance-upsell-grid { grid-template-columns: 1fr; max-width: 360px; } }
     .upsell-card {
       background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
       border-radius: 18px; padding: 24px 22px; position: relative;
@@ -708,9 +708,9 @@
 
       <!-- STEP 3: Add Care Plan -->
       <!--
-        ⚠️  CARE PLANS — PENDING STRIPE PAYMENT LINKS
-        TODO before merging to main: populate STRIPE_CARE_LINKS below with live buy.stripe.com URLs.
-        Legacy monthly Stripe links (still valid, not rendered):
+        CARE PLANS — live Stripe Payment Links configured in STRIPE_CARE_LINKS (below).
+        Legacy monthly Stripe links (archived, no longer rendered anywhere on site;
+        preserved here for rollback/historical reference only):
           Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
           Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
       -->
@@ -840,9 +840,9 @@
       premium: 'https://buy.stripe.com/eVqfZjajz7Sy4rI7uycs805',
     };
 
-    // CARE PLANS — monthly recurring (Stripe subscription Payment Links)
-    // TODO: Create 3 new Stripe Payment Links and paste URLs here before merging to main.
-    // Legacy maintenance links (still valid, not rendered on the new UI):
+    // CARE PLANS — monthly recurring (Stripe subscription Payment Links).
+    // Legacy maintenance links (archived, no longer rendered anywhere on site;
+    // preserved here for rollback/historical reference only):
     //   Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
     //   Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
     const STRIPE_CARE_LINKS = {
