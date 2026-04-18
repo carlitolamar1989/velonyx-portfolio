@@ -53,7 +53,7 @@
     "telephone": "+1-877-317-8643",
     "email": "admin@velonyxsystems.com",
     "slogan": "Your Legacy, Engineered With Precision.",
-    "priceRange": "$1,500 - $6,000",
+    "priceRange": "$1,500 - $12,000+",
     "areaServed": "US",
     "serviceType": ["Web Design", "Web Development", "Payment Integration", "Booking Systems", "Digital Infrastructure"],
     "sameAs": [
@@ -84,6 +84,18 @@
         "price": "6000",
         "priceCurrency": "USD",
         "description": "Full digital system with brand video, client portal, automated reminders, and unlimited revisions"
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise Website Package",
+        "price": "12000",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "minPrice": "12000"
+        },
+        "description": "Multi-user multi-location infrastructure with custom integrations, dedicated project management, HIPAA-ready infrastructure available, and quarterly strategy reviews. Starting at $12,000 — contact us for custom quote."
       }
     ]
   }
@@ -2438,18 +2450,21 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1060px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1320px;
       margin: 0 auto;
       position: relative;
+    }
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 780px; }
     }
 
     .pricing-card {
       background: var(--bg-card-glossy);
       border: 1px solid rgba(212, 175, 55, 0.08);
       border-radius: 16px;
-      padding: 40px 32px;
+      padding: 32px 24px;
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -2457,6 +2472,7 @@
       flex-direction: column;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
+    @media (max-width: 1100px) { .pricing-card { padding: 40px 32px; } }
 
     .pricing-card::after {
       content: '';
@@ -2653,9 +2669,10 @@
     }
     .maintenance-subtext strong { color: var(--accent); }
     .maintenance-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-      max-width: 780px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      max-width: 1060px; margin: 0 auto;
     }
+    @media (max-width: 960px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; } }
     @media (max-width: 640px) { .maintenance-grid { grid-template-columns: 1fr; } }
     .maintenance-card {
       background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
@@ -3135,21 +3152,51 @@
           </div>
         </div>
 
+        <!-- ENTERPRISE -->
+        <div class="pricing-card fade-in">
+          <div class="pricing-tier-name">Enterprise</div>
+          <div class="pricing-amount"><span class="currency" style="font-size:0.55em;">Starting at $</span>12,000</div>
+          <p class="pricing-desc">Multi-location and multi-user operations. Custom integrations, dedicated project management, and infrastructure designed around your business.</p>
+          <ul class="pricing-features">
+            <li><div class="pricing-check"><span>&#10003;</span></div> Everything in Premium, plus:</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited pages</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Full multi-user, multi-location Client Portal</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Custom integrations (CRM, email marketing, e-commerce)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Dedicated project management</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Quarterly strategy reviews</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> HIPAA-ready infrastructure available (separate agreement)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Custom delivery timeline</li>
+          </ul>
+          <div class="pricing-actions">
+            <a href="/book.html?tier=enterprise" class="btn-secondary pricing-cta">Contact Us</a>
+            <a href="/book.html?tier=enterprise" class="pricing-consult-link">Book an Enterprise consultation →</a>
+          </div>
+        </div>
+
       </div>
 
-      <p class="pricing-note fade-in">Every package includes <strong>30 days of free support</strong> after launch. Starter &amp; Growth receive standard support. Premium receives priority support (48-hour response). After 30 days, add a maintenance plan to keep your site updated and supported.</p>
+      <p class="pricing-note fade-in">Every package includes <strong>30 days of free support</strong> after launch. Starter &amp; Growth receive standard support. Premium receives priority support (48-hour response). After 30 days, add a Care plan to keep your site updated and supported.</p>
 
-      <!-- MAINTENANCE PLANS -->
+      <!--
+        ⚠️  CARE PLANS — PENDING STRIPE PAYMENT LINKS
+        TODO before merging to main:
+          1. Create 3 Stripe Payment Links ($125, $225, $325 monthly recurring)
+          2. Replace the 3 "#" hrefs below with the live buy.stripe.com URLs
+          3. Also update STRIPE_CARE_LINKS in checkout.html (Step 3 upsell block)
+        Legacy maintenance links (still valid, not rendered):
+          Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
+          Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
+      -->
       <div class="maintenance-wrap fade-in">
         <div class="section-label" style="text-align:center;margin-bottom:8px;">After Your 30 Days</div>
-        <h3 class="maintenance-heading">Keep Your Site Running &amp; Growing</h3>
-        <p class="maintenance-subtext">Your 30-day support period is included with every package. After that, choose a plan to keep your site maintained, updated, and performing. <strong>First month free</strong> when you sign on at launch.</p>
+        <h3 class="maintenance-heading">Care Plans &mdash; Keep Your Site Running &amp; Growing</h3>
+        <p class="maintenance-subtext">Your 30-day support period is included with every package. After that, choose a Care plan to keep your site maintained, updated, and performing. <strong>First month free</strong> when you sign on at launch.</p>
 
         <div class="maintenance-grid">
 
           <div class="maintenance-card">
-            <div class="maintenance-tier">Standard Maintenance</div>
-            <div class="maintenance-price">$150<span class="maintenance-mo">/mo</span></div>
+            <div class="maintenance-tier">Standard Care</div>
+            <div class="maintenance-price">$125<span class="maintenance-mo">/mo</span></div>
             <ul class="maintenance-features">
               <li>&#10003; Content updates &amp; text changes</li>
               <li>&#10003; Bug fixes &amp; compatibility patches</li>
@@ -3158,22 +3205,35 @@
               <li>&#10003; Monthly site backup</li>
               <li>&#10003; Response within 3-5 business days</li>
             </ul>
-            <a href="https://buy.stripe.com/3cI14p2R71uae2ig14cs806" class="btn-maintenance" target="_blank" rel="noopener">Add Standard Plan</a>
+            <a href="#" data-todo="Replace with Stripe link for Standard Care $125/mo" class="btn-maintenance" onclick="alert('Standard Care sign-up opens soon. Email admin@velonyxsystems.com to be invoiced.'); return false;">Add Standard Care</a>
           </div>
 
           <div class="maintenance-card maintenance-featured">
-            <div class="maintenance-popular">Recommended for Premium Clients</div>
-            <div class="maintenance-tier">Priority Retainer</div>
-            <div class="maintenance-price">$300<span class="maintenance-mo">/mo</span></div>
+            <div class="maintenance-popular">Most Popular</div>
+            <div class="maintenance-tier">Growth Care</div>
+            <div class="maintenance-price">$225<span class="maintenance-mo">/mo</span></div>
             <ul class="maintenance-features">
               <li>&#10003; Everything in Standard, plus:</li>
+              <li>&#10003; Priority updates &mdash; within 72 hours</li>
+              <li>&#10003; Up to 4 change requests / month</li>
+              <li>&#10003; Monthly performance report</li>
+              <li>&#10003; Quarterly SEO snapshot</li>
+            </ul>
+            <a href="#" data-todo="Replace with Stripe link for Growth Care $225/mo" class="btn-maintenance btn-maintenance-gold" onclick="alert('Growth Care sign-up opens soon. Email admin@velonyxsystems.com to be invoiced.'); return false;">Add Growth Care</a>
+          </div>
+
+          <div class="maintenance-card">
+            <div class="maintenance-tier">Premium Care</div>
+            <div class="maintenance-price">$325<span class="maintenance-mo">/mo</span></div>
+            <ul class="maintenance-features">
+              <li>&#10003; Everything in Growth, plus:</li>
               <li>&#10003; Priority updates &mdash; within 48 hours</li>
               <li>&#10003; Unlimited change requests</li>
-              <li>&#10003; Monthly analytics &amp; performance report</li>
+              <li>&#10003; Monthly analytics &amp; conversion report</li>
               <li>&#10003; New feature additions</li>
               <li>&#10003; Direct line to your developer</li>
             </ul>
-            <a href="https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807" class="btn-maintenance btn-maintenance-gold" target="_blank" rel="noopener">Add Priority Plan</a>
+            <a href="#" data-todo="Replace with Stripe link for Premium Care $325/mo" class="btn-maintenance" onclick="alert('Premium Care sign-up opens soon. Email admin@velonyxsystems.com to be invoiced.'); return false;">Add Premium Care</a>
           </div>
 
         </div>
@@ -3424,7 +3484,7 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>Every package includes 30 days of free support after launch. Starter and Growth get standard support (3-5 business day response). Premium gets priority support (48-hour response). After 30 days, you can add a monthly maintenance plan ($150 or $300/month) to keep your site updated and supported.</p>
+            <p>Every package includes 30 days of free support after launch. Starter and Growth get standard support (3-5 business day response). Premium gets priority support (48-hour response). After 30 days, you can add a monthly Care plan &mdash; Standard ($125), Growth ($225), or Premium ($325) &mdash; to keep your site updated and supported.</p>
           </div>
         </div>
 
@@ -3543,6 +3603,7 @@
             <option value="Starter Website ($1,500)">Starter — Website + booking + payments</option>
             <option value="Growth Package ($3,500)">Growth — Multi-page + logo + financing + automated texts</option>
             <option value="Premium Package ($6,000)">Premium — Full system + brand video + client portal + reminders</option>
+            <option value="Enterprise (Starting at $12,000)">Enterprise — Multi-user/multi-location, custom integrations, dedicated PM</option>
             <option value="Digital Consulting">Digital Consulting — Strategy session</option>
             <option value="Not Sure Yet">Not sure yet — I need guidance</option>
           </select>

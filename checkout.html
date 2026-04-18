@@ -124,9 +124,10 @@
     /* ── Plan Grid ── */
     .plan-section { padding-bottom: 64px; }
     .plan-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; max-width: 840px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 14px; max-width: 1100px; margin: 0 auto;
     }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(2, 1fr); max-width: 680px; gap: 16px; } }
     .plan-card {
       background: var(--glass); border: 1px solid var(--glass-border);
       border-radius: 18px; padding: 30px 22px 24px;
@@ -563,7 +564,16 @@
             <div class="plan-check"></div>
           </div>
 
+          <!-- ENTERPRISE — no Stripe link; routes to booking for custom quote -->
+          <div class="plan-card" data-plan="enterprise" data-price="0" onclick="enterpriseConsult()" style="cursor:pointer;">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">Starting at $12,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">custom quote</span></div>
+            <div class="plan-desc">Multi-user/multi-location, custom integrations, dedicated PM, HIPAA-ready infrastructure available.</div>
+            <div class="plan-check"></div>
+          </div>
+
         </div>
+        <p style="text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:14px;">Enterprise engagements are quoted per project. Click Enterprise above to book a consultation.</p>
       </section>
 
       <!-- STEP 2: Payment -->
@@ -828,7 +838,10 @@
 
     // Pre-select from URL: checkout.html?plan=premium
     const urlPlan = new URLSearchParams(window.location.search).get('plan');
-    if (urlPlan && PLANS[urlPlan]) {
+    if (urlPlan === 'enterprise') {
+      // Enterprise doesn't use Stripe flow — bounce straight to consultation
+      window.location.replace('/book.html?tier=enterprise');
+    } else if (urlPlan && PLANS[urlPlan]) {
       currentPlan = urlPlan;
       document.querySelectorAll('.plan-card').forEach(c => {
         c.classList.toggle('active', c.dataset.plan === urlPlan);
@@ -840,6 +853,11 @@
       card.classList.add('active');
       currentPlan = card.dataset.plan;
       updateAmounts();
+    }
+
+    // Enterprise doesn't use Stripe — redirect to booking for custom quote
+    function enterpriseConsult() {
+      window.location.href = '/book.html?tier=enterprise';
     }
 
     // BNPL installment amounts (full price ÷ 4)

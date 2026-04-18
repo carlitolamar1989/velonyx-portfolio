@@ -53,7 +53,7 @@
     "telephone": "+1-877-317-8643",
     "email": "admin@velonyxsystems.com",
     "slogan": "Your Legacy, Engineered With Precision.",
-    "priceRange": "$1,500 - $6,000",
+    "priceRange": "$1,500 - $12,000+",
     "areaServed": "US",
     "serviceType": ["Web Design", "Web Development", "Payment Integration", "Booking Systems", "Digital Infrastructure"],
     "sameAs": [
@@ -84,6 +84,18 @@
         "price": "6000",
         "priceCurrency": "USD",
         "description": "Full digital system with brand video, client portal, automated reminders, and unlimited revisions"
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise Website Package",
+        "price": "12000",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "minPrice": "12000"
+        },
+        "description": "Multi-user multi-location infrastructure with custom integrations, dedicated project management, HIPAA-ready infrastructure available, and quarterly strategy reviews. Starting at $12,000 — contact us for custom quote."
       }
     ]
   }
@@ -2438,18 +2450,21 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1060px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1320px;
       margin: 0 auto;
       position: relative;
+    }
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 780px; }
     }
 
     .pricing-card {
       background: var(--bg-card-glossy);
       border: 1px solid rgba(212, 175, 55, 0.08);
       border-radius: 16px;
-      padding: 40px 32px;
+      padding: 32px 24px;
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -2457,6 +2472,7 @@
       flex-direction: column;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
+    @media (max-width: 1100px) { .pricing-card { padding: 40px 32px; } }
 
     .pricing-card::after {
       content: '';
@@ -3136,6 +3152,27 @@
           </div>
         </div>
 
+        <!-- ENTERPRISE -->
+        <div class="pricing-card fade-in">
+          <div class="pricing-tier-name">Enterprise</div>
+          <div class="pricing-amount"><span class="currency" style="font-size:0.55em;">Starting at $</span>12,000</div>
+          <p class="pricing-desc">Multi-location and multi-user operations. Custom integrations, dedicated project management, and infrastructure designed around your business.</p>
+          <ul class="pricing-features">
+            <li><div class="pricing-check"><span>&#10003;</span></div> Everything in Premium, plus:</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited pages</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Full multi-user, multi-location Client Portal</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Custom integrations (CRM, email marketing, e-commerce)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Dedicated project management</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Quarterly strategy reviews</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> HIPAA-ready infrastructure available (separate agreement)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Custom delivery timeline</li>
+          </ul>
+          <div class="pricing-actions">
+            <a href="/book.html?tier=enterprise" class="btn-secondary pricing-cta">Contact Us</a>
+            <a href="/book.html?tier=enterprise" class="pricing-consult-link">Book an Enterprise consultation →</a>
+          </div>
+        </div>
+
       </div>
 
       <p class="pricing-note fade-in">Every package includes <strong>30 days of free support</strong> after launch. Starter &amp; Growth receive standard support. Premium receives priority support (48-hour response). After 30 days, add a Care plan to keep your site updated and supported.</p>
@@ -3566,6 +3603,7 @@
             <option value="Starter Website ($1,500)">Starter — Website + booking + payments</option>
             <option value="Growth Package ($3,500)">Growth — Multi-page + logo + financing + automated texts</option>
             <option value="Premium Package ($6,000)">Premium — Full system + brand video + client portal + reminders</option>
+            <option value="Enterprise (Starting at $12,000)">Enterprise — Multi-user/multi-location, custom integrations, dedicated PM</option>
             <option value="Digital Consulting">Digital Consulting — Strategy session</option>
             <option value="Not Sure Yet">Not sure yet — I need guidance</option>
           </select>
