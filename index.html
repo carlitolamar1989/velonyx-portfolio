@@ -4151,12 +4151,37 @@
         });
       }
 
-      // ===== PERFORMANCE: Pause video on mobile or when off-screen =====
+      // ===== HERO VIDEO: ensure mobile autoplay, respect user preferences =====
+      // The <video> element already has autoplay+muted+playsinline+loop. The
+      // previous build actively stripped autoplay on <768px devices, which is
+      // why the hero video didn't start on phones. Instead of killing playback,
+      // we (a) explicitly call play() to cover edge cases where autoplay
+      // attribute fires before the user interacts, (b) honor
+      // prefers-reduced-motion, and (c) upgrade preload to 'auto' on mobile so
+      // first frame renders quickly.
       var heroVideo = document.getElementById('heroVideo');
-      if (heroVideo && window.innerWidth < 768) {
-        heroVideo.pause();
-        heroVideo.removeAttribute('autoplay');
-        heroVideo.poster = 'assets/velonyx_hero_poster.jpg';
+      if (heroVideo) {
+        var prefersReducedMotion = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+          heroVideo.pause();
+          heroVideo.removeAttribute('autoplay');
+        } else {
+          // Ensure required-for-mobile-autoplay attributes are present even if
+          // the DOM was mutated by a third party (defensive).
+          heroVideo.muted = true;
+          heroVideo.playsInline = true;
+          heroVideo.setAttribute('playsinline', '');
+          heroVideo.setAttribute('webkit-playsinline', '');
+          if (window.innerWidth < 768) heroVideo.preload = 'auto';
+          // Kick off playback. Some browsers (iOS Safari when page is
+          // backgrounded, low-power mode) silently reject; that's fine — the
+          // poster image shows and playback resumes when visible/interactive.
+          var playPromise = heroVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(function() { /* autoplay blocked; poster shown */ });
+          }
+        }
       }
 
       // ===== GSAP SCROLL ANIMATIONS FOR ALL SECTIONS =====
