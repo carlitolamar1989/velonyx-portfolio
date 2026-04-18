@@ -2669,11 +2669,13 @@
     }
     .maintenance-subtext strong { color: var(--accent); }
     .maintenance-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      max-width: 1320px; margin: 0 auto;
     }
-    @media (max-width: 960px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; } }
+    @media (max-width: 1100px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; gap: 18px; } }
     @media (max-width: 640px) { .maintenance-grid { grid-template-columns: 1fr; } }
+    .maintenance-card.maintenance-enterprise { border-color: rgba(212,175,55,0.25); }
+    .maintenance-card.maintenance-enterprise:hover { border-color: rgba(212,175,55,0.45); }
     .maintenance-card {
       background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
       border-radius: 20px; padding: 32px 28px; position: relative;
@@ -3234,6 +3236,21 @@
               <li>&#10003; Direct line to your developer</li>
             </ul>
             <a href="#" data-todo="Replace with Stripe link for Premium Care $325/mo" class="btn-maintenance" onclick="alert('Premium Care sign-up opens soon. Email admin@velonyxsystems.com to be invoiced.'); return false;">Add Premium Care</a>
+          </div>
+
+          <div class="maintenance-card maintenance-enterprise">
+            <div class="maintenance-tier">Enterprise Care</div>
+            <div class="maintenance-price" style="font-size:1.6rem;">Custom<span class="maintenance-mo"> &mdash; Contact Us</span></div>
+            <ul class="maintenance-features">
+              <li>&#10003; Everything in Premium, plus:</li>
+              <li>&#10003; Up to 10 hours / month of changes</li>
+              <li>&#10003; Multi-user portal support</li>
+              <li>&#10003; Custom integrations maintenance</li>
+              <li>&#10003; Monthly strategy call</li>
+              <li>&#10003; Same-day critical response</li>
+              <li>&#10003; Quarterly business review</li>
+            </ul>
+            <a href="/book.html?tier=enterprise" class="btn-maintenance">Contact Us</a>
           </div>
 
         </div>

@@ -438,10 +438,10 @@
 
     /* ── Step 3 Maintenance Upsell ── */
     .maintenance-upsell-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      max-width: 1100px; margin: 0 auto;
     }
-    @media (max-width: 820px) { .maintenance-upsell-grid { grid-template-columns: 1fr 1fr; max-width: 580px; } }
+    @media (max-width: 1100px) { .maintenance-upsell-grid { grid-template-columns: repeat(2, 1fr); max-width: 580px; gap: 14px; } }
     @media (max-width: 520px) { .maintenance-upsell-grid { grid-template-columns: 1fr; } }
     .upsell-card {
       background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
@@ -751,6 +751,19 @@
               <li>✓ Direct line to your developer</li>
             </ul>
             <a href="#" data-care-tier="premium" class="btn-upsell" onclick="careCheckout('premium'); return false;">Add Premium — $325/mo</a>
+          </div>
+
+          <div class="upsell-card">
+            <div class="upsell-tier">Enterprise Care</div>
+            <div class="upsell-price" style="font-size:1.3rem;">Custom<span> — Contact Us</span></div>
+            <ul class="upsell-features">
+              <li>✓ Everything in Premium</li>
+              <li>✓ Up to 10 hrs/mo changes</li>
+              <li>✓ Multi-user portal support</li>
+              <li>✓ Monthly strategy call</li>
+              <li>✓ Same-day critical response</li>
+            </ul>
+            <a href="/book.html?tier=enterprise" class="btn-upsell">Contact Us</a>
           </div>
 
         </div>
