@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statement of Work Template — Velonyx Systems</title>
+  <meta name="description" content="Velonyx Systems Statement of Work template. Reference copy of the SOW structure used in client engagements.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/sow.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:720px;margin:0 auto 36px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .disclaimer-banner{max-width:720px;margin:0 auto 40px;padding:16px 22px;border:1px solid rgba(212,175,55,0.35);background:rgba(212,175,55,0.06);border-radius:12px;font-size:0.85rem;color:rgba(255,255,255,0.8);line-height:1.6;}
+    .disclaimer-banner strong{color:var(--gold);}
+    .content{max-width:760px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:0.92rem;font-weight:600;color:rgba(255,255,255,0.9);margin:20px 0 8px;letter-spacing:0.3px;}
+    .content p,.content li{font-size:0.93rem;color:var(--white-dim);line-height:1.75;margin-bottom:10px;}
+    .content ul{padding-left:20px;margin-bottom:14px;}
+    .content li{margin-bottom:6px;}
+    .content strong{color:var(--white);}
+    .content em{color:rgba(255,255,255,0.5);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:32px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    .sow-block{background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:18px 22px;margin-bottom:22px;}
+    .sow-block p{margin-bottom:8px;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Legal Reference</div>
+      <h1 class="page-title">Statement of Work <span>Template</span></h1>
+      <p class="page-subtitle">Each engagement receives a personalized Statement of Work. This is the template structure.</p>
+    </div>
+
+    <div class="disclaimer-banner">
+      <strong>This document is displayed for reference.</strong> Clients receive and sign a personalized version of this Statement of Work via e-signature before services begin. The version you sign is the legally binding document for your specific project.
+    </div>
+
+    <p class="effective-date">Template updated: April 18, 2026</p>
+
+    <div class="content">
+
+      <p><strong>Velonyx Systems LLC</strong></p>
+      <p><em>This is a template. Each engagement receives a personalized Statement of Work.</em></p>
+
+      <div class="section-divider"></div>
+
+      <p><strong>SOW # [NUMBER] &mdash; [PROJECT NAME]</strong></p>
+      <p>This Statement of Work is issued under and incorporates by reference the Master Services Agreement dated [DATE] between Velonyx Systems LLC ("Velonyx") and [CLIENT LEGAL NAME] ("Client").</p>
+
+      <div class="section-divider"></div>
+
+      <h3>1. Project Summary</h3>
+      <div class="sow-block">
+        <p><strong>Project Name:</strong> [e.g., "Johnson's Barbershop Premium Website Build"]</p>
+        <p><strong>Selected Package:</strong> [Starter / Growth / Premium / Enterprise]</p>
+        <p><strong>Project Description:</strong> [Brief description of what will be built]</p>
+        <p><strong>Primary Contact (Client):</strong> [Name, email, phone]</p>
+        <p><strong>Primary Contact (Velonyx):</strong> Carlos [LAST NAME], carlos@velonyxsystems.com</p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3>2. Deliverables</h3>
+
+      <h4>Included</h4>
+      <p><em>List all deliverables specific to the selected tier. Example shown below for Growth tier:</em></p>
+      <ul>
+        <li>Multi-page custom website design, up to five (5) pages</li>
+        <li>Custom logo design, up to two (2) concepts</li>
+        <li>Premium scroll animations and interactive design</li>
+        <li>Stripe payment integration (cards, Apple Pay, Google Pay)</li>
+        <li>Buy Now Pay Later integration (Klarna, Affirm, Afterpay)</li>
+        <li>Third-party booking integration with Client's existing platform</li>
+        <li>Twilio SMS confirmations and automation</li>
+        <li>Google Analytics 4 setup</li>
+        <li>Full SEO optimization</li>
+        <li>Custom domain, SSL, and hosting setup</li>
+        <li>Three (3) revision rounds within a two (2) week revision window</li>
+        <li>Delivery within 10-14 business days from project start</li>
+      </ul>
+
+      <h4>Not Included</h4>
+      <ul>
+        <li>Additional pages beyond the tier limit</li>
+        <li>Additional logo concepts beyond those specified</li>
+        <li>Custom copywriting beyond brief edits (add-on at $150/page)</li>
+        <li>Ongoing content creation or blog writing</li>
+        <li>Paid advertising management</li>
+        <li>Email marketing campaigns</li>
+        <li>Third-party services requiring Client's own paid subscriptions</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3>3. Project Timeline</h3>
+      <div class="sow-block">
+        <p><strong>Estimated Start Date:</strong> [DATE, upon receipt of deposit and signed SOW]</p>
+        <p><strong>Estimated Delivery:</strong> [DATE]</p>
+      </div>
+      <p><strong>Milestones:</strong></p>
+      <ul>
+        <li>Day 1: Project kickoff and brand/content intake</li>
+        <li>Day 3-5: Initial design concepts delivered</li>
+        <li>Day 6-10: Development and integrations</li>
+        <li>Day 11-13: Revisions and QA</li>
+        <li>Day 14: Launch</li>
+      </ul>
+      <p>Timeline contingent on Client providing materials and feedback within three (3) business days of each request.</p>
+
+      <div class="section-divider"></div>
+
+      <h3>4. Fees and Payment Schedule</h3>
+      <div class="sow-block">
+        <p><strong>Total Project Fee:</strong> $[AMOUNT]</p>
+        <p><strong>Payment Schedule:</strong></p>
+        <ul>
+          <li>Deposit (50%): $[AMOUNT] due upon signing</li>
+          <li>Balance (50%): $[AMOUNT] due upon delivery before site goes live</li>
+        </ul>
+        <p><strong>Paid-in-Full Discount:</strong> 10% discount if paid in full upfront.</p>
+        <p><strong>Financing:</strong> Through Stripe, Affirm, Klarna, or Afterpay (subject to approval).</p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3>5. Monthly Subscription (Velonyx Care)</h3>
+      <p>Continued operation requires an active Velonyx Care subscription.</p>
+      <div class="sow-block">
+        <p><strong>Selected Care Tier:</strong> [Standard / Growth / Premium / Enterprise]</p>
+        <p><strong>Monthly Fee:</strong> $[125 / 225 / 325 / Custom]/month</p>
+      </div>
+      <p>First month included with the build. Monthly billing begins 30 days after launch.</p>
+      <p><strong>Annual Prepay:</strong> 15% discount for 12 months prepaid upfront.</p>
+
+      <div class="section-divider"></div>
+
+      <h3>6. Revision Terms</h3>
+      <ul>
+        <li>Revision rounds: [2 / 3 / Unlimited]</li>
+        <li>Revision window: [1 / 2 / 3] week(s) from initial draft delivery</li>
+        <li>Additional changes after window close: $100/hour</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3>7. Client Responsibilities</h3>
+      <ul>
+        <li>Brand materials within 2 business days of kickoff</li>
+        <li>Content and copy within 3 business days of kickoff</li>
+        <li>Image/photo assets within 3 business days of kickoff</li>
+        <li>Feedback on drafts within 3 business days of delivery</li>
+        <li>Access to third-party accounts as needed</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3>8. Special Terms</h3>
+      <p><em>[Any client-specific terms &mdash; or "None"]</em></p>
+
+      <div class="section-divider"></div>
+
+      <h3>9. Agreement</h3>
+      <p>By signing, Client agrees to the Statement of Work and confirms the Master Services Agreement applies.</p>
+
+      <div class="section-divider"></div>
+
+      <p style="text-align:center;color:var(--gold);font-weight:500;">For engagement, both parties sign a personalized version of this Statement of Work.</p>
+
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 gate) -->
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

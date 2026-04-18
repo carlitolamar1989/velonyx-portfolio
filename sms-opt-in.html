@@ -2,6 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted'){ window.__loadGA4(); }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMS Opt-In — Velonyx Systems</title>
   <meta name="description" content="Velonyx Systems SMS opt-in consent form. By providing your phone number and checking the consent box, you agree to receive text messages.">
@@ -299,6 +311,7 @@
             <option>Starter Website ($1,500)</option>
             <option>Growth Package ($3,500)</option>
             <option>Premium Package ($6,000)</option>
+            <option>Enterprise (Starting at $12,000)</option>
             <option>Not sure yet — I'd like to discuss</option>
           </select>
         </div>
@@ -318,6 +331,15 @@
           </div>
         </div>
 
+        <!-- PRIVACY & TERMS CONSENT — separate consent from SMS -->
+        <div class="sms-consent-box" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.12);">
+          <div class="sms-consent-label">Privacy &amp; Terms</div>
+          <label class="sms-consent-checkbox">
+            <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+            <span>I have read and agree to the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>.</span>
+          </label>
+        </div>
+
         <button type="submit" class="btn-submit">Send My Request</button>
       </form>
     </div>
@@ -327,7 +349,17 @@
     <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;margin-bottom:8px;">Your Legacy, Engineered With Precision.</div>
     <span>&copy; 2026 Velonyx Systems LLC. All rights reserved.</span><br>
     <span><a href="/">velonyxsystems.com</a> &nbsp;&middot;&nbsp; <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> &nbsp;&middot;&nbsp; (877) 317-8643</span><br>
-    <span style="margin-top:8px;display:inline-block;"><a href="/sms-terms.html">SMS Terms &amp; Consent</a></span>
+    <span style="margin-top:8px;display:inline-block;font-size:0.72rem;">
+      <a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp;
+      <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp;
+      <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp;
+      <a href="/sms-terms.html">SMS Terms &amp; Consent</a> &nbsp;&middot;&nbsp;
+      <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener">Instagram</a> &nbsp;&middot;&nbsp;
+      <a href="https://linkedin.com/company/velonyx-systems" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
   </footer>
+  <!-- Cookie consent banner (GA4 gate) -->
+  <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
