@@ -93,7 +93,7 @@
         "name": "Premium Website Package",
         "price": "6000",
         "priceCurrency": "USD",
-        "description": "Full digital system with brand video, client portal, automated reminders, and unlimited revisions"
+        "description": "Full digital system with brand video, client portal, automated reminders, and 3 revision rounds within a 3-week window"
       },
       {
         "@type": "Offer",
@@ -3105,7 +3105,7 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> Contact form with email notifications</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Basic SEO setup (Google-ready)</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Custom domain + SSL + hosting</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 2 rounds of revisions</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> 2 revision rounds within 1-week revision window</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 5-7 business days</li>
           </ul>
           <div class="pricing-actions">
@@ -3132,8 +3132,8 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> Google Analytics setup</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Full SEO optimization</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Custom domain + SSL + hosting</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 3 rounds of revisions</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 7-10 business days</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> 3 revision rounds within 2-week revision window</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 10-14 business days</li>
           </ul>
           <div class="pricing-actions">
             <a href="checkout.html?plan=growth" class="btn-primary pricing-cta">Pay Deposit &amp; Start</a>
@@ -3155,8 +3155,8 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> Custom branded email templates</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Visitor analytics dashboard</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> 30-day post-launch optimization (priority 48hr response included)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited revisions during build</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 10-14 business days</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> 3 revision rounds within 3-week revision window</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 14-21 business days</li>
           </ul>
           <div class="pricing-actions">
             <a href="checkout.html?plan=premium" class="btn-secondary pricing-cta">Pay Deposit &amp; Start</a>
@@ -3177,6 +3177,7 @@
             <li><div class="pricing-check"><span>&#10003;</span></div> Dedicated project management</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Quarterly strategy reviews</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> HIPAA-ready infrastructure available (separate agreement)</li>
+            <li><div class="pricing-check"><span>&#10003;</span></div> 5 revision rounds within 4-week revision window (custom per engagement)</li>
             <li><div class="pricing-check"><span>&#10003;</span></div> Custom delivery timeline</li>
           </ul>
           <div class="pricing-actions">
@@ -3468,7 +3469,7 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>Starter sites are delivered in 5-7 business days, Growth sites in 7-10 business days, and Premium sites in 10-14 business days. The timeline starts when your deposit is received and you provide your assets (logo, photos, content). Delays in providing assets may extend the timeline.</p>
+            <p>Starter sites are delivered in 5-7 business days, Growth sites in 10-14 business days, Premium sites in 14-21 business days, and Enterprise engagements follow a custom timeline defined in the Statement of Work. The timeline starts when your deposit is received and you provide your assets (logo, photos, content). Delays in providing assets may extend the timeline.</p>
           </div>
         </div>
 
@@ -3478,7 +3479,7 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>You get revision rounds included in every package (2 for Starter, 3 for Growth, unlimited for Premium). We send you a live preview link before anything goes public. We revise until you're 100% satisfied. We don't launch until you approve it.</p>
+            <p>Every package includes a capped set of revision rounds within a time-boxed revision window: 2 rounds / 1 week for Starter, 3 rounds / 2 weeks for Growth, 3 rounds / 3 weeks for Premium, and 5 rounds / 4 weeks for Enterprise (custom per SOW). After the window closes or the round limit is reached, additional revisions are billed at $100/hour. We send you a live preview link before anything goes public so you can review each round carefully.</p>
           </div>
         </div>
 
@@ -4150,12 +4151,37 @@
         });
       }
 
-      // ===== PERFORMANCE: Pause video on mobile or when off-screen =====
+      // ===== HERO VIDEO: ensure mobile autoplay, respect user preferences =====
+      // The <video> element already has autoplay+muted+playsinline+loop. The
+      // previous build actively stripped autoplay on <768px devices, which is
+      // why the hero video didn't start on phones. Instead of killing playback,
+      // we (a) explicitly call play() to cover edge cases where autoplay
+      // attribute fires before the user interacts, (b) honor
+      // prefers-reduced-motion, and (c) upgrade preload to 'auto' on mobile so
+      // first frame renders quickly.
       var heroVideo = document.getElementById('heroVideo');
-      if (heroVideo && window.innerWidth < 768) {
-        heroVideo.pause();
-        heroVideo.removeAttribute('autoplay');
-        heroVideo.poster = 'assets/velonyx_hero_poster.jpg';
+      if (heroVideo) {
+        var prefersReducedMotion = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+          heroVideo.pause();
+          heroVideo.removeAttribute('autoplay');
+        } else {
+          // Ensure required-for-mobile-autoplay attributes are present even if
+          // the DOM was mutated by a third party (defensive).
+          heroVideo.muted = true;
+          heroVideo.playsInline = true;
+          heroVideo.setAttribute('playsinline', '');
+          heroVideo.setAttribute('webkit-playsinline', '');
+          if (window.innerWidth < 768) heroVideo.preload = 'auto';
+          // Kick off playback. Some browsers (iOS Safari when page is
+          // backgrounded, low-power mode) silently reject; that's fine — the
+          // poster image shows and playback resumes when visible/interactive.
+          var playPromise = heroVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(function() { /* autoplay blocked; poster shown */ });
+          }
+        }
       }
 
       // ===== GSAP SCROLL ANIMATIONS FOR ALL SECTIONS =====
