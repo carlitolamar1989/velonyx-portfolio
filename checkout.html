@@ -437,9 +437,10 @@
 
     /* ── Step 3 Maintenance Upsell ── */
     .maintenance-upsell-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      max-width: 580px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      max-width: 860px; margin: 0 auto;
     }
+    @media (max-width: 820px) { .maintenance-upsell-grid { grid-template-columns: 1fr 1fr; max-width: 580px; } }
     @media (max-width: 520px) { .maintenance-upsell-grid { grid-template-columns: 1fr; } }
     .upsell-card {
       background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
@@ -686,9 +687,16 @@
 
       </section>
 
-      <!-- STEP 3: Add Maintenance -->
+      <!-- STEP 3: Add Care Plan -->
+      <!--
+        ⚠️  CARE PLANS — PENDING STRIPE PAYMENT LINKS
+        TODO before merging to main: populate STRIPE_CARE_LINKS below with live buy.stripe.com URLs.
+        Legacy monthly Stripe links (still valid, not rendered):
+          Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
+          Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
+      -->
       <section class="payment-section" style="margin-top:12px;">
-        <div class="step-heading"><span>Step 3</span> &nbsp;— Optional: Add a Monthly Maintenance Plan
+        <div class="step-heading"><span>Step 3</span> &nbsp;— Optional: Add a Monthly Care Plan
           <span style="font-size:0.72rem;font-weight:400;color:rgba(255,255,255,0.35);margin-left:8px;">First month free when added at launch</span>
         </div>
 
@@ -696,8 +704,8 @@
 
           <div class="upsell-card">
             <div class="upsell-skip" onclick="skipMaintenance()">Skip for now →</div>
-            <div class="upsell-tier">Basic Maintenance</div>
-            <div class="upsell-price">$150<span>/mo</span></div>
+            <div class="upsell-tier">Standard Care</div>
+            <div class="upsell-price">$125<span>/mo</span></div>
             <ul class="upsell-features">
               <li>✓ Content &amp; text updates</li>
               <li>✓ Bug fixes &amp; patches</li>
@@ -705,25 +713,38 @@
               <li>✓ Hosting management</li>
               <li>✓ Monthly backup</li>
             </ul>
-            <a href="https://buy.stripe.com/3cI14p2R71uae2ig14cs806" class="btn-upsell" target="_blank" rel="noopener">Add Basic — $150/mo</a>
+            <a href="#" data-care-tier="standard" class="btn-upsell" onclick="careCheckout('standard'); return false;">Add Standard — $125/mo</a>
           </div>
 
           <div class="upsell-card upsell-featured">
             <div class="upsell-badge">Best Value</div>
-            <div class="upsell-tier">Priority Retainer</div>
-            <div class="upsell-price">$300<span>/mo</span></div>
+            <div class="upsell-tier">Growth Care</div>
+            <div class="upsell-price">$225<span>/mo</span></div>
             <ul class="upsell-features">
-              <li>✓ Everything in Basic</li>
+              <li>✓ Everything in Standard</li>
+              <li>✓ Priority updates — 72 hours</li>
+              <li>✓ Up to 4 change requests / mo</li>
+              <li>✓ Monthly performance report</li>
+              <li>✓ Quarterly SEO snapshot</li>
+            </ul>
+            <a href="#" data-care-tier="growth" class="btn-upsell btn-upsell-gold" onclick="careCheckout('growth'); return false;">Add Growth — $225/mo</a>
+          </div>
+
+          <div class="upsell-card">
+            <div class="upsell-tier">Premium Care</div>
+            <div class="upsell-price">$325<span>/mo</span></div>
+            <ul class="upsell-features">
+              <li>✓ Everything in Growth</li>
               <li>✓ Priority updates — 48 hours</li>
               <li>✓ Unlimited change requests</li>
-              <li>✓ Monthly analytics report</li>
+              <li>✓ Monthly analytics &amp; conversion report</li>
               <li>✓ Direct line to your developer</li>
             </ul>
-            <a href="https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807" class="btn-upsell btn-upsell-gold" target="_blank" rel="noopener">Add Priority — $300/mo</a>
+            <a href="#" data-care-tier="premium" class="btn-upsell" onclick="careCheckout('premium'); return false;">Add Premium — $325/mo</a>
           </div>
 
         </div>
-        <p id="maintenanceSkipMsg" style="display:none;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:16px;">No maintenance plan added. You can always add one later at <a href="https://velonyxsystems.com/#pricing" style="color:rgba(212,175,55,0.6);text-decoration:none;">velonyxsystems.com</a>.</p>
+        <p id="maintenanceSkipMsg" style="display:none;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:16px;">No Care plan added. You can always add one later at <a href="https://velonyxsystems.com/#pricing" style="color:rgba(212,175,55,0.6);text-decoration:none;">velonyxsystems.com</a>.</p>
       </section>
 
       <!-- Trust bar -->
@@ -750,8 +771,12 @@
       <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> &nbsp;·&nbsp;
       (877) 317-8643
     </span>
-    <span style="width:100%;text-align:center;margin-top:8px;font-size:0.7rem;">
-      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.4);text-decoration:none;">SMS Terms &amp; Privacy</a>
+    <span style="width:100%;text-align:center;margin-top:8px;font-size:0.72rem;">
+      <a href="/privacy.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="/terms.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">Terms of Service</a> &nbsp;&middot;&nbsp;
+      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">SMS Terms</a> &nbsp;&middot;&nbsp;
+      <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);text-decoration:none;">Instagram</a> &nbsp;&middot;&nbsp;
+      <a href="https://linkedin.com/company/velonyx-systems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);text-decoration:none;">LinkedIn</a>
     </span>
   </footer>
 
@@ -779,6 +804,17 @@
       starter: 'https://buy.stripe.com/5kQ4gB3Vbfl07DUaGKcs803',
       growth:  'https://buy.stripe.com/fZu5kFfDT5Kq8HY8yCcs804',
       premium: 'https://buy.stripe.com/eVqfZjajz7Sy4rI7uycs805',
+    };
+
+    // CARE PLANS — monthly recurring (Stripe subscription Payment Links)
+    // TODO: Create 3 new Stripe Payment Links and paste URLs here before merging to main.
+    // Legacy maintenance links (still valid, not rendered on the new UI):
+    //   Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
+    //   Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
+    const STRIPE_CARE_LINKS = {
+      standard: 'TODO_CARE_STANDARD_125',
+      growth:   'TODO_CARE_GROWTH_225',
+      premium:  'TODO_CARE_PREMIUM_325',
     };
 
     const PLANS = {
@@ -860,6 +896,16 @@
       const link = STRIPE_BNPL_LINKS[currentPlan];
       if (!link) return;
       window.location.href = link;
+    }
+
+    // Care plan (monthly subscription) → Stripe recurring link
+    function careCheckout(tier) {
+      const link = STRIPE_CARE_LINKS[tier];
+      if (!link || link.startsWith('TODO_')) {
+        alert('Care plan sign-up opens soon. Email admin@velonyxsystems.com or call (877) 317-8643 to be invoiced directly.');
+        return;
+      }
+      window.open(link, '_blank', 'noopener');
     }
 
     function skipMaintenance() {
