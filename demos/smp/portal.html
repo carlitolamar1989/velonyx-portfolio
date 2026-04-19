@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal — Apex SMP Studio (Velonyx Demo)</title>
+  <meta name="description" content="Apex SMP Studio client portal demo. Sample client dashboard built by Velonyx Systems.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/smp/assets/styles.css">
+</head>
+<body>
+
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="apex-nav apex-nav-static">
+    <div class="apex-nav-inner">
+      <a href="/demos/smp/" class="apex-logo gold-gradient-text">APEX SMP STUDIO</a>
+      <div class="apex-nav-links" style="display:flex;">
+        <a href="/demos/smp/">Home</a>
+        <a href="/demos/smp/book.html">Book</a>
+        <a href="/demos/smp/portal.html" class="active">Portal</a>
+        <button type="button" class="btn-outline btn-small">Sign Out</button>
+      </div>
+      <button type="button" class="btn-outline btn-small apex-nav-mobile-cta">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="portal-main">
+
+    <div class="sample-banner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+      <div>
+        <div class="t">Sample client dashboard</div>
+        <div class="s">You're viewing a demonstration. In a real deployment, clients log in securely via AWS Cognito and see only their own data.</div>
+      </div>
+    </div>
+
+    <header class="portal-header">
+      <div class="portal-welcome">
+        <div class="avatar-initials large">MR</div>
+        <div>
+          <div class="portal-card-label">Welcome back</div>
+          <div class="portal-name gold-gradient-text">Michael Robinson</div>
+          <div class="portal-meta">Member since March 2026 · Full Scalp SMP Package</div>
+        </div>
+      </div>
+      <div>
+        <a href="#book-session" class="btn-primary btn-small">Book Session 3</a>
+      </div>
+    </header>
+
+    <div class="portal-grid">
+
+      <!-- CARD 1: Session Progress -->
+      <section class="portal-card full">
+        <div class="flex-between" style="margin-bottom:20px;align-items:flex-start;">
+          <div>
+            <div class="portal-card-label">Your Journey</div>
+            <h2 class="portal-card-title" style="margin-bottom:0;">Session Progress</h2>
+          </div>
+          <div style="font-size:0.75rem;color:var(--white-40);">Full Scalp SMP · 3-session package</div>
+        </div>
+        <div class="session-pills">
+          <div class="session-pill done">
+            <div class="head"><span style="color:var(--apex-gold);">✓</span><span class="head-label">Session 1</span></div>
+            <div class="name">Complete</div>
+            <div class="date">March 15, 2026</div>
+          </div>
+          <div class="connector done"></div>
+          <div class="session-pill done">
+            <div class="head"><span style="color:var(--apex-gold);">✓</span><span class="head-label">Session 2</span></div>
+            <div class="name">Complete</div>
+            <div class="date">April 12, 2026</div>
+          </div>
+          <div class="connector"></div>
+          <div class="session-pill active">
+            <div class="head"><span class="status-dot"></span><span class="head-label">Session 3</span></div>
+            <div class="name">Scheduled</div>
+            <div class="date">May 18, 2026</div>
+          </div>
+          <div class="connector"></div>
+          <div class="session-pill dim">
+            <div class="head"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg><span class="head-label">Touch-up</span></div>
+            <div class="name" style="color:var(--white-60);">Optional</div>
+            <div class="date">October 2026</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 2: Upcoming Appointment -->
+      <section class="portal-card">
+        <div class="portal-card-label">Upcoming</div>
+        <h2 class="portal-card-title">Session 3 — Final Polish</h2>
+        <div class="line-item">
+          <svg class="icon-inline" style="margin-top:3px;" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>
+          <div>
+            <div class="lbl">Monday, May 18 · 2:00 PM</div>
+            <div class="sub">60 minutes</div>
+          </div>
+        </div>
+        <div class="line-item">
+          <svg class="icon-inline" style="margin-top:3px;" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <div class="lbl">Apex SMP Studio</div>
+            <div class="sub">1847 Melrose Ave, Los Angeles, CA 90046</div>
+          </div>
+        </div>
+
+        <div class="countdown-box">
+          <div class="lbl">Countdown to Session 3</div>
+          <div class="val gold-gradient-text" id="countdown-display">—</div>
+        </div>
+
+        <div class="checklist">
+          <div class="checklist-label">Pre-Session Checklist</div>
+          <div class="check-row done"><div class="chkbox">✓</div>Photos uploaded</div>
+          <div class="check-row done"><div class="chkbox">✓</div>Balance paid</div>
+          <div class="check-row"><div class="chkbox"></div>Aftercare form reviewed</div>
+        </div>
+
+        <div class="row-btns">
+          <button type="button" class="btn-outline btn-small">Reschedule</button>
+          <a href="https://maps.google.com/?q=Apex+SMP+Studio" target="_blank" rel="noopener" class="btn-outline btn-small" style="text-align:center;">Directions</a>
+        </div>
+      </section>
+
+      <!-- CARD 3: Photo Gallery (tabs) — styled placeholder tiles -->
+      <section class="portal-card">
+        <div class="portal-card-label">Your Documentation</div>
+        <h2 class="portal-card-title">Photo Gallery</h2>
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" data-tab="before" role="tab" aria-selected="true">Before</button>
+          <button class="tab-btn" data-tab="progress" role="tab" aria-selected="false">Progress</button>
+          <button class="tab-btn" data-tab="after" role="tab" aria-selected="false">After</button>
+        </div>
+
+        <div class="gallery-panel active" data-panel="before">
+          <button type="button" class="portal-tile" data-preview="Before — Top View" data-caption="Thinning on the crown before any pigmentation. Scalp visible through existing hair.">
+            <span class="badge">TOP</span>
+            <span class="label-in">Before · Top view<br><em style="font-size:0.72rem;color:var(--white-40);">Crown thinning visible</em></span>
+            <div class="dot-layer"></div>
+          </button>
+          <button type="button" class="portal-tile" data-preview="Before — Side View" data-caption="Side view pre-session. Receded temple line visible.">
+            <span class="badge">SIDE</span>
+            <span class="label-in">Before · Side view<br><em style="font-size:0.72rem;color:var(--white-40);">Receded temples</em></span>
+            <div class="dot-layer"></div>
+          </button>
+        </div>
+
+        <div class="gallery-panel" data-panel="progress">
+          <button type="button" class="portal-tile done-tile" data-preview="Progress — Session 1 Result" data-caption="End of Session 1. Initial pigment layer laid in; will settle over 30 days.">
+            <span class="badge">S1</span>
+            <span class="label-in">Session 1<br><em style="font-size:0.72rem;color:var(--white-40);">Initial pigment layer</em></span>
+            <div class="dot-layer"></div>
+          </button>
+          <button type="button" class="portal-tile done-tile" data-preview="Progress — Session 2 Result" data-caption="Mid-journey. Density and shading pass complete.">
+            <span class="badge">S2</span>
+            <span class="label-in">Session 2<br><em style="font-size:0.72rem;color:var(--white-40);">Density + shading pass</em></span>
+            <div class="dot-layer"></div>
+          </button>
+          <button type="button" class="portal-tile done-tile" data-preview="Progress — Day 30 Check-in" data-caption="Self-submitted progress photo 30 days after Session 1. Pigment settled nicely.">
+            <span class="badge">D30</span>
+            <span class="label-in">Day 30<br><em style="font-size:0.72rem;color:var(--white-40);">Settled pigment</em></span>
+            <div class="dot-layer"></div>
+          </button>
+        </div>
+
+        <div class="gallery-panel" data-panel="after">
+          <button type="button" class="portal-tile done-tile" data-preview="After — Top View" data-caption="Final result on top. Density reads natural, hairline sharp.">
+            <span class="badge">TOP</span>
+            <span class="label-in">After · Top view<br><em style="font-size:0.72rem;color:var(--white-40);">Natural density</em></span>
+            <div class="dot-layer"></div>
+          </button>
+          <button type="button" class="portal-tile done-tile" data-preview="After — Side View" data-caption="Side view after Session 3. Temple line restored.">
+            <span class="badge">SIDE</span>
+            <span class="label-in">After · Side view<br><em style="font-size:0.72rem;color:var(--white-40);">Temple restoration</em></span>
+            <div class="dot-layer"></div>
+          </button>
+        </div>
+      </section>
+
+      <!-- CARD 4: Payment Summary -->
+      <section class="portal-card full">
+        <div class="flex-between" style="margin-bottom:20px;align-items:flex-start;">
+          <div>
+            <div class="portal-card-label">Billing</div>
+            <h2 class="portal-card-title" style="margin-bottom:0;">Payment Summary · Full Scalp SMP Package</h2>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;" class="gold-gradient-text">$3,500 Total</div>
+        </div>
+        <div class="pay-table-wrap">
+          <table class="pay-table">
+            <thead>
+              <tr><th>Payment</th><th>Amount</th><th>Status</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>50% Booking Deposit</td><td style="font-weight:500;">$1,750</td><td><span class="badge-paid">✓ Paid</span></td><td style="color:var(--white-60);">March 1, 2026</td></tr>
+              <tr><td>Remaining Balance (Before Session 1)</td><td style="font-weight:500;">$1,750</td><td><span class="badge-paid">✓ Paid</span></td><td style="color:var(--white-60);">March 14, 2026</td></tr>
+              <tr><td style="color:var(--white-70);">Session 1</td><td style="color:var(--white-60);font-style:italic;">Included</td><td><span class="badge-paid">✓ Complete</span></td><td style="color:var(--white-60);">March 15, 2026</td></tr>
+              <tr><td style="color:var(--white-70);">Session 2</td><td style="color:var(--white-60);font-style:italic;">Included</td><td><span class="badge-paid">✓ Complete</span></td><td style="color:var(--white-60);">April 12, 2026</td></tr>
+              <tr><td style="color:var(--white-70);">Session 3</td><td style="color:var(--white-60);font-style:italic;">Included</td><td><span class="badge-scheduled">Scheduled</span></td><td style="color:var(--white-60);">May 18, 2026</td></tr>
+              <tr><td style="color:var(--white-70);">Touch-up (6 months)</td><td style="color:var(--white-60);font-style:italic;">Not included</td><td><span class="badge-optional">Optional Add-on</span></td><td style="color:var(--white-60);">October 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="total-note">
+          <strong>Total Package Paid: $3,500</strong> (Full balance complete.) All sessions in your package are fully paid. You'll discuss density and adjustments during Sessions 2 and 3 — no additional charges unless you expand your package scope.
+        </div>
+      </section>
+
+      <!-- CARD 5: Artist Notes -->
+      <section class="portal-card">
+        <div class="portal-card-label">From Your Artist</div>
+        <h2 class="portal-card-title">Session Notes</h2>
+        <div class="artist-notes">
+          <div class="note-row">
+            <span class="bullet">•</span>
+            <div class="body">Client prefers darker pigment tones<span class="sub">Applied since Session 1</span></div>
+          </div>
+          <div class="note-row">
+            <span class="bullet">•</span>
+            <div class="body">Sensitive skin — extra post-procedure care applied<span class="sub">Numbing adjusted Session 2</span></div>
+          </div>
+          <div class="note-row">
+            <span class="bullet">•</span>
+            <div class="body">Follow-up touch-up recommended in 18 months<span class="sub">Based on pigment settle observed</span></div>
+          </div>
+          <div class="note-row">
+            <span class="bullet">•</span>
+            <div class="body">Session 3 focus: density on crown<span class="sub">Planned for May 18</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 6: Aftercare Timeline -->
+      <section class="portal-card">
+        <div class="portal-card-label">Automated Sequence</div>
+        <h2 class="portal-card-title">Aftercare Timeline</h2>
+        <div>
+          <div class="aftercare-row">
+            <div class="ac-dot done">✓</div>
+            <div>
+              <div class="ac-row-t">Day 1 SMS Sent</div>
+              <div class="ac-row-s">"Keep the treated area clean and dry…"</div>
+              <div class="ac-row-d">March 16, 2026 · 8:00 AM</div>
+            </div>
+          </div>
+          <div class="aftercare-row">
+            <div class="ac-dot done">✓</div>
+            <div>
+              <div class="ac-row-t">Day 7 SMS Sent</div>
+              <div class="ac-row-s">"You may shower normally now…"</div>
+              <div class="ac-row-d">March 22, 2026 · 9:00 AM</div>
+            </div>
+          </div>
+          <div class="aftercare-row">
+            <div class="ac-dot done">✓</div>
+            <div>
+              <div class="ac-row-t">Day 30 Check-in Sent</div>
+              <div class="ac-row-s">"How is the pigment settling?"</div>
+              <div class="ac-row-d">April 14, 2026 · 9:00 AM</div>
+            </div>
+          </div>
+          <div class="aftercare-row">
+            <div class="ac-dot pending"></div>
+            <div>
+              <div class="ac-row-t dim">Day 90 Check-in</div>
+              <div class="ac-row-s">Queued</div>
+              <div class="ac-row-d">June 14, 2026 · 9:00 AM</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 7: Messages -->
+      <section class="portal-card">
+        <div class="portal-card-label">Direct Message</div>
+        <h2 class="portal-card-title">Artist Thread</h2>
+        <div class="msg-list">
+          <div class="msg-row">
+            <div class="who">Apex SMP · April 15, 2026</div>
+            <div class="msg-bubble them">Hey Michael! Your Session 2 results look incredible. How's the healing going?</div>
+          </div>
+          <div class="msg-row">
+            <div class="who right">You · April 15, 2026</div>
+            <div class="msg-bubble me">Amazing — almost no redness by day 3. Really happy.</div>
+          </div>
+          <div class="msg-row">
+            <div class="who">Apex SMP · April 15, 2026</div>
+            <div class="msg-bubble them">Perfect. See you May 18 for Session 3. Stay out of direct sun this week.</div>
+          </div>
+          <div class="msg-row">
+            <div class="who right">You · April 15, 2026</div>
+            <div class="msg-bubble me">Will do. Thanks!</div>
+          </div>
+        </div>
+        <div class="msg-compose">
+          <input type="text" placeholder="Type a message…" aria-label="New message">
+          <button type="button" class="btn-primary btn-small">Send</button>
+        </div>
+      </section>
+
+      <!-- CARD 8: Documents -->
+      <section class="portal-card full">
+        <div class="portal-card-label">Resources</div>
+        <h2 class="portal-card-title">Documents &amp; Guides</h2>
+        <div class="docs-grid">
+          <button type="button" class="doc-btn" onclick="alert('Demo: PDF download would trigger in a real deployment.')">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+            <div class="meta">
+              <div class="doc-name">Aftercare Guide</div>
+              <div class="doc-sub">Complete PDF · 2 pages</div>
+              <div class="doc-action">Download →</div>
+            </div>
+          </button>
+          <button type="button" class="doc-btn" onclick="alert('Demo: PDF download would trigger in a real deployment.')">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+            <div class="meta">
+              <div class="doc-name">Pre-Procedure Guide</div>
+              <div class="doc-sub">Complete PDF · 1 page</div>
+              <div class="doc-action">Download →</div>
+            </div>
+          </button>
+          <button type="button" class="doc-btn" onclick="alert('Demo: Session recap would open in a real deployment.')">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            <div class="meta">
+              <div class="doc-name">Session Recaps</div>
+              <div class="doc-sub">Session 1 + 2 notes</div>
+              <div class="doc-action">View →</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="apex-footer">
+    <p class="apex-footer-velonyx">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · velonyxsystems.com · This is a demonstration platform</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-label="Preview">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <div class="lightbox-content">
+      <div id="lb-title" style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--apex-gold);margin-bottom:14px;"></div>
+      <p id="lb-caption" style="color:var(--white-70);font-size:0.92rem;line-height:1.55;margin-bottom:20px;"></p>
+      <div style="font-size:0.72rem;color:var(--white-40);font-style:italic;">Demo placeholder tile. Real client photography replaces this in production.</div>
+    </div>
+  </div>
+
+  <script>
+    // Countdown to Session 3
+    (function countdown(){
+      const target = new Date('2026-05-18T14:00:00');
+      const el = document.getElementById('countdown-display');
+      function tick() {
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) { el.textContent = 'Session today'; return; }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        el.textContent = `${days}d ${hours}h ${mins}m`;
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+
+    // Gallery tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.gallery-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    document.querySelectorAll('.portal-tile').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('lb-title').textContent = btn.dataset.preview || '';
+        document.getElementById('lb-caption').textContent = btn.dataset.caption || '';
+        lightbox.classList.add('active');
+      });
+    });
+    function closeLb() { lightbox.classList.remove('active'); }
+    document.querySelector('.lightbox-close').addEventListener('click', closeLb);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLb(); });
+  </script>
+</body>
+</html>
