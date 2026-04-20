@@ -1133,10 +1133,13 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 960px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1280px;
       margin: 0 auto;
+    }
+    @media (max-width: 1100px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; gap: 24px; }
     }
 
     .portfolio-card {
@@ -3281,7 +3284,7 @@
       <div class="section-label">Our Work</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Featured Projects</h2>
-      <p class="section-subtitle fade-in">Three industries. Three distinct brands. All built by Velonyx.</p>
+      <p class="section-subtitle fade-in">Four industries. Four distinct brands. All built by Velonyx.</p>
 
       <div class="portfolio-grid">
         <!-- Throne Barbershop -->
@@ -3343,6 +3346,27 @@
               <span>Gallery</span>
               <span>Light Theme</span>
               <span>Packages</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Apex SMP Studio -->
+        <a href="/demos/smp/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1A1A);">
+            <img src="/demos/smp/assets/healed-lifestyle.jpg" alt="Apex SMP Studio — scalp micropigmentation" loading="lazy">
+            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.92), rgba(10,10,10,0.25));">
+              <div class="mock-logo" style="color:#E8D48A; font-family:'Playfair Display',serif; letter-spacing:0.2em;">APEX SMP</div>
+              <div class="mock-tagline" style="color:#C9A961;">Precision. Artistry. Confidence.</div>
+            </div>
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">SMP Studio</div>
+            <h3>Apex SMP Studio</h3>
+            <p>Full platform: 7-step booking flow, client portal, Stripe Payment Links, and Twilio SMS automation.</p>
+            <div class="portfolio-tags">
+              <span>Booking</span>
+              <span>Client Portal</span>
+              <span>Black &amp; Gold</span>
             </div>
           </div>
         </a>
