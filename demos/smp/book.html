@@ -66,18 +66,46 @@
         </div>
       </section>
 
-      <!-- STEP 2: Date & Time -->
+      <!-- STEP 2: Date & Time (in-page picker — fully self-contained demo) -->
       <section class="booking-step" data-step="2">
         <div class="step-label">Step 2 of 7</div>
         <h2 class="step-title">Pick your date &amp; time</h2>
-        <div id="calendly-container" class="calendly-box">
-          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--apex-gold);">Calendly Embed</div>
-          <p style="color:var(--white-60);font-size:0.88rem;max-width:440px;">This is where the live Calendly widget renders in a real deployment. Paste your event URL into <code>config.js</code> and the embed activates automatically.</p>
-          <p style="color:var(--white-30);font-size:0.78rem;font-style:italic;">Demo users: click Continue to simulate date selection.</p>
+
+        <div class="picker-selected-summary" id="picker-summary" role="status" aria-live="polite">
+          <span class="icon">✓</span>You selected: <strong id="picker-summary-text"></strong>
         </div>
+
+        <div class="picker-wrap">
+          <!-- LEFT: Calendar -->
+          <div class="picker-col">
+            <div class="picker-col-head">
+              <div class="picker-month" id="picker-month">Month Year</div>
+              <div class="picker-nav">
+                <button type="button" id="picker-prev" aria-label="Previous month">&lsaquo;</button>
+                <button type="button" id="picker-next" aria-label="Next month">&rsaquo;</button>
+              </div>
+            </div>
+            <div class="picker-weekdays">
+              <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            </div>
+            <div class="picker-days" id="picker-days" role="grid" aria-label="Available dates"></div>
+          </div>
+
+          <!-- RIGHT: Times -->
+          <div class="picker-col">
+            <div class="picker-times-head" id="picker-times-head">
+              Available Times
+              <span class="sub" id="picker-times-sub">Pick a date to see open slots</span>
+            </div>
+            <div class="picker-times" id="picker-times">
+              <div class="picker-times-empty">Select a date on the left to view available consultation times.</div>
+            </div>
+          </div>
+        </div>
+
         <div class="step-nav">
           <button type="button" class="btn-outline" data-back>&larr; Back</button>
-          <button type="button" class="btn-primary" id="next-2">Continue &rarr;</button>
+          <button type="button" class="btn-primary" id="next-2" disabled>Continue &rarr;</button>
         </div>
       </section>
 
@@ -177,14 +205,38 @@
           <div style="font-size:0.75rem;color:var(--white-50);margin-top:10px;font-style:italic;">Balance due before Session 1 begins. Covers all sessions in your package — no per-session charges.</div>
         </div>
 
-        <a id="pay-deposit-btn" href="#" target="_blank" rel="noopener" class="btn-primary btn-wide" style="display:block;text-align:center;margin-top:24px;">Pay Deposit to Confirm &rarr;</a>
-        <p class="test-card-note">This is a demo. Use Stripe test card <span class="num">4242 4242 4242 4242</span> with any future expiration date and any CVC.</p>
+        <button type="button" id="pay-deposit-btn" class="btn-primary btn-wide" style="display:block;width:100%;text-align:center;margin-top:24px;">Confirm Booking &amp; Pay Deposit &rarr;</button>
+        <p class="test-card-note">Secure payment processing · Card details encrypted in transit · <span style="color:var(--apex-gold-pale);">Demo simulation — no real charge</span></p>
 
         <div class="step-nav">
           <button type="button" class="btn-outline" data-back>&larr; Back</button>
-          <button type="button" class="btn-outline" id="next-6">Simulate Paid &rarr;</button>
         </div>
       </section>
+
+      <!-- Payment processing overlay (simulates Stripe checkout inline) -->
+      <div class="pay-overlay" id="pay-overlay" role="dialog" aria-label="Processing payment" aria-modal="true">
+        <div class="pay-card">
+          <div class="pay-stage active" id="pay-stage-processing">
+            <div class="pay-spinner" aria-hidden="true"></div>
+            <div class="pay-title">Processing Payment</div>
+            <p class="pay-subtitle">Securing your booking and charging your deposit…</p>
+            <div class="pay-amount-line">
+              <span class="k" id="pay-tier-label">—</span>
+              <span class="v" id="pay-amount-val">—</span>
+            </div>
+          </div>
+          <div class="pay-stage" id="pay-stage-success">
+            <div class="pay-check" aria-hidden="true">✓</div>
+            <div class="pay-title success">Payment Successful</div>
+            <p class="pay-subtitle" id="pay-success-sub">Your deposit is confirmed. Redirecting to your booking summary…</p>
+            <div class="pay-amount-line">
+              <span class="k" id="pay-success-label">—</span>
+              <span class="v" id="pay-success-amount">—</span>
+            </div>
+            <p class="pay-demo-note">Demo simulation — no real charge has occurred.</p>
+          </div>
+        </div>
+      </div>
 
       <!-- STEP 7: Confirmation -->
       <section class="booking-step" data-step="7">
@@ -192,6 +244,11 @@
           <div class="confirm-check">✓</div>
           <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:14px;">Your consultation is booked!</h2>
           <p style="color:var(--white-70);margin-bottom:24px;">A confirmation email is on its way.</p>
+          <div class="next-step-box">
+            <div class="next-step-label">Your Appointment</div>
+            <p style="font-size:0.95rem;color:var(--apex-gold-pale);font-family:'Playfair Display',serif;font-style:italic;line-height:1.4;margin-bottom:10px;" id="confirm-datetime">—</p>
+            <p style="font-size:0.82rem;color:var(--white-60);line-height:1.55;" id="confirm-tier">—</p>
+          </div>
           <div class="next-step-box">
             <div class="next-step-label">Next Step</div>
             <p style="font-size:0.88rem;color:var(--white-90);line-height:1.55;">Upload any remaining photos and monitor your balance reminder (5 days before Session 1) from your client portal.</p>
@@ -213,7 +270,7 @@
 
   <script src="/demos/smp/config.js"></script>
   <script>
-    const state = { step: 1, tier: null, total: 0, deposit: 0, balance: 0, name: '' };
+    const state = { step: 1, tier: null, total: 0, deposit: 0, balance: 0, name: '', pickedDate: null, pickedTime: null };
     const urlTier = new URLSearchParams(location.search).get('tier');
 
     function goToStep(n) {
@@ -249,17 +306,126 @@
       if (pre) pre.click();
     }
 
-    // Step 2: Calendly
-    (function tryCalendly(){
-      const container = document.getElementById('calendly-container');
-      const url = window.DEMO_CONFIG && window.DEMO_CONFIG.CALENDLY_EMBED_URL;
-      if (url && !url.startsWith('REPLACE_WITH_')) {
-        container.classList.remove('calendly-box');
-        container.style.cssText = 'background:#1A1A1A;border-radius:14px;overflow:hidden;min-height:640px;';
-        container.innerHTML = `<iframe src="${url}" width="100%" height="640" frameborder="0" title="Schedule a consultation"></iframe>`;
+    // ─── STEP 2: In-page date + time picker (self-contained demo) ───
+    (function pickerInit() {
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const TIME_SLOTS = ['9:00 AM','10:30 AM','1:00 PM','2:30 PM','4:00 PM','5:30 PM'];
+      const today = new Date(); today.setHours(0,0,0,0);
+      const minDate = new Date(today); minDate.setDate(today.getDate() + 2); // earliest booking: 2 days out
+      const maxDate = new Date(today); maxDate.setMonth(today.getMonth() + 3); // latest: 3 months
+
+      let viewY = today.getFullYear();
+      let viewM = today.getMonth();
+      const monthEl = document.getElementById('picker-month');
+      const daysEl = document.getElementById('picker-days');
+      const prevBtn = document.getElementById('picker-prev');
+      const nextBtn = document.getElementById('picker-next');
+      const timesEl = document.getElementById('picker-times');
+      const timesSubEl = document.getElementById('picker-times-sub');
+      const summaryEl = document.getElementById('picker-summary');
+      const summaryTextEl = document.getElementById('picker-summary-text');
+      const nextStepBtn = document.getElementById('next-2');
+
+      function fmtDateLong(d) {
+        const weekday = d.toLocaleDateString('en-US', { weekday: 'long' });
+        const month = MONTHS[d.getMonth()];
+        return `${weekday}, ${month} ${d.getDate()}`;
       }
+      function sameDay(a, b) { return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+
+      function renderCalendar() {
+        monthEl.textContent = `${MONTHS[viewM]} ${viewY}`;
+        daysEl.innerHTML = '';
+        const firstDay = new Date(viewY, viewM, 1);
+        const startCol = firstDay.getDay(); // 0=Sun .. 6=Sat
+        const daysInMonth = new Date(viewY, viewM + 1, 0).getDate();
+
+        // Leading empties
+        for (let i = 0; i < startCol; i++) {
+          const b = document.createElement('button');
+          b.className = 'picker-day empty';
+          b.disabled = true; b.tabIndex = -1;
+          daysEl.appendChild(b);
+        }
+        // Day cells
+        for (let day = 1; day <= daysInMonth; day++) {
+          const d = new Date(viewY, viewM, day);
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'picker-day';
+          b.textContent = day;
+          const dow = d.getDay();
+          const isWeekend = (dow === 0 || dow === 6);
+          const isPastOrTooSoon = d < minDate;
+          const isTooFar = d > maxDate;
+          const unavailable = isWeekend || isPastOrTooSoon || isTooFar;
+          if (sameDay(d, today)) b.classList.add('today');
+          if (unavailable) b.disabled = true;
+          if (state.pickedDate && sameDay(d, state.pickedDate)) b.classList.add('selected');
+          b.addEventListener('click', () => {
+            state.pickedDate = d;
+            state.pickedTime = null;
+            renderCalendar();
+            renderTimes();
+            updateSummary();
+          });
+          daysEl.appendChild(b);
+        }
+
+        // Nav button disable logic
+        const prevMonthFirst = new Date(viewY, viewM, 1);
+        const currentMonthFirst = new Date(today.getFullYear(), today.getMonth(), 1);
+        prevBtn.disabled = prevMonthFirst <= currentMonthFirst;
+        const nextMonthFirst = new Date(viewY, viewM + 1, 1);
+        nextBtn.disabled = nextMonthFirst > new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+      }
+
+      function renderTimes() {
+        timesEl.innerHTML = '';
+        if (!state.pickedDate) {
+          const empty = document.createElement('div');
+          empty.className = 'picker-times-empty';
+          empty.textContent = 'Select a date on the left to view available consultation times.';
+          timesEl.appendChild(empty);
+          timesSubEl.textContent = 'Pick a date to see open slots';
+          return;
+        }
+        timesSubEl.textContent = fmtDateLong(state.pickedDate);
+        TIME_SLOTS.forEach(slot => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'picker-time';
+          b.textContent = slot;
+          if (state.pickedTime === slot) b.classList.add('selected');
+          b.addEventListener('click', () => {
+            state.pickedTime = slot;
+            renderTimes();
+            updateSummary();
+          });
+          timesEl.appendChild(b);
+        });
+      }
+
+      function updateSummary() {
+        if (state.pickedDate && state.pickedTime) {
+          summaryTextEl.textContent = `${fmtDateLong(state.pickedDate)} at ${state.pickedTime}`;
+          summaryEl.classList.add('show');
+          nextStepBtn.disabled = false;
+        } else {
+          summaryEl.classList.remove('show');
+          nextStepBtn.disabled = true;
+        }
+      }
+
+      prevBtn.addEventListener('click', () => { viewM--; if (viewM < 0) { viewM = 11; viewY--; } renderCalendar(); });
+      nextBtn.addEventListener('click', () => { viewM++; if (viewM > 11) { viewM = 0; viewY++; } renderCalendar(); });
+
+      renderCalendar();
+      renderTimes();
     })();
-    document.getElementById('next-2').addEventListener('click', () => goToStep(3));
+    document.getElementById('next-2').addEventListener('click', () => {
+      if (state.pickedDate && state.pickedTime) goToStep(3);
+    });
 
     // Step 3: Contact validation
     document.getElementById('next-3').addEventListener('click', () => {
@@ -311,29 +477,53 @@
         document.getElementById('sum-total').textContent = '$' + state.total.toLocaleString();
         document.getElementById('sum-deposit').textContent = '$' + state.deposit.toLocaleString();
         document.getElementById('sum-balance').textContent = '$' + state.balance.toLocaleString();
-        const key = {
-          hairline: 'STRIPE_HAIRLINE_DEPOSIT_URL',
-          fullscalp: 'STRIPE_FULLSCALP_DEPOSIT_URL',
-          advanced: 'STRIPE_ADVANCED_DEPOSIT_URL',
-        }[state.tier];
-        const btn = document.getElementById('pay-deposit-btn');
-        const url = window.DEMO_CONFIG && window.DEMO_CONFIG[key];
-        if (url && !url.startsWith('REPLACE_WITH_')) {
-          btn.href = url;
-          btn.removeAttribute('aria-disabled');
-        } else {
-          btn.href = '#';
-          btn.setAttribute('aria-disabled','true');
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Demo: Stripe Test Mode Payment Link for ' + state.name + ' ($' + state.deposit.toLocaleString() + ') not yet configured. Edit /demos/smp/config.js to add it.');
-          }, { once: true });
-        }
         goToStep(6);
       }
     });
 
-    document.getElementById('next-6').addEventListener('click', () => goToStep(7));
+    // ─── STEP 6: Payment-processing overlay (fully simulated, no external redirect) ───
+    const payOverlay = document.getElementById('pay-overlay');
+    const payBtn = document.getElementById('pay-deposit-btn');
+    payBtn.addEventListener('click', () => {
+      // Populate overlay copy
+      document.getElementById('pay-tier-label').textContent = state.name + ' · 50% Deposit';
+      document.getElementById('pay-amount-val').textContent = '$' + state.deposit.toLocaleString();
+      document.getElementById('pay-success-label').textContent = 'Deposit charged';
+      document.getElementById('pay-success-amount').textContent = '$' + state.deposit.toLocaleString();
+
+      // Reset stages
+      document.getElementById('pay-stage-processing').classList.add('active');
+      document.getElementById('pay-stage-success').classList.remove('active');
+
+      // Show overlay
+      payOverlay.classList.add('active');
+      requestAnimationFrame(() => payOverlay.classList.add('visible'));
+
+      // Stage 1 → Stage 2 after 1.6s
+      setTimeout(() => {
+        document.getElementById('pay-stage-processing').classList.remove('active');
+        document.getElementById('pay-stage-success').classList.add('active');
+      }, 1600);
+
+      // Stage 2 → advance to step 7 after another 1.4s, then hide overlay
+      setTimeout(() => {
+        fillConfirmation();
+        goToStep(7);
+        payOverlay.classList.remove('visible');
+        setTimeout(() => payOverlay.classList.remove('active'), 450);
+      }, 3000);
+    });
+
+    // Fill step 7 with booked date/time + tier
+    function fillConfirmation() {
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const d = state.pickedDate;
+      const dt = (d && state.pickedTime)
+        ? `${d.toLocaleDateString('en-US', { weekday: 'long' })}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${state.pickedTime}`
+        : 'Your consultation';
+      document.getElementById('confirm-datetime').textContent = dt;
+      document.getElementById('confirm-tier').textContent = `${state.name} · $${state.deposit.toLocaleString()} deposit paid · $${state.balance.toLocaleString()} balance due before Session 1`;
+    }
   </script>
 </body>
 </html>

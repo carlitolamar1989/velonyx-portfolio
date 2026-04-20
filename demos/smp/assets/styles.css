@@ -719,20 +719,267 @@ label.field-label.req::after { content: ' *'; color: var(--apex-gold); }
 .field-input.error { border-color: #DC2626; }
 .error-msg { color: #DC2626; font-size: 0.75rem; margin-top: 4px; display: none; }
 .error-msg.show { display: block; }
-.calendly-box {
-  background: #1A1A1A;
-  border: 1px dashed var(--apex-gold-border);
+/* ─── IN-PAGE DATE + TIME PICKER (replaces Calendly) ─── */
+.picker-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+@media (min-width: 820px) { .picker-wrap { grid-template-columns: 1.4fr 1fr; gap: 32px; } }
+.picker-col {
+  background: linear-gradient(180deg, #1A1A1A 0%, #141414 100%);
+  border: 1px solid var(--apex-gray-border-soft);
   border-radius: 14px;
-  padding: 48px 32px;
-  text-align: center;
-  min-height: 420px;
+  padding: 22px;
+}
+.picker-col-head {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.picker-month {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--apex-gold-pale);
+  letter-spacing: 0.02em;
+}
+.picker-nav { display: flex; gap: 4px; }
+.picker-nav button {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--apex-gray-border-soft);
+  color: var(--white-70);
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.picker-nav button:hover:not(:disabled) { border-color: var(--apex-gold); color: var(--apex-gold); background: var(--apex-gold-ghost); }
+.picker-nav button:disabled { opacity: 0.25; cursor: not-allowed; }
+.picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.picker-weekdays div {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--white-40);
+  text-transform: uppercase;
+  padding: 6px 0;
+  font-weight: 600;
+}
+.picker-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.picker-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--white-90);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
 }
-.calendly-box code { background: rgba(0,0,0,0.4); color: var(--apex-gold); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; }
+.picker-day:hover:not(:disabled):not(.selected) {
+  border-color: var(--apex-gold-line);
+  background: var(--apex-gold-ghost);
+}
+.picker-day:disabled { color: var(--white-30); cursor: not-allowed; opacity: 0.35; }
+.picker-day.empty { visibility: hidden; pointer-events: none; }
+.picker-day.today { color: var(--apex-gold); font-weight: 600; }
+.picker-day.today::after {
+  content: '';
+  position: absolute;
+  bottom: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 4px;
+  background: var(--apex-gold);
+  border-radius: 50%;
+}
+.picker-day.selected {
+  background: linear-gradient(135deg, var(--apex-gold), var(--apex-gold-bright));
+  color: var(--apex-black);
+  border-color: transparent;
+  font-weight: 700;
+}
+.picker-day.selected.today::after { background: var(--apex-black); }
+.picker-times { display: flex; flex-direction: column; gap: 8px; }
+.picker-times-head {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--apex-gold-pale);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--apex-gray-border-soft);
+}
+.picker-times-head .sub {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: var(--white-50);
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+.picker-time {
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid var(--apex-gray-border-soft);
+  border-radius: 10px;
+  color: var(--white-90);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+.picker-time:hover:not(:disabled) {
+  border-color: var(--apex-gold);
+  background: var(--apex-gold-ghost);
+  color: var(--apex-gold-pale);
+}
+.picker-time.selected {
+  background: linear-gradient(135deg, var(--apex-gold), var(--apex-gold-bright));
+  color: var(--apex-black);
+  border-color: transparent;
+  font-weight: 700;
+}
+.picker-times-empty {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--white-40);
+  font-size: 0.85rem;
+  font-style: italic;
+  border: 1px dashed var(--apex-gray-border-soft);
+  border-radius: 10px;
+}
+.picker-selected-summary {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(201,169,97,0.12), rgba(212,175,55,0.04));
+  border: 1px solid var(--apex-gold-border);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+  color: var(--white-90);
+  display: none;
+}
+.picker-selected-summary.show { display: block; }
+.picker-selected-summary .icon {
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--apex-gold);
+  font-weight: 700;
+}
+.picker-selected-summary strong {
+  color: var(--apex-gold-pale);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ─── PAYMENT PROCESSING OVERLAY (replaces Stripe redirect) ─── */
+.pay-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.pay-overlay.active { display: flex; }
+.pay-overlay.visible { opacity: 1; }
+.pay-card {
+  background: linear-gradient(180deg, #1A1A1A 0%, #0F0F0F 100%);
+  border: 1px solid var(--apex-gold-border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 60px rgba(201,169,97,0.1);
+}
+.pay-spinner {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  border: 3px solid rgba(201,169,97,0.15);
+  border-top-color: var(--apex-gold);
+  border-radius: 50%;
+  animation: paySpin 0.9s linear infinite;
+}
+@keyframes paySpin { to { transform: rotate(360deg); } }
+.pay-check {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--apex-gold), var(--apex-gold-bright));
+  color: var(--apex-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  animation: payBurst 0.8s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+}
+@keyframes payBurst {
+  0%   { transform: scale(0.5); opacity: 0; box-shadow: 0 0 0 0 rgba(201,169,97,0.6); }
+  50%  { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 20px rgba(201,169,97,0); }
+  100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(201,169,97,0); }
+}
+.pay-stage { display: none; }
+.pay-stage.active { display: block; }
+.pay-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white-90);
+  margin-bottom: 8px;
+}
+.pay-title.success { color: var(--apex-gold-pale); }
+.pay-subtitle {
+  font-size: 0.9rem;
+  color: var(--white-60);
+  line-height: 1.55;
+}
+.pay-amount-line {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--apex-gray-border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.pay-amount-line .k { color: var(--white-50); }
+.pay-amount-line .v { font-family: 'Playfair Display', serif; color: var(--apex-gold-pale); font-size: 1.1rem; font-weight: 600; }
+.pay-demo-note {
+  margin-top: 22px;
+  font-size: 0.72rem;
+  color: var(--white-30);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
 .upload-zone {
   background: #1A1A1A;
   border: 2px dashed var(--apex-gold-border);
