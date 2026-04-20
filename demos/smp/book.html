@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Consultation — Apex SMP Studio (Velonyx Demo)</title>
+  <meta name="description" content="Book your Apex SMP Studio consultation. Demo booking flow built by Velonyx Systems.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/smp/assets/styles.css">
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;">
+
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="apex-nav apex-nav-static">
+    <div class="apex-nav-inner">
+      <a href="/demos/smp/" class="apex-logo gold-gradient-text">APEX SMP STUDIO</a>
+      <a href="/demos/smp/" style="color:var(--white-50);font-size:0.85rem;">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="booking-main">
+    <div class="booking-inner">
+      <h1 class="booking-title gold-gradient-text">Book Your Consultation</h1>
+      <p class="booking-sub">Seven quick steps. Under 3 minutes.</p>
+
+      <div class="progress-dots" aria-label="Booking progress">
+        <div class="step-dot active" data-step="1"></div>
+        <div class="step-dot" data-step="2"></div>
+        <div class="step-dot" data-step="3"></div>
+        <div class="step-dot" data-step="4"></div>
+        <div class="step-dot" data-step="5"></div>
+        <div class="step-dot" data-step="6"></div>
+        <div class="step-dot" data-step="7"></div>
+      </div>
+
+      <!-- STEP 1: Service Selection -->
+      <section class="booking-step active" data-step="1">
+        <div class="step-label">Step 1 of 7</div>
+        <h2 class="step-title">Select your package</h2>
+        <div class="service-choices">
+          <button type="button" class="service-choice" data-tier="hairline" data-total="1500" data-deposit="750" data-balance="750" data-name="Hairline Restoration">
+            <div class="tag">Entry</div>
+            <div class="name">Hairline Restoration</div>
+            <div class="price gold-gradient-text">$1,500</div>
+            <div class="meta">1–2 sessions · 50% deposit $750</div>
+          </button>
+          <button type="button" class="service-choice" data-tier="fullscalp" data-total="3500" data-deposit="1750" data-balance="1750" data-name="Full Scalp SMP">
+            <div class="tag">Popular</div>
+            <div class="name">Full Scalp SMP</div>
+            <div class="price gold-gradient-text">$3,500</div>
+            <div class="meta">3 sessions · full coverage or density · 50% deposit $1,750</div>
+          </button>
+          <button type="button" class="service-choice" data-tier="advanced" data-total="6000" data-deposit="3000" data-balance="3000" data-name="Advanced / Scar Camouflage">
+            <div class="tag">Custom</div>
+            <div class="name">Advanced / Scar</div>
+            <div class="price gold-gradient-text">From $6,000</div>
+            <div class="meta">Custom scope · 50% deposit $3,000</div>
+          </button>
+        </div>
+        <div class="step-nav end">
+          <button type="button" class="btn-primary" id="next-1" disabled>Continue &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 2: Date & Time -->
+      <section class="booking-step" data-step="2">
+        <div class="step-label">Step 2 of 7</div>
+        <h2 class="step-title">Pick your date &amp; time</h2>
+        <div id="calendly-container" class="calendly-box">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--apex-gold);">Calendly Embed</div>
+          <p style="color:var(--white-60);font-size:0.88rem;max-width:440px;">This is where the live Calendly widget renders in a real deployment. Paste your event URL into <code>config.js</code> and the embed activates automatically.</p>
+          <p style="color:var(--white-30);font-size:0.78rem;font-style:italic;">Demo users: click Continue to simulate date selection.</p>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>&larr; Back</button>
+          <button type="button" class="btn-primary" id="next-2">Continue &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Contact Info -->
+      <section class="booking-step" data-step="3">
+        <div class="step-label">Step 3 of 7</div>
+        <h2 class="step-title">Your details</h2>
+        <div class="form-stack">
+          <div class="form-row form-row-2">
+            <div>
+              <label for="first-name" class="field-label req">First Name</label>
+              <input type="text" id="first-name" class="field-input" placeholder="Michael" required autocomplete="given-name">
+              <div class="error-msg">Please enter your first name</div>
+            </div>
+            <div>
+              <label for="last-name" class="field-label req">Last Name</label>
+              <input type="text" id="last-name" class="field-input" placeholder="Robinson" required autocomplete="family-name">
+              <div class="error-msg">Please enter your last name</div>
+            </div>
+          </div>
+          <div>
+            <label for="email" class="field-label req">Email</label>
+            <input type="email" id="email" class="field-input" placeholder="michael@example.com" required autocomplete="email">
+            <div class="error-msg">Please enter a valid email</div>
+          </div>
+          <div>
+            <label for="phone" class="field-label req">Phone</label>
+            <input type="tel" id="phone" class="field-input" placeholder="(555) 123-4567" required autocomplete="tel">
+            <div class="error-msg">Please enter a valid phone number</div>
+          </div>
+          <div>
+            <label for="address" class="field-label">Address <span style="color:var(--white-40);">(optional)</span></label>
+            <input type="text" id="address" class="field-input" placeholder="123 Main St, Los Angeles, CA" autocomplete="street-address">
+          </div>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>&larr; Back</button>
+          <button type="button" class="btn-primary" id="next-3">Continue &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Photo Upload -->
+      <section class="booking-step" data-step="4">
+        <div class="step-label">Step 4 of 7</div>
+        <h2 class="step-title">Upload pre-procedure photos</h2>
+        <p style="text-align:center;color:var(--white-60);margin:-20px auto 28px;max-width:540px;font-size:0.9rem;">Photos of your current scalp — top, sides, and back. These stay private in your client portal.</p>
+        <label for="photo-upload" class="upload-zone" id="upload-zone">
+          <div class="plus">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="1.5"><path d="M12 4v16m8-8H4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="upload-title">Drop photos here or click to browse</div>
+          <div class="upload-sub">.jpg, .png, .heic · up to 10MB each</div>
+          <input type="file" id="photo-upload" accept=".jpg,.jpeg,.png,.heic,image/*" multiple class="hidden">
+        </label>
+        <div id="thumbs" class="thumbs-grid"></div>
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>&larr; Back</button>
+          <button type="button" class="btn-primary" id="next-4">Continue &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 5: Consent -->
+      <section class="booking-step" data-step="5">
+        <div class="step-label">Step 5 of 7</div>
+        <h2 class="step-title">Consent &amp; agreements</h2>
+        <div class="consent-stack">
+          <label class="consent-card">
+            <input type="checkbox" id="consent-privacy" required>
+            <span>I agree to the <a href="/privacy.html" target="_blank">Privacy Policy</a> and <a href="/terms.html" target="_blank">Terms of Service</a>.</span>
+          </label>
+          <label class="consent-card">
+            <input type="checkbox" id="consent-sms" required>
+            <span>I consent to receive SMS reminders, aftercare instructions, and re-engagement messages from Apex SMP Studio. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+          </label>
+          <label class="consent-card">
+            <input type="checkbox" id="consent-photos" required>
+            <span>I consent to pre- and post-procedure photos being stored securely in my client portal for session-to-session comparison and recordkeeping.</span>
+          </label>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>&larr; Back</button>
+          <button type="button" class="btn-primary" id="next-5">Continue &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 6: Deposit Payment -->
+      <section class="booking-step" data-step="6">
+        <div class="step-label">Step 6 of 7</div>
+        <h2 class="step-title">50% booking deposit</h2>
+        <p style="text-align:center;color:var(--white-60);margin:-20px auto 28px;max-width:560px;font-size:0.9rem;">Your deposit secures your Session 1 booking. Remaining balance covers every session in your package and is due before Session 1 begins.</p>
+
+        <div class="pay-box">
+          <div class="sum-row"><span style="color:var(--white-70);">Package</span><span style="font-weight:500;" id="sum-name">—</span></div>
+          <div class="sum-row"><span style="color:var(--white-70);">Package Total</span><span style="font-weight:500;" id="sum-total">—</span></div>
+          <div class="sum-row highlight"><span class="k">50% Deposit Due Today</span><span class="v gold-gradient-text" id="sum-deposit">—</span></div>
+          <div class="sum-row" style="color:var(--white-60);"><span>Remaining Balance</span><span id="sum-balance">—</span></div>
+          <div style="font-size:0.75rem;color:var(--white-50);margin-top:10px;font-style:italic;">Balance due before Session 1 begins. Covers all sessions in your package — no per-session charges.</div>
+        </div>
+
+        <a id="pay-deposit-btn" href="#" target="_blank" rel="noopener" class="btn-primary btn-wide" style="display:block;text-align:center;margin-top:24px;">Pay Deposit to Confirm &rarr;</a>
+        <p class="test-card-note">This is a demo. Use Stripe test card <span class="num">4242 4242 4242 4242</span> with any future expiration date and any CVC.</p>
+
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>&larr; Back</button>
+          <button type="button" class="btn-outline" id="next-6">Simulate Paid &rarr;</button>
+        </div>
+      </section>
+
+      <!-- STEP 7: Confirmation -->
+      <section class="booking-step" data-step="7">
+        <div class="confirm-screen">
+          <div class="confirm-check">✓</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:14px;">Your consultation is booked!</h2>
+          <p style="color:var(--white-70);margin-bottom:24px;">A confirmation email is on its way.</p>
+          <div class="next-step-box">
+            <div class="next-step-label">Next Step</div>
+            <p style="font-size:0.88rem;color:var(--white-90);line-height:1.55;">Upload any remaining photos and monitor your balance reminder (5 days before Session 1) from your client portal.</p>
+          </div>
+          <div class="hero-ctas" style="justify-content:center;">
+            <a href="/demos/smp/portal.html" class="btn-primary btn-wide">Enter Your Client Portal &rarr;</a>
+            <a href="/demos/smp/" class="btn-outline btn-wide">Back to Home</a>
+          </div>
+          <p style="font-size:0.72rem;color:var(--white-30);font-style:italic;margin-top:32px;">(Demo note: in a real deployment, a confirmation email would be sent via SES and the SMS sequence would kick off via Twilio.)</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="apex-footer" style="margin-top:auto;">
+    <p class="apex-footer-velonyx">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · velonyxsystems.com · This is a demonstration platform</p>
+  </footer>
+
+  <script src="/demos/smp/config.js"></script>
+  <script>
+    const state = { step: 1, tier: null, total: 0, deposit: 0, balance: 0, name: '' };
+    const urlTier = new URLSearchParams(location.search).get('tier');
+
+    function goToStep(n) {
+      if (n < 1 || n > 7) return;
+      document.querySelectorAll('.booking-step').forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));
+      document.querySelectorAll('.step-dot').forEach((d,i) => {
+        const dn = i + 1;
+        d.classList.toggle('active', dn === n);
+        d.classList.toggle('done', dn < n);
+      });
+      state.step = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => goToStep(state.step - 1)));
+
+    // Step 1
+    const svcChoices = document.querySelectorAll('.service-choice');
+    svcChoices.forEach(c => c.addEventListener('click', () => {
+      svcChoices.forEach(x => x.classList.remove('selected'));
+      c.classList.add('selected');
+      state.tier = c.dataset.tier;
+      state.total = Number(c.dataset.total);
+      state.deposit = Number(c.dataset.deposit);
+      state.balance = Number(c.dataset.balance);
+      state.name = c.dataset.name;
+      document.getElementById('next-1').disabled = false;
+    }));
+    document.getElementById('next-1').addEventListener('click', () => { if (state.tier) goToStep(2); });
+
+    if (urlTier) {
+      const pre = document.querySelector(`.service-choice[data-tier="${urlTier}"]`);
+      if (pre) pre.click();
+    }
+
+    // Step 2: Calendly
+    (function tryCalendly(){
+      const container = document.getElementById('calendly-container');
+      const url = window.DEMO_CONFIG && window.DEMO_CONFIG.CALENDLY_EMBED_URL;
+      if (url && !url.startsWith('REPLACE_WITH_')) {
+        container.classList.remove('calendly-box');
+        container.style.cssText = 'background:#1A1A1A;border-radius:14px;overflow:hidden;min-height:640px;';
+        container.innerHTML = `<iframe src="${url}" width="100%" height="640" frameborder="0" title="Schedule a consultation"></iframe>`;
+      }
+    })();
+    document.getElementById('next-2').addEventListener('click', () => goToStep(3));
+
+    // Step 3: Contact validation
+    document.getElementById('next-3').addEventListener('click', () => {
+      const fields = ['first-name','last-name','email','phone'];
+      let valid = true;
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const err = el.nextElementSibling;
+        el.classList.remove('error'); err.classList.remove('show');
+        if (!el.value.trim()) { el.classList.add('error'); err.classList.add('show'); valid = false; return; }
+        if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) { el.classList.add('error'); err.classList.add('show'); valid = false; }
+        if (id === 'phone' && el.value.replace(/\D/g,'').length < 10) { el.classList.add('error'); err.classList.add('show'); valid = false; }
+      });
+      if (valid) goToStep(4);
+    });
+
+    // Step 4: File upload (demo only)
+    const thumbs = document.getElementById('thumbs');
+    const uploadZone = document.getElementById('upload-zone');
+    const fileInput = document.getElementById('photo-upload');
+    function addFiles(files) {
+      Array.from(files).forEach(f => {
+        if (f.size > 10*1024*1024) return;
+        const url = URL.createObjectURL(f);
+        const div = document.createElement('div');
+        div.className = 'thumb';
+        div.innerHTML = `<img src="${url}" alt=""><span>${f.name}</span>`;
+        thumbs.appendChild(div);
+      });
+    }
+    fileInput.addEventListener('change', e => addFiles(e.target.files));
+    ;['dragover','dragenter'].forEach(ev => uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.add('drag'); }));
+    ;['dragleave','drop'].forEach(ev => uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.remove('drag'); }));
+    uploadZone.addEventListener('drop', e => { if (e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+    document.getElementById('next-4').addEventListener('click', () => goToStep(5));
+
+    // Step 5: Consent
+    document.getElementById('next-5').addEventListener('click', () => {
+      const boxes = ['consent-privacy','consent-sms','consent-photos'];
+      let valid = true;
+      boxes.forEach(id => {
+        const cb = document.getElementById(id);
+        const card = cb.closest('.consent-card');
+        card.classList.toggle('invalid', !cb.checked);
+        if (!cb.checked) valid = false;
+      });
+      if (valid) {
+        document.getElementById('sum-name').textContent = state.name;
+        document.getElementById('sum-total').textContent = '$' + state.total.toLocaleString();
+        document.getElementById('sum-deposit').textContent = '$' + state.deposit.toLocaleString();
+        document.getElementById('sum-balance').textContent = '$' + state.balance.toLocaleString();
+        const key = {
+          hairline: 'STRIPE_HAIRLINE_DEPOSIT_URL',
+          fullscalp: 'STRIPE_FULLSCALP_DEPOSIT_URL',
+          advanced: 'STRIPE_ADVANCED_DEPOSIT_URL',
+        }[state.tier];
+        const btn = document.getElementById('pay-deposit-btn');
+        const url = window.DEMO_CONFIG && window.DEMO_CONFIG[key];
+        if (url && !url.startsWith('REPLACE_WITH_')) {
+          btn.href = url;
+          btn.removeAttribute('aria-disabled');
+        } else {
+          btn.href = '#';
+          btn.setAttribute('aria-disabled','true');
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Demo: Stripe Test Mode Payment Link for ' + state.name + ' ($' + state.deposit.toLocaleString() + ') not yet configured. Edit /demos/smp/config.js to add it.');
+          }, { once: true });
+        }
+        goToStep(6);
+      }
+    });
+
+    document.getElementById('next-6').addEventListener('click', () => goToStep(7));
+  </script>
+</body>
+</html>
