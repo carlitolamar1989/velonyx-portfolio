@@ -13,6 +13,11 @@
 </head>
 <body>
 
+  <!-- Luxury entry preloader -->
+  <div class="vx-preloader" id="vx-preloader" aria-hidden="true">
+    <div class="vx-preloader-mark">APEX SMP STUDIO</div>
+  </div>
+
   <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
 
   <nav class="apex-nav">
@@ -32,9 +37,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-orb" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-eyebrow">PRECISION · ARTISTRY · CONFIDENCE</div>
-      <h1 class="hero-title gold-gradient-text">Apex SMP Studio</h1>
+      <h1 class="hero-title shimmer-sweep">Apex SMP Studio</h1>
       <p class="hero-sub-serif">Precision Scalp Micropigmentation. Engineered For Confidence.</p>
       <p class="hero-sub">For clients with full hair loss and for clients with thinning — award-winning density work, hairline design, and scar camouflage. 500+ scalps restored.</p>
       <div class="hero-ctas">
@@ -86,11 +94,18 @@
             <strong style="color: var(--apex-gold-pale); font-weight: 600;">For clients with thinning hair:</strong> we tattoo pigment into the gaps between existing hairs — known as density work — so the hair reads visibly thicker without transplants, drugs, or downtime.
           </p>
         </div>
-        <div class="fade-up about-visual">
-          <div class="about-visual-badge">
-            <span class="badge-label">The Craft</span>
-            <div class="mono gold-gradient-text">10<sup style="font-size:0.35em;">+</sup></div>
-            <p class="badge-sub">Years of precision-pigment artistry. Every scalp a one-of-one.</p>
+        <!--
+          ABOUT-SECTION PHOTO: currently uses the client's fully-healed top-down shot
+          (healed-top.jpg) cropped to show the precision pigmentation up close.
+          When a real "artist at work" procedure-in-progress photo becomes available,
+          swap the src below and the caption text. Aspect ratio is 4:5.
+        -->
+        <div class="fade-up about-visual photo">
+          <span class="photo-tag">THE CRAFT</span>
+          <img src="/demos/smp/assets/healed-top.jpg" alt="Close-up of fully-healed scalp micropigmentation showing individual pigment placement" loading="lazy">
+          <div class="photo-caption">
+            <span class="eye">PRECISION PIGMENTATION</span>
+            <p class="cap">Thousands of individual follicle replicas. Every one placed by hand, under magnifier.</p>
           </div>
         </div>
       </div>
@@ -155,7 +170,7 @@
     <div class="container">
       <div class="text-center fade-up">
         <span class="eyebrow">An Authentic Transformation</span>
-        <h2 class="h-section gold-gradient-text">An Authentic Journey</h2>
+        <h2 class="h-section shimmer-sweep">An Authentic Journey</h2>
         <p class="subtitle">Real progression. Real healing. Real results. This is what premium SMP looks like — from first session through full recovery.</p>
       </div>
       <div class="gallery-grid">
@@ -372,6 +387,44 @@
 
   <script src="/demos/smp/config.js"></script>
   <script>
+    // ─── LUXURY ENTRY PRELOADER ───
+    // Fires regardless of load state; 1200ms gives the shimmer time to play.
+    (function() {
+      const pre = document.getElementById('vx-preloader');
+      if (!pre) return;
+      const dismiss = () => {
+        setTimeout(() => pre.classList.add('done'), 1200);
+      };
+      if (document.readyState === 'complete') dismiss();
+      else window.addEventListener('load', dismiss, { once: true });
+      // Safety: never block content more than 2.5s
+      setTimeout(() => pre.classList.add('done'), 2500);
+    })();
+
+    // ─── CURSOR AURA (desktop-only gold follow-glow) ───
+    (function() {
+      const coarse = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (coarse || reduced) return;
+      const aura = document.createElement('div');
+      aura.className = 'vx-cursor-aura';
+      aura.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(aura);
+      let lastX = 0, lastY = 0, pending = false;
+      document.addEventListener('mousemove', (e) => {
+        lastX = e.clientX; lastY = e.clientY;
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(() => {
+          aura.style.left = lastX + 'px';
+          aura.style.top = lastY + 'px';
+          aura.style.opacity = '1';
+          pending = false;
+        });
+      }, { passive: true });
+      document.addEventListener('mouseleave', () => { aura.style.opacity = '0'; });
+    })();
+
     // Fade-up on scroll
     const fadeObs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
