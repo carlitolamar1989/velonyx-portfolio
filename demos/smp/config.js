@@ -1,54 +1,29 @@
 /**
  * APEX SMP STUDIO — Demo Config
  * ─────────────────────────────────────────────────────────────
- * This is the ONLY file Carlos needs to edit manually before the
- * demo goes live for prospect outreach.
+ * This demo is FULLY SELF-CONTAINED.
  *
- * SETUP CHECKLIST (5 minutes):
+ * - The date/time picker on the booking page (step 2) renders a live
+ *   calendar in-browser. Pick a date, pick a time — nothing hits
+ *   Calendly or any external scheduler.
  *
- * 1. Create Calendly event type:
- *    - Title: "Apex SMP Demo Consultation"
- *    - Duration: 30 minutes
- *    - Copy the inline embed URL (looks like https://calendly.com/your-name/apex-smp-demo)
- *    - Paste it into CALENDLY_EMBED_URL below
+ * - The "Confirm Booking & Pay Deposit" button on step 6 shows an
+ *   in-page payment-processing overlay with a spinner, success
+ *   checkmark, and auto-advance to the confirmation screen. Nothing
+ *   hits Stripe, Checkout.com, or any external processor. No card
+ *   data is ever entered or transmitted.
  *
- * 2. In Stripe Dashboard → Payment Links (TEST MODE toggled on):
- *    - Create 3 one-time Payment Links with these exact amounts:
- *         $750   (Hairline deposit — 50% of $1,500)
- *         $1,750 (Full Scalp deposit — 50% of $3,500)
- *         $3,000 (Advanced deposit — 50% of $6,000)
- *    - Copy each buy.stripe.com URL
- *    - Paste them into the 3 STRIPE_*_DEPOSIT_URL fields below
- *
- * 3. Save this file. The demo auto-wires everything else.
- *
- * Test card for Stripe Test Mode: 4242 4242 4242 4242
- *                                  Any future expiry, any CVC
+ * Nothing to edit in this file to run the demo. It's kept around as a
+ * marker + future extension point if a real Calendly / Stripe / other
+ * integration is added later.
  * ─────────────────────────────────────────────────────────────
  */
 window.DEMO_CONFIG = {
-  CALENDLY_EMBED_URL: "REPLACE_WITH_CALENDLY_URL",
-
-  STRIPE_HAIRLINE_DEPOSIT_URL:  "REPLACE_WITH_750_LINK",
-  STRIPE_FULLSCALP_DEPOSIT_URL: "REPLACE_WITH_1750_LINK",
-  STRIPE_ADVANCED_DEPOSIT_URL:  "REPLACE_WITH_3000_LINK",
-
-  // Sanity check: warn in console if Carlos hasn't edited this file yet
-  _unconfigured() {
-    const placeholders = [
-      this.CALENDLY_EMBED_URL,
-      this.STRIPE_HAIRLINE_DEPOSIT_URL,
-      this.STRIPE_FULLSCALP_DEPOSIT_URL,
-      this.STRIPE_ADVANCED_DEPOSIT_URL,
-    ];
-    return placeholders.filter(v => v.startsWith("REPLACE_WITH_"));
-  }
+  SELF_CONTAINED: true,
+  VERSION: '2.0',
+  // Future hooks — unused in the current fully-simulated demo:
+  CALENDLY_EMBED_URL: null,
+  STRIPE_HAIRLINE_DEPOSIT_URL: null,
+  STRIPE_FULLSCALP_DEPOSIT_URL: null,
+  STRIPE_ADVANCED_DEPOSIT_URL: null,
 };
-
-if (window.DEMO_CONFIG._unconfigured().length > 0) {
-  console.warn(
-    "[APEX SMP DEMO] Config placeholders still present. " +
-    "Edit /demos/smp/config.js before sharing demo publicly. " +
-    `Unconfigured: ${window.DEMO_CONFIG._unconfigured().length}/4`
-  );
-}
