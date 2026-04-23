@@ -1,7 +1,42 @@
-/* Velonyx Cookie Consent Banner — CCPA-friendly, GA4-gating.
+/* Velonyx Cookie Consent Banner — CCPA-friendly, GA4 + Meta Pixel gating.
  * Stores choice in localStorage key: velonyx_cookie_consent = "accepted" | "rejected"
- * Works with window.__loadGA4() defined inline in each page's <head>.
+ * Works with window.__loadGA4() defined inline in each page's <head>,
+ * and window.__loadMetaPixel() defined below (reads VELONYX_MARKETING config).
  */
+
+// Meta Pixel loader — only fires if window.VELONYX_MARKETING.META_PIXEL_ID is set.
+// Standard FB pixel base code (https://developers.facebook.com/docs/meta-pixel/get-started).
+window.__loadMetaPixel = function(){
+  var cfg = window.VELONYX_MARKETING || {};
+  var pixelId = cfg.META_PIXEL_ID;
+  if (!pixelId || document.querySelector('script[data-meta-pixel]')) return;
+  // jshint ignore:start
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;t.setAttribute('data-meta-pixel','1');s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  // jshint ignore:end
+  window.fbq('init', pixelId);
+  window.fbq('track', 'PageView');
+};
+
+// Helper for page-specific events (InitiateCheckout, Lead, etc.).
+// Call e.g.: window.vxTrack('Lead', {content_name: 'Calendly booking'});
+window.vxTrack = function(eventName, params){
+  if (window.fbq) { try { window.fbq('track', eventName, params || {}); } catch(e) {} }
+  if (window.gtag) { try { window.gtag('event', eventName, params || {}); } catch(e) {} }
+};
+
+// If consent was previously granted, load the Meta Pixel right away.
+// (The inline GA4 stub already handles GA4 the same way.)
+try {
+  if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') {
+    window.__loadMetaPixel();
+  }
+} catch (e) {}
+
 (function(){
   try {
     if (localStorage.getItem('velonyx_cookie_consent')) return; // already decided
@@ -42,6 +77,7 @@
     document.getElementById('vx-cb-accept').addEventListener('click', function(){
       try { localStorage.setItem('velonyx_cookie_consent','accepted'); } catch(e) {}
       if (typeof window.__loadGA4 === 'function') window.__loadGA4();
+      if (typeof window.__loadMetaPixel === 'function') window.__loadMetaPixel();
       banner.parentNode && banner.parentNode.removeChild(banner);
     });
     document.getElementById('vx-cb-reject').addEventListener('click', function(){

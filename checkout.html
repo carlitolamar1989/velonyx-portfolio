@@ -913,6 +913,23 @@
       document.getElementById('afterpay-amount').textContent = installment;
     }
 
+    // Marketing event helper — safe no-op if pixels not loaded
+    function trackCheckout(method, tier, value) {
+      if (typeof window.vxTrack === 'function') {
+        window.vxTrack('InitiateCheckout', {
+          content_name: tier,
+          content_category: method,
+          currency: 'USD',
+          value: value
+        });
+      }
+    }
+
+    // Price reference (matches TIER_PRICES / DEPOSIT_AMOUNTS in-page)
+    const TIER_FULL_PRICE = { starter: 1500, growth: 3500, premium: 6000 };
+    const TIER_DEPOSIT    = { starter:  750, growth: 1750, premium: 3000 };
+    const CARE_PRICE      = { standard: 125, growth: 225, premium: 325 };
+
     // Pay in full (discounted) → full payment link
     function fullCheckout() {
       const link = STRIPE_FULL_LINKS[currentPlan];
@@ -920,6 +937,7 @@
         alert('Pay-in-full links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your payment.');
         return;
       }
+      trackCheckout('pay_in_full', currentPlan, TIER_FULL_PRICE[currentPlan] * 0.9);
       window.location.href = link;
     }
 
@@ -930,6 +948,7 @@
         alert('Deposit payment links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your booking.');
         return;
       }
+      trackCheckout('deposit', currentPlan, TIER_DEPOSIT[currentPlan]);
       window.location.href = link;
     }
 
@@ -937,6 +956,7 @@
     function stripeCheckout() {
       const link = STRIPE_BNPL_LINKS[currentPlan];
       if (!link) return;
+      trackCheckout('bnpl', currentPlan, TIER_FULL_PRICE[currentPlan]);
       window.location.href = link;
     }
 
@@ -946,6 +966,14 @@
       if (!link || link.startsWith('TODO_')) {
         alert('Care plan sign-up opens soon. Email admin@velonyxsystems.com or call (877) 317-8643 to be invoiced directly.');
         return;
+      }
+      if (typeof window.vxTrack === 'function') {
+        window.vxTrack('Subscribe', {
+          content_name: tier + '_care',
+          currency: 'USD',
+          value: CARE_PRICE[tier] || 0,
+          predicted_ltv: (CARE_PRICE[tier] || 0) * 12
+        });
       }
       window.open(link, '_blank', 'noopener');
     }
@@ -970,7 +998,8 @@
 
     updateAmounts();
   </script>
-  <!-- Cookie consent banner (GA4 gate) -->
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
   <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
