@@ -73,9 +73,9 @@
         <div class="gdk-kpi-delta up">↑ 4 vs last month</div>
       </div>
       <div class="gdk-kpi">
-        <div class="gdk-kpi-label">Pipeline Value</div>
+        <div class="gdk-kpi-label">Open Quotes &amp; Booked Jobs</div>
         <div class="gdk-kpi-value" id="kpi-pipeline">—</div>
-        <div class="gdk-kpi-delta up">Open estimates + scheduled</div>
+        <div class="gdk-kpi-delta up">Money on the calendar</div>
       </div>
       <div class="gdk-kpi">
         <div class="gdk-kpi-label">Win Rate · 90 Days</div>
@@ -87,45 +87,13 @@
     <!-- TWO-COLUMN MAIN -->
     <div class="gdk-portal-grid" style="grid-template-columns:1fr;gap:18px;">
 
-      <!-- LEAD PIPELINE -->
+      <!-- PAYMENTS LOG (top — money first) -->
       <section class="gdk-portal-card full">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
-          <div>
-            <div class="gdk-portal-card-label">Pipeline</div>
-            <h2 class="gdk-portal-card-title" style="margin-bottom:0;">Lead Pipeline</h2>
-          </div>
-          <div class="gdk-chip-bar" style="margin-bottom:0;">
-            <button class="gdk-chip active" data-filter="all">All</button>
-            <button class="gdk-chip" data-filter="new">New</button>
-            <button class="gdk-chip" data-filter="contacted">Contacted</button>
-            <button class="gdk-chip" data-filter="estimated">Estimated</button>
-            <button class="gdk-chip" data-filter="won">Won</button>
-            <button class="gdk-chip" data-filter="lost">Lost</button>
-          </div>
-        </div>
-        <div class="gdk-table-wrap">
-          <table class="gdk-table">
-            <thead>
-              <tr><th>Name</th><th>Service</th><th>Neighborhood</th><th>Value</th><th>Source</th><th>Status</th><th>Created</th></tr>
-            </thead>
-            <tbody id="leads-tbody"></tbody>
-          </table>
-        </div>
-        <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="leads-meta">—</div>
-      </section>
-
-      <!-- TWO-COL: Jobs + SMS Log -->
-      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-jobs-sms"></div>
-
-      <!-- ESTIMATES + REVIEWS -->
-      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>
-
-      <!-- PAYMENTS LOG -->
-      <section class="gdk-portal-card full">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
           <div>
             <div class="gdk-portal-card-label">Money</div>
-            <h2 class="gdk-portal-card-title" style="margin-bottom:0;">Payments</h2>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:4px;">Payments</h2>
+            <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:540px;line-height:1.5;">Every invoice you've sent or taken in person. Tap "+ Take a Payment" to create a new one — pick whatever amount you negotiated.</div>
           </div>
           <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
             <span style="display:inline-flex;align-items:center;gap:6px;">
@@ -145,6 +113,40 @@
         </div>
         <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="payments-meta">—</div>
       </section>
+
+      <!-- NEW CUSTOMER REQUESTS (formerly "Lead Pipeline" — friendlier label for trades) -->
+      <section class="gdk-portal-card full">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="gdk-portal-card-label">New Inquiries</div>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:4px;">New Customer Requests</h2>
+            <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:540px;line-height:1.5;">People who reached out asking for service — through your website, a call, or a Google search. Filter by where they are in the process.</div>
+          </div>
+          <div class="gdk-chip-bar" style="margin-bottom:0;">
+            <button class="gdk-chip active" data-filter="all">All</button>
+            <button class="gdk-chip" data-filter="new">New</button>
+            <button class="gdk-chip" data-filter="contacted">Contacted</button>
+            <button class="gdk-chip" data-filter="estimated">Quoted</button>
+            <button class="gdk-chip" data-filter="won">Won</button>
+            <button class="gdk-chip" data-filter="lost">Lost</button>
+          </div>
+        </div>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table">
+            <thead>
+              <tr><th>Name</th><th>Service</th><th>Neighborhood</th><th>Est. Value</th><th>Source</th><th>Status</th><th>Created</th></tr>
+            </thead>
+            <tbody id="leads-tbody"></tbody>
+          </table>
+        </div>
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="leads-meta">—</div>
+      </section>
+
+      <!-- TWO-COL: Jobs + SMS Log -->
+      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-jobs-sms"></div>
+
+      <!-- ESTIMATES + REVIEWS -->
+      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>
 
     </div>
   </main>
