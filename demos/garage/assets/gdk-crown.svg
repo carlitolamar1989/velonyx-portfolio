@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <!-- 5-point crown matching the Gemini design -->
+  <path d="M10 80 L18 28 L42 60 L60 12 L78 60 L102 28 L110 80 Z"/>
+  <line x1="10" y1="88" x2="110" y2="88"/>
+</svg>
