@@ -271,6 +271,30 @@ const GDK_PORTAL_USER = {
 };
 
 // ─────────────────────────────────────────────────────────────
+// PAYMENTS (~12 historical mock payments — mix of methods + statuses)
+// Powers /pay.html (customer-facing) and the Payments table on /admin.html
+// ─────────────────────────────────────────────────────────────
+const GDK_PAYMENTS = [
+  // PAID IN-PERSON (tradesman handed phone to customer on-site)
+  { id: 'PAY-1252', customerId: 'cust-005', customerName: 'Tony Romano',     customerPhone: '702-555-0571', customerEmail: 'tromano@example.com',    amount: 645,  description: 'Spring replacement (dual torsion)',     method: 'paid-inperson', status: 'paid',    createdAt: _d(0,  10, 22), paidAt: _d(0,  10, 27), techName: 'Marcus Reed', paymentMethod: 'apple-pay' },
+  { id: 'PAY-1251', customerId: 'cust-008', customerName: 'Linda Nguyen',    customerPhone: '702-555-0816', customerEmail: 'lnguyen@example.com',    amount: 425,  description: 'Spring replacement (single torsion)',   method: 'paid-inperson', status: 'paid',    createdAt: _d(-1, 14, 5),  paidAt: _d(-1, 14, 11), techName: 'Diego Ruiz',  paymentMethod: 'apple-pay' },
+  { id: 'PAY-1250', customerId: 'cust-013', customerName: 'Hassan Ali',      customerPhone: '702-555-1392', customerEmail: 'hali@example.com',       amount: 489,  description: 'Smart wifi opener install',             method: 'paid-inperson', status: 'paid',    createdAt: _d(-1, 11, 40), paidAt: _d(-1, 11, 46), techName: 'Marcus Reed', paymentMethod: 'card' },
+  { id: 'PAY-1249', customerId: 'cust-009', customerName: 'Carlos Mendoza',  customerPhone: '702-555-0901', customerEmail: 'cmendoza@example.com',   amount: 89,   description: 'Emergency service call (after-hours)',  method: 'paid-inperson', status: 'paid',    createdAt: _d(-2, 21, 15), paidAt: _d(-2, 21, 18), techName: 'Trent Walker',paymentMethod: 'google-pay' },
+  { id: 'PAY-1248', customerId: 'cust-002', customerName: 'Maria Gonzalez',  customerPhone: '702-555-0203', customerEmail: 'mgonzalez@example.com',  amount: 450,  description: 'Spring replacement + tune-up',          method: 'paid-inperson', status: 'paid',    createdAt: _d(-2, 16, 30), paidAt: _d(-2, 16, 34), techName: 'Diego Ruiz',  paymentMethod: 'apple-pay' },
+  { id: 'PAY-1245', customerId: 'cust-015', customerName: 'Ricardo Vasquez', customerPhone: '702-555-1547', customerEmail: 'rvasquez@example.com',   amount: 285,  description: 'Spring replacement (single)',           method: 'paid-inperson', status: 'paid',    createdAt: _d(-3, 9,  50), paidAt: _d(-3, 9,  53), techName: 'Marcus Reed', paymentMethod: 'apple-pay' },
+  { id: 'PAY-1242', customerId: 'cust-011', customerName: 'Marcus Lee',      customerPhone: '702-555-1147', customerEmail: 'mlee@example.com',       amount: 149,  description: 'Annual maintenance + tune-up',          method: 'paid-inperson', status: 'paid',    createdAt: _d(-4, 13, 15), paidAt: _d(-4, 13, 17), techName: 'Trent Walker',paymentMethod: 'card' },
+
+  // PAID ONLINE (link sent, customer paid remotely)
+  { id: 'PAY-1247', customerId: 'cust-003', customerName: 'James Chen',      customerPhone: '702-555-0317', customerEmail: 'jchen@example.com',      amount: 1850, description: 'New door install (double-car insulated)',method: 'paid-online',   status: 'paid',    createdAt: _d(-2, 18, 5),  paidAt: _d(-2, 19, 22), techName: 'Marcus Reed', paymentMethod: 'affirm' },
+  { id: 'PAY-1244', customerId: 'cust-007', customerName: 'Derek Johnson',   customerPhone: '702-555-0745', customerEmail: 'derek.j@example.com',    amount: 685,  description: 'Smart wifi opener + remote programming',method: 'paid-online',   status: 'paid',    createdAt: _d(-3, 17, 10), paidAt: _d(-3, 20, 45), techName: 'Diego Ruiz',  paymentMethod: 'apple-pay' },
+  { id: 'PAY-1240', customerId: 'cust-014', customerName: 'Stephanie Brown', customerPhone: '702-555-1483', customerEmail: 'sbrown@example.com',     amount: 2400, description: 'Commercial roll-up door (warehouse)',   method: 'paid-online',   status: 'paid',    createdAt: _d(-5, 15, 30), paidAt: _d(-4, 9,  12), techName: 'Marcus Reed', paymentMethod: 'klarna' },
+
+  // LINK SENT BUT NOT YET PAID (pending)
+  { id: 'PAY-1253', customerId: 'cust-004', customerName: 'Aisha Williams',  customerPhone: '702-555-0489', customerEmail: 'aisha.w@example.com',    amount: 385,  description: 'Spring replacement (single torsion)',   method: 'link-sent',     status: 'pending', createdAt: _d(0,  9,  15), paidAt: null,           techName: 'Diego Ruiz',  paymentMethod: null },
+  { id: 'PAY-1246', customerId: 'cust-006', customerName: 'Sarah Patel',     customerPhone: '702-555-0628', customerEmail: 'spatel@example.com',     amount: 1450, description: 'New door install (single-car steel)',   method: 'link-sent',     status: 'pending', createdAt: _d(-2, 16, 50), paidAt: null,           techName: 'Marcus Reed', paymentMethod: null },
+];
+
+// ─────────────────────────────────────────────────────────────
 // EXPORT for browser global access
 // ─────────────────────────────────────────────────────────────
 window.GDK_DATA = {
@@ -280,6 +304,7 @@ window.GDK_DATA = {
   estimates: GDK_ESTIMATES,
   smsLog: GDK_SMS_LOG,
   reviews: GDK_REVIEW_REQUESTS,
+  payments: GDK_PAYMENTS,
   portalUser: GDK_PORTAL_USER,
   services: SERVICES_OFFERED,
   neighborhoods: NEIGHBORHOODS,
@@ -289,6 +314,7 @@ window.GDK_DATA = {
 if (typeof console !== 'undefined') {
   console.log('%c[GDK Mock Data Loaded]%c ' +
     `${GDK_LEADS.length} leads · ${GDK_JOBS.length} jobs · ${GDK_ESTIMATES.length} estimates · ` +
-    `${GDK_CUSTOMERS.length} customers · ${GDK_SMS_LOG.length} SMS · ${GDK_REVIEW_REQUESTS.length} reviews`,
+    `${GDK_CUSTOMERS.length} customers · ${GDK_SMS_LOG.length} SMS · ${GDK_REVIEW_REQUESTS.length} reviews · ` +
+    `${GDK_PAYMENTS.length} payments`,
     'color:#B8732E;font-weight:bold;', 'color:#999;');
 }

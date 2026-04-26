@@ -48,9 +48,15 @@
           <div class="gdk-portal-meta" id="header-meta">—</div>
         </div>
       </div>
-      <div style="display:flex;gap:10px;">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
-        <button class="gdk-btn gdk-btn-primary gdk-btn-small">+ New Lead</button>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
+        <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
+          <span style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            + Take a Payment
+          </span>
+        </a>
       </div>
     </header>
 
@@ -113,6 +119,32 @@
 
       <!-- ESTIMATES + REVIEWS -->
       <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>
+
+      <!-- PAYMENTS LOG -->
+      <section class="gdk-portal-card full">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="gdk-portal-card-label">Money</div>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:0;">Payments</h2>
+          </div>
+          <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              + Take a Payment
+            </span>
+          </a>
+        </div>
+        <div class="gdk-payments-totals" id="payments-totals"></div>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table gdk-payments-table">
+            <thead>
+              <tr><th>Date</th><th>Customer</th><th>Description</th><th style="text-align:right;">Amount</th><th>Method</th><th>Status</th></tr>
+            </thead>
+            <tbody id="payments-tbody"></tbody>
+          </table>
+        </div>
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="payments-meta">—</div>
+      </section>
 
     </div>
   </main>
@@ -267,6 +299,62 @@
     if (window.matchMedia('(min-width: 1100px)').matches) {
       document.getElementById('row-est-rev').style.gridTemplateColumns = '1fr 1fr';
     }
+
+    // ─── PAYMENTS LOG ───
+    const payments = [...D.payments].sort((a, b) => b.createdAt - a.createdAt);
+    const paidPayments = payments.filter(p => p.status === 'paid');
+    const pendingPayments = payments.filter(p => p.status === 'pending');
+    const totalPaid = paidPayments.reduce((s, p) => s + p.amount, 0);
+    const totalPending = pendingPayments.reduce((s, p) => s + p.amount, 0);
+    const paidThisWeek = paidPayments.filter(p => p.paidAt && (new Date() - p.paidAt) / 86400000 <= 7).reduce((s, p) => s + p.amount, 0);
+
+    document.getElementById('payments-totals').innerHTML = `
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Paid · 7 Days</div>
+        <div class="gdk-pay-stat-value">$${paidThisWeek.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Total Collected</div>
+        <div class="gdk-pay-stat-value">$${totalPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Pending Links</div>
+        <div class="gdk-pay-stat-value">$${totalPending.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+    `;
+
+    function methodBadge(m) {
+      const map = {
+        'paid-online':   { label: 'Paid Online',   cls: 'gdk-badge-paid' },
+        'paid-inperson': { label: 'Paid In-Person', cls: 'gdk-badge-paid' },
+        'link-sent':     { label: 'Link Sent',     cls: 'gdk-badge-scheduled' },
+      };
+      const v = map[m] || { label: m, cls: 'gdk-badge-new' };
+      return `<span class="gdk-badge ${v.cls}">${v.label}</span>`;
+    }
+    function statusBadge(s) {
+      if (s === 'paid')    return `<span class="gdk-badge gdk-badge-paid">paid</span>`;
+      if (s === 'pending') return `<span class="gdk-badge gdk-badge-due">pending</span>`;
+      return `<span class="gdk-badge gdk-badge-lost">${s}</span>`;
+    }
+
+    document.getElementById('payments-tbody').innerHTML = payments.slice(0, 12).map(p => `
+      <tr>
+        <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
+          ${(p.paidAt || p.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric'})}
+          <div style="font-size:0.7rem;color:var(--gdk-text-faint);">${(p.paidAt || p.createdAt).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</div>
+        </td>
+        <td>
+          <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}</div>
+          <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone}</div>
+        </td>
+        <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
+        <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+        <td>${methodBadge(p.method)}</td>
+        <td>${statusBadge(p.status)}</td>
+      </tr>
+    `).join('');
+    document.getElementById('payments-meta').textContent = `Showing ${Math.min(12, payments.length)} of ${payments.length} payments · ${pendingPayments.length} awaiting payment`;
   </script>
 </body>
 </html>
