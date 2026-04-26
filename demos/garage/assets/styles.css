@@ -1864,3 +1864,149 @@ select.gdk-input {
 .gdk-payment-fresh:hover td {
   background: linear-gradient(90deg, rgba(134,239,172,0.14), rgba(134,239,172,0.04) 50%, rgba(184,115,46,0.03)) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 1 (Mobile Card-Stack for All Tables)
+   At <600px every <table class="gdk-table"> row collapses into a
+   stacked card. Each <td> opts into a layout slot via data-card-area.
+   Desktop layout completely unchanged.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .gdk-table-wrap { overflow: visible; margin: 0; }
+  .gdk-table {
+    min-width: 0 !important;
+    display: block;
+    font-size: 0.92rem;
+  }
+  .gdk-table thead { display: none; }
+  .gdk-table tbody { display: block; }
+  .gdk-table tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "primary    amount"
+      "secondary  status"
+      "tertiary   tertiary";
+    column-gap: 12px;
+    row-gap: 6px;
+    background: var(--gdk-surface);
+    border: 1px solid var(--gdk-border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    min-height: 64px;
+    border-bottom: 1px solid var(--gdk-border) !important;
+  }
+  .gdk-table tr:hover td { background: transparent !important; }
+  .gdk-table tr:last-child { border-bottom: 1px solid var(--gdk-border) !important; }
+  .gdk-table td {
+    border: none !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    color: var(--gdk-text-dim) !important;
+    line-height: 1.4 !important;
+    background: transparent !important;
+  }
+  .gdk-table td[data-card-area="primary"] {
+    grid-area: primary;
+    color: var(--gdk-text) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+  }
+  .gdk-table td[data-card-area="secondary"] {
+    grid-area: secondary;
+    color: var(--gdk-text-muted) !important;
+    font-size: 0.84rem !important;
+  }
+  .gdk-table td[data-card-area="tertiary"] {
+    grid-area: tertiary;
+    color: var(--gdk-text-faint) !important;
+    font-size: 0.78rem !important;
+    padding-top: 6px !important;
+    border-top: 1px dashed var(--gdk-border) !important;
+    margin-top: 2px;
+  }
+  .gdk-table td[data-card-area="amount"] {
+    grid-area: amount;
+    text-align: right !important;
+    font-family: 'Fraunces', Georgia, serif !important;
+    font-weight: 600 !important;
+    color: var(--gdk-accent-pale) !important;
+    font-size: 1.05rem !important;
+    align-self: start;
+  }
+  .gdk-table td[data-card-area="status"] {
+    grid-area: status;
+    text-align: right !important;
+    align-self: start;
+  }
+  .gdk-table td[data-card-area="hidden"] { display: none !important; }
+  /* Invoice rows are tappable */
+  .gdk-invoice-row { cursor: pointer; }
+  /* Fresh-pulse highlight survives the swap */
+  .gdk-payment-fresh td { background: transparent !important; border-left: none !important; animation: none !important; }
+  .gdk-payment-fresh {
+    border-left: 3px solid rgba(134,239,172,0.6) !important;
+    background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 70%, transparent) !important;
+  }
+}
+
+/* Mobile polish for the existing card-rows (Jobs / SMS / Reviews) */
+@media (max-width: 600px) {
+  .gdk-job-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "date  info"
+      "value value";
+    row-gap: 10px;
+    padding: 14px 16px;
+  }
+  .gdk-job-row > :nth-child(1) { grid-area: date; }
+  .gdk-job-row > :nth-child(2) { grid-area: info; }
+  .gdk-job-row > :nth-child(3) { grid-area: value; text-align: right; padding-top: 8px; border-top: 1px dashed var(--gdk-border); }
+  .gdk-sms-row { padding: 12px 14px; }
+  .gdk-sms-row .head { flex-wrap: wrap; gap: 6px; }
+
+  /* Sample banner — tighten padding + word-break long content */
+  .gdk-sample-banner { padding: 12px 14px; gap: 10px; margin-bottom: 24px; }
+  .gdk-sample-banner .t, .gdk-sample-banner .s { word-break: break-word; }
+
+  /* KPI cards: single column instead of 2-up so values never clip */
+  .gdk-kpi-grid { grid-template-columns: 1fr !important; gap: 10px; margin-bottom: 24px; }
+  .gdk-kpi { padding: 16px 18px; }
+  .gdk-kpi-value { font-size: 1.6rem; }
+
+  /* Portal main padding tightened on mobile */
+  .gdk-portal-main { padding: 24px 16px 64px; }
+
+  /* Portal cards tighter padding on mobile */
+  .gdk-portal-card { padding: 20px 16px !important; }
+
+  /* Avatar smaller on mobile */
+  .gdk-avatar-large { width: 52px; height: 52px; font-size: 1.1rem; }
+  .gdk-portal-name { font-size: 1.5rem !important; }
+
+  /* Payment stat cards single col */
+  .gdk-payments-totals { grid-template-columns: 1fr !important; gap: 8px; margin-bottom: 16px; }
+  .gdk-pay-stat { padding: 12px 14px; }
+  .gdk-pay-stat-value { font-size: 1.3rem; }
+
+  /* Invoice filter bar */
+  .gdk-invoice-filters { padding: 14px 16px; gap: 14px; }
+
+  /* Chip bars — wrap nicely */
+  .gdk-chip-bar { flex-wrap: wrap; gap: 6px; }
+
+  /* Header actions can stack */
+  .gdk-portal-header > div:last-child { width: 100%; }
+  .gdk-portal-header .gdk-btn { font-size: 0.74rem; }
+
+  /* Demo banner — tighten so it fits */
+  .demo-banner { padding: 8px 12px; font-size: 9px; letter-spacing: 0.12em; line-height: 1.4; }
+
+  /* Nav inner padding tighter */
+  .gdk-nav-inner { padding: 12px 16px; }
+}
+
+/* Always prevent body horizontal overflow as a safety net */
+html, body { overflow-x: hidden; }

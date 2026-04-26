@@ -19,7 +19,7 @@
   <nav class="gdk-nav">
     <div class="gdk-nav-inner">
       <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
-      <div class="gdk-nav-links" style="display:flex;">
+      <div class="gdk-nav-links">
         <a href="/demos/garage/">Public Site</a>
         <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
         <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Dashboard</a>
@@ -189,13 +189,13 @@
       const sorted = [...filtered].sort((a,b) => b.createdAt - a.createdAt).slice(0, 25);
       tbody.innerHTML = sorted.map(l => `
         <tr>
-          <td><div style="color:var(--gdk-text);font-weight:500;">${l.name}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
-          <td style="font-size:0.84rem;">${l.serviceInterest}</td>
-          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood}</td>
-          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
-          <td style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
-          <td><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
-          <td style="font-size:0.78rem;color:var(--gdk-text-faint);">${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
+          <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
+          <td data-card-area="secondary" style="font-size:0.84rem;">${l.serviceInterest}</td>
+          <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood} · ${l.source} · ${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
+          <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
+          <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
+          <td data-card-area="status"><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
+          <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-faint);">${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
         </tr>
       `).join('');
       const totalCount = filter === 'all' ? D.leads.length : filtered.length;
@@ -266,10 +266,10 @@
             <tbody>
               ${D.estimates.map(e => `
                 <tr>
-                  <td style="font-weight:500;color:var(--gdk-text);">${e.customerName}</td>
-                  <td style="font-size:0.84rem;">${e.service}</td>
-                  <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${e.total.toLocaleString()}</td>
-                  <td><span class="gdk-badge gdk-badge-${e.status === 'approved' ? 'paid' : e.status === 'sent' ? 'scheduled' : e.status === 'declined' ? 'lost' : 'new'}">${e.status}</span></td>
+                  <td data-card-area="primary" style="font-weight:500;color:var(--gdk-text);">${e.customerName}</td>
+                  <td data-card-area="secondary" style="font-size:0.84rem;">${e.service}</td>
+                  <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${e.total.toLocaleString()}</td>
+                  <td data-card-area="status"><span class="gdk-badge gdk-badge-${e.status === 'approved' ? 'paid' : e.status === 'sent' ? 'scheduled' : e.status === 'declined' ? 'lost' : 'new'}">${e.status}</span></td>
                 </tr>
               `).join('')}
             </tbody>
@@ -364,18 +364,18 @@
 
       return `
         <tr ${p.isDemoEntry ? 'class="gdk-payment-fresh"' : ''}>
-          <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
+          <td data-card-area="secondary" style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
             ${dateForDisplay.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
             <div style="font-size:0.7rem;">${timeLabel}</div>
           </td>
-          <td>
+          <td data-card-area="primary">
             <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}${p.isDemoEntry ? ' <span style="font-size:0.62rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : ''}</div>
             <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone || p.customerEmail || ''}</div>
           </td>
-          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
-          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-          <td>${methodBadge(p.method)}</td>
-          <td>${statusBadge(p.status)}</td>
+          <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
+          <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td data-card-area="hidden">${methodBadge(p.method)}</td>
+          <td data-card-area="status">${statusBadge(p.status)}</td>
         </tr>
       `;
     }).join('');
