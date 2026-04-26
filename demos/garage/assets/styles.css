@@ -1698,3 +1698,18 @@ select.gdk-input {
 .gdk-payments-table {
   min-width: 720px;
 }
+
+/* Fresh demo entries — subtle green glow on the row */
+.gdk-payment-fresh td {
+  background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 50%, transparent);
+  border-left: 2px solid rgba(134,239,172,0.5);
+  animation: gdkFreshPulse 2.4s ease-out 1;
+}
+.gdk-payment-fresh td:first-child { border-left-color: rgba(134,239,172,0.6); }
+@keyframes gdkFreshPulse {
+  0%   { background: linear-gradient(90deg, rgba(134,239,172,0.28), rgba(134,239,172,0.12) 50%, transparent); }
+  100% { background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 50%, transparent); }
+}
+.gdk-payment-fresh:hover td {
+  background: linear-gradient(90deg, rgba(134,239,172,0.14), rgba(134,239,172,0.04) 50%, rgba(184,115,46,0.03)) !important;
+}

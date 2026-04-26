@@ -276,6 +276,25 @@
         document.getElementById('stage-processing').classList.remove('active');
         document.getElementById('stage-paid').classList.add('active');
       }, 1800);
+
+      // PERSIST: save (or update) the payment as paid so /admin.html shows it
+      // Method is "paid-online" if customer arrived via link, "paid-inperson"
+      // if tradesman handed over their device (mode=inperson)
+      const isInPerson = params.get('mode') === 'inperson';
+      window.GDK_DATA.saveDemoPayment({
+        id: invoice.id,
+        customerName: invoice.customerName,
+        customerPhone: invoice.customerPhone || '',
+        customerEmail: invoice.customerEmail || '',
+        amount: invoice.amount,
+        description: invoice.description,
+        method: isInPerson ? 'paid-inperson' : 'paid-online',
+        status: 'paid',
+        createdAt: invoice.createdAt instanceof Date ? invoice.createdAt : new Date(),
+        paidAt: new Date(),
+        techName: invoice.techName || 'Marcus Reed',
+        paymentMethod: methodId,
+      });
     }
 
     document.querySelectorAll('.gdk-pay-method[data-method]').forEach(btn => {

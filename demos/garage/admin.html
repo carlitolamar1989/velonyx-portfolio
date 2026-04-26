@@ -301,7 +301,19 @@
     }
 
     // ─── PAYMENTS LOG ───
-    const payments = [...D.payments].sort((a, b) => b.createdAt - a.createdAt);
+    // Merge live demo entries (created via /admin-pay.html) with the static
+    // mock data. Demo entries are flagged with isDemoEntry so we can lightly
+    // visually mark them as fresh.
+    const livePayments = D.getDemoPayments();
+    const allPayments = [...livePayments, ...D.payments];
+    // Dedupe by id (in case a demo entry has same id as mock — newest wins)
+    const seenIds = new Set();
+    const payments = allPayments.filter(p => {
+      if (seenIds.has(p.id)) return false;
+      seenIds.add(p.id);
+      return true;
+    }).sort((a, b) => b.createdAt - a.createdAt);
+
     const paidPayments = payments.filter(p => p.status === 'paid');
     const pendingPayments = payments.filter(p => p.status === 'pending');
     const totalPaid = paidPayments.reduce((s, p) => s + p.amount, 0);
@@ -338,23 +350,50 @@
       return `<span class="gdk-badge gdk-badge-lost">${s}</span>`;
     }
 
-    document.getElementById('payments-tbody').innerHTML = payments.slice(0, 12).map(p => `
-      <tr>
-        <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
-          ${(p.paidAt || p.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric'})}
-          <div style="font-size:0.7rem;color:var(--gdk-text-faint);">${(p.paidAt || p.createdAt).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</div>
-        </td>
-        <td>
-          <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}</div>
-          <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone}</div>
-        </td>
-        <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
-        <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-        <td>${methodBadge(p.method)}</td>
-        <td>${statusBadge(p.status)}</td>
-      </tr>
-    `).join('');
-    document.getElementById('payments-meta').textContent = `Showing ${Math.min(12, payments.length)} of ${payments.length} payments · ${pendingPayments.length} awaiting payment`;
+    document.getElementById('payments-tbody').innerHTML = payments.slice(0, 14).map(p => {
+      // Relative-time helper for fresh demo entries (< 5 min)
+      const dateForDisplay = p.paidAt || p.createdAt;
+      const ageMinutes = (new Date() - dateForDisplay) / 60000;
+      let timeLabel;
+      if (p.isDemoEntry && ageMinutes < 1)  timeLabel = '<span style="color:#86efac;">just now</span>';
+      else if (p.isDemoEntry && ageMinutes < 60) timeLabel = `<span style="color:#86efac;">${Math.floor(ageMinutes)} min ago</span>`;
+      else timeLabel = dateForDisplay.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+
+      return `
+        <tr ${p.isDemoEntry ? 'class="gdk-payment-fresh"' : ''}>
+          <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
+            ${dateForDisplay.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
+            <div style="font-size:0.7rem;">${timeLabel}</div>
+          </td>
+          <td>
+            <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}${p.isDemoEntry ? ' <span style="font-size:0.62rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : ''}</div>
+            <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone || p.customerEmail || ''}</div>
+          </td>
+          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
+          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>${methodBadge(p.method)}</td>
+          <td>${statusBadge(p.status)}</td>
+        </tr>
+      `;
+    }).join('');
+
+    const liveCount = livePayments.length;
+    const metaEl = document.getElementById('payments-meta');
+    metaEl.innerHTML = `Showing ${Math.min(14, payments.length)} of ${payments.length} payments · ${pendingPayments.length} awaiting payment` +
+      (liveCount > 0
+        ? ` · <span style="color:#86efac;">${liveCount} live demo entr${liveCount === 1 ? 'y' : 'ies'}</span> · <a href="#" id="reset-demo-link" style="color:var(--gdk-accent);text-decoration:underline;text-underline-offset:3px;">Reset Demo Data</a>`
+        : '');
+
+    const resetLink = document.getElementById('reset-demo-link');
+    if (resetLink) {
+      resetLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Clear ' + liveCount + ' live demo payment' + (liveCount === 1 ? '' : 's') + '? The static mock data will remain.')) {
+          D.clearDemoPayments();
+          location.reload();
+        }
+      });
+    }
   </script>
 </body>
 </html>

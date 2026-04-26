@@ -295,6 +295,66 @@ const GDK_PAYMENTS = [
 ];
 
 // ─────────────────────────────────────────────────────────────
+// LIVE DEMO PAYMENTS — persisted via localStorage so newly-created
+// invoices on /admin-pay.html show up on the /admin.html dashboard
+// when the tradesman navigates back. Survives reloads + tab restarts.
+// Cleared via the "Reset Demo Data" link on /admin.html.
+// ─────────────────────────────────────────────────────────────
+const GDK_DEMO_STORAGE_KEY = 'gdk-demo-payments-v1';
+
+function gdkGetDemoPayments() {
+  try {
+    const raw = localStorage.getItem(GDK_DEMO_STORAGE_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return [];
+    // Rehydrate Date objects (JSON serialized them as strings)
+    return arr.map(p => {
+      const out = Object.assign({}, p);
+      if (p.createdAt) out.createdAt = new Date(p.createdAt);
+      if (p.paidAt)    out.paidAt    = new Date(p.paidAt);
+      return out;
+    });
+  } catch (e) {
+    return [];
+  }
+}
+
+function gdkSaveDemoPayment(payment) {
+  try {
+    const all = gdkGetDemoPayments();
+    const existing = all.findIndex(p => p.id === payment.id);
+    const stored = Object.assign({}, payment, { isDemoEntry: true });
+    // Serialize dates as ISO strings for JSON
+    if (stored.createdAt instanceof Date) stored.createdAt = stored.createdAt.toISOString();
+    if (stored.paidAt instanceof Date)    stored.paidAt    = stored.paidAt.toISOString();
+    if (existing >= 0) {
+      all[existing] = Object.assign({}, all[existing], stored);
+      // Re-stringify the existing entry's dates if they got rehydrated
+      if (all[existing].createdAt instanceof Date) all[existing].createdAt = all[existing].createdAt.toISOString();
+      if (all[existing].paidAt instanceof Date)    all[existing].paidAt    = all[existing].paidAt.toISOString();
+    } else {
+      all.unshift(stored);
+    }
+    // Cap at 50 entries to avoid unbounded growth in long demo sessions
+    localStorage.setItem(GDK_DEMO_STORAGE_KEY, JSON.stringify(all.slice(0, 50)));
+    return true;
+  } catch (e) {
+    console.warn('[GDK] Could not persist demo payment to localStorage:', e);
+    return false;
+  }
+}
+
+function gdkClearDemoPayments() {
+  try {
+    localStorage.removeItem(GDK_DEMO_STORAGE_KEY);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
 // EXPORT for browser global access
 // ─────────────────────────────────────────────────────────────
 window.GDK_DATA = {
@@ -309,6 +369,10 @@ window.GDK_DATA = {
   services: SERVICES_OFFERED,
   neighborhoods: NEIGHBORHOODS,
   today: GDK_TODAY,
+  // Live demo helpers
+  getDemoPayments: gdkGetDemoPayments,
+  saveDemoPayment: gdkSaveDemoPayment,
+  clearDemoPayments: gdkClearDemoPayments,
 };
 
 if (typeof console !== 'undefined') {

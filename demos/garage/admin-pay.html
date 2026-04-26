@@ -179,9 +179,29 @@
       return '/demos/garage/pay.html?' + params.toString() + extraParams;
     }
 
+    function recordOf(v, method, status) {
+      return {
+        id: v.newId,
+        customerName: v.name,
+        customerPhone: v.phoneFmt || v.phone || '',
+        customerEmail: v.email,
+        amount: v.amount,
+        description: v.desc,
+        method: method,                       // 'link-sent' | 'paid-inperson'
+        status: status,                       // 'pending' | 'paid'
+        createdAt: new Date(),
+        paidAt: null,
+        techName: 'Marcus Reed',
+        paymentMethod: null,
+      };
+    }
+
     btnSendLink.addEventListener('click', () => {
       if (!validateForm()) return;
       const v = getValues();
+
+      // PERSIST the new payment so it shows up on /admin.html immediately
+      window.GDK_DATA.saveDemoPayment(recordOf(v, 'link-sent', 'pending'));
 
       // populate confirmation
       document.getElementById('sending-contact').textContent = v.phoneFmt || v.email;
@@ -207,6 +227,10 @@
     btnTakeNow.addEventListener('click', () => {
       if (!validateForm()) return;
       const v = getValues();
+
+      // PERSIST as pending in-person payment; pay.html will mark it paid on completion
+      window.GDK_DATA.saveDemoPayment(recordOf(v, 'paid-inperson', 'pending'));
+
       window.location.href = buildPayUrl(v, '&mode=inperson');
     });
   </script>
