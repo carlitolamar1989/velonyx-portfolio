@@ -81,6 +81,37 @@ The two patterns to reuse exactly as-is:
 - "Continue" disabled until both date AND time picked
 - Selected date+time displayed in confirmation step
 
+## Photography workflow (preferred: AI-generated > stock)
+
+**Default to Gemini-generated AI photos, not stock libraries.** The Garage Door Kings demo started with Unsplash but immediately read as "generic" — branded AI photos with the actual demo company's logo on uniforms, vans, and clipboards make the demo feel like it could be a screenshot from a real production site. That's the conversion difference.
+
+### The flow
+1. Carlos generates photos in Gemini using prompts that bake in the demo brand: navy uniforms with crown logo + name tag, branded vans, color palette, residential context, etc.
+2. Carlos drops the PNGs into `~/Downloads/` (Gemini auto-names them `Gemini_Generated_Image_<8-char-hash>.png`)
+3. Carlos pastes them into the Claude chat with a one-line note ("here are the photos")
+4. Claude reads each PNG, identifies the slot it fills (hero, service card, team headshot, etc.), and runs `sips` to convert PNG → JPG and resize to target dimensions in `demos/<vertical>/assets/photos/`
+
+### Target dimensions per slot type (use `sips`)
+| Slot | Width | Aspect | sips command |
+|---|---|---|---|
+| Hero background | 1920px | wide | `sips -s format jpeg -s formatOptions 82 --resampleWidth 1920 in.png --out out.jpg` |
+| Service card | 800px | landscape 4:3 | `sips -s format jpeg -s formatOptions 82 --resampleWidth 800 in.png --out out.jpg` |
+| Team headshot | 600x600 | square | `sips -s format jpeg -s formatOptions 82 --resampleWidth 600 in.png --out out.jpg && sips --cropToHeightWidth 600 600 out.jpg` |
+| Featured install | 1000px | landscape 4:3 | `sips -s format jpeg -s formatOptions 82 --resampleWidth 1000 in.png --out out.jpg` |
+
+### Gemini prompt patterns that work
+- **Team headshots**: "Hispanic technician in 30s, navy work uniform with embroidered <BRAND> crown logo on chest and 'NAME - ROLE' name tag, smiling, holding a torsion bar, branded navy van with crown logo + phone number behind him in suburban garage, golden hour lighting"
+- **Service cards**: "<BRAND> tech in navy uniform installing ceiling-mounted smart wifi garage opener, looking up, flashlight, modern residential garage interior, branded GDK van visible through open door"
+- **Hero**: "Two branded <BRAND> service vans parked on residential driveway at dusk, work lights on tripod, kneeling tech with toolbox, dramatic emergency-call lighting, single-story home backdrop"
+
+### Critical Gemini gotchas
+- **Don't use plus.unsplash.com URLs as fallback** — those are Unsplash+ premium and download with watermarks. If Gemini fails, use free `images.unsplash.com/photo-<id>` URLs only
+- **Square crop for portraits**: Gemini outputs landscape 16:9 by default. Resize width-only to 600 first, THEN crop center to 600x600 — center-crop usually catches the subject's face cleanly because Gemini centers people in the frame
+- **Backgrounded `&` jobs lose `cd`**: when batching multiple sips conversions in parallel, use absolute paths in `--out` (don't rely on a parent `cd` propagating)
+
+### File-naming convention (lock this in)
+Save each photo with a consistent slot name so swaps are 1:1: `hero-home.jpg`, `svc-emergency.jpg`, `svc-springs.jpg`, `svc-opener.jpg`, `svc-newdoor.jpg`, `svc-commercial.jpg`, `svc-maintenance.jpg`, `team-<name>.jpg`, `install-<style>.jpg`. HTML references these names directly — no code changes needed when Carlos sends a v2 of any photo.
+
 ## Logo handling
 
 If Carlos hands over Gemini-generated PNGs:
@@ -142,7 +173,7 @@ git push origin main
 - ❌ Don't spin up a separate Next.js project for a demo (we tried this — wrong tool for this job)
 - ❌ Don't add real Twilio/Stripe/Resend keys to a demo
 - ❌ Don't use Tailwind CDN (it doesn't load reliably in some preview environments and adds 100KB of runtime JS for no real benefit)
-- ❌ Don't use stock photos that misrepresent the vertical (e.g. haircut photos for an SMP demo)
+- ❌ Don't use stock photos that misrepresent the vertical (e.g. haircut photos for an SMP demo). **Default to AI-generated photos with the demo brand baked in (uniforms, vans, signage) — see "Photography workflow" above**
 - ❌ Don't hardcode dates in mock data — always use `_d()` helper offsets
 - ❌ Don't deploy without the demo banner + noindex meta tag
 
