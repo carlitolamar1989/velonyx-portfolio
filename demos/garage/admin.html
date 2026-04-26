@@ -22,7 +22,8 @@
       <div class="gdk-nav-links" style="display:flex;">
         <a href="/demos/garage/">Public Site</a>
         <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
-        <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Admin</a>
+        <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Dashboard</a>
+        <a href="/demos/garage/invoices.html">Invoices</a>
         <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
       </div>
       <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
@@ -382,6 +383,7 @@
     const liveCount = livePayments.length;
     const metaEl = document.getElementById('payments-meta');
     metaEl.innerHTML = `Showing ${Math.min(14, payments.length)} of ${payments.length} payments · ${pendingPayments.length} awaiting payment` +
+      ` · <a href="/demos/garage/invoices.html" style="color:var(--gdk-accent);text-decoration:underline;text-underline-offset:3px;">View All Invoices →</a>` +
       (liveCount > 0
         ? ` · <span style="color:#86efac;">${liveCount} live demo entr${liveCount === 1 ? 'y' : 'ies'}</span> · <a href="#" id="reset-demo-link" style="color:var(--gdk-accent);text-decoration:underline;text-underline-offset:3px;">Reset Demo Data</a>`
         : '');

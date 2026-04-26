@@ -1699,6 +1699,157 @@ select.gdk-input {
   min-width: 720px;
 }
 
+/* Stripe connected pill — small green status indicator */
+.gdk-stripe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(134,239,172,0.08);
+  border: 1px solid rgba(134,239,172,0.3);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: #86efac;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* INVOICES PAGE — Filter bar */
+.gdk-invoice-filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+@media (min-width: 880px) {
+  .gdk-invoice-filters { grid-template-columns: auto auto 1fr; gap: 22px; align-items: end; }
+}
+.gdk-filter-group { display: flex; flex-direction: column; gap: 6px; }
+.gdk-filter-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gdk-text-faint);
+  font-weight: 600;
+}
+
+/* Invoice rows — clickable */
+.gdk-invoice-row { cursor: pointer; }
+.gdk-invoice-row:hover td { background: rgba(184,115,46,0.05); }
+.gdk-invoice-row:focus { outline: 2px solid var(--gdk-accent); outline-offset: -2px; }
+
+.gdk-invoices-table { min-width: 820px; }
+
+/* INVOICE DETAIL MODAL */
+.gdk-invoice-modal-card {
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  padding: 32px 30px 26px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+.gdk-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gdk-modal-close:hover {
+  background: rgba(255,255,255,0.04);
+  color: var(--gdk-text);
+  border-color: var(--gdk-border-strong);
+}
+
+.gdk-invoice-receipt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--gdk-border);
+  margin-bottom: 20px;
+}
+
+.gdk-invoice-receipt-section {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--gdk-border);
+}
+.gdk-invoice-receipt-section:last-of-type { border-bottom: none; }
+
+.gdk-invoice-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 5px 0;
+}
+.gdk-invoice-receipt-label {
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.gdk-invoice-receipt-value {
+  font-size: 0.88rem;
+  color: var(--gdk-text);
+  text-align: right;
+  word-break: break-word;
+}
+
+.gdk-invoice-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.gdk-invoice-receipt-totals .gdk-invoice-receipt-row { padding: 4px 0; }
+.gdk-invoice-receipt-grand {
+  margin-top: 6px;
+  padding-top: 10px !important;
+  border-top: 1px solid var(--gdk-border-accent);
+}
+.gdk-invoice-receipt-grand .gdk-invoice-receipt-label {
+  color: var(--gdk-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.gdk-invoice-receipt-grand .gdk-invoice-receipt-value {
+  color: var(--gdk-accent-pale);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.gdk-invoice-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 18px;
+  margin-top: 4px;
+  border-top: 1px solid var(--gdk-border);
+}
+@media (max-width: 480px) {
+  .gdk-invoice-actions { flex-direction: column; }
+  .gdk-invoice-actions .gdk-btn { width: 100%; }
+}
+
 /* Fresh demo entries — subtle green glow on the row */
 .gdk-payment-fresh td {
   background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 50%, transparent);

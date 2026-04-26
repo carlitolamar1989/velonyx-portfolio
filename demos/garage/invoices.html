@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Invoices — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="Search, filter, and export every invoice for tax season and customer history.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links" style="display:flex;">
+        <a href="/demos/garage/admin.html">← Dashboard</a>
+        <a href="/demos/garage/invoices.html" style="color:var(--gdk-accent);">Invoices</a>
+        <a href="/demos/garage/admin-pay.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">+ New Payment</a>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
+      </div>
+      <a href="/demos/garage/admin.html" class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="gdk-portal-main" style="max-width:1400px;">
+    <div class="gdk-sample-banner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+      <div>
+        <div class="t">Invoice manager — built for tax season &amp; customer lookups</div>
+        <div class="s">Search any customer, filter by date range or status, click any invoice for the full receipt with the Stripe charge ID, export the whole filtered view to CSV for your accountant.</div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="gdk-portal-header">
+      <div class="gdk-portal-welcome">
+        <div class="gdk-avatar-large">$</div>
+        <div>
+          <div class="gdk-portal-card-label">Money &middot; Invoices</div>
+          <div class="gdk-portal-name gdk-accent-text">Invoices</div>
+          <div class="gdk-portal-meta" id="header-meta">
+            <span class="gdk-stripe-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Stripe connected &middot; last synced just now
+            </span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small" id="btn-export-csv">
+          <span style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export CSV
+          </span>
+        </button>
+        <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
+          <span style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            + Take a Payment
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <!-- STATS ROW -->
+    <div class="gdk-kpi-grid">
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">YTD Revenue</div>
+        <div class="gdk-kpi-value" id="kpi-ytd">—</div>
+        <div class="gdk-kpi-delta up" id="kpi-ytd-sub">Paid invoices, this calendar year</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">This Month</div>
+        <div class="gdk-kpi-value" id="kpi-month">—</div>
+        <div class="gdk-kpi-delta up" id="kpi-month-sub">Paid this month so far</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">Outstanding</div>
+        <div class="gdk-kpi-value" id="kpi-outstanding">—</div>
+        <div class="gdk-kpi-delta up" id="kpi-outstanding-sub">Pending links sent, not yet paid</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label"># Invoices YTD</div>
+        <div class="gdk-kpi-value" id="kpi-count">—</div>
+        <div class="gdk-kpi-delta up" id="kpi-count-sub">Total invoices created this year</div>
+      </div>
+    </div>
+
+    <!-- FILTERS + TABLE -->
+    <section class="gdk-portal-card full">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+        <div>
+          <div class="gdk-portal-card-label">All invoices</div>
+          <h2 class="gdk-portal-card-title" style="margin-bottom:4px;">Invoice History</h2>
+          <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:580px;line-height:1.5;">Click any invoice to view the full receipt and Stripe details. Use the filters to drill down by status, date range, or customer.</div>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="gdk-invoice-filters">
+        <div class="gdk-filter-group">
+          <div class="gdk-filter-label">Status</div>
+          <div class="gdk-chip-bar">
+            <button class="gdk-chip active" data-status="all">All</button>
+            <button class="gdk-chip" data-status="paid">Paid</button>
+            <button class="gdk-chip" data-status="pending">Pending</button>
+          </div>
+        </div>
+        <div class="gdk-filter-group">
+          <div class="gdk-filter-label">Date range</div>
+          <div class="gdk-chip-bar">
+            <button class="gdk-chip" data-range="month">This Month</button>
+            <button class="gdk-chip" data-range="quarter">This Quarter</button>
+            <button class="gdk-chip active" data-range="ytd">This Year</button>
+            <button class="gdk-chip" data-range="lastyear">Last Year</button>
+            <button class="gdk-chip" data-range="all">All Time</button>
+          </div>
+        </div>
+        <div class="gdk-filter-group" style="flex:1;min-width:200px;">
+          <div class="gdk-filter-label">Search</div>
+          <input type="text" id="invoice-search" class="gdk-input" placeholder="Customer name, invoice ID, or description...">
+        </div>
+      </div>
+
+      <div class="gdk-table-wrap">
+        <table class="gdk-table gdk-invoices-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Invoice</th>
+              <th>Customer</th>
+              <th>Description</th>
+              <th style="text-align:right;">Amount</th>
+              <th>Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="invoices-tbody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:10px;">
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);" id="invoices-meta">—</div>
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);" id="invoices-totals">—</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- INVOICE DETAIL MODAL -->
+  <div class="gdk-overlay" id="invoice-modal" role="dialog" aria-label="Invoice detail">
+    <div class="gdk-overlay-card gdk-invoice-modal-card">
+      <button class="gdk-modal-close" id="modal-close" aria-label="Close">×</button>
+      <div class="gdk-invoice-receipt">
+        <div class="gdk-invoice-receipt-header">
+          <div>
+            <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gdk-accent);font-weight:700;text-transform:uppercase;">INVOICE</div>
+            <div style="font-family:'SF Mono',Menlo,monospace;font-size:1.4rem;color:var(--gdk-text);font-weight:600;margin-top:2px;" id="modal-id">PAY-XXXX</div>
+          </div>
+          <div id="modal-status-badge"></div>
+        </div>
+
+        <div class="gdk-invoice-receipt-section">
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Customer</span>
+            <span id="modal-customer" class="gdk-invoice-receipt-value">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Phone</span>
+            <span id="modal-phone" class="gdk-invoice-receipt-value">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row" id="modal-email-row" style="display:none;">
+            <span class="gdk-invoice-receipt-label">Email</span>
+            <span id="modal-email" class="gdk-invoice-receipt-value">—</span>
+          </div>
+        </div>
+
+        <div class="gdk-invoice-receipt-section">
+          <div class="gdk-invoice-line-item">
+            <span style="color:var(--gdk-text);font-weight:500;" id="modal-desc">—</span>
+            <span style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;" id="modal-line-amount">$0.00</span>
+          </div>
+        </div>
+
+        <div class="gdk-invoice-receipt-section gdk-invoice-receipt-totals">
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Subtotal</span>
+            <span class="gdk-invoice-receipt-value" id="modal-subtotal">$0.00</span>
+          </div>
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Sales Tax (NV 8.375%)</span>
+            <span class="gdk-invoice-receipt-value" id="modal-tax">$0.00</span>
+          </div>
+          <div class="gdk-invoice-receipt-row gdk-invoice-receipt-grand">
+            <span class="gdk-invoice-receipt-label">Total</span>
+            <span class="gdk-invoice-receipt-value" id="modal-total">$0.00</span>
+          </div>
+        </div>
+
+        <div class="gdk-invoice-receipt-section">
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Created</span>
+            <span class="gdk-invoice-receipt-value" id="modal-created">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row" id="modal-paid-row" style="display:none;">
+            <span class="gdk-invoice-receipt-label">Paid</span>
+            <span class="gdk-invoice-receipt-value" id="modal-paid">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row" id="modal-method-row" style="display:none;">
+            <span class="gdk-invoice-receipt-label">Payment Method</span>
+            <span class="gdk-invoice-receipt-value" id="modal-method">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Tech</span>
+            <span class="gdk-invoice-receipt-value" id="modal-tech">—</span>
+          </div>
+          <div class="gdk-invoice-receipt-row">
+            <span class="gdk-invoice-receipt-label">Stripe Charge</span>
+            <span class="gdk-invoice-receipt-value" style="font-family:'SF Mono',Menlo,monospace;font-size:0.78rem;" id="modal-stripe">ch_—</span>
+          </div>
+        </div>
+
+        <div class="gdk-invoice-actions">
+          <button class="gdk-btn gdk-btn-outline gdk-btn-small" onclick="alert('Demo: PDF would be generated and downloaded.\n\nIn production, this hits Stripe Invoices API → their hosted invoice PDF.')">
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </span>
+          </button>
+          <button class="gdk-btn gdk-btn-outline gdk-btn-small" id="modal-resend" onclick="alert('Demo: receipt would be re-sent via SMS or email.\n\nIn production, this triggers Resend (email) or Twilio (SMS) with the Stripe-hosted receipt URL.')">
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              Resend Receipt
+            </span>
+          </button>
+          <button class="gdk-btn gdk-btn-outline gdk-btn-small" id="modal-refund" onclick="if(confirm('Demo: issue a full refund to the customer?\n\nIn production, this calls Stripe Refunds API and updates the invoice status to refunded.')) alert('Demo only — nothing was refunded.')">
+            <span style="display:inline-flex;align-items:center;gap:6px;color:rgba(245,158,11,0.8);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              Refund
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · Powered by Stripe (mocked in demo)</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
+  <script>
+    const D = window.GDK_DATA;
+    const NV_TAX_RATE = 0.08375;
+
+    // Combine static mock + live demo entries (same logic as admin.html)
+    const livePayments = D.getDemoPayments();
+    const seenIds = new Set();
+    const allInvoices = [...livePayments, ...D.payments].filter(p => {
+      if (seenIds.has(p.id)) return false;
+      seenIds.add(p.id);
+      return true;
+    });
+
+    // Filter state
+    let filters = { status: 'all', range: 'ytd', search: '' };
+
+    function inDateRange(date, range) {
+      const now = new Date();
+      const d = new Date(date);
+      if (range === 'all') return true;
+      if (range === 'month') {
+        return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+      }
+      if (range === 'quarter') {
+        const q = Math.floor(now.getMonth() / 3);
+        const dq = Math.floor(d.getMonth() / 3);
+        return d.getFullYear() === now.getFullYear() && dq === q;
+      }
+      if (range === 'ytd') return d.getFullYear() === now.getFullYear();
+      if (range === 'lastyear') return d.getFullYear() === now.getFullYear() - 1;
+      return true;
+    }
+
+    function applyFilters() {
+      const search = filters.search.toLowerCase().trim();
+      return allInvoices.filter(inv => {
+        if (filters.status !== 'all' && inv.status !== filters.status) return false;
+        const dateForRange = inv.paidAt || inv.createdAt;
+        if (!inDateRange(dateForRange, filters.range)) return false;
+        if (search) {
+          const haystack = [inv.id, inv.customerName, inv.description, inv.customerPhone, inv.customerEmail || ''].join(' ').toLowerCase();
+          if (!haystack.includes(search)) return false;
+        }
+        return true;
+      }).sort((a, b) => (b.paidAt || b.createdAt) - (a.paidAt || a.createdAt));
+    }
+
+    function fmtMoney(n) {
+      return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function methodLabel(m) {
+      return ({ 'paid-online':'Paid Online', 'paid-inperson':'Paid In-Person', 'link-sent':'Link Sent' })[m] || m;
+    }
+
+    function methodBadge(m) {
+      const map = {
+        'paid-online':   { label: 'Paid Online',   cls: 'gdk-badge-paid' },
+        'paid-inperson': { label: 'Paid In-Person', cls: 'gdk-badge-paid' },
+        'link-sent':     { label: 'Link Sent',     cls: 'gdk-badge-scheduled' },
+      };
+      const v = map[m] || { label: m, cls: 'gdk-badge-new' };
+      return `<span class="gdk-badge ${v.cls}">${v.label}</span>`;
+    }
+
+    function statusBadge(s) {
+      if (s === 'paid')    return `<span class="gdk-badge gdk-badge-paid">paid</span>`;
+      if (s === 'pending') return `<span class="gdk-badge gdk-badge-due">pending</span>`;
+      return `<span class="gdk-badge gdk-badge-lost">${s}</span>`;
+    }
+
+    function paymentTypeLabel(pm) {
+      return ({ 'apple-pay':'Apple Pay', 'google-pay':'Google Pay', 'card':'Card', 'affirm':'Affirm financing', 'klarna':'Klarna' })[pm] || (pm || '—');
+    }
+
+    function renderTable() {
+      const filtered = applyFilters();
+      const tbody = document.getElementById('invoices-tbody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px 20px;color:var(--gdk-text-faint);font-style:italic;">No invoices match the current filters.</td></tr>`;
+      } else {
+        tbody.innerHTML = filtered.map(inv => {
+          const date = inv.paidAt || inv.createdAt;
+          return `
+            <tr data-invoice-id="${inv.id}" class="gdk-invoice-row${inv.isDemoEntry ? ' gdk-payment-fresh' : ''}" tabindex="0">
+              <td style="font-size:0.82rem;color:var(--gdk-text-muted);white-space:nowrap;">${date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'})}</td>
+              <td style="font-family:'SF Mono',Menlo,monospace;font-size:0.78rem;color:var(--gdk-text);">${inv.id}</td>
+              <td>
+                <div style="color:var(--gdk-text);font-weight:500;">${inv.customerName}${inv.isDemoEntry ? ' <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;">new</span>' : ''}</div>
+                <div style="font-size:0.7rem;color:var(--gdk-text-faint);">${inv.customerPhone || inv.customerEmail || ''}</div>
+              </td>
+              <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${inv.description}</td>
+              <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">${fmtMoney(inv.amount)}</td>
+              <td>${methodBadge(inv.method)}</td>
+              <td>${statusBadge(inv.status)}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Update meta + totals
+      const filteredPaid = filtered.filter(i => i.status === 'paid');
+      const filteredPending = filtered.filter(i => i.status === 'pending');
+      const sumPaid = filteredPaid.reduce((s, i) => s + i.amount, 0);
+      const sumPending = filteredPending.reduce((s, i) => s + i.amount, 0);
+      document.getElementById('invoices-meta').textContent =
+        `${filtered.length} invoice${filtered.length === 1 ? '' : 's'} match · ${filteredPaid.length} paid · ${filteredPending.length} pending`;
+      document.getElementById('invoices-totals').innerHTML =
+        `Filtered total: <strong style="color:var(--gdk-accent-pale);">${fmtMoney(sumPaid)}</strong> paid` +
+        (sumPending > 0 ? ` · <strong style="color:var(--gdk-accent-pale);">${fmtMoney(sumPending)}</strong> pending` : '');
+
+      // Click handlers
+      document.querySelectorAll('.gdk-invoice-row').forEach(row => {
+        row.addEventListener('click', () => openInvoiceModal(row.dataset.invoiceId));
+        row.addEventListener('keydown', (e) => { if (e.key === 'Enter') openInvoiceModal(row.dataset.invoiceId); });
+      });
+    }
+
+    function renderStats() {
+      const now = new Date();
+      const thisYear = allInvoices.filter(i => i.status === 'paid' && new Date(i.paidAt || i.createdAt).getFullYear() === now.getFullYear());
+      const thisMonth = thisYear.filter(i => new Date(i.paidAt || i.createdAt).getMonth() === now.getMonth());
+      const outstanding = allInvoices.filter(i => i.status === 'pending');
+      document.getElementById('kpi-ytd').textContent          = fmtMoney(thisYear.reduce((s,i)=>s+i.amount,0));
+      document.getElementById('kpi-month').textContent        = fmtMoney(thisMonth.reduce((s,i)=>s+i.amount,0));
+      document.getElementById('kpi-outstanding').textContent  = fmtMoney(outstanding.reduce((s,i)=>s+i.amount,0));
+      document.getElementById('kpi-count').textContent        = thisYear.length;
+    }
+
+    // ─── INVOICE DETAIL MODAL ───
+    function openInvoiceModal(id) {
+      const inv = allInvoices.find(i => i.id === id);
+      if (!inv) return;
+      document.getElementById('modal-id').textContent = inv.id;
+      document.getElementById('modal-status-badge').innerHTML = statusBadge(inv.status);
+      document.getElementById('modal-customer').textContent = inv.customerName;
+      document.getElementById('modal-phone').textContent = inv.customerPhone || '—';
+      if (inv.customerEmail) {
+        document.getElementById('modal-email-row').style.display = '';
+        document.getElementById('modal-email').textContent = inv.customerEmail;
+      } else {
+        document.getElementById('modal-email-row').style.display = 'none';
+      }
+      document.getElementById('modal-desc').textContent = inv.description;
+      const subtotal = inv.amount / (1 + NV_TAX_RATE);
+      const tax = inv.amount - subtotal;
+      document.getElementById('modal-line-amount').textContent = fmtMoney(subtotal);
+      document.getElementById('modal-subtotal').textContent = fmtMoney(subtotal);
+      document.getElementById('modal-tax').textContent = fmtMoney(tax);
+      document.getElementById('modal-total').textContent = fmtMoney(inv.amount);
+
+      document.getElementById('modal-created').textContent =
+        inv.createdAt.toLocaleDateString('en-US',{ weekday:'short', month:'short', day:'numeric', year:'numeric' }) +
+        ' · ' + inv.createdAt.toLocaleTimeString('en-US',{ hour:'numeric', minute:'2-digit' });
+      if (inv.paidAt) {
+        document.getElementById('modal-paid-row').style.display = '';
+        document.getElementById('modal-paid').textContent =
+          inv.paidAt.toLocaleDateString('en-US',{ weekday:'short', month:'short', day:'numeric', year:'numeric' }) +
+          ' · ' + inv.paidAt.toLocaleTimeString('en-US',{ hour:'numeric', minute:'2-digit' });
+      } else {
+        document.getElementById('modal-paid-row').style.display = 'none';
+      }
+      if (inv.paymentMethod) {
+        document.getElementById('modal-method-row').style.display = '';
+        document.getElementById('modal-method').textContent = paymentTypeLabel(inv.paymentMethod) + ' (' + methodLabel(inv.method) + ')';
+      } else {
+        document.getElementById('modal-method-row').style.display = 'none';
+      }
+      document.getElementById('modal-tech').textContent = inv.techName || '—';
+      // Mock Stripe charge ID — deterministic from invoice id so it stays consistent
+      const stripeSuffix = inv.id.replace(/\D/g,'').padStart(4,'0');
+      document.getElementById('modal-stripe').textContent = 'ch_3O' + (Math.random().toString(36).substring(2, 8) + stripeSuffix).toLowerCase().slice(0, 14);
+      // Disable refund for unpaid invoices
+      const refundBtn = document.getElementById('modal-refund');
+      if (inv.status !== 'paid') { refundBtn.disabled = true; refundBtn.style.opacity = 0.4; refundBtn.style.cursor = 'not-allowed'; }
+      else { refundBtn.disabled = false; refundBtn.style.opacity = ''; refundBtn.style.cursor = ''; }
+
+      const modal = document.getElementById('invoice-modal');
+      modal.classList.add('active');
+      requestAnimationFrame(() => modal.classList.add('visible'));
+    }
+
+    function closeInvoiceModal() {
+      const modal = document.getElementById('invoice-modal');
+      modal.classList.remove('visible');
+      setTimeout(() => modal.classList.remove('active'), 250);
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeInvoiceModal);
+    document.getElementById('invoice-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeInvoiceModal();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInvoiceModal(); });
+
+    // ─── FILTER WIRING ───
+    document.querySelectorAll('.gdk-chip[data-status]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.gdk-chip[data-status]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filters.status = chip.dataset.status;
+        renderTable();
+      });
+    });
+    document.querySelectorAll('.gdk-chip[data-range]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.gdk-chip[data-range]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filters.range = chip.dataset.range;
+        renderTable();
+      });
+    });
+    document.getElementById('invoice-search').addEventListener('input', (e) => {
+      filters.search = e.target.value;
+      renderTable();
+    });
+
+    // ─── CSV EXPORT ───
+    document.getElementById('btn-export-csv').addEventListener('click', () => {
+      const filtered = applyFilters();
+      if (filtered.length === 0) { alert('No invoices to export with the current filters.'); return; }
+      const headers = ['Date','Invoice ID','Customer','Phone','Email','Description','Amount','Method','Status','Paid Date','Payment Type','Tech'];
+      const escape = (v) => {
+        const s = (v ?? '').toString();
+        if (/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+        return s;
+      };
+      const rows = filtered.map(i => [
+        (i.paidAt || i.createdAt).toISOString().slice(0,10),
+        i.id,
+        i.customerName,
+        i.customerPhone || '',
+        i.customerEmail || '',
+        i.description,
+        i.amount.toFixed(2),
+        methodLabel(i.method),
+        i.status,
+        i.paidAt ? i.paidAt.toISOString().slice(0,10) : '',
+        paymentTypeLabel(i.paymentMethod),
+        i.techName || '',
+      ].map(escape).join(','));
+      const csv = headers.join(',') + '\n' + rows.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const today = new Date().toISOString().slice(0,10);
+      a.href = url;
+      a.download = `gdk-invoices-${filters.range}-${today}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // Initial render
+    renderStats();
+    renderTable();
+  </script>
+</body>
+</html>
