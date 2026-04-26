@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Admin Dashboard — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="Sample admin dashboard for Garage Door Kings. Lead pipeline, jobs calendar, SMS log, reviews. Built by Velonyx Systems.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links" style="display:flex;">
+        <a href="/demos/garage/">Public Site</a>
+        <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
+        <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Admin</a>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
+      </div>
+      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="gdk-portal-main" style="max-width:1400px;">
+    <div class="gdk-sample-banner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+      <div>
+        <div class="t">Sample admin dashboard — logged in as Marcus Reed (owner)</div>
+        <div class="s">Pre-populated with realistic mock data: 60 leads · 12 jobs · 8 estimates · 17 customers · 35 SMS · 12 review requests. In a real deployment, all data is live and writable.</div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="gdk-portal-header">
+      <div class="gdk-portal-welcome">
+        <div class="gdk-avatar-large">MR</div>
+        <div>
+          <div class="gdk-portal-card-label">Owner Dashboard</div>
+          <div class="gdk-portal-name gdk-accent-text">Marcus Reed</div>
+          <div class="gdk-portal-meta" id="header-meta">—</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
+        <button class="gdk-btn gdk-btn-primary gdk-btn-small">+ New Lead</button>
+      </div>
+    </header>
+
+    <!-- KPI ROW -->
+    <div class="gdk-kpi-grid">
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">New Leads · 7 Days</div>
+        <div class="gdk-kpi-value" id="kpi-new-leads">—</div>
+        <div class="gdk-kpi-delta up" id="kpi-leads-delta">↑ 18% vs prior week</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">Jobs Scheduled · 30 Days</div>
+        <div class="gdk-kpi-value" id="kpi-jobs">—</div>
+        <div class="gdk-kpi-delta up">↑ 4 vs last month</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">Pipeline Value</div>
+        <div class="gdk-kpi-value" id="kpi-pipeline">—</div>
+        <div class="gdk-kpi-delta up">Open estimates + scheduled</div>
+      </div>
+      <div class="gdk-kpi">
+        <div class="gdk-kpi-label">Win Rate · 90 Days</div>
+        <div class="gdk-kpi-value" id="kpi-win">—</div>
+        <div class="gdk-kpi-delta up">↑ 6 pts vs prior 90</div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN MAIN -->
+    <div class="gdk-portal-grid" style="grid-template-columns:1fr;gap:18px;">
+
+      <!-- LEAD PIPELINE -->
+      <section class="gdk-portal-card full">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="gdk-portal-card-label">Pipeline</div>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:0;">Lead Pipeline</h2>
+          </div>
+          <div class="gdk-chip-bar" style="margin-bottom:0;">
+            <button class="gdk-chip active" data-filter="all">All</button>
+            <button class="gdk-chip" data-filter="new">New</button>
+            <button class="gdk-chip" data-filter="contacted">Contacted</button>
+            <button class="gdk-chip" data-filter="estimated">Estimated</button>
+            <button class="gdk-chip" data-filter="won">Won</button>
+            <button class="gdk-chip" data-filter="lost">Lost</button>
+          </div>
+        </div>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table">
+            <thead>
+              <tr><th>Name</th><th>Service</th><th>Neighborhood</th><th>Value</th><th>Source</th><th>Status</th><th>Created</th></tr>
+            </thead>
+            <tbody id="leads-tbody"></tbody>
+          </table>
+        </div>
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="leads-meta">—</div>
+      </section>
+
+      <!-- TWO-COL: Jobs + SMS Log -->
+      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-jobs-sms"></div>
+
+      <!-- ESTIMATES + REVIEWS -->
+      <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>
+
+    </div>
+  </main>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
+  <script>
+    const D = window.GDK_DATA;
+
+    // Header meta
+    const todayStr = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    document.getElementById('header-meta').textContent = `${todayStr} · 3 trucks active · 4 techs on shift`;
+
+    // KPIs
+    const newLast7 = D.leads.filter(l => l.status === 'new' && (new Date() - l.createdAt)/86400000 <= 7).length;
+    document.getElementById('kpi-new-leads').textContent = newLast7;
+    const jobs30 = D.jobs.filter(j => (j.scheduledFor - new Date())/86400000 <= 30 && j.scheduledFor >= new Date()).length;
+    document.getElementById('kpi-jobs').textContent = jobs30;
+    const pipelineVal = D.leads.filter(l => ['new','contacted','estimated'].includes(l.status)).reduce((s,l) => s + l.estimatedValue, 0)
+                     + D.estimates.filter(e => e.status === 'sent' || e.status === 'draft').reduce((s,e) => s + e.total, 0);
+    document.getElementById('kpi-pipeline').textContent = '$' + pipelineVal.toLocaleString();
+    const closed = D.leads.filter(l => ['won','lost'].includes(l.status));
+    const won = closed.filter(l => l.status === 'won').length;
+    const winRate = closed.length ? Math.round((won / closed.length) * 100) : 0;
+    document.getElementById('kpi-win').textContent = winRate + '%';
+
+    // Leads table
+    function renderLeads(filter) {
+      const tbody = document.getElementById('leads-tbody');
+      const filtered = filter === 'all' ? D.leads : D.leads.filter(l => l.status === filter);
+      const sorted = [...filtered].sort((a,b) => b.createdAt - a.createdAt).slice(0, 25);
+      tbody.innerHTML = sorted.map(l => `
+        <tr>
+          <td><div style="color:var(--gdk-text);font-weight:500;">${l.name}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
+          <td style="font-size:0.84rem;">${l.serviceInterest}</td>
+          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood}</td>
+          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
+          <td style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
+          <td><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
+          <td style="font-size:0.78rem;color:var(--gdk-text-faint);">${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
+        </tr>
+      `).join('');
+      const totalCount = filter === 'all' ? D.leads.length : filtered.length;
+      document.getElementById('leads-meta').textContent = `Showing ${sorted.length} of ${totalCount} ${filter === 'all' ? 'total' : filter} leads`;
+    }
+    renderLeads('all');
+    document.querySelectorAll('.gdk-chip[data-filter]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.gdk-chip[data-filter]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderLeads(chip.dataset.filter);
+      });
+    });
+
+    // Jobs + SMS
+    const jobsCard = `
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Calendar</div>
+        <h2 class="gdk-portal-card-title">Upcoming Jobs (next 30 days)</h2>
+        ${D.jobs.slice(0, 8).map(j => `
+          <div class="gdk-job-row">
+            <div class="gdk-job-date">
+              <div class="day">${j.scheduledFor.getDate()}</div>
+              <div class="mon">${j.scheduledFor.toLocaleDateString('en-US',{month:'short'})}</div>
+            </div>
+            <div class="gdk-job-info">
+              <div class="who">${j.customerName} · ${j.service}</div>
+              <div class="meta">${j.scheduledFor.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})} · ${j.techName} · ${j.address.split(',')[1] || ''}</div>
+            </div>
+            <div class="gdk-job-value">
+              <div>$${j.value.toLocaleString()}</div>
+              <div style="margin-top:4px;"><span class="gdk-badge gdk-badge-${j.status === 'in-progress' ? 'progress' : 'scheduled'}">${j.status}</span></div>
+            </div>
+          </div>
+        `).join('')}
+      </section>
+    `;
+    const smsCard = `
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Messaging</div>
+        <h2 class="gdk-portal-card-title">SMS Log (last 14)</h2>
+        <div style="max-height:560px;overflow-y:auto;">
+          ${D.smsLog.slice().reverse().slice(0, 14).map(s => `
+            <div class="gdk-sms-row ${s.direction}">
+              <div class="head">
+                <span><span class="gdk-sms-dir ${s.direction}">${s.direction === 'in' ? 'In' : 'Out'}</span><span class="who">${s.customerName}</span></span>
+                <span>${s.sentAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})} ${s.sentAt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</span>
+              </div>
+              <div class="body">${s.message}</div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `;
+    document.getElementById('row-jobs-sms').innerHTML = jobsCard + smsCard;
+    if (window.matchMedia('(min-width: 1100px)').matches) {
+      document.getElementById('row-jobs-sms').style.gridTemplateColumns = '1fr 1fr';
+    }
+
+    // Estimates + Reviews
+    const estCard = `
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Quotes</div>
+        <h2 class="gdk-portal-card-title">Active Estimates</h2>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table">
+            <thead><tr><th>Customer</th><th>Service</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody>
+              ${D.estimates.map(e => `
+                <tr>
+                  <td style="font-weight:500;color:var(--gdk-text);">${e.customerName}</td>
+                  <td style="font-size:0.84rem;">${e.service}</td>
+                  <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${e.total.toLocaleString()}</td>
+                  <td><span class="gdk-badge gdk-badge-${e.status === 'approved' ? 'paid' : e.status === 'sent' ? 'scheduled' : e.status === 'declined' ? 'lost' : 'new'}">${e.status}</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+    const revCard = `
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Reputation</div>
+        <h2 class="gdk-portal-card-title">Recent Review Requests</h2>
+        ${D.reviews.slice(0, 8).map(r => `
+          <div class="gdk-job-row">
+            <div class="gdk-job-date">
+              <div class="day">${r.sentAt.getDate()}</div>
+              <div class="mon">${r.sentAt.toLocaleDateString('en-US',{month:'short'})}</div>
+            </div>
+            <div class="gdk-job-info">
+              <div class="who">${r.customerName}</div>
+              <div class="meta">${r.status === 'reviewed' ? `${'★'.repeat(r.rating)} on ${r.channel}` : 'Sent · awaiting response'}</div>
+            </div>
+            <div class="gdk-job-value">
+              <span class="gdk-badge ${r.status === 'reviewed' ? 'gdk-badge-paid' : 'gdk-badge-new'}">${r.status}</span>
+            </div>
+          </div>
+        `).join('')}
+      </section>
+    `;
+    document.getElementById('row-est-rev').innerHTML = estCard + revCard;
+    if (window.matchMedia('(min-width: 1100px)').matches) {
+      document.getElementById('row-est-rev').style.gridTemplateColumns = '1fr 1fr';
+    }
+  </script>
+</body>
+</html>

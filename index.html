@@ -1136,10 +1136,13 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 1280px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      max-width: 1500px;
       margin: 0 auto;
+    }
+    @media (max-width: 1380px) {
+      .portfolio-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; gap: 20px; }
     }
     @media (max-width: 1100px) {
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; gap: 24px; }
@@ -3490,7 +3493,7 @@
       <div class="section-label">Our Work</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Featured Projects</h2>
-      <p class="section-subtitle fade-in">Four industries. Four distinct brands. All built by Velonyx.</p>
+      <p class="section-subtitle fade-in">Five industries. Five distinct brands. All built by Velonyx.</p>
 
       <div class="portfolio-grid">
         <!-- Throne Barbershop -->
@@ -3573,6 +3576,27 @@
               <span>Booking</span>
               <span>Client Portal</span>
               <span>Black &amp; Gold</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Garage Door Kings -->
+        <a href="/demos/garage/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1208);">
+            <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
+            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.94), rgba(10,10,10,0.3));">
+              <div class="mock-logo" style="color:#F2C998; font-family:'Fraunces',Georgia,serif; letter-spacing:0.18em; font-weight:700;">GARAGE DOOR KINGS</div>
+              <div class="mock-tagline" style="color:#B8732E;">Las Vegas · Trade Business Template</div>
+            </div>
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Trades / Service Biz</div>
+            <h3>Garage Door Kings</h3>
+            <p>Full marketing site + lead form, customer portal, and admin dashboard with 60 mock leads, 12 jobs, SMS log, and reviews.</p>
+            <div class="portfolio-tags">
+              <span>Lead Form</span>
+              <span>Admin CRM</span>
+              <span>Copper &amp; Black</span>
             </div>
           </div>
         </a>

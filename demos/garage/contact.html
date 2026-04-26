@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Get a Free Quote — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="Get a free quote in under 2 minutes. We text back with a price and arrival time.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links">
+        <a href="/demos/garage/services.html">Services</a>
+        <a href="/demos/garage/service-areas.html">Service Areas</a>
+        <a href="/demos/garage/about.html">About</a>
+        <a href="/demos/garage/reviews.html">Reviews</a>
+        <a href="/demos/garage/portal.html">Customer Portal</a>
+        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small" style="background:linear-gradient(135deg,var(--gdk-accent-bright),var(--gdk-accent));">Get a Quote</a>
+      </div>
+      <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-nav-mobile-cta">Quote</a>
+    </div>
+  </nav>
+
+  <header class="gdk-page-header">
+    <span class="gdk-eyebrow">Free Quote · 2 Minutes · No Pressure</span>
+    <h1 class="gdk-page-title gdk-accent-text">Tell Us What's Wrong</h1>
+    <p class="gdk-page-sub">We'll text back with a price and an arrival time — usually within an hour during business hours. After hours? We're still on call.</p>
+  </header>
+
+  <main class="gdk-section">
+    <div class="gdk-container-narrow" style="max-width:680px;">
+      <div style="background:linear-gradient(180deg,var(--gdk-surface) 0%,var(--gdk-bg-deeper) 100%);border:1px solid var(--gdk-border);border-radius:18px;padding:36px 32px;">
+        <form id="lead-form" novalidate>
+          <div class="gdk-form-stack">
+            <div class="gdk-form-row gdk-form-row-2">
+              <div>
+                <label class="gdk-label req" for="lead-first">First Name</label>
+                <input type="text" id="lead-first" class="gdk-input" placeholder="Maria" required autocomplete="given-name">
+                <div class="gdk-error-msg">Please enter your first name</div>
+              </div>
+              <div>
+                <label class="gdk-label req" for="lead-last">Last Name</label>
+                <input type="text" id="lead-last" class="gdk-input" placeholder="Gonzalez" required autocomplete="family-name">
+                <div class="gdk-error-msg">Please enter your last name</div>
+              </div>
+            </div>
+            <div>
+              <label class="gdk-label req" for="lead-phone">Phone</label>
+              <input type="tel" id="lead-phone" class="gdk-input" placeholder="(702) 555-0123" required autocomplete="tel">
+              <div class="gdk-error-msg">Please enter a valid phone number</div>
+            </div>
+            <div>
+              <label class="gdk-label" for="lead-email">Email <span style="color:var(--gdk-text-faint);font-weight:400;">(optional)</span></label>
+              <input type="email" id="lead-email" class="gdk-input" placeholder="maria@example.com" autocomplete="email">
+            </div>
+            <div>
+              <label class="gdk-label req" for="lead-area">Neighborhood</label>
+              <select id="lead-area" class="gdk-input" required>
+                <option value="">Select your area...</option>
+                <option>Henderson</option>
+                <option>Summerlin</option>
+                <option>Paradise</option>
+                <option>Spring Valley</option>
+                <option>Enterprise</option>
+                <option>North Las Vegas</option>
+                <option>Las Vegas (Central)</option>
+                <option>Boulder City</option>
+                <option>Other</option>
+              </select>
+              <div class="gdk-error-msg">Please select your neighborhood</div>
+            </div>
+            <div>
+              <label class="gdk-label req" for="lead-service">Service Needed</label>
+              <select id="lead-service" class="gdk-input" required>
+                <option value="">What's going on?</option>
+                <option>Emergency Repair (broken spring, off-track door, opener won't work)</option>
+                <option>Spring Replacement</option>
+                <option>Opener Install or Repair</option>
+                <option>New Door Install (residential)</option>
+                <option>New Door Install (commercial)</option>
+                <option>Annual Maintenance / Tune-up</option>
+                <option>Not sure — need a diagnosis</option>
+              </select>
+              <div class="gdk-error-msg">Please select a service</div>
+            </div>
+            <div>
+              <label class="gdk-label" for="lead-details">Tell us more <span style="color:var(--gdk-text-faint);font-weight:400;">(optional but helpful)</span></label>
+              <textarea id="lead-details" class="gdk-input" placeholder="Single car or double car door? When did the problem start? Any noises? Photos help — you can text them after."></textarea>
+            </div>
+            <label class="gdk-consent-card">
+              <input type="checkbox" id="lead-consent" required>
+              <span>I agree to receive a text response from Garage Door Kings about my service request. Reply STOP to opt out. Msg &amp; data rates may apply.</span>
+            </label>
+          </div>
+          <button type="submit" class="gdk-btn gdk-btn-primary gdk-btn-wide" style="display:block;width:100%;">Get My Free Quote &rarr;</button>
+          <p style="text-align:center;font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;line-height:1.5;">Or call us directly: <a href="tel:+17025550184" style="color:var(--gdk-accent);">(702) 555-0184</a></p>
+        </form>
+      </div>
+
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;text-align:center;">
+        <div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;color:var(--gdk-accent-pale);margin-bottom:6px;">2 hr</div>
+          <div style="font-size:0.78rem;color:var(--gdk-text-faint);letter-spacing:0.05em;">Average emergency response</div>
+        </div>
+        <div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;color:var(--gdk-accent-pale);margin-bottom:6px;">Same Day</div>
+          <div style="font-size:0.78rem;color:var(--gdk-text-faint);letter-spacing:0.05em;">For most service calls</div>
+        </div>
+        <div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;color:var(--gdk-accent-pale);margin-bottom:6px;">5 Years</div>
+          <div style="font-size:0.78rem;color:var(--gdk-text-faint);letter-spacing:0.05em;">Warranty on all work</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MOCK SMS CONFIRMATION OVERLAY -->
+  <div class="gdk-overlay" id="sms-overlay" role="dialog" aria-label="Sending request">
+    <div class="gdk-overlay-card">
+      <div class="gdk-stage active" id="stage-sending">
+        <div class="gdk-spinner" aria-hidden="true"></div>
+        <div class="gdk-overlay-title">Sending Your Request</div>
+        <p class="gdk-overlay-sub">Texting our dispatch team and confirming your details...</p>
+      </div>
+      <div class="gdk-stage" id="stage-sent">
+        <div class="gdk-check" aria-hidden="true">✓</div>
+        <div class="gdk-overlay-title success">Request Received</div>
+        <p class="gdk-overlay-sub">We just texted <span id="sent-phone" style="color:var(--gdk-accent-pale);font-weight:600;"></span> with confirmation. Watch for a reply with pricing and an arrival window — usually within an hour.</p>
+        <div style="margin-top:24px;padding:18px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:12px;text-align:left;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gdk-accent);font-weight:700;margin-bottom:8px;">Your confirmation text</div>
+          <div style="font-family:'SF Mono',Menlo,monospace;font-size:0.82rem;color:var(--gdk-text);line-height:1.5;">"Garage Door Kings: Got your request, <span id="sent-name">friend</span>. We'll text back shortly with a price and arrival time. Reply STOP to opt out."</div>
+        </div>
+        <p class="gdk-overlay-note">Demo simulation — no real text was sent.</p>
+        <div class="gdk-overlay-actions">
+          <a href="/demos/garage/portal.html" class="gdk-btn gdk-btn-primary">View Customer Portal</a>
+          <a href="/demos/garage/" class="gdk-btn gdk-btn-outline">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">(702) 555-0184 · Mon–Fri 7am–7pm · Sat 8am–3pm · 24/7 Emergency<br>Nevada State Contractors Board #00789432 · Bonded · Insured</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script>
+    const form = document.getElementById('lead-form');
+    const overlay = document.getElementById('sms-overlay');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fields = ['lead-first','lead-last','lead-phone','lead-area','lead-service'];
+      let valid = true;
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const err = el.parentElement.querySelector('.gdk-error-msg');
+        el.classList.remove('error'); if (err) err.classList.remove('show');
+        if (!el.value.trim()) { el.classList.add('error'); if (err) err.classList.add('show'); valid = false; return; }
+        if (id === 'lead-phone' && el.value.replace(/\D/g,'').length < 10) {
+          el.classList.add('error'); if (err) err.classList.add('show'); valid = false;
+        }
+      });
+      const consent = document.getElementById('lead-consent');
+      const consentCard = consent.closest('.gdk-consent-card');
+      consentCard.classList.toggle('invalid', !consent.checked);
+      if (!consent.checked) valid = false;
+
+      if (!valid) return;
+
+      // Populate confirmation
+      document.getElementById('sent-name').textContent = document.getElementById('lead-first').value.trim();
+      const phoneRaw = document.getElementById('lead-phone').value.replace(/\D/g,'').slice(-10);
+      const phoneFmt = phoneRaw.length === 10 ? `(${phoneRaw.slice(0,3)}) ${phoneRaw.slice(3,6)}-${phoneRaw.slice(6)}` : document.getElementById('lead-phone').value;
+      document.getElementById('sent-phone').textContent = phoneFmt;
+
+      // Show overlay
+      document.getElementById('stage-sending').classList.add('active');
+      document.getElementById('stage-sent').classList.remove('active');
+      overlay.classList.add('active');
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+
+      // Stage 1 -> 2 after 1.6s
+      setTimeout(() => {
+        document.getElementById('stage-sending').classList.remove('active');
+        document.getElementById('stage-sent').classList.add('active');
+      }, 1600);
+    });
+  </script>
+</body>
+</html>

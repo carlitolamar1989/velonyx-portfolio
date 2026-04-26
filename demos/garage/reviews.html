@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Reviews — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="4.9 stars across 200+ reviews on Google, Yelp, and Facebook. Real customers, real jobs, real results.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links">
+        <a href="/demos/garage/services.html">Services</a>
+        <a href="/demos/garage/service-areas.html">Service Areas</a>
+        <a href="/demos/garage/about.html">About</a>
+        <a href="/demos/garage/reviews.html" style="color:var(--gdk-accent);">Reviews</a>
+        <a href="/demos/garage/portal.html">Customer Portal</a>
+        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small">Get a Quote</a>
+      </div>
+      <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-nav-mobile-cta">Quote</a>
+    </div>
+  </nav>
+
+  <header class="gdk-page-header">
+    <span class="gdk-eyebrow">★★★★★ · 4.9 Average · 200+ Reviews</span>
+    <h1 class="gdk-page-title gdk-accent-text">What Customers Say</h1>
+    <p class="gdk-page-sub">Real names, real jobs, real results. Reviews pulled from Google, Yelp, and Facebook — never asked, always volunteered.</p>
+  </header>
+
+  <main class="gdk-section">
+    <div class="gdk-container">
+      <div class="gdk-reviews-grid" id="reviews-grid"><!-- Populated by JS --></div>
+    </div>
+  </main>
+
+  <section class="gdk-cta-final">
+    <div class="gdk-cta-final-inner fade-up">
+      <h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(2rem,5vw,2.8rem);line-height:1.1;margin-bottom:18px;">Be our next 5-star.</h2>
+      <p style="color:var(--gdk-text-muted);margin-bottom:32px;">Get a free quote and see for yourself.</p>
+      <div class="gdk-hero-ctas">
+        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-wide">Get a Free Quote</a>
+        <a href="tel:+17025550184" class="gdk-btn gdk-btn-outline gdk-btn-wide">Call (702) 555-0184</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">(702) 555-0184 · Mon–Fri 7am–7pm · Sat 8am–3pm · 24/7 Emergency</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
+  <script>
+    function initials(n) { return n.split(' ').map(s => s[0]).join('').slice(0,2).toUpperCase(); }
+    const grid = document.getElementById('reviews-grid');
+    const reviewed = window.GDK_DATA.reviews.filter(r => r.status === 'reviewed' && r.reviewText);
+    grid.innerHTML = reviewed.map(r => `
+      <div class="gdk-review-card fade-up">
+        <div class="gdk-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+        <p class="gdk-review-quote">"${r.reviewText}"</p>
+        <div class="gdk-review-author">
+          <div class="gdk-review-avatar">${initials(r.customerName)}</div>
+          <div>
+            <div class="gdk-review-name">${r.customerName}</div>
+            <div class="gdk-review-meta">${r.channel} · ${r.sentAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    const fadeObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+  </script>
+</body>
+</html>

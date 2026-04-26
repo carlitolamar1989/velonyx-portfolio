@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Customer Portal — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="Sample customer dashboard for Garage Door Kings. Built by Velonyx Systems.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links" style="display:flex;">
+        <a href="/demos/garage/">Home</a>
+        <a href="/demos/garage/services.html">Services</a>
+        <a href="/demos/garage/portal.html" style="color:var(--gdk-accent);">Portal</a>
+        <a href="/demos/garage/admin.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Admin View</a>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out</button>
+      </div>
+      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="gdk-portal-main">
+    <div class="gdk-sample-banner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+      <div>
+        <div class="t">Sample customer dashboard</div>
+        <div class="s">You're viewing a demonstration. In a real deployment, customers log in securely and see only their own jobs, invoices, and messages.</div>
+      </div>
+    </div>
+
+    <header class="gdk-portal-header">
+      <div class="gdk-portal-welcome">
+        <div class="gdk-avatar-large" id="welcome-avatar">MR</div>
+        <div>
+          <div class="gdk-portal-card-label">Welcome back</div>
+          <div class="gdk-portal-name gdk-accent-text" id="welcome-name">Michael Robinson</div>
+          <div class="gdk-portal-meta" id="welcome-meta">Customer since March 2025 · Henderson, NV</div>
+        </div>
+      </div>
+      <div>
+        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small">Request Service</a>
+      </div>
+    </header>
+
+    <div class="gdk-portal-grid">
+
+      <!-- UPCOMING JOB -->
+      <section class="gdk-portal-card full">
+        <div class="gdk-portal-card-label">Your Upcoming Service</div>
+        <h2 class="gdk-portal-card-title" id="upcoming-title">Opener Install</h2>
+        <div style="display:grid;grid-template-columns:1fr;gap:16px;" id="upcoming-grid">
+          <!-- populated by JS -->
+        </div>
+      </section>
+
+      <!-- PAYMENT SUMMARY -->
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Billing</div>
+        <h2 class="gdk-portal-card-title">Payment Summary</h2>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table">
+            <thead>
+              <tr><th>Invoice</th><th>Date</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody id="invoices-tbody"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:16px;padding:14px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:10px;font-size:0.85rem;color:var(--gdk-text-dim);line-height:1.55;">
+          <strong style="color:var(--gdk-accent-pale);">Balance due:</strong> <span id="balance-due">$485</span> <span style="color:var(--gdk-text-faint);">(paid before Wednesday's install)</span>
+        </div>
+      </section>
+
+      <!-- PAST JOBS -->
+      <section class="gdk-portal-card">
+        <div class="gdk-portal-card-label">Service History</div>
+        <h2 class="gdk-portal-card-title">Past Jobs</h2>
+        <div id="past-jobs"></div>
+      </section>
+
+      <!-- MESSAGES -->
+      <section class="gdk-portal-card full">
+        <div class="gdk-portal-card-label">Direct Message</div>
+        <h2 class="gdk-portal-card-title">Conversation with Marcus</h2>
+        <div id="msg-list" style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;"></div>
+        <div style="display:flex;gap:10px;padding-top:16px;border-top:1px solid var(--gdk-border);">
+          <input type="text" placeholder="Type a message…" class="gdk-input" style="flex:1;" aria-label="New message">
+          <button class="gdk-btn gdk-btn-primary gdk-btn-small">Send</button>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section class="gdk-portal-card full">
+        <div class="gdk-portal-card-label">Resources</div>
+        <h2 class="gdk-portal-card-title">Documents &amp; Warranty</h2>
+        <div style="display:grid;grid-template-columns:1fr;gap:14px;" id="docs-grid"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
+  <script>
+    const D = window.GDK_DATA;
+    const user = D.portalUser;
+
+    // Welcome
+    const initials = user.customer.name.split(' ').map(s => s[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('welcome-avatar').textContent = initials;
+    document.getElementById('welcome-name').textContent = user.customer.name;
+    const joined = user.customer.joinedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    document.getElementById('welcome-meta').textContent = `Customer since ${joined} · ${user.customer.neighborhood}, NV`;
+
+    // Upcoming job
+    const j = user.upcomingJobs[0];
+    const dateStr = j.scheduledFor.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    const timeStr = j.scheduledFor.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    document.getElementById('upcoming-title').textContent = j.service;
+    document.getElementById('upcoming-grid').innerHTML = `
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="margin-top:2px;flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>
+        <div><div style="font-weight:500;color:var(--gdk-text);">${dateStr}</div><div style="font-size:0.82rem;color:var(--gdk-text-faint);margin-top:2px;">${timeStr} · ${j.durationMinutes} min · Tech: ${j.tech}</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="margin-top:2px;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div style="font-weight:500;color:var(--gdk-text);">${j.address}</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--gdk-border);font-size:0.92rem;">
+        <div>
+          <div style="color:var(--gdk-text-faint);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;">Total</div>
+          <div style="font-family:'Fraunces',Georgia,serif;color:var(--gdk-accent-pale);font-size:1.5rem;font-weight:600;margin-top:2px;">$${j.total.toLocaleString()}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="color:var(--gdk-text-faint);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;">Deposit Paid</div>
+          <div style="color:#86efac;font-weight:600;margin-top:2px;">$${j.depositPaid} · Balance $${j.balanceDue}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small" style="flex:1;">Reschedule</button>
+        <a href="https://maps.google.com/?q=${encodeURIComponent(j.address)}" target="_blank" rel="noopener" class="gdk-btn gdk-btn-outline gdk-btn-small" style="flex:1;text-align:center;">Directions</a>
+      </div>
+    `;
+
+    // Invoices
+    const invBody = document.getElementById('invoices-tbody');
+    invBody.innerHTML = user.invoices.map(inv => `
+      <tr>
+        <td style="font-family:'SF Mono',Menlo,monospace;font-size:0.82rem;color:var(--gdk-text);">${inv.id}</td>
+        <td style="color:var(--gdk-text-muted);">${inv.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td>
+        <td style="font-weight:500;color:var(--gdk-text);">$${inv.amount}</td>
+        <td><span class="gdk-badge ${inv.paid ? 'gdk-badge-paid' : 'gdk-badge-due'}">${inv.status}</span></td>
+      </tr>
+    `).join('');
+
+    // Past jobs
+    const pastEl = document.getElementById('past-jobs');
+    pastEl.innerHTML = user.pastJobs.map(j => `
+      <div class="gdk-job-row">
+        <div class="gdk-job-date">
+          <div class="day">${j.completedDate.getDate()}</div>
+          <div class="mon">${j.completedDate.toLocaleDateString('en-US',{month:'short'})}</div>
+        </div>
+        <div class="gdk-job-info">
+          <div class="who">${j.service}</div>
+          <div class="meta">Completed ${j.completedDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} · ${j.tech} · ${j.warrantyYears}-yr warranty</div>
+        </div>
+        <div class="gdk-job-value">$${j.total}</div>
+      </div>
+    `).join('');
+
+    // Messages
+    const msgEl = document.getElementById('msg-list');
+    msgEl.innerHTML = user.messages.map(m => {
+      const me = m.from === user.customer.name;
+      return `
+        <div>
+          <div style="font-size:0.7rem;color:var(--gdk-text-faint);margin-bottom:4px;${me?'text-align:right;':''}">${m.from} · ${m.at.toLocaleDateString('en-US',{month:'short',day:'numeric'})} ${m.at.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</div>
+          <div style="max-width:85%;padding:12px 16px;border-radius:14px;font-size:0.92rem;line-height:1.5;${me ? 'background:linear-gradient(135deg,var(--gdk-accent),var(--gdk-accent-bright));color:var(--gdk-bg);border-radius:14px 14px 4px 14px;margin-left:auto;' : 'background:#2a2a2a;color:var(--gdk-text);border-radius:14px 14px 14px 4px;'}">${m.body}</div>
+        </div>
+      `;
+    }).join('');
+
+    // Documents
+    const docs = [
+      { name: 'Spring Replacement Invoice', sub: 'INV-2025-0641 · 5-year warranty active', icon: '📄' },
+      { name: 'Pre-Install Checklist', sub: 'Power outlet · ceiling clearance · access', icon: '📋' },
+      { name: 'Maintenance Schedule', sub: 'Recommended annual tune-up — Sep 2026', icon: '🔧' },
+    ];
+    document.getElementById('docs-grid').innerHTML = docs.map(d => `
+      <button class="gdk-btn gdk-btn-outline" style="text-align:left;padding:18px;display:flex;align-items:flex-start;gap:14px;justify-content:flex-start;text-transform:none;font-weight:500;letter-spacing:0;font-size:0.92rem;" onclick="alert('Demo: PDF download would trigger in a real deployment.')">
+        <span style="font-size:1.4rem;flex-shrink:0;">${d.icon}</span>
+        <span style="flex:1;">
+          <span style="display:block;color:var(--gdk-text);">${d.name}</span>
+          <span style="display:block;font-size:0.78rem;color:var(--gdk-text-faint);margin-top:4px;">${d.sub}</span>
+          <span style="display:block;font-size:0.72rem;color:var(--gdk-accent);margin-top:6px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Download →</span>
+        </span>
+      </button>
+    `).join('');
+
+    // Compute balance due
+    const due = user.invoices.filter(i => !i.paid).reduce((s,i) => s + i.amount, 0);
+    document.getElementById('balance-due').textContent = '$' + due.toLocaleString();
+  </script>
+</body>
+</html>
