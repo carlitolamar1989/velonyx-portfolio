@@ -24,7 +24,7 @@
         <a href="/demos/garage/services.html">Services</a>
         <a href="/demos/garage/portal.html" style="color:var(--gdk-accent);">Portal</a>
         <a href="/demos/garage/admin.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Admin View</a>
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out</button>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small" data-signout>Sign Out</button>
       </div>
       <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
     </div>
@@ -94,8 +94,8 @@
         <h2 class="gdk-portal-card-title">Conversation with Marcus</h2>
         <div id="msg-list" style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;"></div>
         <div style="display:flex;gap:10px;padding-top:16px;border-top:1px solid var(--gdk-border);">
-          <input type="text" placeholder="Type a message…" class="gdk-input" style="flex:1;" aria-label="New message">
-          <button class="gdk-btn gdk-btn-primary gdk-btn-small">Send</button>
+          <input type="text" id="msg-input" placeholder="Type a message…" class="gdk-input" style="flex:1;" aria-label="New message">
+          <button id="msg-send-btn" class="gdk-btn gdk-btn-primary gdk-btn-small">Send</button>
         </div>
       </section>
 
@@ -108,6 +108,20 @@
 
     </div>
   </main>
+
+  <!-- RESCHEDULE MODAL -->
+  <div class="gdk-simple-modal" id="reschedule-modal" role="dialog" aria-label="Reschedule appointment">
+    <div class="gdk-simple-modal-card">
+      <button type="button" class="gdk-simple-modal-close" data-modal-close="reschedule-modal" aria-label="Close">×</button>
+      <div class="gdk-simple-modal-title">Reschedule Your Service</div>
+      <div class="gdk-simple-modal-sub">Pick a new time that works better. Marcus will confirm within an hour.</div>
+      <div class="gdk-reschedule-options" id="reschedule-options"></div>
+      <div class="gdk-simple-modal-actions">
+        <button type="button" class="gdk-btn gdk-btn-outline" data-modal-close="reschedule-modal">Cancel</button>
+        <button type="button" id="btn-reschedule-submit" class="gdk-btn gdk-btn-primary" disabled style="opacity:0.4;">Request Reschedule</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="gdk-footer">
     <div class="gdk-footer-inner">
@@ -155,7 +169,7 @@
         </div>
       </div>
       <div style="display:flex;gap:10px;margin-top:8px;">
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small" style="flex:1;">Reschedule</button>
+        <button id="btn-reschedule" class="gdk-btn gdk-btn-outline gdk-btn-small" style="flex:1;">Reschedule</button>
         <a href="https://maps.google.com/?q=${encodeURIComponent(j.address)}" target="_blank" rel="noopener" class="gdk-btn gdk-btn-outline gdk-btn-small" style="flex:1;text-align:center;">Directions</a>
       </div>
     `;
@@ -187,17 +201,24 @@
       </div>
     `).join('');
 
-    // Messages
+    // Messages — merge static seed with persisted demo messages
     const msgEl = document.getElementById('msg-list');
-    msgEl.innerHTML = user.messages.map(m => {
-      const me = m.from === user.customer.name;
-      return `
-        <div>
-          <div style="font-size:0.7rem;color:var(--gdk-text-faint);margin-bottom:4px;${me?'text-align:right;':''}">${m.from} · ${m.at.toLocaleDateString('en-US',{month:'short',day:'numeric'})} ${m.at.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</div>
-          <div style="max-width:85%;padding:12px 16px;border-radius:14px;font-size:0.92rem;line-height:1.5;${me ? 'background:linear-gradient(135deg,var(--gdk-accent),var(--gdk-accent-bright));color:var(--gdk-bg);border-radius:14px 14px 4px 14px;margin-left:auto;' : 'background:#2a2a2a;color:var(--gdk-text);border-radius:14px 14px 14px 4px;'}">${m.body}</div>
-        </div>
-      `;
-    }).join('');
+    function renderMessages() {
+      const persisted = D.getDemoMessages();
+      const allMsgs = [...user.messages, ...persisted];
+      msgEl.innerHTML = allMsgs.map(m => {
+        const me = m.from === user.customer.name;
+        const delivered = m.delivered ? ` <span style="font-size:0.7rem;color:#86efac;margin-left:4px;">✓ delivered</span>` : '';
+        return `
+          <div>
+            <div style="font-size:0.7rem;color:var(--gdk-text-faint);margin-bottom:4px;${me?'text-align:right;':''}">${m.from} · ${m.at.toLocaleDateString('en-US',{month:'short',day:'numeric'})} ${m.at.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}${delivered}</div>
+            <div style="max-width:85%;padding:12px 16px;border-radius:14px;font-size:0.92rem;line-height:1.5;${me ? 'background:linear-gradient(135deg,var(--gdk-accent),var(--gdk-accent-bright));color:var(--gdk-bg);border-radius:14px 14px 4px 14px;margin-left:auto;' : 'background:#2a2a2a;color:var(--gdk-text);border-radius:14px 14px 14px 4px;'}">${m.body}</div>
+          </div>
+        `;
+      }).join('');
+      msgEl.scrollTop = msgEl.scrollHeight;
+    }
+    renderMessages();
 
     // Documents
     const docs = [
@@ -219,6 +240,103 @@
     // Compute balance due
     const due = user.invoices.filter(i => !i.paid).reduce((s,i) => s + i.amount, 0);
     document.getElementById('balance-due').textContent = '$' + due.toLocaleString();
+
+    // ─── SIGN OUT ───
+    document.querySelectorAll('[data-signout]').forEach(btn => {
+      btn.addEventListener('click', () => window.gdkSignOut('/demos/garage/'));
+    });
+
+    // ─── SEND MESSAGE — persists, simulates Marcus reply ───
+    const msgInput = document.getElementById('msg-input');
+    const msgSend = document.getElementById('msg-send-btn');
+    const MARCUS_REPLIES = [
+      "Got it, I'll be there at 2pm Tuesday.",
+      "Sounds good. Confirming with Diego now and I'll text you back shortly.",
+      "Appreciate the heads up. We'll work around it.",
+      "All good — let me check the schedule and get back to you in a few.",
+      "Confirmed. See you then. 👍",
+    ];
+    function sendMessage() {
+      const text = msgInput.value.trim();
+      if (!text) return;
+      const msg = { from: user.customer.name, body: text, at: new Date(), delivered: true };
+      D.saveDemoMessage(msg);
+      msgInput.value = '';
+      renderMessages();
+      // Marcus replies in 4s
+      setTimeout(() => {
+        const reply = { from: 'Marcus Reed', body: MARCUS_REPLIES[Math.floor(Math.random() * MARCUS_REPLIES.length)], at: new Date(), delivered: true };
+        D.saveDemoMessage(reply);
+        renderMessages();
+        gdkToast({ title: 'Marcus replied', subtitle: reply.body.slice(0, 60), icon: '💬' });
+      }, 4000);
+    }
+    msgSend.addEventListener('click', sendMessage);
+    msgInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
+
+    // ─── RESCHEDULE MODAL ───
+    const rescheduleModal = document.getElementById('reschedule-modal');
+    const rescheduleBtn = document.getElementById('btn-reschedule');
+    const rescheduleSubmit = document.getElementById('btn-reschedule-submit');
+    const rescheduleOptions = document.getElementById('reschedule-options');
+
+    // Compute 3 suggested times relative to today
+    function computeRescheduleSlots() {
+      const t = new Date(); t.setHours(0,0,0,0);
+      const dow = t.getDay();
+      const slot1 = new Date(t); slot1.setDate(t.getDate() + ((4 - dow + 7) % 7 || 7)); slot1.setHours(14, 0); // next Thursday 2pm
+      const slot2 = new Date(t); slot2.setDate(t.getDate() + ((5 - dow + 7) % 7 || 7)); slot2.setHours(10, 0); // next Friday 10am
+      const slot3 = new Date(t); slot3.setDate(t.getDate() + ((1 - dow + 7) % 7 || 7) + 7); slot3.setHours(9, 0); // Monday after next 9am
+      return [slot1, slot2, slot3];
+    }
+    const slots = computeRescheduleSlots();
+    let selectedSlotIndex = -1;
+    rescheduleOptions.innerHTML = slots.map((s, i) => {
+      const day = s.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      const time = s.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      return `
+        <div class="gdk-reschedule-option" data-slot-index="${i}">
+          <div class="gdk-reschedule-option-radio"></div>
+          <div style="flex:1;">
+            <div class="gdk-reschedule-option-label">${day}</div>
+          </div>
+          <div class="gdk-reschedule-option-time">${time}</div>
+        </div>
+      `;
+    }).join('');
+    rescheduleOptions.querySelectorAll('.gdk-reschedule-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        rescheduleOptions.querySelectorAll('.gdk-reschedule-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        selectedSlotIndex = parseInt(opt.dataset.slotIndex, 10);
+        rescheduleSubmit.disabled = false;
+        rescheduleSubmit.style.opacity = '';
+      });
+    });
+    rescheduleBtn.addEventListener('click', () => {
+      rescheduleModal.classList.add('active');
+      requestAnimationFrame(() => rescheduleModal.classList.add('visible'));
+    });
+    function closeReschedule() {
+      rescheduleModal.classList.remove('visible');
+      setTimeout(() => rescheduleModal.classList.remove('active'), 280);
+    }
+    document.querySelectorAll('[data-modal-close="reschedule-modal"]').forEach(btn => btn.addEventListener('click', closeReschedule));
+    rescheduleModal.addEventListener('click', (e) => { if (e.target === rescheduleModal) closeReschedule(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && rescheduleModal.classList.contains('active')) closeReschedule(); });
+    rescheduleSubmit.addEventListener('click', () => {
+      if (selectedSlotIndex < 0) return;
+      const picked = slots[selectedSlotIndex];
+      const dayLabel = picked.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+      const timeLabel = picked.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      closeReschedule();
+      gdkToast({ title: 'Reschedule request sent', subtitle: `${dayLabel} at ${timeLabel} — Marcus will confirm within 1 hour.`, icon: '📅', duration: 5000 });
+      // Reset for next time
+      rescheduleOptions.querySelectorAll('.gdk-reschedule-option').forEach(o => o.classList.remove('selected'));
+      selectedSlotIndex = -1;
+      rescheduleSubmit.disabled = true;
+      rescheduleSubmit.style.opacity = '0.4';
+    });
   </script>
 </body>
 </html>

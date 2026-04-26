@@ -421,3 +421,112 @@ if (typeof console !== 'undefined') {
     `${GDK_PAYMENTS.length} payments`,
     'color:#B8732E;font-weight:bold;', 'color:#999;');
 }
+
+// ─────────────────────────────────────────────────────────────
+// LIVE DEMO LEADS (P3 — created via "+ New Lead" modal)
+// ─────────────────────────────────────────────────────────────
+const GDK_LEADS_STORAGE_KEY = 'gdk-demo-leads-v1';
+
+function gdkGetDemoLeads() {
+  try {
+    const raw = localStorage.getItem(GDK_LEADS_STORAGE_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return [];
+    return arr.map(l => Object.assign({}, l, { createdAt: new Date(l.createdAt) }));
+  } catch (e) { return []; }
+}
+
+function gdkSaveDemoLead(lead) {
+  try {
+    const all = gdkGetDemoLeads();
+    const stored = Object.assign({}, lead, { isDemoEntry: true });
+    if (stored.createdAt instanceof Date) stored.createdAt = stored.createdAt.toISOString();
+    all.unshift(stored);
+    localStorage.setItem(GDK_LEADS_STORAGE_KEY, JSON.stringify(all.slice(0, 50)));
+    return true;
+  } catch (e) { return false; }
+}
+
+function gdkClearDemoLeads() {
+  try { localStorage.removeItem(GDK_LEADS_STORAGE_KEY); return true; } catch (e) { return false; }
+}
+
+// ─────────────────────────────────────────────────────────────
+// PORTAL MESSAGES — persist customer messages across reloads
+// ─────────────────────────────────────────────────────────────
+const GDK_MSG_STORAGE_KEY = 'gdk-portal-messages-v1';
+function gdkGetDemoMessages() {
+  try {
+    const raw = localStorage.getItem(GDK_MSG_STORAGE_KEY);
+    if (!raw) return [];
+    return JSON.parse(raw).map(m => Object.assign({}, m, { at: new Date(m.at) }));
+  } catch (e) { return []; }
+}
+function gdkSaveDemoMessage(msg) {
+  try {
+    const all = gdkGetDemoMessages();
+    const stored = Object.assign({}, msg);
+    if (stored.at instanceof Date) stored.at = stored.at.toISOString();
+    all.push(stored);
+    localStorage.setItem(GDK_MSG_STORAGE_KEY, JSON.stringify(all.slice(-30)));
+    return true;
+  } catch (e) { return false; }
+}
+
+window.GDK_DATA.getDemoLeads = gdkGetDemoLeads;
+window.GDK_DATA.saveDemoLead = gdkSaveDemoLead;
+window.GDK_DATA.clearDemoLeads = gdkClearDemoLeads;
+window.GDK_DATA.getDemoMessages = gdkGetDemoMessages;
+window.GDK_DATA.saveDemoMessage = gdkSaveDemoMessage;
+
+// ─────────────────────────────────────────────────────────────
+// SHARED UI HELPERS — toast + sign-out fade
+// ─────────────────────────────────────────────────────────────
+function gdkToast({ title, subtitle = '', icon = '✓', duration = 3800, variant = 'success' }) {
+  // Ensure container exists
+  let container = document.getElementById('gdk-toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'gdk-toast-container';
+    container.className = 'gdk-toast-container';
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement('div');
+  toast.className = 'gdk-toast gdk-toast-' + variant;
+  toast.innerHTML = `
+    <div class="gdk-toast-icon">${icon}</div>
+    <div class="gdk-toast-body">
+      <div class="gdk-toast-title">${title}</div>
+      ${subtitle ? `<div class="gdk-toast-sub">${subtitle}</div>` : ''}
+    </div>
+  `;
+  container.appendChild(toast);
+  // Trigger entrance animation
+  requestAnimationFrame(() => toast.classList.add('visible'));
+  // Auto-dismiss
+  setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.remove(), 350);
+  }, duration);
+  return toast;
+}
+window.gdkToast = gdkToast;
+
+function gdkSignOut(redirectTo = '/demos/garage/') {
+  const overlay = document.createElement('div');
+  overlay.className = 'gdk-signout-overlay';
+  overlay.innerHTML = `
+    <div class="gdk-signout-card">
+      <div class="gdk-signout-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </div>
+      <div class="gdk-signout-title">Signed out successfully</div>
+      <div class="gdk-signout-sub">Redirecting...</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => overlay.classList.add('visible'));
+  setTimeout(() => { window.location.href = redirectTo; }, 1100);
+}
+window.gdkSignOut = gdkSignOut;

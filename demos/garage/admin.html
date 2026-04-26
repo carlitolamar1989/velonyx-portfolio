@@ -24,9 +24,9 @@
         <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
         <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Dashboard</a>
         <a href="/demos/garage/invoices.html">Invoices</a>
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small" data-signout>Sign Out (Marcus)</button>
       </div>
-      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
+      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta" data-signout>Sign Out</button>
     </div>
   </nav>
 
@@ -107,8 +107,8 @@
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
+        <button id="btn-export-data" class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
+        <button id="btn-new-lead" class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
         <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
           <span style="display:inline-flex;align-items:center;gap:6px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
@@ -211,6 +211,47 @@
     </div><!-- /full-dashboard -->
   </main>
 
+  <!-- + NEW LEAD MODAL -->
+  <div class="gdk-simple-modal" id="new-lead-modal" role="dialog" aria-label="Add a new lead">
+    <div class="gdk-simple-modal-card">
+      <button type="button" class="gdk-simple-modal-close" data-modal-close="new-lead-modal" aria-label="Close">×</button>
+      <div class="gdk-simple-modal-title">Add a New Lead</div>
+      <div class="gdk-simple-modal-sub">Manually log a customer who called or walked in. Lead lands at the top of your pipeline.</div>
+      <form id="new-lead-form" novalidate>
+        <div class="gdk-form-stack">
+          <div>
+            <label class="gdk-label req" for="nl-name">Customer Name</label>
+            <input type="text" id="nl-name" class="gdk-input" placeholder="Maria Lopez" required>
+          </div>
+          <div>
+            <label class="gdk-label req" for="nl-phone">Phone</label>
+            <input type="tel" id="nl-phone" class="gdk-input" placeholder="(702) 555-0142" required>
+          </div>
+          <div>
+            <label class="gdk-label req" for="nl-service">Service Needed</label>
+            <select id="nl-service" class="gdk-input" required>
+              <option value="">Pick a service...</option>
+              <option>Emergency Repair</option>
+              <option>Spring Replacement</option>
+              <option>Opener Install</option>
+              <option>New Door Install</option>
+              <option>Commercial Doors</option>
+              <option>Maintenance Plans</option>
+            </select>
+          </div>
+          <div>
+            <label class="gdk-label" for="nl-notes">Notes <span style="color:var(--gdk-text-faint);font-weight:400;">(optional)</span></label>
+            <textarea id="nl-notes" class="gdk-input" placeholder="Single car door · noise from spring · she's flexible on timing"></textarea>
+          </div>
+        </div>
+        <div class="gdk-simple-modal-actions">
+          <button type="button" class="gdk-btn gdk-btn-outline" data-modal-close="new-lead-modal">Cancel</button>
+          <button type="submit" class="gdk-btn gdk-btn-primary">Add Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="gdk-footer">
     <div class="gdk-footer-inner">
       <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
@@ -260,23 +301,36 @@
     const winRate = closed.length ? Math.round((won / closed.length) * 100) : 0;
     document.getElementById('kpi-win').textContent = winRate + '%';
 
-    // Leads table
+    // Leads table — merges live demo leads (created via "+ New Lead" modal) with static mock
     function renderLeads(filter) {
       const tbody = document.getElementById('leads-tbody');
-      const filtered = filter === 'all' ? D.leads : D.leads.filter(l => l.status === filter);
+      const liveLeads = D.getDemoLeads();
+      const allLeads = [...liveLeads, ...D.leads];
+      // Dedupe by ID
+      const seenLeadIds = new Set();
+      const dedup = allLeads.filter(l => { if (seenLeadIds.has(l.id)) return false; seenLeadIds.add(l.id); return true; });
+      const filtered = filter === 'all' ? dedup : dedup.filter(l => l.status === filter);
       const sorted = [...filtered].sort((a,b) => b.createdAt - a.createdAt).slice(0, 25);
-      tbody.innerHTML = sorted.map(l => `
-        <tr>
-          <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
-          <td data-card-area="secondary" style="font-size:0.84rem;">${l.serviceInterest}</td>
-          <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood} · ${l.source} · ${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
-          <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
-          <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
-          <td data-card-area="status"><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
-          <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-faint);">${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
-        </tr>
-      `).join('');
-      const totalCount = filter === 'all' ? D.leads.length : filtered.length;
+      tbody.innerHTML = sorted.map(l => {
+        const isFresh = l.isDemoEntry;
+        const ageMin = isFresh ? (new Date() - l.createdAt) / 60000 : null;
+        const dateLabel = isFresh && ageMin < 1 ? '<span style="color:#86efac;">JUST NOW</span>'
+                         : isFresh && ageMin < 60 ? `<span style="color:#86efac;">${Math.floor(ageMin)} MIN AGO</span>`
+                         : l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+        const newBadge = isFresh ? ' <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : '';
+        return `
+          <tr ${isFresh ? 'class="gdk-payment-fresh"' : ''}>
+            <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}${newBadge}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
+            <td data-card-area="secondary" style="font-size:0.84rem;">${l.serviceInterest}</td>
+            <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood} · ${l.source} · ${dateLabel}</td>
+            <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
+            <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
+            <td data-card-area="status"><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
+            <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-faint);">${dateLabel}</td>
+          </tr>
+        `;
+      }).join('');
+      const totalCount = filter === 'all' ? dedup.length : filtered.length;
       document.getElementById('leads-meta').textContent = `Showing ${sorted.length} of ${totalCount} ${filter === 'all' ? 'total' : filter} leads`;
     }
     renderLeads('all');
@@ -590,6 +644,118 @@
         });
       });
     }
+
+    // ─── SIGN OUT ───
+    document.querySelectorAll('[data-signout]').forEach(btn => {
+      btn.addEventListener('click', () => window.gdkSignOut('/demos/garage/'));
+    });
+
+    // ─── + NEW LEAD MODAL ───
+    const newLeadBtn = document.getElementById('btn-new-lead');
+    const newLeadModal = document.getElementById('new-lead-modal');
+    const newLeadForm = document.getElementById('new-lead-form');
+    function openNewLead() {
+      newLeadModal.classList.add('active');
+      requestAnimationFrame(() => newLeadModal.classList.add('visible'));
+      setTimeout(() => document.getElementById('nl-name').focus(), 250);
+    }
+    function closeModal(modal) {
+      modal.classList.remove('visible');
+      setTimeout(() => modal.classList.remove('active'), 280);
+    }
+    newLeadBtn.addEventListener('click', openNewLead);
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.dataset.modalClose;
+        if (modalId) closeModal(document.getElementById(modalId));
+      });
+    });
+    newLeadModal.addEventListener('click', (e) => { if (e.target === newLeadModal) closeModal(newLeadModal); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && newLeadModal.classList.contains('active')) closeModal(newLeadModal);
+    });
+    newLeadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nl-name').value.trim();
+      const phone = document.getElementById('nl-phone').value.trim();
+      const service = document.getElementById('nl-service').value;
+      const notes = document.getElementById('nl-notes').value.trim();
+      if (!name || !phone || phone.replace(/\D/g,'').length < 10 || !service) {
+        gdkToast({ title: 'Please complete all required fields', icon: '!', variant: 'success' });
+        return;
+      }
+      // Auto-classify estimated value from service catalog
+      const svc = D.services.find(s => s.name === service);
+      const estVal = svc ? svc.avg : 245;
+      const phoneFmt = (() => { const p = phone.replace(/\D/g,'').slice(-10); return p.length === 10 ? `${p.slice(0,3)}-${p.slice(3,6)}-${p.slice(6)}` : phone; })();
+      const newLead = {
+        id: 'lead-live-' + Math.random().toString(36).slice(2, 8),
+        name,
+        phone: phoneFmt,
+        serviceInterest: service,
+        neighborhood: 'Unspecified',
+        estimatedValue: estVal,
+        source: 'Manual entry',
+        status: 'new',
+        createdAt: new Date(),
+        notes
+      };
+      D.saveDemoLead(newLead);
+      closeModal(newLeadModal);
+      newLeadForm.reset();
+      // Rerender leads (preserve current active filter)
+      const activeChip = document.querySelector('.gdk-chip[data-filter].active');
+      renderLeads(activeChip ? activeChip.dataset.filter : 'all');
+      gdkToast({ title: 'New lead added', subtitle: `${name} · ${service}`, icon: '🆕' });
+    });
+
+    // ─── EXPORT DATA — combined CSV ───
+    document.getElementById('btn-export-data').addEventListener('click', () => {
+      const lines = [];
+      const escape = (v) => { const s = (v ?? '').toString(); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; };
+      const fmtDate = (d) => d ? new Date(d).toISOString().slice(0,10) : '';
+
+      // LEADS section
+      lines.push('# LEADS');
+      lines.push('Name,Phone,Service,Neighborhood,Source,Estimated Value,Status,Created');
+      const allLeadsExport = [...D.getDemoLeads(), ...D.leads];
+      const seenIds = new Set();
+      allLeadsExport.filter(l => { if (seenIds.has(l.id)) return false; seenIds.add(l.id); return true; })
+        .forEach(l => lines.push([l.name, l.phone, l.serviceInterest, l.neighborhood, l.source, l.estimatedValue, l.status, fmtDate(l.createdAt)].map(escape).join(',')));
+
+      lines.push('');
+      // CUSTOMERS section
+      lines.push('# CUSTOMERS');
+      lines.push('Name,Email,Phone,Address,Neighborhood,Joined Date,Lifetime Value');
+      D.customers.forEach(c => lines.push([c.name, c.email, c.phone, c.address, c.neighborhood, fmtDate(c.joinedDate), c.lifetimeValue].map(escape).join(',')));
+
+      lines.push('');
+      // JOBS section
+      lines.push('# JOBS');
+      lines.push('Customer,Service,Tech,Address,Scheduled For,Status,Value');
+      D.jobs.forEach(j => lines.push([j.customerName, j.service, j.techName, j.address, j.scheduledFor.toISOString(), j.status, j.value].map(escape).join(',')));
+
+      lines.push('');
+      // INVOICES section
+      lines.push('# INVOICES');
+      lines.push('Date,Invoice ID,Customer,Description,Amount,Method,Status,Paid Date,Payment Type,Tech');
+      const allInv = [...D.getDemoPayments(), ...D.payments];
+      const seenInvIds = new Set();
+      allInv.filter(i => { if (seenInvIds.has(i.id)) return false; seenInvIds.add(i.id); return true; })
+        .forEach(i => lines.push([fmtDate(i.paidAt || i.createdAt), i.id, i.customerName, i.description, i.amount.toFixed(2), i.method, i.status, fmtDate(i.paidAt), i.paymentMethod || '', i.techName].map(escape).join(',')));
+
+      const csv = lines.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `gdk-data-export-${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      gdkToast({ title: 'Data exported', subtitle: `${D.leads.length + D.getDemoLeads().length} leads · ${D.customers.length} customers · ${D.jobs.length} jobs · ${D.payments.length + D.getDemoPayments().length} invoices`, icon: '📦' });
+    });
 
     // Recent Money — last 5 paid
     const recentPaid = paidPayments.slice(0, 5);
