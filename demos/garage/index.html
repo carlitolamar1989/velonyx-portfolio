@@ -33,8 +33,8 @@
   </nav>
 
   <!-- HERO -->
-  <section class="gdk-hero">
-    <div class="gdk-hero-bg"></div>
+  <section class="gdk-hero has-photo">
+    <div class="gdk-hero-photo" aria-hidden="true"></div>
     <div class="gdk-hero-orb" aria-hidden="true"></div>
     <div class="gdk-hero-inner">
       <svg class="gdk-hero-crown" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
@@ -62,19 +62,19 @@
   <section class="gdk-stats">
     <div class="gdk-stats-grid">
       <div class="fade-up">
-        <div class="gdk-stat-num gdk-accent-text">10+</div>
+        <div class="gdk-stat-num gdk-accent-text" data-count="10" data-suffix="+">10+</div>
         <div class="gdk-stat-label">Years Serving Las Vegas</div>
       </div>
-      <div class="fade-up">
-        <div class="gdk-stat-num gdk-accent-text">4,800+</div>
+      <div class="fade-up delay-1">
+        <div class="gdk-stat-num gdk-accent-text" data-count="4800" data-suffix="+" data-format="comma">4,800+</div>
         <div class="gdk-stat-label">Doors Repaired or Installed</div>
       </div>
-      <div class="fade-up">
-        <div class="gdk-stat-num gdk-accent-text">4.9</div>
+      <div class="fade-up delay-2">
+        <div class="gdk-stat-num gdk-accent-text" data-count="4.9" data-decimals="1">4.9</div>
         <div class="gdk-stat-label">Star Average Rating</div>
       </div>
-      <div class="fade-up">
-        <div class="gdk-stat-num gdk-accent-text">2 hr</div>
+      <div class="fade-up delay-3">
+        <div class="gdk-stat-num gdk-accent-text" data-count="2" data-suffix=" hr">2 hr</div>
         <div class="gdk-stat-label">Emergency Response Time</div>
       </div>
     </div>
@@ -89,47 +89,89 @@
         <p class="gdk-section-subtitle">Every job, big or small, gets the same focus — diagnose properly, fix it once, warranty the work.</p>
       </div>
       <div class="gdk-services-grid">
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">⚡</div>
-          <h3 class="gdk-service-name">Emergency Repair</h3>
-          <div class="gdk-service-price">From $89</div>
-          <p class="gdk-service-desc">Spring breaks, off-track doors, broken openers — we're on the way in 2 hours or less. 24/7 service across the valley.</p>
-          <a href="/demos/garage/services.html#emergency" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-emergency.jpg" alt="Emergency repair tools and workshop" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">Emergency Repair</h3>
+            <div class="gdk-service-price">From $89</div>
+            <p class="gdk-service-desc">Spring breaks, off-track doors, broken openers — we're on the way in 2 hours or less. 24/7 service across the valley.</p>
+            <a href="/demos/garage/services.html#emergency" class="gdk-service-link">See more →</a>
+          </div>
         </div>
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">🔧</div>
-          <h3 class="gdk-service-name">Spring Replacement</h3>
-          <div class="gdk-service-price">From $285</div>
-          <p class="gdk-service-desc">Torsion + extension springs. Done in 60-90 minutes with a 5-year warranty on parts and labor.</p>
-          <a href="/demos/garage/services.html#spring" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up delay-1">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-springs.jpg" alt="Spring replacement tools" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">Spring Replacement</h3>
+            <div class="gdk-service-price">From $285</div>
+            <p class="gdk-service-desc">Torsion + extension springs. Done in 60-90 minutes with a 5-year warranty on parts and labor.</p>
+            <a href="/demos/garage/services.html#spring" class="gdk-service-link">See more →</a>
+          </div>
         </div>
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">📡</div>
-          <h3 class="gdk-service-name">Opener Install</h3>
-          <div class="gdk-service-price">From $489</div>
-          <p class="gdk-service-desc">Belt drive, chain drive, or smart wifi-enabled. LiftMaster, Chamberlain, and Genie. Installed and tested same day.</p>
-          <a href="/demos/garage/services.html#opener" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up delay-2">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-opener.jpg" alt="Opener installation tools and drill" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">Opener Install</h3>
+            <div class="gdk-service-price">From $489</div>
+            <p class="gdk-service-desc">Belt drive, chain drive, or smart wifi-enabled. LiftMaster, Chamberlain, and Genie. Installed and tested same day.</p>
+            <a href="/demos/garage/services.html#opener" class="gdk-service-link">See more →</a>
+          </div>
         </div>
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">🚪</div>
-          <h3 class="gdk-service-name">New Door Install</h3>
-          <div class="gdk-service-price">From $1,450</div>
-          <p class="gdk-service-desc">Steel, wood-look, or full-view glass. Insulated and non-insulated. Free in-home design consult.</p>
-          <a href="/demos/garage/services.html#new-door" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up delay-3">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-newdoor.jpg" alt="New modern grey garage door installation" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">New Door Install</h3>
+            <div class="gdk-service-price">From $1,450</div>
+            <p class="gdk-service-desc">Steel, wood-look, or full-view glass. Insulated and non-insulated. Free in-home design consult.</p>
+            <a href="/demos/garage/services.html#new-door" class="gdk-service-link">See more →</a>
+          </div>
         </div>
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">🏭</div>
-          <h3 class="gdk-service-name">Commercial Doors</h3>
-          <div class="gdk-service-price">From $2,400</div>
-          <p class="gdk-service-desc">Roll-up, sectional, and high-cycle commercial doors. Industrial-grade, fast turnaround, minimal downtime.</p>
-          <a href="/demos/garage/services.html#commercial" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up delay-4">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-commercial.jpg" alt="Commercial roll-up garage door" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">Commercial Doors</h3>
+            <div class="gdk-service-price">From $2,400</div>
+            <p class="gdk-service-desc">Roll-up, sectional, and high-cycle commercial doors. Industrial-grade, fast turnaround, minimal downtime.</p>
+            <a href="/demos/garage/services.html#commercial" class="gdk-service-link">See more →</a>
+          </div>
         </div>
-        <div class="gdk-service-card fade-up">
-          <div class="gdk-service-icon">📋</div>
-          <h3 class="gdk-service-name">Maintenance Plans</h3>
-          <div class="gdk-service-price">From $149/yr</div>
-          <p class="gdk-service-desc">Annual tune-up. Lube, balance, safety check. Catches the small problems before they become emergencies.</p>
-          <a href="/demos/garage/services.html#maintenance" class="gdk-service-link">See more →</a>
+        <div class="gdk-service-card with-photo fade-up delay-5">
+          <div class="gdk-service-photo">
+            <img src="/demos/garage/assets/photos/svc-maintenance.jpg" alt="Well-maintained residential garage door with windows" loading="lazy" width="800" height="500">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>
+            </div>
+          </div>
+          <div class="gdk-service-body">
+            <h3 class="gdk-service-name">Maintenance Plans</h3>
+            <div class="gdk-service-price">From $149/yr</div>
+            <p class="gdk-service-desc">Annual tune-up. Lube, balance, safety check. Catches the small problems before they become emergencies.</p>
+            <a href="/demos/garage/services.html#maintenance" class="gdk-service-link">See more →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -145,13 +187,57 @@
       </div>
       <div class="gdk-areas-grid">
         <div class="gdk-area-pill fade-up"><div class="name">Henderson</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Summerlin</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Paradise</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Spring Valley</div><div class="meta">Same-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-1"><div class="name">Summerlin</div><div class="meta">Same-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-2"><div class="name">Paradise</div><div class="meta">Same-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-3"><div class="name">Spring Valley</div><div class="meta">Same-Day</div></div>
         <div class="gdk-area-pill fade-up"><div class="name">Enterprise</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">North Las Vegas</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Boulder City</div><div class="meta">Next-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Las Vegas</div><div class="meta">Same-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-1"><div class="name">North Las Vegas</div><div class="meta">Same-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-2"><div class="name">Boulder City</div><div class="meta">Next-Day</div></div>
+        <div class="gdk-area-pill fade-up delay-3"><div class="name">Las Vegas</div><div class="meta">Same-Day</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED INSTALLS -->
+  <section class="gdk-section">
+    <div class="gdk-container">
+      <div class="gdk-section-head fade-up">
+        <span class="gdk-eyebrow">Recent Work</span>
+        <h2 class="gdk-section-title">Featured Installs Across the Valley</h2>
+        <p class="gdk-section-subtitle">A small slice of the doors we've delivered this year — from luxury custom finishes in Summerlin to craftsman wood doors in Henderson.</p>
+        <div class="gdk-divider" style="margin-top:24px;" aria-hidden="true">
+          <svg viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 80 L18 28 L42 60 L60 12 L78 60 L102 28 L110 80 Z"/></svg>
+        </div>
+      </div>
+      <div class="gdk-installs-grid">
+        <div class="gdk-photo-tile fade-up">
+          <img src="/demos/garage/assets/photos/install-glass.jpg" alt="Modern home with full-view glass garage doors" loading="lazy" width="1000" height="750">
+          <div class="gdk-photo-tile-caption">
+            <div class="gdk-photo-tile-loc">Summerlin</div>
+            <div class="gdk-photo-tile-meta">Custom full-view glass · double bay</div>
+          </div>
+        </div>
+        <div class="gdk-photo-tile fade-up delay-1">
+          <img src="/demos/garage/assets/photos/install-wood.jpg" alt="Craftsman wood garage door on brick home" loading="lazy" width="1000" height="750">
+          <div class="gdk-photo-tile-caption">
+            <div class="gdk-photo-tile-loc">Henderson</div>
+            <div class="gdk-photo-tile-meta">Craftsman wood · single bay</div>
+          </div>
+        </div>
+        <div class="gdk-photo-tile fade-up delay-2">
+          <img src="/demos/garage/assets/photos/install-modern.jpg" alt="Modern home with double-car garage and clean driveway" loading="lazy" width="1000" height="750">
+          <div class="gdk-photo-tile-caption">
+            <div class="gdk-photo-tile-loc">Anthem</div>
+            <div class="gdk-photo-tile-meta">Modern flush panel · double bay</div>
+          </div>
+        </div>
+        <div class="gdk-photo-tile fade-up delay-3">
+          <img src="/demos/garage/assets/photos/install-custom.jpg" alt="Custom finish garage door on contemporary home" loading="lazy" width="1000" height="750">
+          <div class="gdk-photo-tile-caption">
+            <div class="gdk-photo-tile-loc">Green Valley</div>
+            <div class="gdk-photo-tile-meta">Custom carriage · insulated</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -165,7 +251,7 @@
         <p class="gdk-section-subtitle">From Google, Yelp, and Facebook. Real names, real jobs, real results.</p>
       </div>
       <div class="gdk-reviews-grid">
-        <div class="gdk-review-card fade-up">
+        <div class="gdk-review-card fade-up delay-1">
           <div class="gdk-review-stars">★★★★★</div>
           <p class="gdk-review-quote">"Diego is a magician. My door has never run smoother. Came on time, fixed it, didn't try to upsell. That's the magic."</p>
           <div class="gdk-review-author">
@@ -176,7 +262,7 @@
             </div>
           </div>
         </div>
-        <div class="gdk-review-card fade-up">
+        <div class="gdk-review-card fade-up delay-2">
           <div class="gdk-review-stars">★★★★★</div>
           <p class="gdk-review-quote">"Marcus and his team are pros. New door looks gorgeous. Honest pricing, clean work, friendly tech. Best in Vegas."</p>
           <div class="gdk-review-author">
@@ -187,7 +273,7 @@
             </div>
           </div>
         </div>
-        <div class="gdk-review-card fade-up">
+        <div class="gdk-review-card fade-up delay-3">
           <div class="gdk-review-stars">★★★★★</div>
           <p class="gdk-review-quote">"My garage door spring snapped at 7 PM and Trent was at my house by 9:30 the same night. Fixed and gone in 30 minutes. Wild."</p>
           <div class="gdk-review-author">
@@ -239,6 +325,41 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+    // Count-up animation on stat numbers
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const useComma = el.dataset.format === 'comma';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);  // easeOutCubic
+        const value = target * eased;
+        let display;
+        if (decimals > 0) display = value.toFixed(decimals);
+        else if (useComma) display = Math.floor(value).toLocaleString('en-US');
+        else display = Math.floor(value).toString();
+        el.textContent = display + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = (decimals > 0 ? target.toFixed(decimals) : (useComma ? target.toLocaleString('en-US') : target.toString())) + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.gdk-stat-num[data-count]').forEach(el => {
+      el.textContent = el.dataset.format === 'comma' ? '0' : (parseFloat(el.dataset.count) < 10 ? '0' : '0');
+      statObs.observe(el);
+    });
   </script>
 </body>
 </html>

@@ -40,77 +40,95 @@
 
   <main class="gdk-section">
     <div class="gdk-container">
-      <div class="gdk-services-grid">
+      <div style="display:flex;flex-direction:column;gap:24px;">
 
-        <article id="emergency" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">⚡</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">Emergency Repair</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $89 service call</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">Spring snapped at midnight? Door stuck open in the rain? Off-track and your car is trapped inside? We dispatch a tech the same day, every day — including weekends, holidays, and 3 AM. Average response time across the valley is under 2 hours.</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">What's included: full diagnosis, on-site quote before any work begins, common parts in the truck so most repairs finish in one visit, and our standard 5-year warranty on everything we touch.</p>
+        <article id="emergency" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-emergency.jpg" alt="Emergency repair workshop with tools" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">Emergency Repair</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $89 service call</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">Spring snapped at midnight? Door stuck open in the rain? Off-track and your car is trapped inside? We dispatch a tech the same day, every day — including weekends, holidays, and 3 AM. Average response time across the valley is under 2 hours.</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">What's included: full diagnosis, on-site quote before any work begins, common parts in the truck so most repairs finish in one visit, and our standard 5-year warranty on everything we touch.</p>
           </div>
         </article>
 
-        <article id="spring" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">🔧</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">Spring Replacement</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $285 (single torsion) · From $385 (dual torsion)</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">Springs are the workhorses of any garage door — they balance the weight so the opener doesn't have to. When they break, your door becomes a 200-pound deadweight. We replace them with high-cycle springs rated for 25,000+ cycles (most stock springs are rated for 10,000).</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">Job time: 60-90 minutes. We always recommend replacing both springs at the same time — they wear together, they should retire together. You'll save a service call later.</p>
+        <article id="spring" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-springs.jpg" alt="Spring replacement tools and hardware" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">Spring Replacement</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $285 (single torsion) · From $385 (dual torsion)</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">Springs are the workhorses of any garage door — they balance the weight so the opener doesn't have to. When they break, your door becomes a 200-pound deadweight. We replace them with high-cycle springs rated for 25,000+ cycles (most stock springs are rated for 10,000).</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">Job time: 60-90 minutes. We always recommend replacing both springs at the same time — they wear together, they should retire together. You'll save a service call later.</p>
           </div>
         </article>
 
-        <article id="opener" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">📡</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">Opener Install</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $489 (chain drive) · From $685 (smart wifi belt drive)</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">LiftMaster, Chamberlain, and Genie. Belt drive (quietest), chain drive (most durable), or smart wifi-enabled (open from your phone, get push alerts when it opens, integrate with HomeKit/Alexa/Google).</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">Includes: opener unit, mounting hardware, sensor alignment, remote programming for up to 3 fobs, keypad install, and sync with your smart home system if applicable.</p>
+        <article id="opener" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-opener.jpg" alt="Garage door opener installation tools" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">Opener Install</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $489 (chain drive) · From $685 (smart wifi belt drive)</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">LiftMaster, Chamberlain, and Genie. Belt drive (quietest), chain drive (most durable), or smart wifi-enabled (open from your phone, get push alerts when it opens, integrate with HomeKit/Alexa/Google).</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">Includes: opener unit, mounting hardware, sensor alignment, remote programming for up to 3 fobs, keypad install, and sync with your smart home system if applicable.</p>
           </div>
         </article>
 
-        <article id="new-door" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">🚪</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">New Door Installation</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $1,450 (single car steel) · From $2,400 (double car insulated)</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">Steel, wood-look composite, full-view glass. Insulated (recommended for Vegas summers — keeps the garage 20° cooler) or non-insulated. Dozens of color and panel-style options.</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">Includes: in-home design consult (we bring physical color and material samples), removal and disposal of your old door, installation, balance + tension calibration, and a full opener compatibility check.</p>
+        <article id="new-door" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-newdoor.jpg" alt="Modern grey garage door installation" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">New Door Installation</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $1,450 (single car steel) · From $2,400 (double car insulated)</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">Steel, wood-look composite, full-view glass. Insulated (recommended for Vegas summers — keeps the garage 20° cooler) or non-insulated. Dozens of color and panel-style options.</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">Includes: in-home design consult (we bring physical color and material samples), removal and disposal of your old door, installation, balance + tension calibration, and a full opener compatibility check.</p>
           </div>
         </article>
 
-        <article id="commercial" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">🏭</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">Commercial Doors</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $2,400 (roll-up) · Quoted per scope</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">Roll-up, sectional, and high-cycle commercial doors. Industrial-grade openers built for the 50-100 cycles per day a busy warehouse or auto shop puts on a door. We handle everything from one-bay car detailing shops to multi-bay distribution centers.</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">Service contracts available. We can build a quarterly maintenance schedule that catches wear before it causes downtime.</p>
+        <article id="commercial" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-commercial.jpg" alt="Commercial roll-up garage door" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">Commercial Doors</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">From $2,400 (roll-up) · Quoted per scope</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">Roll-up, sectional, and high-cycle commercial doors. Industrial-grade openers built for the 50-100 cycles per day a busy warehouse or auto shop puts on a door. We handle everything from one-bay car detailing shops to multi-bay distribution centers.</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">Service contracts available. We can build a quarterly maintenance schedule that catches wear before it causes downtime.</p>
           </div>
         </article>
 
-        <article id="maintenance" class="gdk-service-card fade-up" style="grid-column:1/-1;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
-            <div class="gdk-service-icon" style="font-size:1.8rem;width:64px;height:64px;">📋</div>
-            <div>
-              <h2 class="gdk-service-name" style="font-size:1.6rem;">Maintenance Plans</h2>
-              <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">$149/year (residential) · $299/year (commercial)</div>
-              <p class="gdk-service-desc" style="font-size:1rem;">An annual tune-up that catches small problems before they become emergencies. Lubricate all moving parts, check spring tension, balance the door, test safety reverse, inspect cables and rollers, and tighten every bolt.</p>
-              <p class="gdk-service-desc" style="font-size:0.92rem;">Plan members get priority dispatch (we put you ahead of the queue when you do call), 10% off any repairs, and free battery replacements for opener remotes. Most members never need an emergency call.</p>
+        <article id="maintenance" class="gdk-service-detail fade-up">
+          <div class="gdk-service-detail-photo">
+            <img src="/demos/garage/assets/photos/svc-maintenance.jpg" alt="Well-maintained residential garage door" loading="lazy" width="800" height="600">
+          </div>
+          <div class="gdk-service-detail-body">
+            <div class="gdk-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>
             </div>
+            <h2 class="gdk-service-name" style="font-size:1.6rem;">Maintenance Plans</h2>
+            <div class="gdk-service-price" style="font-size:1.1rem;margin-bottom:18px;">$149/year (residential) · $299/year (commercial)</div>
+            <p class="gdk-service-desc" style="font-size:1rem;">An annual tune-up that catches small problems before they become emergencies. Lubricate all moving parts, check spring tension, balance the door, test safety reverse, inspect cables and rollers, and tighten every bolt.</p>
+            <p class="gdk-service-desc" style="font-size:0.92rem;">Plan members get priority dispatch (we put you ahead of the queue when you do call), 10% off any repairs, and free battery replacements for opener remotes. Most members never need an emergency call.</p>
           </div>
         </article>
 

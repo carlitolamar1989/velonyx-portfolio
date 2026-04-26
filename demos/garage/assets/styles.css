@@ -1027,3 +1027,280 @@ select.gdk-input {
   text-underline-offset: 3px;
 }
 .gdk-footer-meta a:hover { color: var(--gdk-accent-pale); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHOTO UPGRADE — TIER 2 VISUAL PASS
+   Hero photo · service-card photo banners · Lucide SVG icons
+   Featured Installs gallery · Meet the Team grid · stagger delays
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* HERO — replace orb radial with real photograph + warm dim overlay */
+.gdk-hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/demos/garage/assets/photos/hero-home.jpg');
+  background-size: cover;
+  background-position: center 65%;
+  background-repeat: no-repeat;
+}
+@media (min-width: 1100px) {
+  .gdk-hero-photo { background-attachment: fixed; }  /* desktop parallax */
+}
+.gdk-hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 35%, rgba(184,115,46,0.16), transparent 65%),
+    linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.78) 60%, rgba(10,10,10,0.96) 100%);
+}
+/* When photo is active, hide the orb so they don't fight */
+.gdk-hero.has-photo .gdk-hero-orb { display: none; }
+
+/* SERVICE CARDS — top-banner photo variant */
+.gdk-service-card.with-photo {
+  padding: 0;
+  overflow: hidden;
+}
+.gdk-service-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--gdk-bg-deeper);
+}
+.gdk-service-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gdk-service-card.with-photo:hover .gdk-service-photo img {
+  transform: scale(1.06);
+}
+.gdk-service-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.55) 100%);
+  pointer-events: none;
+}
+.gdk-service-card.with-photo .gdk-service-body {
+  padding: 24px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+/* Floating icon over the photo */
+.gdk-service-card.with-photo .gdk-service-icon {
+  position: absolute;
+  bottom: -22px;
+  left: 22px;
+  margin-bottom: 0;
+  background: linear-gradient(135deg, var(--gdk-accent), var(--gdk-accent-bright));
+  color: var(--gdk-bg);
+  border: 1px solid rgba(245,240,232,0.15);
+  width: 48px; height: 48px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  z-index: 2;
+}
+.gdk-service-card.with-photo .gdk-service-icon svg {
+  width: 22px; height: 22px; stroke-width: 2;
+}
+.gdk-service-card.with-photo .gdk-service-name {
+  margin-top: 14px;  /* room for the floating icon */
+}
+
+/* SERVICES PAGE — detail card with side photo */
+.gdk-service-detail {
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gdk-service-detail:hover {
+  border-color: var(--gdk-border-accent);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 24px rgba(184,115,46,0.06);
+}
+@media (min-width: 880px) {
+  .gdk-service-detail { grid-template-columns: 360px 1fr; }
+}
+.gdk-service-detail-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--gdk-bg-deeper);
+  overflow: hidden;
+}
+@media (min-width: 880px) {
+  .gdk-service-detail-photo { aspect-ratio: auto; height: 100%; min-height: 280px; }
+}
+.gdk-service-detail-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.gdk-service-detail-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(10,10,10,0.4) 100%);
+  pointer-events: none;
+}
+.gdk-service-detail-body {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media (min-width: 880px) { .gdk-service-detail-body { padding: 40px 36px; } }
+.gdk-service-detail-body .gdk-service-icon {
+  margin-bottom: 14px;
+}
+.gdk-service-detail-body .gdk-service-icon svg {
+  width: 22px; height: 22px; stroke-width: 2;
+}
+
+/* LUCIDE ICON sizing inside default .gdk-service-icon */
+.gdk-service-icon svg { width: 22px; height: 22px; color: var(--gdk-accent); stroke-width: 2; }
+
+/* FEATURED INSTALLS GALLERY */
+.gdk-installs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (min-width: 680px) { .gdk-installs-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+@media (min-width: 1080px) { .gdk-installs-grid { grid-template-columns: repeat(4, 1fr); } }
+.gdk-photo-tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gdk-border);
+  background: var(--gdk-bg-deeper);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), border-color 0.3s, box-shadow 0.3s;
+}
+.gdk-photo-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--gdk-border-accent);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 24px rgba(184,115,46,0.1);
+}
+.gdk-photo-tile img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gdk-photo-tile:hover img { transform: scale(1.07); }
+.gdk-photo-tile-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 18px 18px 16px;
+  background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.9) 70%);
+  color: var(--gdk-text);
+  pointer-events: none;
+}
+.gdk-photo-tile-loc {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gdk-accent-pale);
+  margin-bottom: 2px;
+}
+.gdk-photo-tile-meta {
+  font-size: 0.78rem;
+  color: var(--gdk-text-dim);
+  letter-spacing: 0.02em;
+}
+
+/* MEET THE TEAM */
+.gdk-team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 760px) { .gdk-team-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; } }
+.gdk-team-card {
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gdk-team-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gdk-border-accent);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 24px rgba(184,115,46,0.08);
+}
+.gdk-team-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--gdk-bg-deeper);
+}
+.gdk-team-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  filter: saturate(0.92);
+}
+.gdk-team-card:hover .gdk-team-photo img { transform: scale(1.04); filter: saturate(1.05); }
+.gdk-team-body { padding: 22px 22px 24px; }
+.gdk-team-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gdk-text);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.gdk-team-role {
+  color: var(--gdk-accent-pale);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.gdk-team-bio {
+  color: var(--gdk-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* STAGGER DELAYS for fade-up grids */
+.fade-up.delay-1 { transition-delay: 0.08s; }
+.fade-up.delay-2 { transition-delay: 0.16s; }
+.fade-up.delay-3 { transition-delay: 0.24s; }
+.fade-up.delay-4 { transition-delay: 0.32s; }
+.fade-up.delay-5 { transition-delay: 0.40s; }
+.fade-up.delay-6 { transition-delay: 0.48s; }
+
+/* SECTION DIVIDER — thin gold rule with center glyph */
+.gdk-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto;
+  max-width: 280px;
+  color: var(--gdk-accent);
+  opacity: 0.7;
+}
+.gdk-divider::before, .gdk-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gdk-border-accent), transparent);
+}
+.gdk-divider svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* COUNT-UP STATS — make the stat numbers glow when visible */
+.gdk-stat-num {
+  text-shadow: 0 2px 28px rgba(184,115,46,0.28);
+}
