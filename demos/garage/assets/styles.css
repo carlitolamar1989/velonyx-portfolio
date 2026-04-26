@@ -2010,3 +2010,247 @@ select.gdk-input {
 
 /* Always prevent body horizontal overflow as a safety net */
 html, body { overflow-x: hidden; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 2 (Today View Mobile Landing)
+   At <768px, admin.html lands on a focused "Today" view with
+   collected-today stat, today's jobs, attention items, recent money,
+   and a CTA to switch to the full dashboard. localStorage persists choice.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* View toggle hidden on desktop, full dashboard always visible */
+.gdk-view-toggle { display: none; }
+#today-view { display: none; }
+
+@media (max-width: 768px) {
+  /* Toggle bar */
+  .gdk-view-toggle {
+    display: flex;
+    gap: 0;
+    background: var(--gdk-bg-deeper);
+    border: 1px solid var(--gdk-border);
+    border-radius: 999px;
+    padding: 4px;
+    margin: 0 0 24px;
+    width: 100%;
+  }
+  .gdk-view-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--gdk-text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .gdk-view-tab:hover { color: var(--gdk-text); }
+  .gdk-view-tab.active {
+    background: linear-gradient(135deg, var(--gdk-accent), var(--gdk-accent-bright));
+    color: var(--gdk-bg);
+    box-shadow: 0 2px 10px rgba(184,115,46,0.32);
+  }
+
+  /* Today vs Full toggle behavior */
+  body[data-view="today"] #full-dashboard { display: none; }
+  body[data-view="today"] #today-view { display: block; }
+  body[data-view="full"] #today-view { display: none; }
+  body[data-view="full"] #full-dashboard { display: block; }
+}
+
+/* Today view layout (desktop overrides above set display:none) */
+@media (max-width: 768px) {
+  body[data-view="today"] .gdk-portal-header { display: none; }
+  body[data-view="today"] .gdk-kpi-grid { display: none; }
+}
+
+#today-view.gdk-today-view { padding: 0; }
+
+/* Big stat hero */
+.gdk-today-hero {
+  text-align: center;
+  padding: 32px 20px 28px;
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(184,115,46,0.06);
+}
+.gdk-today-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gdk-text-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.gdk-today-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gdk-accent-pale);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 32px rgba(184,115,46,0.32);
+  margin-bottom: 10px;
+}
+.gdk-today-date {
+  font-size: 0.82rem;
+  color: var(--gdk-text-muted);
+  font-style: italic;
+}
+
+/* Section blocks */
+.gdk-today-section {
+  margin-bottom: 24px;
+  padding: 18px 16px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 14px;
+}
+.gdk-today-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gdk-border);
+}
+.gdk-today-section-head h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gdk-text);
+  margin: 0;
+}
+.gdk-today-count {
+  font-size: 0.7rem;
+  background: var(--gdk-accent-ghost);
+  border: 1px solid var(--gdk-border-accent);
+  color: var(--gdk-accent-pale);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.gdk-today-section-link {
+  font-size: 0.74rem;
+  color: var(--gdk-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Today card (jobs, attention, recent money) */
+.gdk-today-card {
+  background: var(--gdk-surface);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.gdk-today-card:last-child { margin-bottom: 0; }
+.gdk-today-card-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.gdk-today-card-name {
+  font-weight: 500;
+  color: var(--gdk-text);
+  font-size: 1rem;
+}
+.gdk-today-card-time {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.gdk-today-card-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-weight: 600;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.gdk-today-card-meta {
+  font-size: 0.78rem;
+  color: var(--gdk-text-muted);
+  line-height: 1.5;
+}
+.gdk-today-card-addr {
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  margin-top: 4px;
+}
+.gdk-today-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--gdk-border);
+}
+.gdk-today-card-action {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.gdk-today-card-action:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--gdk-border-accent);
+}
+
+.gdk-today-empty {
+  padding: 22px 16px;
+  text-align: center;
+  color: var(--gdk-text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gdk-today-attention {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gdk-today-attention-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.gdk-today-attention-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.gdk-today-attention-body {
+  flex: 1;
+  min-width: 0;
+}
+.gdk-today-attention-action {
+  width: 100%;
+}
+
+/* Bottom CTAs in Today view */
+.gdk-today-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gdk-border);
+}
