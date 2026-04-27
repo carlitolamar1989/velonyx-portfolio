@@ -1864,3 +1864,779 @@ select.gdk-input {
 .gdk-payment-fresh:hover td {
   background: linear-gradient(90deg, rgba(134,239,172,0.14), rgba(134,239,172,0.04) 50%, rgba(184,115,46,0.03)) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 1 (Mobile Card-Stack for All Tables)
+   At <600px every <table class="gdk-table"> row collapses into a
+   stacked card. Each <td> opts into a layout slot via data-card-area.
+   Desktop layout completely unchanged.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .gdk-table-wrap { overflow: visible; margin: 0; }
+  .gdk-table {
+    min-width: 0 !important;
+    display: block;
+    font-size: 0.92rem;
+  }
+  .gdk-table thead { display: none; }
+  .gdk-table tbody { display: block; }
+  .gdk-table tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "primary    amount"
+      "secondary  status"
+      "tertiary   tertiary";
+    column-gap: 12px;
+    row-gap: 6px;
+    background: var(--gdk-surface);
+    border: 1px solid var(--gdk-border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    min-height: 64px;
+    border-bottom: 1px solid var(--gdk-border) !important;
+  }
+  .gdk-table tr:hover td { background: transparent !important; }
+  .gdk-table tr:last-child { border-bottom: 1px solid var(--gdk-border) !important; }
+  .gdk-table td {
+    border: none !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    color: var(--gdk-text-dim) !important;
+    line-height: 1.4 !important;
+    background: transparent !important;
+  }
+  .gdk-table td[data-card-area="primary"] {
+    grid-area: primary;
+    color: var(--gdk-text) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+  }
+  .gdk-table td[data-card-area="secondary"] {
+    grid-area: secondary;
+    color: var(--gdk-text-muted) !important;
+    font-size: 0.84rem !important;
+  }
+  .gdk-table td[data-card-area="tertiary"] {
+    grid-area: tertiary;
+    color: var(--gdk-text-faint) !important;
+    font-size: 0.78rem !important;
+    padding-top: 6px !important;
+    border-top: 1px dashed var(--gdk-border) !important;
+    margin-top: 2px;
+  }
+  .gdk-table td[data-card-area="amount"] {
+    grid-area: amount;
+    text-align: right !important;
+    font-family: 'Fraunces', Georgia, serif !important;
+    font-weight: 600 !important;
+    color: var(--gdk-accent-pale) !important;
+    font-size: 1.05rem !important;
+    align-self: start;
+  }
+  .gdk-table td[data-card-area="status"] {
+    grid-area: status;
+    text-align: right !important;
+    align-self: start;
+  }
+  .gdk-table td[data-card-area="hidden"] { display: none !important; }
+  /* Invoice rows are tappable */
+  .gdk-invoice-row { cursor: pointer; }
+  /* Fresh-pulse highlight survives the swap */
+  .gdk-payment-fresh td { background: transparent !important; border-left: none !important; animation: none !important; }
+  .gdk-payment-fresh {
+    border-left: 3px solid rgba(134,239,172,0.6) !important;
+    background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 70%, transparent) !important;
+  }
+}
+
+/* Mobile polish for the existing card-rows (Jobs / SMS / Reviews) */
+@media (max-width: 600px) {
+  .gdk-job-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "date  info"
+      "value value";
+    row-gap: 10px;
+    padding: 14px 16px;
+  }
+  .gdk-job-row > :nth-child(1) { grid-area: date; }
+  .gdk-job-row > :nth-child(2) { grid-area: info; }
+  .gdk-job-row > :nth-child(3) { grid-area: value; text-align: right; padding-top: 8px; border-top: 1px dashed var(--gdk-border); }
+  .gdk-sms-row { padding: 12px 14px; }
+  .gdk-sms-row .head { flex-wrap: wrap; gap: 6px; }
+
+  /* Sample banner — tighten padding + word-break long content */
+  .gdk-sample-banner { padding: 12px 14px; gap: 10px; margin-bottom: 24px; }
+  .gdk-sample-banner .t, .gdk-sample-banner .s { word-break: break-word; }
+
+  /* KPI cards: single column instead of 2-up so values never clip */
+  .gdk-kpi-grid { grid-template-columns: 1fr !important; gap: 10px; margin-bottom: 24px; }
+  .gdk-kpi { padding: 16px 18px; }
+  .gdk-kpi-value { font-size: 1.6rem; }
+
+  /* Portal main padding tightened on mobile */
+  .gdk-portal-main { padding: 24px 16px 64px; }
+
+  /* Portal cards tighter padding on mobile */
+  .gdk-portal-card { padding: 20px 16px !important; }
+
+  /* Avatar smaller on mobile */
+  .gdk-avatar-large { width: 52px; height: 52px; font-size: 1.1rem; }
+  .gdk-portal-name { font-size: 1.5rem !important; }
+
+  /* Payment stat cards single col */
+  .gdk-payments-totals { grid-template-columns: 1fr !important; gap: 8px; margin-bottom: 16px; }
+  .gdk-pay-stat { padding: 12px 14px; }
+  .gdk-pay-stat-value { font-size: 1.3rem; }
+
+  /* Invoice filter bar */
+  .gdk-invoice-filters { padding: 14px 16px; gap: 14px; }
+
+  /* Chip bars — wrap nicely */
+  .gdk-chip-bar { flex-wrap: wrap; gap: 6px; }
+
+  /* Header actions can stack */
+  .gdk-portal-header > div:last-child { width: 100%; }
+  .gdk-portal-header .gdk-btn { font-size: 0.74rem; }
+
+  /* Demo banner — tighten so it fits */
+  .demo-banner { padding: 8px 12px; font-size: 9px; letter-spacing: 0.12em; line-height: 1.4; }
+
+  /* Nav inner padding tighter */
+  .gdk-nav-inner { padding: 12px 16px; }
+}
+
+/* Always prevent body horizontal overflow as a safety net */
+html, body { overflow-x: hidden; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 2 (Today View Mobile Landing)
+   At <768px, admin.html lands on a focused "Today" view with
+   collected-today stat, today's jobs, attention items, recent money,
+   and a CTA to switch to the full dashboard. localStorage persists choice.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* View toggle hidden on desktop, full dashboard always visible */
+.gdk-view-toggle { display: none; }
+#today-view { display: none; }
+
+@media (max-width: 768px) {
+  /* Toggle bar */
+  .gdk-view-toggle {
+    display: flex;
+    gap: 0;
+    background: var(--gdk-bg-deeper);
+    border: 1px solid var(--gdk-border);
+    border-radius: 999px;
+    padding: 4px;
+    margin: 0 0 24px;
+    width: 100%;
+  }
+  .gdk-view-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--gdk-text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .gdk-view-tab:hover { color: var(--gdk-text); }
+  .gdk-view-tab.active {
+    background: linear-gradient(135deg, var(--gdk-accent), var(--gdk-accent-bright));
+    color: var(--gdk-bg);
+    box-shadow: 0 2px 10px rgba(184,115,46,0.32);
+  }
+
+  /* Today vs Full toggle behavior */
+  body[data-view="today"] #full-dashboard { display: none; }
+  body[data-view="today"] #today-view { display: block; }
+  body[data-view="full"] #today-view { display: none; }
+  body[data-view="full"] #full-dashboard { display: block; }
+}
+
+/* Today view layout (desktop overrides above set display:none) */
+@media (max-width: 768px) {
+  body[data-view="today"] .gdk-portal-header { display: none; }
+  body[data-view="today"] .gdk-kpi-grid { display: none; }
+}
+
+#today-view.gdk-today-view { padding: 0; }
+
+/* Big stat hero */
+.gdk-today-hero {
+  text-align: center;
+  padding: 32px 20px 28px;
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(184,115,46,0.06);
+}
+.gdk-today-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gdk-text-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.gdk-today-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gdk-accent-pale);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 32px rgba(184,115,46,0.32);
+  margin-bottom: 10px;
+}
+.gdk-today-date {
+  font-size: 0.82rem;
+  color: var(--gdk-text-muted);
+  font-style: italic;
+}
+
+/* Section blocks */
+.gdk-today-section {
+  margin-bottom: 24px;
+  padding: 18px 16px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 14px;
+}
+.gdk-today-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gdk-border);
+}
+.gdk-today-section-head h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gdk-text);
+  margin: 0;
+}
+.gdk-today-count {
+  font-size: 0.7rem;
+  background: var(--gdk-accent-ghost);
+  border: 1px solid var(--gdk-border-accent);
+  color: var(--gdk-accent-pale);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.gdk-today-section-link {
+  font-size: 0.74rem;
+  color: var(--gdk-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Today card (jobs, attention, recent money) */
+.gdk-today-card {
+  background: var(--gdk-surface);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.gdk-today-card:last-child { margin-bottom: 0; }
+.gdk-today-card-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.gdk-today-card-name {
+  font-weight: 500;
+  color: var(--gdk-text);
+  font-size: 1rem;
+}
+.gdk-today-card-time {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.gdk-today-card-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-weight: 600;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.gdk-today-card-meta {
+  font-size: 0.78rem;
+  color: var(--gdk-text-muted);
+  line-height: 1.5;
+}
+.gdk-today-card-addr {
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  margin-top: 4px;
+}
+.gdk-today-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--gdk-border);
+}
+.gdk-today-card-action {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.gdk-today-card-action:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--gdk-border-accent);
+}
+
+.gdk-today-empty {
+  padding: 22px 16px;
+  text-align: center;
+  color: var(--gdk-text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gdk-today-attention {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gdk-today-attention-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.gdk-today-attention-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.gdk-today-attention-body {
+  flex: 1;
+  min-width: 0;
+}
+.gdk-today-attention-action {
+  width: 100%;
+}
+
+/* Bottom CTAs in Today view */
+.gdk-today-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gdk-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 3 (Reusable UI Components)
+   Toast notifications · Sign-out fade · Simple modal pattern
+   Used across admin / portal for all simulated success actions.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* TOAST */
+.gdk-toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5000;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  pointer-events: none;
+  width: calc(100% - 32px);
+  max-width: 380px;
+}
+.gdk-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border-accent);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,115,46,0.08);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: auto;
+}
+.gdk-toast.visible { opacity: 1; transform: translateY(0); }
+.gdk-toast-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  color: var(--gdk-accent-pale);
+  text-shadow: 0 0 16px rgba(184,115,46,0.5);
+  animation: gdkToastPulse 0.6s ease-out;
+}
+@keyframes gdkToastPulse {
+  0% { transform: scale(0.6); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.gdk-toast-body { flex: 1; min-width: 0; }
+.gdk-toast-title {
+  font-weight: 600;
+  color: var(--gdk-text);
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+.gdk-toast-sub {
+  font-size: 0.78rem;
+  color: var(--gdk-text-muted);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+.gdk-toast-success { border-color: rgba(134,239,172,0.4); }
+.gdk-toast-success .gdk-toast-icon { color: #86efac; text-shadow: 0 0 16px rgba(134,239,172,0.5); }
+
+/* SIGN OUT OVERLAY */
+.gdk-signout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gdk-signout-overlay.visible { opacity: 1; }
+.gdk-signout-card {
+  text-align: center;
+  max-width: 320px;
+  padding: 0 24px;
+  animation: gdkSignOutCard 0.6s 0.1s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes gdkSignOutCard {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.gdk-signout-icon {
+  display: inline-flex;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gdk-accent), var(--gdk-accent-bright));
+  color: var(--gdk-bg);
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 32px rgba(184,115,46,0.32);
+}
+.gdk-signout-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--gdk-text);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.gdk-signout-sub {
+  color: var(--gdk-text-muted);
+  font-size: 0.85rem;
+}
+
+/* SIMPLE MODAL (used by + New Lead, Reschedule) */
+.gdk-simple-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.gdk-simple-modal.active { display: flex; }
+.gdk-simple-modal.visible { opacity: 1; }
+.gdk-simple-modal-card {
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border-accent);
+  border-radius: 16px;
+  padding: 28px 26px 24px;
+  max-width: 460px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(8px);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.gdk-simple-modal.visible .gdk-simple-modal-card { transform: translateY(0); }
+.gdk-simple-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.gdk-simple-modal-close:hover { background: rgba(255,255,255,0.04); color: var(--gdk-text); }
+.gdk-simple-modal-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--gdk-text);
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-right: 36px;
+}
+.gdk-simple-modal-sub {
+  color: var(--gdk-text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 22px;
+}
+.gdk-simple-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gdk-border);
+}
+.gdk-simple-modal-actions .gdk-btn { flex: 1; }
+
+/* Reschedule date-pickers (for portal Reschedule modal) */
+.gdk-reschedule-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gdk-reschedule-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.gdk-reschedule-option:hover {
+  border-color: var(--gdk-border-accent);
+  background: rgba(184,115,46,0.04);
+}
+.gdk-reschedule-option.selected {
+  border-color: var(--gdk-accent);
+  background: rgba(184,115,46,0.08);
+  box-shadow: 0 0 0 1px var(--gdk-accent);
+}
+.gdk-reschedule-option-label {
+  color: var(--gdk-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.gdk-reschedule-option-time {
+  color: var(--gdk-accent-pale);
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.gdk-reschedule-option-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gdk-border-strong);
+  flex-shrink: 0;
+  position: relative;
+}
+.gdk-reschedule-option.selected .gdk-reschedule-option-radio {
+  border-color: var(--gdk-accent);
+}
+.gdk-reschedule-option.selected .gdk-reschedule-option-radio::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gdk-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 4 (Customer Invoice Cards w/ Pay Now)
+   /portal.html — invoice cards with prominent Pay Now button on
+   outstanding invoices. Paid invoices show Paid ✓ badge instead.
+   ═══════════════════════════════════════════════════════════════════ */
+.gdk-customer-invoices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gdk-customer-invoice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+}
+.gdk-customer-invoice-card.outstanding {
+  border-color: var(--gdk-border-accent);
+  background: linear-gradient(135deg, rgba(184,115,46,0.04), var(--gdk-bg-deeper));
+}
+.gdk-customer-invoice-card.paid { opacity: 0.85; }
+.gdk-customer-invoice-info {
+  flex: 1;
+  min-width: 0;
+}
+.gdk-customer-invoice-id {
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  letter-spacing: 0.02em;
+}
+.gdk-customer-invoice-meta {
+  color: var(--gdk-text);
+  font-weight: 500;
+  font-size: 0.92rem;
+  margin-top: 4px;
+}
+.gdk-customer-invoice-amount-wrap {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.gdk-customer-invoice-amount-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-top: 6px;
+}
+.gdk-customer-invoice-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.gdk-customer-pay-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 5 (Polish: dismiss, lucide, empty states)
+   ═══════════════════════════════════════════════════════════════════ */
+.gdk-banner-dismiss {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--gdk-accent);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: all 0.18s;
+  padding: 0;
+  line-height: 1;
+}
+.gdk-banner-dismiss:hover {
+  opacity: 1;
+  background: rgba(184,115,46,0.12);
+  border-color: var(--gdk-border-accent);
+}
+@media (max-width: 600px) {
+  .demo-banner { padding-right: 36px !important; }
+}
+
+/* Empty state for sections with no data */
+.gdk-section-empty {
+  text-align: center;
+  padding: 28px 18px;
+  color: var(--gdk-text-muted);
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.55;
+  background: rgba(184,115,46,0.03);
+  border: 1px dashed var(--gdk-border-accent);
+  border-radius: 12px;
+}
+.gdk-section-empty .icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 8px;
+  font-style: normal;
+}
+
+/* Documents grid lucide icon styling */
+.gdk-doc-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--gdk-accent-ghost);
+  border: 1px solid var(--gdk-border-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gdk-accent);
+}
+@media (max-width: 600px) {
+  .gdk-customer-invoice-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+  }
+  .gdk-customer-invoice-card.paid {
+    flex-direction: row;
+    align-items: center;
+  }
+  .gdk-customer-pay-btn { width: 100%; padding: 12px; }
+}

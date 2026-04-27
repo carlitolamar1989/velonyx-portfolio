@@ -19,14 +19,14 @@
   <nav class="gdk-nav">
     <div class="gdk-nav-inner">
       <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
-      <div class="gdk-nav-links" style="display:flex;">
+      <div class="gdk-nav-links">
         <a href="/demos/garage/">Public Site</a>
         <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
         <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Dashboard</a>
         <a href="/demos/garage/invoices.html">Invoices</a>
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small" data-signout>Sign Out (Marcus)</button>
       </div>
-      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
+      <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta" data-signout>Sign Out</button>
     </div>
   </nav>
 
@@ -39,6 +39,63 @@
       </div>
     </div>
 
+    <!-- VIEW TOGGLE (mobile only — desktop always shows full dashboard) -->
+    <div class="gdk-view-toggle" role="tablist" aria-label="Dashboard view">
+      <button class="gdk-view-tab" data-view="today" role="tab">Today</button>
+      <button class="gdk-view-tab" data-view="full" role="tab">Full Dashboard</button>
+    </div>
+
+    <!-- TODAY VIEW (mobile-only landing) -->
+    <section id="today-view" class="gdk-today-view" aria-label="Today's overview">
+      <!-- Big stat: collected today -->
+      <div class="gdk-today-hero">
+        <div class="gdk-today-label">Collected today</div>
+        <div class="gdk-today-amount" id="today-amount">$0</div>
+        <div class="gdk-today-date" id="today-date">—</div>
+      </div>
+
+      <!-- Today's Jobs -->
+      <section class="gdk-today-section">
+        <div class="gdk-today-section-head">
+          <h3>Today's Jobs</h3>
+          <span class="gdk-today-count" id="today-jobs-count">0</span>
+        </div>
+        <div id="today-jobs"></div>
+      </section>
+
+      <!-- Needs Your Attention -->
+      <section class="gdk-today-section">
+        <div class="gdk-today-section-head">
+          <h3>Needs Your Attention</h3>
+          <span class="gdk-today-count" id="today-attention-count">0</span>
+        </div>
+        <div id="today-attention"></div>
+      </section>
+
+      <!-- Recent Money -->
+      <section class="gdk-today-section">
+        <div class="gdk-today-section-head">
+          <h3>Recent Money</h3>
+          <a href="/demos/garage/invoices.html" class="gdk-today-section-link">View all →</a>
+        </div>
+        <div id="today-recent"></div>
+      </section>
+
+      <!-- Bottom CTAs -->
+      <div class="gdk-today-ctas">
+        <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-wide gdk-btn-payment-cta" style="width:100%;">
+          <span style="display:inline-flex;align-items:center;gap:8px;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            + Take a Payment
+          </span>
+        </a>
+        <button type="button" class="gdk-btn gdk-btn-outline gdk-btn-wide" data-view-switch="full" style="width:100%;">View Full Dashboard</button>
+      </div>
+    </section>
+
+    <!-- FULL DASHBOARD (default desktop, opt-in mobile) -->
+    <div id="full-dashboard">
+
     <!-- HEADER -->
     <header class="gdk-portal-header">
       <div class="gdk-portal-welcome">
@@ -50,8 +107,8 @@
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
-        <button class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
+        <button id="btn-export-data" class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
+        <button id="btn-new-lead" class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
         <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
           <span style="display:inline-flex;align-items:center;gap:6px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
@@ -150,7 +207,50 @@
       <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>
 
     </div>
+
+    </div><!-- /full-dashboard -->
   </main>
+
+  <!-- + NEW LEAD MODAL -->
+  <div class="gdk-simple-modal" id="new-lead-modal" role="dialog" aria-label="Add a new lead">
+    <div class="gdk-simple-modal-card">
+      <button type="button" class="gdk-simple-modal-close" data-modal-close="new-lead-modal" aria-label="Close">×</button>
+      <div class="gdk-simple-modal-title">Add a New Lead</div>
+      <div class="gdk-simple-modal-sub">Manually log a customer who called or walked in. Lead lands at the top of your pipeline.</div>
+      <form id="new-lead-form" novalidate>
+        <div class="gdk-form-stack">
+          <div>
+            <label class="gdk-label req" for="nl-name">Customer Name</label>
+            <input type="text" id="nl-name" class="gdk-input" placeholder="Maria Lopez" required>
+          </div>
+          <div>
+            <label class="gdk-label req" for="nl-phone">Phone</label>
+            <input type="tel" id="nl-phone" class="gdk-input" placeholder="(702) 555-0142" required>
+          </div>
+          <div>
+            <label class="gdk-label req" for="nl-service">Service Needed</label>
+            <select id="nl-service" class="gdk-input" required>
+              <option value="">Pick a service...</option>
+              <option>Emergency Repair</option>
+              <option>Spring Replacement</option>
+              <option>Opener Install</option>
+              <option>New Door Install</option>
+              <option>Commercial Doors</option>
+              <option>Maintenance Plans</option>
+            </select>
+          </div>
+          <div>
+            <label class="gdk-label" for="nl-notes">Notes <span style="color:var(--gdk-text-faint);font-weight:400;">(optional)</span></label>
+            <textarea id="nl-notes" class="gdk-input" placeholder="Single car door · noise from spring · she's flexible on timing"></textarea>
+          </div>
+        </div>
+        <div class="gdk-simple-modal-actions">
+          <button type="button" class="gdk-btn gdk-btn-outline" data-modal-close="new-lead-modal">Cancel</button>
+          <button type="submit" class="gdk-btn gdk-btn-primary">Add Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <footer class="gdk-footer">
     <div class="gdk-footer-inner">
@@ -164,6 +264,25 @@
   <script src="/demos/garage/assets/mock-data.js"></script>
   <script>
     const D = window.GDK_DATA;
+
+    // ─── VIEW TOGGLE (mobile only) ───
+    // Default view: 'today' on mobile (<768px), 'full' on desktop
+    function applyView(view) {
+      document.body.dataset.view = view;
+      document.querySelectorAll('.gdk-view-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+      try { localStorage.setItem('gdk-admin-view', view); } catch (e) {}
+    }
+    let savedView;
+    try { savedView = localStorage.getItem('gdk-admin-view'); } catch (e) {}
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    applyView(savedView || (isMobile ? 'today' : 'full'));
+    document.querySelectorAll('.gdk-view-tab, [data-view-switch]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.view || btn.dataset.viewSwitch;
+        applyView(target);
+        if (target === 'full') window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
 
     // Header meta
     const todayStr = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
@@ -182,23 +301,37 @@
     const winRate = closed.length ? Math.round((won / closed.length) * 100) : 0;
     document.getElementById('kpi-win').textContent = winRate + '%';
 
-    // Leads table
+    // Leads table — merges live demo leads (created via "+ New Lead" modal) with static mock
     function renderLeads(filter) {
       const tbody = document.getElementById('leads-tbody');
-      const filtered = filter === 'all' ? D.leads : D.leads.filter(l => l.status === filter);
+      const liveLeads = D.getDemoLeads();
+      const allLeads = [...liveLeads, ...D.leads];
+      // Dedupe by ID
+      const seenLeadIds = new Set();
+      const dedup = allLeads.filter(l => { if (seenLeadIds.has(l.id)) return false; seenLeadIds.add(l.id); return true; });
+      const filtered = filter === 'all' ? dedup : dedup.filter(l => l.status === filter);
       const sorted = [...filtered].sort((a,b) => b.createdAt - a.createdAt).slice(0, 25);
-      tbody.innerHTML = sorted.map(l => `
-        <tr>
-          <td><div style="color:var(--gdk-text);font-weight:500;">${l.name}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
-          <td style="font-size:0.84rem;">${l.serviceInterest}</td>
-          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood}</td>
-          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
-          <td style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
-          <td><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
-          <td style="font-size:0.78rem;color:var(--gdk-text-faint);">${l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
-        </tr>
-      `).join('');
-      const totalCount = filter === 'all' ? D.leads.length : filtered.length;
+      tbody.innerHTML = sorted.map(l => {
+        const isFresh = l.isDemoEntry;
+        const ageMin = isFresh ? (new Date() - l.createdAt) / 60000 : null;
+        const dateLabel = isFresh && ageMin < 1 ? '<span style="color:#86efac;">JUST NOW</span>'
+                         : isFresh && ageMin < 60 ? `<span style="color:#86efac;">${Math.floor(ageMin)} MIN AGO</span>`
+                         : l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+        const newBadge = isFresh ? ' <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : '';
+        const depBadge = l.depositPaid ? ` <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.16);border:1px solid rgba(134,239,172,0.4);padding:2px 7px;border-radius:8px;letter-spacing:0.04em;text-transform:uppercase;font-weight:700;vertical-align:1px;white-space:nowrap;">Deposit Paid · $${l.depositAmount || 89}</span>` : '';
+        return `
+          <tr ${isFresh ? 'class="gdk-payment-fresh"' : ''}>
+            <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}${newBadge}${depBadge}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
+            <td data-card-area="secondary" style="font-size:0.84rem;">${l.serviceInterest}</td>
+            <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood} · ${l.source} · ${dateLabel}</td>
+            <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
+            <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-muted);">${l.source}</td>
+            <td data-card-area="status"><span class="gdk-badge gdk-badge-${l.status}">${l.status}</span></td>
+            <td data-card-area="hidden" style="font-size:0.78rem;color:var(--gdk-text-faint);">${dateLabel}</td>
+          </tr>
+        `;
+      }).join('');
+      const totalCount = filter === 'all' ? dedup.length : filtered.length;
       document.getElementById('leads-meta').textContent = `Showing ${sorted.length} of ${totalCount} ${filter === 'all' ? 'total' : filter} leads`;
     }
     renderLeads('all');
@@ -211,11 +344,14 @@
     });
 
     // Jobs + SMS
+    const upcomingJobs = D.jobs.filter(j => j.scheduledFor >= new Date()).slice(0, 8);
     const jobsCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Calendar</div>
         <h2 class="gdk-portal-card-title">Upcoming Jobs (next 30 days)</h2>
-        ${D.jobs.slice(0, 8).map(j => `
+        ${upcomingJobs.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">📅</span>No jobs scheduled in the next 30 days.<br><small>Marketing and word-of-mouth working overtime — keep nudging.</small></div>`
+          : upcomingJobs.map(j => `
           <div class="gdk-job-row">
             <div class="gdk-job-date">
               <div class="day">${j.scheduledFor.getDate()}</div>
@@ -233,12 +369,14 @@
         `).join('')}
       </section>
     `;
+    const recentSms = D.smsLog.slice().reverse().slice(0, 14);
     const smsCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Messaging</div>
         <h2 class="gdk-portal-card-title">SMS Log (last 14)</h2>
-        <div style="max-height:560px;overflow-y:auto;">
-          ${D.smsLog.slice().reverse().slice(0, 14).map(s => `
+        ${recentSms.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">💬</span>No customer messages yet.<br><small>Mostly quiet on the SMS front today.</small></div>`
+          : `<div style="max-height:560px;overflow-y:auto;">${recentSms.map(s => `
             <div class="gdk-sms-row ${s.direction}">
               <div class="head">
                 <span><span class="gdk-sms-dir ${s.direction}">${s.direction === 'in' ? 'In' : 'Out'}</span><span class="who">${s.customerName}</span></span>
@@ -246,8 +384,7 @@
               </div>
               <div class="body">${s.message}</div>
             </div>
-          `).join('')}
-        </div>
+          `).join('')}</div>`}
       </section>
     `;
     document.getElementById('row-jobs-sms').innerHTML = jobsCard + smsCard;
@@ -260,28 +397,33 @@
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Quotes</div>
         <h2 class="gdk-portal-card-title">Active Estimates</h2>
-        <div class="gdk-table-wrap">
+        ${D.estimates.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">📋</span>No active estimates.<br><small>Once you quote a customer, it'll appear here.</small></div>`
+          : `<div class="gdk-table-wrap">
           <table class="gdk-table">
             <thead><tr><th>Customer</th><th>Service</th><th>Total</th><th>Status</th></tr></thead>
             <tbody>
               ${D.estimates.map(e => `
                 <tr>
-                  <td style="font-weight:500;color:var(--gdk-text);">${e.customerName}</td>
-                  <td style="font-size:0.84rem;">${e.service}</td>
-                  <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${e.total.toLocaleString()}</td>
-                  <td><span class="gdk-badge gdk-badge-${e.status === 'approved' ? 'paid' : e.status === 'sent' ? 'scheduled' : e.status === 'declined' ? 'lost' : 'new'}">${e.status}</span></td>
+                  <td data-card-area="primary" style="font-weight:500;color:var(--gdk-text);">${e.customerName}</td>
+                  <td data-card-area="secondary" style="font-size:0.84rem;">${e.service}</td>
+                  <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${e.total.toLocaleString()}</td>
+                  <td data-card-area="status"><span class="gdk-badge gdk-badge-${e.status === 'approved' ? 'paid' : e.status === 'sent' ? 'scheduled' : e.status === 'declined' ? 'lost' : 'new'}">${e.status}</span></td>
                 </tr>
               `).join('')}
             </tbody>
           </table>
-        </div>
+        </div>`}
       </section>
     `;
+    const recentReviews = D.reviews.slice(0, 8);
     const revCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Reputation</div>
         <h2 class="gdk-portal-card-title">Recent Review Requests</h2>
-        ${D.reviews.slice(0, 8).map(r => `
+        ${recentReviews.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">⭐</span>No review requests sent yet.<br><small>After every job, send a quick text — Google reviews compound over time.</small></div>`
+          : recentReviews.map(r => `
           <div class="gdk-job-row">
             <div class="gdk-job-date">
               <div class="day">${r.sentAt.getDate()}</div>
@@ -364,18 +506,18 @@
 
       return `
         <tr ${p.isDemoEntry ? 'class="gdk-payment-fresh"' : ''}>
-          <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
+          <td data-card-area="secondary" style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
             ${dateForDisplay.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
             <div style="font-size:0.7rem;">${timeLabel}</div>
           </td>
-          <td>
+          <td data-card-area="primary">
             <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}${p.isDemoEntry ? ' <span style="font-size:0.62rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : ''}</div>
             <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone || p.customerEmail || ''}</div>
           </td>
-          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
-          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-          <td>${methodBadge(p.method)}</td>
-          <td>${statusBadge(p.status)}</td>
+          <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
+          <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td data-card-area="hidden">${methodBadge(p.method)}</td>
+          <td data-card-area="status">${statusBadge(p.status)}</td>
         </tr>
       `;
     }).join('');
@@ -397,6 +539,257 @@
           location.reload();
         }
       });
+    }
+
+    // ─── TODAY VIEW POPULATION ───
+    function fmtMoneyShort(n) {
+      return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+    function fmtMoney2(n) {
+      return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function isSameDay(d1, d2) {
+      return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+    }
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+
+    // Big stat: collected today
+    const collectedToday = payments.filter(p => p.status === 'paid' && p.paidAt && isSameDay(p.paidAt, today)).reduce((s, p) => s + p.amount, 0);
+    document.getElementById('today-amount').textContent = fmtMoneyShort(collectedToday);
+    document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+
+    // Today's Jobs
+    const todaysJobs = D.jobs.filter(j => isSameDay(j.scheduledFor, today)).sort((a,b) => a.scheduledFor - b.scheduledFor);
+    document.getElementById('today-jobs-count').textContent = todaysJobs.length;
+    const tjEl = document.getElementById('today-jobs');
+    if (todaysJobs.length === 0) {
+      tjEl.innerHTML = `<div class="gdk-today-empty">No jobs scheduled today. Enjoy the morning. 🌅</div>`;
+    } else {
+      tjEl.innerHTML = todaysJobs.map(j => {
+        const time = j.scheduledFor.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+        const addr = j.address.split(',').slice(0,2).join(',');
+        return `
+          <div class="gdk-today-card">
+            <div class="gdk-today-card-row1">
+              <div class="gdk-today-card-name">${j.customerName}</div>
+              <div class="gdk-today-card-time">${time}</div>
+            </div>
+            <div class="gdk-today-card-meta">${j.service} · ${j.techName}</div>
+            <div class="gdk-today-card-addr">📍 ${addr}</div>
+            <div class="gdk-today-card-actions">
+              <a href="tel:${(j.customerPhone || '7025550100').replace(/\D/g,'')}" class="gdk-today-card-action">📞 Call</a>
+              <a href="https://maps.google.com/?q=${encodeURIComponent(j.address)}" target="_blank" rel="noopener" class="gdk-today-card-action">🗺️ Directions</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Needs Your Attention
+    const overdueInvoices = payments.filter(p => p.status === 'pending' && (today - p.createdAt) / 86400000 >= 3);
+    const newLeads24h = D.leads.filter(l => l.status === 'new' && (new Date() - l.createdAt) / 86400000 <= 1);
+    const pendingQuotes = D.estimates.filter(e => e.status === 'sent');
+    const attentionItems = [
+      ...overdueInvoices.map(p => ({
+        type: 'overdue',
+        icon: '⏰',
+        title: `${p.customerName} owes ${fmtMoney2(p.amount)}`,
+        sub: `Invoice ${p.id} sent ${Math.round((today - p.createdAt) / 86400000)} days ago — no payment yet`,
+        actionLabel: 'Send Reminder',
+        actionType: 'reminder',
+        id: p.id
+      })),
+      ...newLeads24h.map(l => ({
+        type: 'lead',
+        icon: '🆕',
+        title: `New lead: ${l.name}`,
+        sub: `${l.serviceInterest} · ${l.neighborhood}${l.estimatedValue ? ' · est. $' + l.estimatedValue.toLocaleString() : ''}`,
+        actionLabel: 'Call Now',
+        actionType: 'call',
+        phone: l.phone
+      })),
+      ...pendingQuotes.map(e => ({
+        type: 'quote',
+        icon: '📋',
+        title: `Quote pending: ${e.customerName}`,
+        sub: `${e.service} · ${fmtMoney2(e.total)} · awaiting customer approval`,
+        actionLabel: 'View Quote',
+        actionType: 'quote'
+      }))
+    ];
+    document.getElementById('today-attention-count').textContent = attentionItems.length;
+    const taEl = document.getElementById('today-attention');
+    if (attentionItems.length === 0) {
+      taEl.innerHTML = `<div class="gdk-today-empty">All clear. No overdue invoices, no untouched leads, no pending quotes. 💪</div>`;
+    } else {
+      taEl.innerHTML = attentionItems.slice(0, 6).map(item => `
+        <div class="gdk-today-card gdk-today-attention" data-type="${item.type}">
+          <div class="gdk-today-attention-row">
+            <div class="gdk-today-attention-icon">${item.icon}</div>
+            <div class="gdk-today-attention-body">
+              <div class="gdk-today-card-name">${item.title}</div>
+              <div class="gdk-today-card-meta">${item.sub}</div>
+            </div>
+          </div>
+          <button type="button" class="gdk-btn gdk-btn-outline gdk-btn-small gdk-today-attention-action" ${item.phone ? `data-phone="${item.phone}"` : ''} data-action-type="${item.actionType}" data-id="${item.id || ''}">${item.actionLabel}</button>
+        </div>
+      `).join('');
+      // Wire action buttons
+      document.querySelectorAll('.gdk-today-attention-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const type = btn.dataset.actionType;
+          if (type === 'call' && btn.dataset.phone) {
+            window.location.href = 'tel:' + btn.dataset.phone.replace(/\D/g,'');
+          } else if (type === 'reminder') {
+            btn.disabled = true;
+            btn.textContent = 'Sent ✓';
+            btn.style.background = 'rgba(134,239,172,0.12)';
+            btn.style.color = '#86efac';
+            btn.style.borderColor = 'rgba(134,239,172,0.4)';
+          } else if (type === 'quote') {
+            alert('Demo: would open the quote PDF. In production, links to Stripe-hosted invoice or your quote document.');
+          }
+        });
+      });
+    }
+
+    // ─── SIGN OUT ───
+    document.querySelectorAll('[data-signout]').forEach(btn => {
+      btn.addEventListener('click', () => window.gdkSignOut('/demos/garage/'));
+    });
+
+    // ─── + NEW LEAD MODAL ───
+    const newLeadBtn = document.getElementById('btn-new-lead');
+    const newLeadModal = document.getElementById('new-lead-modal');
+    const newLeadForm = document.getElementById('new-lead-form');
+    function openNewLead() {
+      newLeadModal.classList.add('active');
+      requestAnimationFrame(() => newLeadModal.classList.add('visible'));
+      setTimeout(() => document.getElementById('nl-name').focus(), 250);
+    }
+    function closeModal(modal) {
+      modal.classList.remove('visible');
+      setTimeout(() => modal.classList.remove('active'), 280);
+    }
+    newLeadBtn.addEventListener('click', openNewLead);
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.dataset.modalClose;
+        if (modalId) closeModal(document.getElementById(modalId));
+      });
+    });
+    newLeadModal.addEventListener('click', (e) => { if (e.target === newLeadModal) closeModal(newLeadModal); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && newLeadModal.classList.contains('active')) closeModal(newLeadModal);
+    });
+    newLeadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nl-name').value.trim();
+      const phone = document.getElementById('nl-phone').value.trim();
+      const service = document.getElementById('nl-service').value;
+      const notes = document.getElementById('nl-notes').value.trim();
+      if (!name || !phone || phone.replace(/\D/g,'').length < 10 || !service) {
+        gdkToast({ title: 'Please complete all required fields', icon: '!', variant: 'success' });
+        return;
+      }
+      // Auto-classify estimated value from service catalog
+      const svc = D.services.find(s => s.name === service);
+      const estVal = svc ? svc.avg : 245;
+      const phoneFmt = (() => { const p = phone.replace(/\D/g,'').slice(-10); return p.length === 10 ? `${p.slice(0,3)}-${p.slice(3,6)}-${p.slice(6)}` : phone; })();
+      const newLead = {
+        id: 'lead-live-' + Math.random().toString(36).slice(2, 8),
+        name,
+        phone: phoneFmt,
+        serviceInterest: service,
+        neighborhood: 'Unspecified',
+        estimatedValue: estVal,
+        source: 'Manual entry',
+        status: 'new',
+        createdAt: new Date(),
+        notes
+      };
+      D.saveDemoLead(newLead);
+      closeModal(newLeadModal);
+      newLeadForm.reset();
+      // Rerender leads (preserve current active filter)
+      const activeChip = document.querySelector('.gdk-chip[data-filter].active');
+      renderLeads(activeChip ? activeChip.dataset.filter : 'all');
+      gdkToast({ title: 'New lead added', subtitle: `${name} · ${service}`, icon: '🆕' });
+    });
+
+    // ─── EXPORT DATA — combined CSV ───
+    document.getElementById('btn-export-data').addEventListener('click', () => {
+      const lines = [];
+      const escape = (v) => { const s = (v ?? '').toString(); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; };
+      const fmtDate = (d) => d ? new Date(d).toISOString().slice(0,10) : '';
+
+      // LEADS section
+      lines.push('# LEADS');
+      lines.push('Name,Phone,Service,Neighborhood,Source,Estimated Value,Status,Created');
+      const allLeadsExport = [...D.getDemoLeads(), ...D.leads];
+      const seenIds = new Set();
+      allLeadsExport.filter(l => { if (seenIds.has(l.id)) return false; seenIds.add(l.id); return true; })
+        .forEach(l => lines.push([l.name, l.phone, l.serviceInterest, l.neighborhood, l.source, l.estimatedValue, l.status, fmtDate(l.createdAt)].map(escape).join(',')));
+
+      lines.push('');
+      // CUSTOMERS section
+      lines.push('# CUSTOMERS');
+      lines.push('Name,Email,Phone,Address,Neighborhood,Joined Date,Lifetime Value');
+      D.customers.forEach(c => lines.push([c.name, c.email, c.phone, c.address, c.neighborhood, fmtDate(c.joinedDate), c.lifetimeValue].map(escape).join(',')));
+
+      lines.push('');
+      // JOBS section
+      lines.push('# JOBS');
+      lines.push('Customer,Service,Tech,Address,Scheduled For,Status,Value');
+      D.jobs.forEach(j => lines.push([j.customerName, j.service, j.techName, j.address, j.scheduledFor.toISOString(), j.status, j.value].map(escape).join(',')));
+
+      lines.push('');
+      // INVOICES section
+      lines.push('# INVOICES');
+      lines.push('Date,Invoice ID,Customer,Description,Amount,Method,Status,Paid Date,Payment Type,Tech');
+      const allInv = [...D.getDemoPayments(), ...D.payments];
+      const seenInvIds = new Set();
+      allInv.filter(i => { if (seenInvIds.has(i.id)) return false; seenInvIds.add(i.id); return true; })
+        .forEach(i => lines.push([fmtDate(i.paidAt || i.createdAt), i.id, i.customerName, i.description, i.amount.toFixed(2), i.method, i.status, fmtDate(i.paidAt), i.paymentMethod || '', i.techName].map(escape).join(',')));
+
+      const csv = lines.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `gdk-data-export-${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      gdkToast({ title: 'Data exported', subtitle: `${D.leads.length + D.getDemoLeads().length} leads · ${D.customers.length} customers · ${D.jobs.length} jobs · ${D.payments.length + D.getDemoPayments().length} invoices`, icon: '📦' });
+    });
+
+    // Recent Money — last 5 paid
+    const recentPaid = paidPayments.slice(0, 5);
+    const trEl = document.getElementById('today-recent');
+    if (recentPaid.length === 0) {
+      trEl.innerHTML = `<div class="gdk-today-empty">No payments yet. Send your first invoice from the dashboard. 💸</div>`;
+    } else {
+      trEl.innerHTML = recentPaid.map(p => {
+        const date = p.paidAt || p.createdAt;
+        const ageMinutes = (new Date() - date) / 60000;
+        let when;
+        if (isSameDay(date, today) && ageMinutes < 60) when = `<span style="color:#86efac;">${Math.max(1, Math.floor(ageMinutes))} min ago</span>`;
+        else if (isSameDay(date, today)) when = `<span style="color:#86efac;">today</span>`;
+        else when = date.toLocaleDateString('en-US',{ month:'short', day:'numeric' });
+        return `
+          <div class="gdk-today-card">
+            <div class="gdk-today-card-row1">
+              <div class="gdk-today-card-name">${p.customerName}</div>
+              <div class="gdk-today-card-amount">${fmtMoney2(p.amount)}</div>
+            </div>
+            <div class="gdk-today-card-meta">${p.description} · ${when}</div>
+          </div>
+        `;
+      }).join('');
     }
   </script>
 </body>

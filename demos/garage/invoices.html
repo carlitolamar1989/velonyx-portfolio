@@ -19,7 +19,7 @@
   <nav class="gdk-nav">
     <div class="gdk-nav-inner">
       <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
-      <div class="gdk-nav-links" style="display:flex;">
+      <div class="gdk-nav-links">
         <a href="/demos/garage/admin.html">← Dashboard</a>
         <a href="/demos/garage/invoices.html" style="color:var(--gdk-accent);">Invoices</a>
         <a href="/demos/garage/admin-pay.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">+ New Payment</a>
@@ -345,16 +345,16 @@
           const date = inv.paidAt || inv.createdAt;
           return `
             <tr data-invoice-id="${inv.id}" class="gdk-invoice-row${inv.isDemoEntry ? ' gdk-payment-fresh' : ''}" tabindex="0">
-              <td style="font-size:0.82rem;color:var(--gdk-text-muted);white-space:nowrap;">${date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'})}</td>
-              <td style="font-family:'SF Mono',Menlo,monospace;font-size:0.78rem;color:var(--gdk-text);">${inv.id}</td>
-              <td>
+              <td data-card-area="secondary" style="font-size:0.82rem;color:var(--gdk-text-muted);white-space:nowrap;">${date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'})} · ${inv.id}</td>
+              <td data-card-area="hidden" style="font-family:'SF Mono',Menlo,monospace;font-size:0.78rem;color:var(--gdk-text);">${inv.id}</td>
+              <td data-card-area="primary">
                 <div style="color:var(--gdk-text);font-weight:500;">${inv.customerName}${inv.isDemoEntry ? ' <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;">new</span>' : ''}</div>
                 <div style="font-size:0.7rem;color:var(--gdk-text-faint);">${inv.customerPhone || inv.customerEmail || ''}</div>
               </td>
-              <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${inv.description}</td>
-              <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">${fmtMoney(inv.amount)}</td>
-              <td>${methodBadge(inv.method)}</td>
-              <td>${statusBadge(inv.status)}</td>
+              <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${inv.description}</td>
+              <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">${fmtMoney(inv.amount)}</td>
+              <td data-card-area="hidden">${methodBadge(inv.method)}</td>
+              <td data-card-area="status">${statusBadge(inv.status)}</td>
             </tr>
           `;
         }).join('');
