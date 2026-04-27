@@ -343,11 +343,14 @@
     });
 
     // Jobs + SMS
+    const upcomingJobs = D.jobs.filter(j => j.scheduledFor >= new Date()).slice(0, 8);
     const jobsCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Calendar</div>
         <h2 class="gdk-portal-card-title">Upcoming Jobs (next 30 days)</h2>
-        ${D.jobs.slice(0, 8).map(j => `
+        ${upcomingJobs.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">📅</span>No jobs scheduled in the next 30 days.<br><small>Marketing and word-of-mouth working overtime — keep nudging.</small></div>`
+          : upcomingJobs.map(j => `
           <div class="gdk-job-row">
             <div class="gdk-job-date">
               <div class="day">${j.scheduledFor.getDate()}</div>
@@ -365,12 +368,14 @@
         `).join('')}
       </section>
     `;
+    const recentSms = D.smsLog.slice().reverse().slice(0, 14);
     const smsCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Messaging</div>
         <h2 class="gdk-portal-card-title">SMS Log (last 14)</h2>
-        <div style="max-height:560px;overflow-y:auto;">
-          ${D.smsLog.slice().reverse().slice(0, 14).map(s => `
+        ${recentSms.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">💬</span>No customer messages yet.<br><small>Mostly quiet on the SMS front today.</small></div>`
+          : `<div style="max-height:560px;overflow-y:auto;">${recentSms.map(s => `
             <div class="gdk-sms-row ${s.direction}">
               <div class="head">
                 <span><span class="gdk-sms-dir ${s.direction}">${s.direction === 'in' ? 'In' : 'Out'}</span><span class="who">${s.customerName}</span></span>
@@ -378,8 +383,7 @@
               </div>
               <div class="body">${s.message}</div>
             </div>
-          `).join('')}
-        </div>
+          `).join('')}</div>`}
       </section>
     `;
     document.getElementById('row-jobs-sms').innerHTML = jobsCard + smsCard;
@@ -392,7 +396,9 @@
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Quotes</div>
         <h2 class="gdk-portal-card-title">Active Estimates</h2>
-        <div class="gdk-table-wrap">
+        ${D.estimates.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">📋</span>No active estimates.<br><small>Once you quote a customer, it'll appear here.</small></div>`
+          : `<div class="gdk-table-wrap">
           <table class="gdk-table">
             <thead><tr><th>Customer</th><th>Service</th><th>Total</th><th>Status</th></tr></thead>
             <tbody>
@@ -406,14 +412,17 @@
               `).join('')}
             </tbody>
           </table>
-        </div>
+        </div>`}
       </section>
     `;
+    const recentReviews = D.reviews.slice(0, 8);
     const revCard = `
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Reputation</div>
         <h2 class="gdk-portal-card-title">Recent Review Requests</h2>
-        ${D.reviews.slice(0, 8).map(r => `
+        ${recentReviews.length === 0
+          ? `<div class="gdk-section-empty"><span class="icon">⭐</span>No review requests sent yet.<br><small>After every job, send a quick text — Google reviews compound over time.</small></div>`
+          : recentReviews.map(r => `
           <div class="gdk-job-row">
             <div class="gdk-job-date">
               <div class="day">${r.sentAt.getDate()}</div>

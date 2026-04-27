@@ -2563,6 +2563,71 @@ html, body { overflow-x: hidden; }
   white-space: nowrap;
   text-align: center;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 5 (Polish: dismiss, lucide, empty states)
+   ═══════════════════════════════════════════════════════════════════ */
+.gdk-banner-dismiss {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--gdk-accent);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: all 0.18s;
+  padding: 0;
+  line-height: 1;
+}
+.gdk-banner-dismiss:hover {
+  opacity: 1;
+  background: rgba(184,115,46,0.12);
+  border-color: var(--gdk-border-accent);
+}
+@media (max-width: 600px) {
+  .demo-banner { padding-right: 36px !important; }
+}
+
+/* Empty state for sections with no data */
+.gdk-section-empty {
+  text-align: center;
+  padding: 28px 18px;
+  color: var(--gdk-text-muted);
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.55;
+  background: rgba(184,115,46,0.03);
+  border: 1px dashed var(--gdk-border-accent);
+  border-radius: 12px;
+}
+.gdk-section-empty .icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 8px;
+  font-style: normal;
+}
+
+/* Documents grid lucide icon styling */
+.gdk-doc-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--gdk-accent-ghost);
+  border: 1px solid var(--gdk-border-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gdk-accent);
+}
 @media (max-width: 600px) {
   .gdk-customer-invoice-card {
     flex-direction: column;

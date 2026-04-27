@@ -530,3 +530,46 @@ function gdkSignOut(redirectTo = '/demos/garage/') {
   setTimeout(() => { window.location.href = redirectTo; }, 1100);
 }
 window.gdkSignOut = gdkSignOut;
+
+// ─────────────────────────────────────────────────────────────
+// DISMISSIBLE DEMO BANNER — re-appears 24h after dismissal
+// ─────────────────────────────────────────────────────────────
+const GDK_BANNER_DISMISS_KEY = 'gdk-demo-banner-dismissed-at';
+function gdkInitDismissibleBanner() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.querySelector('.demo-banner');
+    if (!banner) return;
+    // Check dismissed timestamp
+    try {
+      const dismissed = localStorage.getItem(GDK_BANNER_DISMISS_KEY);
+      if (dismissed) {
+        const elapsed = Date.now() - parseInt(dismissed, 10);
+        if (elapsed < 24 * 60 * 60 * 1000) {
+          banner.style.display = 'none';
+          return;
+        }
+      }
+    } catch (e) {}
+    // Add dismiss button
+    if (banner.querySelector('.gdk-banner-dismiss')) return;
+    const dismissBtn = document.createElement('button');
+    dismissBtn.className = 'gdk-banner-dismiss';
+    dismissBtn.setAttribute('aria-label', 'Dismiss demo banner');
+    dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    dismissBtn.addEventListener('click', () => {
+      try { localStorage.setItem(GDK_BANNER_DISMISS_KEY, Date.now().toString()); } catch (e) {}
+      banner.style.transition = 'opacity 0.3s ease, max-height 0.4s cubic-bezier(0.4,0,0.2,1)';
+      banner.style.opacity = '0';
+      banner.style.maxHeight = banner.offsetHeight + 'px';
+      requestAnimationFrame(() => {
+        banner.style.maxHeight = '0';
+        banner.style.padding = '0';
+        banner.style.overflow = 'hidden';
+      });
+      setTimeout(() => { banner.style.display = 'none'; }, 420);
+    });
+    banner.style.position = 'relative';
+    banner.appendChild(dismissBtn);
+  });
+}
+gdkInitDismissibleBanner();
