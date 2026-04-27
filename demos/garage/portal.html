@@ -68,15 +68,8 @@
       <section class="gdk-portal-card">
         <div class="gdk-portal-card-label">Billing</div>
         <h2 class="gdk-portal-card-title">Payment Summary</h2>
-        <div class="gdk-table-wrap">
-          <table class="gdk-table">
-            <thead>
-              <tr><th>Invoice</th><th>Date</th><th>Amount</th><th>Status</th></tr>
-            </thead>
-            <tbody id="invoices-tbody"></tbody>
-          </table>
-        </div>
-        <div style="margin-top:16px;padding:14px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:10px;font-size:0.85rem;color:var(--gdk-text-dim);line-height:1.55;">
+        <div class="gdk-customer-invoices" id="customer-invoices"></div>
+        <div id="balance-banner" style="margin-top:16px;padding:14px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:10px;font-size:0.85rem;color:var(--gdk-text-dim);line-height:1.55;">
           <strong style="color:var(--gdk-accent-pale);">Balance due:</strong> <span id="balance-due">$485</span> <span style="color:var(--gdk-text-faint);">(paid before Wednesday's install)</span>
         </div>
       </section>
@@ -174,16 +167,53 @@
       </div>
     `;
 
-    // Invoices
-    const invBody = document.getElementById('invoices-tbody');
-    invBody.innerHTML = user.invoices.map(inv => `
-      <tr>
-        <td style="font-family:'SF Mono',Menlo,monospace;font-size:0.82rem;color:var(--gdk-text);">${inv.id}</td>
-        <td style="color:var(--gdk-text-muted);">${inv.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td>
-        <td style="font-weight:500;color:var(--gdk-text);">$${inv.amount}</td>
-        <td><span class="gdk-badge ${inv.paid ? 'gdk-badge-paid' : 'gdk-badge-due'}">${inv.status}</span></td>
-      </tr>
-    `).join('');
+    // Invoices — rendered as cards with Pay Now button on outstanding
+    const invContainer = document.getElementById('customer-invoices');
+    function descFromInvoice(inv) {
+      // Match invoice ID to a service description; fall back to a generic
+      if (/spring/i.test(inv.id) || inv.amount < 600) return 'Spring replacement';
+      if (inv.amount > 1400) return 'New door install';
+      if (inv.amount < 200) return 'Service call';
+      return 'Garage door service';
+    }
+    invContainer.innerHTML = user.invoices.map(inv => {
+      const desc = descFromInvoice(inv);
+      const dateStr = inv.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+      if (inv.paid) {
+        return `
+          <div class="gdk-customer-invoice-card paid">
+            <div class="gdk-customer-invoice-info">
+              <div class="gdk-customer-invoice-id">${inv.id}</div>
+              <div class="gdk-customer-invoice-meta">${desc} · ${dateStr}</div>
+            </div>
+            <div class="gdk-customer-invoice-amount-wrap">
+              <div class="gdk-customer-invoice-amount">$${inv.amount}</div>
+              <span class="gdk-badge gdk-badge-paid" style="font-size:0.66rem;">Paid ✓</span>
+            </div>
+          </div>
+        `;
+      }
+      // Outstanding — show big Pay Now button
+      const payUrl = `/demos/garage/pay.html?id=${encodeURIComponent(inv.id)}&name=${encodeURIComponent(user.customer.name)}&amount=${inv.amount.toFixed(2)}&desc=${encodeURIComponent(desc)}&phone=${encodeURIComponent(user.customer.phone || '')}&email=${encodeURIComponent(user.customer.email || '')}`;
+      return `
+        <div class="gdk-customer-invoice-card outstanding">
+          <div class="gdk-customer-invoice-info">
+            <div class="gdk-customer-invoice-id">${inv.id}</div>
+            <div class="gdk-customer-invoice-meta">${desc} · ${dateStr}</div>
+            <div class="gdk-customer-invoice-amount-row">
+              <div class="gdk-customer-invoice-amount">$${inv.amount}</div>
+              <span class="gdk-badge gdk-badge-due" style="font-size:0.66rem;">Due</span>
+            </div>
+          </div>
+          <a href="${payUrl}" class="gdk-btn gdk-btn-primary gdk-btn-payment-cta gdk-customer-pay-btn">
+            <span style="display:inline-flex;align-items:center;gap:6px;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Pay $${inv.amount} Now
+            </span>
+          </a>
+        </div>
+      `;
+    }).join('');
 
     // Past jobs
     const pastEl = document.getElementById('past-jobs');

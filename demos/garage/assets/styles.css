@@ -2496,3 +2496,82 @@ html, body { overflow-x: hidden; }
   border-radius: 50%;
   background: var(--gdk-accent);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PORTAL UX UPGRADE — TIER 4 (Customer Invoice Cards w/ Pay Now)
+   /portal.html — invoice cards with prominent Pay Now button on
+   outstanding invoices. Paid invoices show Paid ✓ badge instead.
+   ═══════════════════════════════════════════════════════════════════ */
+.gdk-customer-invoices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gdk-customer-invoice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+}
+.gdk-customer-invoice-card.outstanding {
+  border-color: var(--gdk-border-accent);
+  background: linear-gradient(135deg, rgba(184,115,46,0.04), var(--gdk-bg-deeper));
+}
+.gdk-customer-invoice-card.paid { opacity: 0.85; }
+.gdk-customer-invoice-info {
+  flex: 1;
+  min-width: 0;
+}
+.gdk-customer-invoice-id {
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  letter-spacing: 0.02em;
+}
+.gdk-customer-invoice-meta {
+  color: var(--gdk-text);
+  font-weight: 500;
+  font-size: 0.92rem;
+  margin-top: 4px;
+}
+.gdk-customer-invoice-amount-wrap {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.gdk-customer-invoice-amount-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-top: 6px;
+}
+.gdk-customer-invoice-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--gdk-accent-pale);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.gdk-customer-pay-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .gdk-customer-invoice-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+  }
+  .gdk-customer-invoice-card.paid {
+    flex-direction: row;
+    align-items: center;
+  }
+  .gdk-customer-pay-btn { width: 100%; padding: 12px; }
+}
