@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
+  <title>Take a Payment — Garage Door Kings (Velonyx Demo)</title>
+  <meta name="description" content="Create an invoice and send a payment link to a customer or take payment in-person on your phone.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+</head>
+<body>
+  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+
+  <nav class="gdk-nav">
+    <div class="gdk-nav-inner">
+      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
+      <div class="gdk-nav-links" style="display:flex;">
+        <a href="/demos/garage/admin.html">← Back to Dashboard</a>
+        <a href="/demos/garage/admin.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Admin</a>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
+      </div>
+      <a href="/demos/garage/admin.html" class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Back</a>
+    </div>
+  </nav>
+
+  <header class="gdk-page-header">
+    <span class="gdk-eyebrow">Owner · Marcus Reed</span>
+    <h1 class="gdk-page-title gdk-accent-text">Take a Payment</h1>
+    <p class="gdk-page-sub">Type the amount you negotiated. Send a link or take payment right now.</p>
+  </header>
+
+  <main class="gdk-section" style="padding-top:0;">
+    <div class="gdk-container-narrow" style="max-width:680px;">
+      <div style="background:linear-gradient(180deg,var(--gdk-surface) 0%,var(--gdk-bg-deeper) 100%);border:1px solid var(--gdk-border);border-radius:18px;padding:36px 32px;">
+        <form id="pay-form" novalidate>
+          <div class="gdk-form-stack">
+            <div>
+              <label class="gdk-label req" for="pay-name">Customer Name</label>
+              <input type="text" id="pay-name" class="gdk-input" placeholder="Maria Gonzalez" required autocomplete="off">
+              <div class="gdk-error-msg">Please enter the customer's name</div>
+            </div>
+            <div>
+              <label class="gdk-label req" for="pay-contact">Phone or Email</label>
+              <input type="text" id="pay-contact" class="gdk-input" placeholder="(702) 555-0142   or   maria@example.com" required autocomplete="off">
+              <div class="gdk-error-msg">Phone (10 digits) or a valid email</div>
+              <div style="font-size:0.74rem;color:var(--gdk-text-faint);margin-top:6px;">SMS preferred — opens 95% faster than email.</div>
+            </div>
+            <div>
+              <label class="gdk-label req" for="pay-amount">Amount</label>
+              <div class="gdk-amount-input">
+                <span class="gdk-amount-prefix">$</span>
+                <input type="number" id="pay-amount" class="gdk-input" placeholder="0.00" min="1" step="0.01" required>
+              </div>
+              <div class="gdk-error-msg">Amount must be at least $1</div>
+            </div>
+            <div>
+              <label class="gdk-label req" for="pay-desc">What was the work?</label>
+              <input type="text" id="pay-desc" class="gdk-input" placeholder="Spring replacement · Service call · New door install" required autocomplete="off">
+              <div class="gdk-error-msg">A short description so the customer knows what they're paying for</div>
+            </div>
+          </div>
+
+          <div class="gdk-pay-actions">
+            <button type="button" id="btn-send-link" class="gdk-btn gdk-btn-primary gdk-btn-wide">
+              <span style="display:flex;align-items:center;gap:10px;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Send Link to Customer
+              </span>
+            </button>
+            <button type="button" id="btn-take-now" class="gdk-btn gdk-btn-outline gdk-btn-wide gdk-btn-take-now">
+              <span style="display:flex;align-items:center;gap:10px;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                Take Payment Now
+              </span>
+            </button>
+          </div>
+
+          <p style="text-align:center;font-size:0.74rem;color:var(--gdk-text-faint);margin-top:18px;line-height:1.55;">
+            <strong style="color:var(--gdk-text-muted);">Send Link</strong> texts the customer a payment URL — they pay on their own phone.<br>
+            <strong style="color:var(--gdk-text-muted);">Take Payment Now</strong> opens a payment screen — hand your phone to the customer.
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- SEND-LINK CONFIRMATION OVERLAY -->
+  <div class="gdk-overlay" id="send-overlay" role="dialog" aria-label="Sending payment link">
+    <div class="gdk-overlay-card">
+      <div class="gdk-stage active" id="stage-sending">
+        <div class="gdk-spinner" aria-hidden="true"></div>
+        <div class="gdk-overlay-title">Sending Payment Link</div>
+        <p class="gdk-overlay-sub">Texting <span id="sending-contact" style="color:var(--gdk-accent-pale);font-weight:600;">your customer</span>...</p>
+      </div>
+      <div class="gdk-stage" id="stage-sent">
+        <div class="gdk-check" aria-hidden="true">✓</div>
+        <div class="gdk-overlay-title success">Link Sent</div>
+        <p class="gdk-overlay-sub">Payment link delivered to <span id="sent-contact-display" style="color:var(--gdk-accent-pale);font-weight:600;"></span></p>
+        <div style="margin-top:24px;padding:18px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:12px;text-align:left;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gdk-accent);font-weight:700;margin-bottom:8px;">SMS preview</div>
+          <div style="font-family:'SF Mono',Menlo,monospace;font-size:0.82rem;color:var(--gdk-text);line-height:1.55;">"GDK: Hi <span id="sms-name">friend</span> — your invoice for $<span id="sms-amount">0</span> is ready: <span style="color:var(--gdk-accent-pale);">gdk.com/p/<span id="sms-id">PAY-XXXX</span></span>"</div>
+        </div>
+        <p class="gdk-overlay-note">Demo simulation — no real text was sent.</p>
+        <div class="gdk-overlay-actions">
+          <a id="link-view-pay" href="/demos/garage/pay.html" class="gdk-btn gdk-btn-primary">Preview Customer's Page</a>
+          <a href="/demos/garage/admin.html" class="gdk-btn gdk-btn-outline">Back to Dashboard</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="gdk-footer">
+    <div class="gdk-footer-inner">
+      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
+      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
+      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+    </div>
+  </footer>
+
+  <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
+  <script>
+    const form = document.getElementById('pay-form');
+    const btnSendLink = document.getElementById('btn-send-link');
+    const btnTakeNow = document.getElementById('btn-take-now');
+    const overlay = document.getElementById('send-overlay');
+
+    function validateForm() {
+      const fields = ['pay-name','pay-contact','pay-amount','pay-desc'];
+      let valid = true;
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const wrapper = el.closest('div').parentElement.tagName === 'DIV' ? el.parentElement : el.parentElement;
+        const err = wrapper.querySelector('.gdk-error-msg');
+        el.classList.remove('error');
+        if (err) err.classList.remove('show');
+        const v = el.value.trim();
+        if (!v) { el.classList.add('error'); if (err) err.classList.add('show'); valid = false; return; }
+        if (id === 'pay-contact') {
+          const isPhone = v.replace(/\D/g,'').length >= 10;
+          const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+          if (!isPhone && !isEmail) { el.classList.add('error'); if (err) err.classList.add('show'); valid = false; }
+        }
+        if (id === 'pay-amount' && parseFloat(v) < 1) {
+          el.classList.add('error'); if (err) err.classList.add('show'); valid = false;
+        }
+      });
+      return valid;
+    }
+
+    function getValues() {
+      const name = document.getElementById('pay-name').value.trim();
+      const contact = document.getElementById('pay-contact').value.trim();
+      const amount = parseFloat(document.getElementById('pay-amount').value);
+      const desc = document.getElementById('pay-desc').value.trim();
+      const isEmail = /@/.test(contact);
+      const phone = isEmail ? '' : contact.replace(/\D/g,'').slice(-10);
+      const email = isEmail ? contact : '';
+      const phoneFmt = phone.length === 10 ? `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}` : '';
+      // generate a fake invoice ID like PAY-XXXX (4-digit, from current time)
+      const newId = 'PAY-' + (1300 + Math.floor(Math.random() * 700));
+      return { name, contact, amount, desc, phone, email, phoneFmt, newId };
+    }
+
+    function buildPayUrl(v, extraParams = '') {
+      const params = new URLSearchParams({
+        id: v.newId,
+        name: v.name,
+        amount: v.amount.toFixed(2),
+        desc: v.desc,
+      });
+      if (v.phone) params.set('phone', v.phone);
+      if (v.email) params.set('email', v.email);
+      return '/demos/garage/pay.html?' + params.toString() + extraParams;
+    }
+
+    function recordOf(v, method, status) {
+      return {
+        id: v.newId,
+        customerName: v.name,
+        customerPhone: v.phoneFmt || v.phone || '',
+        customerEmail: v.email,
+        amount: v.amount,
+        description: v.desc,
+        method: method,                       // 'link-sent' | 'paid-inperson'
+        status: status,                       // 'pending' | 'paid'
+        createdAt: new Date(),
+        paidAt: null,
+        techName: 'Marcus Reed',
+        paymentMethod: null,
+      };
+    }
+
+    btnSendLink.addEventListener('click', () => {
+      if (!validateForm()) return;
+      const v = getValues();
+
+      // PERSIST the new payment so it shows up on /admin.html immediately
+      window.GDK_DATA.saveDemoPayment(recordOf(v, 'link-sent', 'pending'));
+
+      // populate confirmation
+      document.getElementById('sending-contact').textContent = v.phoneFmt || v.email;
+      document.getElementById('sent-contact-display').textContent = v.phoneFmt || v.email;
+      document.getElementById('sms-name').textContent = v.name.split(' ')[0];
+      document.getElementById('sms-amount').textContent = v.amount.toFixed(2);
+      document.getElementById('sms-id').textContent = v.newId;
+      document.getElementById('link-view-pay').href = buildPayUrl(v);
+
+      // Show overlay, sending stage first
+      document.getElementById('stage-sending').classList.add('active');
+      document.getElementById('stage-sent').classList.remove('active');
+      overlay.classList.add('active');
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+
+      // Stage 1 -> 2 after 1.6s
+      setTimeout(() => {
+        document.getElementById('stage-sending').classList.remove('active');
+        document.getElementById('stage-sent').classList.add('active');
+      }, 1600);
+    });
+
+    btnTakeNow.addEventListener('click', () => {
+      if (!validateForm()) return;
+      const v = getValues();
+
+      // PERSIST as pending in-person payment; pay.html will mark it paid on completion
+      window.GDK_DATA.saveDemoPayment(recordOf(v, 'paid-inperson', 'pending'));
+
+      window.location.href = buildPayUrl(v, '&mode=inperson');
+    });
+  </script>
+</body>
+</html>

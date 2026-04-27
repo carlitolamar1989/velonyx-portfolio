@@ -1304,3 +1304,563 @@ select.gdk-input {
 .gdk-stat-num {
   text-shadow: 0 2px 28px rgba(184,115,46,0.28);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PAYMENT FEATURE — admin-pay form, /pay.html branded page,
+   in-person handoff overlay, payments log on admin
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* AMOUNT INPUT — $ prefix on admin-pay form */
+.gdk-amount-input {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.gdk-amount-prefix {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gdk-accent-pale);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+.gdk-amount-input .gdk-input {
+  padding-left: 32px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* ADMIN-PAY ACTION BUTTONS */
+.gdk-pay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+@media (min-width: 600px) {
+  .gdk-pay-actions { flex-direction: row; gap: 14px; }
+  .gdk-pay-actions > .gdk-btn { flex: 1; }
+}
+.gdk-btn-take-now {
+  border-color: var(--gdk-accent);
+  color: var(--gdk-accent-pale);
+  background: rgba(184, 115, 46, 0.08);
+}
+.gdk-btn-take-now:hover {
+  background: rgba(184, 115, 46, 0.16);
+  border-color: var(--gdk-accent-bright);
+  color: var(--gdk-text);
+}
+.gdk-btn-payment-cta {
+  background: linear-gradient(135deg, var(--gdk-accent-bright), var(--gdk-accent));
+  box-shadow: 0 4px 14px rgba(184, 115, 46, 0.32);
+}
+
+/* ═══ /pay.html — BRANDED CUSTOMER PAYMENT PAGE ═══ */
+.gdk-pay-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--gdk-bg-deeper);
+  border-bottom: 1px solid var(--gdk-border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gdk-pay-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.gdk-pay-crown {
+  width: 28px;
+  height: 24px;
+  color: var(--gdk-accent);
+  flex-shrink: 0;
+}
+.gdk-pay-secure {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gdk-text-faint);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 480px) {
+  .gdk-pay-secure span { display: none; }
+}
+
+.gdk-pay-main {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 36px 20px 60px;
+}
+@media (max-width: 480px) {
+  .gdk-pay-main { padding: 24px 16px 40px; }
+}
+
+.gdk-pay-card {
+  background: linear-gradient(180deg, var(--gdk-surface) 0%, var(--gdk-bg-deeper) 100%);
+  border: 1px solid var(--gdk-border);
+  border-radius: 18px;
+  padding: 36px 28px 32px;
+}
+@media (max-width: 480px) {
+  .gdk-pay-card { padding: 28px 22px 26px; border-radius: 14px; }
+}
+
+.gdk-pay-greeting {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--gdk-text);
+  margin-bottom: 6px;
+}
+.gdk-pay-tagline {
+  color: var(--gdk-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+
+.gdk-pay-invoice-box {
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 28px;
+}
+.gdk-pay-invoice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  gap: 12px;
+}
+.gdk-pay-invoice-label {
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gdk-pay-invoice-value {
+  font-size: 0.92rem;
+  color: var(--gdk-text);
+  text-align: right;
+  word-break: break-word;
+}
+.gdk-pay-invoice-total {
+  margin-top: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gdk-border-accent);
+}
+.gdk-pay-invoice-total .gdk-pay-invoice-label {
+  font-size: 0.85rem;
+  color: var(--gdk-text-dim);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+.gdk-pay-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gdk-accent-pale);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* PAYMENT METHOD BUTTONS */
+.gdk-pay-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gdk-pay-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  text-align: center;
+}
+.gdk-pay-method:hover { transform: translateY(-1px); }
+.gdk-pay-method:active { transform: translateY(0); }
+.gdk-pay-method:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.gdk-pay-method-sub {
+  font-size: 0.74rem;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.gdk-pay-method.apple-pay {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.gdk-pay-method.apple-pay:hover {
+  background: #1c1c1c;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+}
+
+.gdk-pay-method.google-pay {
+  background: #fff;
+  color: #3c4043;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.gdk-pay-method.google-pay:hover {
+  background: #f8f9fa;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.gdk-pay-method.affirm {
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(74, 144, 226, 0.32);
+}
+.gdk-pay-method.affirm:hover {
+  background: linear-gradient(135deg, #5AA0F2 0%, #4080CC 100%);
+  box-shadow: 0 4px 18px rgba(74, 144, 226, 0.42);
+}
+
+.gdk-pay-method.klarna {
+  background: #FFA8CD;
+  color: #17120F;
+  box-shadow: 0 2px 10px rgba(255, 168, 205, 0.32);
+}
+.gdk-pay-method.klarna:hover {
+  background: #FFB8D5;
+  box-shadow: 0 4px 18px rgba(255, 168, 205, 0.42);
+}
+
+/* "or pay by card" divider */
+.gdk-pay-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 2px;
+  color: var(--gdk-text-faint);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+.gdk-pay-divider::before,
+.gdk-pay-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gdk-border);
+}
+
+.gdk-pay-method.card-toggle {
+  background: transparent;
+  color: var(--gdk-text-dim);
+  border: 1px solid var(--gdk-border);
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 0.92rem;
+  min-height: 48px;
+}
+.gdk-pay-method.card-toggle:hover {
+  background: rgba(255,255,255,0.02);
+  border-color: var(--gdk-border-strong);
+  color: var(--gdk-text);
+}
+#card-toggle-chevron { transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+
+.gdk-pay-card-form {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
+  padding: 0;
+}
+.gdk-pay-card-form.open {
+  max-height: 600px;
+  padding: 18px 4px 4px;
+}
+.gdk-pay-card-row { margin-bottom: 14px; }
+.gdk-pay-card-row .gdk-label { display: block; margin-bottom: 6px; }
+.gdk-pay-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.gdk-pay-card-grid .gdk-label { display: block; margin-bottom: 6px; font-size: 0.78rem; }
+.gdk-pay-card-grid .gdk-input { padding: 12px 14px; font-size: 0.92rem; }
+
+.gdk-pay-footer-note {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--gdk-text-faint);
+  margin-top: 22px;
+  letter-spacing: 0.02em;
+}
+.gdk-pay-footer {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--gdk-text-faint);
+  padding: 28px 20px 36px;
+  letter-spacing: 0.02em;
+}
+.gdk-pay-footer a {
+  color: var(--gdk-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.gdk-pay-footer a:hover { color: var(--gdk-accent-pale); }
+
+/* IN-PERSON HANDOFF OVERLAY (Flow 2) */
+.gdk-handoff-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gdk-handoff-overlay.active { display: flex; }
+.gdk-handoff-overlay.visible { opacity: 1; }
+.gdk-handoff-card {
+  text-align: center;
+  max-width: 360px;
+}
+.gdk-handoff-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.6rem;
+  color: var(--gdk-text);
+  margin: 22px 0 8px;
+  line-height: 1.2;
+}
+.gdk-handoff-sub {
+  color: var(--gdk-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* PAYMENTS LOG on admin.html */
+.gdk-payments-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .gdk-payments-totals { grid-template-columns: 1fr; gap: 10px; }
+}
+.gdk-pay-stat {
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.gdk-pay-stat-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gdk-text-faint);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.gdk-pay-stat-value {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--gdk-accent-pale);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.gdk-payments-table {
+  min-width: 720px;
+}
+
+/* Stripe connected pill — small green status indicator */
+.gdk-stripe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(134,239,172,0.08);
+  border: 1px solid rgba(134,239,172,0.3);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: #86efac;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* INVOICES PAGE — Filter bar */
+.gdk-invoice-filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--gdk-bg-deeper);
+  border: 1px solid var(--gdk-border);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+@media (min-width: 880px) {
+  .gdk-invoice-filters { grid-template-columns: auto auto 1fr; gap: 22px; align-items: end; }
+}
+.gdk-filter-group { display: flex; flex-direction: column; gap: 6px; }
+.gdk-filter-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gdk-text-faint);
+  font-weight: 600;
+}
+
+/* Invoice rows — clickable */
+.gdk-invoice-row { cursor: pointer; }
+.gdk-invoice-row:hover td { background: rgba(184,115,46,0.05); }
+.gdk-invoice-row:focus { outline: 2px solid var(--gdk-accent); outline-offset: -2px; }
+
+.gdk-invoices-table { min-width: 820px; }
+
+/* INVOICE DETAIL MODAL */
+.gdk-invoice-modal-card {
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  padding: 32px 30px 26px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+.gdk-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gdk-modal-close:hover {
+  background: rgba(255,255,255,0.04);
+  color: var(--gdk-text);
+  border-color: var(--gdk-border-strong);
+}
+
+.gdk-invoice-receipt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--gdk-border);
+  margin-bottom: 20px;
+}
+
+.gdk-invoice-receipt-section {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--gdk-border);
+}
+.gdk-invoice-receipt-section:last-of-type { border-bottom: none; }
+
+.gdk-invoice-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 5px 0;
+}
+.gdk-invoice-receipt-label {
+  font-size: 0.78rem;
+  color: var(--gdk-text-faint);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.gdk-invoice-receipt-value {
+  font-size: 0.88rem;
+  color: var(--gdk-text);
+  text-align: right;
+  word-break: break-word;
+}
+
+.gdk-invoice-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.gdk-invoice-receipt-totals .gdk-invoice-receipt-row { padding: 4px 0; }
+.gdk-invoice-receipt-grand {
+  margin-top: 6px;
+  padding-top: 10px !important;
+  border-top: 1px solid var(--gdk-border-accent);
+}
+.gdk-invoice-receipt-grand .gdk-invoice-receipt-label {
+  color: var(--gdk-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.gdk-invoice-receipt-grand .gdk-invoice-receipt-value {
+  color: var(--gdk-accent-pale);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.gdk-invoice-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 18px;
+  margin-top: 4px;
+  border-top: 1px solid var(--gdk-border);
+}
+@media (max-width: 480px) {
+  .gdk-invoice-actions { flex-direction: column; }
+  .gdk-invoice-actions .gdk-btn { width: 100%; }
+}
+
+/* Fresh demo entries — subtle green glow on the row */
+.gdk-payment-fresh td {
+  background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 50%, transparent);
+  border-left: 2px solid rgba(134,239,172,0.5);
+  animation: gdkFreshPulse 2.4s ease-out 1;
+}
+.gdk-payment-fresh td:first-child { border-left-color: rgba(134,239,172,0.6); }
+@keyframes gdkFreshPulse {
+  0%   { background: linear-gradient(90deg, rgba(134,239,172,0.28), rgba(134,239,172,0.12) 50%, transparent); }
+  100% { background: linear-gradient(90deg, rgba(134,239,172,0.08), rgba(134,239,172,0.02) 50%, transparent); }
+}
+.gdk-payment-fresh:hover td {
+  background: linear-gradient(90deg, rgba(134,239,172,0.14), rgba(134,239,172,0.04) 50%, rgba(184,115,46,0.03)) !important;
+}

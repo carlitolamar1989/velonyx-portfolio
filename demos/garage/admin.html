@@ -22,7 +22,8 @@
       <div class="gdk-nav-links" style="display:flex;">
         <a href="/demos/garage/">Public Site</a>
         <a href="/demos/garage/portal.html" style="color:var(--gdk-text-faint);font-size:0.78rem;">Customer View</a>
-        <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Admin</a>
+        <a href="/demos/garage/admin.html" style="color:var(--gdk-accent);">Dashboard</a>
+        <a href="/demos/garage/invoices.html">Invoices</a>
         <button class="gdk-btn gdk-btn-outline gdk-btn-small">Sign Out (Marcus)</button>
       </div>
       <button class="gdk-btn gdk-btn-outline gdk-btn-small gdk-nav-mobile-cta">Sign Out</button>
@@ -48,9 +49,15 @@
           <div class="gdk-portal-meta" id="header-meta">—</div>
         </div>
       </div>
-      <div style="display:flex;gap:10px;">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="gdk-btn gdk-btn-outline gdk-btn-small">Export Data</button>
-        <button class="gdk-btn gdk-btn-primary gdk-btn-small">+ New Lead</button>
+        <button class="gdk-btn gdk-btn-outline gdk-btn-small">+ New Lead</button>
+        <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
+          <span style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            + Take a Payment
+          </span>
+        </a>
       </div>
     </header>
 
@@ -67,9 +74,9 @@
         <div class="gdk-kpi-delta up">↑ 4 vs last month</div>
       </div>
       <div class="gdk-kpi">
-        <div class="gdk-kpi-label">Pipeline Value</div>
+        <div class="gdk-kpi-label">Open Quotes &amp; Booked Jobs</div>
         <div class="gdk-kpi-value" id="kpi-pipeline">—</div>
-        <div class="gdk-kpi-delta up">Open estimates + scheduled</div>
+        <div class="gdk-kpi-delta up">Money on the calendar</div>
       </div>
       <div class="gdk-kpi">
         <div class="gdk-kpi-label">Win Rate · 90 Days</div>
@@ -81,18 +88,46 @@
     <!-- TWO-COLUMN MAIN -->
     <div class="gdk-portal-grid" style="grid-template-columns:1fr;gap:18px;">
 
-      <!-- LEAD PIPELINE -->
+      <!-- PAYMENTS LOG (top — money first) -->
       <section class="gdk-portal-card full">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
           <div>
-            <div class="gdk-portal-card-label">Pipeline</div>
-            <h2 class="gdk-portal-card-title" style="margin-bottom:0;">Lead Pipeline</h2>
+            <div class="gdk-portal-card-label">Money</div>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:4px;">Payments</h2>
+            <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:540px;line-height:1.5;">Every invoice you've sent or taken in person. Tap "+ Take a Payment" to create a new one — pick whatever amount you negotiated.</div>
+          </div>
+          <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-btn-payment-cta">
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              + Take a Payment
+            </span>
+          </a>
+        </div>
+        <div class="gdk-payments-totals" id="payments-totals"></div>
+        <div class="gdk-table-wrap">
+          <table class="gdk-table gdk-payments-table">
+            <thead>
+              <tr><th>Date</th><th>Customer</th><th>Description</th><th style="text-align:right;">Amount</th><th>Method</th><th>Status</th></tr>
+            </thead>
+            <tbody id="payments-tbody"></tbody>
+          </table>
+        </div>
+        <div style="font-size:0.78rem;color:var(--gdk-text-faint);margin-top:14px;text-align:center;" id="payments-meta">—</div>
+      </section>
+
+      <!-- NEW CUSTOMER REQUESTS (formerly "Lead Pipeline" — friendlier label for trades) -->
+      <section class="gdk-portal-card full">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="gdk-portal-card-label">New Inquiries</div>
+            <h2 class="gdk-portal-card-title" style="margin-bottom:4px;">New Customer Requests</h2>
+            <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:540px;line-height:1.5;">People who reached out asking for service — through your website, a call, or a Google search. Filter by where they are in the process.</div>
           </div>
           <div class="gdk-chip-bar" style="margin-bottom:0;">
             <button class="gdk-chip active" data-filter="all">All</button>
             <button class="gdk-chip" data-filter="new">New</button>
             <button class="gdk-chip" data-filter="contacted">Contacted</button>
-            <button class="gdk-chip" data-filter="estimated">Estimated</button>
+            <button class="gdk-chip" data-filter="estimated">Quoted</button>
             <button class="gdk-chip" data-filter="won">Won</button>
             <button class="gdk-chip" data-filter="lost">Lost</button>
           </div>
@@ -100,7 +135,7 @@
         <div class="gdk-table-wrap">
           <table class="gdk-table">
             <thead>
-              <tr><th>Name</th><th>Service</th><th>Neighborhood</th><th>Value</th><th>Source</th><th>Status</th><th>Created</th></tr>
+              <tr><th>Name</th><th>Service</th><th>Neighborhood</th><th>Est. Value</th><th>Source</th><th>Status</th><th>Created</th></tr>
             </thead>
             <tbody id="leads-tbody"></tbody>
           </table>
@@ -266,6 +301,102 @@
     document.getElementById('row-est-rev').innerHTML = estCard + revCard;
     if (window.matchMedia('(min-width: 1100px)').matches) {
       document.getElementById('row-est-rev').style.gridTemplateColumns = '1fr 1fr';
+    }
+
+    // ─── PAYMENTS LOG ───
+    // Merge live demo entries (created via /admin-pay.html) with the static
+    // mock data. Demo entries are flagged with isDemoEntry so we can lightly
+    // visually mark them as fresh.
+    const livePayments = D.getDemoPayments();
+    const allPayments = [...livePayments, ...D.payments];
+    // Dedupe by id (in case a demo entry has same id as mock — newest wins)
+    const seenIds = new Set();
+    const payments = allPayments.filter(p => {
+      if (seenIds.has(p.id)) return false;
+      seenIds.add(p.id);
+      return true;
+    }).sort((a, b) => b.createdAt - a.createdAt);
+
+    const paidPayments = payments.filter(p => p.status === 'paid');
+    const pendingPayments = payments.filter(p => p.status === 'pending');
+    const totalPaid = paidPayments.reduce((s, p) => s + p.amount, 0);
+    const totalPending = pendingPayments.reduce((s, p) => s + p.amount, 0);
+    const paidThisWeek = paidPayments.filter(p => p.paidAt && (new Date() - p.paidAt) / 86400000 <= 7).reduce((s, p) => s + p.amount, 0);
+
+    document.getElementById('payments-totals').innerHTML = `
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Paid · 7 Days</div>
+        <div class="gdk-pay-stat-value">$${paidThisWeek.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Total Collected</div>
+        <div class="gdk-pay-stat-value">$${totalPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+      <div class="gdk-pay-stat">
+        <div class="gdk-pay-stat-label">Pending Links</div>
+        <div class="gdk-pay-stat-value">$${totalPending.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+      </div>
+    `;
+
+    function methodBadge(m) {
+      const map = {
+        'paid-online':   { label: 'Paid Online',   cls: 'gdk-badge-paid' },
+        'paid-inperson': { label: 'Paid In-Person', cls: 'gdk-badge-paid' },
+        'link-sent':     { label: 'Link Sent',     cls: 'gdk-badge-scheduled' },
+      };
+      const v = map[m] || { label: m, cls: 'gdk-badge-new' };
+      return `<span class="gdk-badge ${v.cls}">${v.label}</span>`;
+    }
+    function statusBadge(s) {
+      if (s === 'paid')    return `<span class="gdk-badge gdk-badge-paid">paid</span>`;
+      if (s === 'pending') return `<span class="gdk-badge gdk-badge-due">pending</span>`;
+      return `<span class="gdk-badge gdk-badge-lost">${s}</span>`;
+    }
+
+    document.getElementById('payments-tbody').innerHTML = payments.slice(0, 14).map(p => {
+      // Relative-time helper for fresh demo entries (< 5 min)
+      const dateForDisplay = p.paidAt || p.createdAt;
+      const ageMinutes = (new Date() - dateForDisplay) / 60000;
+      let timeLabel;
+      if (p.isDemoEntry && ageMinutes < 1)  timeLabel = '<span style="color:#86efac;">just now</span>';
+      else if (p.isDemoEntry && ageMinutes < 60) timeLabel = `<span style="color:#86efac;">${Math.floor(ageMinutes)} min ago</span>`;
+      else timeLabel = dateForDisplay.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+
+      return `
+        <tr ${p.isDemoEntry ? 'class="gdk-payment-fresh"' : ''}>
+          <td style="font-size:0.78rem;color:var(--gdk-text-faint);white-space:nowrap;">
+            ${dateForDisplay.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
+            <div style="font-size:0.7rem;">${timeLabel}</div>
+          </td>
+          <td>
+            <div style="color:var(--gdk-text);font-weight:500;">${p.customerName}${p.isDemoEntry ? ' <span style="font-size:0.62rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : ''}</div>
+            <div style="font-size:0.72rem;color:var(--gdk-text-faint);">${p.customerPhone || p.customerEmail || ''}</div>
+          </td>
+          <td style="font-size:0.84rem;color:var(--gdk-text-muted);">${p.description}</td>
+          <td style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;text-align:right;white-space:nowrap;">$${p.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>${methodBadge(p.method)}</td>
+          <td>${statusBadge(p.status)}</td>
+        </tr>
+      `;
+    }).join('');
+
+    const liveCount = livePayments.length;
+    const metaEl = document.getElementById('payments-meta');
+    metaEl.innerHTML = `Showing ${Math.min(14, payments.length)} of ${payments.length} payments · ${pendingPayments.length} awaiting payment` +
+      ` · <a href="/demos/garage/invoices.html" style="color:var(--gdk-accent);text-decoration:underline;text-underline-offset:3px;">View All Invoices →</a>` +
+      (liveCount > 0
+        ? ` · <span style="color:#86efac;">${liveCount} live demo entr${liveCount === 1 ? 'y' : 'ies'}</span> · <a href="#" id="reset-demo-link" style="color:var(--gdk-accent);text-decoration:underline;text-underline-offset:3px;">Reset Demo Data</a>`
+        : '');
+
+    const resetLink = document.getElementById('reset-demo-link');
+    if (resetLink) {
+      resetLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Clear ' + liveCount + ' live demo payment' + (liveCount === 1 ? '' : 's') + '? The static mock data will remain.')) {
+          D.clearDemoPayments();
+          location.reload();
+        }
+      });
     }
   </script>
 </body>
