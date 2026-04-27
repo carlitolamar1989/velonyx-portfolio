@@ -1629,40 +1629,6 @@ select.gdk-input {
 }
 .gdk-pay-footer a:hover { color: var(--gdk-accent-pale); }
 
-/* IN-PERSON HANDOFF OVERLAY (Flow 2) */
-.gdk-handoff-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1100;
-  background: rgba(10,10,10,0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.gdk-handoff-overlay.active { display: flex; }
-.gdk-handoff-overlay.visible { opacity: 1; }
-.gdk-handoff-card {
-  text-align: center;
-  max-width: 360px;
-}
-.gdk-handoff-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.6rem;
-  color: var(--gdk-text);
-  margin: 22px 0 8px;
-  line-height: 1.2;
-}
-.gdk-handoff-sub {
-  color: var(--gdk-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
 /* PAYMENTS LOG on admin.html */
 .gdk-payments-totals {
   display: grid;
@@ -2794,133 +2760,18 @@ html, body { overflow-x: hidden; }
 /* Lock body scroll while drawer is open */
 body.gdk-no-scroll { overflow: hidden; }
 
-/* ═══════════════════════════════════════════════════════════════════
-   IN-PERSON TAP-TO-PAY (Stripe Terminal-style)
-   When the merchant hands their device to a customer, Apple Pay /
-   Google Pay would charge the MERCHANT's wallet — wrong. Replace with:
-   1) "Tap Card or Phone" NFC tap (mocked via ripple overlay)
-   2) Affirm / Klarna (BNPL hosted flows — customer enters own info)
-   3) Card form (manual entry)
-   ═══════════════════════════════════════════════════════════════════ */
-
-.gdk-inperson-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
-  background: rgba(184,115,46,0.06);
-  border: 1px solid var(--gdk-border-accent);
-  border-radius: 10px;
-  margin-bottom: 14px;
-  font-size: 0.78rem;
-  color: var(--gdk-text-muted);
-  line-height: 1.5;
+/* Inline card-form fallback toggle (admin-pay.html) — slightly distinct
+   from primary actions: outline style with chevron rotation */
+.gdk-card-fallback-toggle {
+  background: transparent;
+  color: var(--gdk-text-dim);
+  border: 1px solid var(--gdk-border);
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-weight: 500 !important;
 }
-
-/* Tap to Pay button — distinctive, tactile, with subtle pulse */
-.gdk-pay-method.tap-to-pay {
-  background: linear-gradient(135deg, var(--gdk-accent-pale) 0%, var(--gdk-accent) 100%);
-  color: var(--gdk-bg);
-  box-shadow: 0 4px 18px rgba(184,115,46,0.32), 0 0 0 1px rgba(245,240,232,0.08) inset;
-  position: relative;
-  overflow: hidden;
-}
-.gdk-pay-method.tap-to-pay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(245,240,232,0.18), transparent 60%);
-  opacity: 0;
-  animation: gdkTapShimmer 2.6s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes gdkTapShimmer {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-.gdk-pay-method.tap-to-pay:hover {
-  box-shadow: 0 6px 24px rgba(184,115,46,0.45), 0 0 0 1px rgba(245,240,232,0.12) inset;
-}
-.gdk-pay-method.tap-to-pay .gdk-pay-method-sub {
-  color: rgba(10,10,10,0.7);
-  font-weight: 500;
-}
-.gdk-tap-waves {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* NFC tap overlay — full screen with ripple animation */
-.gdk-tap-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  background: rgba(10,10,10,0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  transition: opacity 0.32s ease;
-}
-.gdk-tap-overlay.active { display: flex; }
-.gdk-tap-overlay.visible { opacity: 1; }
-.gdk-tap-card {
-  text-align: center;
-  max-width: 360px;
-}
-.gdk-tap-rings {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.gdk-tap-rings span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80px;
-  height: 80px;
-  margin-left: -40px;
-  margin-top: -40px;
-  border-radius: 50%;
-  background: var(--gdk-accent);
-  opacity: 0;
-  animation: gdkTapRipple 1.8s ease-out infinite;
-}
-.gdk-tap-rings span:nth-child(2) { animation-delay: 0.45s; }
-.gdk-tap-rings span:nth-child(3) { animation-delay: 0.9s; }
-.gdk-tap-rings svg {
-  width: 56px !important;
-  height: 56px !important;
-  background: var(--gdk-accent);
-  color: var(--gdk-bg) !important;
-  padding: 14px;
-  border-radius: 50%;
-  position: relative;
-  z-index: 5;
-  box-shadow: 0 0 32px rgba(184,115,46,0.45);
-}
-@keyframes gdkTapRipple {
-  0%   { opacity: 0.45; transform: scale(0.6); }
-  80%  { opacity: 0; transform: scale(2.2); }
-  100% { opacity: 0; transform: scale(2.4); }
-}
-.gdk-tap-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.4rem;
+.gdk-card-fallback-toggle:hover {
+  background: rgba(255,255,255,0.02);
+  border-color: var(--gdk-border-strong);
   color: var(--gdk-text);
-  margin-bottom: 8px;
-  line-height: 1.25;
-}
-.gdk-tap-sub {
-  color: var(--gdk-accent-pale);
-  font-size: 0.92rem;
-  letter-spacing: 0.04em;
 }
