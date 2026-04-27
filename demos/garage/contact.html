@@ -124,25 +124,81 @@
     </div>
   </main>
 
-  <!-- MOCK SMS CONFIRMATION OVERLAY -->
-  <div class="gdk-overlay" id="sms-overlay" role="dialog" aria-label="Sending request">
-    <div class="gdk-overlay-card">
+  <!-- BOOKING + DEPOSIT OVERLAY (P6 — multi-stage) -->
+  <div class="gdk-overlay" id="sms-overlay" role="dialog" aria-label="Booking flow">
+    <div class="gdk-overlay-card" style="max-width:480px;">
+
+      <!-- STAGE 1: Sending request (1.6s) -->
       <div class="gdk-stage active" id="stage-sending">
         <div class="gdk-spinner" aria-hidden="true"></div>
         <div class="gdk-overlay-title">Sending Your Request</div>
-        <p class="gdk-overlay-sub">Texting our dispatch team and confirming your details...</p>
+        <p class="gdk-overlay-sub">Texting dispatch and confirming your details...</p>
       </div>
-      <div class="gdk-stage" id="stage-sent">
-        <div class="gdk-check" aria-hidden="true">✓</div>
-        <div class="gdk-overlay-title success">Request Received</div>
-        <p class="gdk-overlay-sub">We just texted <span id="sent-phone" style="color:var(--gdk-accent-pale);font-weight:600;"></span> with confirmation. Watch for a reply with pricing and an arrival window — usually within an hour.</p>
-        <div style="margin-top:24px;padding:18px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:12px;text-align:left;">
-          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gdk-accent);font-weight:700;margin-bottom:8px;">Your confirmation text</div>
-          <div style="font-family:'SF Mono',Menlo,monospace;font-size:0.82rem;color:var(--gdk-text);line-height:1.5;">"Garage Door Kings: Got your request, <span id="sent-name">friend</span>. We'll text back shortly with a price and arrival time. Reply STOP to opt out."</div>
+
+      <!-- STAGE 2: Confirm booking with $89 deposit -->
+      <div class="gdk-stage" id="stage-deposit">
+        <div style="font-size:1.6rem;color:var(--gdk-accent-pale);margin-bottom:8px;">✓</div>
+        <div class="gdk-overlay-title">Reserve Your Time Slot</div>
+        <p class="gdk-overlay-sub">Hi <span id="dep-name" style="color:var(--gdk-accent-pale);font-weight:600;">there</span>, to lock in <span id="dep-window" style="color:var(--gdk-accent-pale);font-weight:600;">today</span> we ask for a small deposit. <strong style="color:var(--gdk-text);">It's refunded as credit toward your repair</strong> if you proceed with service.</p>
+
+        <div style="margin:24px 0;padding:20px;background:var(--gdk-bg-deeper);border:1px solid var(--gdk-border-accent);border-radius:14px;text-align:left;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+            <span style="color:var(--gdk-text-faint);font-size:0.78rem;letter-spacing:0.04em;text-transform:uppercase;">Service Call Fee</span>
+            <span style="font-family:'Fraunces',Georgia,serif;color:var(--gdk-accent-pale);font-size:1.6rem;font-weight:600;">$89.00</span>
+          </div>
+          <div style="font-size:0.78rem;color:var(--gdk-text-muted);line-height:1.55;">Covers tech dispatch and on-site diagnosis. <strong style="color:var(--gdk-accent-pale);">100% credited toward your repair</strong> when you proceed. Full refund if we can't fix it.</div>
         </div>
-        <p class="gdk-overlay-note">Demo simulation — no real text was sent.</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+          <button type="button" class="gdk-pay-method apple-pay" data-deposit-method="apple-pay">
+            <svg viewBox="0 0 50 21" fill="currentColor" aria-hidden="true" style="height:20px;"><path d="M9.121 2.755c-.587.692-1.524 1.238-2.461 1.16-.117-.94.341-1.94.879-2.55C8.126.633 9.151.126 9.98 0c.097.985-.292 1.954-.86 2.755Zm.85 1.346c-1.36-.078-2.522.77-3.166.77-.654 0-1.642-.731-2.717-.711-1.398.02-2.697.808-3.41 2.063-1.467 2.512-.385 6.225 1.034 8.27.694 1.012 1.524 2.122 2.619 2.082 1.044-.04 1.456-.673 2.716-.673 1.262 0 1.625.673 2.736.653 1.135-.02 1.85-1.012 2.541-2.024.793-1.149 1.119-2.268 1.139-2.327-.02-.02-2.181-.84-2.2-3.336-.02-2.083 1.7-3.075 1.78-3.134-.974-1.434-2.5-1.59-3.029-1.629m9.07-3.026v15.7h2.443V11.45h3.378c3.087 0 5.255-2.122 5.255-5.198 0-3.075-2.13-5.176-5.177-5.176Zm2.443 2.063h2.814c2.121 0 3.332 1.13 3.332 3.124s-1.21 3.134-3.342 3.134H21.484Zm12.97 13.756c1.535 0 2.96-.78 3.605-2.014h.052v1.896h2.262V8.939c0-2.268-1.817-3.728-4.611-3.728-2.59 0-4.504 1.48-4.572 3.514h2.2c.183-.965 1.078-1.6 2.298-1.6 1.485 0 2.317.692 2.317 1.964v.86l-3.057.184c-2.844.171-4.385 1.336-4.385 3.354 0 2.034 1.583 3.394 3.847 3.394Zm.667-1.866c-1.291 0-2.114-.624-2.114-1.58 0-.985.794-1.56 2.297-1.65l2.726-.174v.881c0 1.473-1.252 2.523-2.91 2.523Zm9.122 6c2.385 0 3.502-.907 4.484-3.66l4.297-12.018h-2.482L43.74 14.633h-.052L40.832 5.35h-2.532l4.114 11.343-.225.69c-.37 1.179-.97 1.629-2.045 1.629-.193 0-.557-.02-.715-.04v1.886c.157.039.728.058.929.058Z"/></svg>
+          </button>
+          <button type="button" class="gdk-pay-method google-pay" data-deposit-method="google-pay">
+            <span style="display:flex;align-items:center;gap:10px;">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              <span style="font-weight:600;color:#3c4043;font-size:1rem;">Pay</span>
+            </span>
+          </button>
+          <button type="button" class="gdk-pay-method card-toggle" data-deposit-method="card">
+            <span style="display:flex;align-items:center;gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              <span>Pay with card</span>
+            </span>
+          </button>
+        </div>
+
+        <p class="gdk-overlay-note">Demo simulation — no real charge will be made.</p>
         <div class="gdk-overlay-actions">
-          <a href="/demos/garage/portal.html" class="gdk-btn gdk-btn-primary">View Customer Portal</a>
+          <button type="button" class="gdk-btn gdk-btn-outline" id="dep-cancel">Cancel</button>
+        </div>
+      </div>
+
+      <!-- STAGE 3: Processing payment -->
+      <div class="gdk-stage" id="stage-processing">
+        <div class="gdk-spinner" aria-hidden="true"></div>
+        <div class="gdk-overlay-title">Processing Payment</div>
+        <p class="gdk-overlay-sub">Securely charging <span id="proc-method">your card</span> for $89.00...</p>
+      </div>
+
+      <!-- STAGE 4: Booking confirmed -->
+      <div class="gdk-stage" id="stage-confirmed">
+        <div class="gdk-check" aria-hidden="true">✓</div>
+        <div class="gdk-overlay-title success">Booking Confirmed</div>
+        <p class="gdk-overlay-sub">Your tech will arrive between <strong style="color:var(--gdk-accent-pale);" id="conf-window">today between 2pm and 5pm</strong>. We just texted <span id="conf-phone" style="color:var(--gdk-accent-pale);font-weight:600;"></span> with confirmation.</p>
+        <div style="margin-top:20px;padding:18px;background:rgba(184,115,46,0.06);border:1px solid var(--gdk-border-accent);border-radius:12px;text-align:left;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gdk-accent);font-weight:700;margin-bottom:8px;">Booking confirmation</div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--gdk-text);margin-bottom:4px;"><span style="color:var(--gdk-text-faint);">Booking ID</span><span style="font-family:'SF Mono',Menlo,monospace;" id="conf-id">BKG-XXXX</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--gdk-text);margin-bottom:4px;"><span style="color:var(--gdk-text-faint);">Service Call Fee Paid</span><span style="color:#86efac;font-weight:600;">$89.00 ✓</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--gdk-text);"><span style="color:var(--gdk-text-faint);">Method</span><span id="conf-method">Apple Pay</span></div>
+        </div>
+        <p class="gdk-overlay-note">Demo simulation — no real charge or text. The lead now appears on Marcus's admin dashboard with a "Deposit Paid · $89" badge.</p>
+        <div class="gdk-overlay-actions">
+          <a href="/demos/garage/admin.html" class="gdk-btn gdk-btn-primary">See it on the Dashboard</a>
           <a href="/demos/garage/" class="gdk-btn gdk-btn-outline">Back to Home</a>
         </div>
       </div>
@@ -159,9 +215,16 @@
   </footer>
 
   <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/mock-data.js"></script>
   <script>
     const form = document.getElementById('lead-form');
     const overlay = document.getElementById('sms-overlay');
+    const stages = ['sending','deposit','processing','confirmed'];
+    function showStage(name) {
+      stages.forEach(s => document.getElementById('stage-' + s).classList.toggle('active', s === name));
+    }
+
+    let bookingState = {};
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -183,23 +246,83 @@
 
       if (!valid) return;
 
-      // Populate confirmation
-      document.getElementById('sent-name').textContent = document.getElementById('lead-first').value.trim();
+      // Capture lead data
+      const first = document.getElementById('lead-first').value.trim();
+      const last = document.getElementById('lead-last').value.trim();
       const phoneRaw = document.getElementById('lead-phone').value.replace(/\D/g,'').slice(-10);
       const phoneFmt = phoneRaw.length === 10 ? `(${phoneRaw.slice(0,3)}) ${phoneRaw.slice(3,6)}-${phoneRaw.slice(6)}` : document.getElementById('lead-phone').value;
-      document.getElementById('sent-phone').textContent = phoneFmt;
+      const email = document.getElementById('lead-email').value.trim();
+      const area = document.getElementById('lead-area').value;
+      const service = document.getElementById('lead-service').value;
+      const details = document.getElementById('lead-details').value.trim();
 
-      // Show overlay
-      document.getElementById('stage-sending').classList.add('active');
-      document.getElementById('stage-sent').classList.remove('active');
+      // Pick an arrival window dynamically based on time of day
+      const now = new Date();
+      const hr = now.getHours();
+      let window;
+      if (hr < 10) window = 'today between 11am and 2pm';
+      else if (hr < 14) window = 'today between 2pm and 5pm';
+      else if (hr < 17) window = 'today between 5pm and 7pm';
+      else window = 'tomorrow between 8am and 11am';
+
+      bookingState = { first, last, phoneFmt, email, area, service, details, window };
+      document.getElementById('dep-name').textContent = first;
+      document.getElementById('dep-window').textContent = window;
+      document.getElementById('conf-window').textContent = window;
+      document.getElementById('conf-phone').textContent = phoneFmt;
+
+      // Show overlay - Stage 1: Sending
+      showStage('sending');
       overlay.classList.add('active');
       requestAnimationFrame(() => overlay.classList.add('visible'));
 
       // Stage 1 -> 2 after 1.6s
-      setTimeout(() => {
-        document.getElementById('stage-sending').classList.remove('active');
-        document.getElementById('stage-sent').classList.add('active');
-      }, 1600);
+      setTimeout(() => showStage('deposit'), 1600);
+    });
+
+    // Stage 2 — payment method buttons
+    document.querySelectorAll('[data-deposit-method]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const method = btn.dataset.depositMethod;
+        const labels = { 'apple-pay':'Apple Pay', 'google-pay':'Google Pay', 'card':'card ending •••• 4242' };
+        document.getElementById('proc-method').textContent = labels[method];
+        document.getElementById('conf-method').textContent = labels[method];
+        // Stage 3: processing
+        showStage('processing');
+        setTimeout(() => {
+          // Persist new lead with depositPaid flag
+          const bookingId = 'BKG-' + (4000 + Math.floor(Math.random() * 5000));
+          document.getElementById('conf-id').textContent = bookingId;
+          if (window.GDK_DATA && window.GDK_DATA.saveDemoLead) {
+            const svc = window.GDK_DATA.services.find(s => bookingState.service.toLowerCase().includes(s.id) || s.name.toLowerCase().includes(bookingState.service.toLowerCase().split(' ')[0]));
+            window.GDK_DATA.saveDemoLead({
+              id: 'lead-bkg-' + bookingId.replace('BKG-',''),
+              name: `${bookingState.first} ${bookingState.last}`,
+              phone: bookingState.phoneFmt,
+              email: bookingState.email,
+              serviceInterest: bookingState.service.split('(')[0].trim(),
+              neighborhood: bookingState.area,
+              estimatedValue: svc ? svc.avg : 245,
+              source: 'Website (deposit paid)',
+              status: 'contacted',
+              createdAt: new Date(),
+              notes: bookingState.details,
+              depositPaid: true,
+              depositAmount: 89,
+              depositMethod: method,
+              bookingId: bookingId,
+              window: bookingState.window,
+            });
+          }
+          // Stage 4: confirmed
+          showStage('confirmed');
+        }, 1800);
+      });
+    });
+
+    document.getElementById('dep-cancel').addEventListener('click', () => {
+      overlay.classList.remove('visible');
+      setTimeout(() => { overlay.classList.remove('active'); showStage('sending'); }, 280);
     });
   </script>
 </body>

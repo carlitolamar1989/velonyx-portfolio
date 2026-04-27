@@ -318,9 +318,10 @@
                          : isFresh && ageMin < 60 ? `<span style="color:#86efac;">${Math.floor(ageMin)} MIN AGO</span>`
                          : l.createdAt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
         const newBadge = isFresh ? ' <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.12);border:1px solid rgba(134,239,172,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.05em;text-transform:uppercase;font-weight:700;vertical-align:1px;">new</span>' : '';
+        const depBadge = l.depositPaid ? ` <span style="font-size:0.6rem;color:#86efac;background:rgba(134,239,172,0.16);border:1px solid rgba(134,239,172,0.4);padding:2px 7px;border-radius:8px;letter-spacing:0.04em;text-transform:uppercase;font-weight:700;vertical-align:1px;white-space:nowrap;">Deposit Paid · $${l.depositAmount || 89}</span>` : '';
         return `
           <tr ${isFresh ? 'class="gdk-payment-fresh"' : ''}>
-            <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}${newBadge}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
+            <td data-card-area="primary"><div style="color:var(--gdk-text);font-weight:500;">${l.name}${newBadge}${depBadge}</div><div style="font-size:0.72rem;color:var(--gdk-text-faint);">${l.phone}</div></td>
             <td data-card-area="secondary" style="font-size:0.84rem;">${l.serviceInterest}</td>
             <td data-card-area="tertiary" style="font-size:0.84rem;color:var(--gdk-text-muted);">${l.neighborhood} · ${l.source} · ${dateLabel}</td>
             <td data-card-area="amount" style="color:var(--gdk-accent-pale);font-family:'Fraunces',Georgia,serif;font-weight:600;">$${l.estimatedValue.toLocaleString()}</td>
