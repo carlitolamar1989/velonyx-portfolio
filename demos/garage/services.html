@@ -158,6 +158,7 @@
   </footer>
 
   <script src="/demos/garage/config.js"></script>
+  <script src="/demos/garage/assets/nav-mobile.js" defer></script>
   <script>
     const fadeObs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
