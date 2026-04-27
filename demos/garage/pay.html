@@ -61,16 +61,38 @@
         </div>
       </div>
 
+      <!-- IN-PERSON HEADER NOTE (only shown when ?mode=inperson) -->
+      <div id="inperson-note" class="gdk-inperson-note" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--gdk-accent-pale);"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span>Tap your card or phone to the top of the device, or enter card details below. (Apple Pay / Google Pay use the device owner's wallet, so they're disabled here.)</span>
+      </div>
+
       <!-- PAYMENT METHODS -->
       <div class="gdk-pay-methods" id="pay-methods">
 
-        <!-- Apple Pay -->
-        <button type="button" class="gdk-pay-method apple-pay" data-method="apple-pay">
+        <!-- Tap to Pay (NEW — only shown in ?mode=inperson) -->
+        <button type="button" class="gdk-pay-method tap-to-pay" data-method="tap-to-pay" id="btn-tap-to-pay" style="display:none;">
+          <span style="display:flex;align-items:center;gap:12px;">
+            <span class="gdk-tap-waves" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                <line x1="12" y1="20" x2="12.01" y2="20"/>
+              </svg>
+            </span>
+            <span style="font-weight:700;font-size:1.05rem;">Tap Card or Phone</span>
+          </span>
+          <span class="gdk-pay-method-sub">Hold near the top of the device · Visa, Mastercard, Amex, Discover</span>
+        </button>
+
+        <!-- Apple Pay (hidden in in-person mode — would charge merchant's wallet) -->
+        <button type="button" class="gdk-pay-method apple-pay" data-method="apple-pay" id="btn-apple-pay">
           <svg viewBox="0 0 50 21" fill="currentColor" aria-hidden="true" style="height:20px;"><path d="M9.121 2.755c-.587.692-1.524 1.238-2.461 1.16-.117-.94.341-1.94.879-2.55C8.126.633 9.151.126 9.98 0c.097.985-.292 1.954-.86 2.755Zm.85 1.346c-1.36-.078-2.522.77-3.166.77-.654 0-1.642-.731-2.717-.711-1.398.02-2.697.808-3.41 2.063-1.467 2.512-.385 6.225 1.034 8.27.694 1.012 1.524 2.122 2.619 2.082 1.044-.04 1.456-.673 2.716-.673 1.262 0 1.625.673 2.736.653 1.135-.02 1.85-1.012 2.541-2.024.793-1.149 1.119-2.268 1.139-2.327-.02-.02-2.181-.84-2.2-3.336-.02-2.083 1.7-3.075 1.78-3.134-.974-1.434-2.5-1.59-3.029-1.629m9.07-3.026v15.7h2.443V11.45h3.378c3.087 0 5.255-2.122 5.255-5.198 0-3.075-2.13-5.176-5.177-5.176Zm2.443 2.063h2.814c2.121 0 3.332 1.13 3.332 3.124s-1.21 3.134-3.342 3.134H21.484Zm12.97 13.756c1.535 0 2.96-.78 3.605-2.014h.052v1.896h2.262V8.939c0-2.268-1.817-3.728-4.611-3.728-2.59 0-4.504 1.48-4.572 3.514h2.2c.183-.965 1.078-1.6 2.298-1.6 1.485 0 2.317.692 2.317 1.964v.86l-3.057.184c-2.844.171-4.385 1.336-4.385 3.354 0 2.034 1.583 3.394 3.847 3.394Zm.667-1.866c-1.291 0-2.114-.624-2.114-1.58 0-.985.794-1.56 2.297-1.65l2.726-.174v.881c0 1.473-1.252 2.523-2.91 2.523Zm9.122 6c2.385 0 3.502-.907 4.484-3.66l4.297-12.018h-2.482L43.74 14.633h-.052L40.832 5.35h-2.532l4.114 11.343-.225.69c-.37 1.179-.97 1.629-2.045 1.629-.193 0-.557-.02-.715-.04v1.886c.157.039.728.058.929.058Z"/></svg>
         </button>
 
-        <!-- Google Pay -->
-        <button type="button" class="gdk-pay-method google-pay" data-method="google-pay">
+        <!-- Google Pay (hidden in in-person mode) -->
+        <button type="button" class="gdk-pay-method google-pay" data-method="google-pay" id="btn-google-pay">
           <span style="display:flex;align-items:center;gap:10px;">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -152,6 +174,24 @@
     </div>
   </div>
 
+  <!-- TAP-TO-PAY NFC PROMPT OVERLAY -->
+  <div class="gdk-tap-overlay" id="tap-overlay" aria-hidden="true">
+    <div class="gdk-tap-card">
+      <div class="gdk-tap-rings" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gdk-bg);position:relative;z-index:2;">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+          <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+          <line x1="12" y1="20" x2="12.01" y2="20"/>
+        </svg>
+      </div>
+      <div class="gdk-tap-title">Hold your card or phone near the top</div>
+      <p class="gdk-tap-sub">Reading...</p>
+      <button type="button" class="gdk-btn gdk-btn-outline gdk-btn-small" id="tap-cancel" style="margin-top:18px;">Cancel</button>
+    </div>
+  </div>
+
   <!-- PAYMENT PROCESSING / SUCCESS OVERLAY -->
   <div class="gdk-overlay" id="pay-overlay" role="dialog" aria-label="Processing payment">
     <div class="gdk-overlay-card">
@@ -172,7 +212,7 @@
           <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.85rem;"><span style="color:var(--gdk-text-faint);">Garage Door Kings</span><span style="color:var(--gdk-text);">(702) 555-0184</span></div>
         </div>
         <p class="gdk-overlay-note">Demo simulation — no real payment was charged. A receipt would be emailed/texted automatically.</p>
-        <div class="gdk-overlay-actions">
+        <div class="gdk-overlay-actions" id="success-actions">
           <a href="/demos/garage/" class="gdk-btn gdk-btn-outline">Back to Garage Door Kings</a>
         </div>
       </div>
@@ -237,8 +277,26 @@
       }
     }
 
-    // In-person mode: show handoff prompt for 1.6s, then auto-fade
-    if (params.get('mode') === 'inperson') {
+    // In-person mode adjustments:
+    // 1) hide Apple Pay + Google Pay (would charge merchant's wallet)
+    // 2) show Tap to Pay button at top (NFC reader)
+    // 3) show explanatory note
+    // 4) success CTAs return to admin instead of public homepage
+    const isInPerson = params.get('mode') === 'inperson';
+    if (isInPerson) {
+      // Hide Apple Pay + Google Pay
+      document.getElementById('btn-apple-pay').style.display = 'none';
+      document.getElementById('btn-google-pay').style.display = 'none';
+      // Show Tap to Pay + explanation note
+      document.getElementById('btn-tap-to-pay').style.display = '';
+      document.getElementById('inperson-note').style.display = 'flex';
+      // Swap success CTAs to in-portal links
+      document.getElementById('success-actions').innerHTML = `
+        <a href="/demos/garage/admin-pay.html" class="gdk-btn gdk-btn-primary">Take Another Payment</a>
+        <a href="/demos/garage/admin.html" class="gdk-btn gdk-btn-outline">Back to Dashboard</a>
+      `;
+
+      // Show handoff prompt for 1.6s, then auto-fade
       const handoff = document.getElementById('handoff-overlay');
       handoff.classList.add('active');
       requestAnimationFrame(() => handoff.classList.add('visible'));
@@ -247,6 +305,18 @@
         setTimeout(() => handoff.classList.remove('active'), 400);
       }, 1600);
     }
+
+    // Tap-to-Pay overlay handler
+    const tapOverlay = document.getElementById('tap-overlay');
+    function showTapOverlay() {
+      tapOverlay.classList.add('active');
+      requestAnimationFrame(() => tapOverlay.classList.add('visible'));
+    }
+    function hideTapOverlay() {
+      tapOverlay.classList.remove('visible');
+      setTimeout(() => tapOverlay.classList.remove('active'), 320);
+    }
+    document.getElementById('tap-cancel').addEventListener('click', hideTapOverlay);
 
     // Card form toggle
     const cardToggle = document.getElementById('card-toggle');
@@ -301,8 +371,18 @@
     document.querySelectorAll('.gdk-pay-method[data-method]').forEach(btn => {
       btn.addEventListener('click', () => {
         const method = btn.dataset.method;
-        const labels = { 'apple-pay': 'Apple Pay', 'google-pay': 'Google Pay', 'affirm': 'Affirm financing', 'klarna': 'Klarna' };
-        processPayment(method, labels[method] || method);
+        const labels = { 'apple-pay': 'Apple Pay', 'google-pay': 'Google Pay', 'affirm': 'Affirm financing', 'klarna': 'Klarna', 'tap-to-pay': 'Contactless tap' };
+        if (method === 'tap-to-pay') {
+          // Show NFC ripple overlay for ~2.2s, then proceed to processing
+          showTapOverlay();
+          setTimeout(() => {
+            hideTapOverlay();
+            // Brief beat for the overlay to fade, then process
+            setTimeout(() => processPayment(method, labels[method]), 280);
+          }, 2200);
+        } else {
+          processPayment(method, labels[method] || method);
+        }
       });
     });
     document.getElementById('btn-pay-card').addEventListener('click', () => {
