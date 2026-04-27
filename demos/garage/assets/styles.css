@@ -2640,3 +2640,156 @@ html, body { overflow-x: hidden; }
   }
   .gdk-customer-pay-btn { width: 100%; padding: 12px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE NAV — hamburger + slide-in drawer (auto-init via
+   /assets/nav-mobile.js). Industry-standard pattern. Hidden at
+   ≥880px where the desktop horizontal nav takes over.
+   ═══════════════════════════════════════════════════════════════════ */
+.gdk-burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid var(--gdk-border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  margin-right: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.gdk-burger:hover {
+  border-color: var(--gdk-border-accent);
+  background: rgba(184,115,46,0.06);
+}
+.gdk-burger span {
+  position: absolute;
+  left: 11px;
+  width: 20px;
+  height: 2px;
+  background: var(--gdk-text);
+  border-radius: 2px;
+  transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+.gdk-burger span:nth-child(1) { top: 13px; }
+.gdk-burger span:nth-child(2) { top: 20px; }
+.gdk-burger span:nth-child(3) { top: 27px; }
+.gdk-burger.open { border-color: var(--gdk-accent); background: var(--gdk-accent-ghost); }
+.gdk-burger.open span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.gdk-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.gdk-burger.open span:nth-child(3) { top: 20px; transform: rotate(-45deg); }
+
+@media (max-width: 879px) {
+  .gdk-burger { display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* Backdrop behind the drawer */
+.gdk-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 8999;
+  background: rgba(10,10,10,0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.gdk-mobile-backdrop.open { opacity: 1; pointer-events: auto; }
+
+/* Slide-in drawer from the right */
+.gdk-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 88vw;
+  background: var(--gdk-bg-deeper);
+  border-left: 1px solid var(--gdk-border-accent);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+  z-index: 9000;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.gdk-mobile-drawer.open { transform: translateX(0); }
+.gdk-mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--gdk-border);
+}
+.gdk-mobile-drawer-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gdk-accent);
+  font-weight: 700;
+}
+.gdk-mobile-drawer-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--gdk-border);
+  color: var(--gdk-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.18s;
+}
+.gdk-mobile-drawer-close:hover {
+  background: rgba(255,255,255,0.04);
+  color: var(--gdk-text);
+  border-color: var(--gdk-border-strong);
+}
+.gdk-mobile-drawer-body {
+  padding: 8px 0;
+  flex: 1;
+}
+.gdk-mobile-drawer-body a,
+.gdk-mobile-drawer-body button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 16px 22px;
+  border: none;
+  border-bottom: 1px solid var(--gdk-border);
+  background: transparent;
+  color: var(--gdk-text);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, padding-left 0.18s;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: 0;
+  min-height: 56px;
+}
+.gdk-mobile-drawer-body a:hover,
+.gdk-mobile-drawer-body button:hover {
+  background: rgba(184,115,46,0.06);
+  color: var(--gdk-accent-pale);
+  padding-left: 28px;
+}
+/* Active page link */
+.gdk-mobile-drawer-body a[style*="--gdk-accent"],
+.gdk-mobile-drawer-body a[href$="admin.html"],
+.gdk-mobile-drawer-body a[href$="invoices.html"] {
+  /* generic */
+}
+
+/* Lock body scroll while drawer is open */
+body.gdk-no-scroll { overflow: hidden; }
