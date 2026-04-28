@@ -17,6 +17,76 @@
 
   <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
 
+  <!--
+    Velonyx — Operational platform announcement bar.
+    Points prospects to the FULL operational demo (Next.js: customer portal,
+    admin dashboard, intake wizard, Stripe Connect, pay flow, booking).
+    Update OPERATIONAL_DEMO_URL to whatever subdomain the Next.js Vercel
+    deploy lives behind once DNS is configured.
+  -->
+  <div class="gdk-upgrade-bar" id="gdk-upgrade-bar">
+    <span class="gdk-upgrade-eyebrow">✨ Now live</span>
+    <span class="gdk-upgrade-text">
+      The full operational platform — customer portal, admin dashboard, intake wizard, pay flow.
+    </span>
+    <a id="gdk-upgrade-link" href="https://gdk.velonyxsystems.com" target="_blank" rel="noopener" class="gdk-upgrade-cta">
+      See the operational demo →
+    </a>
+  </div>
+
+  <style>
+    /* Operational platform announcement bar — sits between the demo disclaimer
+       and the nav so prospects see it before any GDK content. */
+    .gdk-upgrade-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.18) 0%, rgba(184, 115, 46, 0.22) 50%, rgba(212, 175, 55, 0.18) 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+      color: #F5F0E8;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .gdk-upgrade-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.25);
+      color: #F2C998;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .gdk-upgrade-text { color: rgba(245, 240, 232, 0.9); max-width: 560px; }
+    .gdk-upgrade-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: #D4AF37;
+      color: #0A0A0A;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .gdk-upgrade-cta:hover { background: #E8C755; transform: translateY(-1px); }
+    @media (max-width: 720px) {
+      .gdk-upgrade-bar { padding: 10px 16px; gap: 8px; font-size: 12px; }
+      .gdk-upgrade-text { font-size: 12px; }
+      .gdk-upgrade-cta { font-size: 12px; padding: 6px 14px; }
+    }
+  </style>
+
   <nav class="gdk-nav">
     <div class="gdk-nav-inner">
       <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
