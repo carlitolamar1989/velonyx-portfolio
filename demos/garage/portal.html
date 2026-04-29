@@ -14,7 +14,10 @@
   <link rel="stylesheet" href="/demos/garage/assets/styles.css">
 </head>
 <body>
-  <div class="demo-banner">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></div>
+  <div class="demo-banner">
+    <span class="demo-banner-text">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></span>
+    <a href="https://velonyxsystems.com/" class="demo-banner-cta" target="_blank" rel="noopener">See What We'd Build For You →</a>
+  </div>
 
   <nav class="gdk-nav">
     <div class="gdk-nav-inner">
@@ -99,6 +102,14 @@
         <div style="display:grid;grid-template-columns:1fr;gap:14px;" id="docs-grid"></div>
       </section>
 
+      <!-- Velonyx — Contextual CTA at end of portal grid -->
+      <div class="gdk-vlx-contextual-cta" style="grid-column: 1 / -1;">
+        <div class="gdk-vlx-contextual-cta-text">
+          <strong>Curious about your own customer portal?</strong> Velonyx Systems builds branded portals like this so your customers can self-serve, see invoices, and book follow-ups — without you picking up the phone.
+        </div>
+        <a href="https://velonyxsystems.com/book.html" class="gdk-btn gdk-btn-primary" target="_blank" rel="noopener">Book a Velonyx Consultation →</a>
+      </div>
+
     </div>
   </main>
 
@@ -120,7 +131,16 @@
     <div class="gdk-footer-inner">
       <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
       <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
-      <p class="gdk-footer-meta">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> · This is a demonstration platform</p>
+      <div class="gdk-footer-vlx-cta">
+        <div class="gdk-footer-vlx-cta-eyebrow">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a></div>
+        <div class="gdk-footer-vlx-cta-headline">Want a system like this for your business?</div>
+        <div class="gdk-footer-vlx-cta-sub">Custom luxury websites with payments, booking, and SMS automation built in. Launch in 10 days.</div>
+        <div class="gdk-footer-vlx-cta-buttons">
+          <a href="https://velonyxsystems.com/book.html" class="gdk-btn gdk-btn-primary" target="_blank" rel="noopener">Book a Free Consultation</a>
+          <a href="https://velonyxsystems.com/checkout.html" class="gdk-btn gdk-btn-outline" target="_blank" rel="noopener">View Pricing</a>
+        </div>
+      </div>
+      <p class="gdk-footer-meta">This is a demonstration platform · velonyxsystems.com</p>
     </div>
   </footer>
 
@@ -371,6 +391,32 @@
       rescheduleSubmit.disabled = true;
       rescheduleSubmit.style.opacity = '0.4';
     });
+  </script>
+  <!-- Velonyx — Floating Book Consultation (dismissible) -->
+  <div class="gdk-floating-book-wrap" id="gdkFloatingBook">
+    <a href="https://velonyxsystems.com/book.html" class="gdk-floating-book" target="_blank" rel="noopener" aria-label="Book a free Velonyx Systems consultation">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Book Consultation
+    </a>
+    <button type="button" class="gdk-floating-book-close" id="gdkFloatingBookClose" aria-label="Dismiss">×</button>
+  </div>
+  <script>
+    (function(){
+      var fb = document.getElementById('gdkFloatingBook');
+      var c = document.getElementById('gdkFloatingBookClose');
+      if (!fb || !c) return;
+      try { if (sessionStorage.getItem('gdk-floating-book-dismissed') === '1') fb.classList.add('dismissed'); } catch(_){}
+      c.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        fb.classList.add('dismissed');
+        try { sessionStorage.setItem('gdk-floating-book-dismissed', '1'); } catch(_){}
+      });
+    })();
   </script>
 </body>
 </html>
