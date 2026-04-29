@@ -1,0 +1,49 @@
+/* TEAM */
+  Garage Door Kings — Las Vegas's Most Trusted Garage Door Specialists
+  Founder · Lead Installer: Marcus Reed
+  Senior Technician: Diego Ruiz
+  Technician · Emergency Dispatch: Trent Walker
+  Address: 1180 N Town Center Dr, Suite 100, Las Vegas, NV 89144
+  Phone: (702) 555-0184
+  Email: info@garagedoorkings.com
+
+/* SITE */
+  Site name: Garage Door Kings
+  Built by: Velonyx Systems — https://velonyxsystems.com
+  Last updated: April 29, 2026
+  Status: Demonstration platform (noindex, nofollow)
+  Production note: This is an example deployment showing what Velonyx
+  builds for service businesses. Brand identity is fictional. Legitimate
+  garage door companies in Las Vegas exist; this is not one of them.
+  Source: https://github.com/carlitolamar1989/velonyx-portfolio
+
+/* TECHNOLOGY */
+  Site: Static HTML / CSS / Vanilla JS
+  Hosting: GitHub Pages (canonical) + Vercel (subdomain redirect)
+  Fonts: Fraunces (Google Fonts) + Inter (Google Fonts)
+  Maps: OpenStreetMap embed
+  Schema: Schema.org JSON-LD (Organization, LocalBusiness, Service,
+  Review, AggregateRating, FAQPage, BreadcrumbList, AboutPage,
+  ContactPage, ItemList, WebSite)
+
+/* SEO TOOLING */
+  This demo's SEO foundation includes:
+    - Unique title tags + meta descriptions per page
+    - Open Graph + Twitter Card markup
+    - Canonical URLs
+    - Geo / ICBM meta
+    - LocalBusiness JSON-LD with full hours, payment, areaServed
+    - 8 individual service-area landing pages (~250 words each, localized)
+    - FAQ schema with matching visible content
+    - Sitemap.xml
+    - robots.txt
+    - This humans.txt file
+
+/* CREDIT */
+  Built by Velonyx Systems — https://velonyxsystems.com
+  Velonyx Systems builds custom websites for service businesses with
+  payments, booking, SMS automation, and SEO foundations like this one
+  ready on day one. Launch in 10 days.
+
+  Want a system like this for your business?
+    https://velonyxsystems.com/book.html

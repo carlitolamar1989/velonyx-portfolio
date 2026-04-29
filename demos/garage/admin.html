@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
   <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
-  <title>Admin Dashboard — Garage Door Kings (Velonyx Demo)</title>
-  <meta name="description" content="Sample admin dashboard for Garage Door Kings. Lead pipeline, jobs calendar, SMS log, reviews. Built by Velonyx Systems.">
+  <title>Owner Dashboard | Garage Door Kings Las Vegas</title>
+  <meta name="description" content="Operator dashboard for Garage Door Kings. Lead pipeline, jobs calendar, payments log, SMS automation, review requests, and Reputation Engine.">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Garage Door Kings">
+  <link rel="canonical" href="https://velonyxsystems.com/demos/garage/admin.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Owner Dashboard | Garage Door Kings Las Vegas">
+  <meta property="og:description" content="Lead pipeline, jobs calendar, payments log, SMS automation, review requests.">
+  <meta property="og:image" content="https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png">
+  <meta property="og:url" content="https://velonyxsystems.com/demos/garage/admin.html">
+  <meta property="og:site_name" content="Garage Door Kings">
+  <meta property="og:locale" content="en_US">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Owner Dashboard | Garage Door Kings Las Vegas">
+  <meta name="twitter:description" content="Lead pipeline, jobs, payments, SMS automation.">
+  <meta name="twitter:image" content="https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png">
+  <!-- Geo / Local SEO -->
+  <meta name="geo.region" content="US-NV">
+  <meta name="geo.placename" content="Las Vegas">
+  <meta name="geo.position" content="36.1716;-115.1391">
+  <meta name="ICBM" content="36.1716, -115.1391">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/demos/garage/assets/styles.css">
+
+  <!-- Schema.org JSON-LD — Organization (compact) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","@id":"https://velonyxsystems.com/demos/garage/#organization","name":"Garage Door Kings","url":"https://velonyxsystems.com/demos/garage/","logo":"https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png","telephone":"+1-702-555-0184","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Las Vegas","addressRegion":"NV","postalCode":"89144","addressCountry":"US"}}
+  </script>
+
+  <!-- BreadcrumbList -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/demos/garage/"},{"@type":"ListItem","position":2,"name":"Owner Dashboard","item":"https://velonyxsystems.com/demos/garage/admin.html"}]}
+  </script>
 </head>
 <body>
   <div class="demo-banner">
@@ -33,6 +63,7 @@
     </div>
   </nav>
 
+  <h1 class="visually-hidden">Owner Dashboard — Garage Door Kings Las Vegas</h1>
   <main class="gdk-portal-main" style="max-width:1400px;">
     <div class="gdk-sample-banner">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8732E" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
@@ -213,6 +244,54 @@
 
       <!-- TWO-COL: Jobs + SMS Log -->
       <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-jobs-sms"></div>
+
+      <!-- REPUTATION ENGINE — Velonyx-branded review automation panel -->
+      <section class="gdk-portal-card full" aria-labelledby="rep-engine-heading">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="gdk-portal-card-label" style="display:flex;align-items:center;gap:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gdk-accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Reputation Engine <span style="color:var(--gdk-text-faint);font-size:0.72rem;letter-spacing:0.05em;text-transform:none;font-weight:400;">· Powered by Velonyx</span>
+            </div>
+            <h2 id="rep-engine-heading" class="gdk-portal-card-title" style="margin-bottom:4px;">Reviews this month</h2>
+            <div style="font-size:0.82rem;color:var(--gdk-text-muted);max-width:560px;line-height:1.5;">Auto-sends review requests via SMS 24 hours after every paid job. Negative responses get triaged to you first; positive responses route to Google, Yelp, or Facebook.</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <span class="gdk-badge gdk-badge-paid">Active</span>
+          </div>
+        </div>
+
+        <!-- KPI tiles -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:24px;">
+          <div style="background:var(--gdk-bg-deeper);border:1px solid var(--gdk-border);border-radius:10px;padding:18px 20px;">
+            <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gdk-text-faint);font-weight:600;margin-bottom:8px;">Reviews collected</div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.9rem;color:var(--gdk-accent-pale);line-height:1;margin-bottom:6px;">14</div>
+            <div style="font-size:0.78rem;color:var(--gdk-accent);">↑ 4 vs last month</div>
+          </div>
+          <div style="background:var(--gdk-bg-deeper);border:1px solid var(--gdk-border);border-radius:10px;padding:18px 20px;">
+            <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gdk-text-faint);font-weight:600;margin-bottom:8px;">Avg rating · 30 days</div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.9rem;color:var(--gdk-accent-pale);line-height:1;margin-bottom:6px;">4.93 ★</div>
+            <div style="font-size:0.78rem;color:var(--gdk-accent);">↑ 0.04 vs prior 30</div>
+          </div>
+          <div style="background:var(--gdk-bg-deeper);border:1px solid var(--gdk-border);border-radius:10px;padding:18px 20px;">
+            <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gdk-text-faint);font-weight:600;margin-bottom:8px;">Pending requests</div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.9rem;color:var(--gdk-text);line-height:1;margin-bottom:6px;">7</div>
+            <div style="font-size:0.78rem;color:var(--gdk-text-faint);">awaiting customer response</div>
+          </div>
+          <div style="background:var(--gdk-bg-deeper);border:1px solid var(--gdk-border);border-radius:10px;padding:18px 20px;">
+            <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gdk-text-faint);font-weight:600;margin-bottom:8px;">Response rate · negative</div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.9rem;color:var(--gdk-accent-pale);line-height:1;margin-bottom:6px;">100%</div>
+            <div style="font-size:0.78rem;color:var(--gdk-accent);">all 1-3★ responded under 24h</div>
+          </div>
+        </div>
+
+        <!-- Channel breakdown -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;padding:16px 20px;background:linear-gradient(135deg,rgba(184,115,46,0.06),rgba(184,115,46,0.02));border:1px solid var(--gdk-border-accent);border-radius:10px;">
+          <div style="font-size:0.85rem;color:var(--gdk-text-dim);"><strong style="color:var(--gdk-accent-pale);">Google</strong> · 9 reviews · 4.94 ★</div>
+          <div style="font-size:0.85rem;color:var(--gdk-text-dim);"><strong style="color:var(--gdk-accent-pale);">Yelp</strong> · 3 reviews · 5.00 ★</div>
+          <div style="font-size:0.85rem;color:var(--gdk-text-dim);"><strong style="color:var(--gdk-accent-pale);">Facebook</strong> · 2 reviews · 4.50 ★</div>
+        </div>
+      </section>
 
       <!-- ESTIMATES + REVIEWS -->
       <div style="display:grid;grid-template-columns:1fr;gap:18px;" id="row-est-rev"></div>

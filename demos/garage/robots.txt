@@ -1,0 +1,16 @@
+# robots.txt — Garage Door Kings (demo)
+# Production sites should generally allow crawling and reference the sitemap.
+# This demo intentionally uses meta robots="noindex, nofollow" on individual
+# pages so it doesn't compete with real businesses in search, but the crawl
+# rules below are what a real production site would ship.
+
+User-agent: *
+Allow: /
+
+# Internal app shell (low priority for indexing on a real production site)
+Disallow: /admin.html
+Disallow: /admin-pay.html
+Disallow: /invoices.html
+
+# Sitemap
+Sitemap: https://velonyxsystems.com/demos/garage/sitemap.xml
