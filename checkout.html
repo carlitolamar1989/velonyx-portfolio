@@ -525,6 +525,22 @@
       footer { padding: 22px 20px; justify-content: center; text-align: center; }
     }
   </style>
+
+  <!-- Schema.org JSON-LD — Organization reference + Breadcrumb + Pricing -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://velonyxsystems.com/#organization","name":"Velonyx Systems","url":"https://velonyxsystems.com/","telephone":"+1-877-317-8643","email":"admin@velonyxsystems.com","priceRange":"$1,500 - $12,000+"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"},{"@type":"ListItem","position":2,"name":"Pricing &amp; Checkout","item":"https://velonyxsystems.com/checkout.html"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"OfferCatalog","name":"Velonyx Systems Build Tiers","itemListElement":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Starter"},"price":"1500","priceCurrency":"USD","description":"Single-page · 5–7 day delivery"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Growth"},"price":"3500","priceCurrency":"USD","description":"Multi-page + logo + BNPL + SMS · 7–10 day delivery"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Premium"},"price":"6000","priceCurrency":"USD","description":"Full digital system + brand video + portal · 10–14 day delivery"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Enterprise"},"price":"12000","priceCurrency":"USD","description":"Multi-location + custom integrations · custom-quoted"}
+  ]}
+  </script>
 </head>
 <body>
   <div class="page-bg"></div>
