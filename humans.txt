@@ -1,0 +1,49 @@
+/* TEAM */
+  Velonyx Systems LLC
+  Founder & Operator: Carlos Glover
+  Tagline: Your Legacy, Engineered With Precision
+  Phone: (877) 317-8643
+  Email: admin@velonyxsystems.com
+  Location: San Diego, CA · serves the entire United States remotely
+
+/* PRODUCT */
+  Premium luxury websites for service businesses with built-in:
+    - Stripe payments + Apple Pay + Google Pay
+    - BNPL at customer checkout (Klarna, Affirm, Afterpay)
+    - Online booking via Calendly
+    - SMS automation via Twilio
+    - Custom luxury design (gold + platinum aesthetic)
+    - Comprehensive SEO foundation (schema, sitemap, geo, OG/Twitter)
+    - Care subscription for ongoing updates and security
+
+/* TIERS */
+  Starter:    $1,500 · 5–7 day delivery · single-page
+  Growth:     $3,500 · 7–10 day delivery · multi-page + logo + BNPL + SMS
+  Premium:    $6,000 · 10–14 day delivery · full digital system + portal
+  Enterprise: $12,000+ · custom-quoted · multi-location + integrations
+
+  Care subscription (required to keep the site live):
+  Standard $125/mo · Growth $225/mo · Premium $325/mo · Enterprise custom
+
+/* TECHNOLOGY */
+  Site: Static HTML / CSS / Vanilla JS
+  Hosting: GitHub Pages (apex velonyxsystems.com)
+  Subdomain: gdk.velonyxsystems.com (Vercel · Next.js operational demo)
+  Fonts: Space Grotesk + DM Sans (Google Fonts)
+  Analytics: GA4 (gated by CCPA cookie consent)
+  Pixels: Meta Pixel (gated by CCPA cookie consent)
+  Schema: Schema.org JSON-LD on every page
+  Maps: OpenStreetMap embeds for service-area pages
+
+/* CONTACT */
+  Book a free 20-minute consultation: https://velonyxsystems.com/book.html
+  See pricing: https://velonyxsystems.com/checkout.html
+  Financing: https://velonyxsystems.com/financing.html
+  GitHub: https://github.com/carlitolamar1989/velonyx-portfolio
+
+/* CREDIT */
+  Built and operated by Carlos Glover
+  Designed with precision, copy edited for plain English, shipped with SEO
+
+  Want a system like this for your business?
+    https://velonyxsystems.com/book.html

@@ -114,6 +114,61 @@
   }
   </script>
 
+  <!-- ═══════ Additional SEO schema — added April 29, 2026 ═══════ -->
+
+  <!-- Geo / Local SEO meta -->
+  <meta name="geo.region" content="US-CA">
+  <meta name="geo.placename" content="San Diego">
+  <meta name="geo.position" content="32.7157;-117.1611">
+  <meta name="ICBM" content="32.7157, -117.1611">
+
+  <!-- WebSite + SearchAction -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","@id":"https://velonyxsystems.com/#website","url":"https://velonyxsystems.com/","name":"Velonyx Systems","description":"Premium luxury websites with built-in payments, booking, and SMS automation for service businesses.","publisher":{"@id":"https://velonyxsystems.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://velonyxsystems.com/?s={search_term_string}","query-input":"required name=search_term_string"}}
+  </script>
+
+  <!-- AggregateRating standalone -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"AggregateRating","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}
+  </script>
+
+  <!-- Review schema for the 3 named testimonials on the site -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"Marcus J."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Velonyx built me a site that finally matches the quality of my work. Within the first month my revenue doubled.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"Tanya S.","jobTitle":"Fitness Coach","address":{"@type":"PostalAddress","addressLocality":"Atlanta","addressRegion":"GA"}},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"My old Squarespace site never converted. The Velonyx site books clients in their sleep. The booking system alone is worth the entire fee.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"David R.","jobTitle":"Photographer","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX"}},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"My site gets compliments. The Velonyx-built version gets deposits. Bookings doubled the first month.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
+  </script>
+
+  <!-- Service schemas — one per build tier -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","name":"Starter Website Package","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"Single-page custom website with payments, booking, and 30-day post-launch support. Built in 5–7 days.","offers":{"@type":"Offer","price":"1500","priceCurrency":"USD"},"areaServed":{"@type":"Country","name":"United States"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","name":"Growth Website Package","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"Multi-page custom website with logo design, BNPL checkout, SMS automation, and Stripe payments. Built in 7–10 days.","offers":{"@type":"Offer","price":"3500","priceCurrency":"USD"},"areaServed":{"@type":"Country","name":"United States"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","name":"Premium Website Package","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"Full digital system with brand video, customer portal, automated reminders, and unlimited pages. Built in 10–14 days.","offers":{"@type":"Offer","price":"6000","priceCurrency":"USD"},"areaServed":{"@type":"Country","name":"United States"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","name":"Enterprise Website Package","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"Multi-location Client Portal, custom integrations, dedicated project manager, HIPAA-ready infrastructure. Custom-quoted.","offers":{"@type":"Offer","price":"12000","priceCurrency":"USD","priceSpecification":{"@type":"PriceSpecification","priceCurrency":"USD","minPrice":"12000"}},"areaServed":{"@type":"Country","name":"United States"}}
+  </script>
+
+  <!-- FAQPage schema (matches the existing visible FAQ section on this page) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How long does it take to build a Velonyx website?","acceptedAnswer":{"@type":"Answer","text":"5–7 days for the Starter tier, 7–10 days for Growth, 10–14 days for Premium. Industry norm is 4–6 weeks. We move fast because we use a refined process and a small team."}},
+    {"@type":"Question","name":"What's included in every Velonyx site?","acceptedAnswer":{"@type":"Answer","text":"Custom luxury design, Stripe payment integration with Apple Pay and Google Pay, BNPL options (Klarna, Affirm, Afterpay) at customer checkout, online booking via Calendly, SMS automation through Twilio, full SEO foundation (schema, sitemap, meta tags), and 30-day post-launch support. A monthly Care subscription keeps it live, secure, and updated."}},
+    {"@type":"Question","name":"Do I own the website after it's built?","acceptedAnswer":{"@type":"Answer","text":"Yes. You own the code, files, and domain. We hand off everything. Unlike Housecall Pro, ServiceTitan, or Wix, your site is yours — you can take it to a different host or developer any time."}},
+    {"@type":"Question","name":"Why is the Care subscription required?","acceptedAnswer":{"@type":"Answer","text":"Care covers hosting, security patches, content updates (small text or photo changes), uptime monitoring, backups, and direct access to the founder. Most agencies charge $500–$2,000/month for these services. Velonyx Care is $125–$325/month depending on tier."}},
+    {"@type":"Question","name":"Can my customers pay over time?","acceptedAnswer":{"@type":"Answer","text":"Yes. Velonyx wires Klarna, Affirm, and Afterpay directly into your customer checkout flow on every Growth tier and above. Customers can split a $2,000 service into 4 payments at no interest. This typically increases close rate 20–30% on bigger-ticket services."}},
+    {"@type":"Question","name":"What happens if I want to leave Velonyx?","acceptedAnswer":{"@type":"Answer","text":"You take everything with you — domain, code, files, customer data. We'll help you transfer to another developer or self-host. We don't lock customers in. The Care subscription is month-to-month."}}
+  ]}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -3580,8 +3635,8 @@
           </div>
         </a>
 
-        <!-- Garage Door Kings -->
-        <a href="/demos/garage/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+        <!-- Garage Door Kings — links directly to gdk.velonyxsystems.com (Vercel-deployed full operational demo) -->
+        <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1208);">
             <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.94), rgba(10,10,10,0.3));">

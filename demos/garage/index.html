@@ -3,602 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Instant redirect to the canonical operational demo on gdk.velonyxsystems.com.
+       Both URLs (velonyxsystems.com/demos/garage/ and gdk.velonyxsystems.com)
+       are owned by Velonyx Systems. The gdk subdomain is the live Next.js
+       operational demo (full intake wizard, customer portal, admin dashboard,
+       Stripe checkout). This page exists only to redirect any visitor who
+       lands on the old path version directly to the canonical URL. -->
+  <meta http-equiv="refresh" content="0; url=https://gdk.velonyxsystems.com/">
+  <link rel="canonical" href="https://gdk.velonyxsystems.com/">
+  <meta name="robots" content="noindex, nofollow">
+
   <link rel="icon" type="image/png" href="/demos/garage/assets/favicon.png">
   <link rel="apple-touch-icon" href="/demos/garage/assets/gdk-crown-gold.png">
-  <title>Garage Door Repair Las Vegas | Garage Door Kings</title>
-  <meta name="description" content="Las Vegas's most trusted garage door specialists. 24/7 emergency repair, spring replacement, opener install, and new doors. Same-day service across the valley. Call (702) 555-0184.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="author" content="Garage Door Kings">
-  <link rel="canonical" href="https://velonyxsystems.com/demos/garage/">
-  <!-- Open Graph -->
+
+  <title>Garage Door Kings — Redirecting...</title>
+  <meta name="description" content="Redirecting to the live Garage Door Kings operational demo at gdk.velonyxsystems.com.">
+
+  <!-- Open Graph (so any link preview that reaches this URL still looks polished) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Garage Door Repair Las Vegas | Garage Door Kings">
-  <meta property="og:description" content="24/7 emergency garage door repair across Las Vegas, Henderson, Summerlin, and Paradise. Same-day service. Call (702) 555-0184.">
+  <meta property="og:title" content="Garage Door Kings — Velonyx Systems Demo">
+  <meta property="og:description" content="Live Las Vegas garage door services demo built by Velonyx Systems. Full intake, portal, admin, payments.">
   <meta property="og:image" content="https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png">
-  <meta property="og:url" content="https://velonyxsystems.com/demos/garage/">
-  <meta property="og:site_name" content="Garage Door Kings">
-  <meta property="og:locale" content="en_US">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Garage Door Repair Las Vegas | Garage Door Kings">
-  <meta name="twitter:description" content="24/7 emergency garage door repair across Las Vegas. Same-day service.">
-  <meta name="twitter:image" content="https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png">
-  <!-- Geo / Local SEO -->
-  <meta name="geo.region" content="US-NV">
-  <meta name="geo.placename" content="Las Vegas">
-  <meta name="geo.position" content="36.1716;-115.1391">
-  <meta name="ICBM" content="36.1716, -115.1391">
+  <meta property="og:url" content="https://gdk.velonyxsystems.com/">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/demos/garage/assets/styles.css">
 
-  <!-- ═══════ Schema.org JSON-LD — Organization / LocalBusiness ═══════ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "@id": "https://velonyxsystems.com/demos/garage/#organization",
-    "name": "Garage Door Kings",
-    "alternateName": "GDK",
-    "description": "Las Vegas's most trusted garage door specialists. 24/7 emergency repair, spring replacement, opener install, and new doors. Same-day service across the valley.",
-    "url": "https://velonyxsystems.com/demos/garage/",
-    "logo": "https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png",
-    "image": "https://velonyxsystems.com/demos/garage/assets/gdk-crown-gold-lg.png",
-    "telephone": "+1-702-555-0184",
-    "email": "info@garagedoorkings.com",
-    "priceRange": "$$",
-    "currenciesAccepted": "USD",
-    "paymentAccepted": "Cash, Credit Card, Debit Card, Apple Pay, Google Pay, Klarna, Affirm",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "1180 N Town Center Dr Ste 100",
-      "addressLocality": "Las Vegas",
-      "addressRegion": "NV",
-      "postalCode": "89144",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 36.1716,
-      "longitude": -115.1391
-    },
-    "openingHoursSpecification": [
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"19:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"15:00"}
-    ],
-    "areaServed": [
-      {"@type":"City","name":"Las Vegas","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Henderson","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Summerlin","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Paradise","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Spring Valley","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Enterprise","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"North Las Vegas","containedInPlace":{"@type":"State","name":"Nevada"}},
-      {"@type":"City","name":"Boulder City","containedInPlace":{"@type":"State","name":"Nevada"}}
-    ],
-    "sameAs": [
-      "https://www.facebook.com/garagedoorkings",
-      "https://www.instagram.com/garagedoorkings",
-      "https://www.yelp.com/biz/garage-door-kings-las-vegas",
-      "https://g.page/garage-door-kings-las-vegas"
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Marcus Reed",
-      "jobTitle": "Founder & Lead Installer"
-    },
-    "foundingDate": "2015",
-    "knowsAbout": ["Garage Door Repair","Garage Door Installation","Garage Door Spring Replacement","Garage Door Opener Installation","Commercial Garage Doors","Emergency Garage Door Service"],
-    "slogan": "Las Vegas's Most Trusted Garage Door Specialists",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "247",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Garage Door Services",
-      "itemListElement": [
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Garage Door Repair","description":"24/7 emergency repair across Las Vegas."},"price":"89","priceCurrency":"USD"},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Spring Replacement","description":"Torsion and extension spring replacement."},"price":"285","priceCurrency":"USD"},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Opener Installation","description":"LiftMaster, Chamberlain, and Genie openers."},"price":"489","priceCurrency":"USD"},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"New Door Installation","description":"Residential and commercial garage door install."},"price":"1850","priceCurrency":"USD"}
-      ]
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: #050505;
+      color: #F5F0E8;
+      font-family: 'Inter', -apple-system, sans-serif;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
-  }
-  </script>
-
-  <!-- WebSite + SearchAction -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://velonyxsystems.com/demos/garage/#website",
-    "url": "https://velonyxsystems.com/demos/garage/",
-    "name": "Garage Door Kings",
-    "publisher": {"@id":"https://velonyxsystems.com/demos/garage/#organization"},
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://velonyxsystems.com/demos/garage/services.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
+    .wrap { text-align: center; padding: 48px 24px; max-width: 480px; }
+    .crown {
+      width: 96px; height: 80px;
+      margin: 0 auto 28px;
+      stroke: #B8732E; fill: none; stroke-width: 3;
+      stroke-linejoin: round; stroke-linecap: round;
+      animation: pulse 1.6s ease-in-out infinite;
     }
-  }
-  </script>
+    @keyframes pulse {
+      0%, 100% { opacity: 0.55; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: #F2C998;
+      margin: 0 0 8px;
+      letter-spacing: -0.5px;
+    }
+    p { color: rgba(245,240,232,0.65); font-size: 0.95rem; line-height: 1.55; margin: 6px 0; }
+    a { color: #B8732E; text-decoration: none; border-bottom: 1px dashed rgba(184,115,46,0.4); }
+    a:hover { color: #D4843A; border-bottom-color: #D4843A; }
+    .small { font-size: 0.78rem; color: rgba(245,240,232,0.4); margin-top: 24px; }
+  </style>
 
-  <!-- AggregateRating (independent) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AggregateRating",
-    "itemReviewed": {"@id":"https://velonyxsystems.com/demos/garage/#organization"},
-    "ratingValue": "4.9",
-    "reviewCount": "247",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  <script>
+    // Instant redirect — runs before the meta-refresh fires.
+    // Use replace() so the back button doesn't bounce visitors back here.
+    (function () {
+      var target = "https://gdk.velonyxsystems.com/";
+      try { window.location.replace(target); }
+      catch (e) { window.location.href = target; }
+    })();
   </script>
 </head>
 <body>
-
-  <div class="demo-banner">
-    <span class="demo-banner-text">DEMO — EXAMPLE DEPLOYMENT BY <a href="https://velonyxsystems.com" target="_blank" rel="noopener">VELONYX SYSTEMS</a></span>
-    <a href="https://velonyxsystems.com/" class="demo-banner-cta" target="_blank" rel="noopener">See What We'd Build For You →</a>
+  <div class="wrap">
+    <svg class="crown" viewBox="0 0 120 100" aria-hidden="true">
+      <path d="M10 80 L18 28 L42 60 L60 12 L78 60 L102 28 L110 80 Z"/>
+      <line x1="10" y1="88" x2="110" y2="88"/>
+    </svg>
+    <h1>Taking you to Garage Door Kings…</h1>
+    <p>You'll land at the live operational demo at <a href="https://gdk.velonyxsystems.com/">gdk.velonyxsystems.com</a> in a moment.</p>
+    <p class="small">If the redirect doesn't fire automatically, <a href="https://gdk.velonyxsystems.com/">click here</a>.</p>
   </div>
-
-  <!--
-    Velonyx — Operational platform announcement bar.
-    Points prospects to the FULL operational demo (Next.js: customer portal,
-    admin dashboard, intake wizard, Stripe Connect, pay flow, booking).
-    Update OPERATIONAL_DEMO_URL to whatever subdomain the Next.js Vercel
-    deploy lives behind once DNS is configured.
-  -->
-  <div class="gdk-upgrade-bar" id="gdk-upgrade-bar">
-    <span class="gdk-upgrade-eyebrow">✨ Now live</span>
-    <span class="gdk-upgrade-text">
-      The full operational platform — customer portal, admin dashboard, intake wizard, pay flow.
-    </span>
-    <a id="gdk-upgrade-link" href="https://gdk.velonyxsystems.com" target="_blank" rel="noopener" class="gdk-upgrade-cta">
-      See the operational demo →
-    </a>
-  </div>
-
-  <style>
-    /* Operational platform announcement bar — sits between the demo disclaimer
-       and the nav so prospects see it before any GDK content. */
-    .gdk-upgrade-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 12px 20px;
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.18) 0%, rgba(184, 115, 46, 0.22) 50%, rgba(212, 175, 55, 0.18) 100%);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
-      color: #F5F0E8;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13px;
-      line-height: 1.4;
-      text-align: center;
-    }
-    .gdk-upgrade-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(212, 175, 55, 0.25);
-      color: #F2C998;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .gdk-upgrade-text { color: rgba(245, 240, 232, 0.9); max-width: 560px; }
-    .gdk-upgrade-cta {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 16px;
-      border-radius: 999px;
-      background: #D4AF37;
-      color: #0A0A0A;
-      font-weight: 700;
-      font-size: 13px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-    .gdk-upgrade-cta:hover { background: #E8C755; transform: translateY(-1px); }
-    @media (max-width: 720px) {
-      .gdk-upgrade-bar { padding: 10px 16px; gap: 8px; font-size: 12px; }
-      .gdk-upgrade-text { font-size: 12px; }
-      .gdk-upgrade-cta { font-size: 12px; padding: 6px 14px; }
-    }
-  </style>
-
-  <nav class="gdk-nav">
-    <div class="gdk-nav-inner">
-      <a href="/demos/garage/" class="gdk-logo" aria-label="Garage Door Kings"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img"></a>
-      <div class="gdk-nav-links">
-        <a href="/demos/garage/services.html">Services</a>
-        <a href="/demos/garage/service-areas.html">Service Areas</a>
-        <a href="/demos/garage/about.html">About</a>
-        <a href="/demos/garage/reviews.html">Reviews</a>
-        <a href="/demos/garage/portal.html">Customer Portal</a>
-        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small">Get a Quote</a>
-      </div>
-      <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-small gdk-nav-mobile-cta">Quote</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="gdk-hero has-photo">
-    <div class="gdk-hero-photo" aria-hidden="true"></div>
-    <div class="gdk-hero-orb" aria-hidden="true"></div>
-    <div class="gdk-hero-inner">
-      <svg class="gdk-hero-crown" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
-        <path d="M10 80 L18 28 L42 60 L60 12 L78 60 L102 28 L110 80 Z"/>
-        <line x1="10" y1="88" x2="110" y2="88"/>
-      </svg>
-      <span class="gdk-eyebrow">Las Vegas · Henderson · Summerlin · Paradise</span>
-      <h1 class="gdk-hero-title"><span class="gdk-accent-text">Garage Door Kings</span></h1>
-      <p class="gdk-hero-sub">Las Vegas's most trusted garage door specialists. Est. 2015.</p>
-      <p class="gdk-hero-body">Emergency repair, spring replacement, opener install, and new door installation. Same-day service across the valley. Bonded, insured, and obsessed with doing the job right the first time.</p>
-      <div class="gdk-hero-ctas">
-        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-wide">Get a Free Quote</a>
-        <a href="tel:+17025550184" class="gdk-btn gdk-btn-outline gdk-btn-wide">Call (702) 555-0184</a>
-      </div>
-      <div class="gdk-hero-trust">
-        <span><span class="dot"></span>24/7 Emergency Service</span>
-        <span><span class="dot"></span>Same-Day Repair</span>
-        <span><span class="dot"></span>5-Year Warranty</span>
-        <span><span class="dot"></span>Bonded &amp; Insured</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="gdk-stats">
-    <div class="gdk-stats-grid">
-      <div class="fade-up">
-        <div class="gdk-stat-num gdk-accent-text" data-count="10" data-suffix="+">10+</div>
-        <div class="gdk-stat-label">Years Serving Las Vegas</div>
-      </div>
-      <div class="fade-up delay-1">
-        <div class="gdk-stat-num gdk-accent-text" data-count="4800" data-suffix="+" data-format="comma">4,800+</div>
-        <div class="gdk-stat-label">Doors Repaired or Installed</div>
-      </div>
-      <div class="fade-up delay-2">
-        <div class="gdk-stat-num gdk-accent-text" data-count="4.9" data-decimals="1">4.9</div>
-        <div class="gdk-stat-label">Star Average Rating</div>
-      </div>
-      <div class="fade-up delay-3">
-        <div class="gdk-stat-num gdk-accent-text" data-count="2" data-suffix=" hr">2 hr</div>
-        <div class="gdk-stat-label">Emergency Response Time</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES PREVIEW -->
-  <section class="gdk-section">
-    <div class="gdk-container">
-      <div class="gdk-section-head fade-up">
-        <span class="gdk-eyebrow">What We Do</span>
-        <h2 class="gdk-section-title">From an Off-Track Door to a Brand-New Install</h2>
-        <p class="gdk-section-subtitle">Every job, big or small, gets the same focus — diagnose properly, fix it once, warranty the work.</p>
-      </div>
-      <div class="gdk-services-grid">
-        <div class="gdk-service-card with-photo fade-up">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-emergency.jpg" alt="Emergency repair tools and workshop" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">Emergency Repair</h3>
-            <div class="gdk-service-price">From $89</div>
-            <p class="gdk-service-desc">Spring breaks, off-track doors, broken openers — we're on the way in 2 hours or less. 24/7 service across the valley.</p>
-            <a href="/demos/garage/services.html#emergency" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-        <div class="gdk-service-card with-photo fade-up delay-1">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-springs.jpg" alt="Spring replacement tools" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">Spring Replacement</h3>
-            <div class="gdk-service-price">From $285</div>
-            <p class="gdk-service-desc">Torsion + extension springs. Done in 60-90 minutes with a 5-year warranty on parts and labor.</p>
-            <a href="/demos/garage/services.html#spring" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-        <div class="gdk-service-card with-photo fade-up delay-2">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-opener.jpg" alt="Opener installation tools and drill" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">Opener Install</h3>
-            <div class="gdk-service-price">From $489</div>
-            <p class="gdk-service-desc">Belt drive, chain drive, or smart wifi-enabled. LiftMaster, Chamberlain, and Genie. Installed and tested same day.</p>
-            <a href="/demos/garage/services.html#opener" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-        <div class="gdk-service-card with-photo fade-up delay-3">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-newdoor.jpg" alt="New modern grey garage door installation" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">New Door Install</h3>
-            <div class="gdk-service-price">From $1,450</div>
-            <p class="gdk-service-desc">Steel, wood-look, or full-view glass. Insulated and non-insulated. Free in-home design consult.</p>
-            <a href="/demos/garage/services.html#new-door" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-        <div class="gdk-service-card with-photo fade-up delay-4">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-commercial.jpg" alt="Commercial roll-up garage door" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">Commercial Doors</h3>
-            <div class="gdk-service-price">From $2,400</div>
-            <p class="gdk-service-desc">Roll-up, sectional, and high-cycle commercial doors. Industrial-grade, fast turnaround, minimal downtime.</p>
-            <a href="/demos/garage/services.html#commercial" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-        <div class="gdk-service-card with-photo fade-up delay-5">
-          <div class="gdk-service-photo">
-            <img src="/demos/garage/assets/photos/svc-maintenance.jpg" alt="Well-maintained residential garage door with windows" loading="lazy" width="800" height="500">
-            <div class="gdk-service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>
-            </div>
-          </div>
-          <div class="gdk-service-body">
-            <h3 class="gdk-service-name">Maintenance Plans</h3>
-            <div class="gdk-service-price">From $149/yr</div>
-            <p class="gdk-service-desc">Annual tune-up. Lube, balance, safety check. Catches the small problems before they become emergencies.</p>
-            <a href="/demos/garage/services.html#maintenance" class="gdk-service-link">See more →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICE AREAS -->
-  <section class="gdk-section gdk-section-deep">
-    <div class="gdk-container">
-      <div class="gdk-section-head fade-up">
-        <span class="gdk-eyebrow">Where We Serve</span>
-        <h2 class="gdk-section-title">Across the Las Vegas Valley</h2>
-        <p class="gdk-section-subtitle">Most service calls completed the same day. Emergency calls get a 2-hour response time across all our service areas.</p>
-      </div>
-      <div class="gdk-areas-grid">
-        <div class="gdk-area-pill fade-up"><div class="name">Henderson</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-1"><div class="name">Summerlin</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-2"><div class="name">Paradise</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-3"><div class="name">Spring Valley</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up"><div class="name">Enterprise</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-1"><div class="name">North Las Vegas</div><div class="meta">Same-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-2"><div class="name">Boulder City</div><div class="meta">Next-Day</div></div>
-        <div class="gdk-area-pill fade-up delay-3"><div class="name">Las Vegas</div><div class="meta">Same-Day</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED INSTALLS -->
-  <section class="gdk-section">
-    <div class="gdk-container">
-      <div class="gdk-section-head fade-up">
-        <span class="gdk-eyebrow">Recent Work</span>
-        <h2 class="gdk-section-title">Featured Installs Across the Valley</h2>
-        <p class="gdk-section-subtitle">A small slice of the doors we've delivered this year — from luxury custom finishes in Summerlin to craftsman wood doors in Henderson.</p>
-        <div class="gdk-divider" style="margin-top:24px;" aria-hidden="true">
-          <svg viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 80 L18 28 L42 60 L60 12 L78 60 L102 28 L110 80 Z"/></svg>
-        </div>
-      </div>
-      <div class="gdk-installs-grid">
-        <div class="gdk-photo-tile fade-up">
-          <img src="/demos/garage/assets/photos/install-glass.jpg" alt="Modern home with full-view glass garage doors" loading="lazy" width="1000" height="750">
-          <div class="gdk-photo-tile-caption">
-            <div class="gdk-photo-tile-loc">Summerlin</div>
-            <div class="gdk-photo-tile-meta">Custom full-view glass · double bay</div>
-          </div>
-        </div>
-        <div class="gdk-photo-tile fade-up delay-1">
-          <img src="/demos/garage/assets/photos/install-wood.jpg" alt="Craftsman wood garage door on brick home" loading="lazy" width="1000" height="750">
-          <div class="gdk-photo-tile-caption">
-            <div class="gdk-photo-tile-loc">Henderson</div>
-            <div class="gdk-photo-tile-meta">Craftsman wood · single bay</div>
-          </div>
-        </div>
-        <div class="gdk-photo-tile fade-up delay-2">
-          <img src="/demos/garage/assets/photos/install-modern.jpg" alt="Modern home with double-car garage and clean driveway" loading="lazy" width="1000" height="750">
-          <div class="gdk-photo-tile-caption">
-            <div class="gdk-photo-tile-loc">Anthem</div>
-            <div class="gdk-photo-tile-meta">Modern flush panel · double bay</div>
-          </div>
-        </div>
-        <div class="gdk-photo-tile fade-up delay-3">
-          <img src="/demos/garage/assets/photos/install-custom.jpg" alt="Custom finish garage door on contemporary home" loading="lazy" width="1000" height="750">
-          <div class="gdk-photo-tile-caption">
-            <div class="gdk-photo-tile-loc">Green Valley</div>
-            <div class="gdk-photo-tile-meta">Custom carriage · insulated</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS PREVIEW -->
-  <section class="gdk-section">
-    <div class="gdk-container">
-      <div class="gdk-section-head fade-up">
-        <span class="gdk-eyebrow">What Customers Say</span>
-        <h2 class="gdk-section-title">4.9 Stars Across 200+ Reviews</h2>
-        <p class="gdk-section-subtitle">From Google, Yelp, and Facebook. Real names, real jobs, real results.</p>
-      </div>
-      <div class="gdk-reviews-grid">
-        <div class="gdk-review-card fade-up delay-1">
-          <div class="gdk-review-stars">★★★★★</div>
-          <p class="gdk-review-quote">"Diego is a magician. My door has never run smoother. Came on time, fixed it, didn't try to upsell. That's the magic."</p>
-          <div class="gdk-review-author">
-            <div class="gdk-review-avatar">DK</div>
-            <div>
-              <div class="gdk-review-name">Diana Khoury</div>
-              <div class="gdk-review-meta">Spring Replacement · Henderson</div>
-            </div>
-          </div>
-        </div>
-        <div class="gdk-review-card fade-up delay-2">
-          <div class="gdk-review-stars">★★★★★</div>
-          <p class="gdk-review-quote">"Marcus and his team are pros. New door looks gorgeous. Honest pricing, clean work, friendly tech. Best in Vegas."</p>
-          <div class="gdk-review-author">
-            <div class="gdk-review-avatar">FM</div>
-            <div>
-              <div class="gdk-review-name">Fiona MacLeod</div>
-              <div class="gdk-review-meta">New Door Install · Summerlin</div>
-            </div>
-          </div>
-        </div>
-        <div class="gdk-review-card fade-up delay-3">
-          <div class="gdk-review-stars">★★★★★</div>
-          <p class="gdk-review-quote">"My garage door spring snapped at 7 PM and Trent was at my house by 9:30 the same night. Fixed and gone in 30 minutes. Wild."</p>
-          <div class="gdk-review-author">
-            <div class="gdk-review-avatar">CM</div>
-            <div>
-              <div class="gdk-review-name">Carlos Mendoza</div>
-              <div class="gdk-review-meta">Emergency Repair · Boulder City</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:40px;">
-        <a href="/demos/garage/reviews.html" class="gdk-btn gdk-btn-outline">Read All Reviews →</a>
-      </div>
-      <p style="text-align:center;margin-top:24px;font-size:0.78rem;color:var(--gdk-text-faint);letter-spacing:0.05em;">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-1px;color:var(--gdk-accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Powered by the <strong style="color:var(--gdk-text-muted);">Velonyx Reputation Engine</strong> — review automation built into the site.
-      </p>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="gdk-cta-final">
-    <div class="gdk-cta-final-inner fade-up">
-      <span class="gdk-eyebrow">Ready to Fix It?</span>
-      <h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:18px;">Get a free quote in under 2 minutes.</h2>
-      <p style="color:var(--gdk-text-muted);margin-bottom:32px;font-size:1rem;">Tell us what's wrong. We'll text back with a price and an arrival time — usually within an hour during business hours.</p>
-      <div class="gdk-hero-ctas">
-        <a href="/demos/garage/contact.html" class="gdk-btn gdk-btn-primary gdk-btn-wide">Get a Free Quote</a>
-        <a href="tel:+17025550184" class="gdk-btn gdk-btn-outline gdk-btn-wide">Call (702) 555-0184</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="gdk-footer">
-    <div class="gdk-footer-inner">
-      <div class="gdk-footer-brand"><img src="/demos/garage/assets/gdk-wordmark.png" alt="Garage Door Kings" class="gdk-logo-img" style="height:30px;"></div>
-      <p class="gdk-footer-tag">Las Vegas's Most Trusted Garage Door Specialists</p>
-      <p class="gdk-footer-meta">
-        (702) 555-0184 · Mon–Fri 7am–7pm · Sat 8am–3pm · 24/7 Emergency<br>
-        Nevada State Contractors Board #00789432 · Bonded · Insured
-      </p>
-      <div class="gdk-footer-vlx-cta">
-        <div class="gdk-footer-vlx-cta-eyebrow">Built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a></div>
-        <div class="gdk-footer-vlx-cta-headline">Want a system like this for your business?</div>
-        <div class="gdk-footer-vlx-cta-sub">Custom luxury websites with payments, booking, and SMS automation built in. Launch in 10 days.</div>
-        <div class="gdk-footer-vlx-cta-buttons">
-          <a href="https://velonyxsystems.com/book.html" class="gdk-btn gdk-btn-primary" target="_blank" rel="noopener">Book a Free Consultation</a>
-          <a href="https://velonyxsystems.com/checkout.html" class="gdk-btn gdk-btn-outline" target="_blank" rel="noopener">View Pricing</a>
-        </div>
-      </div>
-      <p class="gdk-footer-meta">This is a demonstration platform · velonyxsystems.com · <a href="/demos/garage/seo-built-in.html" style="color:var(--gdk-accent);">Inspect this site's SEO →</a></p>
-    </div>
-  </footer>
-
-  <script src="/demos/garage/config.js"></script>
-  <script src="/demos/garage/assets/nav-mobile.js" defer></script>
-  <script>
-    // Fade-up on scroll
-    const fadeObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
-
-    // Count-up animation on stat numbers
-    function animateCount(el) {
-      const target = parseFloat(el.dataset.count);
-      const decimals = parseInt(el.dataset.decimals || '0', 10);
-      const useComma = el.dataset.format === 'comma';
-      const suffix = el.dataset.suffix || '';
-      const duration = 1600;
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - t, 3);  // easeOutCubic
-        const value = target * eased;
-        let display;
-        if (decimals > 0) display = value.toFixed(decimals);
-        else if (useComma) display = Math.floor(value).toLocaleString('en-US');
-        else display = Math.floor(value).toString();
-        el.textContent = display + suffix;
-        if (t < 1) requestAnimationFrame(tick);
-        else el.textContent = (decimals > 0 ? target.toFixed(decimals) : (useComma ? target.toLocaleString('en-US') : target.toString())) + suffix;
-      }
-      requestAnimationFrame(tick);
-    }
-    const statObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          animateCount(e.target);
-          statObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('.gdk-stat-num[data-count]').forEach(el => {
-      el.textContent = el.dataset.format === 'comma' ? '0' : (parseFloat(el.dataset.count) < 10 ? '0' : '0');
-      statObs.observe(el);
-    });
-  </script>
-  <!-- Velonyx — Floating Book Consultation (dismissible) -->
-  <div class="gdk-floating-book-wrap" id="gdkFloatingBook">
-    <a href="https://velonyxsystems.com/book.html" class="gdk-floating-book" target="_blank" rel="noopener" aria-label="Book a free Velonyx Systems consultation">
-      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      Book Consultation
-    </a>
-    <button type="button" class="gdk-floating-book-close" id="gdkFloatingBookClose" aria-label="Dismiss">×</button>
-  </div>
-  <script>
-    (function(){
-      var fb = document.getElementById('gdkFloatingBook');
-      var c = document.getElementById('gdkFloatingBookClose');
-      if (!fb || !c) return;
-      try { if (sessionStorage.getItem('gdk-floating-book-dismissed') === '1') fb.classList.add('dismissed'); } catch(_){}
-      c.addEventListener('click', function(e){
-        e.preventDefault(); e.stopPropagation();
-        fb.classList.add('dismissed');
-        try { sessionStorage.setItem('gdk-floating-book-dismissed', '1'); } catch(_){}
-      });
-    })();
-  </script>
 </body>
 </html>
