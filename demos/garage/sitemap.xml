@@ -95,6 +95,20 @@
   </url>
 
   <!-- Customer-facing app shell -->
+  <!-- Sales-asset proof pages -->
+  <url>
+    <loc>https://velonyxsystems.com/demos/garage/seo-built-in.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://velonyxsystems.com/demos/garage/compliance-built-in.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://velonyxsystems.com/demos/garage/portal.html</loc>
     <lastmod>2026-04-29</lastmod>
