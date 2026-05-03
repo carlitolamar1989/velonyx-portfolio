@@ -1181,6 +1181,146 @@
       line-height: 1.7;
     }
 
+    /* ===== WHY VELONYX (Rent vs Own comparison) ===== */
+    .why-velonyx {
+      padding: 100px 24px;
+      background: transparent;
+      position: relative;
+      z-index: 3;
+    }
+
+    .why-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: var(--bg-card-glossy);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 14px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .why-card.why-featured {
+      border-color: rgba(212, 175, 55, 0.32);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 50px rgba(212,175,55,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .why-card.why-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold-btn);
+      box-shadow: 0 0 15px rgba(212,175,55,0.4);
+    }
+
+    .why-card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 14px;
+    }
+
+    .why-card.why-featured .why-card-tag {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .why-card-approach {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      min-height: 56px;
+    }
+
+    .why-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      gap: 12px;
+    }
+
+    .why-card-row:last-of-type { border-bottom: none; }
+
+    .why-card-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--white-dim);
+      letter-spacing: 0.3px;
+    }
+
+    .why-card-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: right;
+    }
+
+    .why-card.why-featured .why-card-value {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .why-summary {
+      max-width: 760px;
+      margin: 56px auto 0;
+      padding: 28px 32px;
+      background: var(--bg-card-glossy);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .why-summary p {
+      color: var(--white);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .why-summary p strong {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .why-cta-wrap {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .why-comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .why-card-approach {
+        min-height: 0;
+      }
+    }
+
     /* ===== PORTFOLIO ===== */
     .portfolio {
       padding: 100px 24px;
@@ -3303,6 +3443,82 @@
           <h3>Launch</h3>
           <p>We deploy your site, connect payments, and hand you a live link. Your business is online and ready to receive customers.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VELONYX vs SAAS TOOLS -->
+  <section class="why-velonyx cyber-reveal" id="why-velonyx">
+    <div class="container">
+      <div class="section-label">Rent vs Own</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title shimmer-sweep fade-in">Why Velonyx Beats<br>Renting Your Tools</h2>
+      <p class="section-subtitle fade-in">Most service businesses pay $200&ndash;$500/month renting fragmented tools. Here's the math on owning your infrastructure instead.</p>
+
+      <div class="why-comparison-grid">
+
+        <!-- Patched-Together SaaS -->
+        <div class="why-card fade-in">
+          <div class="why-card-tag">The Common Path</div>
+          <div class="why-card-approach">Patched-Together SaaS<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">Housecall Pro + website + SEO + email</span></div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 1 Cost</span>
+            <span class="why-card-value">~$3,600&ndash;$6,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 3 Total</span>
+            <span class="why-card-value">~$10,800&ndash;$18,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">What You Own</span>
+            <span class="why-card-value" style="color:#FF8B8B;">Nothing</span>
+          </div>
+        </div>
+
+        <!-- Custom Software Agency -->
+        <div class="why-card fade-in">
+          <div class="why-card-tag">The Big-Spend Path</div>
+          <div class="why-card-approach">Custom Software Agency<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">Custom build, no Velonyx</span></div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 1 Cost</span>
+            <span class="why-card-value">$50,000&ndash;$150,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 3 Total</span>
+            <span class="why-card-value">$80,000&ndash;$200,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">What You Own</span>
+            <span class="why-card-value">Full Ownership</span>
+          </div>
+        </div>
+
+        <!-- Velonyx Foundation -->
+        <div class="why-card why-featured fade-in">
+          <div class="why-card-tag">The Velonyx Way</div>
+          <div class="why-card-approach">Velonyx Foundation Tier<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">$1,500 build + $1,500 Care</span></div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 1 Cost</span>
+            <span class="why-card-value">$3,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">Year 3 Total</span>
+            <span class="why-card-value">$6,000</span>
+          </div>
+          <div class="why-card-row">
+            <span class="why-card-label">What You Own</span>
+            <span class="why-card-value">Full Ownership</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="why-summary fade-in">
+        <p>After 3 years of paying SaaS subscriptions, you've spent <strong>$10,000+</strong> and own nothing. With Velonyx, you've spent the same or less &mdash; and you own your platform, your data, your customer list, your domain. When the SaaS company raises prices, you have no leverage. When Velonyx delivers your system, <strong>it's yours forever.</strong></p>
+      </div>
+
+      <div class="why-cta-wrap fade-in">
+        <a href="#pricing" class="btn-primary">See How Much You'd Save &rarr;</a>
       </div>
     </div>
   </section>
