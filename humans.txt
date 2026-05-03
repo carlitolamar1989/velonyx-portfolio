@@ -2,28 +2,41 @@
   Velonyx Systems LLC
   Founder & Operator: Carlos Glover
   Tagline: Your Legacy, Engineered With Precision
+  Positioning: We engineer custom business systems for service operators.
   Phone: (877) 317-8643
   Email: admin@velonyxsystems.com
   Location: San Diego, CA · serves the entire United States remotely
 
 /* PRODUCT */
-  Premium luxury websites for service businesses with built-in:
-    - Stripe payments + Apple Pay + Google Pay
-    - BNPL at customer checkout (Klarna, Affirm, Afterpay)
+  Custom business systems for service operators (garage door, HVAC, plumbing,
+  electrical, landscaping, and other field-service businesses).
+  One integrated platform. Branded as you. Owned by you.
+
+  Replaces the patchwork of rented tools (Housecall Pro, separate website,
+  spreadsheets, manual SMS, generic invoicing) with a single connected system:
+    - Premium branded customer-facing platform (the website is one feature, not the product)
+    - Integrated payment system (Stripe + Apple Pay + Google Pay)
+    - Customer financing / BNPL (Klarna, Affirm, Afterpay) at customer checkout
     - Online booking via Calendly
     - SMS automation via Twilio
-    - Custom luxury design (gold + platinum aesthetic)
-    - Comprehensive SEO foundation (schema, sitemap, geo, OG/Twitter)
-    - Care subscription for ongoing updates and security
+    - Comprehensive local SEO foundation (schema, sitemap, geo, OG/Twitter)
+    - Production hosting, SSL, automated backups, performance monitoring
+    - Ongoing Care subscription for updates, security, and SEO maintenance
+    - Quarterly digital operations consulting
 
 /* TIERS */
-  Starter:    $1,500 · 5–7 day delivery · single-page
-  Growth:     $3,500 · 7–10 day delivery · multi-page + logo + BNPL + SMS
-  Premium:    $6,000 · 10–14 day delivery · full digital system + portal
-  Enterprise: $12,000+ · custom-quoted · multi-location + integrations
+  Starter System:    $1,500  · 5–7 day delivery  · foundation tier
+  Growth System:     $3,500  · 7–10 day delivery · most popular — full system
+  Premium System:    $6,000  · 10–14 day delivery · brand video + customer portal
+  Enterprise System: $12,000+ · custom-quoted     · multi-location + integrations
 
-  Care subscription (required to keep the site live):
+  Care subscription (required to keep the system live and supported):
   Standard $125/mo · Growth $225/mo · Premium $325/mo · Enterprise custom
+
+/* POSITIONING */
+  Stop renting your business tools. Start owning your infrastructure.
+  Engineered legacies, not rented software.
+  One integrated platform. Branded as you. Owned by you.
 
 /* TECHNOLOGY */
   Site: Static HTML / CSS / Vanilla JS
@@ -45,5 +58,5 @@
   Built and operated by Carlos Glover
   Designed with precision, copy edited for plain English, shipped with SEO
 
-  Want a system like this for your business?
+  Want a custom business system engineered for your operation?
     https://velonyxsystems.com/book.html
