@@ -173,6 +173,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload font CSS so the hero headline (Space Grotesk 700/900) renders without FOIT flash -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -611,12 +613,19 @@
 
     /* ===== HERO ===== */
     .hero {
-      min-height: 100vh;
+      /* min-height has a floor of 880px so the centered hero-content never
+         clips on shorter viewports (e.g., 720p laptops). On taller screens
+         it stretches to full viewport height for the cinematic feel. */
+      min-height: max(100vh, 880px);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 90px 24px 30px;
+      /* Bottom padding bumped from 30px -> 130px so the [Book Free Consultation]
+         and [See Pricing] CTAs always have breathing room above the fold-line.
+         overflow: hidden remains for the radial gradient + particle canvas, but
+         is no longer needed to clip overflowing content. */
+      padding: 110px 24px 130px;
       position: relative;
       z-index: 3;
       overflow: hidden;
@@ -1086,8 +1095,20 @@
       justify-content: center;
       margin-bottom: 22px;
       font-size: 1.4rem;
+      color: var(--accent);
       transition: all 0.4s;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.18));
+      transition: transform 0.4s, filter 0.4s;
+    }
+    .service-card:hover .service-icon svg {
+      transform: scale(1.05);
+      filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.32));
     }
 
     .service-card:hover .service-icon {
@@ -1183,146 +1204,6 @@
       line-height: 1.7;
     }
 
-    /* ===== WHY VELONYX (Rent vs Own comparison) ===== */
-    .why-velonyx {
-      padding: 100px 24px;
-      background: transparent;
-      position: relative;
-      z-index: 3;
-    }
-
-    .why-comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .why-card {
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212, 175, 55, 0.1);
-      border-radius: 14px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .why-card.why-featured {
-      border-color: rgba(212, 175, 55, 0.32);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 50px rgba(212,175,55,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .why-card.why-featured::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold-btn);
-      box-shadow: 0 0 15px rgba(212,175,55,0.4);
-    }
-
-    .why-card-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--white-dim);
-      margin-bottom: 14px;
-    }
-
-    .why-card.why-featured .why-card-tag {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .why-card-approach {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
-      min-height: 56px;
-    }
-
-    .why-card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      gap: 12px;
-    }
-
-    .why-card-row:last-of-type { border-bottom: none; }
-
-    .why-card-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--white-dim);
-      letter-spacing: 0.3px;
-    }
-
-    .why-card-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      text-align: right;
-    }
-
-    .why-card.why-featured .why-card-value {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .why-summary {
-      max-width: 760px;
-      margin: 56px auto 0;
-      padding: 28px 32px;
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212,175,55,0.18);
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .why-summary p {
-      color: var(--white);
-      font-size: 1rem;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    .why-summary p strong {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-    }
-
-    .why-cta-wrap {
-      text-align: center;
-      margin-top: 32px;
-    }
-
-    @media (max-width: 900px) {
-      .why-comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .why-card-approach {
-        min-height: 0;
-      }
-    }
-
     /* ===== PORTFOLIO ===== */
     .portfolio {
       padding: 100px 24px;
@@ -1333,16 +1214,33 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      max-width: 1500px;
+      grid-template-columns: minmax(0, 480px);
+      justify-content: center;
+      gap: 24px;
+      max-width: 520px;
       margin: 0 auto;
     }
-    @media (max-width: 1380px) {
-      .portfolio-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; gap: 20px; }
+
+    .portfolio-followup {
+      max-width: 520px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--white-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
-    @media (max-width: 1100px) {
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; gap: 24px; }
+
+    .portfolio-followup a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(212,175,55,0.45);
+      padding-bottom: 1px;
+      font-weight: 600;
+    }
+
+    .portfolio-followup a:hover {
+      color: var(--accent-light);
+      border-bottom-color: rgba(212,175,55,0.85);
     }
 
     .portfolio-card {
@@ -1781,7 +1679,11 @@
     /* ===== ULTRA ANIMATION SYSTEM ===== */
 
     /* Character-by-character reveal */
-    .char-wrap { display: inline-block; overflow: hidden; }
+    .char-wrap {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap; /* prevents browser from breaking between inline-block .char elements (which would cause mid-word splits like "Busines\ns") */
+    }
     .char-wrap .char {
       display: inline-block;
       opacity: 0;
@@ -2098,8 +2000,8 @@
       .mobile-menu-btn { display: flex; }
 
       .hero { padding: 100px 20px 60px; min-height: auto; }
-      .hero-h1-top { font-size: 2rem; }
-      .hero-h2-bottom { font-size: 1.6rem; }
+      .hero-h1-top { font-size: clamp(1.55rem, 7.4vw, 2rem); }
+      .hero-h2-bottom { font-size: clamp(1.3rem, 6vw, 1.65rem); }
       .hero-logo { width: min(280px, 65vw); height: auto; }
       .hero-logo-line { flex: 0 1 60px; }
       .about-watermark { width: min(300px, 85vw); }
@@ -2870,84 +2772,441 @@
       line-height: 1.7;
     }
 
-    /* ── Maintenance Plans ── */
-    .maintenance-wrap {
-      margin-top: 56px; padding-top: 48px;
-      border-top: 1px solid rgba(212,175,55,0.1);
+    /* ── Founding Member Pricing ── */
+    .founding-counter {
+      max-width: 480px;
+      margin: 8px auto 36px;
+      text-align: center;
     }
-    .maintenance-heading {
-      font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700; color: var(--white); text-align: center; margin-bottom: 10px;
+    .founding-counter-dots {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 12px;
     }
-    .maintenance-subtext {
-      text-align: center; color: var(--white-dim); font-size: 0.9rem;
-      margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto;
+    .founding-dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
-    .maintenance-subtext strong { color: var(--accent); }
-    .maintenance-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-      max-width: 1320px; margin: 0 auto;
+    .founding-dot.filled {
+      background: var(--gold-btn);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255,255,255,0.25);
     }
-    @media (max-width: 1100px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; gap: 18px; } }
-    @media (max-width: 768px) { .maintenance-grid { grid-template-columns: 1fr; max-width: 420px; } }
-    .maintenance-card.maintenance-enterprise { border-color: rgba(212,175,55,0.25); }
-    .maintenance-card.maintenance-enterprise:hover { border-color: rgba(212,175,55,0.45); }
-    .maintenance-card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px; padding: 32px 28px; position: relative;
-      transition: border-color 0.3s, transform 0.3s;
+    .founding-dot.empty {
+      background: transparent;
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
+      box-shadow: none;
     }
-    .maintenance-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); }
-    .maintenance-featured {
-      border-color: rgba(212,175,55,0.25);
-      background: rgba(212,175,55,0.03);
-    }
-    .maintenance-featured:hover { border-color: rgba(212,175,55,0.5); }
-    .maintenance-popular {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060);
-      color: #0a0a0a; font-size: 0.68rem; font-weight: 800;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 4px 16px; border-radius: 50px; white-space: nowrap;
-    }
-    .maintenance-tier {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--white-dim);
-      margin-bottom: 10px;
-    }
-    .maintenance-price {
-      font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 800;
-      color: var(--white); line-height: 1; margin-bottom: 22px;
-    }
-    .maintenance-mo { font-size: 1rem; font-weight: 400; color: var(--white-dim); }
-    .maintenance-features {
-      list-style: none; margin: 0 0 28px; padding: 0;
-      display: flex; flex-direction: column; gap: 10px;
-    }
-    .maintenance-features li {
-      font-size: 0.85rem; color: var(--white-dim); line-height: 1.5;
-    }
-    .btn-maintenance {
-      display: block; width: 100%; padding: 14px; border-radius: 10px; text-align: center;
-      border: 1px solid rgba(255,255,255,0.15); background: transparent;
-      color: var(--white); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px;
-      text-decoration: none; transition: all 0.3s;
-    }
-    .btn-maintenance:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
-    .btn-maintenance-gold {
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      border: none; color: #0a0a0a;
-      box-shadow: 0 4px 20px rgba(212,175,55,0.25);
-    }
-    .btn-maintenance-gold:hover {
-      box-shadow: 0 8px 36px rgba(212,175,55,0.45); transform: translateY(-2px);
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      color: #0a0a0a;
+    .founding-counter-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .pricing-note strong {
+    .founding-grid {
+      display: flex;
+      justify-content: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .founding-card {
+      width: 100%;
+      max-width: 640px;
+      padding: 56px 48px 48px;
+      background: var(--bg-card-glossy);
+      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border-radius: 18px;
+      box-shadow: 0 12px 56px rgba(0, 0, 0, 0.55), 0 0 70px rgba(212, 175, 55, 0.13), inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .founding-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-btn);
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.55);
+    }
+    @media (max-width: 720px) {
+      .founding-card { padding: 44px 26px 36px; }
+    }
+
+    .founding-tier-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+    .founding-tier-tag::before {
+      content: '🏆';
+      -webkit-text-fill-color: initial;
+      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4));
+    }
+
+    .founding-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      line-height: 1.05;
+      margin-bottom: 28px;
+    }
+
+    .founding-amount-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 18px 32px;
+      margin-bottom: 8px;
+    }
+    .founding-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .founding-amount-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--white-dim);
+      letter-spacing: 0.2px;
+    }
+    @media (max-width: 720px) {
+      .founding-amount { font-size: 3rem; }
+    }
+    .founding-plus {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--white-muted);
+    }
+    .founding-recurring {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--white);
+    }
+    .founding-recurring-mo {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white-dim);
+    }
+
+    .founding-launch-note {
+      margin-top: 14px;
+      padding: 16px 18px;
+      background: rgba(212, 175, 55, 0.07);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 10px;
+      color: var(--white-muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+    .founding-launch-note strong {
+      color: var(--accent-light);
+    }
+
+    .founding-features-heading {
+      margin-top: 32px;
+      margin-bottom: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-muted);
+    }
+    .founding-features {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+    }
+    .founding-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--white);
+      font-size: 0.96rem;
+      line-height: 1.55;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .founding-features li:last-child { border-bottom: none; }
+    .founding-check {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      margin-top: 2px;
+    }
+    .founding-check span {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
+    .founding-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .founding-cta {
+      width: 100%;
+      text-align: center;
+    }
+    .founding-consult-link {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .founding-consult-link:hover { color: var(--accent); }
+
+    .founding-finance-note {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      line-height: 1.6;
+    }
+
+    /* ── Plain-English Comparison Block (under founding card) ── */
+    .pricing-comparison {
+      max-width: 1100px;
+      margin: 72px auto 0;
+    }
+    .comparison-eyebrow {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 14px;
+    }
+    .comparison-heading {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .comparison-intro {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      color: var(--white-dim);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 800px) {
+      .comparison-grid { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    .comparison-col {
+      background: var(--bg-card-glossy);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 32px 28px 28px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+    .comparison-col.velonyx {
+      border-color: rgba(212, 175, 55, 0.32);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.55), 0 0 50px rgba(212, 175, 55, 0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .comparison-col-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 10px;
+    }
+    .comparison-col.velonyx .comparison-col-tag {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .comparison-col-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 22px;
+      line-height: 1.3;
+    }
+
+    .comparison-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .comparison-row:last-of-type { border-bottom: none; }
+    .comparison-row .row-label {
+      font-size: 0.92rem;
+      color: var(--white);
+      line-height: 1.4;
+    }
+    .comparison-row .row-price {
+      flex-shrink: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--white-muted);
+      letter-spacing: 0.2px;
+      text-align: right;
+    }
+
+    .comparison-divider {
+      height: 1px;
+      background: rgba(212, 175, 55, 0.2);
+      margin: 14px 0;
+    }
+    .comparison-total {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 0 6px;
+    }
+    .comparison-total-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+    .comparison-total-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .comparison-col.velonyx .comparison-total-value {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .comparison-3yr-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-top: 18px;
+    }
+    .comparison-3yr-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.95rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--white);
+      margin-top: 4px;
+    }
+    .comparison-col.velonyx .comparison-3yr-value {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .comparison-ownership {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.92rem;
+      color: var(--white-muted);
+      line-height: 1.55;
+    }
+    .comparison-ownership strong {
+      color: var(--white);
+    }
+    .comparison-col.rented .comparison-ownership .own-flag {
+      color: #FF8B8B;
+      font-weight: 700;
+    }
+    .comparison-col.velonyx .comparison-ownership .own-flag {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
+    .comparison-stack-line {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      color: var(--white-muted);
+      line-height: 1.65;
+    }
+
+    .comparison-bottom-line {
+      max-width: 760px;
+      margin: 36px auto 0;
+      text-align: center;
+      color: var(--white);
+      font-size: 1rem;
+      line-height: 1.75;
+      padding: 20px 28px;
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 12px;
+    }
+    .comparison-bottom-line strong {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
     }
 
     /* ── Payment & Financing Partners ── */
@@ -3043,172 +3302,6 @@
       transform: scaleX(0);
     }
 
-    /* ===== AUDIO PITCH PLAYER ===== */
-    .pitch-audio {
-      padding: 90px 24px 100px;
-      position: relative;
-      z-index: 3;
-    }
-    .pitch-audio-intro {
-      text-align: center;
-      max-width: 680px;
-      margin: 14px auto 42px;
-      color: var(--white-muted);
-      font-weight: 300;
-      line-height: 1.7;
-    }
-    .pitch-audio-player {
-      max-width: 780px;
-      margin: 0 auto;
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212,175,55,0.28);
-      border-radius: 20px;
-      padding: 28px 32px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 24px;
-      align-items: center;
-      box-shadow:
-        0 24px 60px -24px rgba(0,0,0,0.75),
-        0 0 0 1px rgba(212,175,55,0.06) inset,
-        0 1px 0 rgba(255,255,255,0.05) inset;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-    }
-    .pitch-audio-player::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 20px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.45), transparent 40%, transparent 60%, rgba(212,175,55,0.35));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-              mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0.9;
-    }
-    .vx-play {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 1px solid rgba(212,175,55,0.55);
-      background:
-        radial-gradient(circle at 30% 28%, #FBF5B7 0%, #D4AF37 38%, #8C6D1F 100%);
-      color: #0a0a0a;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.22s ease, box-shadow 0.3s ease, filter 0.3s ease;
-      box-shadow:
-        0 0 32px rgba(212,175,55,0.38),
-        inset 0 1px 0 rgba(255,255,255,0.55),
-        inset 0 -10px 18px rgba(0,0,0,0.25);
-      flex-shrink: 0;
-      outline: none;
-    }
-    .vx-play:hover { transform: scale(1.06); box-shadow: 0 0 48px rgba(212,175,55,0.6), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -10px 18px rgba(0,0,0,0.25); }
-    .vx-play:focus-visible { box-shadow: 0 0 0 3px rgba(212,175,55,0.4), 0 0 48px rgba(212,175,55,0.55); }
-    .vx-play:active { transform: scale(0.97); }
-    .vx-play svg { width: 26px; height: 26px; fill: currentColor; pointer-events: none; }
-    .vx-play svg.vx-pause-icon { display: none; }
-    .vx-play.playing svg.vx-play-icon { display: none; }
-    .vx-play.playing svg.vx-pause-icon { display: block; }
-    .vx-play.loading { pointer-events: none; filter: saturate(0.6) brightness(0.85); }
-    .vx-play.loading svg { animation: vx-pulse 1.2s ease-in-out infinite; }
-    @keyframes vx-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    .vx-track { min-width: 0; }
-    .vx-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-    }
-    .vx-title {
-      color: var(--white);
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: 0.2px;
-    }
-    .vx-time {
-      color: rgba(212,175,55,0.9);
-      font-variant-numeric: tabular-nums;
-      flex-shrink: 0;
-      font-weight: 500;
-    }
-    .vx-progress {
-      height: 6px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 3px;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-      outline: none;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-    .vx-progress:focus-visible { box-shadow: 0 0 0 2px rgba(212,175,55,0.35); }
-    .vx-progress-buffer {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: rgba(212,175,55,0.12);
-      border-radius: 3px;
-      transition: width 0.2s ease;
-    }
-    .vx-progress-fill {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: var(--gold-btn);
-      border-radius: 3px;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 12px rgba(212,175,55,0.55);
-    }
-    .vx-download {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(212,175,55,0.82);
-      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .vx-download:hover { color: #F7E17B; border-color: rgba(212,175,55,0.5); background: rgba(212,175,55,0.08); transform: translateY(-1px); }
-    .vx-download svg { width: 20px; height: 20px; fill: currentColor; }
-    .pitch-audio-disclaimer {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 0.82rem;
-      color: rgba(240,237,232,0.42);
-      letter-spacing: 0.3px;
-    }
-    .pitch-audio-disclaimer a { color: rgba(212,175,55,0.9); text-decoration: none; border-bottom: 1px dashed rgba(212,175,55,0.3); }
-    .pitch-audio-disclaimer a:hover { color: #F7E17B; border-bottom-color: rgba(212,175,55,0.65); }
-
-    @media (max-width: 640px) {
-      .pitch-audio { padding: 60px 18px 70px; }
-      .pitch-audio-player {
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        padding: 22px 20px;
-        gap: 18px;
-      }
-      .vx-play { width: 56px; height: 56px; }
-      .vx-play svg { width: 22px; height: 22px; }
-      .vx-download { grid-column: 1 / 3; justify-self: stretch; width: auto; height: 44px; }
-    }
   </style>
 
   <!-- GSAP + ScrollTrigger -->
@@ -3239,7 +3332,7 @@
   <div class="loader" id="loader">
     <div class="loader-warp" id="loaderWarp"></div>
     <div class="loader-content">
-      <div class="loader-mark"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems"></div>
+      <div class="loader-mark"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" width="512" height="590"></div>
       <div class="loader-text">Velonyx Systems</div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
@@ -3251,7 +3344,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-brand">
-      <div class="nav-brand-mark"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"></div>
+      <div class="nav-brand-mark"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems" width="256" height="288"></div>
       <div class="nav-brand-text">VELONYX <span>SYSTEMS</span></div>
       <div class="nav-slogan">Your Legacy, Engineered With Precision.</div>
     </a>
@@ -3284,11 +3377,12 @@
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
       <div class="hero-eyebrow"><span class="dot"></span> Custom Business Systems for Service Operators</div>
       <h1 class="hero-h1-top">
-        <span class="line">Stop Renting Your Business Tools.</span>
+        <span class="line">Stop Renting</span>
+        <span class="line">Your Business Tools.</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
-        <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
+        <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo" width="512" height="590">
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
@@ -3313,45 +3407,13 @@
     </div>
   </section>
 
-  <!-- AUDIO PITCH -->
-  <section class="pitch-audio cyber-reveal" id="listen" aria-labelledby="pitch-audio-title">
-    <div class="container">
-      <div class="section-label">Audio Overview</div>
-      <div class="section-divider"></div>
-      <h2 id="pitch-audio-title" class="section-title shimmer-sweep fade-in">Hear The Pitch</h2>
-      <p class="pitch-audio-intro fade-in">A 20-minute AI-hosted deep-dive into Velonyx &mdash; who we build for, how we price, and why our sites close deals. Sourced from the full site, generated with Google NotebookLM.</p>
-
-      <div class="pitch-audio-player fade-in" role="region" aria-label="Velonyx pitch audio player">
-        <audio id="velonyx-pitch-audio" preload="metadata" src="assets/audio/velonyx-pitch.mp3"></audio>
-
-        <button id="vx-play" class="vx-play loading" type="button" aria-label="Play the Velonyx pitch">
-          <svg class="vx-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <svg class="vx-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
-        </button>
-
-        <div class="vx-track">
-          <div class="vx-meta">
-            <span class="vx-title">Engineering Frictionless Luxury for Independent Businesses</span>
-            <span class="vx-time"><span id="vx-current">0:00</span> / <span id="vx-duration">--:--</span></span>
-          </div>
-          <div id="vx-progress" class="vx-progress" role="slider" aria-label="Playback progress" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div id="vx-progress-buffer" class="vx-progress-buffer"></div>
-            <div id="vx-progress-fill" class="vx-progress-fill"></div>
-          </div>
-        </div>
-
-        <a class="vx-download" href="assets/audio/velonyx-pitch.mp3" download="velonyx-pitch.mp3" aria-label="Download MP3 of the pitch">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18v12l4-4h-3V2h-2v8H8l4 4z"/></svg>
-        </a>
-      </div>
-
-      <p class="pitch-audio-disclaimer">AI-generated audio &middot; Hosted on Velonyx infrastructure &middot; <a href="#contact">Prefer to talk? Book a consult &rarr;</a></p>
-    </div>
-  </section>
+  <!-- AUDIO PITCH section removed 2026-05-03 — off-brand for service-industry positioning.
+       MP3 file remains at /assets/audio/velonyx-pitch.mp3 for potential future repurposing.
+       Section CSS, JS, and HTML have all been removed in the perf pass commit. -->
 
   <!-- IMAGE DIVIDER 1 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70" alt="Digital workspace" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70" alt="Digital workspace" loading="lazy" width="1200" height="675">
     <div class="image-divider-text">
       <h3 class="fade-in">Your brand deserves <span>better than the DMs</span></h3>
     </div>
@@ -3367,42 +3429,42 @@
 
       <div class="services-grid">
         <div class="service-card fade-in">
-          <div class="service-icon">&#9671;</div>
+          <div class="service-icon"><!-- lucide:globe --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
           <h3>Custom Branded Platform</h3>
           <p>A premium website that doubles as your customer-facing front door. Built for conversion, optimized for local SEO, fully branded as your business. The face of your operation.</p>
           <span class="service-tag">Core Capability</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9733;</div>
+          <div class="service-icon"><!-- lucide:credit-card --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
           <h3>Integrated Payment System</h3>
           <p>Take payments anywhere &mdash; at the customer's house, via SMS link, or through your branded payment page. Apple Pay, Google Pay, BNPL through Affirm and Klarna. Every dollar tracked in one dashboard.</p>
           <span class="service-tag">Revenue Engine</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9879;</div>
+          <div class="service-icon"><!-- lucide:wallet --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></div>
           <h3>Customer Financing (BNPL)</h3>
           <p>Affirm, Klarna, and Afterpay built into your payment flow. Customers split larger jobs into payments. You get paid in full upfront. No friction, more closed deals.</p>
           <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works →</span></a>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9729;</div>
+          <div class="service-icon"><!-- lucide:server --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></div>
           <h3>Production Hosting &amp; Deployment</h3>
           <p>Premium hosting, SSL, automated backups, performance monitoring, and uptime guarantees. We handle the infrastructure so you can run your business.</p>
           <span class="service-tag">Included</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9881;</div>
+          <div class="service-icon"><!-- lucide:shield-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h3>Ongoing Care &amp; Maintenance</h3>
           <p>Monthly maintenance subscriptions keep your system running, secure, and improving. Updates, bug fixes, content changes, and SEO maintenance &mdash; all included.</p>
           <span class="service-tag">Monthly</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9888;</div>
+          <div class="service-icon"><!-- lucide:compass --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg></div>
           <h3>Digital Operations Consulting</h3>
           <p>Quarterly strategy sessions on lead generation, conversion optimization, customer retention, and growth. We're not just builders &mdash; we're operators in your corner.</p>
           <span class="service-tag">Strategy</span>
@@ -3449,82 +3511,6 @@
     </div>
   </section>
 
-  <!-- WHY VELONYX vs SAAS TOOLS -->
-  <section class="why-velonyx cyber-reveal" id="why-velonyx">
-    <div class="container">
-      <div class="section-label">Rent vs Own</div>
-      <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Why Velonyx Beats<br>Renting Your Tools</h2>
-      <p class="section-subtitle fade-in">Most service businesses pay $200&ndash;$500/month renting fragmented tools. Here's the math on owning your infrastructure instead.</p>
-
-      <div class="why-comparison-grid">
-
-        <!-- Patched-Together SaaS -->
-        <div class="why-card fade-in">
-          <div class="why-card-tag">The Common Path</div>
-          <div class="why-card-approach">Patched-Together SaaS<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">Housecall Pro + website + SEO + email</span></div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 1 Cost</span>
-            <span class="why-card-value">~$3,600&ndash;$6,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 3 Total</span>
-            <span class="why-card-value">~$10,800&ndash;$18,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">What You Own</span>
-            <span class="why-card-value" style="color:#FF8B8B;">Nothing</span>
-          </div>
-        </div>
-
-        <!-- Custom Software Agency -->
-        <div class="why-card fade-in">
-          <div class="why-card-tag">The Big-Spend Path</div>
-          <div class="why-card-approach">Custom Software Agency<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">Custom build, no Velonyx</span></div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 1 Cost</span>
-            <span class="why-card-value">$50,000&ndash;$150,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 3 Total</span>
-            <span class="why-card-value">$80,000&ndash;$200,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">What You Own</span>
-            <span class="why-card-value">Full Ownership</span>
-          </div>
-        </div>
-
-        <!-- Velonyx Foundation -->
-        <div class="why-card why-featured fade-in">
-          <div class="why-card-tag">The Velonyx Way</div>
-          <div class="why-card-approach">Velonyx Foundation Tier<br><span style="font-size:0.82rem;font-weight:500;color:var(--white-dim);">$1,500 build + $1,500 Care</span></div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 1 Cost</span>
-            <span class="why-card-value">$3,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">Year 3 Total</span>
-            <span class="why-card-value">$6,000</span>
-          </div>
-          <div class="why-card-row">
-            <span class="why-card-label">What You Own</span>
-            <span class="why-card-value">Full Ownership</span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="why-summary fade-in">
-        <p>After 3 years of paying SaaS subscriptions, you've spent <strong>$10,000+</strong> and own nothing. With Velonyx, you've spent the same or less &mdash; and you own your platform, your data, your customer list, your domain. When the SaaS company raises prices, you have no leverage. When Velonyx delivers your system, <strong>it's yours forever.</strong></p>
-      </div>
-
-      <div class="why-cta-wrap fade-in">
-        <a href="#pricing" class="btn-primary">See How Much You'd Save &rarr;</a>
-      </div>
-    </div>
-  </section>
-
   <!-- PRICING -->
   <section class="pricing cyber-reveal" id="pricing">
     <div class="container">
@@ -3532,7 +3518,7 @@
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Simple, Transparent Pricing</h2>
       <div class="pricing-slogan fade-in">Your Legacy, Engineered With Precision.</div>
-      <p class="section-subtitle fade-in">No hidden fees. No surprises. Pick the package that fits your business.</p>
+      <p class="section-subtitle fade-in">One package. Five founding spots. Locked-in pricing for life.</p>
 
       <!-- PAYMENT PARTNERS — shown right under heading -->
       <div class="payment-partners fade-in">
@@ -3575,177 +3561,161 @@
         <p class="partners-disclaimer">Klarna, Affirm &amp; Afterpay available at checkout via Stripe — instant approval, no account needed. <a href="financing.html">Learn more →</a></p>
       </div>
 
-      <div class="pricing-grid">
-
-        <!-- STARTER -->
-        <div class="pricing-card fade-in">
-          <div class="pricing-tier-name">Starter</div>
-          <div class="pricing-amount"><span class="currency">$</span>1,500</div>
-          <p class="pricing-desc">A professional website with booking and payments built in. Your customers can find you, book you, and pay you &mdash; all in one place.</p>
-          <ul class="pricing-features">
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom single-page website design</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Mobile-friendly &amp; fast-loading</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Payment integration (Stripe &mdash; cards, Apple Pay, Google Pay)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Online booking system</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Contact form with email notifications</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Basic SEO setup (Google-ready)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom domain + SSL + hosting</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 2 revision rounds within 1-week revision window</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 5-7 business days</li>
-          </ul>
-          <div class="pricing-actions">
-            <a href="checkout.html?plan=starter" class="btn-secondary pricing-cta">Pay Deposit &amp; Start</a>
-            <a href="/book.html" class="pricing-consult-link">Or book a free consultation →</a>
-          </div>
+      <!-- FOUNDING SPOT COUNTER — Update dot count manually as founding customers sign on. To mark a spot as taken, change `filled` to `empty` on a dot span. -->
+      <div class="founding-counter fade-in" role="status" aria-live="polite">
+        <div class="founding-counter-dots" aria-label="5 of 5 founding spots available">
+          <span class="founding-dot filled"></span>
+          <span class="founding-dot filled"></span>
+          <span class="founding-dot filled"></span>
+          <span class="founding-dot filled"></span>
+          <span class="founding-dot filled"></span>
         </div>
-
-        <!-- GROWTH (FEATURED) -->
-        <div class="pricing-card featured fade-in">
-          <div class="pricing-popular">Most Popular</div>
-          <div class="pricing-tier-name">Growth</div>
-          <div class="pricing-amount"><span class="currency">$</span>3,500</div>
-          <p class="pricing-desc">A full multi-page website with financing, automated texts, and a custom logo. Everything you need to look like you've been in business for years.</p>
-          <ul class="pricing-features">
-            <li><div class="pricing-check"><span>&#10003;</span></div> Multi-page custom design (up to 5 pages)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom logo design</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Premium scroll animations &amp; interactive design</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Full payment integration (Stripe + Apple Pay + Google Pay)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Buy Now, Pay Later for your customers (Klarna, Affirm, Afterpay)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Online booking system</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Automated text confirmations to your customers</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Email notifications (booking + payment alerts)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Google Analytics setup</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Full SEO optimization</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom domain + SSL + hosting</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 3 revision rounds within 2-week revision window</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 10-14 business days</li>
-          </ul>
-          <div class="pricing-actions">
-            <a href="checkout.html?plan=growth" class="btn-primary pricing-cta">Pay Deposit &amp; Start</a>
-            <a href="/book.html" class="pricing-consult-link">Or book a free consultation →</a>
-          </div>
-        </div>
-
-        <!-- PREMIUM -->
-        <div class="pricing-card fade-in">
-          <div class="pricing-tier-name">Premium</div>
-          <div class="pricing-amount"><span class="currency">$</span>6,000</div>
-          <p class="pricing-desc">The full Velonyx experience. A luxury digital system with a brand video, automated reminders, and a client management portal that runs your business while you sleep.</p>
-          <ul class="pricing-features">
-            <li><div class="pricing-check"><span>&#10003;</span></div> Everything in Growth, plus:</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited pages</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Brand video &mdash; we edit your footage into a cinematic hero reel</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Client management portal (your customers log in, upload, track)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Automated appointment reminders (24hr + 1hr before)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom branded email templates</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Visitor analytics dashboard</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 30-day post-launch optimization (priority 48hr response included)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 3 revision rounds within 3-week revision window</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Delivered in 14-21 business days</li>
-          </ul>
-          <div class="pricing-actions">
-            <a href="checkout.html?plan=premium" class="btn-secondary pricing-cta">Pay Deposit &amp; Start</a>
-            <a href="/book.html" class="pricing-consult-link">Or book a free consultation →</a>
-          </div>
-        </div>
-
-        <!-- ENTERPRISE -->
-        <div class="pricing-card fade-in">
-          <div class="pricing-tier-name">Enterprise</div>
-          <div class="pricing-amount"><span class="currency" style="font-size:0.55em;">Starting at $</span>12,000</div>
-          <p class="pricing-desc">Multi-location and multi-user operations. Custom integrations, dedicated project management, and infrastructure designed around your business.</p>
-          <ul class="pricing-features">
-            <li><div class="pricing-check"><span>&#10003;</span></div> Everything in Premium, plus:</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Unlimited pages</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Full multi-user, multi-location Client Portal</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom integrations (CRM, email marketing, e-commerce)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Dedicated project management</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Quarterly strategy reviews</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> HIPAA-ready infrastructure available (separate agreement)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> 5 revision rounds within 4-week revision window (custom per engagement)</li>
-            <li><div class="pricing-check"><span>&#10003;</span></div> Custom delivery timeline</li>
-          </ul>
-          <div class="pricing-actions">
-            <a href="/book.html?tier=enterprise" class="btn-secondary pricing-cta">Contact Us</a>
-            <a href="/book.html?tier=enterprise" class="pricing-consult-link">Book an Enterprise consultation →</a>
-          </div>
-        </div>
-
+        <div class="founding-counter-label">5 Founding Spots Available</div>
       </div>
 
-      <p class="pricing-note fade-in">Every package includes <strong>30 days of free support</strong> after launch. Starter &amp; Growth receive standard support. Premium receives priority support (48-hour response). After 30 days, add a Care plan to keep your site updated and supported.</p>
-
       <!--
-        CARE PLANS — live Stripe Payment Links configured in the <a> tags below.
-        Legacy maintenance links (archived, no longer rendered anywhere on site;
-        preserved here for rollback/historical reference only):
-          Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
-          Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
+        STRIPE PAYMENT LINKS — TODO POST-DEPLOY:
+        - The 3 deprecated monthly Care tier links ($125 / $225 / $325) have
+          been removed from the page. They no longer apply to the new
+          Founding Member offer. Old URLs preserved for rollback only:
+            Standard Care $125 → https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b
+            Growth   Care $225 → https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c
+            Premium  Care $325 → https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d
+        - Create ONE new Stripe Payment Link for: $3,000 one-time + $100/mo
+          recurring (subscription with setup fee). Use Stripe's "set up fee
+          on first invoice" pattern, or Stripe Billing with a one-time
+          line item plus monthly subscription product.
+        - Replace the [CLAIM A FOUNDING SPOT] CTA href below with the new
+          Stripe Payment Link URL.
+        - Enable "Require customers to accept terms of service" pointing to
+          https://velonyxsystems.com/terms.html in the new Payment Link.
+        - When all 5 founding spots are claimed, create a new Payment Link
+          at $5,000 setup + $200/mo and update this card's amounts/copy.
+          Remove "Founding Member" framing at that point.
       -->
-      <div class="maintenance-wrap fade-in">
-        <div class="section-label" style="text-align:center;margin-bottom:8px;">After Your 30 Days</div>
-        <h3 class="maintenance-heading">Care Plans &mdash; Keep Your Site Running &amp; Growing</h3>
-        <p class="maintenance-subtext">Your 30-day support period is included with every package. After that, choose a Care plan to keep your site maintained, updated, and performing. <strong>First month free</strong> when you sign on at launch.</p>
 
-        <div class="maintenance-grid">
+      <div class="founding-grid fade-in">
+        <div class="founding-card">
+          <div class="founding-tier-tag">Founding Member Pricing &mdash; First 5 Customers Only</div>
+          <div class="founding-name">The Velonyx System</div>
 
-          <div class="maintenance-card">
-            <div class="maintenance-tier">Standard Care</div>
-            <div class="maintenance-price">$125<span class="maintenance-mo">/mo</span></div>
-            <ul class="maintenance-features">
-              <li>&#10003; Content updates &amp; text changes</li>
-              <li>&#10003; Bug fixes &amp; compatibility patches</li>
-              <li>&#10003; Uptime monitoring</li>
-              <li>&#10003; Hosting &amp; domain management</li>
-              <li>&#10003; Monthly site backup</li>
-              <li>&#10003; Response within 3-5 business days</li>
-            </ul>
-            <a href="https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b" class="btn-maintenance" target="_blank" rel="noopener">Add Standard Care</a>
+          <div class="founding-amount-wrap">
+            <div>
+              <div class="founding-amount">$3,000</div>
+              <div class="founding-amount-sub">one-time build</div>
+            </div>
+            <div class="founding-plus">+</div>
+            <div>
+              <div class="founding-recurring">$100<span class="founding-recurring-mo">/month</span></div>
+              <div class="founding-amount-sub">to keep everything running</div>
+            </div>
           </div>
 
-          <div class="maintenance-card maintenance-featured">
-            <div class="maintenance-popular">Most Popular</div>
-            <div class="maintenance-tier">Growth Care</div>
-            <div class="maintenance-price">$225<span class="maintenance-mo">/mo</span></div>
-            <ul class="maintenance-features">
-              <li>&#10003; Everything in Standard, plus:</li>
-              <li>&#10003; Priority updates &mdash; within 72 hours</li>
-              <li>&#10003; Up to 4 change requests / month</li>
-              <li>&#10003; Monthly performance report</li>
-              <li>&#10003; Quarterly SEO snapshot</li>
-            </ul>
-            <a href="https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c" class="btn-maintenance btn-maintenance-gold" target="_blank" rel="noopener">Add Growth Care</a>
+          <div class="founding-launch-note">
+            This is our launch pricing &mdash; <strong>locked in for life</strong> if you're one of our first 5 founding customers. After that, build pricing increases to <strong>$5,000</strong> and monthly to <strong>$200</strong>.
           </div>
 
-          <div class="maintenance-card">
-            <div class="maintenance-tier">Premium Care</div>
-            <div class="maintenance-price">$325<span class="maintenance-mo">/mo</span></div>
-            <ul class="maintenance-features">
-              <li>&#10003; Everything in Growth, plus:</li>
-              <li>&#10003; Priority updates &mdash; within 48 hours</li>
-              <li>&#10003; Unlimited change requests</li>
-              <li>&#10003; Monthly analytics &amp; conversion report</li>
-              <li>&#10003; New feature additions</li>
-              <li>&#10003; Direct line to your developer</li>
-            </ul>
-            <a href="https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d" class="btn-maintenance" target="_blank" rel="noopener">Add Premium Care</a>
+          <div class="founding-features-heading">What you get &mdash; one complete system</div>
+          <ul class="founding-features">
+            <li><div class="founding-check"><span>&#10003;</span></div> A custom-built website, branded for your business</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> An admin dashboard you run from your phone (like an app)</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Take payments anywhere &mdash; credit card, Apple Pay, Google Pay</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Let customers pay over time &mdash; Klarna, Affirm, Afterpay built in</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Automatic text messages to customers (reminders, payment links)</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Customer management dashboard &mdash; every job, every customer, one place</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Local Google search setup so people find you</li>
+            <li><div class="founding-check"><span>&#10003;</span></div> Yours forever &mdash; not rented, not licensed, not locked in</li>
+          </ul>
+
+          <div class="founding-actions">
+            <a href="#contact" class="btn-primary founding-cta">Claim a Founding Spot</a>
+            <a href="/book.html?tier=enterprise" class="founding-consult-link">Need something custom beyond this? Book a consultation &rarr;</a>
           </div>
 
-          <div class="maintenance-card maintenance-enterprise">
-            <div class="maintenance-tier">Enterprise Care</div>
-            <div class="maintenance-price" style="font-size:1.6rem;">Custom<span class="maintenance-mo"> &mdash; Contact Us</span></div>
-            <ul class="maintenance-features">
-              <li>&#10003; Everything in Premium, plus:</li>
-              <li>&#10003; Up to 10 hours / month of changes</li>
-              <li>&#10003; Multi-user portal support</li>
-              <li>&#10003; Custom integrations maintenance</li>
-              <li>&#10003; Monthly strategy call</li>
-              <li>&#10003; Same-day critical response</li>
-              <li>&#10003; Quarterly business review</li>
-            </ul>
-            <a href="/book.html?tier=enterprise" class="btn-maintenance">Contact Us</a>
+          <p class="founding-finance-note">Klarna, Affirm &amp; Afterpay available at customer checkout via Stripe &mdash; instant approval, no account needed.</p>
+        </div>
+      </div>
+
+      <!-- PLAIN-ENGLISH COMPARISON BLOCK — written for the operator in work boots, not the buyer in a hoodie -->
+      <div class="pricing-comparison fade-in">
+        <div class="comparison-eyebrow">Stop Renting. Start Owning.</div>
+        <h3 class="comparison-heading">What You're Paying For Right Now</h3>
+        <p class="comparison-intro">Most service business owners don't realize how much they're bleeding every month on a stack of disconnected tools. It's like renting four different apartments instead of owning one house. Here's the math.</p>
+
+        <div class="comparison-grid">
+
+          <!-- LEFT: Rented Stack -->
+          <div class="comparison-col rented">
+            <div class="comparison-col-tag">Your Current Monthly Bill</div>
+            <div class="comparison-col-title">Patched-Together Tools<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(what most service businesses pay)</span></div>
+
+            <div class="comparison-row">
+              <span class="row-label">Housecall Pro or Jobber<br><span style="font-size:0.78rem;color:var(--white-dim);">(jobs + scheduling)</span></span>
+              <span class="row-price">$109&ndash;149/mo</span>
+            </div>
+            <div class="comparison-row">
+              <span class="row-label">Your website<br><span style="font-size:0.78rem;color:var(--white-dim);">(Squarespace, Wix, GoDaddy)</span></span>
+              <span class="row-price">$30&ndash;50/mo</span>
+            </div>
+            <div class="comparison-row">
+              <span class="row-label">Texting customers<br><span style="font-size:0.78rem;color:var(--white-dim);">(separate tool)</span></span>
+              <span class="row-price">$20&ndash;40/mo</span>
+            </div>
+            <div class="comparison-row">
+              <span class="row-label">Customer financing<br><span style="font-size:0.78rem;color:var(--white-dim);">(BNPL / pay over time)</span></span>
+              <span class="row-price">extra or N/A</span>
+            </div>
+
+            <div class="comparison-divider"></div>
+
+            <div class="comparison-total">
+              <span class="comparison-total-label">Total Every Month, Forever</span>
+              <span class="comparison-total-value">$160&ndash;290/mo</span>
+            </div>
+
+            <div class="comparison-3yr-label">After 3 years, you've handed them</div>
+            <div class="comparison-3yr-value">$5,760&ndash;$10,440</div>
+
+            <div class="comparison-ownership">
+              And you still <span class="own-flag">don't own a single thing.</span><br>
+              Your customer list, your data, your platform &mdash; all rented.
+            </div>
           </div>
 
+          <!-- RIGHT: Velonyx -->
+          <div class="comparison-col velonyx">
+            <div class="comparison-col-tag">The Velonyx Way</div>
+            <div class="comparison-col-title">One Owned System<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(everything connected, branded as you)</span></div>
+
+            <div class="comparison-row">
+              <span class="row-label"><strong>$3,000 once.</strong> Your custom website. Built for your business. Branded for your business. Yours forever.</span>
+            </div>
+            <div class="comparison-row">
+              <span class="row-label"><strong>$100/month.</strong> Everything stays running. Hosted. Updated. Supported. We handle it.</span>
+            </div>
+
+            <p class="comparison-stack-line">All in one system: your website, customer texts, online payments, customer financing (Klarna, Affirm, Afterpay), customer management, and job booking. All connected. All branded as you. All owned by you.</p>
+
+            <div class="comparison-divider"></div>
+
+            <div class="comparison-total">
+              <span class="comparison-total-label">First Year Total</span>
+              <span class="comparison-total-value">$4,200</span>
+            </div>
+
+            <div class="comparison-3yr-label">After 3 years</div>
+            <div class="comparison-3yr-value">$6,600</div>
+
+            <div class="comparison-ownership">
+              And you <span class="own-flag">own the whole platform.</span><br>
+              No more renting. No more 4 separate bills. No more software companies raising your rates every year.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="comparison-bottom-line">
+          After 3 years, the rented stack costs you up to <strong>$10,440</strong> &mdash; and you walk away with nothing. Velonyx costs <strong>$6,600</strong> over the same 3 years &mdash; and at the end of it, the platform is <strong>yours.</strong>
         </div>
       </div>
 
@@ -3754,7 +3724,7 @@
 
   <!-- IMAGE DIVIDER 2 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=70" alt="Team working on digital projects" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=70" alt="Team working on digital projects" loading="lazy" width="1200" height="675">
     <div class="image-divider-text">
       <h3 class="fade-in">Built with precision. <span>Designed to convert.</span></h3>
     </div>
@@ -3763,100 +3733,16 @@
   <!-- PORTFOLIO -->
   <section class="portfolio cyber-reveal" id="work">
     <div class="container">
-      <div class="section-label">Our Work</div>
+      <div class="section-label">Live Client Build</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Featured Projects</h2>
-      <p class="section-subtitle fade-in">Five industries. Five distinct brands. All built by Velonyx.</p>
+      <h2 class="section-title shimmer-sweep fade-in">See It In Action</h2>
+      <p class="section-subtitle fade-in">A real, working build deployed for a real service business. Click to explore the live demo.</p>
 
       <div class="portfolio-grid">
-        <!-- Throne Barbershop -->
-        <a href="/client-demos/barber/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1A3C34, #0F2620);">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barbershop" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(26,60,52,0.9), rgba(26,60,52,0.3));">
-              <div class="mock-logo" style="color:#F5F0E8; font-family:'Playfair Display',serif;">THRONE</div>
-              <div class="mock-tagline" style="color:#C8A96E;">Where Kings Get Crowned.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Barbershop</div>
-            <h3>Throne Barbershop</h3>
-            <p>Luxury booking &amp; payment site with service menu, gallery, and automated checkout.</p>
-            <div class="portfolio-tags">
-              <span>Payments</span>
-              <span>Gallery</span>
-              <span>Green &amp; Cream</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- IronWill -->
-        <a href="/client-demos/fitness/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #111111, #1A1A1A);">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Fitness training" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(17,17,17,0.9), rgba(17,17,17,0.3));">
-              <div class="mock-logo" style="color:#FF4B2B; font-family:'Bebas Neue',sans-serif; letter-spacing:6px;">IRONWILL</div>
-              <div class="mock-tagline">Your Excuses End Here.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Fitness Coach</div>
-            <h3>IronWill Training</h3>
-            <p>High-energy coaching site with 3-tier pricing, testimonials, and full payment system.</p>
-            <div class="portfolio-tags">
-              <span>Payments</span>
-              <span>Pricing Tiers</span>
-              <span>Black &amp; Red</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Lens & Light -->
-        <a href="/client-demos/photo/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #FAF8F5, #EDE8E0);">
-            <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Photography" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(250,248,245,0.9), rgba(250,248,245,0.3));">
-              <div class="mock-logo" style="color:#2A2A2A; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem;">Lens &amp; Light</div>
-              <div class="mock-tagline" style="color:#C4785B;">We Tell Stories.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Photography</div>
-            <h3>Lens &amp; Light Studio</h3>
-            <p>Editorial portfolio with masonry gallery, session packages, and elegant booking flow.</p>
-            <div class="portfolio-tags">
-              <span>Gallery</span>
-              <span>Light Theme</span>
-              <span>Packages</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Apex SMP Studio -->
-        <a href="/demos/smp/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1A1A);">
-            <img src="/demos/smp/assets/healed-lifestyle.jpg" alt="Apex SMP Studio — scalp micropigmentation" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.92), rgba(10,10,10,0.25));">
-              <div class="mock-logo" style="color:#E8D48A; font-family:'Playfair Display',serif; letter-spacing:0.2em;">APEX SMP</div>
-              <div class="mock-tagline" style="color:#C9A961;">Precision. Artistry. Confidence.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">SMP Studio</div>
-            <h3>Apex SMP Studio</h3>
-            <p>Full platform: 7-step booking flow, client portal, Stripe Payment Links, and Twilio SMS automation.</p>
-            <div class="portfolio-tags">
-              <span>Booking</span>
-              <span>Client Portal</span>
-              <span>Black &amp; Gold</span>
-            </div>
-          </div>
-        </a>
-
         <!-- Garage Door Kings — links directly to gdk.velonyxsystems.com (Vercel-deployed full operational demo) -->
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1208);">
-            <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
+            <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" width="600" height="400" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.94), rgba(10,10,10,0.3));">
               <div class="mock-logo" style="color:#F2C998; font-family:'Fraunces',Georgia,serif; letter-spacing:0.18em; font-weight:700;">GARAGE DOOR KINGS</div>
               <div class="mock-tagline" style="color:#B8732E;">Las Vegas · Trade Business Template</div>
@@ -3874,31 +3760,33 @@
           </div>
         </a>
       </div>
+
+      <p class="portfolio-followup fade-in">More builds in production. Yours could be next. <a href="#contact">Claim a founding spot &rarr;</a></p>
     </div>
   </section>
 
   <!-- SCROLLING SHOWCASE -->
   <section class="showcase-strip">
     <div class="showcase-row">
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy" width="640" height="360">
       <!-- Duplicate for seamless loop -->
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy" width="640" height="360">
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark">
+    <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark" width="512" height="590" loading="lazy">
     <div class="container">
       <div class="section-label">About Velonyx</div>
       <div class="section-divider"></div>
@@ -4646,74 +4534,7 @@
     }
   </script>
 
-  <!-- ===== AUDIO PITCH PLAYER ===== -->
-  <script>
-  (function () {
-    var audio = document.getElementById('velonyx-pitch-audio');
-    var btn = document.getElementById('vx-play');
-    var prog = document.getElementById('vx-progress');
-    var fill = document.getElementById('vx-progress-fill');
-    var buf = document.getElementById('vx-progress-buffer');
-    var cur = document.getElementById('vx-current');
-    var dur = document.getElementById('vx-duration');
-    if (!audio || !btn || !prog) return;
-
-    function fmt(s) {
-      if (!isFinite(s) || s < 0) return '--:--';
-      var m = Math.floor(s / 60);
-      var sec = Math.floor(s % 60).toString().padStart(2, '0');
-      return m + ':' + sec;
-    }
-
-    btn.addEventListener('click', function () {
-      if (audio.paused) {
-        var p = audio.play();
-        if (p && p.catch) p.catch(function () { btn.classList.remove('loading'); });
-      } else {
-        audio.pause();
-      }
-    });
-    audio.addEventListener('loadedmetadata', function () {
-      btn.classList.remove('loading');
-      dur.textContent = fmt(audio.duration);
-      prog.setAttribute('aria-valuemax', Math.floor(audio.duration) || 100);
-    });
-    audio.addEventListener('error', function () { btn.classList.remove('loading'); });
-    audio.addEventListener('waiting', function () { btn.classList.add('loading'); });
-    audio.addEventListener('canplay', function () { btn.classList.remove('loading'); });
-    audio.addEventListener('play', function () { btn.classList.add('playing'); btn.setAttribute('aria-label', 'Pause the Velonyx pitch'); });
-    audio.addEventListener('pause', function () { btn.classList.remove('playing'); btn.setAttribute('aria-label', 'Play the Velonyx pitch'); });
-    audio.addEventListener('ended', function () { btn.classList.remove('playing'); btn.setAttribute('aria-label', 'Play the Velonyx pitch'); });
-    audio.addEventListener('timeupdate', function () {
-      if (!audio.duration) return;
-      var pct = (audio.currentTime / audio.duration) * 100;
-      fill.style.width = pct + '%';
-      cur.textContent = fmt(audio.currentTime);
-      prog.setAttribute('aria-valuenow', Math.floor(audio.currentTime));
-    });
-    audio.addEventListener('progress', function () {
-      if (!audio.duration || !audio.buffered.length) return;
-      var end = audio.buffered.end(audio.buffered.length - 1);
-      buf.style.width = ((end / audio.duration) * 100) + '%';
-    });
-
-    function seekFromEvent(e) {
-      var rect = prog.getBoundingClientRect();
-      var clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-      var pct = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
-      if (audio.duration) audio.currentTime = pct * audio.duration;
-    }
-    prog.addEventListener('click', seekFromEvent);
-    prog.addEventListener('keydown', function (e) {
-      if (!audio.duration) return;
-      if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); e.preventDefault(); }
-      else if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - 5); e.preventDefault(); }
-      else if (e.key === ' ' || e.key === 'Enter') { btn.click(); e.preventDefault(); }
-      else if (e.key === 'Home') { audio.currentTime = 0; e.preventDefault(); }
-      else if (e.key === 'End') { audio.currentTime = audio.duration; e.preventDefault(); }
-    });
-  })();
-  </script>
+  <!-- AUDIO PITCH PLAYER JS removed 2026-05-03 with the section it controlled -->
 
   <!-- ===== GSAP PREMIUM ANIMATIONS ===== -->
   <script>
@@ -4776,6 +4597,24 @@
           var playPromise = heroVideo.play();
           if (playPromise && typeof playPromise.catch === 'function') {
             playPromise.catch(function() { /* autoplay blocked; poster shown */ });
+          }
+
+          // Perf: pause the hero video when scrolled out of view, resume on return.
+          // Saves CPU/battery on long scrolls while keeping the cinematic loop while in-frame.
+          if ('IntersectionObserver' in window) {
+            var heroVideoObserver = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  if (heroVideo.paused) {
+                    var resume = heroVideo.play();
+                    if (resume && typeof resume.catch === 'function') resume.catch(function(){});
+                  }
+                } else {
+                  if (!heroVideo.paused) heroVideo.pause();
+                }
+              });
+            }, { threshold: 0.1 });
+            heroVideoObserver.observe(heroVideo);
           }
         }
       }
