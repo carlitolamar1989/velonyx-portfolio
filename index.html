@@ -611,12 +611,19 @@
 
     /* ===== HERO ===== */
     .hero {
-      min-height: 100vh;
+      /* min-height has a floor of 880px so the centered hero-content never
+         clips on shorter viewports (e.g., 720p laptops). On taller screens
+         it stretches to full viewport height for the cinematic feel. */
+      min-height: max(100vh, 880px);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 90px 24px 30px;
+      /* Bottom padding bumped from 30px -> 130px so the [Book Free Consultation]
+         and [See Pricing] CTAs always have breathing room above the fold-line.
+         overflow: hidden remains for the radial gradient + particle canvas, but
+         is no longer needed to clip overflowing content. */
+      padding: 110px 24px 130px;
       position: relative;
       z-index: 3;
       overflow: hidden;
