@@ -1086,8 +1086,20 @@
       justify-content: center;
       margin-bottom: 22px;
       font-size: 1.4rem;
+      color: var(--accent);
       transition: all 0.4s;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.18));
+      transition: transform 0.4s, filter 0.4s;
+    }
+    .service-card:hover .service-icon svg {
+      transform: scale(1.05);
+      filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.32));
     }
 
     .service-card:hover .service-icon {
@@ -3821,42 +3833,42 @@
 
       <div class="services-grid">
         <div class="service-card fade-in">
-          <div class="service-icon">&#9671;</div>
+          <div class="service-icon"><!-- lucide:globe --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
           <h3>Custom Branded Platform</h3>
           <p>A premium website that doubles as your customer-facing front door. Built for conversion, optimized for local SEO, fully branded as your business. The face of your operation.</p>
           <span class="service-tag">Core Capability</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9733;</div>
+          <div class="service-icon"><!-- lucide:credit-card --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
           <h3>Integrated Payment System</h3>
           <p>Take payments anywhere &mdash; at the customer's house, via SMS link, or through your branded payment page. Apple Pay, Google Pay, BNPL through Affirm and Klarna. Every dollar tracked in one dashboard.</p>
           <span class="service-tag">Revenue Engine</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9879;</div>
+          <div class="service-icon"><!-- lucide:wallet --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></div>
           <h3>Customer Financing (BNPL)</h3>
           <p>Affirm, Klarna, and Afterpay built into your payment flow. Customers split larger jobs into payments. You get paid in full upfront. No friction, more closed deals.</p>
           <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works →</span></a>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9729;</div>
+          <div class="service-icon"><!-- lucide:server --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></div>
           <h3>Production Hosting &amp; Deployment</h3>
           <p>Premium hosting, SSL, automated backups, performance monitoring, and uptime guarantees. We handle the infrastructure so you can run your business.</p>
           <span class="service-tag">Included</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9881;</div>
+          <div class="service-icon"><!-- lucide:shield-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h3>Ongoing Care &amp; Maintenance</h3>
           <p>Monthly maintenance subscriptions keep your system running, secure, and improving. Updates, bug fixes, content changes, and SEO maintenance &mdash; all included.</p>
           <span class="service-tag">Monthly</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon">&#9888;</div>
+          <div class="service-icon"><!-- lucide:compass --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg></div>
           <h3>Digital Operations Consulting</h3>
           <p>Quarterly strategy sessions on lead generation, conversion optimization, customer retention, and growth. We're not just builders &mdash; we're operators in your corner.</p>
           <span class="service-tag">Strategy</span>
