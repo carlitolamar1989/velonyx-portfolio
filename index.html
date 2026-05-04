@@ -173,6 +173,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload font CSS so the hero headline (Space Grotesk 700/900) renders without FOIT flash -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -1200,146 +1202,6 @@
       color: var(--white-dim);
       font-size: 0.88rem;
       line-height: 1.7;
-    }
-
-    /* ===== WHY VELONYX (Rent vs Own comparison) ===== */
-    .why-velonyx {
-      padding: 100px 24px;
-      background: transparent;
-      position: relative;
-      z-index: 3;
-    }
-
-    .why-comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .why-card {
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212, 175, 55, 0.1);
-      border-radius: 14px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .why-card.why-featured {
-      border-color: rgba(212, 175, 55, 0.32);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 50px rgba(212,175,55,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .why-card.why-featured::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold-btn);
-      box-shadow: 0 0 15px rgba(212,175,55,0.4);
-    }
-
-    .why-card-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--white-dim);
-      margin-bottom: 14px;
-    }
-
-    .why-card.why-featured .why-card-tag {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .why-card-approach {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
-      min-height: 56px;
-    }
-
-    .why-card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      gap: 12px;
-    }
-
-    .why-card-row:last-of-type { border-bottom: none; }
-
-    .why-card-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--white-dim);
-      letter-spacing: 0.3px;
-    }
-
-    .why-card-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      text-align: right;
-    }
-
-    .why-card.why-featured .why-card-value {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .why-summary {
-      max-width: 760px;
-      margin: 56px auto 0;
-      padding: 28px 32px;
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212,175,55,0.18);
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .why-summary p {
-      color: var(--white);
-      font-size: 1rem;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    .why-summary p strong {
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-    }
-
-    .why-cta-wrap {
-      text-align: center;
-      margin-top: 32px;
-    }
-
-    @media (max-width: 900px) {
-      .why-comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .why-card-approach {
-        min-height: 0;
-      }
     }
 
     /* ===== PORTFOLIO ===== */
@@ -3347,86 +3209,6 @@
       font-weight: 700;
     }
 
-    /* ── Maintenance Plans (LEGACY — hidden, kept for rollback) ── */
-    .maintenance-wrap {
-      margin-top: 56px; padding-top: 48px;
-      border-top: 1px solid rgba(212,175,55,0.1);
-    }
-    .maintenance-heading {
-      font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700; color: var(--white); text-align: center; margin-bottom: 10px;
-    }
-    .maintenance-subtext {
-      text-align: center; color: var(--white-dim); font-size: 0.9rem;
-      margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto;
-    }
-    .maintenance-subtext strong { color: var(--accent); }
-    .maintenance-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-      max-width: 1320px; margin: 0 auto;
-    }
-    @media (max-width: 1100px) { .maintenance-grid { grid-template-columns: 1fr 1fr; max-width: 780px; gap: 18px; } }
-    @media (max-width: 768px) { .maintenance-grid { grid-template-columns: 1fr; max-width: 420px; } }
-    .maintenance-card.maintenance-enterprise { border-color: rgba(212,175,55,0.25); }
-    .maintenance-card.maintenance-enterprise:hover { border-color: rgba(212,175,55,0.45); }
-    .maintenance-card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px; padding: 32px 28px; position: relative;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .maintenance-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); }
-    .maintenance-featured {
-      border-color: rgba(212,175,55,0.25);
-      background: rgba(212,175,55,0.03);
-    }
-    .maintenance-featured:hover { border-color: rgba(212,175,55,0.5); }
-    .maintenance-popular {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060);
-      color: #0a0a0a; font-size: 0.68rem; font-weight: 800;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 4px 16px; border-radius: 50px; white-space: nowrap;
-    }
-    .maintenance-tier {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--white-dim);
-      margin-bottom: 10px;
-    }
-    .maintenance-price {
-      font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 800;
-      color: var(--white); line-height: 1; margin-bottom: 22px;
-    }
-    .maintenance-mo { font-size: 1rem; font-weight: 400; color: var(--white-dim); }
-    .maintenance-features {
-      list-style: none; margin: 0 0 28px; padding: 0;
-      display: flex; flex-direction: column; gap: 10px;
-    }
-    .maintenance-features li {
-      font-size: 0.85rem; color: var(--white-dim); line-height: 1.5;
-    }
-    .btn-maintenance {
-      display: block; width: 100%; padding: 14px; border-radius: 10px; text-align: center;
-      border: 1px solid rgba(255,255,255,0.15); background: transparent;
-      color: var(--white); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px;
-      text-decoration: none; transition: all 0.3s;
-    }
-    .btn-maintenance:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
-    .btn-maintenance-gold {
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      border: none; color: #0a0a0a;
-      box-shadow: 0 4px 20px rgba(212,175,55,0.25);
-    }
-    .btn-maintenance-gold:hover {
-      box-shadow: 0 8px 36px rgba(212,175,55,0.45); transform: translateY(-2px);
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      color: #0a0a0a;
-    }
-
-    .pricing-note strong {
-      color: var(--white-muted);
-    }
-
     /* ── Payment & Financing Partners ── */
     .payment-partners {
       margin-top: 52px;
@@ -3520,172 +3302,6 @@
       transform: scaleX(0);
     }
 
-    /* ===== AUDIO PITCH PLAYER ===== */
-    .pitch-audio {
-      padding: 90px 24px 100px;
-      position: relative;
-      z-index: 3;
-    }
-    .pitch-audio-intro {
-      text-align: center;
-      max-width: 680px;
-      margin: 14px auto 42px;
-      color: var(--white-muted);
-      font-weight: 300;
-      line-height: 1.7;
-    }
-    .pitch-audio-player {
-      max-width: 780px;
-      margin: 0 auto;
-      background: var(--bg-card-glossy);
-      border: 1px solid rgba(212,175,55,0.28);
-      border-radius: 20px;
-      padding: 28px 32px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 24px;
-      align-items: center;
-      box-shadow:
-        0 24px 60px -24px rgba(0,0,0,0.75),
-        0 0 0 1px rgba(212,175,55,0.06) inset,
-        0 1px 0 rgba(255,255,255,0.05) inset;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-    }
-    .pitch-audio-player::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 20px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.45), transparent 40%, transparent 60%, rgba(212,175,55,0.35));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-              mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0.9;
-    }
-    .vx-play {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 1px solid rgba(212,175,55,0.55);
-      background:
-        radial-gradient(circle at 30% 28%, #FBF5B7 0%, #D4AF37 38%, #8C6D1F 100%);
-      color: #0a0a0a;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.22s ease, box-shadow 0.3s ease, filter 0.3s ease;
-      box-shadow:
-        0 0 32px rgba(212,175,55,0.38),
-        inset 0 1px 0 rgba(255,255,255,0.55),
-        inset 0 -10px 18px rgba(0,0,0,0.25);
-      flex-shrink: 0;
-      outline: none;
-    }
-    .vx-play:hover { transform: scale(1.06); box-shadow: 0 0 48px rgba(212,175,55,0.6), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -10px 18px rgba(0,0,0,0.25); }
-    .vx-play:focus-visible { box-shadow: 0 0 0 3px rgba(212,175,55,0.4), 0 0 48px rgba(212,175,55,0.55); }
-    .vx-play:active { transform: scale(0.97); }
-    .vx-play svg { width: 26px; height: 26px; fill: currentColor; pointer-events: none; }
-    .vx-play svg.vx-pause-icon { display: none; }
-    .vx-play.playing svg.vx-play-icon { display: none; }
-    .vx-play.playing svg.vx-pause-icon { display: block; }
-    .vx-play.loading { pointer-events: none; filter: saturate(0.6) brightness(0.85); }
-    .vx-play.loading svg { animation: vx-pulse 1.2s ease-in-out infinite; }
-    @keyframes vx-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    .vx-track { min-width: 0; }
-    .vx-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-    }
-    .vx-title {
-      color: var(--white);
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: 0.2px;
-    }
-    .vx-time {
-      color: rgba(212,175,55,0.9);
-      font-variant-numeric: tabular-nums;
-      flex-shrink: 0;
-      font-weight: 500;
-    }
-    .vx-progress {
-      height: 6px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 3px;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-      outline: none;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-    .vx-progress:focus-visible { box-shadow: 0 0 0 2px rgba(212,175,55,0.35); }
-    .vx-progress-buffer {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: rgba(212,175,55,0.12);
-      border-radius: 3px;
-      transition: width 0.2s ease;
-    }
-    .vx-progress-fill {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: var(--gold-btn);
-      border-radius: 3px;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 12px rgba(212,175,55,0.55);
-    }
-    .vx-download {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(212,175,55,0.82);
-      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .vx-download:hover { color: #F7E17B; border-color: rgba(212,175,55,0.5); background: rgba(212,175,55,0.08); transform: translateY(-1px); }
-    .vx-download svg { width: 20px; height: 20px; fill: currentColor; }
-    .pitch-audio-disclaimer {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 0.82rem;
-      color: rgba(240,237,232,0.42);
-      letter-spacing: 0.3px;
-    }
-    .pitch-audio-disclaimer a { color: rgba(212,175,55,0.9); text-decoration: none; border-bottom: 1px dashed rgba(212,175,55,0.3); }
-    .pitch-audio-disclaimer a:hover { color: #F7E17B; border-bottom-color: rgba(212,175,55,0.65); }
-
-    @media (max-width: 640px) {
-      .pitch-audio { padding: 60px 18px 70px; }
-      .pitch-audio-player {
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        padding: 22px 20px;
-        gap: 18px;
-      }
-      .vx-play { width: 56px; height: 56px; }
-      .vx-play svg { width: 22px; height: 22px; }
-      .vx-download { grid-column: 1 / 3; justify-self: stretch; width: auto; height: 44px; }
-    }
   </style>
 
   <!-- GSAP + ScrollTrigger -->
@@ -3716,7 +3332,7 @@
   <div class="loader" id="loader">
     <div class="loader-warp" id="loaderWarp"></div>
     <div class="loader-content">
-      <div class="loader-mark"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems"></div>
+      <div class="loader-mark"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" width="512" height="590"></div>
       <div class="loader-text">Velonyx Systems</div>
       <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
@@ -3728,7 +3344,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-brand">
-      <div class="nav-brand-mark"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"></div>
+      <div class="nav-brand-mark"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems" width="256" height="288"></div>
       <div class="nav-brand-text">VELONYX <span>SYSTEMS</span></div>
       <div class="nav-slogan">Your Legacy, Engineered With Precision.</div>
     </a>
@@ -3766,7 +3382,7 @@
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
-        <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo">
+        <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo" width="512" height="590">
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
@@ -3793,11 +3409,11 @@
 
   <!-- AUDIO PITCH section removed 2026-05-03 — off-brand for service-industry positioning.
        MP3 file remains at /assets/audio/velonyx-pitch.mp3 for potential future repurposing.
-       Section CSS (.pitch-audio*, .vx-*) is now orphaned and will be removed in the perf pass. -->
+       Section CSS, JS, and HTML have all been removed in the perf pass commit. -->
 
   <!-- IMAGE DIVIDER 1 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70" alt="Digital workspace" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70" alt="Digital workspace" loading="lazy" width="1200" height="675">
     <div class="image-divider-text">
       <h3 class="fade-in">Your brand deserves <span>better than the DMs</span></h3>
     </div>
@@ -4108,7 +3724,7 @@
 
   <!-- IMAGE DIVIDER 2 -->
   <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=70" alt="Team working on digital projects" loading="lazy">
+    <img class="parallax-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=70" alt="Team working on digital projects" loading="lazy" width="1200" height="675">
     <div class="image-divider-text">
       <h3 class="fade-in">Built with precision. <span>Designed to convert.</span></h3>
     </div>
@@ -4152,25 +3768,25 @@
   <!-- SCROLLING SHOWCASE -->
   <section class="showcase-strip">
     <div class="showcase-row">
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy" width="640" height="360">
       <!-- Duplicate for seamless loop -->
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=640&q=75" alt="Team working" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&q=75" alt="Web design" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=75" alt="Analytics dashboard" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=75" alt="Business meeting" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=75" alt="Coding" loading="lazy" width="640" height="360">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=640&q=75" alt="Strategy planning" loading="lazy" width="640" height="360">
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark">
+    <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark" width="512" height="590" loading="lazy">
     <div class="container">
       <div class="section-label">About Velonyx</div>
       <div class="section-divider"></div>
@@ -4918,74 +4534,7 @@
     }
   </script>
 
-  <!-- ===== AUDIO PITCH PLAYER ===== -->
-  <script>
-  (function () {
-    var audio = document.getElementById('velonyx-pitch-audio');
-    var btn = document.getElementById('vx-play');
-    var prog = document.getElementById('vx-progress');
-    var fill = document.getElementById('vx-progress-fill');
-    var buf = document.getElementById('vx-progress-buffer');
-    var cur = document.getElementById('vx-current');
-    var dur = document.getElementById('vx-duration');
-    if (!audio || !btn || !prog) return;
-
-    function fmt(s) {
-      if (!isFinite(s) || s < 0) return '--:--';
-      var m = Math.floor(s / 60);
-      var sec = Math.floor(s % 60).toString().padStart(2, '0');
-      return m + ':' + sec;
-    }
-
-    btn.addEventListener('click', function () {
-      if (audio.paused) {
-        var p = audio.play();
-        if (p && p.catch) p.catch(function () { btn.classList.remove('loading'); });
-      } else {
-        audio.pause();
-      }
-    });
-    audio.addEventListener('loadedmetadata', function () {
-      btn.classList.remove('loading');
-      dur.textContent = fmt(audio.duration);
-      prog.setAttribute('aria-valuemax', Math.floor(audio.duration) || 100);
-    });
-    audio.addEventListener('error', function () { btn.classList.remove('loading'); });
-    audio.addEventListener('waiting', function () { btn.classList.add('loading'); });
-    audio.addEventListener('canplay', function () { btn.classList.remove('loading'); });
-    audio.addEventListener('play', function () { btn.classList.add('playing'); btn.setAttribute('aria-label', 'Pause the Velonyx pitch'); });
-    audio.addEventListener('pause', function () { btn.classList.remove('playing'); btn.setAttribute('aria-label', 'Play the Velonyx pitch'); });
-    audio.addEventListener('ended', function () { btn.classList.remove('playing'); btn.setAttribute('aria-label', 'Play the Velonyx pitch'); });
-    audio.addEventListener('timeupdate', function () {
-      if (!audio.duration) return;
-      var pct = (audio.currentTime / audio.duration) * 100;
-      fill.style.width = pct + '%';
-      cur.textContent = fmt(audio.currentTime);
-      prog.setAttribute('aria-valuenow', Math.floor(audio.currentTime));
-    });
-    audio.addEventListener('progress', function () {
-      if (!audio.duration || !audio.buffered.length) return;
-      var end = audio.buffered.end(audio.buffered.length - 1);
-      buf.style.width = ((end / audio.duration) * 100) + '%';
-    });
-
-    function seekFromEvent(e) {
-      var rect = prog.getBoundingClientRect();
-      var clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-      var pct = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
-      if (audio.duration) audio.currentTime = pct * audio.duration;
-    }
-    prog.addEventListener('click', seekFromEvent);
-    prog.addEventListener('keydown', function (e) {
-      if (!audio.duration) return;
-      if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); e.preventDefault(); }
-      else if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - 5); e.preventDefault(); }
-      else if (e.key === ' ' || e.key === 'Enter') { btn.click(); e.preventDefault(); }
-      else if (e.key === 'Home') { audio.currentTime = 0; e.preventDefault(); }
-      else if (e.key === 'End') { audio.currentTime = audio.duration; e.preventDefault(); }
-    });
-  })();
-  </script>
+  <!-- AUDIO PITCH PLAYER JS removed 2026-05-03 with the section it controlled -->
 
   <!-- ===== GSAP PREMIUM ANIMATIONS ===== -->
   <script>
@@ -5048,6 +4597,24 @@
           var playPromise = heroVideo.play();
           if (playPromise && typeof playPromise.catch === 'function') {
             playPromise.catch(function() { /* autoplay blocked; poster shown */ });
+          }
+
+          // Perf: pause the hero video when scrolled out of view, resume on return.
+          // Saves CPU/battery on long scrolls while keeping the cinematic loop while in-frame.
+          if ('IntersectionObserver' in window) {
+            var heroVideoObserver = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  if (heroVideo.paused) {
+                    var resume = heroVideo.play();
+                    if (resume && typeof resume.catch === 'function') resume.catch(function(){});
+                  }
+                } else {
+                  if (!heroVideo.paused) heroVideo.pause();
+                }
+              });
+            }, { threshold: 0.1 });
+            heroVideoObserver.observe(heroVideo);
           }
         }
       }
