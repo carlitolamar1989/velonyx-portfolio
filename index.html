@@ -1333,16 +1333,33 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      max-width: 1500px;
+      grid-template-columns: minmax(0, 480px);
+      justify-content: center;
+      gap: 24px;
+      max-width: 520px;
       margin: 0 auto;
     }
-    @media (max-width: 1380px) {
-      .portfolio-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; gap: 20px; }
+
+    .portfolio-followup {
+      max-width: 520px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--white-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
-    @media (max-width: 1100px) {
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; gap: 24px; }
+
+    .portfolio-followup a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(212,175,55,0.45);
+      padding-bottom: 1px;
+      font-weight: 600;
+    }
+
+    .portfolio-followup a:hover {
+      color: var(--accent-light);
+      border-bottom-color: rgba(212,175,55,0.85);
     }
 
     .portfolio-card {
@@ -3763,100 +3780,16 @@
   <!-- PORTFOLIO -->
   <section class="portfolio cyber-reveal" id="work">
     <div class="container">
-      <div class="section-label">Our Work</div>
+      <div class="section-label">Live Client Build</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Featured Projects</h2>
-      <p class="section-subtitle fade-in">Five industries. Five distinct brands. All built by Velonyx.</p>
+      <h2 class="section-title shimmer-sweep fade-in">See It In Action</h2>
+      <p class="section-subtitle fade-in">A real, working build deployed for a real service business. Click to explore the live demo.</p>
 
       <div class="portfolio-grid">
-        <!-- Throne Barbershop -->
-        <a href="/client-demos/barber/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1A3C34, #0F2620);">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barbershop" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(26,60,52,0.9), rgba(26,60,52,0.3));">
-              <div class="mock-logo" style="color:#F5F0E8; font-family:'Playfair Display',serif;">THRONE</div>
-              <div class="mock-tagline" style="color:#C8A96E;">Where Kings Get Crowned.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Barbershop</div>
-            <h3>Throne Barbershop</h3>
-            <p>Luxury booking &amp; payment site with service menu, gallery, and automated checkout.</p>
-            <div class="portfolio-tags">
-              <span>Payments</span>
-              <span>Gallery</span>
-              <span>Green &amp; Cream</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- IronWill -->
-        <a href="/client-demos/fitness/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #111111, #1A1A1A);">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Fitness training" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(17,17,17,0.9), rgba(17,17,17,0.3));">
-              <div class="mock-logo" style="color:#FF4B2B; font-family:'Bebas Neue',sans-serif; letter-spacing:6px;">IRONWILL</div>
-              <div class="mock-tagline">Your Excuses End Here.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Fitness Coach</div>
-            <h3>IronWill Training</h3>
-            <p>High-energy coaching site with 3-tier pricing, testimonials, and full payment system.</p>
-            <div class="portfolio-tags">
-              <span>Payments</span>
-              <span>Pricing Tiers</span>
-              <span>Black &amp; Red</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Lens & Light -->
-        <a href="/client-demos/photo/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #FAF8F5, #EDE8E0);">
-            <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Photography" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(250,248,245,0.9), rgba(250,248,245,0.3));">
-              <div class="mock-logo" style="color:#2A2A2A; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem;">Lens &amp; Light</div>
-              <div class="mock-tagline" style="color:#C4785B;">We Tell Stories.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">Photography</div>
-            <h3>Lens &amp; Light Studio</h3>
-            <p>Editorial portfolio with masonry gallery, session packages, and elegant booking flow.</p>
-            <div class="portfolio-tags">
-              <span>Gallery</span>
-              <span>Light Theme</span>
-              <span>Packages</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Apex SMP Studio -->
-        <a href="/demos/smp/" target="_blank" rel="noopener" class="portfolio-card scale-in">
-          <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1A1A);">
-            <img src="/demos/smp/assets/healed-lifestyle.jpg" alt="Apex SMP Studio — scalp micropigmentation" loading="lazy">
-            <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.92), rgba(10,10,10,0.25));">
-              <div class="mock-logo" style="color:#E8D48A; font-family:'Playfair Display',serif; letter-spacing:0.2em;">APEX SMP</div>
-              <div class="mock-tagline" style="color:#C9A961;">Precision. Artistry. Confidence.</div>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="client-badge">SMP Studio</div>
-            <h3>Apex SMP Studio</h3>
-            <p>Full platform: 7-step booking flow, client portal, Stripe Payment Links, and Twilio SMS automation.</p>
-            <div class="portfolio-tags">
-              <span>Booking</span>
-              <span>Client Portal</span>
-              <span>Black &amp; Gold</span>
-            </div>
-          </div>
-        </a>
-
         <!-- Garage Door Kings — links directly to gdk.velonyxsystems.com (Vercel-deployed full operational demo) -->
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0A0A0A, #1A1208);">
-            <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
+            <img src="/demos/garage/assets/gdk-crown-gold-lg.png" alt="Garage Door Kings — Las Vegas trade business demo" loading="lazy" width="600" height="400" style="object-fit:contain;padding:20%;background:linear-gradient(135deg,#0A0A0A,#1A1208);">
             <div class="mock-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.94), rgba(10,10,10,0.3));">
               <div class="mock-logo" style="color:#F2C998; font-family:'Fraunces',Georgia,serif; letter-spacing:0.18em; font-weight:700;">GARAGE DOOR KINGS</div>
               <div class="mock-tagline" style="color:#B8732E;">Las Vegas · Trade Business Template</div>
@@ -3874,6 +3807,8 @@
           </div>
         </a>
       </div>
+
+      <p class="portfolio-followup fade-in">More builds in production. Yours could be next. <a href="#contact">Claim a founding spot &rarr;</a></p>
     </div>
   </section>
 
