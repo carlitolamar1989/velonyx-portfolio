@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) — gated by cookie consent (mirrors index.html pattern) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if (document.querySelector('script[data-ga4]')) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4', '1');
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-F838ZEJ22J');
+    };
+    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') {
+      window.__loadGA4();
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08080A">
+  <title>Connect with Velonyx Systems | Carlos Glover</title>
+  <meta name="description" content="Save Carlos Glover's contact, visit Velonyx Systems, or book a free consultation. Premium digital systems built for ambitious businesses.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Velonyx Systems">
+  <link rel="canonical" href="https://velonyxsystems.com/connect/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Connect with Velonyx Systems">
+  <meta property="og:description" content="Save my contact, visit the site, or book a free consultation. Premium digital systems built for ambitious businesses.">
+  <meta property="og:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
+  <meta property="og:url" content="https://velonyxsystems.com/connect/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Velonyx Systems">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@velonyxsystems">
+  <meta name="twitter:title" content="Connect with Velonyx Systems">
+  <meta name="twitter:description" content="Save my contact, visit the site, or book a free consultation.">
+  <meta name="twitter:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+  <link rel="apple-touch-icon" href="/assets/vs-logo-monogram.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #D4AF37;
+      --accent-light: #F7E17B;
+      --accent-dark: #B8860B;
+      --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 22%, #B38728 45%, #FBF5B7 67%, #AA771C 100%);
+      --gold-btn: linear-gradient(135deg, #D4AF37 0%, #F7E17B 35%, #D4AF37 65%, #B8860B 100%);
+      --bg-deep: #08080A;
+      --bg-base: #0C0C0F;
+      --bg-card: #111114;
+      --bg-card-glossy: linear-gradient(165deg, rgba(22,22,26,0.97) 0%, rgba(12,12,15,0.99) 100%);
+      --white: #F0EDE8;
+      --white-muted: #B0AEA6;
+      --white-dim: #8F8D87;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg-base);
+      color: var(--white);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Subtle radial gold glow + dark vignette to match the homepage atmosphere
+       without dragging in animated canvas/video assets */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(8, 8, 10, 0) 0%, rgba(8, 8, 10, 0.6) 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ───── Logo ───── */
+    .vx-logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.18));
+    }
+
+    /* ───── Tagline (italic gold) ───── */
+    .vx-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.92rem;
+      letter-spacing: 0.4px;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 28px;
+    }
+
+    /* ───── Heading + sub ───── */
+    .vx-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 7vw, 2.6rem);
+      letter-spacing: -0.5px;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .vx-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--white-muted);
+      max-width: 380px;
+      margin: 0 auto 36px;
+    }
+
+    /* ───── Buttons (3 stacked) ───── */
+    .vx-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .vx-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      min-height: 64px;
+      padding: 18px 22px;
+      background: var(--bg-card-glossy);
+      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 4px 20px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vx-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .vx-btn:hover {
+      border-color: rgba(212, 175, 55, 0.8);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px rgba(212, 175, 55, 0.15), 0 0 30px rgba(212, 175, 55, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .vx-btn:hover::after { transform: translateX(100%); }
+
+    .vx-btn:active {
+      transform: translateY(0);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .vx-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .vx-btn-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .vx-btn-label {
+      flex: 1;
+      text-align: center;
+    }
+
+    /* ───── Footer block ───── */
+    .vx-footer {
+      text-align: center;
+    }
+
+    .vx-footer-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.88rem;
+      letter-spacing: 0.3px;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .vx-footer-line {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      letter-spacing: 0.2px;
+      line-height: 1.5;
+      margin: 4px 0;
+    }
+
+    .vx-footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      color: var(--white-dim);
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    /* ───── Mobile tighten ───── */
+    @media (max-width: 414px) {
+      body { padding: 36px 20px; }
+      .vx-logo { width: 104px; margin-bottom: 14px; }
+      .vx-tagline { font-size: 0.86rem; margin-bottom: 22px; }
+      .vx-sub { font-size: 0.94rem; margin-bottom: 28px; }
+      .vx-btn { min-height: 60px; padding: 16px 20px; font-size: 0.88rem; letter-spacing: 1.2px; }
+      .vx-btn-group { margin-bottom: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vx-btn, .vx-btn::after { transition: none; }
+      .vx-btn:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <img src="/assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="vx-logo" width="512" height="590" fetchpriority="high">
+
+    <p class="vx-tagline">Your Legacy, Engineered With Precision.</p>
+
+    <h1 class="vx-h1">Let&rsquo;s Connect</h1>
+
+    <p class="vx-sub">Save my info, explore Velonyx, or book a consultation.</p>
+
+    <nav class="vx-btn-group" aria-label="Connect actions">
+      <a href="/contact.vcf" download="velonyx-contact.vcf" class="vx-btn" aria-label="Save Carlos Glover's contact information">
+        <span class="vx-btn-icon" aria-hidden="true">&#128209;</span>
+        <span class="vx-btn-label">Save My Contact</span>
+      </a>
+
+      <a href="/" class="vx-btn" aria-label="Visit the Velonyx Systems homepage">
+        <span class="vx-btn-icon" aria-hidden="true">&#127760;</span>
+        <span class="vx-btn-label">Visit Velonyx Systems</span>
+      </a>
+
+      <a href="/book.html" class="vx-btn" aria-label="Book a free consultation">
+        <span class="vx-btn-icon" aria-hidden="true">&#128197;</span>
+        <span class="vx-btn-label">Book a Consultation</span>
+      </a>
+    </nav>
+
+    <footer class="vx-footer">
+      <p class="vx-footer-tagline">Your Legacy, Engineered With Precision.</p>
+      <p class="vx-footer-line">Premium digital systems built for ambitious businesses.</p>
+      <p class="vx-footer-copy">&copy; Velonyx Systems</p>
+    </footer>
+  </main>
+
+  <!-- Cookie consent + analytics gating (matches homepage pattern) -->
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>
