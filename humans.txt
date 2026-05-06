@@ -2,36 +2,37 @@
   Velonyx Systems LLC
   Founder & Operator: Carlos Glover
   Tagline: Your Legacy, Engineered With Precision
-  Positioning: We engineer custom business systems for service operators.
+  Positioning: We engineer premium digital systems for ambitious businesses.
   Phone: (877) 317-8643
   Email: admin@velonyxsystems.com
   Location: San Diego, CA · serves the entire United States remotely
 
 /* PRODUCT */
-  Custom business systems for service operators (garage door, HVAC, plumbing,
-  electrical, landscaping, and other field-service businesses).
-  One integrated platform. Branded as you. Owned by you.
+  Premium digital systems for businesses that refuse to look and operate like
+  everyone else. We design and engineer custom-built platforms — branded
+  websites, integrated payment platforms, customer dashboards, and admin
+  tools — engineered around how each business actually runs.
 
-  Replaces the patchwork of rented tools (Housecall Pro, separate website,
-  spreadsheets, manual SMS, generic invoicing) with a single connected system:
-    - Premium branded customer-facing platform (the website is one feature, not the product)
+  Specializing in home service operators (garage door, HVAC, plumbing,
+  electrical, landscaping, and other field-service businesses). Custom
+  builds available for any business ready to level up.
+
+  One connected system, branded as you, owned by you:
+    - Custom-built, branded customer-facing website (one feature inside the system, not the product)
     - Integrated payment system (Stripe + Apple Pay + Google Pay)
     - Customer financing / BNPL (Klarna, Affirm, Afterpay) at customer checkout
-    - Online booking via Calendly
-    - SMS automation via Twilio
-    - Comprehensive local SEO foundation (schema, sitemap, geo, OG/Twitter)
+    - Customer management dashboard
+    - Admin tools you run from your phone
+    - SMS automation (Twilio)
+    - Online booking (Calendly)
+    - Local SEO foundation (schema, sitemap, geo, OG/Twitter)
     - Production hosting, SSL, automated backups, performance monitoring
-    - Ongoing Care subscription for updates, security, and SEO maintenance
-    - Quarterly digital operations consulting
 
-/* TIERS */
-  Starter System:    $1,500  · 5–7 day delivery  · foundation tier
-  Growth System:     $3,500  · 7–10 day delivery · most popular — full system
-  Premium System:    $6,000  · 10–14 day delivery · brand video + customer portal
-  Enterprise System: $12,000+ · custom-quoted     · multi-location + integrations
-
-  Care subscription (required to keep the system live and supported):
-  Standard $125/mo · Growth $225/mo · Premium $325/mo · Enterprise custom
+/* OFFER (Founding Member pricing — first 5 customers only) */
+  $3,000 one-time build · $100/month to keep everything running
+  Locked in for life if you're one of the first 5 founding customers.
+  After that: $5,000 build · $200/month.
+  Yours forever — not rented, not licensed, not locked in.
 
 /* POSITIONING */
   Stop renting your business tools. Start owning your infrastructure.
@@ -50,7 +51,7 @@
 
 /* CONTACT */
   Book a free 20-minute consultation: https://velonyxsystems.com/book.html
-  See pricing: https://velonyxsystems.com/checkout.html
+  See pricing: https://velonyxsystems.com/#pricing
   Financing: https://velonyxsystems.com/financing.html
   GitHub: https://github.com/carlitolamar1989/velonyx-portfolio
 
@@ -58,5 +59,5 @@
   Built and operated by Carlos Glover
   Designed with precision, copy edited for plain English, shipped with SEO
 
-  Want a custom business system engineered for your operation?
+  Want a premium digital system engineered for your business?
     https://velonyxsystems.com/book.html
