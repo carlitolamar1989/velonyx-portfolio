@@ -63,7 +63,46 @@ Updated `/connect/index.html` to use a `<picture>` element with WebP-first + PNG
 
 The original `index.html` and other pages were intentionally NOT touched in this pass — they can adopt the same optimization in a future sweep.
 
-Re-audit `/connect/` after the deploy to confirm desktop Performance score lifts from 69 → ~95+.
+---
+
+## After fix — re-audit results (same session)
+
+### Mobile (after fix)
+
+| Category | Before | After | Δ |
+|---|---|---|---|
+| Performance | 96 | **97** | +1 |
+| Accessibility | 100 | 100 | — |
+| Best Practices | 100 | 100 | — |
+| SEO | 100 | 100 | — |
+
+LCP: 2.5s → **2.1s** (–0.4s)
+
+### Desktop (after fix)
+
+| Category | Before | After | Δ |
+|---|---|---|---|
+| Performance | 69 | **83** | **+14** |
+| Accessibility | 100 | 100 | — |
+| Best Practices | 100 | 100 | — |
+| SEO | 100 | 100 | — |
+
+LCP: **3.1s → 1.8s** (–1.3s, ~42% improvement)
+Speed Index: 2.6s → 1.8s
+FCP: 2.1s → 1.8s
+
+### Remaining desktop opportunity
+
+| Opportunity | Savings |
+|---|---|
+| Properly size images | 80 ms / 16 KiB |
+
+The remaining drag is a few extra logo pixels (240w is still slightly larger than the 120px display target on a non-retina desktop) plus Google Fonts being a render-blocking external CSS. Going from 83 → 95+ on desktop would require either:
+
+1. A smaller logo variant (e.g., 180w WebP, ~12 KB) — easy
+2. Self-host the fonts and inline an `@font-face` declaration — more invasive
+
+Neither is critical given the page is a "link in bio" / business-card-style funnel that's overwhelmingly accessed on mobile (where Performance is now 97).
 
 ---
 
