@@ -1,184 +1,190 @@
 # Velonyx Systems — Claude Code Handoff
 
-**Local path (this machine):** `/Users/apple/Cursor-Claude`  
-**GitHub:** `carlitolamar1989/velonyx-portfolio` (default branch: `main`)  
-**Live site:** `https://www.velonyxsystems.com` / `https://velonyxsystems.com`  
-**Primary audience:** SMBs (barbershops, fitness, creatives, service businesses) buying luxury-positioned websites with payments and financing messaging.
+**Local working tree:** `/Users/apple/Cursor-Claude/`
+**GitHub:** [`carlitolamar1989/velonyx-portfolio`](https://github.com/carlitolamar1989/velonyx-portfolio) (default branch: `main`)
+**Live site:** `https://velonyxsystems.com` / `https://www.velonyxsystems.com`
+**Subdomain (live demo):** `https://gdk.velonyxsystems.com` (separate Vercel project — see "Sibling repos" below)
+**Founder/Operator:** Carlos Glover ([admin@velonyxsystems.com](mailto:admin@velonyxsystems.com), (877) 317-8643, San Diego CA)
 
 ---
 
-## Project Overview
+## What this site is
 
-- **What it is:** Marketing and conversion site for **Velonyx Systems** — 4-tier web design packages, Stripe checkout flows (deposit vs BNPL), monthly Care subscription upsells, financing explainer, Calendly booking, portfolio demos, full legal pack (Privacy/Terms/MSA/SOW/SMS).
-- **Tech stack:** Static **HTML/CSS/JS** (no React, no npm build). **GitHub Pages** for hosting. **Stripe Payment Links** (`buy.stripe.com/...`) for build packages and recurring Care subscriptions. **Calendly** embed for consultations. **Google Analytics 4** — **gated by CCPA cookie consent banner** via `/assets/cookie-consent.js`. Optional **AWS Lambda** code exists locally for Stripe Checkout sessions and (per `BUSINESS-HUB.md`) a legacy booking pipeline — **production checkout does not depend on that Lambda** today.
-- **Status:** Launch-ready on branch `claude/zen-bouman`. 4-tier pricing live, Care subscriptions with live Stripe links, legal pack complete, cookie banner functional, consent checkboxes on public forms. Awaiting manual QA + explicit approval before merge to `main`.
+A revenue-functional marketing site for **Velonyx Systems**, a service that engineers **custom business systems for service operators** (garage door, HVAC, plumbing, electrical, landscaping, and other field-service operators).
 
----
+The pitch: "Stop renting your business tools. Start owning your infrastructure." Velonyx replaces the common service-business stack (Housecall Pro / Jobber + a generic website + a separate SMS tool + financing add-on = $160-290/mo, owns nothing) with **one integrated, branded, owned platform** at $3,000 build + $100/month.
 
-## Architecture
-
-- **Frontend ↔ backend:** No API calls on the main purchase path. `checkout.html` redirects the browser to **Stripe Payment Links** via inline JS config (`STRIPE_DEPOSIT_LINKS`, `STRIPE_BNPL_LINKS`, maintenance URLs).
-- **AWS (optional / partial):**
-  - **`velonyx-website/backend/stripe_lambda.py`** — intended pattern: Lambda + API Gateway POST `/checkout`, env `STRIPE_SECRET_KEY`. **This folder is `.gitignore`d** — not published to GitHub; keep a secure backup if you use it.
-  - **Booking (documented in `BUSINESS-HUB.md`):** Lambda `velonyx-booking`, API Gateway, SES, Twilio — verify in AWS console what is still active; main funnel uses **Calendly** on `book.html`.
-- **Third-party:** Stripe (Payment Links + subscriptions), Calendly, Google Analytics, Twilio/SES (if legacy booking Lambda remains deployed).
-- **Database:** None.
+The site exists to:
+1. Convert visitors → Stripe Founding Member checkout
+2. Showcase a live demo at `gdk.velonyxsystems.com`
+3. Provide an "in-bio" landing at `/connect/` for QR-code / DM sharing
 
 ---
 
-## Tech Stack
+## Tech stack
 
-| Layer | Details |
-|--------|---------|
-| UI | HTML5, CSS (custom properties, animations), vanilla JS |
-| Fonts | Google Fonts (Space Grotesk, DM Sans) |
-| Payments | Stripe Payment Links (no Stripe.js on site for the primary flow) |
-| Analytics | gtag / GA4 (`G-F838ZEJ22J` in page source) |
-| Scheduling | Calendly inline widget |
-| Hosting | GitHub Pages |
-| CI | `.github/workflows/deploy.yml` — upload repo root as Pages artifact on push to `main` |
-| Tooling | Python 3 + Pillow for `scripts/remove_logo_bg.py` (logo PNG from JPG) |
-| Package manager | **None** for the static site. Lambda: **pip** + `stripe` if you package `stripe_lambda.zip` per file comments |
-
-**Versions:** Pin in AWS/Python only when packaging Lambda; static site has no `package.json`.
-
----
-
-## Key Commands
-
-| Task | Command / action |
-|------|------------------|
-| Install (logo script only) | `pip install Pillow` (if regenerating logo) |
-| Regenerate transparent logo | `python3 scripts/remove_logo_bg.py` (reads `assets/vs-logo-2026.jpg` → writes `assets/vs-logo-2026.png`) |
-| Dev server | Open `index.html` in a browser or run any static server, e.g. `python3 -m http.server 8080` from repo root |
-| Build | N/A |
-| Deploy | `git push origin main` → GitHub Actions deploys to Pages |
-| Tests | None configured |
-
----
-
-## Folder Structure
-
-```
-Cursor-Claude/
-├── index.html              # Main landing — 4 build tiers + 4 Care tiers
-├── checkout.html           # 4 plan cards + deposit/BNPL + Care upsell (4 tiers)
-├── financing.html          # BNPL / pay-over-time messaging + Enterprise note
-├── book.html               # Calendly embed (supports ?tier=enterprise)
-├── privacy.html            # Privacy Policy (CCPA)
-├── terms.html              # Terms of Service
-├── msa.html                # Master Services Agreement reference
-├── sow.html                # Statement of Work template reference
-├── sms-terms.html          # SMS terms (Twilio compliance)
-├── sms-opt-in.html         # SMS opt-in consent form
-├── 404.html                # Brand-styled 404
-├── assets/
-│   ├── cookie-consent.js   # CCPA banner + GA4 gate (loaded on all public pages)
-│   ├── favicon-32.png, favicon-180.png
-│   └── vs-logo-*.png
-├── client-demos/           # barber, fitness, photo — portfolio demos
-├── platform/               # Client Connect: terraform + lambdas + portal + admin
-├── sitemap.xml, robots.txt, CNAME
-├── .github/workflows/deploy.yml
-├── velonyx-website/        # Mirror (keep in sync)
-└── CLAUDE.md               # This file
-```
-
----
-
-## Pricing
-
-### Build tiers (one-time, all include 30-day support)
-
-| Tier | Price | Delivery | Key differentiators |
-|---|---|---|---|
-| **Starter** | $1,500 | 5–7 days | Single-page site + booking + payments |
-| **Growth** | $3,500 | 7–10 days | Multi-page + logo + BNPL + SMS automation |
-| **Premium** | $6,000 | 10–14 days | Everything in Growth + brand video + Client Portal + unlimited pages |
-| **Enterprise** | **Starting at $12,000** (Contact Us → `/book.html?tier=enterprise`) | Custom | Multi-user/multi-location Client Portal, custom integrations, dedicated PM, HIPAA-ready infra available, quarterly strategy reviews |
-
-### Care subscriptions (monthly, required to keep site live)
-
-| Tier | Price | Stripe Payment Link |
+| Layer | Tool | Notes |
 |---|---|---|
-| **Standard Care** | $125/mo | `https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b` |
-| **Growth Care** | $225/mo | `https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c` |
-| **Premium Care** | $325/mo | `https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d` |
-| **Enterprise Care** | **Custom — Contact Us** (no Stripe link; Carlos invoices manually via Stripe Invoicing per engagement) | — |
-
-### Payment processing
-
-- **Stripe Payment Links** for cards, Apple Pay, Google Pay on all build tiers (full-pay, 50% deposit, BNPL) and recurring Care subscriptions.
-- **BNPL (Affirm / Klarna / Afterpay)** available via Stripe on build **pay-in-full only** — NOT for deposits, NOT for recurring Care subscriptions.
-- **Enterprise pricing** is always manual — Stripe Invoicing on a case-by-case basis. No preset Payment Link exists for Enterprise build or Enterprise Care.
-- **Pay-in-full discount:** 10% off one-time build fee.
-
-### Legacy maintenance links (archived, not rendered)
-
-Preserved in HTML comments for rollback only. Not referenced by any live UI:
-- `https://buy.stripe.com/3cI14p2R71uae2ig14cs806` (old $150/mo Standard Maintenance)
-- `https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807` (old $300/mo Priority Retainer)
+| Markup | Static HTML5 | No framework, no build step, no `package.json` at root |
+| Styling | Vanilla CSS with `:root` custom properties | All inline in `<style>` blocks |
+| JS | Vanilla JS | GSAP + ScrollTrigger via CDN (homepage only, deferred) |
+| Fonts | Google Fonts — Space Grotesk + DM Sans | Non-blocking preload + onload swap pattern; `<noscript>` fallback |
+| Hosting | GitHub Pages | Auto-deploy on push to `main` via `.github/workflows/deploy.yml` |
+| Custom domain | `velonyxsystems.com` (apex) | CNAME at root; DNS at Namecheap |
+| Payments | Stripe Payment Links | One live link for the Founding Member offer (URL in `index.html` + `checkout.html`) |
+| Booking | Calendly inline | Embedded on `book.html` |
+| Analytics | GA4 (`G-F838ZEJ22J`) + Meta Pixel (`1486954096175579`) | Both **gated by CCPA cookie consent** via `assets/cookie-consent.js` |
+| Image optimization | Pillow (Python) | One-shot scripts in `scripts/` |
 
 ---
 
-## Compliance & Consent
+## Folder structure (current, May 2026)
 
-- **Legal pages:** `/privacy.html`, `/terms.html`, `/msa.html`, `/sow.html`, `/sms-terms.html`. All linked in footer of every public page.
-- **CCPA cookie banner:** `/assets/cookie-consent.js` loads on all 10 public pages with equal-weight Accept / Reject buttons. GA4 (`G-F838ZEJ22J`) does NOT load until user explicitly accepts. Choice stored in `localStorage.velonyx_cookie_consent`.
-- **Consent checkboxes (required, not pre-checked):**
-  - `index.html` booking modal — Privacy Policy + Terms checkbox AND separate SMS consent checkbox.
-  - `sms-opt-in.html` — SMS consent (Twilio requirement) AND separate Privacy/Terms checkbox.
-- **Intentionally excluded:** `client-demos/*` (portfolio demos), `platform/portal/*` and `platform/admin/*` (authenticated internal), `book.html` Calendly embed (Calendly handles its own consent flow).
+```
+Cursor-Claude/                        ← velonyx-portfolio repo
+├── index.html                        Marketing homepage
+├── checkout.html                     Single Founding Member checkout page
+├── book.html                         Calendly inline booking
+├── financing.html                    BNPL explainer
+├── for-barbers.html                  Vertical landing (legacy, still useful for ads)
+├── privacy.html, terms.html, msa.html, sow.html, sms-terms.html, sms-opt-in.html
+├── 404.html                          Brand-styled 404
+├── humans.txt                        Plain-text team / tech credit
+├── sitemap.xml, robots.txt, CNAME, favicon.ico
+├── connect/index.html                "Link in bio" landing page
+├── contact.vcf                       vCard 3.0 for one-tap contact save
+├── assets/
+│   ├── cookie-consent.js             CCPA banner — gates GA4 + Meta Pixel
+│   ├── marketing-config.js           Pixel/GA4 IDs (Pixel ID activated: 1486954096175579)
+│   ├── audio/velonyx-pitch.mp3       Pre-rebrand AI audio (unlinked, see assets/audio/README.md)
+│   ├── lead-magnets/                 Barbershop blueprint PDF
+│   ├── connect-qr-velonyx.png        Branded QR → /connect/
+│   ├── gdk-preview.{webp,png}        Homepage portfolio screenshot of gdk.velonyxsystems.com
+│   ├── velonyx_hero_web.mp4          Hero loop video (5.9 MB, optimized May 2026)
+│   ├── velonyx_hero_poster.{jpg,webp}
+│   ├── vs-logo-shield-clean.png      Primary brand mark (181 KB) — original
+│   ├── vs-logo-shield-512.webp       Native-res WebP (~89 KB) — for hero/loader/watermark
+│   ├── vs-logo-shield-240.{webp,png} Smaller variant — for /connect/ logo at 120px
+│   ├── vs-logo-monogram.png + .webp  Nav mark
+│   └── favicon-32.png, favicon-180.png
+├── client-demos/                     Older portfolio demos (4 verticals — legacy, unused on live site)
+├── demos/garage/                     Stripped-down GDK static demo (the live operational demo is on the gdk subdomain)
+├── platform/                         AWS Cognito + Lambda + Terraform LEARNING LAB
+│                                     (designed but unapplied — see platform/README.md)
+├── docs/                             Internal audit, perf, decision, and summary docs
+├── scripts/                          One-off Python + shell tooling
+│   └── refresh-gdk.sh                One-command GDK demo screenshot refresh
+├── content/, business-docs/          .gitignored — drafts, internal docs
+├── .github/workflows/deploy.yml      GitHub Pages deploy
+└── CLAUDE.md                         This file
+```
 
----
+### Sibling working directories (NOT inside the velonyx-portfolio repo)
 
-## Environment Variables
+These were embedded as separate git histories inside the working tree previously. May 2026 cleanup moved them out to siblings to remove the dual-deployment confusion:
 
-Do **not** commit secrets. Examples of where they appear:
-
-| Variable / secret | Used by | Source |
-|-------------------|---------|--------|
-| `STRIPE_SECRET_KEY` | Optional Lambda checkout | Stripe Dashboard → API keys |
-| Twilio Account SID / Auth Token | Legacy booking SMS (if deployed) | Twilio Console |
-| AWS SES / SMTP credentials | Legacy booking email (if deployed) | AWS SES / IAM |
-| Google Analytics | Public in HTML | GA4 property |
-
-Stripe **Payment Link** URLs are **public** by design (in `checkout.html`).
-
----
-
-## Current Issues & TODOs
-
-- **Post-deploy Stripe task:** Once `claude/zen-bouman` is merged to `main` and `/terms.html` is live at `velonyxsystems.com/terms.html`, enable "Require customers to accept your terms of service" on all 14 Payment Links (3 full-pay, 3 deposit, 3 BNPL, 3 Care, 2 legacy maintenance optional). Terms URL: `https://velonyxsystems.com/terms.html`.
-- **BNPL:** Confirm Klarna/Affirm/Afterpay enabled on the Stripe account for those links.
-- **`velonyx-website/backend/`:** Ignored by git — back up Lambda code and env outside the repo if you rely on it.
-- **`BUSINESS-HUB.md`:** May describe booking Lambda paths; live funnel emphasizes **Calendly** — reconcile docs with reality in AWS.
-- **Client Connect end-to-end test:** Intake form → Lambda → DynamoDB → SES confirmation email hasn't been run with live AWS creds in this session. Test before relying on production intake.
-
----
-
-## Deployment
-
-- **Mechanism:** GitHub Actions workflow `Deploy to GitHub Pages` on every push to `main` (full repository root uploaded as the site artifact).
-- **Custom domain:** Repo file `CNAME` is `velonyxsystems.com`. In **GitHub** → repo **Settings → Pages**: attach the custom domain and enable **Enforce HTTPS** once DNS validates.
-- **Repo:** Single repo; no monorepo packages. **Primary site files live at repository root**, not only under `velonyx-website/`.
-
-### Domain (Namecheap)
-
-- **Registrar:** Namecheap holds **`velonyxsystems.com`** (not configured inside this repo beyond `CNAME` for Pages).
-- **DNS:** At Namecheap (Advanced DNS), records must match **GitHub Pages** requirements: apex **A** records to GitHub’s IPs, **`www`** **CNAME** to `<user>.github.io` (see [GitHub: Configuring a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)). Add any **TXT** records GitHub shows for domain verification if prompted.
-- **HTTPS:** Provisioned by GitHub once DNS propagates; “DNS check in progress” / mixed `http` vs `https` is usually propagation or wrong `www` vs apex — align **Search Console / sitemap** with the canonical host (e.g. `www`).
-
-### Twilio
-
-- **Purpose:** Business phone **(877) 317-8643** — e.g. call forwarding to your cell and (if still wired) **SMS** from the legacy **AWS Lambda booking** flow (`BUSINESS-HUB.md` documents API Gateway, SES, and Twilio together).
-- **Not in repo:** Twilio **Account SID**, **Auth Token**, and phone number config live in the **Twilio Console** (`https://console.twilio.com`) and in **Lambda environment variables** if that stack is deployed — never commit them.
-- **Operational detail:** Table URLs, Lambda name, and AWS sign-in link are in **`BUSINESS-HUB.md`**; primary public booking today is **Calendly** on `book.html`.
+| Path | What it is |
+|---|---|
+| `/Users/apple/Cursor-Claude-trades-template/` | **The future Velonyx Portal foundation.** Next.js 14 + Supabase + Stripe + Twilio + Resend. Currently deployed at `gdk.velonyxsystems.com`. See `docs/PORTAL_ARCHITECTURE_DECISION.md`. |
+| `/Users/apple/Cursor-Claude-external/` | Cloned third-party SDKs used for tooling (e.g. `notebooklm-py` for AI audio generation). |
+| `/Users/apple/Cursor-Claude-archive/lambda-backups-20260506/` | Lambda handler backups (Stripe + booking + lead intake) preserved before the May 2026 velonyx-website/ deletion. Git history retains them indefinitely too. |
 
 ---
 
-## Session Pointers for Claude Code
+## Pricing — Single Founding Member tier (May 2026)
 
-1. Prefer editing **root** `index.html`, `checkout.html`, `financing.html`, `book.html` for production parity with `velonyxsystems.com`.
-2. After changing Stripe products/prices, update **Payment Link URLs** and any copy in `checkout.html` / `index.html` that references dollar amounts.
-3. Regenerate logo PNG after replacing `assets/vs-logo-2026.jpg`, then commit both if JPG is still the source of truth.
+**Live offer:** Founding Member System — first 5 customers only.
+
+| Component | Amount | Notes |
+|---|---|---|
+| One-time build | **$3,000** | Charged on Stripe checkout immediately |
+| Monthly Care | **$100/month** | First month free (31-day trial). Cancel anytime. |
+| Stripe Payment Link | `https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e` | ToS-gated to `/terms.html` |
+| Lock-in | Pricing locked for life | After 5 founding customers: $5,000 build + $200/mo |
+
+**Founding spots counter:** 5 dots on `index.html` and `checkout.html`. Manually flip `class="founding-dot filled"` → `class="founding-dot empty"` per customer signed.
+
+What's included in the system: custom-built website + admin dashboard (run from phone) + integrated payment system (Stripe + Apple Pay + Google Pay) + customer financing (Klarna/Affirm/Afterpay) + SMS automation + customer management + local SEO + production hosting + ownership in perpetuity.
+
+### Deprecated (preserved in HTML comments for rollback only)
+
+- 4-tier pricing (Starter $1,500 / Growth $3,500 / Premium $6,000 / Enterprise $12,000+) — collapsed to single Founding tier in May 2026
+- 3 monthly Care tier links ($125 / $225 / $325) — bundled into the Founding $100/mo
+
+---
+
+## Compliance & consent
+
+- **CCPA cookie banner:** loaded on every public page via `/assets/cookie-consent.js`. GA4 + Meta Pixel only fire after explicit accept (`localStorage.velonyx_cookie_consent === 'accepted'`).
+- **Legal pages live + linked from every footer:** `/privacy.html`, `/terms.html`, `/msa.html`, `/sow.html`, `/sms-terms.html`, `/sms-opt-in.html`.
+- **Consent checkboxes (not pre-checked):** `index.html` booking modal + `sms-opt-in.html` form.
+- **Robots:** `velonyxsystems.com/robots.txt` allows root and disallows `/platform/portal/`, `/platform/admin/`. (The old `/velonyx-website/` disallow is now obsolete — that folder was deleted.)
+
+---
+
+## Performance baseline (post-cleanup, May 2026)
+
+Lighthouse mobile, median **99/100** Performance across 10 audited public pages.
+
+| Page | Performance |
+|---|---:|
+| `/connect/`, `/checkout.html`, `/sms-opt-in.html`, `/404.html` | **100** |
+| `/financing.html`, `/terms.html`, `/privacy.html` | **99** |
+| `/book.html` | 98 |
+| `/for-barbers.html` | 97 |
+| `/` (homepage) | 80 (LCP 3.1s — held back by hero video + GSAP scroll animations) |
+
+See `docs/PERF_AUDIT_SWEEP.md` for the full before/after.
+
+---
+
+## Common operations
+
+### Deploy
+
+Push to `main`; GitHub Actions auto-deploys to GitHub Pages in ~20-30s. Verify with `curl -sI https://velonyxsystems.com/`.
+
+### Refresh the homepage's GDK demo screenshot
+
+```bash
+bash /Users/apple/Cursor-Claude/scripts/refresh-gdk.sh
+```
+
+Captures via headless Chrome, resizes/optimizes, stages for commit. Or just say "refresh GDK" in chat.
+
+### Re-run sitewide Lighthouse audit
+
+See the snippet at the bottom of `docs/PERF_AUDIT_SWEEP.md`.
+
+### Update founding-spot dots
+
+Edit `index.html` and `checkout.html`. Find `<span class="founding-dot filled">` (or `<span class="spot-dot filled">` on checkout) and change `filled` → `empty` per customer signed.
+
+### When the 5th founding customer signs
+
+1. Create a new Stripe Payment Link: $5,000 setup + $200/mo (ToS gate to `/terms.html`)
+2. Replace the URL `buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e` everywhere it appears
+3. Update card amounts in `index.html` and `checkout.html`
+4. Remove "Founding Member" framing — change card title to "The Velonyx System"
+5. Mark old Stripe Payment Link as inactive in Stripe dashboard
+
+---
+
+## Architectural decisions
+
+- **Portal foundation:** `velonyx-trades-template/` (Next.js + Supabase + Vercel) is the production portal foundation. `platform/` (AWS Cognito + Lambda + Terraform) is preserved as a documented learning lab. See `docs/PORTAL_ARCHITECTURE_DECISION.md`.
+- **Hosting consolidation:** marketing site is on GitHub Pages; gdk demo is on Vercel. A future migration could consolidate both onto Vercel for single-pane deployment.
+
+---
+
+## Pointers for future Claude Code sessions
+
+1. **Default to root files.** All production pages live at the repo root (`index.html`, `checkout.html`, etc.). There's no longer a mirror folder to keep in sync.
+2. **Edit one source of truth per concept.** When changing the Stripe URL, update `index.html` (founding card CTA) AND `checkout.html` (CTA + the live-link comment block). Both should be kept consistent.
+3. **For perf-impacting changes** (new images, new scripts, new fonts), follow the established patterns: WebP first with PNG/JPG fallback in `<picture>`, fonts via the preload + onload + noscript pattern, JS deferred where possible.
+4. **The `gdk` subdomain is a separate codebase.** Don't try to fix gdk-related bugs by editing files in this repo. Open `/Users/apple/Cursor-Claude-trades-template/` for that work.
+5. **Read the docs/ folder first.** `docs/VELONYX_SITE_DIAGNOSTIC.md`, `docs/PERF_AUDIT_SWEEP.md`, `docs/PORTAL_ARCHITECTURE_DECISION.md`, `docs/REBRAND_FIX_SUMMARY.md`, and `docs/CONNECT_LIGHTHOUSE.md` collectively answer most "wait, why does this exist / what state is it in?" questions.
+
+---
+
+*Last updated: 2026-05-06 — after the cleanup sweep that removed `velonyx-website/`, archived `platform/` as a learning lab, moved sibling repos out, and shipped the sitewide perf optimization.*
