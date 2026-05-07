@@ -18,9 +18,8 @@
   <title>SMS Opt-In — Velonyx Systems</title>
   <meta name="description" content="Velonyx Systems SMS opt-in consent form. By providing your phone number and checking the consent box, you agree to receive text messages.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
     :root {
       --deep-space: #020408;
       --gold: #D4AF37;
@@ -261,6 +260,11 @@
       nav { padding: 14px 20px; }
     }
   </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
 </head>
 <body>
   <div class="page-bg"></div>
