@@ -2917,6 +2917,26 @@
       color: var(--white-dim);
     }
 
+    .founding-trial-pill-wrap {
+      text-align: center;
+      margin-top: 18px;
+    }
+    .founding-trial-pill {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--gold-btn);
+      color: var(--bg-deep);
+      border-radius: 50px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255,255,255,0.25);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+      white-space: nowrap;
+    }
+
     .founding-launch-note {
       margin-top: 14px;
       padding: 16px 18px;
@@ -3574,24 +3594,17 @@
       </div>
 
       <!--
-        STRIPE PAYMENT LINKS — TODO POST-DEPLOY:
-        - The 3 deprecated monthly Care tier links ($125 / $225 / $325) have
-          been removed from the page. They no longer apply to the new
-          Founding Member offer. Old URLs preserved for rollback only:
+        STRIPE PAYMENT LINKS:
+        - LIVE Founding Member link ($3,000 one-time build + $100/mo recurring,
+          31-day free trial on the recurring line, ToS gate to terms.html):
+            https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e
+        - Deprecated old Care tier links — preserved for rollback only:
             Standard Care $125 → https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b
             Growth   Care $225 → https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c
             Premium  Care $325 → https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d
-        - Create ONE new Stripe Payment Link for: $3,000 one-time + $100/mo
-          recurring (subscription with setup fee). Use Stripe's "set up fee
-          on first invoice" pattern, or Stripe Billing with a one-time
-          line item plus monthly subscription product.
-        - Replace the [CLAIM A FOUNDING SPOT] CTA href below with the new
-          Stripe Payment Link URL.
-        - Enable "Require customers to accept terms of service" pointing to
-          https://velonyxsystems.com/terms.html in the new Payment Link.
-        - When all 5 founding spots are claimed, create a new Payment Link
-          at $5,000 setup + $200/mo and update this card's amounts/copy.
-          Remove "Founding Member" framing at that point.
+        - When all 5 founding spots are claimed: create a new Payment Link
+          at $5,000 setup + $200/mo, update this card's amounts/copy, and
+          remove the "Founding Member" framing.
       -->
 
       <div class="founding-grid fade-in">
@@ -3611,6 +3624,10 @@
             </div>
           </div>
 
+          <div class="founding-trial-pill-wrap">
+            <span class="founding-trial-pill">First Month Free</span>
+          </div>
+
           <div class="founding-launch-note">
             This is our launch pricing &mdash; <strong>locked in for life</strong> if you're one of our first 5 founding customers. After that, build pricing increases to <strong>$5,000</strong> and monthly to <strong>$200</strong>.
           </div>
@@ -3628,7 +3645,7 @@
           </ul>
 
           <div class="founding-actions">
-            <a href="#contact" class="btn-primary founding-cta">Claim a Founding Spot</a>
+            <a href="https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e" class="btn-primary founding-cta" target="_blank" rel="noopener">Claim a Founding Spot</a>
             <a href="/book.html?tier=enterprise" class="founding-consult-link">Need something custom beyond this? Book a consultation &rarr;</a>
           </div>
 
