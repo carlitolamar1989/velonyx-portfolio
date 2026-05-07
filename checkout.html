@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Google tag (gtag.js) -->
-  <!-- GA4 gated by cookie consent -->
+  <!-- GA4 gated by cookie consent (matches homepage pattern) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -20,51 +19,96 @@
     if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') { window.__loadGA4(); }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-  <title>Checkout — Velonyx Systems | Your Legacy, Engineered With Precision.</title>
-  <meta name="description" content="Velonyx Systems — Your Legacy, Engineered With Precision. Secure checkout for premium web design packages. Pay in full, deposit, or finance with Klarna, Affirm, or Afterpay.">
+  <meta name="theme-color" content="#08080A">
+
+  <title>Checkout — Velonyx Systems | Founding Member Pricing</title>
+  <meta name="description" content="Claim your Velonyx Founding Member spot — $3,000 one-time build + $100/month with first month free. Custom business systems for service operators. First 5 customers only.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
-  <meta property="og:title" content="Checkout — Velonyx Systems">
-  <meta property="og:description" content="Complete your Velonyx Systems order. Pay securely via Stripe — cards, Apple Pay, Google Pay, or BNPL.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Checkout — Velonyx Founding Member System">
+  <meta property="og:description" content="$3,000 one-time build + $100/mo with first month free. Locked-in pricing for life — first 5 customers only.">
+  <meta property="og:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
   <meta property="og:url" content="https://velonyxsystems.com/checkout.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Velonyx Systems">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@velonyxsystems">
+  <meta name="twitter:title" content="Checkout — Velonyx Founding Member System">
+  <meta name="twitter:description" content="$3,000 build + $100/mo with first month free. Locked-in pricing for life.">
+  <meta name="twitter:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+
+  <!-- Fonts (matches homepage preload pattern) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD — single Founding Member offer -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Velonyx Founding Member System",
+    "provider": {
+      "@type": "Organization",
+      "name": "Velonyx Systems",
+      "url": "https://velonyxsystems.com"
+    },
+    "description": "Custom business system for service operators — one-time $3,000 build plus $100/month recurring with a 31-day free trial on the recurring line. Founding Member pricing — first 5 customers only.",
+    "offers": {
+      "@type": "Offer",
+      "price": "3000",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/LimitedAvailability",
+      "description": "$3,000 one-time build + $100/month subscription (first month free)."
+    }
+  }
+  </script>
+
   <style>
     :root {
-      --deep-space: #020408;
-      --space-navy: #080d18;
-      --gold: #D4AF37;
-      --gold-light: #F0D060;
-      --gold-muted: rgba(212,175,55,0.6);
-      --gold-shine: linear-gradient(135deg, #BFA135 0%, #D4AF37 30%, #F0D060 55%, #D4AF37 75%, #BFA135 100%);
-      --white: #ffffff;
-      --white-muted: rgba(255,255,255,0.6);
-      --glass: rgba(255,255,255,0.03);
+      --accent: #D4AF37;
+      --accent-light: #F7E17B;
+      --accent-dark: #B8860B;
+      --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 22%, #B38728 45%, #FBF5B7 67%, #AA771C 100%);
+      --gold-btn: linear-gradient(135deg, #D4AF37 0%, #F7E17B 35%, #D4AF37 65%, #B8860B 100%);
+      --bg-deep: #08080A;
+      --bg-base: #0C0C0F;
+      --bg-card: #111114;
+      --bg-card-glossy: linear-gradient(165deg, rgba(22,22,26,0.97) 0%, rgba(12,12,15,0.99) 100%);
+      --white: #F0EDE8;
+      --white-muted: #B0AEA6;
+      --white-dim: #8F8D87;
       --glass-border: rgba(255,255,255,0.07);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--deep-space);
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg-base);
       color: var(--white);
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ── Background ── */
     .page-bg {
-      position: fixed; inset: 0; z-index: 0;
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
         radial-gradient(ellipse 90% 55% at 50% 0%, rgba(212,175,55,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 5% 60%, rgba(30,60,140,0.09) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 95% 80%, rgba(80,30,120,0.07) 0%, transparent 55%),
-        var(--deep-space);
+        radial-gradient(ellipse 50% 40% at 5% 60%, rgba(30,60,140,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 95% 80%, rgba(80,30,120,0.05) 0%, transparent 55%);
     }
 
     /* ── Nav ── */
@@ -72,16 +116,15 @@
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 48px;
-      background: rgba(2,4,8,0.88);
+      background: rgba(8,8,10,0.88);
       backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--glass-border);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img {
       height: 44px;
-      width: 33px;
-      object-fit: cover;
-      object-position: right center;
+      width: auto;
       filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
     }
     .nav-logo-text {
@@ -93,461 +136,353 @@
       display: flex; align-items: center; gap: 6px; color: var(--white-muted);
       text-decoration: none; font-size: 0.88rem; transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--gold); }
+    .nav-back:hover { color: var(--accent); }
+    @media (max-width: 640px) { nav { padding: 14px 20px; } .nav-logo-text { display: none; } }
 
     /* ── Layout ── */
     main { position: relative; z-index: 1; }
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
 
     /* ── Hero ── */
-    .checkout-hero {
-      text-align: center; padding: 72px 20px 54px;
-    }
-    .checkout-label {
+    .checkout-hero { text-align: center; padding: 64px 20px 36px; }
+    .checkout-eyebrow {
       font-size: 0.72rem; letter-spacing: 3.5px; text-transform: uppercase;
-      color: var(--gold-muted); margin-bottom: 18px;
+      color: rgba(212,175,55,0.6); margin-bottom: 18px;
     }
     .checkout-hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4.2vw, 3.2rem); font-weight: 900; line-height: 1.1;
-      margin-bottom: 16px;
+      font-weight: 900; font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 1.05; letter-spacing: -0.5px;
+      margin-bottom: 18px;
     }
-    .gold-text {
+    .checkout-hero h1 .gold {
       background: var(--gold-shine); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .checkout-hero p { color: var(--white-muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
-
-    /* ── Step headings ── */
-    .step-heading {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-      font-weight: 600; color: var(--white-muted); letter-spacing: 0.5px;
-      text-align: center; margin-bottom: 28px;
-    }
-    .step-heading span {
-      background: var(--gold-shine); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-      font-weight: 700;
+    .checkout-hero p {
+      max-width: 600px; margin: 0 auto;
+      color: var(--white-muted); font-size: 1.02rem; line-height: 1.65;
     }
 
-    /* ── Plan Grid ── */
-    .plan-section { padding-bottom: 64px; }
-    .plan-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 14px; max-width: 1100px; margin: 0 auto;
+    /* ── Founding Spots Counter ── */
+    .spots-counter {
+      max-width: 480px; margin: 8px auto 28px; text-align: center;
     }
-    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(2, 1fr); max-width: 680px; gap: 16px; } }
-    .plan-card {
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: 18px; padding: 30px 22px 24px;
-      cursor: pointer; transition: all 0.28s;
-      text-align: center; position: relative; user-select: none;
+    .spots-dots {
+      display: flex; justify-content: center; gap: 14px; margin-bottom: 10px;
     }
-    .plan-card:hover { border-color: rgba(212,175,55,0.35); background: rgba(212,175,55,0.03); }
-    .plan-card.active {
-      border-color: var(--gold); background: rgba(212,175,55,0.07);
-      box-shadow: 0 0 40px rgba(212,175,55,0.12), 0 0 1px rgba(212,175,55,0.6);
+    .spot-dot {
+      display: inline-block; width: 14px; height: 14px; border-radius: 50%;
+      transition: all 0.3s;
     }
-    .plan-badge {
-      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-      background: var(--gold-shine); color: #000;
-      font-size: 0.68rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
-      padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+    .spot-dot.filled {
+      background: var(--gold-btn);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255,255,255,0.25);
     }
-    .plan-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
-    .plan-price {
-      font-size: 2rem; font-weight: 900;
-      background: var(--gold-shine); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
+    .spot-dot.empty {
+      background: transparent;
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
     }
-    .plan-desc { font-size: 0.82rem; color: var(--white-muted); margin-top: 10px; line-height: 1.5; }
-    .plan-check {
-      width: 22px; height: 22px; border-radius: 50%;
-      border: 2px solid var(--glass-border);
-      margin: 14px auto 0; display: flex; align-items: center; justify-content: center;
-      transition: all 0.28s; font-size: 0.72rem; font-weight: 900;
-    }
-    .plan-card.active .plan-check { border-color: var(--gold); background: var(--gold); color: #000; }
-    .plan-card.active .plan-check::after { content: '✓'; }
-
-    /* ── Payment section ── */
-    .payment-section { padding-bottom: 80px; }
-
-    .payment-card {
-      max-width: 580px; margin: 0 auto;
-      background: rgba(255,255,255,0.025); border: 1px solid var(--glass-border);
-      border-radius: 24px; padding: 48px 44px;
-    }
-
-    /* Order summary */
-    .payment-summary {
-      background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.14);
-      border-radius: 12px; padding: 18px 22px;
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 28px;
-    }
-    .summary-label { color: var(--white-muted); font-size: 0.82rem; margin-bottom: 3px; }
-    .summary-name { font-weight: 600; font-size: 1rem; }
-    .summary-amount {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 900;
+    .spots-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase;
       background: var(--gold-shine); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* Stripe primary block */
-    .stripe-header { text-align: center; margin-bottom: 28px; }
-    .stripe-logo-pill {
+    /* ── Order Card ── */
+    .order-section { padding: 0 0 40px; }
+    .order-card {
+      max-width: 720px; margin: 0 auto;
+      padding: 56px 48px 44px;
+      background: var(--bg-card-glossy);
+      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      box-shadow: 0 18px 70px rgba(0,0,0,0.55), 0 0 80px rgba(212,175,55,0.13), inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+    }
+    .order-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold-btn);
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.55);
+    }
+    @media (max-width: 720px) { .order-card { padding: 40px 22px 32px; } }
+
+    .order-tier-tag {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #635BFF; color: #fff;
-      padding: 8px 22px; border-radius: 10px;
-      font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px;
-      margin-bottom: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 2.2px; text-transform: uppercase;
+      background: var(--gold-shine); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 18px;
     }
-    .stripe-header p { color: var(--white-muted); font-size: 0.88rem; }
-
-    .accepted-methods {
-      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-    .method-badge {
-      padding: 6px 14px; border-radius: 6px;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-      font-size: 0.78rem; color: var(--white-muted);
+    .order-tier-tag::before {
+      content: '🏆'; -webkit-text-fill-color: initial;
+      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4));
     }
 
+    .order-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 900; color: var(--white); letter-spacing: -0.5px;
+      line-height: 1.05; margin-bottom: 28px;
+    }
+
+    .order-amounts {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: 18px 32px; margin-bottom: 8px;
+    }
+    .order-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      font-weight: 900; line-height: 1;
+      background: var(--gold-shine); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .order-amount-sub {
+      font-size: 0.92rem; color: var(--white-dim); letter-spacing: 0.2px;
+    }
+    .order-plus {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--white-muted);
+    }
+    .order-recurring {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      font-weight: 800; line-height: 1; color: var(--white);
+    }
+    .order-recurring-mo {
+      font-size: 1rem; font-weight: 500; color: var(--white-dim);
+    }
+
+    .trial-pill-wrap { text-align: center; margin-top: 18px; }
+    .trial-pill {
+      display: inline-block; padding: 6px 16px;
+      background: var(--gold-btn); color: var(--bg-deep);
+      border-radius: 50px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.66rem; font-weight: 800;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255,255,255,0.25);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+      white-space: nowrap;
+    }
+
+    /* ── Itemized Due Today ── */
+    .due-today {
+      margin-top: 28px; padding: 22px 24px;
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 12px;
+    }
+    .due-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 8px 0;
+      font-size: 0.94rem;
+    }
+    .due-row .due-label { color: var(--white-muted); }
+    .due-row .due-amount { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--white); }
+    .due-row.promo .due-label { color: var(--accent-light); }
+    .due-row.promo .due-amount { color: var(--accent-light); }
+    .due-divider {
+      height: 1px; background: rgba(212, 175, 55, 0.2);
+      margin: 6px 0;
+    }
+    .due-row.total { padding: 10px 0 4px; }
+    .due-row.total .due-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.78rem;
+      color: var(--white);
+    }
+    .due-row.total .due-amount {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 800;
+      font-size: 1.4rem;
+      background: var(--gold-shine); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .due-note {
+      margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem; color: var(--white-dim); line-height: 1.5;
+    }
+
+    /* ── What's Included ── */
+    .includes-heading {
+      margin-top: 32px; margin-bottom: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--white-muted);
+    }
+    .includes-list { list-style: none; margin: 0 0 32px; padding: 0; }
+    .includes-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      color: var(--white); font-size: 0.96rem; line-height: 1.55;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .includes-list li:last-child { border-bottom: none; }
+    .includes-check {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; background: rgba(212, 175, 55, 0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; margin-top: 2px;
+    }
+    .includes-check span {
+      background: var(--gold-shine); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      font-weight: 800;
+    }
+
+    /* ── Primary CTA ── */
     .btn-stripe {
-      width: 100%; padding: 17px; border-radius: 12px;
-      background: linear-gradient(135deg, #5850EC, #635BFF 50%, #7B6FFF);
-      color: #fff; border: none; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: all 0.28s; letter-spacing: 0.3px;
+      display: block; width: 100%;
+      padding: 20px 28px; margin-top: 8px;
+      background: var(--gold-btn); color: var(--bg-deep);
+      border: none; border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.02rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; text-align: center;
+      cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 8px 28px rgba(212, 175, 55, 0.32), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.15);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+      position: relative; overflow: hidden;
     }
-    .btn-stripe:hover { box-shadow: 0 8px 36px rgba(99,91,255,0.45); transform: translateY(-2px); }
+    .btn-stripe::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+      transform: translateX(-100%); transition: transform 0.6s;
+    }
+    .btn-stripe:hover::after { transform: translateX(100%); }
+    .btn-stripe:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(212, 175, 55, 0.42), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
     .btn-stripe:active { transform: translateY(0); }
 
     .security-note {
-      display: flex; align-items: center; gap: 6px; justify-content: center;
-      color: var(--white-muted); font-size: 0.76rem; margin-top: 12px;
+      margin-top: 12px; text-align: center;
+      font-size: 0.78rem; color: var(--white-dim); letter-spacing: 0.3px;
+    }
+    .finance-note {
+      margin-top: 16px; text-align: center;
+      font-size: 0.78rem; color: var(--white-dim); line-height: 1.6;
     }
 
-    /* Divider */
-    .alt-divider {
-      display: flex; align-items: center; gap: 14px;
-      margin: 32px 0 24px;
+    /* ── What Happens Next ── */
+    .next-steps { padding: 32px 0 24px; }
+    .next-steps h2 {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3.4vw, 1.85rem);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 36px; letter-spacing: -0.3px;
     }
-    .alt-divider::before, .alt-divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--glass-border);
+    .next-grid {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
     }
-    .alt-divider span { color: var(--white-muted); font-size: 0.78rem; white-space: nowrap; }
+    @media (max-width: 720px) { .next-grid { grid-template-columns: 1fr; } }
 
-    /* Zelle secondary block */
-    .zelle-block {
-      background: rgba(107,47,173,0.06); border: 1px solid rgba(107,47,173,0.18);
-      border-radius: 16px; padding: 24px 26px;
+    .next-grid li {
+      padding: 24px 24px 22px;
+      background: var(--bg-card-glossy);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      position: relative;
     }
-    .zelle-block-header {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+    .next-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gold-btn); color: var(--bg-deep);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; font-weight: 900;
+      box-shadow: 0 4px 12px rgba(212,175,55,0.25), inset 0 1px 0 rgba(255,255,255,0.3);
+      margin-bottom: 14px;
     }
-    .zelle-icon-sm {
-      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-      background: linear-gradient(135deg, #6B2FAD, #8E3FCC);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 900; color: #fff;
+    .next-grid h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--white);
+      margin-bottom: 8px; line-height: 1.25;
     }
-    .zelle-block-header .zelle-title {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.98rem;
-    }
-    .zelle-block-header .zelle-sub { color: var(--white-muted); font-size: 0.8rem; margin-top: 2px; }
-
-    .copy-row { display: flex; gap: 8px; margin-bottom: 16px; }
-    .copy-input {
-      flex: 1; padding: 11px 14px;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-      border-radius: 9px; color: var(--white); font-size: 0.9rem;
-      font-family: 'DM Sans', sans-serif; outline: none;
-    }
-    .btn-copy {
-      padding: 11px 18px; border-radius: 9px;
-      border: 1px solid rgba(107,47,173,0.5); background: transparent;
-      color: #9B3FD9; cursor: pointer; font-weight: 600; font-size: 0.82rem;
-      transition: all 0.2s; white-space: nowrap;
-    }
-    .btn-copy:hover { background: rgba(107,47,173,0.1); }
-    .btn-copy.copied { background: rgba(107,47,173,0.15); }
-
-    .payment-steps { list-style: none; margin: 0 0 18px; }
-    .payment-steps li {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.85rem; color: var(--white-muted); line-height: 1.5;
-    }
-    .payment-steps li:last-child { border-bottom: none; }
-    .step-num {
-      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
-      background: rgba(107,47,173,0.15); border: 1px solid rgba(107,47,173,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 800; color: #9B3FD9;
-    }
-    .hl { color: var(--white); font-weight: 600; }
-
-    .btn-zelle {
-      width: 100%; padding: 14px; border-radius: 10px;
-      background: linear-gradient(135deg, #6B2FAD, #8E3FCC);
-      color: #fff; border: none; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 700;
-      transition: all 0.28s; display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .btn-zelle:hover { box-shadow: 0 6px 24px rgba(107,47,173,0.4); transform: translateY(-1px); }
-
-    .after-note {
-      background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.1);
-      border-radius: 10px; padding: 14px 18px; margin-top: 18px;
-      font-size: 0.8rem; color: var(--white-muted); line-height: 1.6;
-    }
-    .after-note strong { color: var(--gold); display: block; margin-bottom: 4px; font-size: 0.83rem; }
-
-    /* ── BNPL section ── */
-    .bnpl-section {
-      margin: 28px 0 0;
-      border: 1px solid var(--glass-border);
-      border-radius: 16px; overflow: hidden;
-    }
-    .bnpl-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px; cursor: pointer;
-      background: rgba(255,255,255,0.02);
-      transition: background 0.2s;
-      user-select: none;
-    }
-    .bnpl-header:hover { background: rgba(255,255,255,0.04); }
-    .bnpl-header-left { display: flex; align-items: center; gap: 12px; }
-    .bnpl-header-left .label {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem;
-    }
-    .bnpl-header-left .sub { color: var(--white-muted); font-size: 0.78rem; margin-top: 2px; }
-    .bnpl-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-    .bnpl-pill {
-      padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-    .bnpl-pill.klarna  { background: rgba(255,182,193,0.15); color: #FFB6C1; border: 1px solid rgba(255,182,193,0.25); }
-    .bnpl-pill.affirm  { background: rgba(52,199,89,0.12);  color: #34C759;  border: 1px solid rgba(52,199,89,0.25); }
-    .bnpl-pill.afterpay { background: rgba(179,227,140,0.12); color: #B3E38C; border: 1px solid rgba(179,227,140,0.25); }
-    .bnpl-chevron { color: var(--white-muted); font-size: 0.9rem; transition: transform 0.25s; }
-    .bnpl-section.open .bnpl-chevron { transform: rotate(180deg); }
-
-    .bnpl-body {
-      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
-      border-top: 0px solid var(--glass-border);
-    }
-    .bnpl-section.open .bnpl-body {
-      max-height: 600px;
-      border-top: 1px solid var(--glass-border);
-    }
-    .bnpl-body-inner { padding: 20px; }
-
-    .bnpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-    .bnpl-card {
-      border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px 14px;
-      text-align: center; background: rgba(255,255,255,0.02);
-    }
-    .bnpl-card .provider { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-    .bnpl-card.klarna  .provider { color: #FFB6C1; }
-    .bnpl-card.affirm  .provider { color: #34C759; }
-    .bnpl-card.afterpay .provider { color: #B3E38C; }
-    .bnpl-card .bnpl-amount {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 900;
-      background: var(--gold-shine); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .bnpl-card .bnpl-term { color: var(--white-muted); font-size: 0.72rem; margin-top: 4px; }
-    .bnpl-note {
-      font-size: 0.78rem; color: var(--white-muted); line-height: 1.6;
-      padding: 12px 14px; background: rgba(255,255,255,0.02);
-      border-radius: 8px; border: 1px solid var(--glass-border);
+    .next-grid p {
+      color: var(--white-muted); font-size: 0.9rem; line-height: 1.6;
     }
 
-    /* Financing nudge */
-    /* ── Two-path payment blocks ── */
-    .pay-option-block {
-      max-width: 580px; margin: 0 auto 0;
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px; padding: 30px 28px;
+    /* ── FAQ ── */
+    .checkout-faq { padding: 24px 0 32px; }
+    .checkout-faq h2 {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3.4vw, 1.85rem);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 28px; letter-spacing: -0.3px;
     }
-    .bnpl-option-block {
-      border-color: rgba(212,175,55,0.15);
-      background: rgba(212,175,55,0.02);
+    .faq-card {
+      max-width: 720px; margin: 0 auto 14px;
+      padding: 22px 26px;
+      background: var(--bg-card-glossy);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
     }
-    .pay-option-label {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    .faq-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--white);
+      margin-bottom: 8px;
     }
-    .pay-option-tag {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 800;
-      letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px;
-      border-radius: 50px;
-    }
-    .deposit-tag { background: rgba(99,91,255,0.15); color: #9B92FF; border: 1px solid rgba(99,91,255,0.3); }
-    .bnpl-tag { background: rgba(212,175,55,0.12); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
-    .pay-option-title {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white);
-    }
-    .pay-option-desc {
-      font-size: 0.84rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 4px;
-    }
-    .pay-option-desc strong { color: rgba(255,255,255,0.75); }
-
-    .pay-or-divider {
-      max-width: 580px; margin: 20px auto;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .pay-or-divider::before, .pay-or-divider::after {
-      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
-    }
-    .pay-or-divider span {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+    .faq-card p {
+      color: var(--white-muted); font-size: 0.92rem; line-height: 1.65;
     }
 
-    .bnpl-grid-simple {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 0;
-    }
-
-    .btn-bnpl {
-      width: 100%; padding: 17px; border-radius: 12px;
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      color: #0a0a0a; border: none; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: all 0.28s; letter-spacing: 0.3px;
-    }
-    .btn-bnpl:hover { box-shadow: 0 8px 36px rgba(212,175,55,0.35); transform: translateY(-2px); }
-
-    @media (max-width: 480px) {
-      .bnpl-grid-simple { grid-template-columns: 1fr; }
-      .pay-option-label { flex-wrap: wrap; }
-    }
-
-    .financing-nudge {
-      max-width: 580px; margin: 24px auto 0;
-      background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.12);
-      border-radius: 14px; padding: 18px 24px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    }
-    .financing-nudge p { font-size: 0.88rem; color: var(--white-muted); line-height: 1.5; }
-    .financing-nudge p strong { color: var(--white); }
-    .btn-financing {
-      padding: 10px 22px; border-radius: 50px; white-space: nowrap;
-      border: 1px solid rgba(212,175,55,0.4); background: transparent;
-      color: var(--gold); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: none;
-      transition: all 0.2s; display: inline-block;
-    }
-    .btn-financing:hover { background: rgba(212,175,55,0.08); }
-
-    /* ── Step 3 Maintenance Upsell ── */
-    .maintenance-upsell-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    @media (max-width: 1100px) { .maintenance-upsell-grid { grid-template-columns: repeat(2, 1fr); max-width: 580px; gap: 14px; } }
-    @media (max-width: 768px) { .maintenance-upsell-grid { grid-template-columns: 1fr; max-width: 360px; } }
-    .upsell-card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px; padding: 24px 22px; position: relative;
-    }
-    .upsell-featured {
-      border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.02);
-    }
-    .upsell-badge {
-      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060);
-      color: #0a0a0a; font-size: 0.62rem; font-weight: 800;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 3px 14px; border-radius: 50px; white-space: nowrap;
-    }
-    .upsell-skip {
-      font-size: 0.72rem; color: rgba(255,255,255,0.25); cursor: pointer;
-      text-align: right; margin-bottom: 12px; transition: color 0.2s;
-    }
-    .upsell-skip:hover { color: rgba(255,255,255,0.5); }
-    .upsell-tier {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px;
-    }
-    .upsell-price {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 800;
-      color: var(--white); line-height: 1; margin-bottom: 16px;
-    }
-    .upsell-price span { font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); }
-    .upsell-features {
-      list-style: none; margin: 0 0 20px; padding: 0;
-      display: flex; flex-direction: column; gap: 7px;
-    }
-    .upsell-features li { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
-    .btn-upsell {
-      display: block; width: 100%; padding: 12px; border-radius: 9px; text-align: center;
-      border: 1px solid rgba(255,255,255,0.15); background: transparent;
-      color: var(--white); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
-    }
-    .btn-upsell:hover { background: rgba(255,255,255,0.06); }
-    .btn-upsell-gold {
-      background: linear-gradient(135deg, #B8911F, #D4AF37, #F0D060, #D4AF37, #B8911F);
-      border: none; color: #0a0a0a;
-      box-shadow: 0 4px 16px rgba(212,175,55,0.2);
-    }
-    .btn-upsell-gold:hover { box-shadow: 0 6px 28px rgba(212,175,55,0.4); transform: translateY(-1px); color: #0a0a0a; }
-
-    /* ── Trust bar ── */
+    /* ── Trust Bar ── */
     .trust-bar {
-      display: flex; gap: 36px; justify-content: center; flex-wrap: wrap;
-      padding: 0 0 72px;
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 14px 28px;
+      padding: 28px 24px;
+      margin-top: 8px;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
     }
-    .trust-item { display: flex; align-items: center; gap: 8px; color: var(--white-muted); font-size: 0.84rem; }
-    .trust-icon { color: var(--gold); }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--white-muted); font-size: 0.84rem;
+    }
+    .trust-icon { font-size: 1rem; }
+
+    .alt-cta {
+      text-align: center; padding: 28px 24px 12px;
+    }
+    .alt-cta p {
+      font-size: 0.82rem; color: var(--white-dim);
+    }
+    .alt-cta a {
+      color: rgba(212,175,55,0.7); text-decoration: none;
+    }
+    .alt-cta a:hover { color: var(--accent); }
 
     /* ── Footer ── */
     footer {
+      padding: 28px 48px 24px;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 12px;
       border-top: 1px solid var(--glass-border);
-      padding: 28px 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      color: var(--white-muted); font-size: 0.82rem; flex-wrap: wrap; gap: 10px;
+      color: var(--white-dim); font-size: 0.78rem;
     }
-    footer a { color: var(--white-muted); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
-
-    @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .checkout-hero { padding: 52px 20px 38px; }
-      .plan-grid { grid-template-columns: 1fr; max-width: 340px; }
-      .payment-card { padding: 32px 22px; }
+    footer a { color: var(--white-dim); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 720px) {
       footer { padding: 22px 20px; justify-content: center; text-align: center; }
     }
   </style>
-
-  <!-- Schema.org JSON-LD — Organization reference + Breadcrumb + Pricing -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://velonyxsystems.com/#organization","name":"Velonyx Systems","url":"https://velonyxsystems.com/","telephone":"+1-877-317-8643","email":"admin@velonyxsystems.com","priceRange":"$1,500 - $12,000+"}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"},{"@type":"ListItem","position":2,"name":"Pricing &amp; Checkout","item":"https://velonyxsystems.com/checkout.html"}]}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"OfferCatalog","name":"Velonyx Systems Build Tiers","itemListElement":[
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Starter"},"price":"1500","priceCurrency":"USD","description":"Single-page · 5–7 day delivery"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Growth"},"price":"3500","priceCurrency":"USD","description":"Multi-page + logo + BNPL + SMS · 7–10 day delivery"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Premium"},"price":"6000","priceCurrency":"USD","description":"Full digital system + brand video + portal · 10–14 day delivery"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Enterprise"},"price":"12000","priceCurrency":"USD","description":"Multi-location + custom integrations · custom-quoted"}
-  ]}
-  </script>
 </head>
 <body>
   <div class="page-bg"></div>
 
   <nav>
     <a href="/" class="nav-logo">
-      <img src="assets/vs-logo-monogram.png" alt="Velonyx Systems">
+      <img src="/assets/vs-logo-monogram.png" alt="Velonyx Systems" width="256" height="288">
       <span class="nav-logo-text">Velonyx Systems</span>
     </a>
     <a href="/" class="nav-back">← Back to Site</a>
@@ -555,467 +490,178 @@
 
   <main>
     <div class="checkout-hero">
-      <div class="checkout-label">Secure Checkout</div>
-      <h1>Let's Build Your<br><span class="gold-text">Digital System.</span></h1>
-      <p>Select your package and choose how you'd like to pay. Pay in full and save 10%, put down a deposit, or finance it over time. We reach out within 24 hours to kick things off.</p>
+      <div class="checkout-eyebrow">Secure Checkout</div>
+      <h1>Claim Your<br><span class="gold">Founding Spot.</span></h1>
+      <p>One commit. Yours forever. Locked-in pricing for life — first 5 customers only.</p>
     </div>
 
     <div class="container">
 
-      <!-- STEP 1: Plan selection -->
-      <section class="plan-section">
-        <div class="step-heading"><span>Step 1</span> &nbsp;— Choose Your Package</div>
-        <div class="plan-grid">
-
-          <div class="plan-card" data-plan="starter" data-price="1500" onclick="selectPlan(this)">
-            <div class="plan-name">Starter</div>
-            <div class="plan-price">$1,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $1,350 paid in full</span></div>
-            <div class="plan-desc">Clean single-page site with contact form, SSL, and custom domain. Live in 5–7 days.</div>
-            <div class="plan-check"></div>
-          </div>
-
-          <div class="plan-card active" data-plan="growth" data-price="3500" onclick="selectPlan(this)">
-            <div class="plan-badge">Most Popular</div>
-            <div class="plan-name">Growth</div>
-            <div class="plan-price">$3,500 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $3,150 paid in full</span></div>
-            <div class="plan-desc">Multi-page site, Stripe payments, BNPL, booking system. What most clients choose.</div>
-            <div class="plan-check"></div>
-          </div>
-
-          <div class="plan-card" data-plan="premium" data-price="6000" onclick="selectPlan(this)">
-            <div class="plan-name">Premium</div>
-            <div class="plan-price">$6,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">or $5,400 paid in full</span></div>
-            <div class="plan-desc">Full digital system, automation, Buy Now Pay Later, analytics, unlimited pages.</div>
-            <div class="plan-check"></div>
-          </div>
-
-          <!-- ENTERPRISE — no Stripe link; routes to booking for custom quote -->
-          <div class="plan-card" data-plan="enterprise" data-price="0" onclick="enterpriseConsult()" style="cursor:pointer;">
-            <div class="plan-name">Enterprise</div>
-            <div class="plan-price">Starting at $12,000 <span style="font-size:0.7rem;font-weight:500;color:rgba(212,175,55,0.7);">custom quote</span></div>
-            <div class="plan-desc">Multi-user/multi-location, custom integrations, dedicated PM, HIPAA-ready infrastructure available.</div>
-            <div class="plan-check"></div>
-          </div>
-
+      <!-- FOUNDING SPOTS COUNTER — manually update dot classes from `filled` to `empty` as customers sign on -->
+      <div class="spots-counter">
+        <div class="spots-dots" aria-label="5 of 5 founding spots available" role="status" aria-live="polite">
+          <span class="spot-dot filled"></span>
+          <span class="spot-dot filled"></span>
+          <span class="spot-dot filled"></span>
+          <span class="spot-dot filled"></span>
+          <span class="spot-dot filled"></span>
         </div>
-        <p style="text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:14px;">Enterprise engagements are quoted per project. Click Enterprise above to book a consultation.</p>
+        <div class="spots-label">5 Founding Spots Available</div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <section class="order-section">
+        <div class="order-card">
+          <div class="order-tier-tag">Founding Member Pricing &mdash; First 5 Customers Only</div>
+          <div class="order-name">The Velonyx System</div>
+
+          <div class="order-amounts">
+            <div>
+              <div class="order-amount">$3,000</div>
+              <div class="order-amount-sub">due today (one-time build)</div>
+            </div>
+            <div class="order-plus">+</div>
+            <div>
+              <div class="order-recurring">$100<span class="order-recurring-mo">/month</span></div>
+              <div class="order-amount-sub">starts after 31-day free trial</div>
+            </div>
+          </div>
+
+          <div class="trial-pill-wrap">
+            <span class="trial-pill">First Month Free</span>
+          </div>
+
+          <div class="due-today">
+            <div class="due-row">
+              <span class="due-label">One-time build</span>
+              <span class="due-amount">$3,000.00</span>
+            </div>
+            <div class="due-row">
+              <span class="due-label">Care subscription</span>
+              <span class="due-amount">$100.00 / month</span>
+            </div>
+            <div class="due-row promo">
+              <span class="due-label">First month free (founding bonus)</span>
+              <span class="due-amount">&minus;$100.00</span>
+            </div>
+            <div class="due-divider"></div>
+            <div class="due-row total">
+              <span class="due-label">Total Due Today</span>
+              <span class="due-amount">$3,000.00</span>
+            </div>
+            <p class="due-note">Then <strong style="color:var(--white);">$100/month</strong> automatically charges starting day 32. Cancel anytime &mdash; you keep your full system. Locked-in pricing for life as a founding member.</p>
+          </div>
+
+          <h3 class="includes-heading">What you get &mdash; one complete system</h3>
+          <ul class="includes-list">
+            <li><div class="includes-check"><span>&#10003;</span></div> A custom-built website, branded for your business</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> An admin dashboard you run from your phone (like an app)</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Take payments anywhere &mdash; credit card, Apple Pay, Google Pay</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Let customers pay over time &mdash; Klarna, Affirm, Afterpay built in</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Automatic text messages to customers (reminders, payment links)</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Customer management dashboard &mdash; every job, every customer, one place</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Local Google search setup so people find you</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Production hosting, SSL, automated backups, performance monitoring</li>
+            <li><div class="includes-check"><span>&#10003;</span></div> Yours forever &mdash; not rented, not licensed, not locked in</li>
+          </ul>
+
+          <a href="https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e" target="_blank" rel="noopener" class="btn-stripe">
+            🔒 Pay $3,000 &amp; Claim My Founding Spot
+          </a>
+          <div class="security-note">Powered by Stripe &middot; 256-bit SSL &middot; PCI-DSS compliant &middot; Apple Pay &amp; Google Pay supported</div>
+          <p class="finance-note">Klarna, Affirm &amp; Afterpay also available at Stripe checkout &mdash; instant approval, no account needed.</p>
+        </div>
       </section>
 
-      <!-- STEP 2: Payment -->
-      <section class="payment-section">
-        <div class="step-heading"><span>Step 2</span> &nbsp;— Choose How You'd Like to Pay</div>
-
-        <!-- ── OPTION A: Pay in Full — Save 10% ── -->
-        <div class="pay-option-block">
-          <div class="pay-option-label">
-            <span class="pay-option-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3);">Option A</span>
-            <span class="pay-option-title">Pay in Full &mdash; Save 10%</span>
-          </div>
-          <div class="pay-option-desc">Pay the full amount today and save 10%. No remaining balance, no invoices &mdash; your project is fully paid and we start building immediately.</div>
-
-          <div class="payment-summary" style="margin:18px 0 16px;">
-            <div>
-              <div class="summary-label">Total Due Today <span style="color:#22c55e;font-size:0.72rem;margin-left:6px;">SAVE 10%</span></div>
-              <div class="summary-name" id="full-plan-name">Growth Package</div>
-            </div>
-            <div>
-              <div class="summary-amount" id="full-plan-amount">$3,150</div>
-              <div style="text-align:right;font-size:0.72rem;color:rgba(255,255,255,0.35);text-decoration:line-through;" id="full-plan-original">$3,500</div>
-            </div>
-          </div>
-
-          <div class="accepted-methods" style="margin-bottom:20px;">
-            <div class="method-badge">💳 Visa</div>
-            <div class="method-badge">💳 Mastercard</div>
-            <div class="method-badge">💳 Amex</div>
-            <div class="method-badge"> Apple Pay</div>
-            <div class="method-badge">🟢 Google Pay</div>
-          </div>
-
-          <button class="btn-stripe" id="fullPayBtn" onclick="fullCheckout()" style="background:linear-gradient(135deg,#166534 0%,#22c55e 100%);">
-            🔒 &nbsp;Pay in Full &amp; Save &mdash; <span id="full-btn-amount">$3,150</span>
-          </button>
-          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
-          <div style="text-align:center;font-size:0.76rem;color:rgba(34,197,94,0.6);margin-top:8px;">You save <span id="full-savings">$350</span> &nbsp;·&nbsp; nothing owed at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
-        </div>
-
-        <!-- ── DIVIDER ── -->
-        <div class="pay-or-divider"><span>or</span></div>
-
-        <!-- ── OPTION B: 50% Deposit ── -->
-        <div class="pay-option-block">
-          <div class="pay-option-label">
-            <span class="pay-option-tag deposit-tag">Option B</span>
-            <span class="pay-option-title">Pay 50% Deposit &mdash; 50% at Launch</span>
-          </div>
-          <div class="pay-option-desc">Pay half now to reserve your project. We start building immediately. We send you a Stripe invoice for the remaining balance when your site is ready to launch.</div>
-
-          <div class="payment-summary" style="margin:18px 0 16px;">
-            <div>
-              <div class="summary-label">Deposit Due Today</div>
-              <div class="summary-name" id="deposit-plan-name">Growth Package</div>
-            </div>
-            <div class="summary-amount" id="deposit-plan-amount">$1,750</div>
-          </div>
-
-          <div class="accepted-methods" style="margin-bottom:20px;">
-            <div class="method-badge">💳 Visa</div>
-            <div class="method-badge">💳 Mastercard</div>
-            <div class="method-badge">💳 Amex</div>
-            <div class="method-badge"> Apple Pay</div>
-            <div class="method-badge">🟢 Google Pay</div>
-          </div>
-
-          <button class="btn-stripe" id="depositBtn" onclick="depositCheckout()">
-            🔒 &nbsp;Pay Deposit &amp; Reserve My Project
-          </button>
-          <div class="security-note" style="margin-top:10px;">🔒 256-bit SSL &nbsp;•&nbsp; Powered by Stripe &nbsp;•&nbsp; PCI-DSS Compliant</div>
-          <div style="text-align:center;font-size:0.76rem;color:rgba(255,255,255,0.3);margin-top:8px;">50% deposit today &nbsp;·&nbsp; remaining 50% invoiced at launch &nbsp;·&nbsp; we reach out within 24 hours</div>
-        </div>
-
-        <!-- ── DIVIDER ── -->
-        <div class="pay-or-divider"><span>or</span></div>
-
-        <!-- ── OPTION C: Finance via BNPL ── -->
-        <div class="pay-option-block bnpl-option-block">
-          <div class="pay-option-label">
-            <span class="pay-option-tag bnpl-tag">Option C</span>
-            <span class="pay-option-title">Finance It &mdash; Pay Over Time</span>
-          </div>
-          <div class="pay-option-desc">Use Klarna, Affirm, or Afterpay to split the <strong>full project cost</strong> into 4 easy payments. The lender pays us in full &mdash; you repay them over time. Nothing owed to Velonyx at launch.</div>
-
-          <div class="payment-summary" style="margin:18px 0 16px;">
-            <div>
-              <div class="summary-label">Full Amount (via Lender)</div>
-              <div class="summary-name" id="stripe-plan-name">Growth Package</div>
-            </div>
-            <div class="summary-amount" id="stripe-plan-amount">$3,500</div>
-          </div>
-
-          <div class="bnpl-grid-simple">
-            <div class="bnpl-card klarna">
-              <div class="provider">Klarna</div>
-              <div class="bnpl-amount" id="klarna-amount">$875</div>
-              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
-            </div>
-            <div class="bnpl-card affirm">
-              <div class="provider">Affirm</div>
-              <div class="bnpl-amount" id="affirm-amount">$875</div>
-              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
-            </div>
-            <div class="bnpl-card afterpay">
-              <div class="provider">Afterpay</div>
-              <div class="bnpl-amount" id="afterpay-amount">$875</div>
-              <div class="bnpl-term">&times; 4 payments &middot; 0% interest</div>
-            </div>
-          </div>
-
-          <div class="bnpl-note" style="margin:16px 0 20px;">
-            Klarna, Affirm, and Afterpay appear as payment options on the next screen. Select your provider, get instant approval, and you're done &mdash; nothing more is owed to Velonyx at launch.
-          </div>
-
-          <button class="btn-bnpl" id="stripeBtn" onclick="stripeCheckout()">
-            ✦ &nbsp;Finance via BNPL &mdash; <span id="bnpl-full-amount">$3,500</span>
-          </button>
-          <div class="security-note" style="margin-top:10px;">Klarna &nbsp;&middot;&nbsp; Affirm &nbsp;&middot;&nbsp; Afterpay &nbsp;&middot;&nbsp; Powered by Stripe &nbsp;&middot;&nbsp; Instant Approval</div>
-        </div>
-
+      <!-- WHAT HAPPENS NEXT -->
+      <section class="next-steps">
+        <h2>What happens after you click pay</h2>
+        <ol class="next-grid">
+          <li>
+            <span class="next-num">1</span>
+            <h3>You complete checkout</h3>
+            <p>Stripe collects your card and charges $3,000 today. The $100/mo subscription is set up but won't bill until day 32. Cancel anytime, you keep the system.</p>
+          </li>
+          <li>
+            <span class="next-num">2</span>
+            <h3>Carlos reaches out within 24 hours</h3>
+            <p>Quick intake call to scope your build &mdash; branding, content, integrations, what your business actually needs to run smoother day to day.</p>
+          </li>
+          <li>
+            <span class="next-num">3</span>
+            <h3>We engineer your system</h3>
+            <p>5&ndash;14 days from intake to launch depending on scope. You see live preview links and approve each milestone before anything goes public.</p>
+          </li>
+          <li>
+            <span class="next-num">4</span>
+            <h3>Launch + 31 days of free Care</h3>
+            <p>Site goes live. First month of Care (hosting, support, updates, SEO) is free. After that, $100/month &mdash; locked in for life as a founding member.</p>
+          </li>
+        </ol>
       </section>
 
-      <!-- STEP 3: Add Care Plan -->
-      <!--
-        CARE PLANS — live Stripe Payment Links configured in STRIPE_CARE_LINKS (below).
-        Legacy monthly Stripe links (archived, no longer rendered anywhere on site;
-        preserved here for rollback/historical reference only):
-          Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
-          Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
-      -->
-      <section class="payment-section" style="margin-top:12px;">
-        <div class="step-heading"><span>Step 3</span> &nbsp;— Optional: Add a Monthly Care Plan
-          <span style="font-size:0.72rem;font-weight:400;color:rgba(255,255,255,0.35);margin-left:8px;">First month free when added at launch</span>
+      <!-- BRIEF FAQ -->
+      <section class="checkout-faq">
+        <h2>Common questions</h2>
+
+        <div class="faq-card">
+          <h3>Do I really own the system?</h3>
+          <p>Yes. Code, design, customer list, domain &mdash; all yours. Cancel the $100/month Care anytime and you still keep everything. Unlike Housecall Pro, ServiceTitan, Jobber, or Wix, your platform isn't rented.</p>
         </div>
 
-        <div class="maintenance-upsell-grid">
-
-          <div class="upsell-card">
-            <div class="upsell-skip" onclick="skipMaintenance()">Skip for now →</div>
-            <div class="upsell-tier">Standard Care</div>
-            <div class="upsell-price">$125<span>/mo</span></div>
-            <ul class="upsell-features">
-              <li>✓ Content &amp; text updates</li>
-              <li>✓ Bug fixes &amp; patches</li>
-              <li>✓ Uptime monitoring</li>
-              <li>✓ Hosting management</li>
-              <li>✓ Monthly backup</li>
-            </ul>
-            <a href="#" data-care-tier="standard" class="btn-upsell" onclick="careCheckout('standard'); return false;">Add Standard — $125/mo</a>
-          </div>
-
-          <div class="upsell-card upsell-featured">
-            <div class="upsell-badge">Best Value</div>
-            <div class="upsell-tier">Growth Care</div>
-            <div class="upsell-price">$225<span>/mo</span></div>
-            <ul class="upsell-features">
-              <li>✓ Everything in Standard</li>
-              <li>✓ Priority updates — 72 hours</li>
-              <li>✓ Up to 4 change requests / mo</li>
-              <li>✓ Monthly performance report</li>
-              <li>✓ Quarterly SEO snapshot</li>
-            </ul>
-            <a href="#" data-care-tier="growth" class="btn-upsell btn-upsell-gold" onclick="careCheckout('growth'); return false;">Add Growth — $225/mo</a>
-          </div>
-
-          <div class="upsell-card">
-            <div class="upsell-tier">Premium Care</div>
-            <div class="upsell-price">$325<span>/mo</span></div>
-            <ul class="upsell-features">
-              <li>✓ Everything in Growth</li>
-              <li>✓ Priority updates — 48 hours</li>
-              <li>✓ Unlimited change requests</li>
-              <li>✓ Monthly analytics &amp; conversion report</li>
-              <li>✓ Direct line to your developer</li>
-            </ul>
-            <a href="#" data-care-tier="premium" class="btn-upsell" onclick="careCheckout('premium'); return false;">Add Premium — $325/mo</a>
-          </div>
-
-          <div class="upsell-card">
-            <div class="upsell-tier">Enterprise Care</div>
-            <div class="upsell-price" style="font-size:1.3rem;">Custom<span> — Contact Us</span></div>
-            <ul class="upsell-features">
-              <li>✓ Everything in Premium</li>
-              <li>✓ Up to 10 hrs/mo changes</li>
-              <li>✓ Multi-user portal support</li>
-              <li>✓ Monthly strategy call</li>
-              <li>✓ Same-day critical response</li>
-            </ul>
-            <a href="/book.html?tier=enterprise" class="btn-upsell">Contact Us</a>
-          </div>
-
+        <div class="faq-card">
+          <h3>What if I cancel before the build is delivered?</h3>
+          <p>The $3,000 covers your build. If you cancel during the intake or build phase before launch, we refund pro-rata for any work not yet started &mdash; within reason, and after a real conversation about why. We're not in the business of running off with your money.</p>
         </div>
-        <p id="maintenanceSkipMsg" style="display:none;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:16px;">No Care plan added. You can always add one later at <a href="https://velonyxsystems.com/#pricing" style="color:rgba(212,175,55,0.6);text-decoration:none;">velonyxsystems.com</a>.</p>
+
+        <div class="faq-card">
+          <h3>What does the $100/month cover after the free first month?</h3>
+          <p>Production hosting, SSL, automated backups, uptime monitoring, security patches, content updates (text and photos), bug fixes, SEO maintenance, and direct access to Carlos. Nothing extra to buy. No price hikes &mdash; locked in for life as a founding member.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>What if I need something more custom than what's listed?</h3>
+          <p>Don't click Pay yet. <a href="/book.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(212,175,55,0.4);">Book a free consultation</a> &mdash; we'll talk through what you need and quote it as a custom engagement instead of the founding offer.</p>
+        </div>
       </section>
 
       <!-- Trust bar -->
       <div class="trust-bar">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Encrypted</div>
-        <div class="trust-item"><span class="trust-icon">⚡</span> We Contact You in 24 Hours</div>
-        <div class="trust-item"><span class="trust-icon">✓</span> 30-Day Post-Launch Support</div>
-        <div class="trust-item"><span class="trust-icon">💬</span> Direct Line to Your Developer</div>
-        <div class="trust-item"><span class="trust-icon">🏆</span> Satisfaction Guaranteed</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> 24-Hour Response</div>
+        <div class="trust-item"><span class="trust-icon">✓</span> 31 Days Free Care Included</div>
+        <div class="trust-item"><span class="trust-icon">💬</span> Direct Line to Founder</div>
+        <div class="trust-item"><span class="trust-icon">🏆</span> Locked-in for Life</div>
       </div>
 
-      <div style="text-align:center;margin-top:28px;padding-bottom:16px;">
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.3);">Not ready to commit yet? <a href="/book.html" style="color:rgba(212,175,55,0.65);text-decoration:none;">Book a free consultation first →</a></p>
+      <div class="alt-cta">
+        <p>Not ready to commit yet? <a href="/book.html">Book a free consultation first &rarr;</a></p>
       </div>
 
     </div>
   </main>
 
   <footer>
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;">Your Legacy, Engineered With Precision.</div>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;width:100%;margin-bottom:8px;">Your Legacy, Engineered With Precision.</div>
     <span>© 2026 Velonyx Systems. All rights reserved.</span>
     <span>
-      <a href="/">velonyxsystems.com</a> &nbsp;·&nbsp;
-      <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> &nbsp;·&nbsp;
+      <a href="/">velonyxsystems.com</a> &nbsp;&middot;&nbsp;
+      <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> &nbsp;&middot;&nbsp;
       (877) 317-8643
     </span>
     <span style="width:100%;text-align:center;margin-top:8px;font-size:0.72rem;">
-      <a href="/privacy.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">Privacy Policy</a> &nbsp;&middot;&nbsp;
-      <a href="/terms.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">Terms of Service</a> &nbsp;&middot;&nbsp;
-      <a href="/msa.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">MSA</a> &nbsp;&middot;&nbsp;
-      <a href="/sow.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">SOW</a> &nbsp;&middot;&nbsp;
-      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.55);text-decoration:none;">SMS Terms</a> &nbsp;&middot;&nbsp;
-      <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);text-decoration:none;">Instagram</a> &nbsp;&middot;&nbsp;
-      <a href="https://linkedin.com/company/velonyx-systems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);text-decoration:none;">LinkedIn</a>
+      <a href="/privacy.html" style="color:rgba(212,175,55,0.55);">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="/terms.html" style="color:rgba(212,175,55,0.55);">Terms of Service</a> &nbsp;&middot;&nbsp;
+      <a href="/msa.html" style="color:rgba(212,175,55,0.55);">MSA</a> &nbsp;&middot;&nbsp;
+      <a href="/sow.html" style="color:rgba(212,175,55,0.55);">SOW</a> &nbsp;&middot;&nbsp;
+      <a href="/sms-terms.html" style="color:rgba(212,175,55,0.55);">SMS Terms</a> &nbsp;&middot;&nbsp;
+      <a href="/connect/" style="color:rgba(212,175,55,0.55);">Connect</a> &nbsp;&middot;&nbsp;
+      <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);">Instagram</a> &nbsp;&middot;&nbsp;
+      <a href="https://linkedin.com/company/velonyx-systems" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.55);">LinkedIn</a>
     </span>
   </footer>
 
-  <script>
-    // ── CONFIG ──────────────────────────────────────────────────
-
-    // PAY-IN-FULL links (10% discount — card / Apple Pay / Google Pay)
-    // TODO: Create these Payment Links in Stripe Dashboard for the discounted amounts
-    const STRIPE_FULL_LINKS = {
-      starter: 'https://buy.stripe.com/aFaeVf8brb4K1fw026cs808',
-      growth:  'https://buy.stripe.com/9B65kF4Zf6Ou3nE16acs809',
-      premium: 'https://buy.stripe.com/28E6oJ9fvfl00bs7uycs80a',
-    };
-
-    // BNPL links (full price — Klarna/Affirm/Afterpay)
-    // Lender pays Velonyx the full amount; client repays lender over time
-    const STRIPE_BNPL_LINKS = {
-      starter: 'https://buy.stripe.com/6oU3cx0IZfl0e2i6qucs800',
-      growth:  'https://buy.stripe.com/8x23cx1N30q63nE4imcs801',
-      premium: 'https://buy.stripe.com/eVqaEZ3Vba0Ge2ig14cs802',
-    };
-
-    // DEPOSIT links (50% — card / Apple Pay / Google Pay)
-    const STRIPE_DEPOSIT_LINKS = {
-      starter: 'https://buy.stripe.com/5kQ4gB3Vbfl07DUaGKcs803',
-      growth:  'https://buy.stripe.com/fZu5kFfDT5Kq8HY8yCcs804',
-      premium: 'https://buy.stripe.com/eVqfZjajz7Sy4rI7uycs805',
-    };
-
-    // CARE PLANS — monthly recurring (Stripe subscription Payment Links).
-    // Legacy maintenance links (archived, no longer rendered anywhere on site;
-    // preserved here for rollback/historical reference only):
-    //   Standard $150/mo → https://buy.stripe.com/3cI14p2R71uae2ig14cs806
-    //   Priority $300/mo → https://buy.stripe.com/bJe4gBgHXgp44rIeX0cs807
-    const STRIPE_CARE_LINKS = {
-      standard: 'https://buy.stripe.com/6oU7sN1N33CicYe2aecs80b',
-      growth:   'https://buy.stripe.com/bJe3cx4Zf2ye6zQdSWcs80c',
-      premium:  'https://buy.stripe.com/7sYbJ34ZfegWaQ6dSWcs80d',
-    };
-
-    const PLANS = {
-      starter: { name: 'Starter',  full: '$1,500', discounted: '$1,350', savings: '$150', deposit: '$750',   pkg: 'Starter Package' },
-      growth:  { name: 'Growth',   full: '$3,500', discounted: '$3,150', savings: '$350', deposit: '$1,750', pkg: 'Growth Package'  },
-      premium: { name: 'Premium',  full: '$6,000', discounted: '$5,400', savings: '$600', deposit: '$3,000', pkg: 'Premium Package' },
-    };
-
-    let currentPlan = 'growth';
-    // ────────────────────────────────────────────────────────────
-
-    // Pre-select from URL: checkout.html?plan=premium
-    const urlPlan = new URLSearchParams(window.location.search).get('plan');
-    if (urlPlan === 'enterprise') {
-      // Enterprise doesn't use Stripe flow — bounce straight to consultation
-      window.location.replace('/book.html?tier=enterprise');
-    } else if (urlPlan && PLANS[urlPlan]) {
-      currentPlan = urlPlan;
-      document.querySelectorAll('.plan-card').forEach(c => {
-        c.classList.toggle('active', c.dataset.plan === urlPlan);
-      });
-    }
-
-    function selectPlan(card) {
-      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      currentPlan = card.dataset.plan;
-      updateAmounts();
-    }
-
-    // Enterprise doesn't use Stripe — redirect to booking for custom quote
-    function enterpriseConsult() {
-      window.location.href = '/book.html?tier=enterprise';
-    }
-
-    // BNPL installment amounts (full price ÷ 4)
-    const BNPL_AMOUNTS = {
-      starter: '$375',
-      growth:  '$875',
-      premium: '$1,500',
-    };
-
-    function updateAmounts() {
-      const p = PLANS[currentPlan];
-      // Pay-in-full block
-      document.getElementById('full-plan-name').textContent     = p.pkg;
-      document.getElementById('full-plan-amount').textContent   = p.discounted;
-      document.getElementById('full-plan-original').textContent = p.full;
-      document.getElementById('full-btn-amount').textContent    = p.discounted;
-      document.getElementById('full-savings').textContent       = p.savings;
-      // Deposit block
-      document.getElementById('deposit-plan-name').textContent  = p.pkg;
-      document.getElementById('deposit-plan-amount').textContent = p.deposit;
-      // BNPL block
-      document.getElementById('stripe-plan-name').textContent   = p.pkg;
-      document.getElementById('stripe-plan-amount').textContent = p.full;
-      document.getElementById('bnpl-full-amount').textContent   = p.full;
-      // BNPL installment amounts
-      const installment = BNPL_AMOUNTS[currentPlan];
-      document.getElementById('klarna-amount').textContent   = installment;
-      document.getElementById('affirm-amount').textContent   = installment;
-      document.getElementById('afterpay-amount').textContent = installment;
-    }
-
-    // Marketing event helper — safe no-op if pixels not loaded
-    function trackCheckout(method, tier, value) {
-      if (typeof window.vxTrack === 'function') {
-        window.vxTrack('InitiateCheckout', {
-          content_name: tier,
-          content_category: method,
-          currency: 'USD',
-          value: value
-        });
-      }
-    }
-
-    // Price reference (matches TIER_PRICES / DEPOSIT_AMOUNTS in-page)
-    const TIER_FULL_PRICE = { starter: 1500, growth: 3500, premium: 6000 };
-    const TIER_DEPOSIT    = { starter:  750, growth: 1750, premium: 3000 };
-    const CARE_PRICE      = { standard: 125, growth: 225, premium: 325 };
-
-    // Pay in full (discounted) → full payment link
-    function fullCheckout() {
-      const link = STRIPE_FULL_LINKS[currentPlan];
-      if (!link || link.includes('FULL_')) {
-        alert('Pay-in-full links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your payment.');
-        return;
-      }
-      trackCheckout('pay_in_full', currentPlan, TIER_FULL_PRICE[currentPlan] * 0.9);
-      window.location.href = link;
-    }
-
-    // Card/Apple Pay/Google Pay → deposit link
-    function depositCheckout() {
-      const link = STRIPE_DEPOSIT_LINKS[currentPlan];
-      if (!link || link.includes('DEPOSIT_')) {
-        alert('Deposit payment links are being finalized. Please contact us at admin@velonyxsystems.com or call (877) 317-8643 to complete your booking.');
-        return;
-      }
-      trackCheckout('deposit', currentPlan, TIER_DEPOSIT[currentPlan]);
-      window.location.href = link;
-    }
-
-    // BNPL → full-price link
-    function stripeCheckout() {
-      const link = STRIPE_BNPL_LINKS[currentPlan];
-      if (!link) return;
-      trackCheckout('bnpl', currentPlan, TIER_FULL_PRICE[currentPlan]);
-      window.location.href = link;
-    }
-
-    // Care plan (monthly subscription) → Stripe recurring link
-    function careCheckout(tier) {
-      const link = STRIPE_CARE_LINKS[tier];
-      if (!link || link.startsWith('TODO_')) {
-        alert('Care plan sign-up opens soon. Email admin@velonyxsystems.com or call (877) 317-8643 to be invoiced directly.');
-        return;
-      }
-      if (typeof window.vxTrack === 'function') {
-        window.vxTrack('Subscribe', {
-          content_name: tier + '_care',
-          currency: 'USD',
-          value: CARE_PRICE[tier] || 0,
-          predicted_ltv: (CARE_PRICE[tier] || 0) * 12
-        });
-      }
-      window.open(link, '_blank', 'noopener');
-    }
-
-    function skipMaintenance() {
-      document.querySelectorAll('.upsell-card').forEach(c => c.style.opacity = '0.4');
-      document.getElementById('maintenanceSkipMsg').style.display = 'block';
-    }
-
-    function copyText(inputId, btnId, originalLabel) {
-      const input = document.getElementById(inputId);
-      const btn   = document.getElementById(btnId);
-      navigator.clipboard.writeText(input.value).then(() => {
-        btn.textContent = '✓ Copied!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = originalLabel;
-          btn.classList.remove('copied');
-        }, 2200);
-      });
-    }
-
-    updateAmounts();
-  </script>
-  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
-  <script src="/assets/marketing-config.js"></script>
+  <!-- Cookie consent (matches homepage pattern) -->
   <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
