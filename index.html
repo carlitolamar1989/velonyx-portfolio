@@ -761,6 +761,26 @@
       perspective: 600px;
     }
 
+    .hero-subheadline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin: 14px auto 0;
+      max-width: 720px;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .hero-subheadline.reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease-out;
+    }
+
     .hero-sub {
       font-size: 1.15rem;
       color: var(--white-muted);
@@ -3371,9 +3391,9 @@
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
-      <div class="hero-eyebrow"><span class="dot"></span> For Home Service Operators &mdash; HVAC, Plumbing, Electrical, Garage Doors</div>
+      <div class="hero-eyebrow"><span class="dot"></span> Premium Digital Systems for Ambitious Businesses</div>
       <h1 class="hero-h1-top">
-        <span class="line">Stop Juggling Tools.</span>
+        <span class="line">Built for Businesses Ready to</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
@@ -3384,9 +3404,10 @@
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
-        <span class="line"><span class="gold">Start Running a Business.</span></span>
+        <span class="line"><span class="gold">Look and Operate at the Next Level.</span></span>
       </h2>
-      <p class="hero-sub">Home service businesses are juggling multiple tools &mdash; calls on one app, payments on another, invoices scattered. It's costing you time and money. Velonyx brings it all together: a search-optimized website, integrated payments, invoice tracking, and customer financing &mdash; all in one platform you own. Built for HVAC, plumbing, electrical, garage doors, and any trade ready to scale.</p>
+      <p class="hero-subheadline">One platform. Built for you. Owned by you.</p>
+      <p class="hero-sub">Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently &mdash; custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale.</p>
       <div class="hero-buttons">
         <a href="/book.html" class="btn-primary">Book a Consultation</a>
         <a href="#pricing" class="btn-secondary">See Pricing</a>
@@ -3398,8 +3419,8 @@
   <section class="problem">
     <div class="container">
       <div class="problem-text fade-in">
-        <p class="big-quote">Calls on one app. Payments on another. Invoices scattered across a spreadsheet, a notepad, and your inbox.<br><span class="gold">That's not a business. That's a stack of monthly bills with no leverage.</span></p>
-        <p>Home service operators juggle four to six tools every day. Customers fall through the gaps between them, and at the end of three years you walk away owning nothing. Velonyx engineers one connected system in their place &mdash; branded as you, owned by you, built for HVAC, plumbing, electrical, garage doors, and any trade ready to scale.</p>
+        <p class="big-quote">Bookings in one app. Payments in another. Customer data in a spreadsheet. Marketing in your DMs.<br><span class="gold">That's not a business. That's a stack of monthly bills with no leverage.</span></p>
+        <p>Most ambitious operators juggle four to six tools every day. Customers fall through the gaps between them, and at the end of three years you walk away owning nothing. Velonyx engineers one connected platform in their place &mdash; branded as you, owned by you, built to elevate every interaction.</p>
       </div>
     </div>
   </section>
@@ -4274,6 +4295,12 @@
         }
         typeNext();
       }, totalCharDelay + 200);
+
+      // Sub-headline reveal (gold accent line between H2 and supporting paragraph)
+      setTimeout(() => {
+        const subhead = document.querySelector('.hero-subheadline');
+        if (subhead) subhead.classList.add('reveal');
+      }, totalCharDelay + 150);
 
       // Buttons spring in
       setTimeout(() => {
