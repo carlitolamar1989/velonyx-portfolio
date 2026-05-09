@@ -609,8 +609,8 @@
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(180deg, rgba(8, 8, 10, 0.7) 0%, rgba(8, 8, 10, 0.3) 40%, rgba(8, 8, 10, 0.6) 80%, rgba(8, 8, 10, 0.95) 100%),
-        radial-gradient(ellipse at center, transparent 30%, rgba(8, 8, 10, 0.5) 70%);
+        linear-gradient(180deg, rgba(8, 8, 10, 0.78) 0%, rgba(8, 8, 10, 0.55) 40%, rgba(8, 8, 10, 0.72) 80%, rgba(8, 8, 10, 0.96) 100%),
+        radial-gradient(ellipse at center, transparent 35%, rgba(8, 8, 10, 0.6) 75%);
     }
 
     .hero-bg {
@@ -627,31 +627,31 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.1) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 45%);
-      animation: gradientShift 8s ease-in-out infinite alternate;
+        radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
+      animation: gradientShift 12s ease-in-out infinite alternate;
       pointer-events: none;
     }
 
     @keyframes gradientShift {
       0% {
         background:
-          radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.18) 0%, transparent 55%),
-          radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.1) 0%, transparent 55%),
-          radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 45%);
+          radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
+          radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 55%),
+          radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
       }
       50% {
         background:
-          radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.24) 0%, transparent 55%),
-          radial-gradient(ellipse at 30% 70%, rgba(56, 189, 248, 0.14) 0%, transparent 50%),
-          radial-gradient(ellipse at 60% 60%, rgba(184, 134, 11, 0.12) 0%, transparent 45%);
+          radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.13) 0%, transparent 55%),
+          radial-gradient(ellipse at 30% 70%, rgba(56, 189, 248, 0.07) 0%, transparent 50%),
+          radial-gradient(ellipse at 60% 60%, rgba(184, 134, 11, 0.06) 0%, transparent 45%);
       }
       100% {
         background:
-          radial-gradient(ellipse at 70% 50%, rgba(212, 175, 55, 0.18) 0%, transparent 55%),
-          radial-gradient(ellipse at 50% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse at 30% 60%, rgba(184, 134, 11, 0.1) 0%, transparent 45%);
+          radial-gradient(ellipse at 70% 50%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
+          radial-gradient(ellipse at 50% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+          radial-gradient(ellipse at 30% 60%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
       }
     }
 
@@ -672,13 +672,13 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(212, 175, 55, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.025) 1px, transparent 1px);
       background-size: 60px 60px;
-      animation: gridFloat 20s linear infinite;
+      animation: gridFloat 28s linear infinite;
       pointer-events: none;
-      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%);
     }
 
     @keyframes gridFloat {
