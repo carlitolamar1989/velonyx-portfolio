@@ -766,6 +766,7 @@
       font-size: clamp(1.05rem, 1.8vw, 1.4rem);
       font-weight: 600;
       letter-spacing: 0.5px;
+      text-align: center;
       margin: 14px auto 0;
       max-width: 720px;
       background: var(--gold-shine);
@@ -1991,8 +1992,9 @@
       .mobile-menu-btn { display: flex; }
 
       .hero { padding: 100px 20px 60px; min-height: auto; }
-      .hero-h1-top { font-size: clamp(1.9rem, 8vw, 2.5rem); }
-      .hero-h2-bottom { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+      .hero-h1-top { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+      .hero-h2-bottom { font-size: clamp(1.5rem, 6.4vw, 2rem); }
+      .hero-subheadline { font-size: clamp(0.92rem, 3.2vw, 1.05rem); padding: 0 8px; }
       .hero-logo { width: min(280px, 65vw); height: auto; }
       .hero-logo-line { flex: 0 1 60px; }
       .about-watermark { width: min(300px, 85vw); }
@@ -3393,7 +3395,8 @@
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
       <div class="hero-eyebrow"><span class="dot"></span> Premium Digital Systems for Ambitious Businesses</div>
       <h1 class="hero-h1-top">
-        <span class="line">Built for Businesses Ready to</span>
+        <span class="line">Built for Businesses</span>
+        <span class="line">Ready to</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
@@ -3404,7 +3407,8 @@
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
-        <span class="line"><span class="gold">Look and Operate at the Next Level.</span></span>
+        <span class="line"><span class="gold">Look and Operate</span></span>
+        <span class="line"><span class="gold">at the Next Level.</span></span>
       </h2>
       <p class="hero-subheadline">One platform. Built for you. Owned by you.</p>
       <p class="hero-sub">Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently &mdash; custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale.</p>
@@ -3429,13 +3433,9 @@
        MP3 file remains at /assets/audio/velonyx-pitch.mp3 for potential future repurposing.
        Section CSS, JS, and HTML have all been removed in the perf pass commit. -->
 
-  <!-- IMAGE DIVIDER 1 -->
-  <div class="image-divider">
-    <img class="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70&fm=webp" alt="Digital workspace" loading="lazy" width="1200" height="675">
-    <div class="image-divider-text">
-      <h3 class="fade-in">Your brand deserves <span>better than the DMs</span></h3>
-    </div>
-  </div>
+  <!-- IMAGE DIVIDER 1 — removed 2026-05-07 ("Your brand deserves better than the DMs"
+       was off-message for the universal-hero positioning; replaced with direct flow
+       from the problem section into the services grid). -->
 
   <!-- SERVICES -->
   <section class="services cyber-reveal" id="services">
@@ -3733,10 +3733,10 @@
           </div>
 
         </div>
-
-        <div class="comparison-bottom-line">
-          Stop renting your business tools. Start owning your infrastructure.
-        </div>
+        <!-- Comparison bottom-line "Stop renting your business tools. Start owning
+             your infrastructure." removed 2026-05-07 — it duplicated the section
+             heading "Stop Renting. Start Owning." and read flat compared to the
+             rest of the page. The heading already lands the message. -->
       </div>
 
     </div>
