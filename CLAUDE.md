@@ -10,9 +10,16 @@
 
 ## What this site is
 
-A revenue-functional marketing site for **Velonyx Systems**, a service that engineers **custom business systems for service operators** (garage door, HVAC, plumbing, electrical, landscaping, and other field-service operators).
+A revenue-functional marketing site for **Velonyx Systems**, a service that builds **custom digital systems for home service operators** — HVAC, plumbing, electrical, garage doors, and any trade ready to scale. Garage Door Kings (Las Vegas) is the showcase live build; the same platform is built for any home service vertical. Custom builds are also available for businesses outside the home service industry.
 
-The pitch: "Stop renting your business tools. Start owning your infrastructure." Velonyx replaces the common service-business stack (Housecall Pro / Jobber + a generic website + a separate SMS tool + financing add-on = $160-290/mo, owns nothing) with **one integrated, branded, owned platform** at $3,000 build + $100/month.
+The pitch (canonical master message — apply tone and key phrases site-wide): "Home service businesses are juggling multiple tools — calls on one app, payments on another, invoices scattered. It's costing you time and money. Velonyx brings it all together. Search engine optimized website so customers find you. Integrated payments so they book and pay instantly. Invoice tracking that keeps you organized. Financing options that help your customers say yes to bigger jobs. And you own it — no monthly rent, no vendor lock-in. All in one platform designed for HVAC, plumbing, electrical, garage doors — any trade ready to scale. Stop juggling tools. Start running a business. Velonyx. Your legacy, engineered with precision."
+
+Sharper hooks distilled from the master message:
+- **"Stop Juggling Tools. Start Running a Business."** (homepage hero, CTA)
+- **"Own it. No rent. No lock-in."** (sharpest competitive line — surface wherever it fits)
+- **"Your Legacy, Engineered With Precision."** (closing motto, every page)
+
+Velonyx replaces the common home-service stack (Housecall Pro / Jobber + a generic website + a separate SMS tool + financing integration + payment processing markup = $250–400+/mo, owns nothing) with **one integrated, branded, owned platform** at $3,000 build + $100/month.
 
 The site exists to:
 1. Convert visitors → Stripe Founding Member checkout
@@ -183,8 +190,9 @@ Edit `index.html` and `checkout.html`. Find `<span class="founding-dot filled">`
 2. **Edit one source of truth per concept.** When changing the Stripe URL, update `index.html` (founding card CTA) AND `checkout.html` (CTA + the live-link comment block). Both should be kept consistent.
 3. **For perf-impacting changes** (new images, new scripts, new fonts), follow the established patterns: WebP first with PNG/JPG fallback in `<picture>`, fonts via the preload + onload + noscript pattern, JS deferred where possible.
 4. **The `gdk` subdomain is a separate codebase.** Don't try to fix gdk-related bugs by editing files in this repo. Open `/Users/apple/Cursor-Claude-trades-template/` for that work.
-5. **Read the docs/ folder first.** `docs/VELONYX_SITE_DIAGNOSTIC.md`, `docs/PERF_AUDIT_SWEEP.md`, `docs/PORTAL_ARCHITECTURE_DECISION.md`, `docs/REBRAND_FIX_SUMMARY.md`, and `docs/CONNECT_LIGHTHOUSE.md` collectively answer most "wait, why does this exist / what state is it in?" questions.
+5. **Read the docs/ folder first.** `docs/VELONYX_SITE_DIAGNOSTIC.md`, `docs/PERF_AUDIT_SWEEP.md`, `docs/PORTAL_ARCHITECTURE_DECISION.md`, `docs/REBRAND_FIX_SUMMARY.md`, `docs/CONNECT_LIGHTHOUSE.md`, and `docs/REPOSITIONING_2026-05-07.md` collectively answer most "wait, why does this exist / what state is it in?" questions.
+6. **The target market is home service operators.** Voice rules: lead with the operator's pain ("juggling multiple tools," "scattered," "costing you time and money"); use plain trade language, no jargon; speak directly ("you own it," "your customers"); name HVAC, plumbing, electrical, garage doors when possible and add "any trade ready to scale" as the open door; close with the motto "Your Legacy, Engineered With Precision." Custom-build pathway exists for businesses outside home services — book a consultation.
 
 ---
 
-*Last updated: 2026-05-06 — after the cleanup sweep that removed `velonyx-website/`, archived `platform/` as a learning lab, moved sibling repos out, and shipped the sitewide perf optimization.*
+*Last updated: 2026-05-07 — after the home-service repositioning sweep (see `docs/REPOSITIONING_2026-05-07.md` for the full diff). Pricing model, motto, and architecture decisions unchanged; only target-market language and the canonical master message.*
