@@ -102,21 +102,12 @@
   {"@context":"https://schema.org","@type":"WebSite","@id":"https://velonyxsystems.com/#website","url":"https://velonyxsystems.com/","name":"Velonyx Systems","description":"Velonyx engineers premium custom digital systems for ambitious businesses ready to elevate their brand and run more efficiently. Specializing in home service operators. Stop renting. Start owning.","publisher":{"@id":"https://velonyxsystems.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://velonyxsystems.com/?s={search_term_string}","query-input":"required name=search_term_string"}}
   </script>
 
-  <!-- AggregateRating standalone -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AggregateRating","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}
-  </script>
-
-  <!-- Review schema for the 3 named testimonials on the site -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"Marcus J.","jobTitle":"Garage Door Operator","address":{"@type":"PostalAddress","addressLocality":"Las Vegas","addressRegion":"NV"}},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Velonyx built me a site that finally matches the quality of my work. Within the first month my revenue doubled.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"Tanya S.","jobTitle":"HVAC Operator","address":{"@type":"PostalAddress","addressLocality":"Atlanta","addressRegion":"GA"}},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"I used to spend hours stitching together booking, invoicing, and payments. Velonyx put it all in one place. Customers see the price, book the job, and pay. It's a whole different level.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Review","itemReviewed":{"@id":"https://velonyxsystems.com/#organization"},"author":{"@type":"Person","name":"David R.","jobTitle":"Plumbing Operator","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX"}},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"My old site looked the part but never converted. The Velonyx-built version gets deposits. Bookings doubled the first month.","publisher":{"@type":"Organization","name":"Velonyx Systems"}}
-  </script>
+  <!-- AggregateRating + per-testimonial Review schemas removed 2026-05-07 along with
+       the visible Testimonials section. Reviews will be re-introduced once we have
+       authentic, attributed quotes from live Velonyx clients (Garage Door Kings is
+       the first; more in production). Removing fabricated review markup is the
+       integrity-preserving move and matches the "industry and professional"
+       refinement pass. -->
 
   <!-- Service schema — Founding Member system -->
   <script type="application/ld+json">
@@ -3842,53 +3833,11 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="container">
-      <div class="section-label">What Clients Say</div>
-      <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Results That Speak<br>for Themselves</h2>
-      <p class="section-subtitle fade-in">Don't take our word for it. Here's what home service operators are saying.</p>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-in">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>"I was losing customers every day because I had no real website. Velonyx built me a full payment-ready site in days. Now customers just click and pay. My revenue doubled the first month."</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MJ</div>
-            <div>
-              <div class="testimonial-name">Marcus J.</div>
-              <div class="testimonial-role">Garage Door Operator, Las Vegas NV</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>"I used to spend hours stitching together booking, invoicing, and payments across three apps. Now I send one link. Customers see the price, book the job, and pay. It's a whole different level."</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">TS</div>
-            <div>
-              <div class="testimonial-name">Tanya S.</div>
-              <div class="testimonial-role">HVAC Operator, Atlanta GA</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>"The platform they built me looks like it cost $10K. Clean, professional, and my customers always compliment it. Best investment I've made in the business. Period."</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">DR</div>
-            <div>
-              <div class="testimonial-name">David R.</div>
-              <div class="testimonial-role">Plumbing Operator, Dallas TX</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- TESTIMONIALS section removed 2026-05-07 — fabricated quotes with avatar
+       initials were hurting the "industry and professional" credibility we want
+       on this site. The Garage Door Kings live build (linked in the portfolio
+       section above) is the real social proof until we have authentic, attributed
+       customer quotes to publish. -->
 
   <!-- FAQ -->
   <section class="faq-section" id="faq" style="padding:80px 24px;position:relative;z-index:3;">
