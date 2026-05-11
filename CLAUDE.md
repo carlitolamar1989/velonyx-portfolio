@@ -16,12 +16,12 @@ This is the "specialize in fulfillment, generalize in pitch" approach: the hero 
 
 Hero copy (canonical, lock these phrases in):
 - **Eyebrow:** "PREMIUM DIGITAL SYSTEMS FOR AMBITIOUS BUSINESSES"
-- **Headline:** "Built for Businesses Ready to Look and Operate at the Next Level."
+- **Headline:** "The System Your Business Has Been Waiting For." (white H1 sets up "The System / Your Business"; gold H2 lands "Has Been Waiting For.")
 - **Sub-headline (gold accent line):** "One platform. Built for you. Owned by you."
 - **Supporting paragraph:** "Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently — custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale."
 
 Sharper hooks woven throughout:
-- **"Built for Businesses Ready to Look and Operate at the Next Level."** (hero)
+- **"The System Your Business Has Been Waiting For."** (hero)
 - **"One platform. Built for you. Owned by you."** (sub-headline; sharpest competitive line)
 - **"Stop Renting. Start Owning."** (comparison block heading)
 - **"Your Legacy, Engineered With Precision."** (closing motto, every page)

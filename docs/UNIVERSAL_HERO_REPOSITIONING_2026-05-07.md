@@ -26,9 +26,10 @@ That's the more powerful version of this brand.
 ## New positioning (this commit)
 
 - **Eyebrow:** "PREMIUM DIGITAL SYSTEMS FOR AMBITIOUS BUSINESSES"
-- **H1:** "Built for Businesses Ready to"
-- **H2 (gold):** "Look and Operate at the Next Level."
-- **NEW gold sub-headline (between H2 and supporting paragraph):** "One platform. Built for you. Owned by you."
+- **H1:** "The System / Your Business" (two `.line` spans, white)
+- **H2 (gold):** "Has Been Waiting For." (single `.line.gold` span — the payoff lands here)
+- **Gold sub-headline (between H2 and supporting paragraph):** "One platform. Built for you. Owned by you."
+- **Previous wording (kept here for rollback reference):** H1 "Built for Businesses Ready to" / H2 (gold) "Look and Operate at the Next Level." — replaced because the dependent-clause split and the "next level" cliché didn't land. Same dual-promise spirit; the relief-framing version reads better out loud.
 - **Supporting paragraph:** "Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently — custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale."
 - **Pricing eyebrow:** "Founding Member Pricing — First 5 Customers Only"
 - **Footer subtagline:** "Premium digital systems built for ambitious businesses."
@@ -59,8 +60,9 @@ That's the more powerful version of this brand.
 
 - **Hero**
   - Eyebrow: "Premium Digital Systems for Ambitious Businesses"
-  - H1: "Built for Businesses Ready to" (single `.line` span)
-  - H2 (gold): "Look and Operate at the Next Level." (single `.line.gold` span)
+  - H1: "The System / Your Business" (two `.line` spans, white)
+  - H2 (gold): "Has Been Waiting For." (single `.line.gold` span)
+  - **Same-day follow-up note:** the H1/H2 were briefly "Built for Businesses Ready to" / "Look and Operate at the Next Level." before being replaced with the current relief-framing version. Same dual-promise spirit, sharper read. See the rollback note higher in this doc.
   - **NEW** `.hero-subheadline` element below H2: "One platform. Built for you. Owned by you." (gold gradient text, fade+slide-up reveal triggered after H2 char animation, before button spring-in)
   - Supporting paragraph rewritten for universal positioning with home service named as one-clause specialty
   - CTAs unchanged: "Book a Consultation" / "See Pricing"
