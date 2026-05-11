@@ -3009,6 +3009,243 @@
       line-height: 1.6;
     }
 
+    /* ===== FOUNDING MEMBER POP-UP MODAL (auto-opens once per session) ===== */
+    .founding-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 6000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .founding-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .founding-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .founding-modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: linear-gradient(165deg, rgba(18, 18, 22, 0.98) 0%, rgba(10, 10, 13, 0.99) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 22px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.7),
+        0 0 90px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      /* "Coming at you" entrance — scales up from 0.3 to 1 with a slight bounce overshoot */
+      transform: scale(0.3) translateZ(0);
+      opacity: 0;
+      transition:
+        transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.45s ease;
+    }
+    .founding-modal-overlay.active .founding-modal-card {
+      transform: scale(1) translateZ(0);
+      opacity: 1;
+    }
+    .founding-modal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.85), transparent);
+    }
+    @media (max-width: 480px) {
+      .founding-modal-card { padding: 36px 18px 26px; border-radius: 18px; }
+    }
+    .founding-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white-muted);
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 2;
+      font-family: inherit;
+    }
+    .founding-modal-close:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.35);
+      color: var(--white);
+    }
+    .founding-modal-tier-tag {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .founding-modal-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      margin: 0 0 8px;
+    }
+    .founding-modal-subhead {
+      font-size: 0.92rem;
+      color: var(--white-muted);
+      line-height: 1.5;
+      margin: 0 auto 22px;
+      max-width: 420px;
+    }
+    .founding-modal-pricing {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .founding-modal-pricing .col { text-align: center; }
+    .founding-modal-pricing .price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 2.9rem);
+      font-weight: 900;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .founding-modal-pricing .plus {
+      font-size: 1.6rem;
+      color: var(--white-dim);
+      font-weight: 300;
+    }
+    .founding-modal-pricing .recurring {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.7rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .founding-modal-pricing .mo {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white-muted);
+    }
+    .founding-modal-pricing .sub {
+      font-size: 0.7rem;
+      color: var(--white-dim);
+      letter-spacing: 0.5px;
+      display: block;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+    .founding-modal-trial-pill {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--bg-deep);
+      background: var(--gold-btn);
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+    .founding-modal-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      text-align: left;
+    }
+    .founding-modal-features li {
+      font-size: 0.86rem;
+      color: var(--white-muted);
+      padding: 7px 0 7px 24px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .founding-modal-features li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .founding-modal-cta {
+      display: block;
+      background: var(--gold-btn);
+      color: var(--bg-deep);
+      padding: 16px 28px;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      box-shadow:
+        0 4px 22px rgba(212, 175, 55, 0.32),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .founding-modal-cta:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 6px 28px rgba(212, 175, 55, 0.42),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .founding-modal-dismiss {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 12px;
+      padding: 8px;
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+    .founding-modal-dismiss:hover { color: var(--accent); }
+
     /* ── Plain-English Comparison Block (under founding card) ── */
     .pricing-comparison {
       max-width: 1100px;
@@ -3975,6 +4212,41 @@
     </a>
   </div>
 
+  <!-- FOUNDING MEMBER POP-UP MODAL — auto-opens once per session (sessionStorage guard). Scales in from the page with a slight overshoot for a "coming at you" feel rather than a flash. -->
+  <div class="founding-modal-overlay" id="foundingModalOverlay" role="dialog" aria-modal="true" aria-labelledby="foundingModalTitle" aria-hidden="true">
+    <div class="founding-modal-backdrop" onclick="closeFoundingModal()" aria-hidden="true"></div>
+    <div class="founding-modal-card">
+      <button class="founding-modal-close" onclick="closeFoundingModal()" aria-label="Close founding member offer" type="button">&times;</button>
+      <div class="founding-modal-tier-tag">&#127942; Founding Member &middot; First 5 Customers Only</div>
+      <h2 class="founding-modal-name" id="foundingModalTitle">The Velonyx System</h2>
+      <p class="founding-modal-subhead">Built for businesses ready to grow, brand out, and own their infrastructure.</p>
+      <div class="founding-modal-pricing">
+        <div class="col">
+          <div class="price">$3,000</div>
+          <span class="sub">one-time build</span>
+        </div>
+        <div class="plus">+</div>
+        <div class="col">
+          <div class="recurring">$100<span class="mo">/month</span></div>
+          <span class="sub">first month free</span>
+        </div>
+      </div>
+      <span class="founding-modal-trial-pill">Locked in for Life</span>
+      <ul class="founding-modal-features">
+        <li>Search-optimized website, branded as you</li>
+        <li>Integrated payments (Apple Pay, Google Pay, cards)</li>
+        <li>Customer financing (Klarna, Affirm, Afterpay)</li>
+        <li>Invoice and job tracking dashboard</li>
+        <li>SMS automation (reminders, payment links, follow-ups)</li>
+        <li>Local SEO foundation</li>
+        <li>Admin dashboard that runs from your phone</li>
+        <li>Yours forever &mdash; no monthly rent, no vendor lock-in</li>
+      </ul>
+      <a href="https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e" class="founding-modal-cta" target="_blank" rel="noopener" onclick="closeFoundingModal()">Claim a Founding Spot</a>
+      <button class="founding-modal-dismiss" onclick="closeFoundingModal()" type="button">Maybe later &mdash; show me the site</button>
+    </div>
+  </div>
+
   <!-- BOOKING MODAL -->
   <div class="booking-overlay" id="bookingOverlay" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
     <div class="booking-backdrop" onclick="closeBooking()" aria-hidden="true"></div>
@@ -4309,6 +4581,60 @@
 
     // ===== 3D TILT, MAGNETIC BUTTONS, NAV SCROLL, SCROLL PROGRESS =====
     // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
+
+    // ===== FOUNDING MEMBER POP-UP MODAL =====
+    // Auto-opens once per session ~2.6s after page load (after the hero settles).
+    // Scale-in from 0.3→1 with a slight overshoot easing for the "coming at you" entrance.
+    (function() {
+      var FLAG = 'velonyx_founding_modal_seen';
+      var overlay = document.getElementById('foundingModalOverlay');
+      if (!overlay) return;
+      var _foundingLastFocus = null;
+
+      function openFoundingModal() {
+        _foundingLastFocus = document.activeElement;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        // ADA: focus the close button so screen readers + keyboard users know the dialog is interactive
+        var closeBtn = overlay.querySelector('.founding-modal-close');
+        if (closeBtn) setTimeout(function() { closeBtn.focus(); }, 120);
+      }
+
+      window.closeFoundingModal = function() {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        try { sessionStorage.setItem(FLAG, '1'); } catch (e) {}
+        if (_foundingLastFocus && typeof _foundingLastFocus.focus === 'function') {
+          _foundingLastFocus.focus();
+        }
+      };
+
+      // ESC closes
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          window.closeFoundingModal();
+        }
+      });
+
+      // Auto-open on first session visit, after the hero animation settles
+      function maybeAutoOpen() {
+        try {
+          if (sessionStorage.getItem(FLAG) === '1') return;
+        } catch (e) {
+          // Private browsing — sessionStorage throws; skip auto-open in that mode
+          return;
+        }
+        setTimeout(openFoundingModal, 2600);
+      }
+
+      if (document.readyState === 'complete') {
+        maybeAutoOpen();
+      } else {
+        window.addEventListener('load', maybeAutoOpen);
+      }
+    })();
 
     // ===== BOOKING MODAL =====
     const bookingOverlay = document.getElementById('bookingOverlay');
