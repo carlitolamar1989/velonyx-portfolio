@@ -803,6 +803,30 @@
       transition: all 0.7s ease-out;
     }
 
+    .hero-trust {
+      margin-top: 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .hero-trust.reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.7s ease-out 0.15s;
+    }
+    @media (max-width: 640px) {
+      .hero-trust { font-size: 0.66rem; letter-spacing: 0.8px; padding: 0 8px; }
+    }
+
     .btn-primary {
       background: var(--gold-btn);
       color: var(--bg-deep);
@@ -3642,10 +3666,10 @@
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
-      <div class="hero-eyebrow"><span class="dot"></span> Premium Digital Systems for Ambitious Businesses</div>
+      <div class="hero-eyebrow"><span class="dot"></span> For Home Service Operators Doing $100K&ndash;$2M</div>
       <h1 class="hero-h1-top">
-        <span class="line">The System</span>
-        <span class="line">Your Business</span>
+        <span class="line">Three Years.</span>
+        <span class="line">$9,000 in Software Bills.</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
@@ -3656,14 +3680,15 @@
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
-        <span class="line"><span class="gold">Has Been Waiting For.</span></span>
+        <span class="line"><span class="gold">Nothing on Your Balance Sheet.</span></span>
       </h2>
-      <p class="hero-subheadline">One platform. Built for you. Owned by you.</p>
-      <p class="hero-sub">Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently &mdash; custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale.</p>
+      <p class="hero-subheadline">Velonyx fixes that. One custom platform. $3,000 build. $100/month. Yours forever.</p>
+      <p class="hero-sub">Velonyx engineers the custom platform that replaces your rented stack &mdash; website, payments, customer financing, SMS automation, and job tracking, consolidated into one system you own. Built for HVAC, plumbing, electrical, garage doors, and any service operator who'd rather pay once than pay forever.</p>
       <div class="hero-buttons">
-        <a href="/book.html" class="btn-primary">Book a Consultation</a>
-        <a href="#pricing" class="btn-secondary">See Pricing</a>
+        <a href="/book.html" class="btn-primary">Book a 20-Minute Discovery Call</a>
+        <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">See a Live Build &rarr;</a>
       </div>
+      <p class="hero-trust">Stripe-Verified &middot; Klarna / Affirm / Afterpay Built In &middot; 7&ndash;14 Day Build &middot; 5 Founding Spots Open</p>
     </div>
   </section>
 
@@ -4536,6 +4561,12 @@
       setTimeout(() => {
         document.querySelector('.hero-buttons').classList.add('reveal');
       }, totalCharDelay + 600);
+
+      // Trust strip fades in just after the buttons
+      setTimeout(() => {
+        const trust = document.querySelector('.hero-trust');
+        if (trust) trust.classList.add('reveal');
+      }, totalCharDelay + 800);
     }
 
     // ===== SCROLL-TRIGGERED ANIMATIONS (UPGRADED) =====
