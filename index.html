@@ -120,9 +120,9 @@
     {"@type":"Question","name":"Is Velonyx only for home service businesses?","acceptedAnswer":{"@type":"Answer","text":"No. Velonyx engineers custom digital systems for any ambitious business — we just specialize in home service operators (HVAC, plumbing, electrical, garage doors) because that's where the platform hits the deepest pain. Custom builds are available for businesses in any industry ready to scale, brand out, and own their infrastructure."}},
     {"@type":"Question","name":"How long does it take to build my system?","acceptedAnswer":{"@type":"Answer","text":"Most Founding Member systems launch in 7–14 business days from when your deposit clears and you provide your assets (logo, photos, content). Industry norm is 4–6 weeks. We move fast because we use a refined process and a small team."}},
     {"@type":"Question","name":"What's included in the Velonyx Founding Member system?","acceptedAnswer":{"@type":"Answer","text":"A search-optimized custom branded website, integrated payments (Stripe with Apple Pay, Google Pay), customer financing built in (Klarna, Affirm, Afterpay), invoice and job tracking dashboard, SMS automation (reminders, payment links, follow-ups), local SEO foundation, an admin dashboard that runs from your phone, production hosting, and 30-day post-launch support. The $100/month Care plan keeps it live, secure, and improving."}},
-    {"@type":"Question","name":"Do I own the system after it's built?","acceptedAnswer":{"@type":"Answer","text":"Yes. You own the code, files, domain, and customer data. We hand off everything. Unlike Housecall Pro, ServiceTitan, Jobber, or Wix, your platform is yours — you can take it to a different host or developer any time. Stop renting your business tools. Start owning your infrastructure."}},
+    {"@type":"Question","name":"Do I own the system after it's built?","acceptedAnswer":{"@type":"Answer","text":"Yes — fully. Once payment is complete, you own the entire platform. The code is yours. The design is yours. The domain is yours. The customer data is yours. You can modify it, migrate it, sell it, or hand it to your kids. This is the core promise of Velonyx — you build a business asset, not a monthly bill."}},
     {"@type":"Question","name":"Can my customers pay over time?","acceptedAnswer":{"@type":"Answer","text":"Yes. Velonyx wires Klarna, Affirm, and Afterpay directly into your customer payment flow. Customers can split a $2,000 service into 4 payments at no interest. This typically increases close rate 20–30% on bigger-ticket jobs — exactly what HVAC, plumbing, electrical, and garage door operators need to close more bids."}},
-    {"@type":"Question","name":"Why should I choose Velonyx over SaaS tools like Housecall Pro, ServiceTitan, or Jobber?","acceptedAnswer":{"@type":"Answer","text":"Housecall Pro, ServiceTitan, Jobber, Wix, and Squarespace rent you a generic tool. You pay every month, forever, and own nothing. When they raise prices, you have no leverage. With Velonyx, you pay once for a custom-engineered platform built specifically for your home service operation — payments, booking, customer management, SMS, branded website, invoice tracking, all integrated — and you own it forever. Your platform, your data, your customer list, your domain."}},
+    {"@type":"Question","name":"Why should I choose Velonyx over SaaS tools like Housecall Pro, ServiceTitan, or Jobber?","acceptedAnswer":{"@type":"Answer","text":"SaaS tools like Housecall Pro, ServiceTitan, Jobber, Wix, and Squarespace are rented software. You pay monthly. You build their business with your payments. You own nothing at the end. When they raise prices, you have no leverage. Velonyx is a custom-engineered platform built specifically for your operation. One payment to build. A flat $100/month to keep it running. You own the code, the design, the customer data, the domain — everything. After three years, you've paid less than the rented stack and you walk away with an asset that lives on your balance sheet. The right question isn't 'which software is better?' It's 'do you want to rent forever, or own?'"}},
     {"@type":"Question","name":"What happens if I want to leave Velonyx?","acceptedAnswer":{"@type":"Answer","text":"You take everything with you — domain, code, files, customer data, customer list. We'll help you transfer to another developer or self-host. We don't lock customers in. The $100/month Care plan is month-to-month."}}
   ]}
   </script>
@@ -453,6 +453,38 @@
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .founder-signature {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 38px auto 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(212, 175, 55, 0.18);
+      max-width: 360px;
+    }
+    .founder-mark img {
+      width: 56px;
+      height: auto;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.25));
+    }
+    .founder-name-block { text-align: left; }
+    .founder-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .founder-title {
+      font-size: 0.74rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-top: 4px;
+    }
+
     .about-slogan-wrap {
       margin: 40px auto;
       text-align: center;
@@ -1197,6 +1229,16 @@
     .process-step:hover .process-num {
       transform: scale(1.15);
       box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 0 0 15px rgba(56, 189, 248, 0.08), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .process-when {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
     }
 
     .process-step h4 {
@@ -3574,6 +3616,26 @@
       font-weight: 800;
     }
 
+    .comparison-takeaway {
+      margin: 40px auto 0;
+      max-width: 760px;
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      padding: 20px 28px;
+    }
+    .comparison-takeaway strong {
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
     .comparison-stack-line {
       margin-top: 18px;
       font-size: 0.92rem;
@@ -3852,49 +3914,49 @@
       <div class="section-label">What We Engineer</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">One Platform.<br>Everything Your Business Needs to Run.</h2>
-      <p class="section-subtitle fade-in">Stop stitching software together. One system. One bill. One brand. All yours.</p>
+      <p class="section-subtitle fade-in">One system. One bill. One brand. All yours.</p>
 
       <div class="services-grid">
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:globe --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-          <h3>Custom Branded Website</h3>
-          <p>A search-optimized website that gets your business found on Google, branded entirely as you. Built to convert visitors into booked jobs. No templates. No look-alike sites.</p>
+          <h3>Custom-Engineered Website</h3>
+          <p>A custom-engineered website built on modern cloud infrastructure. Fast, mobile-first, and designed to convert visitors into booked jobs. No templates. No look-alike sites. Built to rank locally and compound search authority month over month.</p>
           <span class="service-tag">Found on Google</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:credit-card --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
           <h3>Integrated Payments</h3>
-          <p>Customers book and pay in one flow. Apple Pay, Google Pay, credit cards, all integrated. Money hits your account fast. No more chasing invoices.</p>
+          <p>Customers complete the booking and payment in one flow &mdash; Apple Pay, Google Pay, credit cards. Money hits your account fast. No invoice chasing. No friction at the close.</p>
           <span class="service-tag">Get Paid Fast</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:wallet --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></div>
           <h3>Customer Financing</h3>
-          <p>Klarna, Affirm, and Afterpay built into your checkout. Customers say yes to bigger jobs because they can split the payment. You get paid in full upfront.</p>
-          <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works →</span></a>
+          <p>Klarna, Affirm, and Afterpay built directly into your checkout. Customers say yes to bigger jobs because they can split the payment. You get paid in full, upfront. Higher average ticket. Lower customer drop-off.</p>
+          <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works &rarr;</span></a>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:clipboard-list --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
           <h3>Job &amp; Invoice Tracking</h3>
-          <p>Every job, every customer, every payment in one dashboard. Stop hunting for paperwork. The system keeps you organized.</p>
+          <p>Every job, every customer, every payment &mdash; one dashboard. Stop hunting through three different apps to answer a customer question. Your business runs from a single screen.</p>
           <span class="service-tag">One Dashboard</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:message-square --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3>SMS Automation</h3>
-          <p>Automatic appointment reminders. Payment links sent by text. Follow-up messages that bring customers back. Your phone does the work while you're on the job.</p>
-          <span class="service-tag">Set It &amp; Forget It</span>
+          <p>Sub-60-second lead response, automated. Appointment confirmations, payment links, follow-up sequences &mdash; all triggered by the system. Your phone does the work while you're on the job. Speed-to-lead is the single biggest predictor of closing rate.</p>
+          <span class="service-tag">Sub-60-Second Response</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:shield-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h3>You Own It</h3>
-          <p>No monthly rent. No vendor lock-in. No platform that disappears when they raise prices or shut down. Velonyx builds it once. You own it forever.</p>
-          <span class="service-tag">Yours Forever</span>
+          <p>Built once. Yours forever. No monthly platform rent. No vendor lock-in. No company raising your rates every year. Your customer data, your code, your domain &mdash; all on your balance sheet.</p>
+          <span class="service-tag">On Your Balance Sheet</span>
         </div>
       </div>
     </div>
@@ -3911,28 +3973,33 @@
       <div class="process-steps">
         <div class="process-step fade-in">
           <div class="process-num">1</div>
+          <div class="process-when">Day 1</div>
           <h3>Free Consultation</h3>
-          <p>We learn about your business, your goals, and what you need. No pressure, no commitment &mdash; just a real conversation about how we can help.</p>
+          <p>A 20-minute conversation about your business, your goals, and what your platform should do. No pressure. No commitment. Just a direct conversation.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">2</div>
+          <div class="process-when">Day 1&ndash;2</div>
           <h3>Secure Your Project</h3>
-          <p>Ready to move forward? A 50% deposit reserves your spot and kicks off the build. The remaining 50% is due at launch.</p>
+          <p>A 50% deposit reserves your founding spot and kicks off the build. The remaining 50% is due at launch.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">3</div>
+          <div class="process-when">Days 3&ndash;10</div>
           <h3>Design &amp; Build</h3>
-          <p>We design and develop your site from scratch. You get a live preview link to review every detail before anything goes public.</p>
+          <p>We engineer your system from scratch. You get a live preview link to review every detail before anything goes public.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">4</div>
+          <div class="process-when">Days 10&ndash;13</div>
           <h3>Refine</h3>
-          <p>Your feedback shapes the final product. We revise until you are completely satisfied with every detail.</p>
+          <p>Your feedback shapes the final product. We revise within a capped revision window until every detail is right.</p>
         </div>
         <div class="process-step fade-in">
           <div class="process-num">5</div>
+          <div class="process-when">Day 14</div>
           <h3>Launch</h3>
-          <p>We deploy your site, connect payments, and hand you a live link. Your business is online and ready to receive customers.</p>
+          <p>We deploy your platform, connect payments, and hand you a live link. Your business is online and built to convert.</p>
         </div>
       </div>
     </div>
@@ -4061,18 +4128,18 @@
         </div>
       </div>
 
-      <!-- PLAIN-ENGLISH COMPARISON BLOCK — written for the operator in work boots, not the buyer in a hoodie -->
+      <!-- The Rented Stack vs The Velonyx Platform — the math made visual. -->
       <div class="pricing-comparison fade-in">
         <div class="comparison-eyebrow">Own It. No Rent. No Lock-In.</div>
         <h3 class="comparison-heading">Stop Renting. Start Owning.</h3>
-        <p class="comparison-intro">Most operators are paying four to six different software companies every month &mdash; and at the end of three years, they don't own any of it. Here's what that stack typically costs a home service business:</p>
+        <p class="comparison-intro">Most operators pay four to six software companies every month for tools that don't connect &mdash; and own nothing at the end of three years. Here's the math, side by side.</p>
 
         <div class="comparison-grid">
 
-          <!-- LEFT: Rented Stack -->
+          <!-- LEFT: The Rented Stack -->
           <div class="comparison-col rented">
-            <div class="comparison-col-tag">Your Current Stack</div>
-            <div class="comparison-col-title">Patched-Together Tools<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(what most home service operators pay)</span></div>
+            <div class="comparison-col-tag">The Rented Stack</div>
+            <div class="comparison-col-title">Four to Six Software Bills<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(what most operators pay today)</span></div>
 
             <div class="comparison-row">
               <span class="row-label">Job management software<br><span style="font-size:0.78rem;color:var(--white-dim);">(Housecall Pro, Jobber)</span></span>
@@ -4098,54 +4165,58 @@
             <div class="comparison-divider"></div>
 
             <div class="comparison-total">
-              <span class="comparison-total-label">Estimated Total</span>
-              <span class="comparison-total-value">$250&ndash;400+/mo</span>
+              <span class="comparison-total-label">Total</span>
+              <span class="comparison-total-value">$250&ndash;400/month</span>
             </div>
 
-            <div class="comparison-3yr-label">3-Year Cost (Rented)</div>
+            <div class="comparison-3yr-label">3-Year Cost</div>
             <div class="comparison-3yr-value">$9,000&ndash;$14,400</div>
 
             <div class="comparison-ownership">
-              And you <span class="own-flag">own nothing.</span><br>
-              Your customer list, your data, your platform &mdash; all rented.
+              <span class="own-flag">What you own at the end:</span><br>
+              <strong style="color:var(--white);">$0.</strong>
             </div>
           </div>
 
-          <!-- RIGHT: Velonyx -->
+          <!-- RIGHT: The Velonyx Platform -->
           <div class="comparison-col velonyx">
-            <div class="comparison-col-tag">Velonyx Founding Member</div>
-            <div class="comparison-col-title">One Owned Platform<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(everything connected, branded as you)</span></div>
+            <div class="comparison-col-tag">The Velonyx Platform</div>
+            <div class="comparison-col-title">One Custom Platform<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(replacing the entire stack above)</span></div>
 
             <div class="comparison-row">
-              <span class="row-label"><strong>$3,000 once.</strong> Custom-built system, branded for you. Yours forever.</span>
+              <span class="row-label"><strong>One custom-engineered platform,</strong> replacing the entire rented stack on the left.</span>
             </div>
             <div class="comparison-row">
-              <span class="row-label"><strong>$100/month.</strong> Hosting, maintenance, support. We handle it.</span>
+              <span class="row-label"><strong>Build:</strong> $3,000 once.</span>
             </div>
-
-            <p class="comparison-stack-line">All in one platform: search-optimized website, integrated payments, invoice tracking, customer financing (Klarna, Affirm, Afterpay), SMS automation, and customer management. All connected. All branded as you. All owned by you.</p>
+            <div class="comparison-row">
+              <span class="row-label"><strong>Hosting + maintenance + support:</strong> $100/month.</span>
+            </div>
+            <div class="comparison-row">
+              <span class="row-label">Includes everything in the rented stack &mdash; plus owner dashboard, local SEO foundation, and customer financing built in.</span>
+            </div>
 
             <div class="comparison-divider"></div>
 
             <div class="comparison-total">
-              <span class="comparison-total-label">First Year Total</span>
-              <span class="comparison-total-value">$4,200</span>
+              <span class="comparison-total-label">3-Year Cost</span>
+              <span class="comparison-total-value">$6,600</span>
             </div>
 
-            <div class="comparison-3yr-label">3-Year Cost (Owned)</div>
-            <div class="comparison-3yr-value">$6,600</div>
+            <div class="comparison-3yr-label">What you own at the end:</div>
+            <div class="comparison-3yr-value" style="font-size:1.4rem;">The entire platform.</div>
 
             <div class="comparison-ownership">
-              And you <span class="own-flag">own the entire platform.</span><br>
-              No more renting. No more vendor lock-in. No more software companies raising your rates every year.
+              <span class="own-flag">On your balance sheet.</span><br>
+              Not someone else's.
             </div>
           </div>
 
         </div>
-        <!-- Comparison bottom-line "Stop renting your business tools. Start owning
-             your infrastructure." removed 2026-05-07 — it duplicated the section
-             heading "Stop Renting. Start Owning." and read flat compared to the
-             rest of the page. The heading already lands the message. -->
+
+        <div class="comparison-takeaway">
+          27%&ndash;54% cheaper over three years. <strong>And you own it forever.</strong>
+        </div>
       </div>
 
     </div>
@@ -4166,13 +4237,25 @@
       <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark" width="512" height="590" loading="lazy">
     </picture>
     <div class="container">
-      <div class="section-label">About Velonyx</div>
+      <div class="section-label">From the Founder</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Engineered Legacies,<br>Not Rented Software.</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Why Velonyx Exists.</h2>
       <div class="about-content fade-in">
-        <p><strong>Velonyx Systems</strong> builds custom digital platforms for home service operators who refuse to keep juggling four to six different software companies. We design and engineer <strong>premium, custom-built systems</strong> &mdash; branded website, integrated payments, customer financing, invoice and job tracking, SMS automation &mdash; engineered around how your business actually runs.</p>
-        <p>The result is a search-optimized presence that gets you <strong>found on Google</strong>, an integrated platform that runs your business from your phone, and a complete system <strong>you own</strong>. No monthly rent. No vendor lock-in.</p>
-        <p>Built for HVAC, plumbing, electrical, garage doors, and any trade ready to scale. Custom builds available for businesses outside the home service industry.</p>
+        <p>I built Velonyx Systems because too many ambitious operators have been sold the same lie: that renting software is the modern way to run a business.</p>
+        <p>It isn't. Every month spent renting is a month of equity that never lands on your balance sheet. Every customer that books through someone else's platform is a relationship you don't fully own. Every year of monthly bills is a year of building someone else's business.</p>
+        <p>Velonyx is the answer for operators who think long-term. The ones who treat their business like a real asset. The ones who'd rather pay once for something engineered for them than pay forever for something built for fifty thousand other businesses.</p>
+        <p>If that's how you think about your business, you're who Velonyx is built for.</p>
+
+        <div class="founder-signature fade-in">
+          <picture class="founder-mark">
+            <source srcset="assets/vs-logo-shield-240.webp" type="image/webp">
+            <img src="assets/vs-logo-shield-240.png" alt="Velonyx Systems shield" width="72" height="83" loading="lazy">
+          </picture>
+          <div class="founder-name-block">
+            <div class="founder-name">Carlos</div>
+            <div class="founder-title">Founder, Velonyx Systems</div>
+          </div>
+        </div>
 
         <div class="about-slogan-wrap fade-in">
           <div class="about-slogan-line"></div>
@@ -4246,7 +4329,7 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>Every Founding Member build includes a capped set of revision rounds within a time-boxed revision window. We send you a live preview link before anything goes public so you can review each round carefully. After the window closes or the round limit is reached, additional revisions are billed at $100/hour.</p>
+            <p>Every Founding Member build includes a capped set of revision rounds within a defined revision window. You get a live preview link before anything goes public &mdash; every detail reviewable, every round documented. After the revision window closes, additional changes are billed at $100/hour. Most builds reach final approval within two rounds.</p>
           </div>
         </div>
 
@@ -4256,7 +4339,7 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>Yes. Once you pay in full, you own the entire system &mdash; code, design, domain, customer data, all of it. You can modify it, transfer it, or do whatever you want with it. Unlike Housecall Pro, ServiceTitan, or Wix, your platform is yours. No monthly rent. No vendor lock-in. Stop renting your business tools. Start owning your infrastructure.</p>
+            <p>Yes &mdash; fully. Once payment is complete, you own the entire platform. The code is yours. The design is yours. The domain is yours. The customer data is yours. You can modify it, migrate it, sell it, or hand it to your kids. This is the core promise of Velonyx &mdash; you build a business asset, not a monthly bill.</p>
           </div>
         </div>
 
@@ -4286,7 +4369,9 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>Housecall Pro, ServiceTitan, Wix, and Squarespace rent you a generic tool. You pay every month, forever, and own nothing. When they raise prices, you have no leverage. With Velonyx, you pay once for a custom-engineered platform built specifically for your home service operation &mdash; payments, booking, customer management, SMS, branded website, invoice tracking, all integrated &mdash; and you own it forever. Your platform, your data, your customer list, your domain. Stop juggling tools. Start running a business.</p>
+            <p>SaaS tools like Housecall Pro, ServiceTitan, Jobber, Wix, and Squarespace are rented software. You pay monthly. You build their business with your payments. You own nothing at the end. When they raise prices, you have no leverage.</p>
+            <p>Velonyx is a custom-engineered platform built specifically for your operation. One payment to build. A flat $100/month to keep it running. You own the code, the design, the customer data, the domain &mdash; everything. After three years, you've paid less than the rented stack and you walk away with an asset that lives on your balance sheet.</p>
+            <p>The right question isn't "which software is better?" It's "do you want to rent forever, or own?"</p>
           </div>
         </div>
 
