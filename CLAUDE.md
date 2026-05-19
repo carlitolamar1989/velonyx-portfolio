@@ -14,20 +14,22 @@ A revenue-functional marketing site for **Velonyx Systems**. The site leads with
 
 This is the "specialize in fulfillment, generalize in pitch" approach: the hero doesn't filter out non-home-service prospects (a dentist, a med spa, an e-commerce founder reads it and stays interested), and home service becomes proof — not prison.
 
-Hero copy (canonical, lock these phrases in — premium-conversion overhaul 2026-05):
-- **Eyebrow:** "FOR HOME SERVICE OPERATORS DOING $100K–$2M"
-- **Headline:** white H1 "Three Years. / $9,000 in Software Bills." + gold H2 "Nothing on Your Balance Sheet."
-- **Sub-headline (gold accent line):** "Velonyx fixes that. One custom platform. $3,000 build. $100/month. Yours forever."
-- **Supporting paragraph:** "Velonyx engineers the custom platform that replaces your rented stack — website, payments, customer financing, SMS automation, and job tracking, consolidated into one system you own. Built for HVAC, plumbing, electrical, garage doors, and any service operator who'd rather pay once than pay forever."
+Hero copy (canonical, lock these phrases in — elevated-buyer reframe 2026-05):
+- **Eyebrow:** "FOR HOME SERVICE OPERATORS DOING $500K+"
+- **Headline:** white H1 "You've Built the Business." + gold H2 (two .line spans) "Now Build the System / That Runs It."
+- **Sub-headline (gold accent line):** "One custom platform. $3,000 build. $100/month. Yours forever."
+- **Supporting paragraph:** "You don't need another piece of software bolted to the side. You need one custom-engineered platform — website, payments, customer financing, SMS automation, and job tracking, consolidated into a system that scales with you. Built for HVAC, plumbing, electrical, garage doors, and any service operator who's outgrown the rented stack."
 - **Trust strip (below CTAs):** "Stripe-Verified · Klarna / Affirm / Afterpay Built In · 7–14 Day Build · 5 Founding Spots Open"
 - **Primary CTA:** "Book a 20-Minute Discovery Call" → /book.html
 - **Secondary CTA:** "See a Live Build →" → https://gdk.velonyxsystems.com/
 
 Sharper hooks woven throughout:
-- **"Three Years. $9,000 in Software Bills. Nothing on Your Balance Sheet."** (hero)
+- **"You've Built the Business. Now Build the System That Runs It."** (hero)
 - **"Stop Renting. Start Owning."** (comparison block heading)
 - **"Build Once. Own It Forever."** (final CTA heading)
 - **"Your Legacy, Engineered With Precision."** (closing motto, every page)
+
+Voice rule for hero framing: assume the buyer has ALREADY built a successful business. Don't pitch them on whether they need a platform; validate their work and offer the next-tier system. This is the "elevated buyer" voice — Apple-style, premium, never beneath them.
 
 Where home service shows up on the page:
 1. Hero supporting paragraph (one sentence as the named specialty)

@@ -21,8 +21,8 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velonyx Systems — Custom Platforms That Replace Your Rented Stack</title>
-  <meta name="description" content="Three years of software rent = $9,000 and nothing on your balance sheet. Velonyx engineers one custom platform that replaces the entire stack: branded website, integrated payments, customer financing, SMS automation, job tracking. $3,000 build + $100/month. Built for home service operators. Stop renting. Start owning.">
+  <title>Velonyx Systems — The System That Scales the Business You've Built</title>
+  <meta name="description" content="You've built the business. Velonyx engineers the custom platform that runs it: branded website, integrated payments, customer financing, SMS automation, and job tracking — all in one system you own. $3,000 build + $100/month. Built for home service operators outgrowing the rented SaaS stack.">
 
   <!-- SEO -->
   <meta name="robots" content="index, follow">
@@ -31,16 +31,16 @@
   <link rel="canonical" href="https://velonyxsystems.com/">
 
   <!-- Open Graph (link previews in iMessage, Instagram, etc.) -->
-  <meta property="og:title" content="Velonyx Systems — Custom Platforms That Replace Your Rented Stack">
-  <meta property="og:description" content="Three years of software rent = $9,000 and nothing on your balance sheet. Velonyx engineers one custom platform that replaces the entire stack: branded website, integrated payments, customer financing, SMS automation, job tracking. $3,000 build + $100/month. Built for home service operators. Stop renting. Start owning.">
+  <meta property="og:title" content="Velonyx Systems — The System That Scales the Business You've Built">
+  <meta property="og:description" content="You've built the business. Velonyx engineers the custom platform that runs it: branded website, integrated payments, customer financing, SMS automation, and job tracking — all in one system you own. $3,000 build + $100/month. Built for home service operators outgrowing the rented SaaS stack.">
   <meta property="og:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
   <meta property="og:url" content="https://velonyxsystems.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Velonyx Systems">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@velonyxsystems">
-  <meta name="twitter:title" content="Velonyx Systems — Custom Platforms That Replace Your Rented Stack">
-  <meta name="twitter:description" content="$9,000 in software bills over three years = nothing on your balance sheet. Velonyx engineers one custom platform: $3,000 build, $100/month, yours forever. Built for HVAC, plumbing, electrical, garage door operators.">
+  <meta name="twitter:title" content="Velonyx Systems — The System That Scales the Business You've Built">
+  <meta name="twitter:description" content="You've built the business. Now build the system that runs it. One custom platform: $3,000 build + $100/month, yours forever. Built for HVAC, plumbing, electrical, garage door operators outgrowing the rented stack.">
   <meta name="twitter:image" content="https://velonyxsystems.com/assets/vs-logo-shield-clean.png">
 
   <!-- Meta Business Portfolio domain verification -->
@@ -718,7 +718,14 @@
       100% { transform: translate(60px, 60px); }
     }
 
-    .hero-content { position: relative; max-width: 860px; z-index: 3; }
+    .hero-content {
+      position: relative;
+      max-width: 860px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 3;
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -755,14 +762,18 @@
 
     .hero-h1-top, .hero-h2-bottom {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      /* max capped at 3.6rem so the longest desktop line ("You've Built the Business.",
+         25 chars) fits inside .hero-content max-width 860px without forcing the
+         .char-wrap inline-block to overflow horizontally. Previous 5rem max caused
+         desktop visual off-center. */
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.1;
       margin: 0;
       letter-spacing: -0.5px;
     }
     .hero-h2-bottom {
-      font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
       margin-top: 0;
       margin-bottom: 0;
     }
@@ -3834,10 +3845,9 @@
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
-      <div class="hero-eyebrow"><span class="dot"></span> For Home Service Operators Doing $100K&ndash;$2M</div>
+      <div class="hero-eyebrow"><span class="dot"></span> For Home Service Operators Doing $500K+</div>
       <h1 class="hero-h1-top">
-        <span class="line">Three Years.</span>
-        <span class="line">$9,000 in Software Bills.</span>
+        <span class="line">You've Built the Business.</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
@@ -3848,10 +3858,11 @@
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
-        <span class="line"><span class="gold">Nothing on Your Balance Sheet.</span></span>
+        <span class="line"><span class="gold">Now Build the System</span></span>
+        <span class="line"><span class="gold">That Runs It.</span></span>
       </h2>
-      <p class="hero-subheadline">Velonyx fixes that. One custom platform. $3,000 build. $100/month. Yours forever.</p>
-      <p class="hero-sub">Velonyx engineers the custom platform that replaces your rented stack &mdash; website, payments, customer financing, SMS automation, and job tracking, consolidated into one system you own. Built for HVAC, plumbing, electrical, garage doors, and any service operator who'd rather pay once than pay forever.</p>
+      <p class="hero-subheadline">One custom platform. $3,000 build. $100/month. Yours forever.</p>
+      <p class="hero-sub">You don't need another piece of software bolted to the side. You need one custom-engineered platform &mdash; website, payments, customer financing, SMS automation, and job tracking, consolidated into a system that scales with you. Built for HVAC, plumbing, electrical, garage doors, and any service operator who's outgrown the rented stack.</p>
       <div class="hero-buttons">
         <a href="/book.html" class="btn-primary">Book a 20-Minute Discovery Call</a>
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">See a Live Build &rarr;</a>
