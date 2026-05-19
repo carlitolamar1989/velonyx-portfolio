@@ -115,3 +115,32 @@ Every removed banned word (juggling, stitching, patched-together) is a generic m
 - It does not promise outcomes we can't deliver. Numbers used ($9,000 stack cost, 7–14 day build, $250–400/mo current spend, $6,600 3-year cost) are all defensible from the public pricing of the comparison vendors + Velonyx's own pricing.
 - It does not add scarcity manipulation. The "5 founding spots" is real (manually tracked dot count on the founding counter) and the post-founding price ($5K + $200/mo) is a real future change documented in CLAUDE.md.
 - It does not change the pricing model, motto, payment integrations, or architecture. Only the positioning, copy, and conversion surfaces.
+
+---
+
+## Round 2 — Founder · Payments · Refund Policy · OG Card · JSON-LD (May 19, 2026)
+
+### OG social card
+**Why:** A premium offer that lacks an OG card looks unprepared in DM previews and social shares. The Pillow-generated card is a stop-gap — 1200×630, brand-correct (near-black, gold gradient headline, shield + wordmark), legible at thumbnail size. User can drop a Canva-designed JPG at the same path to override without code changes. *Tradeoff acknowledged: a designer-built card will outperform Pillow output for click-through.*
+
+### Affirm removal
+**Why:** Active payment methods need to match what's actually wired into Stripe + the customer financing partners. Listing a payment method that isn't supported burns trust the moment a customer hits checkout and it isn't offered. Affirm was carried over from earlier copy; it's not active in the live Stripe payment link or the financing partner roster. Removing it tightens the promise.
+
+### Founder reveal
+**Why:** "From the Founder" with a real bio + signature reads as accountable. The prior 4-paragraph version was more rhetorical ("renting is a lie...") — emotionally strong but didn't establish *competence*. The new bio leads with the credential that matters for a custom-engineered platform pitch: "Background combining technical engineering with operational discipline — building production cloud systems, payment integrations, and SMS automation infrastructure." That's the founder version of "we know how to build the thing we're selling you." Paragraph 2 names the pain in operator language. Paragraph 3 places the operator (SD) and the reach (national). No personal LinkedIn — keeps focus on the company.
+
+### GDK demo labeling
+**Why:** The portfolio block was titled "Live Client Build" and the card badge read "Home Service Operator." Both implied GDK is a paying customer. It isn't — it's a live demo build engineered to show what a Velonyx system looks and feels like end-to-end. Misrepresenting it as a real client is a credibility risk if a prospect ever asks (and an integrity issue regardless). New labels: "Live Demo Build" / "See a Real Velonyx Build — Live Demo" / "Demo Build · Home Service" / "Explore the Live Demo →". Honest, still impressive, removes the awkward question.
+
+### FAQ — revision policy specifics
+**Why:** The previous answer was deliberately vague ("a capped set of revision rounds within a defined revision window") — that vagueness is what makes founders nervous about committing. Specific numbers + a clear after-window rate ($100/hour) shows we've thought about the edge case and aren't going to nickel-and-dime. "Most builds reach final approval within those 2 rounds" sets the expectation that 2 is genuinely enough, not a trick number designed to force overages.
+
+### FAQ — new refund policy entry
+**Why:** A $3,000 build with no visible refund policy is a conversion blocker on every cold prospect. Buyers Google "[vendor] refund policy" before buying anything in the $1k+ range. Burying it in Terms of Service only is hostile. Phase-tiered (Option E) is the most defensible model for custom-engineered work — full refund where no work is done, decreasing as the build progresses, zero after delivery. The FAQ entry summarizes; `/refund-policy.html` carries the full policy.
+
+### JSON-LD address correction
+**Why:** Accurate local SEO + accurate trust signal. Chula Vista 91914 is the real operating address (corrected from the placeholder "San Diego" used in earlier scaffolding per CLAUDE.md note). Adding `postalCode` to the JSON-LD strengthens local entity recognition. `sameAs` expansion to 3 URLs (Instagram + LinkedIn company + Google share link) gives search engines and AI crawlers more disambiguation surface area to confirm Velonyx is one cohesive entity. The Google share link in particular is what GBP exposes for entity confirmation — high-value for AI search citations.
+
+### Refund Policy page
+**Why:** Same root reason as the FAQ entry — answers the buyer's risk question in the buyer's own words, on a public page they can return to without re-asking. Phase-tiered structure matches how custom work actually behaves: hours spent can't be unspent. Mirroring the styling of `terms.html` keeps it visually anchored as a legal-tier document, not marketing copy. Chargeback paragraph + refund-request process protect both sides operationally.
+

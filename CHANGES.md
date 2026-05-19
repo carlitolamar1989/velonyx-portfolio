@@ -193,3 +193,65 @@ Canonical hero copy block + sharper hooks list refreshed with the new headline a
 | `CLAUDE.md` | Canonical hero copy block refresh |
 | `CHANGES.md` | **New** (this file) |
 | `CONVERSION-NOTES.md` | **New** — framework rationale per change |
+
+---
+
+## Round 2 Updates — May 19, 2026
+
+Branch: `feat/round-2-founder-payments-refund`
+Scope: founder reveal, payments scrub (Affirm → Klarna + Afterpay + ACH), OG social card, GDK demo labeling, FAQ + refund policy, JSON-LD address correction (San Diego → Chula Vista 91914), refund policy page.
+
+### 1 · OG Social Card
+
+Generated `assets/og-social-card.jpg` (1200×630 JPG, 84 KB) via Pillow 12.2.0. Near-black bg (#08080A), shield left, white H1 + gold H2 right, off-white subhead, gold wordmark bottom-right. Wired into `og:image` + `twitter:image` meta tags across `index.html`, `book.html`, `checkout.html`, `financing.html`, `connect/index.html`, and the new `refund-policy.html`.
+
+### 2 · Affirm scrub
+
+Removed every Affirm reference site-wide. Active payment methods now: **Cards, Apple Pay, Google Pay, Klarna, Afterpay, ACH Direct Debit.** 25+ instances across `index.html`, `checkout.html`, `financing.html`, `sow.html`, `msa.html`, `terms.html`, `for-barbers.html`. `financing.html` calculator collapsed from 3 provider columns to 2 (Klarna + Afterpay); orphaned `.affirm` CSS rules + `--affirm-*` variables removed. Trust strip rewritten: "Powered by Stripe · Apple Pay & Google Pay · Klarna & Afterpay · ACH Direct Debit · 5 Founding Spots Open". Final audit: **0 visible Affirm refs.**
+
+### 3 · Founder reveal
+
+`index.html` `.about` section body swapped to user's verbatim 3-paragraph bio: founder background combining technical engineering with operational discipline; the "why" — owners running across too many disconnected apps; based in San Diego, building nationally. Signature changed to "— Carlos, Founder" (no personal LinkedIn link per user instruction). Shield watermark + `.founder-mark` unchanged.
+
+### 4 · GDK demo relabeling
+
+`Live Client Build` → `Live Demo Build`. Title: "See a Real Velonyx Build — Live Demo." Card badge: "Demo Build · Home Service" (was "Home Service Operator"). Subhead clarifies GDK is engineered to demonstrate what a Velonyx system looks and feels like (not a paying client). Portfolio CTA + hero secondary CTA both now read "Explore the Live Demo →" pointing at `https://gdk.velonyxsystems.com/`.
+
+### 5 · FAQ revisions
+
+- "What if I don't like the design?" rewritten: "up to 2 rounds of revisions within a 5 business day revision window after preview delivery. After the revision window closes, additional changes are billed at $100/hour."
+- New entry: "What's your refund policy?" — summarizes the tiered-by-phase policy and links to `/refund-policy.html`.
+- FAQPage JSON-LD synced: design-revision answer, ACH Direct Debit added to included-system list, new refund-policy Q&A inserted.
+
+### 6 · JSON-LD address + sameAs
+
+ProfessionalService address: `addressLocality` San Diego → Chula Vista, added `postalCode: 91914`. `geo.placename` + `geo.position` + ICBM coordinates updated to Chula Vista (32.6401, -116.9722). `sameAs` expanded to 3 entries: Instagram, LinkedIn company, Google share link (`https://share.google/JcxNJcFrrxxC0OAeo`). Footer line: "San Diego, CA" → "Chula Vista, CA · Serving home service operators nationwide". (Founder bio paragraph 3 retains "Based in San Diego" — verbatim from user; Chula Vista is in San Diego County so no contradiction.)
+
+### 7 · Refund Policy
+
+New `/refund-policy.html` page mirroring the styling of `terms.html` / `privacy.html`. 4-phase tiered policy (Option E):
+- **Phase 1** (≤24h, pre-kickoff): full refund less processing fees
+- **Phase 2** (post-kickoff, pre-preview): partial refund less work completed
+- **Phase 3** (post-preview, pre-launch): refund limited to unstarted scoped work
+- **Phase 4** (post-launch): non-refundable — delivered build
+
+Care plan cancellation, chargeback policy, and refund-request process included. Added to `sitemap.xml`. Footer legal-links row updated across `index.html`, `checkout.html`, `book.html`, `financing.html`, `terms.html`, `privacy.html`, `msa.html`, `sow.html`, `sms-terms.html`, `sms-opt-in.html`.
+
+### Files touched (Round 2)
+
+| File | Change |
+|------|--------|
+| `assets/og-social-card.jpg` | **New** — 1200×630 OG card |
+| `refund-policy.html` | **New** — tiered refund policy page |
+| `index.html` | Affirm scrub, founder bio, GDK relabel, FAQ + FAQ JSON-LD, address JSON-LD, footer address + refund link, OG meta |
+| `checkout.html` | Affirm scrub, OG meta, footer refund link |
+| `book.html` | OG meta, footer refund link |
+| `financing.html` | Affirm scrub (calculator + provider cards + CSS), OG meta, footer refund link |
+| `connect/index.html` | OG meta |
+| `terms.html`, `privacy.html`, `msa.html`, `sow.html` | Affirm scrub (where present), footer refund link |
+| `sms-terms.html`, `sms-opt-in.html` | Footer refund link |
+| `for-barbers.html` | Affirm scrub |
+| `sitemap.xml` | +1 url entry for `/refund-policy.html` |
+| `CHANGES.md` | This section |
+| `CONVERSION-NOTES.md` | Round 2 rationale per item |
+
