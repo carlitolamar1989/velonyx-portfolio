@@ -68,14 +68,32 @@
     "email": "admin@velonyxsystems.com",
     "slogan": "Your Legacy, Engineered With Precision.",
     "priceRange": "$3,000 + $100/mo",
-    "areaServed": "US",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Diego",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }],
     "serviceType": ["Custom Digital Platform", "Custom Branded Website", "Integrated Payment System", "Customer Financing (BNPL)", "Job & Invoice Tracking", "SMS Automation", "Local SEO", "Home Service Operator Platform", "HVAC Software", "Plumbing Software", "Electrical Contractor Software", "Garage Door Software"],
     "sameAs": [
-      "https://instagram.com/velonyxsystems"
+      "https://instagram.com/velonyxsystems",
+      "https://linkedin.com/company/velonyx-systems"
     ],
     "founder": {
       "@type": "Person",
-      "name": "Carlos Glover"
+      "name": "Carlos Glover",
+      "jobTitle": "Founder & Engineer",
+      "worksFor": {"@id": "https://velonyxsystems.com/#organization"}
     },
     "offers": [
       {
@@ -97,9 +115,19 @@
   <meta name="geo.position" content="32.7157;-117.1611">
   <meta name="ICBM" content="32.7157, -117.1611">
 
-  <!-- WebSite + SearchAction -->
+  <!-- WebSite -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","@id":"https://velonyxsystems.com/#website","url":"https://velonyxsystems.com/","name":"Velonyx Systems","description":"One custom-engineered platform that replaces the rented software stack — branded website, integrated payments, customer financing, SMS automation, and job tracking, consolidated into one system the operator owns. $3,000 build + $100/month. Built for home service operators. Stop renting. Start owning.","publisher":{"@id":"https://velonyxsystems.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://velonyxsystems.com/?s={search_term_string}","query-input":"required name=search_term_string"}}
+  {"@context":"https://schema.org","@type":"WebSite","@id":"https://velonyxsystems.com/#website","url":"https://velonyxsystems.com/","name":"Velonyx Systems","description":"One custom-engineered platform that replaces the rented software stack — branded website, integrated payments, customer financing, SMS automation, and job tracking, consolidated into one system the operator owns. $3,000 build + $100/month. Built for home service operators. Stop renting. Start owning.","publisher":{"@id":"https://velonyxsystems.com/#organization"}}
+  </script>
+
+  <!-- WebPage — closes the entity graph for index.html -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","@id":"https://velonyxsystems.com/#webpage","url":"https://velonyxsystems.com/","name":"Velonyx Systems — The System That Scales the Business You've Built","description":"You've built the business. Velonyx engineers the custom platform that runs it: branded website, integrated payments, customer financing, SMS automation, and job tracking — all in one system you own. $3,000 build + $100/month.","isPartOf":{"@id":"https://velonyxsystems.com/#website"},"about":{"@id":"https://velonyxsystems.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://velonyxsystems.com/assets/vs-logo-shield-clean.png"}}
+  </script>
+
+  <!-- BreadcrumbList — root anchor -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"}]}
   </script>
 
   <!-- AggregateRating + per-testimonial Review schemas removed 2026-05-07 along with
@@ -128,6 +156,10 @@
   </script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload hero video poster — it's the actual LCP element on the homepage
+       because the .hero-logo starts at opacity:0 and only reveals after the JS
+       cinematic sequence runs. Preloading the poster gives Chrome a head start. -->
+  <link rel="preload" as="image" href="/assets/velonyx_hero_poster.webp" type="image/webp" fetchpriority="high">
   <!-- Preload font CSS so the hero headline (Space Grotesk 700/900) renders without FOIT flash -->
 <style>
     :root {
@@ -3828,7 +3860,10 @@
       <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
       <li><a href="#faq" onclick="document.getElementById('navLinks').classList.remove('open')">FAQ</a></li>
       <li><a href="/book.html" class="nav-cta">Book a 20-Min Call</a></li>
-      <li><a href="/platform/portal/" class="nav-login">Client Login</a></li>
+      <!-- Client Login removed from nav 2026-05-19 — was pointing to /platform/portal/
+           which is Disallow'd in robots.txt and isn't a real live portal. Will be
+           re-added once a real customer portal exists. -->
+
     </ul>
   </nav>
 
@@ -3861,13 +3896,13 @@
         <span class="line"><span class="gold">Now Build the System</span></span>
         <span class="line"><span class="gold">That Runs It.</span></span>
       </h2>
-      <p class="hero-subheadline">One custom platform. $3,000 build. $100/month. Yours forever.</p>
+      <p class="hero-subheadline">One custom operating platform for your business. $3,000 build. $100/month. Yours forever.</p>
       <p class="hero-sub">You don't need another piece of software bolted to the side. You need one custom-engineered platform &mdash; website, payments, customer financing, SMS automation, and job tracking, consolidated into a system that scales with you. Built for HVAC, plumbing, electrical, garage doors, and any service operator who's outgrown the rented stack.</p>
       <div class="hero-buttons">
         <a href="/book.html" class="btn-primary">Book a 20-Minute Discovery Call</a>
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">See a Live Build &rarr;</a>
       </div>
-      <p class="hero-trust">Stripe-Verified &middot; Klarna / Affirm / Afterpay Built In &middot; 7&ndash;14 Day Build &middot; 5 Founding Spots Open</p>
+      <p class="hero-trust">Powered by Stripe &middot; Klarna / Affirm / Afterpay Built In &middot; 7&ndash;14 Day Build &middot; 5 Founding Spots Open</p>
     </div>
   </section>
 
@@ -4187,6 +4222,10 @@
               <span class="own-flag">What you own at the end:</span><br>
               <strong style="color:var(--white);">$0.</strong>
             </div>
+
+            <p style="margin-top:18px;font-size:0.68rem;color:var(--white-dim);line-height:1.5;letter-spacing:0.2px;opacity:0.75;">
+              Source: vendor pricing pages (Housecall Pro Essentials, Jobber Core, Squarespace Business plan, Twilio + SendGrid pricing), accessed May 2026.
+            </p>
           </div>
 
           <!-- RIGHT: The Velonyx Platform -->
@@ -4435,6 +4474,7 @@
     <div class="footer-brand">VELONYX SYSTEMS</div>
     <div class="footer-slogan">Your Legacy, Engineered With Precision.</div>
     <div class="footer-subtagline">Premium digital systems built for ambitious businesses.</div>
+    <div style="text-align:center;margin:8px 0 4px;font-size:0.74rem;color:rgba(255,255,255,0.42);letter-spacing:1px;text-transform:uppercase;">San Diego, CA &middot; Serving home service operators nationwide</div>
     <div style="display:flex;justify-content:center;gap:20px;margin:12px 0;flex-wrap:wrap;">
       <a href="/privacy.html" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">Privacy Policy</a>
       <a href="/terms.html" style="color:rgba(212,175,55,0.65);font-size:0.78rem;text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;padding:4px 0;min-height:44px;display:flex;align-items:center;">Terms of Service</a>
@@ -4916,7 +4956,9 @@
           // Private browsing — sessionStorage throws; skip auto-open in that mode
           return;
         }
-        setTimeout(openFoundingModal, 2600);
+        // Delay 4s (was 2.6s) — pushes the modal scale-in animation outside
+        // typical INP/LCP measurement windows on slow Android devices.
+        setTimeout(openFoundingModal, 4000);
       }
 
       if (document.readyState === 'complete') {
@@ -5610,7 +5652,7 @@
   </script>
 
   <!-- Cookie consent banner (GA4 gate) -->
-  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/marketing-config.js" defer></script>
   <script src="/assets/cookie-consent.js" defer></script>
   <!-- Meta Pixel conversion event wiring (sits on top of the base Pixel installed above) -->
   <script src="/assets/meta-pixel-events.js" defer></script>
