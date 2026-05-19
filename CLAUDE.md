@@ -14,16 +14,19 @@ A revenue-functional marketing site for **Velonyx Systems**. The site leads with
 
 This is the "specialize in fulfillment, generalize in pitch" approach: the hero doesn't filter out non-home-service prospects (a dentist, a med spa, an e-commerce founder reads it and stays interested), and home service becomes proof — not prison.
 
-Hero copy (canonical, lock these phrases in):
-- **Eyebrow:** "PREMIUM DIGITAL SYSTEMS FOR AMBITIOUS BUSINESSES"
-- **Headline:** "The System Your Business Has Been Waiting For." (white H1 sets up "The System / Your Business"; gold H2 lands "Has Been Waiting For.")
-- **Sub-headline (gold accent line):** "One platform. Built for you. Owned by you."
-- **Supporting paragraph:** "Velonyx engineers premium digital systems for businesses ready to elevate their brand and run more efficiently — custom websites, integrated payments, customer dashboards, and automation tools, all connected, all owned. We specialize in home service operators (HVAC, plumbing, electrical, garage doors), with custom builds available for any business ready to scale."
+Hero copy (canonical, lock these phrases in — premium-conversion overhaul 2026-05):
+- **Eyebrow:** "FOR HOME SERVICE OPERATORS DOING $100K–$2M"
+- **Headline:** white H1 "Three Years. / $9,000 in Software Bills." + gold H2 "Nothing on Your Balance Sheet."
+- **Sub-headline (gold accent line):** "Velonyx fixes that. One custom platform. $3,000 build. $100/month. Yours forever."
+- **Supporting paragraph:** "Velonyx engineers the custom platform that replaces your rented stack — website, payments, customer financing, SMS automation, and job tracking, consolidated into one system you own. Built for HVAC, plumbing, electrical, garage doors, and any service operator who'd rather pay once than pay forever."
+- **Trust strip (below CTAs):** "Stripe-Verified · Klarna / Affirm / Afterpay Built In · 7–14 Day Build · 5 Founding Spots Open"
+- **Primary CTA:** "Book a 20-Minute Discovery Call" → /book.html
+- **Secondary CTA:** "See a Live Build →" → https://gdk.velonyxsystems.com/
 
 Sharper hooks woven throughout:
-- **"The System Your Business Has Been Waiting For."** (hero)
-- **"One platform. Built for you. Owned by you."** (sub-headline; sharpest competitive line)
+- **"Three Years. $9,000 in Software Bills. Nothing on Your Balance Sheet."** (hero)
 - **"Stop Renting. Start Owning."** (comparison block heading)
+- **"Build Once. Own It Forever."** (final CTA heading)
 - **"Your Legacy, Engineered With Precision."** (closing motto, every page)
 
 Where home service shows up on the page:
