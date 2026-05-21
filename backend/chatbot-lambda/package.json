@@ -1,0 +1,17 @@
+{
+  "name": "velonyx-chatbot-lambda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AWS Lambda backend for the Velonyx Assistant chatbot widget on velonyxsystems.com. Calls Claude Haiku 4.5 via the Anthropic SDK.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0"
+  },
+  "scripts": {
+    "package": "rm -f function.zip && zip -r function.zip index.js system-prompt.md package.json node_modules",
+    "deploy": "bash deploy.sh"
+  }
+}

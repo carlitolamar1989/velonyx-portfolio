@@ -325,3 +325,62 @@ Per user direction ("this is going to be the new founding module"), the auto-ope
 | `CHANGES.md` | This section |
 | `CONVERSION-NOTES.md` | Pricing-revamp rationale |
 
+
+---
+
+## Chatbot Widget + PWA Implementation Plan — May 21, 2026
+
+Branch: `claude/chatbot-and-pwa-plan` (off `main`, after PR #16 merged the pricing revamp)
+Scope: Velonyx Assistant chatbot widget shipped live on `velonyxsystems.com` in fallback mode + complete Lambda backend code committed for tomorrow's deploy + PWA implementation recipe for the GDK portal repo.
+
+### Velonyx Assistant — chatbot widget (live now, AI mode pending Lambda deploy)
+
+**Frontend (new):**
+- `assets/velonyx-chatbot.js` — 12 KB embeddable IIFE widget. Floating bottom-right gold launcher (z-index 1001), 380×560 panel on desktop, 75vh on mobile. Matches site design tokens (`--accent` gold, Space Grotesk + DM Sans, premium dark UI). Pre-consent (first-party utility, not analytics).
+- 3-turn lead-capture flow in fallback mode: greet → ask phone → ask name + service → POST to existing leads endpoint (`source: "chatbot"`).
+- Auto-switches to AI mode when `window.VELONYX_CHATBOT_API_URL` is set in `marketing-config.js`. No widget code change needed for the switch.
+- Embedded on `index.html` only (homepage demo).
+
+**Floating book button moved to bottom-left** (was bottom-right) so the chatbot launcher takes the right corner. Mobile media query updated to match.
+
+**Backend code (committed, NOT deployed):**
+- `backend/chatbot-lambda/index.js` — Node 20 Lambda handler. Calls Claude Haiku 4.5 via `@anthropic-ai/sdk`. Tool use for `capture_lead` writes to the existing leads pipeline. Jailbreak pre-filter, URL output sanitization.
+- `backend/chatbot-lambda/system-prompt.md` — Premium-voice Velonyx Assistant prompt. Inlines pricing, growth plans, standalones, refund policy, ownership, timeline. Banned-words list enforced. Lead-capture triggers documented.
+- `backend/chatbot-lambda/package.json` — `@anthropic-ai/sdk@^0.30.0` runtime dep.
+- `backend/chatbot-lambda/deploy.sh` — `npm install --omit=dev` + zip + `aws lambda update-function-code` one-liner.
+- `backend/chatbot-lambda/README.md` — Carlos's ~10-minute morning checklist: Anthropic API key + $100/mo spend cap, Lambda creation, env vars, API Gateway HTTP API + CORS, wire URL into `marketing-config.js`, push, done.
+
+**marketing-config.js:** Added commented `window.VELONYX_CHATBOT_API_URL` placeholder. Uncomment + paste the API Gateway URL → widget switches from fallback to AI mode on next deploy.
+
+### PWA implementation plan (recipe, NOT built — separate repo)
+
+- `docs/PWA_IMPLEMENTATION_PLAN.md` — full step-by-step plan for adding PWA + Web Push to the Garage Door Kings portal at `gdk.velonyxsystems.com` (lives in the separate `Cursor-Claude-trades-template` Next.js repo on Carlos's Mac).
+- Locked content: 3 push event types (new lead / new booking / payment received), GDK as the pilot, generic template notes for cloning to client #2.
+- Concrete files spec'd: `public/manifest.json`, `public/sw.js`, `public/icons/*.png`, `app/admin/layout.tsx` PwaBootstrap, `app/api/push/subscribe/route.ts`, `app/api/push/send/route.ts`, Supabase migration for `push_subscriptions` table, webhook hooks into existing lead/booking/payment handlers.
+- iOS Safari install toast UX included.
+- Cross-browser testing checklist with 10 items.
+- Templatization notes for client #2.
+
+### Files touched (Chatbot + PWA plan)
+
+| File | Change |
+|------|--------|
+| `assets/velonyx-chatbot.js` | **New** — embeddable widget |
+| `assets/marketing-config.js` | Added commented chatbot API URL placeholder |
+| `index.html` | Embedded chatbot script tag + moved `.floating-book` to `left: 32px` (desktop) and `left: 20px` (mobile) |
+| `backend/chatbot-lambda/index.js` | **New** — Lambda handler |
+| `backend/chatbot-lambda/package.json` | **New** — npm deps |
+| `backend/chatbot-lambda/system-prompt.md` | **New** — premium-voice system prompt |
+| `backend/chatbot-lambda/deploy.sh` | **New** — deploy helper |
+| `backend/chatbot-lambda/README.md` | **New** — morning checklist for Carlos |
+| `docs/PWA_IMPLEMENTATION_PLAN.md` | **New** — full PWA recipe for GDK portal |
+| `CHANGES.md` | This section |
+| `CONVERSION-NOTES.md` | Chatbot widget rationale + PWA plan rationale |
+
+### Status post-merge
+
+- Widget live at velonyxsystems.com in fallback mode (lead-capture only)
+- Lambda code ready; awaits Carlos's ~10-min morning deploy + Anthropic key + URL paste
+- PWA implementation pending: Carlos opens `/Users/apple/Cursor-Claude-trades-template/` and follows the recipe doc
+- $700 Stripe Payment Link still pending from prior turn
+
