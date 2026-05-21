@@ -2418,7 +2418,7 @@
     .floating-book {
       position: fixed;
       bottom: 32px;
-      right: 32px;
+      left: 32px;
       z-index: 900;
       opacity: 0;
       transform: translateY(20px) scale(0.9);
@@ -4188,7 +4188,7 @@
     @media (max-width: 768px) {
       .booking-modal { padding: 36px 24px; }
       .booking-form .form-row { grid-template-columns: 1fr; }
-      .floating-book { bottom: 20px; right: 20px; }
+      .floating-book { bottom: 20px; left: 20px; }
       .floating-book-btn { padding: 14px 22px; font-size: 0.75rem; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
       .pricing-card.featured { order: -1; }
@@ -6315,5 +6315,7 @@
   <script src="/assets/meta-pixel-events.js" defer></script>
   <!-- Founding-member urgency banner (auto-injects at top of body, dismissible per page-load) -->
   <script src="/assets/urgency-banner.js" defer></script>
+  <!-- Velonyx Assistant chatbot (floating bottom-right launcher; first-party, loads pre-consent) -->
+  <script src="/assets/velonyx-chatbot.js" defer></script>
 </body>
 </html>

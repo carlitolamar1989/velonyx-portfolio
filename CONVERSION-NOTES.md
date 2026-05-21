@@ -178,3 +178,41 @@ Every removed banned word (juggling, stitching, patched-together) is a generic m
 ### Founding modal repurposed (not removed)
 **Why:** User explicitly directed that the founding-modal pop-up becomes the new offer-reveal pop-up. The modal is a high-impact first-touch component — auto-opening, scaling in with overshoot animation, dismissible per-session — and rebuilding the asset would be wasted work. Repurposing the copy (premium-at-budget framing, $700/$70 pricing, 24/7 booking + ACH added to inclusions) keeps the conversion machinery intact and reframes it for the new offer.
 
+
+---
+
+## Velonyx Assistant chatbot + PWA recipe — May 21, 2026
+
+### Why ship the widget UI tonight before the AI backend is live
+**Why:** The widget has independent value in fallback mode — it's a glorified contact form that captures leads via a conversational interface. Conversion-wise, that already beats a static "Book a Call" link for visitors who want to text-chat-style rather than commit to a calendar slot. Shipping the UI tonight means: (1) Carlos wakes up to a measurable conversion lift, not a dev question, (2) the morning deploy is purely backend wiring (~10 minutes) instead of a frontend-plus-backend round trip, (3) the widget becomes the canonical surface for the AI brain to plug into, so any later improvements layer in cleanly.
+
+### Always-lead-capture vs FAQ-helpful in fallback mode
+**Why:** A bot that pretends to answer FAQs from a hand-rolled rule table is worse than one that honestly says "let me get you to Carlos." Customer expectations have moved — they know AI bots exist. A rules-based responder feels janky the moment they ask a 9th question that isn't in the table. Lead-capture is honest, premium, and matches the brand voice ("Carlos will reach out within 1 hour"). When the AI lights up tomorrow, the bot becomes genuinely helpful with no UX shift — same widget, smarter brain.
+
+### Premium voice for the system prompt — no first-person Carlos
+**Why:** The bot speaks as "the Velonyx Assistant." If it spoke as Carlos in first person, the voice shift to the real Carlos on the follow-up call would be jarring — and worse, it would erode trust ("which one is real?"). Generic-but-premium positioning keeps the boundary clean: bot is the front door, Carlos is the human behind it. The sign-off "Carlos will reach out within 1 hour" makes the handoff feel like a feature, not a downgrade.
+
+### Inlining the entire pricing structure into the system prompt
+**Why:** Two options for keeping the bot's knowledge fresh: (a) RAG against the live site content, (b) inline the source-of-truth pricing in the system prompt. Option (a) is over-engineering for a 5-page marketing site where the pricing rarely changes. Option (b) keeps cold-start latency low (~600ms vs ~1.5s with RAG), eliminates a Supabase dependency, and means pricing updates are a 1-line edit to `system-prompt.md` + redeploy. Trade-off: when pricing changes, Carlos must remember to update the system prompt. Documented in the README.
+
+### Tool use for lead capture (not just text-mode)
+**Why:** Anthropic's tool use lets the model emit structured `capture_lead` calls when it decides the conversation warrants it. This is cleaner than parsing the model's free-text response for "I want to capture this lead" intent. The Lambda handles the tool call deterministically, fires the POST to the existing leads endpoint, and resumes the conversation. The model never has to format JSON in its text reply — tool use is a first-class concept.
+
+### $100/mo Anthropic spend cap
+**Why:** Haiku 4.5 at typical conversation length costs ~$0.01 per conversation. A $100 cap covers ~10K conversations. For a marketing site that's a generous ceiling — most marketing sites don't see that volume of chat engagement. Setting a cap protects against (a) viral abuse (someone scripts a bot to hammer the endpoint), (b) edge-case loops where the model goes long in a way we didn't predict. If real traffic exceeds 10K conversations in a month, that's a strong signal to raise the cap and start charging clients for their bot.
+
+### URL whitelist on the output filter
+**Why:** Claude is well-trained but can occasionally hallucinate a domain that doesn't exist or, worse, link to a competitor it learned from training data. The post-filter strips any URL whose hostname isn't on a whitelist (velonyxsystems.com, gdk.velonyxsystems.com, buy.stripe.com, Calendly). Replaces stripped URLs with `[link removed]` — visible to the user but not actionable. Belt-and-suspenders for a brand that should never accidentally promote a competitor.
+
+### Floating book button moved bottom-left
+**Why:** Two floating buttons in the same corner is clutter. Splitting them — chatbot bottom-right, floating book bottom-left — uses the visual real estate symmetrically and gives the eye two distinct affordances (chat vs schedule). Mobile layout follows the same split. Tested across screen widths; both buttons remain reachable with thumbs in one-handed use.
+
+### PWA pilot is GDK, not generic
+**Why:** A PWA implementation plan written generically is harder to act on than one written for a specific codebase. The GDK pilot doc references the actual file paths (`app/admin/layout.tsx`), the actual schema (Supabase), the actual brand. Carlos opens the portal repo and starts at file #1. After the pilot ships and works, the templatization section explains how to clone-and-tweak for client #2 in ~30 minutes per client.
+
+### Push notifications: 3 events, not 8
+**Why:** Notification fatigue kills PWAs. The 3 chosen events (new lead, new booking, payment received) map directly to revenue moments — every notification represents real money on the table. Adding 5 more event types (reviews, SMS replies, Stripe balance, payouts) is what destroyed Slack as a notification surface. We can layer in per-event opt-in later if owners ask for granularity. Default: minimum-viable-noise = maximum trust in the alert.
+
+### iOS install toast — UX honesty
+**Why:** iOS Safari is a fundamentally broken PWA experience compared to Android. Pretending the install is "tap install" hides the truth and creates support tickets. The toast tells the owner exactly what to do ("tap Share → Add to Home Screen") on the one occasion they need to do it. Done correctly once, never shown again that session. Honest > slick.
+
