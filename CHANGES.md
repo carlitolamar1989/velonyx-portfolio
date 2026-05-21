@@ -255,3 +255,73 @@ Care plan cancellation, chargeback policy, and refund-request process included. 
 | `CHANGES.md` | This section |
 | `CONVERSION-NOTES.md` | Round 2 rationale per item |
 
+
+---
+
+## Pricing & Structure Revamp — May 21, 2026
+
+Branch: `claude/reposition-velonyx-home-services-gkgzz` (extends PR #16)
+Scope: full pricing rebuild from the $3,000/$100 founding-member single-tier to the new multi-tier structure built around the $700 core offer + premium-at-budget positioning.
+
+### Inventory — every old-pricing location replaced
+
+| File | Old refs | Now reads |
+|---|---|---|
+| `index.html` head meta + title | $3,000 build + $100/month, "System That Scales the Business You've Built" | $700 build + $70/month, "The Premium Platform Without the Premium Price" |
+| `index.html` ProfessionalService JSON-LD | priceRange "$3,000 + $100/mo", single Founding Member offer | priceRange "$700 + $70/mo", 7 offers (core build + Care + Growth + Accelerate + Full Partner + Video + Video+Ads) |
+| `index.html` WebSite + WebPage + Service JSON-LD | Founding Member System, $3,000/$100 | The Velonyx System / Velonyx Custom Platform, $700/$70 |
+| `index.html` FAQPage JSON-LD | 9 entries anchored on founding pricing | 12 entries: Why So Affordable, $700 inclusions, $70 Care coverage, Growth plans, Standalones, plus the existing ownership/timeline/payment/refund entries |
+| `index.html` hero | "You've Built the Business. / Now Build the System That Runs It." + $3,000/$100 trust strip | "The Premium Platform / Without the Premium Price." + agency-vs-Velonyx math + Custom-Engineered/You Own Everything trust strip |
+| `index.html` Services section heading | "What We Engineer" / "One Platform. Everything Your Business Needs to Run." | "What's Included" / "Everything in the $700 Build." + new 24/7 Booking card |
+| `index.html` Process step 2 | "reserves your founding spot" | "reserves your build slot" |
+| `index.html` Pricing section | $3,000 founding card + 5 founding spots counter + $5,000/$200 fallback | Premium Platform / Budget Price hero + $700 core build card + Why So Affordable 4-item block + 4-tier Growth Plans grid + 2-card Standalone Subs grid |
+| `index.html` Comparison block | 2 columns (Rented Stack $9k-14.4k vs Velonyx $6,600) | 3 columns: Agency $10,400-25,800 / Rented $5,760-10,440 / Velonyx $3,220 — premium-at-budget takeaway |
+| `index.html` FAQ visible entries | 10 entries with founding/$3,000/$100 language | 15 entries mirroring the new FAQPage JSON-LD |
+| `index.html` About-values tile | "For Founding Members" | "On the Care plan" |
+| `index.html` Final CTA | $10,000+ vs $3,000/$100 math + "5 founding spots open" + "$5,000 + $200 after" + secondary link "See the Founding Spot offer" | Agency vs Rented vs Velonyx 3-year math + "Want to see it first? Explore the live demo" |
+| `index.html` offer reveal modal (repurposed founding modal) | "Founding Member · First 5 Customers Only" + $3,000/$100 + 8 founding inclusions + "Locked in for Life" | "The Premium Platform · Without the Premium Price" + $700/$70 + 8 core inclusions including 24/7 booking + ACH + "Yours Forever" |
+| `checkout.html` head + JSON-LD | Founding Member System, $3,000/$100, LimitedAvailability | The Velonyx System, $700/$70, InStock |
+| `checkout.html` hero + body | "Claim Your Founding Spot" + 5-dot spots counter + $3,000 order card + Stripe pay button | "Claim Your Velonyx Platform" + $700 order card + Book a Call CTA (Stripe link being prepared per TODO) |
+| `checkout.html` next-steps + FAQ | $3,000/$100 founding language across all 4 steps + 4 FAQ entries | $700/$70 build flow + 5 FAQ entries: own/why-cheap/cancel/care-coverage/custom-scope |
+| `financing.html` ProfessionalService JSON-LD | priceRange $3,000 + $100/mo | priceRange $700 + $70/mo |
+| `financing.html` calculator + provider cards | base $3,000 → $750 × 4, "Claim Your Founding Spot" CTA | base $700 → $175 × 4, "Book a Call & Pay Your Way" CTA |
+| `financing.html` "How It Works" step 1 | "Claim Your Founding Spot" | "Start at Checkout" |
+| `book.html` JSON-LD priceRange | $3,000 + $100/mo | $700 + $70/mo |
+| `refund-policy.html` Care plan paragraph | $100/month Care plan | $70/month Care plan, references $700 build fee |
+| `assets/urgency-banner.js` | "Founding Member Pricing — Only 5 spots at $3,000 + $100/month. After founding spots fill: $5,000 + $200/month." | "Premium Platform, Budget Price — The Velonyx System: $700 build + $70/month. Yours forever." |
+| `assets/og-social-card.jpg` | "You've Built the Business / Now Build the System That Runs It." | "The Premium Platform / Without the Premium Price." + agency-vs-Velonyx math |
+
+### Brand-new sections
+
+- **Why So Affordable?** (4-item objection-killer block): Modern Tools / Refined Process / No Agency Overhead / Built to Earn Long-Term
+- **Grow Your Business** (4-tier growth plans grid): Care $70 / Growth $250 / Accelerate $500 + ad spend / Full Partner $1,500 + ad spend
+- **Just Need One Thing?** (2-card standalones grid): Video $200 / Video + Ad Setup & Monitoring $350 + ad spend
+- **3-column comparison**: Agency / Rented Software / Velonyx — 3-year math anchored
+- **24/7 Online Booking** service card added to the What's Included grid
+
+### "+ ad spend" rule
+
+Surfaced as a gold-bordered pill badge on Accelerate, Full Partner, and the Video+Ads standalone card. Reinforced in plain text inside each feature list: "You fund ad spend directly to the ad platform." FAQ entry on growth plans reiterates the rule.
+
+### Stripe Payment Link
+
+Old $3,000 Founding Member link is retained ONLY on `/checkout.html` with a `TODO` comment block. The primary CTAs across the site route to `/book.html` (Discovery Call). New Stripe Payment Link for $700 + $70/mo is awaiting creation in the Stripe dashboard; once the URL is provided, swap the placeholder in `checkout.html` and the founding-grid CTA on `index.html`.
+
+### Founding modal repurposed (not removed)
+
+Per user direction ("this is going to be the new founding module"), the auto-opening modal at session start now surfaces the $700/$70 core offer with the premium-at-budget framing — same component, same trigger, same dismiss-once-per-session behavior, but rewritten copy + new pricing + ACH added to the inclusions list.
+
+### Files touched (Pricing Revamp)
+
+| File | Change |
+|------|--------|
+| `index.html` | Hero, meta, JSON-LD (Org + WebSite + WebPage + Service + FAQPage), Services heading + new booking card, Process founding-spot fix, full pricing section overhaul (Why So Affordable + Growth Plans + Standalones), 3-column comparison, FAQ visible entries, About-values tile, Final CTA, offer reveal modal |
+| `checkout.html` | Title, meta, OG/Twitter, Service JSON-LD, hero, spots-counter removal, full order card, next-steps, FAQ, trust bar |
+| `financing.html` | JSON-LD priceRange + description, hero copy, calculator base + math, provider step 1, fineprint, final CTA |
+| `book.html` | JSON-LD priceRange |
+| `refund-policy.html` | Care plan paragraph |
+| `assets/urgency-banner.js` | Banner copy |
+| `assets/og-social-card.jpg` | Regenerated with new headline |
+| `CHANGES.md` | This section |
+| `CONVERSION-NOTES.md` | Pricing-revamp rationale |
+
