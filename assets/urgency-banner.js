@@ -1,9 +1,9 @@
-/* Velonyx Urgency Banner
- * Auto-injects a thin top-of-page banner announcing founding-member pricing
- * scarcity. Fixed position on all viewports, pushes the existing fixed nav
- * down by --vx-banner-h. Dismissible per-page-load (no persistence — the
- * brief explicitly wants it to reappear on next navigation as a real urgency
- * cue, not a one-time popup).
+/* Velonyx Marketing Banner
+ * Auto-injects a thin top-of-page banner surfacing the core $700/$70 offer
+ * with the premium-at-budget framing. Fixed position on all viewports, pushes
+ * the existing fixed nav down by --vx-banner-h. Dismissible per-page-load (no
+ * persistence — the brief wants it to reappear on next navigation as a real
+ * positioning cue, not a one-time popup).
  *
  * Loaded after the page so the banner appears once the layout is mostly settled.
  */
@@ -27,10 +27,10 @@
 
   var HTML = '<div class="vx-urgency-content">'
     + '<span class="vx-urgency-text">'
-      + '<strong>Founding Member Pricing</strong> &mdash; Only 5 spots at <strong>$3,000 + $100/month</strong>. '
-      + 'After founding spots fill: $5,000 + $200/month.'
+      + '<strong>Premium Platform, Budget Price</strong> &mdash; The Velonyx System: '
+      + '<strong>$700 build + $70/month</strong>. Yours forever.'
     + '</span>'
-    + '<button type="button" class="vx-urgency-dismiss" aria-label="Dismiss founding member pricing notice">&times;</button>'
+    + '<button type="button" class="vx-urgency-dismiss" aria-label="Dismiss pricing notice">&times;</button>'
   + '</div>';
 
   function inject() {

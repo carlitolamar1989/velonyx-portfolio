@@ -115,3 +115,66 @@ Every removed banned word (juggling, stitching, patched-together) is a generic m
 - It does not promise outcomes we can't deliver. Numbers used ($9,000 stack cost, 7–14 day build, $250–400/mo current spend, $6,600 3-year cost) are all defensible from the public pricing of the comparison vendors + Velonyx's own pricing.
 - It does not add scarcity manipulation. The "5 founding spots" is real (manually tracked dot count on the founding counter) and the post-founding price ($5K + $200/mo) is a real future change documented in CLAUDE.md.
 - It does not change the pricing model, motto, payment integrations, or architecture. Only the positioning, copy, and conversion surfaces.
+
+---
+
+## Round 2 — Founder · Payments · Refund Policy · OG Card · JSON-LD (May 19, 2026)
+
+### OG social card
+**Why:** A premium offer that lacks an OG card looks unprepared in DM previews and social shares. The Pillow-generated card is a stop-gap — 1200×630, brand-correct (near-black, gold gradient headline, shield + wordmark), legible at thumbnail size. User can drop a Canva-designed JPG at the same path to override without code changes. *Tradeoff acknowledged: a designer-built card will outperform Pillow output for click-through.*
+
+### Affirm removal
+**Why:** Active payment methods need to match what's actually wired into Stripe + the customer financing partners. Listing a payment method that isn't supported burns trust the moment a customer hits checkout and it isn't offered. Affirm was carried over from earlier copy; it's not active in the live Stripe payment link or the financing partner roster. Removing it tightens the promise.
+
+### Founder reveal
+**Why:** "From the Founder" with a real bio + signature reads as accountable. The prior 4-paragraph version was more rhetorical ("renting is a lie...") — emotionally strong but didn't establish *competence*. The new bio leads with the credential that matters for a custom-engineered platform pitch: "Background combining technical engineering with operational discipline — building production cloud systems, payment integrations, and SMS automation infrastructure." That's the founder version of "we know how to build the thing we're selling you." Paragraph 2 names the pain in operator language. Paragraph 3 places the operator (SD) and the reach (national). No personal LinkedIn — keeps focus on the company.
+
+### GDK demo labeling
+**Why:** The portfolio block was titled "Live Client Build" and the card badge read "Home Service Operator." Both implied GDK is a paying customer. It isn't — it's a live demo build engineered to show what a Velonyx system looks and feels like end-to-end. Misrepresenting it as a real client is a credibility risk if a prospect ever asks (and an integrity issue regardless). New labels: "Live Demo Build" / "See a Real Velonyx Build — Live Demo" / "Demo Build · Home Service" / "Explore the Live Demo →". Honest, still impressive, removes the awkward question.
+
+### FAQ — revision policy specifics
+**Why:** The previous answer was deliberately vague ("a capped set of revision rounds within a defined revision window") — that vagueness is what makes founders nervous about committing. Specific numbers + a clear after-window rate ($100/hour) shows we've thought about the edge case and aren't going to nickel-and-dime. "Most builds reach final approval within those 2 rounds" sets the expectation that 2 is genuinely enough, not a trick number designed to force overages.
+
+### FAQ — new refund policy entry
+**Why:** A $3,000 build with no visible refund policy is a conversion blocker on every cold prospect. Buyers Google "[vendor] refund policy" before buying anything in the $1k+ range. Burying it in Terms of Service only is hostile. Phase-tiered (Option E) is the most defensible model for custom-engineered work — full refund where no work is done, decreasing as the build progresses, zero after delivery. The FAQ entry summarizes; `/refund-policy.html` carries the full policy.
+
+### JSON-LD address correction
+**Why:** Accurate local SEO + accurate trust signal. Chula Vista 91914 is the real operating address (corrected from the placeholder "San Diego" used in earlier scaffolding per CLAUDE.md note). Adding `postalCode` to the JSON-LD strengthens local entity recognition. `sameAs` expansion to 3 URLs (Instagram + LinkedIn company + Google share link) gives search engines and AI crawlers more disambiguation surface area to confirm Velonyx is one cohesive entity. The Google share link in particular is what GBP exposes for entity confirmation — high-value for AI search citations.
+
+### Refund Policy page
+**Why:** Same root reason as the FAQ entry — answers the buyer's risk question in the buyer's own words, on a public page they can return to without re-asking. Phase-tiered structure matches how custom work actually behaves: hours spent can't be unspent. Mirroring the styling of `terms.html` keeps it visually anchored as a legal-tier document, not marketing copy. Chargeback paragraph + refund-request process protect both sides operationally.
+
+
+---
+
+## Pricing Revamp — Premium-at-Budget Positioning (May 21, 2026)
+
+### Hero swing — elevated-buyer → price-anchored
+**Why:** The prior elevated-buyer hero ("You've Built the Business. Now Build the System That Runs It.") was designed for $500K+ operators who already know they need to consolidate. That filter is too narrow for a $700 build, which can reasonably serve sub-$500K service businesses too. The price-anchored hero ("The Premium Platform Without the Premium Price.") is broader and weaponizes the new pricing as the lead message — the new dollar figure IS the hook, so the hero should anchor on it.
+
+**Tradeoff acknowledged:** This trades away the credentialing signal that came from "You've Built the Business" (which validated the buyer's existing success before pitching the next-tier system). The new hero is more transactional. For founders worried about appearing cheap, the recurring "premium quality, not cut corners" framing across the site (Why So Affordable, comparison, FAQ) is the counterweight.
+
+### Why So Affordable section — preemptive objection handling
+**Why:** A $700 custom platform sounds suspicious to anyone who's been quoted by an agency. Suspicion blocks the call before the call gets booked. The Why So Affordable block answers the question before it's asked, in plain terms: modern stack, refined process, no agency overhead, build is priced to earn long-term via Care plan. This is the single most important new section on the page.
+
+### Growth Plans architecture — Care / Growth / Accelerate / Full Partner
+**Why:** Care alone won't sustain a service business after the build ships. The growth plans are the unlock for everything-else (content, ads, strategy) layered on top, with clear separation between "you fund ad spend" tiers and the all-inclusive content tier. The 4-tier ladder lets the buyer enter at the comfort level that matches their cash flow today and step up when revenue grows — which mirrors how service businesses actually scale.
+
+### Standalone subscriptions — for businesses that already have a website
+**Why:** Not every potential customer needs (or wants) a platform rebuild. Some have a website that works fine for them and just need premium video content. The Video $200 and Video+Ads $350 standalones capture that demand without forcing them into the build. This expands TAM materially: every service business that already has a domain becomes a potential standalone customer.
+
+### "+ ad spend" disclosure rule
+**Why:** Hiding ad spend inside a "service fee" is how agencies build distrust. Surfacing it as a literal pill badge on every relevant tier (Accelerate, Full Partner, Video+Ads) + repeating it as italicized fineprint on each feature list ("You fund ad spend directly to the ad platform") sets honest expectations and pre-empts billing disputes. Customers know exactly what they're paying for and where their dollars go.
+
+### 3-way comparison — Agency / Rented / Velonyx
+**Why:** The prior 2-column comparison (Rented Stack vs Velonyx) won the math battle against SaaS but didn't address the agency option. The new 3-column comparison anchors against BOTH alternatives. Agency at $10,400-25,800 over 3 years makes Velonyx look like a budget miracle. Rented at $5,760-10,440 makes Velonyx look like an ownership upgrade. Both columns simultaneously frame Velonyx as the math-correct choice from either starting point.
+
+### Site updates scope language — discrete-change discipline
+**Why:** "1 update per month" needs to be defined precisely or it gets weaponized by customers in good faith ("I need a full new About page — that's just one update, right?"). The disclaimer below the growth plans grid plus the FAQ entry both define an update as a discrete change (swap a photo, edit text, update a price, upload a video) — NOT a redesign or new page build. This protects scope and the operator's margins simultaneously.
+
+### Stripe link gate — primary CTA = Book a Call
+**Why:** The old $3,000 Founding Member Stripe Payment Link can't be cleanly replaced until a new $700 + $70/mo link exists in the Stripe dashboard. Routing primary CTAs through `/book.html` (Discovery Call) until the new link is live avoids the worst failure mode — a customer clicking "Pay $700" and landing on a $3,000 Stripe checkout. The trade-off is a small drop in transactional conversion (some buyers want to pay immediately without a call), but the brand cost of a mis-priced checkout would be much higher. Once Carlos creates the new Stripe link, swap and ship in one edit.
+
+### Founding modal repurposed (not removed)
+**Why:** User explicitly directed that the founding-modal pop-up becomes the new offer-reveal pop-up. The modal is a high-impact first-touch component — auto-opening, scaling in with overshoot animation, dismissible per-session — and rebuilding the asset would be wasted work. Repurposing the copy (premium-at-budget framing, $700/$70 pricing, 24/7 booking + ACH added to inclusions) keeps the conversion machinery intact and reframes it for the new offer.
+
