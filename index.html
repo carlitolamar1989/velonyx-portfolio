@@ -714,14 +714,17 @@
       overflow: hidden;
     }
 
-    /* ===== HERO VIDEO ===== */
-    .hero-video {
+    /* ===== HERO POSTER (static — replaces the removed hero <video>) ===== */
+    .hero-video-poster {
       position: absolute;
       inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-video-poster img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
       opacity: 0.35;
     }
 
@@ -744,37 +747,10 @@
       z-index: 2;
     }
 
-    .hero-gradient-anim {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
-        radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
-      animation: gradientShift 12s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
+    /* .hero-gradient-anim element and gradientShift infinite animation removed for perf
+       — the .hero-bg + overlay layers provide the same atmospheric depth statically. */
 
-    @keyframes gradientShift {
-      0% {
-        background:
-          radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
-          radial-gradient(ellipse at 70% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 55%),
-          radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
-      }
-      50% {
-        background:
-          radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.13) 0%, transparent 55%),
-          radial-gradient(ellipse at 30% 70%, rgba(56, 189, 248, 0.07) 0%, transparent 50%),
-          radial-gradient(ellipse at 60% 60%, rgba(184, 134, 11, 0.06) 0%, transparent 45%);
-      }
-      100% {
-        background:
-          radial-gradient(ellipse at 70% 50%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
-          radial-gradient(ellipse at 50% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
-          radial-gradient(ellipse at 30% 60%, rgba(184, 134, 11, 0.05) 0%, transparent 45%);
-      }
-    }
+    /* @keyframes gradientShift deleted with the .hero-gradient-anim element above. */
 
     .hero::after {
       content: '';
@@ -796,15 +772,10 @@
         linear-gradient(rgba(212, 175, 55, 0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(212, 175, 55, 0.025) 1px, transparent 1px);
       background-size: 60px 60px;
-      animation: gridFloat 28s linear infinite;
+      /* gridFloat 28s infinite animation removed for desktop perf. */
       pointer-events: none;
       mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%);
       -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%);
-    }
-
-    @keyframes gridFloat {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(60px, 60px); }
     }
 
     .hero-content {
@@ -884,6 +855,8 @@
       perspective: 600px;
     }
 
+    /* Hero text/CTA blocks render visible on first paint (the JS reveal sequence was
+       removed for desktop perf — see commit). */
     .hero-subheadline {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(1.05rem, 1.8vw, 1.4rem);
@@ -896,13 +869,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    .hero-subheadline.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.6s ease-out;
     }
 
     .hero-sub {
@@ -912,13 +878,6 @@
       margin: 8px auto 14px;
       font-weight: 300;
       line-height: 1.7;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-sub.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out;
     }
 
     .hero-buttons {
@@ -926,13 +885,6 @@
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-buttons.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out;
     }
 
     .hero-trust {
@@ -947,13 +899,6 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    .hero-trust.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out 0.15s;
     }
     @media (max-width: 640px) {
       .hero-trust { font-size: 0.66rem; letter-spacing: 0.8px; padding: 0 8px; }
@@ -1814,37 +1759,10 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Slide from left */
-    .slide-left {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .slide-left.visible { opacity: 1; transform: translateX(0); }
-
-    /* Slide from right */
-    .slide-right {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .slide-right.visible { opacity: 1; transform: translateX(0); }
-
-    /* Scale in */
-    .scale-in {
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .scale-in.visible { opacity: 1; transform: scale(1); }
+    /* Scroll-reveal classes (.fade-in, .slide-left, .slide-right, .scale-in) now render
+       visible-by-default. Their JS IntersectionObserver trigger was removed for desktop
+       perf — keeping the elements visible on first paint instead of animating them in. */
+    .fade-in, .slide-left, .slide-right, .scale-in { opacity: 1; transform: none; }
 
     /* ===== ULTRA ANIMATION SYSTEM ===== */
 
@@ -1906,40 +1824,9 @@
       100% { left: 150%; }
     }
 
-    /* 3D card flip entrance */
-    .flip-in {
-      opacity: 0;
-      transform: perspective(1000px) rotateY(-30deg) translateX(-40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .flip-in.visible {
-      opacity: 1;
-      transform: perspective(1000px) rotateY(0) translateX(0);
-    }
-
-    /* Velocity slide (comes in fast, decelerates) */
-    .velocity-in {
-      opacity: 0;
-      transform: translateX(-120px) scaleX(1.15);
-      filter: blur(4px);
-      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .velocity-in.visible {
-      opacity: 1;
-      transform: translateX(0) scaleX(1);
-      filter: blur(0);
-    }
-
-    /* Spring bounce entrance */
-    .spring-up {
-      opacity: 0;
-      transform: translateY(60px) scale(0.9);
-      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .spring-up.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+    /* .flip-in / .velocity-in / .spring-up no longer animate — visible by default
+       (scroll-reveal IntersectionObserver was removed for desktop perf). */
+    .flip-in, .velocity-in, .spring-up { opacity: 1; transform: none; filter: none; }
 
     /* Cyber scan line on sections */
     .cyber-reveal {
@@ -2017,19 +1904,8 @@
       100% { transform: translateY(-100%); opacity: 0; }
     }
 
-    /* Hero eyebrow spring entrance */
-    .hero-eyebrow {
-      opacity: 0;
-      transform: scale(0) translateY(20px);
-    }
-    .hero-eyebrow.pop-in {
-      animation: springPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-    @keyframes springPop {
-      0% { opacity: 0; transform: scale(0) translateY(20px); }
-      60% { opacity: 1; transform: scale(1.15) translateY(-4px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
+    /* Hero eyebrow spring entrance removed for desktop perf (was tied to the now-deleted
+       loader → startHeroSequence flow). Eyebrow now renders immediately. */
 
     /* ===== LOGO THROUGHOUT SITE ===== */
 
@@ -2047,29 +1923,16 @@
       background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
     }
 
-    /* Hero logo (centered between headline and subtitle) */
+    /* Hero logo — visible by default; the 3D flip-in and infinite logoGlow pulse were
+       removed for desktop perf (logoGlow was running 4s infinite, causing continuous
+       compositor work). */
     .hero-logo {
       width: min(420px, 62vw);
       height: auto;
       object-fit: contain;
       margin: 0;
       display: block;
-      opacity: 0;
-      transform: scale(0.5);
       filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
-      animation: none;
-    }
-    .hero-logo.revealed {
-      animation: logoReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, logoGlow 4s ease-in-out 2s infinite;
-    }
-    @keyframes logoReveal {
-      0% { opacity: 0; transform: scale(0.5) rotateY(90deg); }
-      50% { opacity: 1; transform: scale(1.1) rotateY(-10deg); }
-      100% { opacity: 1; transform: scale(1) rotateY(0); filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); }
-    }
-    @keyframes logoGlow {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.35)); }
-      50% { filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.55)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.15)); }
     }
 
     /* Section logo watermark */
@@ -4253,9 +4116,10 @@
 
   </style>
 
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- GSAP + ScrollTrigger removed 2026-05-22 — desktop perf audit attributed two long
+       main-thread tasks (1.7s + 1.0s) to GSAP init + ScrollTrigger setup, driving TBT
+       to 1.35s. Scroll-reveal + hero parallax animations removed; static page now. -->
+
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4282,18 +4146,10 @@
   <!-- SCROLL PROGRESS BAR -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- LOADING SCREEN -->
-  <div class="loader" id="loader">
-    <div class="loader-warp" id="loaderWarp"></div>
-    <div class="loader-content">
-      <div class="loader-mark"><picture><source srcset="assets/vs-logo-shield-512.webp" type="image/webp"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" width="512" height="590"></picture></div>
-      <div class="loader-text">Velonyx Systems</div>
-      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-    </div>
-  </div>
-
-  <!-- Speed lines background -->
-  <div class="speed-lines" id="speedLines"></div>
+  <!-- Loader, speed-lines, hero video, and hero-gradient removed 2026-05-22 — desktop perf
+       audit (Lighthouse 20/100) attributed ~5.9s of main-thread style/layout to the 40+ warp-line
+       loader animations, 2.33 MB transfer to the hero video, and 63 non-composited CSS animations.
+       Page now renders the static hero immediately. -->
 
   <!-- NAV -->
   <nav>
@@ -4322,14 +4178,16 @@
   <!-- HERO -->
   <main id="main-content">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.webp" aria-hidden="true" tabindex="-1" preload="metadata" id="heroVideo">
-      <source src="assets/velonyx_hero_web.mp4" type="video/mp4">
-    </video>
+    <!-- Hero video removed for desktop perf — the static poster is shown via .hero-bg or inline below. -->
+    <picture class="hero-video-poster" aria-hidden="true">
+      <source srcset="assets/velonyx_hero_poster.webp" type="image/webp">
+      <img src="assets/velonyx_hero_poster.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
+    </picture>
     <div class="hero-video-overlay"></div>
     <div class="hero-bg"></div>
-    <div class="hero-gradient-anim"></div>
     <div class="hero-grid"></div>
-    <canvas id="heroParticles"></canvas>
+    <!-- heroParticles canvas removed for desktop perf — was a 40-dot rAF render loop with pairwise connecting lines, ~60fps main-thread cost. -->
+
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
       <div class="hero-eyebrow"><span class="dot"></span> Premium Custom Platforms &middot; Built for Service Businesses</div>
@@ -5399,155 +5257,6 @@
       window.addEventListener('resize', () => { size(); spawn(); });
     })();
 
-    // ===== CINEMATIC LOADING SEQUENCE =====
-    (function() {
-      const loaderWarp = document.getElementById('loaderWarp');
-      const lineCount = 40;
-      for (let i = 0; i < lineCount; i++) {
-        const line = document.createElement('div');
-        line.className = 'warp-line';
-        const angle = (i / lineCount) * 360;
-        const delay = Math.random() * 0.6;
-        line.style.cssText = `transform: rotate(${angle}deg); animation-delay: ${delay}s; height: ${Math.random() > 0.7 ? 2 : 1}px;`;
-        loaderWarp.appendChild(line);
-      }
-    })();
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.classList.add('loader-reveal');
-        loader.addEventListener('animationend', () => {
-          loader.style.display = 'none';
-        });
-        startHeroSequence();
-      }, 1800);
-    });
-
-    // ===== SPEED LINES BACKGROUND =====
-    (function() {
-      const container = document.getElementById('speedLines');
-      for (let i = 0; i < 12; i++) {
-        const line = document.createElement('div');
-        line.className = 'speed-line';
-        const top = Math.random() * 100;
-        const width = 100 + Math.random() * 300;
-        const duration = 4 + Math.random() * 8;
-        const delay = Math.random() * 6;
-        line.style.cssText = `top: ${top}%; width: ${width}px; animation-duration: ${duration}s; animation-delay: ${delay}s;`;
-        container.appendChild(line);
-      }
-    })();
-
-    // ===== HERO CINEMATIC ENTRANCE =====
-    function splitTextToChars(el) {
-      const text = el.textContent;
-      el.innerHTML = '';
-      const wrap = document.createElement('span');
-      wrap.className = 'char-wrap';
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
-        wrap.appendChild(span);
-      }
-      el.appendChild(wrap);
-      return wrap.querySelectorAll('.char');
-    }
-
-    function startHeroSequence() {
-      const eyebrow = document.querySelector('.hero-eyebrow');
-      eyebrow.classList.add('pop-in');
-
-      const heroLines = document.querySelectorAll('.hero-h1-top .line, .hero-h2-bottom .line');
-      let totalCharDelay = 0;
-
-      heroLines.forEach((line, lineIdx) => {
-        const goldSpan = line.querySelector('.gold');
-        const targets = goldSpan || line;
-        const chars = splitTextToChars(targets);
-
-        setTimeout(() => {
-          chars.forEach((char, ci) => {
-            setTimeout(() => {
-              char.classList.add('revealed');
-            }, ci * 25);
-          });
-        }, 300 + lineIdx * 300);
-
-        totalCharDelay = 300 + lineIdx * 300 + chars.length * 25;
-      });
-
-      // Hero logo reveal (3D flip-in with glow)
-      setTimeout(() => {
-        document.getElementById('heroLogo').classList.add('revealed');
-      }, totalCharDelay + 50);
-
-      // Typewriter subtitle
-      const heroSub = document.querySelector('.hero-sub');
-      const subText = heroSub.textContent;
-      heroSub.textContent = '';
-      heroSub.style.opacity = '1';
-      heroSub.style.transform = 'translateY(0)';
-
-      const cursor = document.createElement('span');
-      cursor.className = 'typewriter-cursor';
-
-      setTimeout(() => {
-        heroSub.appendChild(cursor);
-        let charIdx = 0;
-        const typeSpeed = 18;
-        function typeNext() {
-          if (charIdx < subText.length) {
-            heroSub.insertBefore(document.createTextNode(subText[charIdx]), cursor);
-            charIdx++;
-            setTimeout(typeNext, typeSpeed);
-          } else {
-            setTimeout(() => { cursor.style.display = 'none'; }, 2000);
-          }
-        }
-        typeNext();
-      }, totalCharDelay + 200);
-
-      // Sub-headline reveal (gold accent line between H2 and supporting paragraph)
-      setTimeout(() => {
-        const subhead = document.querySelector('.hero-subheadline');
-        if (subhead) subhead.classList.add('reveal');
-      }, totalCharDelay + 150);
-
-      // Buttons spring in
-      setTimeout(() => {
-        document.querySelector('.hero-buttons').classList.add('reveal');
-      }, totalCharDelay + 600);
-
-      // Trust strip fades in just after the buttons
-      setTimeout(() => {
-        const trust = document.querySelector('.hero-trust');
-        if (trust) trust.classList.add('reveal');
-      }, totalCharDelay + 800);
-    }
-
-    // ===== SCROLL-TRIGGERED ANIMATIONS (UPGRADED) =====
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const parent = entry.target.parentElement;
-          const siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up');
-          let index = Array.from(siblings).indexOf(entry.target);
-          entry.target.style.transitionDelay = (index * 0.15) + 's';
-          entry.target.classList.add('visible');
-
-          if (entry.target.classList.contains('shimmer-sweep')) {
-            setTimeout(() => {
-              entry.target.classList.add('active');
-            }, index * 150 + 400);
-          }
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up').forEach(el => observer.observe(el));
-
     // ===== CYBER SCAN LINE ON SECTIONS =====
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -5558,26 +5267,6 @@
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.cyber-reveal').forEach(el => sectionObserver.observe(el));
-
-    // ===== PARALLAX ON SCROLL =====
-    const parallaxImages = document.querySelectorAll('.parallax-img');
-    const heroBg = document.querySelector('.hero-bg');
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      if (heroBg) {
-        heroBg.style.transform = 'scale(1.1) translateY(' + (scrollY * 0.3) + 'px)';
-      }
-      parallaxImages.forEach(img => {
-        const rect = img.parentElement.getBoundingClientRect();
-        const speed = 0.3;
-        const offset = (rect.top * speed);
-        img.style.transform = 'translateY(' + offset + 'px)';
-      });
-    }, { passive: true });
-
-    // ===== ANIMATED COUNTERS =====
-    // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
 
     // ===== CURSOR GLOW (hero) =====
     const hero = document.querySelector('.hero');
@@ -5824,517 +5513,12 @@
       }
     });
 
-    // ===== HERO PARTICLE CONSTELLATION (UPGRADED) =====
-    const pCanvas = document.getElementById('heroParticles');
-    if (pCanvas) {
-      const pCtx = pCanvas.getContext('2d');
-      let dots = [];
-      let mouseX = -1000, mouseY = -1000;
-      const dotCount = window.innerWidth < 768 ? 15 : 40;
-      const connectDist = 140;
-
-      function sizeCanvas() {
-        const heroEl = pCanvas.parentElement;
-        pCanvas.width = heroEl.offsetWidth;
-        pCanvas.height = heroEl.offsetHeight;
-      }
-
-      function spawnDots() {
-        dots = [];
-        for (let i = 0; i < dotCount; i++) {
-          dots.push({
-            x: Math.random() * pCanvas.width,
-            y: Math.random() * pCanvas.height,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
-            r: Math.random() * 2 + 0.5,
-            isGold: Math.random() > 0.55,
-            pulse: Math.random() * Math.PI * 2
-          });
-        }
-      }
-
-      pCanvas.parentElement.addEventListener('mousemove', (e) => {
-        const rect = pCanvas.parentElement.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-      });
-
-      function renderParticles() {
-        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-
-        for (let i = 0; i < dots.length; i++) {
-          const d = dots[i];
-
-          const dx2m = mouseX - d.x;
-          const dy2m = mouseY - d.y;
-          const distMouse = Math.sqrt(dx2m * dx2m + dy2m * dy2m);
-          if (distMouse < 200) {
-            const force = (200 - distMouse) / 200 * 0.02;
-            d.vx += dx2m * force;
-            d.vy += dy2m * force;
-          }
-
-          d.vx *= 0.99;
-          d.vy *= 0.99;
-          d.x += d.vx;
-          d.y += d.vy;
-          d.pulse += 0.02;
-
-          if (d.x < 0) d.x = pCanvas.width;
-          if (d.x > pCanvas.width) d.x = 0;
-          if (d.y < 0) d.y = pCanvas.height;
-          if (d.y > pCanvas.height) d.y = 0;
-
-          const pulseR = d.r * (1 + Math.sin(d.pulse) * 0.3);
-          pCtx.beginPath();
-          pCtx.arc(d.x, d.y, pulseR, 0, Math.PI * 2);
-          pCtx.fillStyle = d.isGold ? 'rgba(212, 175, 55, 0.6)' : 'rgba(56, 189, 248, 0.3)';
-          pCtx.fill();
-
-          if (d.isGold && d.r > 1.5) {
-            pCtx.beginPath();
-            pCtx.arc(d.x, d.y, pulseR + 4, 0, Math.PI * 2);
-            pCtx.fillStyle = 'rgba(212, 175, 55, 0.08)';
-            pCtx.fill();
-          }
-
-          for (let j = i + 1; j < dots.length; j++) {
-            const d2 = dots[j];
-            const dx = d.x - d2.x;
-            const dy = d.y - d2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < connectDist) {
-              const alpha = (1 - dist / connectDist) * 0.15;
-              pCtx.beginPath();
-              pCtx.moveTo(d.x, d.y);
-              pCtx.lineTo(d2.x, d2.y);
-              pCtx.strokeStyle = (d.isGold || d2.isGold)
-                ? 'rgba(212, 175, 55, ' + alpha + ')'
-                : 'rgba(56, 189, 248, ' + (alpha * 0.5) + ')';
-              pCtx.lineWidth = 0.6;
-              pCtx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(renderParticles);
-      }
-
-      sizeCanvas();
-      spawnDots();
-      renderParticles();
-      window.addEventListener('resize', () => { sizeCanvas(); spawnDots(); });
-    }
+    // Hero particle constellation render loop removed for desktop perf (rAF + canvas
+    // pairwise connections were running 60fps on the main thread).
   </script>
 
   <!-- AUDIO PITCH PLAYER JS removed 2026-05-03 with the section it controlled -->
 
-  <!-- ===== GSAP PREMIUM ANIMATIONS ===== -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Wait for GSAP to load (deferred)
-    function initGSAP() {
-      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        setTimeout(initGSAP, 100);
-        return;
-      }
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      // ===== CURSOR GLOW (throttled for performance) =====
-      var cursorGlow = document.getElementById('cursorGlow');
-
-      if (cursorGlow && window.matchMedia('(hover: hover)').matches) {
-        var glowRAF = null;
-        document.addEventListener('mousemove', function(e) {
-          if (glowRAF) return;
-          glowRAF = requestAnimationFrame(function() {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-            cursorGlow.style.opacity = '1';
-            glowRAF = null;
-          });
-        }, { passive: true });
-
-        document.addEventListener('mouseleave', function() {
-          cursorGlow.style.opacity = '0';
-        });
-      }
-
-      // ===== HERO VIDEO: ensure mobile autoplay, respect user preferences =====
-      // The <video> element already has autoplay+muted+playsinline+loop. The
-      // previous build actively stripped autoplay on <768px devices, which is
-      // why the hero video didn't start on phones. Instead of killing playback,
-      // we (a) explicitly call play() to cover edge cases where autoplay
-      // attribute fires before the user interacts, (b) honor
-      // prefers-reduced-motion, and (c) upgrade preload to 'auto' on mobile so
-      // first frame renders quickly.
-      var heroVideo = document.getElementById('heroVideo');
-      if (heroVideo) {
-        var prefersReducedMotion = window.matchMedia &&
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-          heroVideo.pause();
-          heroVideo.removeAttribute('autoplay');
-        } else {
-          // Ensure required-for-mobile-autoplay attributes are present even if
-          // the DOM was mutated by a third party (defensive).
-          heroVideo.muted = true;
-          heroVideo.playsInline = true;
-          heroVideo.setAttribute('playsinline', '');
-          heroVideo.setAttribute('webkit-playsinline', '');
-          if (window.innerWidth < 768) heroVideo.preload = 'auto';
-          // Kick off playback. Some browsers (iOS Safari when page is
-          // backgrounded, low-power mode) silently reject; that's fine — the
-          // poster image shows and playback resumes when visible/interactive.
-          var playPromise = heroVideo.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(function() { /* autoplay blocked; poster shown */ });
-          }
-
-          // Perf: pause the hero video when scrolled out of view, resume on return.
-          // Saves CPU/battery on long scrolls while keeping the cinematic loop while in-frame.
-          if ('IntersectionObserver' in window) {
-            var heroVideoObserver = new IntersectionObserver(function(entries) {
-              entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                  if (heroVideo.paused) {
-                    var resume = heroVideo.play();
-                    if (resume && typeof resume.catch === 'function') resume.catch(function(){});
-                  }
-                } else {
-                  if (!heroVideo.paused) heroVideo.pause();
-                }
-              });
-            }, { threshold: 0.1 });
-            heroVideoObserver.observe(heroVideo);
-          }
-        }
-      }
-
-      // ===== GSAP SCROLL ANIMATIONS FOR ALL SECTIONS =====
-      // Upgrade existing fade-in elements with GSAP for smoother performance
-      gsap.utils.toArray('.services, .process, .portfolio, .about, .cta-section, .testimonials').forEach(function(section) {
-
-        // Section title entrance
-        var title = section.querySelector('.section-title');
-        if (title) {
-          gsap.fromTo(title,
-            { opacity: 0, y: 30, filter: 'blur(4px)' },
-            {
-              opacity: 1, y: 0, filter: 'blur(0px)',
-              duration: 0.9,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: title,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
-        }
-
-        // Section label entrance
-        var label = section.querySelector('.section-label');
-        if (label) {
-          gsap.fromTo(label,
-            { opacity: 0, x: -20 },
-            {
-              opacity: 1, x: 0,
-              duration: 0.6,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: label,
-                start: 'top 88%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
-        }
-
-        // Section divider line
-        var divider = section.querySelector('.section-divider');
-        if (divider) {
-          gsap.fromTo(divider,
-            { scaleX: 0 },
-            {
-              scaleX: 1,
-              duration: 0.8,
-              ease: 'power2.inOut',
-              scrollTrigger: {
-                trigger: divider,
-                start: 'top 88%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
-        }
-
-        // Stagger cards/children
-        var cards = section.querySelectorAll('.service-card, .pricing-card, .process-step, .portfolio-card, .testimonial-card');
-        if (cards.length) {
-          gsap.fromTo(cards,
-            { opacity: 0, y: 50, scale: 0.95 },
-            {
-              opacity: 1, y: 0, scale: 1,
-              duration: 0.7,
-              stagger: 0.12,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: cards[0],
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
-        }
-      });
-
-      // ===== HERO PARALLAX DEPTH LAYERS =====
-      var heroContent = document.querySelector('.hero-content');
-      var heroGrid = document.querySelector('.hero-grid');
-      var heroGradient = document.querySelector('.hero-gradient-anim');
-
-      if (heroContent) {
-        gsap.to(heroContent, {
-          y: 120,
-          opacity: 0.3,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.5
-          }
-        });
-      }
-
-      if (heroGrid) {
-        gsap.to(heroGrid, {
-          y: 60,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.3
-          }
-        });
-      }
-
-      if (heroGradient) {
-        gsap.to(heroGradient, {
-          y: 40,
-          scale: 1.1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.2
-          }
-        });
-      }
-
-      // ===== IMAGE DIVIDER PARALLAX =====
-      gsap.utils.toArray('.image-divider').forEach(function(divider) {
-        var img = divider.querySelector('.parallax-img');
-        if (img) {
-          gsap.fromTo(img,
-            { y: -60 },
-            {
-              y: 60,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: divider,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.4
-              }
-            }
-          );
-        }
-
-        var text = divider.querySelector('.image-divider-text');
-        if (text) {
-          gsap.fromTo(text,
-            { y: 30, opacity: 0 },
-            {
-              y: 0, opacity: 1,
-              duration: 0.8,
-              scrollTrigger: {
-                trigger: divider,
-                start: 'top 70%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
-        }
-      });
-
-      // ===== PROBLEM SECTION — dramatic entrance =====
-      var bigQuote = document.querySelector('.big-quote');
-      if (bigQuote) {
-        gsap.fromTo(bigQuote,
-          { opacity: 0, scale: 0.96 },
-          {
-            opacity: 1, scale: 1,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: bigQuote,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      }
-
-      // ===== SMOOTH MAGNETIC BUTTONS (GSAP upgrade) =====
-      document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta').forEach(function(btn) {
-        btn.addEventListener('mousemove', function(e) {
-          var rect = btn.getBoundingClientRect();
-          var x = e.clientX - rect.left - rect.width / 2;
-          var y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(btn, {
-            x: x * 0.2,
-            y: y * 0.25 - 2,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        });
-        btn.addEventListener('mouseleave', function() {
-          gsap.to(btn, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.5)'
-          });
-        });
-      });
-
-      // ===== 3D CARD TILT (GSAP upgrade — smoother) =====
-      document.querySelectorAll('.service-card, .pricing-card, .testimonial-card').forEach(function(card) {
-        card.style.transformStyle = 'preserve-3d';
-
-        card.addEventListener('mousemove', function(e) {
-          var rect = card.getBoundingClientRect();
-          var x = (e.clientX - rect.left) / rect.width - 0.5;
-          var y = (e.clientY - rect.top) / rect.height - 0.5;
-          gsap.to(card, {
-            rotateX: -y * 10,
-            rotateY: x * 10,
-            y: -8,
-            duration: 0.4,
-            ease: 'power2.out'
-          });
-        });
-
-        card.addEventListener('mouseleave', function() {
-          gsap.to(card, {
-            rotateX: 0,
-            rotateY: 0,
-            y: 0,
-            duration: 0.6,
-            ease: 'elastic.out(1, 0.6)'
-          });
-        });
-      });
-
-      // ===== SCROLL PROGRESS BAR (GSAP upgrade) =====
-      gsap.to('#scrollProgress', {
-        width: '100%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 0.1
-        }
-      });
-
-      // ===== NAV BACKGROUND TRANSITION (GSAP) =====
-      ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'bottom 80px',
-        onEnter: function() {
-          gsap.to('nav', {
-            background: 'rgba(9, 9, 11, 0.97)',
-            borderBottomColor: 'rgba(212, 175, 55, 0.25)',
-            backdropFilter: 'blur(20px)',
-            duration: 0.4
-          });
-        },
-        onLeaveBack: function() {
-          gsap.to('nav', {
-            background: 'rgba(9, 9, 11, 0.88)',
-            borderBottomColor: 'rgba(212, 175, 55, 0.1)',
-            backdropFilter: 'blur(0px)',
-            duration: 0.4
-          });
-        }
-      });
-
-      // ===== COUNTER ANIMATIONS (GSAP upgrade — smooth easing) =====
-      document.querySelectorAll('.val-number[data-target]').forEach(function(el) {
-        var target = parseInt(el.dataset.target);
-        var suffix = el.dataset.suffix || '';
-        if (!target) return;
-
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 85%',
-          once: true,
-          onEnter: function() {
-            var obj = { val: 0 };
-            gsap.to(obj, {
-              val: target,
-              duration: 1.8,
-              ease: 'power2.out',
-              onUpdate: function() {
-                el.textContent = Math.floor(obj.val) + suffix;
-              }
-            });
-          }
-        });
-      });
-
-      // ===== FLOATING BOOK BUTTON (GSAP) =====
-      var floatingBook = document.getElementById('floatingBook');
-      if (floatingBook) {
-        ScrollTrigger.create({
-          trigger: '.hero',
-          start: 'bottom center',
-          onEnter: function() {
-            gsap.to(floatingBook, { opacity: 1, y: 0, duration: 0.4, ease: 'back.out(1.5)' });
-            floatingBook.classList.add('visible');
-          },
-          onLeaveBack: function() {
-            gsap.to(floatingBook, { opacity: 0, y: 20, duration: 0.3 });
-            floatingBook.classList.remove('visible');
-          }
-        });
-      }
-
-      // ===== SHIMMER SWEEP ON SCROLL =====
-      gsap.utils.toArray('.shimmer-sweep').forEach(function(el) {
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 80%',
-          once: true,
-          onEnter: function() {
-            setTimeout(function() { el.classList.add('active'); }, 400);
-          }
-        });
-      });
-
-      // Refresh on load complete
-      ScrollTrigger.refresh();
-    }
-
-    initGSAP();
-  });
-  </script>
 
   <!-- Cookie consent banner (GA4 gate) -->
   <script src="/assets/marketing-config.js" defer></script>
