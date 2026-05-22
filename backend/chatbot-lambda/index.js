@@ -34,7 +34,10 @@ try {
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-// ── Tool definition: capture_lead ──
+// ── Tool definitions ──
+// 1. capture_lead — POSTs the prospect's contact info to the existing leads endpoint.
+// 2. redirect_to_page — tells the widget to render a one-click pill button under the reply.
+const VALID_TIERS = ['care', 'growth', 'accelerate', 'partner', 'video', 'video-ads'];
 const TOOLS = [
   {
     name: 'capture_lead',
@@ -50,8 +53,58 @@ const TOOLS = [
       },
       required: ['name', 'phone', 'summary']
     }
+  },
+  {
+    name: 'redirect_to_page',
+    description: 'Render a one-click gold pill button under your text reply that takes the prospect to a specific page. Use when their question maps cleanly to a page — booking, a specific tier on the checkout selector, financing, the refund policy, or the live demo. Use at most once per turn.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        page: {
+          type: 'string',
+          enum: ['book', 'checkout', 'financing', 'refund-policy', 'demo'],
+          description: 'Which page to redirect to.'
+        },
+        tier: {
+          type: 'string',
+          enum: VALID_TIERS,
+          description: 'Required only when page="checkout". One of: care, growth, accelerate, partner, video, video-ads.'
+        }
+      },
+      required: ['page']
+    }
   }
 ];
+
+// ── Resolve a redirect tool call into { url, label } for the widget ──
+function resolveRedirect(input) {
+  if (!input || !input.page) return null;
+  switch (input.page) {
+    case 'book':
+      return { url: '/book.html', label: 'Book a Discovery Call' };
+    case 'checkout': {
+      var tier = (input.tier || '').toLowerCase();
+      if (VALID_TIERS.indexOf(tier) === -1) return null;
+      var labels = {
+        care: 'View the Core Build ($700 + $70/mo)',
+        growth: 'View the Growth Plan',
+        accelerate: 'View Accelerate',
+        partner: 'View Full Partner',
+        video: 'View the Video Plan',
+        'video-ads': 'View Video + Ads'
+      };
+      return { url: '/checkout.html?tier=' + tier, label: labels[tier] };
+    }
+    case 'financing':
+      return { url: '/financing.html', label: 'See Financing Options' };
+    case 'refund-policy':
+      return { url: '/refund-policy.html', label: 'Read the Refund Policy' };
+    case 'demo':
+      return { url: 'https://gdk.velonyxsystems.com/', label: 'Explore the Live Demo', external: true };
+    default:
+      return null;
+  }
+}
 
 // ── Helper: POST lead to the existing leads endpoint ──
 function postLead(payload) {
@@ -93,11 +146,13 @@ function isJailbreak(text) {
 }
 
 // ── URL whitelist for output sanitization ──
+// Bare hostnames (any path under these is allowed). Path-level allow-listing happens
+// via redirect_to_page tool — the sanitizer here only strips off-brand external links.
 const URL_WHITELIST = [
   'velonyxsystems.com',
   'gdk.velonyxsystems.com',
   'buy.stripe.com',
-  'calendly.com/admin-velonyxsystems'
+  'calendly.com'
 ];
 function sanitizeUrls(text) {
   return text.replace(/https?:\/\/[^\s)]+/gi, function(match) {
@@ -158,6 +213,8 @@ exports.handler = async function(event) {
 
   let leadCaptured = false;
   let assistantText = '';
+  let redirect = null;
+  let leadTier = null; // captured tier intent for downstream pixel tracking
 
   try {
     const response = await anthropic.messages.create({
@@ -194,6 +251,17 @@ exports.handler = async function(event) {
           console.error('lead post failed', err);
           // Continue — bot still responds, lead capture failure is silent to user
         }
+      } else if (block.type === 'tool_use' && block.name === 'redirect_to_page') {
+        // Only honor the first redirect per turn — multiple buttons would clutter the UI.
+        if (!redirect) {
+          var resolved = resolveRedirect(block.input || {});
+          if (resolved) {
+            redirect = resolved;
+            if (block.input && block.input.page === 'checkout' && block.input.tier) {
+              leadTier = block.input.tier;
+            }
+          }
+        }
       }
     }
 
@@ -221,7 +289,9 @@ exports.handler = async function(event) {
     headers: corsHeaders(),
     body: JSON.stringify({
       reply: sanitizeUrls(assistantText),
-      leadCaptured: leadCaptured
+      leadCaptured: leadCaptured,
+      redirect: redirect,    // { url, label, external? } or null
+      tier: leadTier         // string slug or null — used by widget for pixel tracking
     })
   };
 };

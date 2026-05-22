@@ -33,6 +33,10 @@
   var fallbackStep = 0; // 0=greeting, 1=asked-phone, 2=asked-name, 3=captured
   var captured = { phone: '', name: '', service: '' };
   var transcript = []; // full transcript for the lead payload
+  var sessionStartMs = Date.now();
+  var turnCount = 0; // increments per user message
+  var leadTurnPosition = null; // which turn the lead was captured on
+  var pixelInitiateCheckoutFired = false; // once per session
 
   // ── Styles (inline, theme-aware) ──
   var CSS = ''
@@ -76,6 +80,11 @@
     + '#vx-chatbot-footnote{padding:8px 16px 12px;font-size:0.68rem;color:rgba(240,237,232,0.4);text-align:center;border-top:1px solid rgba(212,175,55,0.05);background:#08080A;letter-spacing:0.2px;}'
     + '#vx-chatbot-footnote a{color:rgba(212,175,55,0.7);text-decoration:none;}'
     + '#vx-chatbot-footnote a:hover{color:#D4AF37;}'
+    + '.vx-redirect-row{align-self:flex-start;margin:-6px 0 4px;}'
+    + '.vx-redirect-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#D4AF37 0%,#F7E17B 35%,#D4AF37 65%,#B8860B 100%);color:#08080A;border:none;padding:8px 16px;border-radius:99px;font-family:"Space Grotesk",sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.4px;text-decoration:none;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;}'
+    + '.vx-redirect-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,175,55,0.4);}'
+    + '.vx-redirect-btn:focus-visible{outline:2px solid #F7E17B;outline-offset:2px;}'
+    + '.vx-redirect-btn svg{width:13px;height:13px;}'
     + '@media(max-width:480px){'
     + '  #vx-chatbot-launcher{bottom:20px;right:20px;width:56px;height:56px;}'
     + '  #vx-chatbot-panel{bottom:88px;right:12px;left:12px;width:auto;max-width:none;height:75vh;max-height:560px;}'
@@ -166,6 +175,51 @@
     if (typingEl) { typingEl.remove(); typingEl = null; }
   }
 
+  // ── Render a gold pill redirect button (driven by Lambda's redirect_to_page tool) ──
+  function appendRedirectButton(redirect) {
+    if (!redirect || !redirect.url || !redirect.label) return;
+    var row = document.createElement('div');
+    row.className = 'vx-redirect-row';
+    var a = document.createElement('a');
+    a.className = 'vx-redirect-btn';
+    a.href = redirect.url;
+    if (redirect.external) { a.target = '_blank'; a.rel = 'noopener'; }
+    a.innerHTML = escapeHTML(redirect.label)
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    row.appendChild(a);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ── Meta Pixel hooks (no-op if pixel not consented/loaded) ──
+  function firePixelLead() {
+    try {
+      if (window.velonyx && typeof window.velonyx.trackLead === 'function') {
+        window.velonyx.trackLead();
+      }
+    } catch (e) { /* never block UX */ }
+  }
+  function firePixelInitiateCheckout() {
+    if (pixelInitiateCheckoutFired) return;
+    try {
+      if (window.velonyx && typeof window.velonyx.trackInitiateCheckout === 'function') {
+        window.velonyx.trackInitiateCheckout();
+        pixelInitiateCheckoutFired = true;
+      }
+    } catch (e) { /* never block UX */ }
+  }
+
+  // ── Build the chatbot_meta payload appended to every lead POST ──
+  function buildChatbotMeta(mode) {
+    return {
+      turns: turnCount,
+      lead_turn_position: leadTurnPosition,
+      mode: mode,
+      session_duration_ms: Date.now() - sessionStartMs,
+      session_id: sessionId
+    };
+  }
+
   // ── Open / close ──
   var hasGreeted = false;
   function openPanel() {
@@ -201,6 +255,7 @@
     if (!text) return;
     inputEl.value = '';
     inputEl.style.height = 'auto';
+    turnCount++;
     appendMessage('user', text);
     sendBtn.disabled = true;
     if (API_URL) {
@@ -258,6 +313,7 @@
     var nameParts = (captured.name || '').trim().split(/\s+/);
     var firstName = nameParts[0] || 'Chatbot';
     var lastName = nameParts.slice(1).join(' ') || 'Lead';
+    leadTurnPosition = turnCount;
     var payload = {
       firstName: firstName,
       lastName: lastName,
@@ -265,7 +321,8 @@
       email: '',
       service: captured.service || 'General inquiry (via chatbot)',
       description: 'Chatbot conversation transcript:\n\n' + transcript.join('\n') + '\n\nSession: ' + sessionId,
-      source: 'chatbot'
+      source: 'chatbot',
+      chatbot_meta: buildChatbotMeta('fallback')
     };
     try {
       fetch(LEADS_URL, {
@@ -274,6 +331,8 @@
         body: JSON.stringify(payload)
       }).catch(function() { /* silent — user already shown success message */ });
     } catch (e) { /* never block UX on a fetch error */ }
+    // Fire Meta Pixel Lead event (no-op if pixel not consented or not loaded)
+    firePixelLead();
   }
 
   // ── AI MODE: when window.VELONYX_CHATBOT_API_URL is set ──
@@ -285,7 +344,8 @@
       body: JSON.stringify({
         sessionId: sessionId,
         message: userText,
-        history: history.slice(-20) // last 20 turns for context
+        history: history.slice(-20), // last 20 turns for context
+        chatbot_meta: buildChatbotMeta('ai') // sent so Lambda can attach it to any tool-triggered lead
       })
     })
     .then(function(r) {
@@ -296,14 +356,26 @@
       hideTyping();
       var reply = (data && data.reply) || "I'm not sure how to answer that one. Let me get you to Carlos — what's the best phone number to reach you?";
       appendMessage('bot', reply);
+
+      // Render the gold pill redirect button when Lambda's redirect_to_page tool fired
+      if (data && data.redirect) {
+        appendRedirectButton(data.redirect);
+        // A checkout-tier redirect is a strong InitiateCheckout signal — fire once
+        if (typeof data.redirect.url === 'string' && data.redirect.url.indexOf('/checkout.html') === 0) {
+          firePixelInitiateCheckout();
+        }
+      }
+
       // If Lambda fired the capture_lead tool and returned confirmation, surface it
       if (data && data.leadCaptured) {
+        leadTurnPosition = turnCount;
         var confirm = document.createElement('div');
         confirm.className = 'vx-msg vx-bot';
         confirm.style.borderColor = 'rgba(52,211,153,0.4)';
         confirm.innerHTML = '<span style="color:#34D399;">✓</span> Carlos will reach out within 1 hour.';
         messagesEl.appendChild(confirm);
         messagesEl.scrollTop = messagesEl.scrollHeight;
+        firePixelLead();
       }
       sendBtn.disabled = false;
     })
