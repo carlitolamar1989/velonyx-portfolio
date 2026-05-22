@@ -3719,6 +3719,19 @@
       line-height: 1.5;
       margin-bottom: 18px;
     }
+    .growth-plan-total {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 6px;
+      display: inline-block;
+    }
     .growth-plan-features {
       list-style: none;
       padding: 0;
@@ -4548,14 +4561,16 @@
       </div>
 
       <!--
-        STRIPE PAYMENT LINKS (TODO — replace before live $700 checkout):
-        - $700 one-time build + $70/mo recurring link: NOT YET CREATED.
-          Create in Stripe dashboard (one-time $700 build + $70/mo
-          subscription, ToS gate to terms.html), then update the link
-          below and the matching link on checkout.html.
-        - Until new link exists, the primary CTA in this card routes
-          to /book.html (Discovery Call) and the old Founding link is
-          retained only on /checkout.html for any in-flight checkouts.
+        STRIPE PAYMENT LINKS (TODO — wire in after page design approval):
+        - Per-tier Payment Links do not yet exist.
+        - Every "Make a Payment" CTA on a pricing card currently routes
+          to /checkout.html?tier=<slug> (tier-selector page) and from
+          there to /book.html?tier=<slug>, because booking is a hard
+          gate before Carlos shares the secure Stripe link directly.
+        - When per-tier Stripe Payment Links are created, search this
+          file for `TODO: swap href to per-tier Stripe Payment Link` and
+          replace each href accordingly. The tier-selector page on
+          checkout.html holds the canonical per-tier CTA list.
       -->
 
       <!-- CORE BUILD CARD ($700 build + $70/mo) -->
@@ -4576,6 +4591,7 @@
               <div class="founding-amount-sub">Care plan &mdash; hosting, security, support</div>
             </div>
           </div>
+          <div class="founding-amount-sub" style="text-align:center;margin-top:6px;letter-spacing:0.5px;">Combined total: <strong style="color:var(--accent);">$700 + $70/mo</strong></div>
 
           <div class="founding-features-heading">Everything that ships in the $700 build</div>
           <ul class="founding-features">
@@ -4590,7 +4606,8 @@
           </ul>
 
           <div class="founding-actions">
-            <a href="/book.html" class="btn-primary founding-cta">Book a 20-Minute Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created (currently routes to tier selector → booking gate) -->
+            <a href="/checkout.html?tier=care" class="btn-primary founding-cta">Make a Payment</a>
             <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-consult-link">See it live first &mdash; explore the demo build &rarr;</a>
           </div>
 
@@ -4638,6 +4655,7 @@
           <div class="growth-plan-card">
             <div class="growth-plan-name">Care</div>
             <div class="growth-plan-price">$70<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $70/mo</div>
             <p class="growth-plan-sub">Everything to keep your platform live.</p>
             <ul class="growth-plan-features">
               <li>Hosting, security, SSL, backups</li>
@@ -4645,12 +4663,14 @@
               <li>Basic tech support</li>
               <li>Dashboard access</li>
             </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=care" class="growth-plan-cta">Make a Payment</a>
           </div>
 
           <div class="growth-plan-card growth-plan-featured">
             <div class="growth-plan-name">Growth</div>
             <div class="growth-plan-price">$250<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $250/mo</div>
             <p class="growth-plan-sub">Care + content + reporting.</p>
             <ul class="growth-plan-features">
               <li>Everything in Care</li>
@@ -4658,12 +4678,14 @@
               <li>Performance report twice a month</li>
               <li>2 site updates per month</li>
             </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=growth" class="growth-plan-cta">Make a Payment</a>
           </div>
 
           <div class="growth-plan-card">
             <div class="growth-plan-name">Accelerate <span class="growth-plan-badge">+ ad spend</span></div>
             <div class="growth-plan-price">$500<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $500/mo</div>
             <p class="growth-plan-sub">Growth + ad campaign setup &amp; monitoring.</p>
             <ul class="growth-plan-features">
               <li>Everything in Growth</li>
@@ -4671,12 +4693,14 @@
               <li>Priority support</li>
               <li><em>You fund ad spend directly to the ad platform.</em></li>
             </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=accelerate" class="growth-plan-cta">Make a Payment</a>
           </div>
 
           <div class="growth-plan-card growth-plan-partner">
             <div class="growth-plan-name">Full Partner <span class="growth-plan-badge">+ ad spend</span></div>
             <div class="growth-plan-price">$1,500<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $1,500/mo</div>
             <p class="growth-plan-sub">The full marketing engine on top of your platform.</p>
             <ul class="growth-plan-features">
               <li>Everything in Accelerate</li>
@@ -4690,7 +4714,8 @@
               <li>Performance report twice a month</li>
               <li><em>You fund ad spend directly to the ad platform.</em></li>
             </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=partner" class="growth-plan-cta">Make a Payment</a>
           </div>
 
         </div>
@@ -4714,7 +4739,8 @@
               <li>Delivered ready to post anywhere you sell</li>
             </ul>
             <p class="standalone-fineprint">Does not include multiple videos per month, full production, or custom on-location shoots.</p>
-            <a href="/book.html" class="standalone-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=video" class="standalone-cta">Make a Payment</a>
           </div>
 
           <div class="standalone-card standalone-featured">
@@ -4728,7 +4754,8 @@
               <li>Monthly performance report</li>
               <li><em>You fund ad spend directly to the ad platform.</em></li>
             </ul>
-            <a href="/book.html" class="standalone-cta">Book a Call</a>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/checkout.html?tier=video-ads" class="standalone-cta">Make a Payment</a>
           </div>
 
         </div>
@@ -5190,7 +5217,8 @@
         <li>SEO-ready foundation built in</li>
         <li>Full ownership &mdash; code, design, data, domain</li>
       </ul>
-      <a href="/book.html" class="founding-modal-cta" onclick="closeFoundingModal()">Book a 20-Minute Call</a>
+      <!-- TODO: swap href to per-tier Stripe Payment Link when created (currently routes to tier selector → booking gate) -->
+      <a href="/checkout.html?tier=care" class="founding-modal-cta" onclick="closeFoundingModal()">Make a Payment</a>
       <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-modal-secondary" onclick="closeFoundingModal()">Explore the Live Demo &rarr;</a>
       <button class="founding-modal-dismiss" onclick="closeFoundingModal()" type="button">Maybe later &mdash; show me the site</button>
     </div>

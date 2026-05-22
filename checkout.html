@@ -21,14 +21,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080A">
 
-  <title>Checkout — Velonyx Systems | $700 Build + $70/month</title>
-  <meta name="description" content="Claim your Velonyx custom platform — $700 one-time build + $70/month Care plan. Premium build, budget price. Custom website, 24/7 booking, payments, financing, SMS, owner dashboard. Yours forever.">
+  <title>Choose Your Tier — Velonyx Systems Checkout</title>
+  <meta name="description" content="Choose your Velonyx tier — $700 build paired with the monthly plan that fits your business, or a standalone video subscription. Book your 20-minute discovery call and we'll send your secure payment link directly.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Checkout — The Velonyx System">
-  <meta property="og:description" content="$700 one-time build + $70/month Care plan. Premium platform, budget price. Yours forever.">
+  <meta property="og:title" content="Choose Your Tier — Velonyx Systems Checkout">
+  <meta property="og:description" content="Pick the Velonyx tier that fits your business. $700 build + monthly plan, or standalone video. Booking required before payment link is sent.">
   <meta property="og:image" content="https://velonyxsystems.com/assets/og-social-card.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -39,8 +39,8 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@velonyxsystems">
-  <meta name="twitter:title" content="Checkout — The Velonyx System">
-  <meta name="twitter:description" content="$700 build + $70/mo Care plan. Premium platform, budget price. Yours forever.">
+  <meta name="twitter:title" content="Choose Your Tier — Velonyx Systems Checkout">
+  <meta name="twitter:description" content="Pick the Velonyx tier that fits your business. $700 build + monthly plan, or standalone video. Booking required before payment link.">
   <meta name="twitter:image" content="https://velonyxsystems.com/assets/og-social-card.jpg">
 
   <!-- Favicons -->
@@ -81,6 +81,7 @@
       --bg-base: #0C0C0F;
       --bg-card: #111114;
       --bg-card-glossy: linear-gradient(165deg, rgba(22,22,26,0.97) 0%, rgba(12,12,15,0.99) 100%);
+      --bg-border: #1E1E22;
       --white: #F0EDE8;
       --white-muted: #B0AEA6;
       --white-dim: #8F8D87;
@@ -471,6 +472,265 @@
     @media (max-width: 720px) {
       footer { padding: 22px 20px; justify-content: center; text-align: center; }
     }
+
+    /* ── Tier selector (ported from index.html .growth-plan-* / .standalone-* — kept in sync) ── */
+    .tier-selector-section {
+      max-width: 1180px;
+      margin: 32px auto 12px;
+      padding: 0 20px;
+    }
+    .tier-step-eyebrow {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .tier-step-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .tier-step-intro {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      text-align: center;
+      color: var(--white-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    .tier-bundled-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 1180px) { .tier-bundled-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .tier-bundled-grid { grid-template-columns: 1fr; } }
+    .tier-standalone-divider {
+      max-width: 980px;
+      margin: 56px auto 22px;
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+    .tier-standalone-divider strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tier-standalone-grid {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 720px) { .tier-standalone-grid { grid-template-columns: 1fr; } }
+
+    .growth-plan-card, .standalone-card {
+      padding: 30px 26px 28px;
+      background: var(--bg-card-glossy);
+      border: 1px solid var(--bg-border);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .growth-plan-card:hover, .standalone-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212,175,55,0.35);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .growth-plan-card.growth-plan-featured {
+      border-color: rgba(212,175,55,0.4);
+      background: linear-gradient(165deg, rgba(212,175,55,0.06) 0%, rgba(17,17,20,0.97) 100%);
+    }
+    .growth-plan-card.growth-plan-partner {
+      border-color: rgba(212,175,55,0.45);
+      background: linear-gradient(165deg, rgba(212,175,55,0.09) 0%, rgba(17,17,20,0.98) 100%);
+      box-shadow: 0 0 30px rgba(212,175,55,0.06);
+    }
+    .standalone-card.standalone-featured {
+      border-color: rgba(212,175,55,0.4);
+      background: linear-gradient(165deg, rgba(212,175,55,0.07) 0%, rgba(17,17,20,0.97) 100%);
+    }
+    /* Active highlight: applied via JS when ?tier=<slug> matches data-tier */
+    .growth-plan-card.active, .standalone-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.45), 0 18px 60px rgba(212,175,55,0.18);
+      transform: translateY(-4px);
+    }
+    .growth-plan-card.active::before, .standalone-card.active::before {
+      content: "Your selection";
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .growth-plan-name, .standalone-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .growth-plan-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.25);
+      padding: 3px 8px;
+      border-radius: 99px;
+    }
+    .growth-plan-price, .standalone-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+    .growth-plan-mo, .standalone-mo {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--white-dim);
+      -webkit-text-fill-color: var(--white-dim);
+      letter-spacing: 0.5px;
+      margin-left: 4px;
+    }
+    .growth-plan-total {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.22);
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .growth-plan-sub, .standalone-sub {
+      font-size: 0.88rem;
+      color: var(--white-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .growth-plan-features, .standalone-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+      flex: 1;
+    }
+    .growth-plan-features li, .standalone-features li {
+      font-size: 0.86rem;
+      color: var(--white-muted);
+      line-height: 1.5;
+      padding: 6px 0 6px 22px;
+      position: relative;
+    }
+    .growth-plan-features li::before, .standalone-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .growth-plan-features li em, .standalone-features li em {
+      color: var(--white-dim);
+      font-style: normal;
+      font-size: 0.78rem;
+      display: block;
+      margin-top: 4px;
+    }
+    .standalone-fineprint {
+      font-size: 0.76rem;
+      color: var(--white-dim);
+      line-height: 1.5;
+      margin: 0 0 14px;
+      font-style: italic;
+    }
+    .growth-plan-cta, .standalone-cta {
+      display: block;
+      text-align: center;
+      padding: 12px 20px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 10px;
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      min-height: 44px;
+      line-height: 22px;
+    }
+    .growth-plan-card.active .growth-plan-cta,
+    .standalone-card.active .standalone-cta {
+      background: var(--gold-btn);
+      color: #0C0C0F;
+      border-color: transparent;
+    }
+    .growth-plan-cta:hover, .standalone-cta:hover {
+      background: var(--gold-btn);
+      color: #0C0C0F;
+      border-color: transparent;
+    }
+    .tier-cta-caption {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: var(--white-dim);
+      line-height: 1.4;
+      font-style: italic;
+    }
+    .tier-choose-helper {
+      max-width: 880px;
+      margin: 36px auto 0;
+      padding: 16px 22px;
+      text-align: center;
+      border: 1px dashed rgba(212,175,55,0.25);
+      border-radius: 12px;
+      font-size: 0.88rem;
+      color: var(--white-muted);
+      line-height: 1.55;
+    }
+    .tier-choose-helper a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(212,175,55,0.4);
+    }
+    .tier-choose-helper a:hover { color: var(--accent-light); }
   </style>
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -493,94 +753,161 @@
     <div class="checkout-hero">
       <div class="checkout-eyebrow">Secure Checkout</div>
       <h1>Claim Your<br><span class="gold">Velonyx Platform.</span></h1>
-      <p>One platform. One price. Yours forever &mdash; premium build, budget price.</p>
+      <p>Choose your tier. Book the discovery call. We'll send your secure payment link directly.</p>
     </div>
 
     <div class="container">
 
-      <!-- ORDER SUMMARY -->
-      <section class="order-section">
-        <div class="order-card">
-          <div class="order-tier-tag">The Velonyx System &middot; Core Build</div>
-          <div class="order-name">Premium Platform. Budget Price.</div>
+      <!--
+        TIER SELECTOR
+        ?tier=<slug> in the URL pre-highlights the matching card via the
+        small JS at the bottom of <body>. Each card's "Make a Payment" CTA
+        currently routes to /book.html?tier=<slug> because booking is a
+        hard gate before Carlos shares the secure Stripe Payment Link.
+        TODO: when per-tier Stripe Payment Links are created, swap each
+        card's href to its Stripe link.
+        Bundled tiers: $700 build + Care/Growth/Accelerate/Partner monthly.
+        Standalones: $200 Video, $350 Video+Ads (no build, but booking still required).
+      -->
+      <section class="tier-selector-section">
+        <div class="tier-step-eyebrow">Step 1 of 2 &middot; Choose Your Tier</div>
+        <h2 class="tier-step-heading">Pick the System That Fits Your Business.</h2>
+        <p class="tier-step-intro">Every build is the same $700 platform. The monthly tier is how aggressively you want to grow on top of it &mdash; from Care (keep it live) all the way to Full Partner (the full marketing engine). Care is the default monthly that ships with every build; Growth, Accelerate, and Full Partner are upgrades on top.</p>
 
-          <div class="order-amounts">
-            <div>
-              <div class="order-amount">$700</div>
-              <div class="order-amount-sub">due today (one-time build)</div>
-            </div>
-            <div class="order-plus">+</div>
-            <div>
-              <div class="order-recurring">$70<span class="order-recurring-mo">/month</span></div>
-              <div class="order-amount-sub">Care plan &mdash; cancel any time</div>
-            </div>
+        <div class="tier-bundled-grid">
+
+          <div class="growth-plan-card" data-tier="care">
+            <div class="growth-plan-name">Care</div>
+            <div class="growth-plan-price">$70<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $70/mo</div>
+            <p class="growth-plan-sub">The core platform. Everything to keep it live.</p>
+            <ul class="growth-plan-features">
+              <li>$700 one-time custom build (website + booking + payments + SMS + dashboard)</li>
+              <li>Hosting, security, SSL, automated backups</li>
+              <li>1 site update per month</li>
+              <li>Basic tech support &amp; dashboard access</li>
+            </ul>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=care" class="growth-plan-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
           </div>
 
-          <div class="due-today">
-            <div class="due-row">
-              <span class="due-label">One-time build</span>
-              <span class="due-amount">$700.00</span>
-            </div>
-            <div class="due-row">
-              <span class="due-label">Care subscription (separate)</span>
-              <span class="due-amount">$70.00 / month</span>
-            </div>
-            <div class="due-divider"></div>
-            <div class="due-row total">
-              <span class="due-label">Total Due Today</span>
-              <span class="due-amount">$700.00</span>
-            </div>
-            <p class="due-note">Then <strong style="color:var(--white);">$70/month</strong> Care plan keeps the platform live, secure, and maintained. Cancel any time &mdash; you keep the full system.</p>
+          <div class="growth-plan-card growth-plan-featured" data-tier="growth">
+            <div class="growth-plan-name">Growth</div>
+            <div class="growth-plan-price">$250<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $250/mo</div>
+            <p class="growth-plan-sub">Care + content + reporting.</p>
+            <ul class="growth-plan-features">
+              <li>Everything in Care</li>
+              <li>1 sales-focused video per month</li>
+              <li>Performance report twice a month</li>
+              <li>2 site updates per month</li>
+            </ul>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=growth" class="growth-plan-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
           </div>
 
-          <h3 class="includes-heading">What ships in the $700 build</h3>
-          <ul class="includes-list">
-            <li><div class="includes-check"><span>&#10003;</span></div> Custom-branded website &mdash; no templates</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> 24/7 online booking</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Integrated payments (Apple Pay, Google Pay, cards, ACH Direct Debit)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Customer financing built in (Klarna, Afterpay)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Automated SMS via Twilio (confirmations, payment links, follow-ups)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Owner admin dashboard &mdash; runs from your phone</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> SEO-ready foundation built in</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Production hosting, SSL, automated backups</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Full ownership &mdash; code, design, data, domain. Yours forever.</li>
-          </ul>
+          <div class="growth-plan-card" data-tier="accelerate">
+            <div class="growth-plan-name">Accelerate <span class="growth-plan-badge">+ ad spend</span></div>
+            <div class="growth-plan-price">$500<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $500/mo</div>
+            <p class="growth-plan-sub">Growth + ad campaign setup &amp; monitoring.</p>
+            <ul class="growth-plan-features">
+              <li>Everything in Growth</li>
+              <li>Ad campaign setup &amp; monitoring on one platform (Meta or Google)</li>
+              <li>Priority support</li>
+              <li><em>You fund ad spend directly to the ad platform.</em></li>
+            </ul>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=accelerate" class="growth-plan-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
+          </div>
 
-          <!--
-            TODO — Stripe Payment Link for $700 build + $70/mo:
-            The $3,000 link below is the legacy founding offer and is
-            kept temporarily so any in-flight checkout sessions still
-            resolve. Create a new Stripe Payment Link in the dashboard
-            ($700 one-time + $70/mo subscription, ToS gate to terms.html),
-            then replace the href below and the matching CTA on index.html.
-            Until then, route new visitors via Book a Call.
-          -->
-          <a href="/book.html" class="btn-stripe">
-            🗓 Book a 20-Minute Call to Start Your Build
-          </a>
-          <div class="security-note">Stripe checkout link for the $700 build is being prepared. Book a call and we'll send you the secure payment link directly.</div>
-          <p class="finance-note">Klarna, Afterpay, and ACH Direct Debit will all be available at Stripe checkout &mdash; instant approval, no account needed.</p>
+          <div class="growth-plan-card growth-plan-partner" data-tier="partner">
+            <div class="growth-plan-name">Full Partner <span class="growth-plan-badge">+ ad spend</span></div>
+            <div class="growth-plan-price">$1,500<span class="growth-plan-mo">/mo</span></div>
+            <div class="growth-plan-total">$700 build + $1,500/mo</div>
+            <p class="growth-plan-sub">The full marketing engine on top of your platform.</p>
+            <ul class="growth-plan-features">
+              <li>Everything in Accelerate</li>
+              <li>2 sales-focused videos per month</li>
+              <li>Ad campaign setup behind each video</li>
+              <li>4 premium images per month</li>
+              <li>1 site update per week</li>
+              <li>Monthly growth strategy session</li>
+              <li>Monthly growth email tailored to your business</li>
+              <li>Featured shout-out on Velonyx social media</li>
+              <li>Performance report twice a month</li>
+              <li><em>You fund ad spend directly to the ad platform.</em></li>
+            </ul>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=partner" class="growth-plan-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
+          </div>
+
+        </div>
+
+        <div class="tier-standalone-divider">Or &mdash; <strong>standalone subscriptions</strong> (no build)</div>
+
+        <div class="tier-standalone-grid">
+
+          <div class="standalone-card" data-tier="video">
+            <div class="standalone-name">Video</div>
+            <div class="standalone-price">$200<span class="standalone-mo">/mo</span></div>
+            <p class="standalone-sub">1 sales-focused short-form video per month. For businesses that already have a website.</p>
+            <ul class="standalone-features">
+              <li>AI-assisted creation + light editing of clips you send</li>
+              <li>Effects, trimming, premium polish</li>
+              <li>Delivered ready to post anywhere you sell</li>
+            </ul>
+            <p class="standalone-fineprint">Does not include multiple videos per month, full production, or custom on-location shoots.</p>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=video" class="standalone-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
+          </div>
+
+          <div class="standalone-card standalone-featured" data-tier="video-ads">
+            <div class="standalone-name">Video + Ad Setup &amp; Monitoring <span class="growth-plan-badge">+ ad spend</span></div>
+            <div class="standalone-price">$350<span class="standalone-mo">/mo</span></div>
+            <p class="standalone-sub">Video plus the ad engine behind it.</p>
+            <ul class="standalone-features">
+              <li>Everything in Video</li>
+              <li>Ad campaign setup on one platform (Meta or Google) matched to your business</li>
+              <li>Audience targeting to your clientele</li>
+              <li>Monthly performance report</li>
+              <li><em>You fund ad spend directly to the ad platform.</em></li>
+            </ul>
+            <!-- TODO: swap href to per-tier Stripe Payment Link when created -->
+            <a href="/book.html?tier=video-ads" class="standalone-cta">Make a Payment</a>
+            <span class="tier-cta-caption">Booking required before payment link is sent.</span>
+          </div>
+
+        </div>
+
+        <div class="tier-choose-helper">
+          Not sure which tier fits? <a href="/book.html">Book a free 20-minute discovery call</a> &mdash; we'll walk you through it. No commitment, no upsell.
         </div>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->
       <section class="next-steps">
-        <h2>What happens after you book the call</h2>
+        <h2>How the flow works</h2>
         <ol class="next-grid">
           <li>
             <span class="next-num">1</span>
-            <h3>20-minute discovery call</h3>
-            <p>We scope your build &mdash; branding, services, integrations, what your business actually needs. No pressure, no upsell.</p>
+            <h3>Pick your tier above</h3>
+            <p>Choose the bundled build + monthly that matches where you want to land, or one of the two standalone video subscriptions. You can change tiers on the call.</p>
           </li>
           <li>
             <span class="next-num">2</span>
-            <h3>Secure your project</h3>
-            <p>You receive a Stripe payment link for the $700 build (split into 50% now / 50% at launch, or pay in full upfront with Klarna / Afterpay / ACH all on the table).</p>
+            <h3>20-minute discovery call</h3>
+            <p>We confirm scope, services, integrations, and the tier that actually fits your business. No pressure, no upsell.</p>
           </li>
           <li>
             <span class="next-num">3</span>
-            <h3>We engineer your system</h3>
-            <p>7&ndash;14 business days from intake to launch. You see a live preview link before anything goes public and approve every milestone.</p>
+            <h3>Secure your project</h3>
+            <p>On the call we send your Stripe payment link directly &mdash; Klarna, Afterpay, and ACH Direct Debit all available. Split the build 50/50 or pay in full upfront.</p>
           </li>
           <li>
             <span class="next-num">4</span>
@@ -593,6 +920,11 @@
       <!-- BRIEF FAQ -->
       <section class="checkout-faq">
         <h2>Common questions</h2>
+
+        <div class="faq-card">
+          <h3>Why am I not paying right now?</h3>
+          <p>Per-tier Stripe Payment Links are being finalized. For now, every tier &mdash; bundled or standalone &mdash; requires a 20-minute discovery call first. On the call we confirm scope, lock the right tier (Accelerate vs Full Partner is a common pivot), and send the secure Stripe link directly. This gate prevents wrong-tier purchases and is going away once per-tier links are live.</p>
+        </div>
 
         <div class="faq-card">
           <h3>Do I really own the system?</h3>
@@ -616,7 +948,7 @@
 
         <div class="faq-card">
           <h3>What if I need something more custom than what's listed?</h3>
-          <p>Book the call first. <a href="/book.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(212,175,55,0.4);">20-minute discovery</a> &mdash; we'll talk through what you need and quote it as a custom engagement if it's outside the core $700 build.</p>
+          <p>Book the discovery call. <a href="/book.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(212,175,55,0.4);">20-minute call</a> &mdash; we scope custom work on the call and either bundle it into the build or quote it as a separate engagement.</p>
         </div>
       </section>
 
@@ -665,5 +997,29 @@
   <script src="/assets/meta-pixel-events.js" defer></script>
   <!-- Founding-member urgency banner -->
   <script src="/assets/urgency-banner.js" defer></script>
+
+  <!-- Tier-selector highlight: reads ?tier=<slug> and highlights the matching card. -->
+  <script>
+  (function(){
+    var VALID = ['care','growth','accelerate','partner','video','video-ads'];
+    function run(){
+      try {
+        var s = new URLSearchParams(window.location.search).get('tier');
+        if (!s || VALID.indexOf(s) === -1) return;
+        var card = document.querySelector('[data-tier="' + s + '"]');
+        if (!card) return;
+        card.classList.add('active');
+        if (window.matchMedia('(max-width: 720px)').matches) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (e) { /* no-op: bad URL or no URLSearchParams */ }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  })();
+  </script>
 </body>
 </html>
