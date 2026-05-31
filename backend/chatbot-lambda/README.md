@@ -49,7 +49,8 @@ The same Anthropic model (Claude Haiku 4.5) + the same business-context prompts 
 | `SUPABASE_SERVICE_ROLE_KEY` | Your Supabase service_role key (from Step 2) |
 | `TWILIO_ACCOUNT_SID` | `AC…` (from Step 3) |
 | `TWILIO_AUTH_TOKEN` | (from Step 3) |
-| `TWILIO_PHONE_FROM` | `+18773178643` (or your number) |
+| `TWILIO_MESSAGING_SERVICE_SID` | `MG…` (your Messaging Service SID — **preferred for toll-free**) |
+| `TWILIO_PHONE_FROM` | `+18773178643` — **only set if no Messaging Service** (fallback) |
 | `RESEND_API_KEY` | `re_…` (from Step 4) |
 | `RESEND_FROM_ADDRESS` | `Velonyx <leads@velonyxsystems.com>` (verified in Step 4) |
 | `OWNER_EMAIL` | `admin@velonyxsystems.com` (where you get lead alerts) |
@@ -91,13 +92,25 @@ bash deploy.sh
 7. Copy the **Invoke URL** at the top — looks like `https://abc123.execute-api.us-east-1.amazonaws.com`. **Paste this URL in chat to Claude** — Claude will wire it into `assets/marketing-config.js`.
 
 ### 8. Wire Twilio inbound SMS webhook (~1 min)
+
+**Preferred (if using a Messaging Service):**
+1. Twilio Console → **Messaging → Services** → click your Messaging Service (e.g. "Velonyx Lead System")
+2. Left sidebar → **Integration**
+3. **Incoming Messages** → **Send a webhook**
+   - Request URL: `<your API Gateway invoke URL>/sms/inbound`
+   - HTTP method: `POST`
+4. Save
+
+**Fallback (raw phone number, no Messaging Service):**
 1. Twilio Console → Phone Numbers → Manage → click your number
 2. Scroll to **Messaging Configuration** → **A Message Comes In** → set:
    - Webhook: `<your API Gateway invoke URL>/sms/inbound`
    - HTTP Method: `POST`
 3. Save
 
-When a lead's SMS lands, Twilio POSTs to that URL → Lambda routes → Claude generates a reply → TwiML response → Twilio sends the reply.
+Either way: when a lead's SMS lands, Twilio POSTs to that URL → Lambda routes → Claude generates a reply → TwiML response → Twilio sends the reply.
+
+**Why Messaging Service is preferred:** carrier filter rules + delivery troubleshooting + sticky-sender (a lead always gets replies from the same number even if you add more) all live at the Messaging Service level. If you set the webhook on both the service AND the phone number, the **phone number's webhook wins** — so keep the per-number webhook blank when using a service.
 
 ### 9. Test end-to-end (~3 min on your real phone)
 1. Open velonyxsystems.com on your phone

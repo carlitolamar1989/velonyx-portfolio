@@ -5,19 +5,23 @@
  * No npm dep — direct REST + Basic Auth.
  *
  * Required env vars:
- *   TWILIO_ACCOUNT_SID   ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
- *   TWILIO_AUTH_TOKEN    <secret from console.twilio.com>
- *   TWILIO_PHONE_FROM    +1XXXXXXXXXX  (10DLC-registered for US)
+ *   TWILIO_ACCOUNT_SID            ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ *   TWILIO_AUTH_TOKEN             <secret from console.twilio.com>
+ *
+ * Sender — pick ONE (Messaging Service preferred for toll-free + 10DLC):
+ *   TWILIO_MESSAGING_SERVICE_SID  MGxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  (preferred)
+ *   TWILIO_PHONE_FROM             +1XXXXXXXXXX  (fallback if no service)
  */
 const http = require('./http');
 const querystring = require('querystring');
 
-const SID   = process.env.TWILIO_ACCOUNT_SID || '';
-const TOKEN = process.env.TWILIO_AUTH_TOKEN  || '';
-const FROM  = process.env.TWILIO_PHONE_FROM  || '';
+const SID         = process.env.TWILIO_ACCOUNT_SID || '';
+const TOKEN       = process.env.TWILIO_AUTH_TOKEN  || '';
+const FROM        = process.env.TWILIO_PHONE_FROM  || '';
+const MSG_SVC_SID = process.env.TWILIO_MESSAGING_SERVICE_SID || '';
 
 function configured() {
-  return Boolean(SID && TOKEN && FROM);
+  return Boolean(SID && TOKEN && (MSG_SVC_SID || FROM));
 }
 
 function basicAuth() {
@@ -25,11 +29,19 @@ function basicAuth() {
 }
 
 // ── Send outbound SMS ────────────────────────────────────────────────────────
+// Uses MessagingServiceSid if TWILIO_MESSAGING_SERVICE_SID is set (recommended
+// for toll-free senders + 10DLC). Falls back to raw From= number otherwise.
 async function sendSms(to, body) {
   if (!configured()) throw new Error('twilio not configured');
   if (!to) throw new Error('sendSms: to required');
   if (!body) throw new Error('sendSms: body required');
-  const payload = querystring.stringify({ To: to, From: FROM, Body: body });
+  const params = { To: to, Body: body };
+  if (MSG_SVC_SID) {
+    params.MessagingServiceSid = MSG_SVC_SID;
+  } else {
+    params.From = FROM;
+  }
+  const payload = querystring.stringify(params);
   const res = await http.post(
     'https://api.twilio.com/2010-04-01/Accounts/' + SID + '/Messages.json',
     {
