@@ -214,6 +214,21 @@ for ROUTE_PATH in "/chat" "/form-turn" "/sms/inbound"; do
     echo "  ✓ Route exists: $ROUTE_KEY"
   fi
 done
+
+# $default stage with auto-deploy — REQUIRED for the API to be invokable.
+# create-api alone does NOT create a stage; without this you get {"message":"Not Found"}.
+EXISTING_STAGE=$(aws apigatewayv2 get-stages --api-id "$API_ID" --region "$REGION" --query "Items[?StageName=='\$default'].StageName | [0]" --output text)
+if [ "$EXISTING_STAGE" = "None" ] || [ -z "$EXISTING_STAGE" ]; then
+  aws apigatewayv2 create-stage \
+    --api-id "$API_ID" \
+    --region "$REGION" \
+    --stage-name '$default' \
+    --auto-deploy \
+    --output text --query StageName >/dev/null
+  echo "  ✓ Created \$default stage (auto-deploy)"
+else
+  echo "  ✓ \$default stage exists"
+fi
 echo ""
 
 # ── 6. Lambda invoke permission for API Gateway ─────────────────────────────
