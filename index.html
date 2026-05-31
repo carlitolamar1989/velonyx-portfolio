@@ -4298,7 +4298,7 @@
       <li><a href="#work" onclick="document.getElementById('navLinks').classList.remove('open')">Portfolio</a></li>
       <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
       <li><a href="#faq" onclick="document.getElementById('navLinks').classList.remove('open')">FAQ</a></li>
-      <li><a href="/book.html" class="nav-cta">Book a 20-Min Call</a></li>
+      <li><a href="#" class="nav-cta" data-vx-form-open data-vx-form-context="Nav CTA">Talk to Us</a></li>
       <!-- Client Login removed from nav 2026-05-19 — was pointing to /platform/portal/
            which is Disallow'd in robots.txt and isn't a real live portal. Will be
            re-added once a real customer portal exists. -->
@@ -4338,7 +4338,7 @@
       <p class="hero-subheadline">$700 to build. $70 a month. Yours forever.</p>
       <p class="hero-sub">Agencies charge $5,000&ndash;$15,000 to build a platform like this. We charge $700. Custom website, 24/7 booking, integrated payments, customer financing, SMS automation, and an owner dashboard &mdash; engineered into one platform, branded for you, owned by you.</p>
       <div class="hero-buttons">
-        <a href="/book.html" class="btn-primary">Book a 20-Minute Call</a>
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Hero CTA">Talk to Us &mdash; 30 Seconds</a>
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">Explore the Live Demo &rarr;</a>
       </div>
       <p class="hero-trust">Custom-Engineered &middot; You Own Everything &middot; Apple Pay, Google Pay, Klarna, Afterpay, ACH &middot; Live in 7&ndash;14 Days</p>
@@ -4590,7 +4590,7 @@
           </ul>
 
           <div class="founding-actions">
-            <a href="/book.html" class="btn-primary founding-cta">Book a 20-Minute Call</a>
+            <a href="#" class="btn-primary founding-cta" data-vx-form-open data-vx-form-context="Core build card CTA">Talk to Us &mdash; 30 Seconds</a>
             <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-consult-link">See it live first &mdash; explore the demo build &rarr;</a>
           </div>
 
@@ -5116,7 +5116,7 @@
         <h2>Build Once.<br>Own It <span class="gold">Forever.</span></h2>
         <p>Premium platform without the premium price. Agencies charge $5,000&ndash;$15,000 for a build like this. We charge $700. The rented SaaS stack costs $5,760&ndash;$10,440 over three years and you own nothing at the end. Velonyx is $3,220 over the same three years &mdash; and you own everything.</p>
         <p style="font-size:0.95rem;color:var(--white-muted);margin:18px 0 26px;">$700 to build. $70 a month. Yours forever. One platform, branded for you, owned by you.</p>
-        <a href="/book.html" class="btn-primary">Book a 20-Minute Call</a>
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Final CTA section">Talk to Us &mdash; 30 Seconds</a>
         <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:14px;margin-bottom:0;">Want to see it first? <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.7);text-decoration:none;">Explore the live demo &rarr;</a></p>
         <div class="cta-contact-methods">
           <a href="mailto:admin@velonyxsystems.com" class="cta-contact-method">&#9993; admin@velonyxsystems.com</a>
@@ -5154,9 +5154,9 @@
 
   <!-- FLOATING BOOK BUTTON -->
   <div class="floating-book" id="floatingBook">
-    <a href="/book.html" class="floating-book-btn">
+    <a href="#" class="floating-book-btn" data-vx-form-open data-vx-form-context="Floating CTA">
       <span class="floating-book-pulse"></span>
-      Book Now
+      Talk Now
     </a>
   </div>
 
@@ -6317,5 +6317,7 @@
   <script src="/assets/urgency-banner.js" defer></script>
   <!-- Velonyx Assistant chatbot (floating bottom-right launcher; first-party, loads pre-consent) -->
   <script src="/assets/velonyx-chatbot.js" defer></script>
+  <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
+  <script src="/assets/velonyx-lead-form.js" defer></script>
 </body>
 </html>

@@ -377,6 +377,19 @@
         messagesEl.scrollTop = messagesEl.scrollHeight;
         firePixelLead();
       }
+
+      // If Lambda fired initiate_lead_capture tool, hand off to the conversational form widget
+      if (data && data.handoff && typeof window.openVelonyxLeadForm === 'function') {
+        // Give the user ~700ms to read the bot's transition line, then close + open form
+        setTimeout(function() {
+          closePanel();
+          window.openVelonyxLeadForm({
+            context: 'Chatbot handoff: user showed buying intent in chat',
+            initialMessage: "Let's grab your details — what's your name?"
+          });
+        }, 700);
+      }
+
       sendBtn.disabled = false;
     })
     .catch(function() {
