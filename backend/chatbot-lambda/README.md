@@ -12,6 +12,10 @@ The same Anthropic model (Claude Haiku 4.5) + the same business-context prompts 
 
 ## Morning checklist for Carlos (~30 min total)
 
+> 💨 **Fast path: run `bash provision.sh` on your Mac after exporting the env vars.** It does steps 5-8 below (AWS Lambda + role + API Gateway + 3 routes + CORS + Twilio webhook) in one shot. See "Fast path" section at the bottom of this README for details.
+>
+> The step-by-step below is for reference / if you want to do it manually in the console.
+
 ### 1. Anthropic API key (~2 min)
 1. **https://console.anthropic.com** → Settings → Billing → add payment method, fund $5+ credit, set $100/month spend cap
 2. Settings → API Keys → **Create Key** → name `velonyx-chatbot-lambda` → copy `sk-ant-api03-…`
@@ -221,3 +225,66 @@ After any change: `bash deploy.sh` (or upload a new zip via console). Changes ta
 - Conversation logging to CloudWatch for replay/debugging
 - Streaming responses for chat (real-time token-by-token feel)
 - Multilingual support (Spanish for the trades market)
+
+---
+
+## ⚡ Fast path — `provision.sh`
+
+If you have AWS CLI configured locally (`aws configure`), this script does ~90% of the work in one command. Skip steps 5-8 of the manual checklist above.
+
+### Prereqs (one-time)
+- AWS CLI configured: `aws configure` (your access key + region us-east-1)
+- Node 20+: `node --version`
+- `jq`: `brew install jq`
+- `zip`: built-in on macOS
+
+### Steps to run
+
+1. **Pull the latest branch on your Mac:**
+   ```bash
+   cd /Users/apple/Cursor-Claude
+   git fetch origin
+   git checkout claude/ai-lead-system
+   git pull
+   cd backend/chatbot-lambda
+   ```
+
+2. **Export the 10 env vars in your shell** (paste your real values):
+   ```bash
+   export ANTHROPIC_API_KEY='sk-ant-api03-…'
+   export SUPABASE_URL='https://….supabase.co'
+   export SUPABASE_SERVICE_ROLE_KEY='eyJ…'   # or sb_secret_…
+   export TWILIO_ACCOUNT_SID='AC…'
+   export TWILIO_AUTH_TOKEN='…'
+   export TWILIO_MESSAGING_SERVICE_SID='MG…'
+   export RESEND_API_KEY='re_…'
+   export RESEND_FROM_ADDRESS='Velonyx <leads@velonyxsystems.com>'
+   export OWNER_EMAIL='admin@velonyxsystems.com'
+   export OWNER_PHONE='+15551234567'
+   ```
+
+3. **Run the script:**
+   ```bash
+   bash provision.sh
+   ```
+
+4. The script will:
+   - Build a fresh `function.zip`
+   - Create the IAM role for the Lambda
+   - Create or update the Lambda function with all env vars
+   - Upload the function code
+   - Create the API Gateway HTTP API with the 3 routes + CORS
+   - Wire the Lambda invoke permission
+   - **Configure the Twilio Messaging Service inbound webhook automatically**
+   - Print the Invoke URL + the exact line to paste into `assets/marketing-config.js`
+
+5. **Paste the output line into `assets/marketing-config.js`**, commit, push.
+
+6. **Still do manually** (the script can't do these):
+   - Supabase migration: SQL Editor → paste `001_leads.sql` → Run
+   - Resend sender domain: verify DNS (one-time)
+   - Twilio 10DLC: confirm Brand + Campaign are APPROVED (read-only check)
+
+### What the script changes are idempotent
+You can re-run `bash provision.sh` any time — it detects existing resources and updates them in place. Use it whenever you need to redeploy code or update env vars.
+
