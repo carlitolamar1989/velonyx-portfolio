@@ -54,6 +54,13 @@ function loadPrompt(file, fallback) {
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Legacy leads endpoint — fallback sink when Supabase is unavailable, so a
+// captured lead is never lost to an infra hiccup.
+const httpClient = require('./lib/http');
+async function postLead(payload) {
+  return httpClient.post(LEADS_ENDPOINT, { body: payload, timeout: 8000 });
+}
+
 // ──────────────────────────────────────────────────────────────────────────────
 // Tool definitions
 // ──────────────────────────────────────────────────────────────────────────────
@@ -378,18 +385,43 @@ async function handleFormTurn(event) {
           conversation_log: collectFormTranscript(history, message, assistantText),
           meta:     { session_id: sessionId || '', captured_via: 'form_complete_capture_tool' }
         };
+        // Persist to Supabase if reachable. If the table is missing or Supabase
+        // is down, DO NOT break the visitor's experience — fall back to the
+        // legacy leads endpoint and still fire SMS + owner notify off the
+        // captured record. A lead is never lost to an infra hiccup.
+        let lead = null;
         if (supabase.configured()) {
-          const lead = await supabase.insertLead(record);
-          leadId = lead.id;
-          completed = true;
-          // Fire SMS opener + owner notify in parallel; don't block response
+          try {
+            lead = await supabase.insertLead(record);
+            leadId = lead.id;
+          } catch (e) {
+            console.error('supabase insert failed — falling back to legacy endpoint', e);
+          }
+        }
+        completed = true;
+        if (lead) {
+          // Full path: SMS opener + owner notify off the saved lead (has id for logging)
           Promise.all([
             sendOpeningSms(lead).catch(function(e) { console.error('opening sms failed', e); }),
             notifyOwnerAsync(lead).catch(function(e) { console.error('notify failed', e); })
           ]);
         } else {
-          completed = true;
-          console.warn('supabase not configured — form completion not persisted');
+          // Degraded path: no Supabase row, but still text the lead + alert owner +
+          // drop the lead into the legacy endpoint so nothing is lost.
+          const fallbackLead = Object.assign({ id: 'nodb-' + (sessionId || Date.now()) }, record);
+          Promise.all([
+            sendOpeningSms(fallbackLead).catch(function(e) { console.error('fallback opening sms failed', e); }),
+            notifyOwnerAsync(fallbackLead).catch(function(e) { console.error('fallback notify failed', e); }),
+            postLead({
+              firstName: (record.name || 'Form').split(/\s+/)[0],
+              lastName:  (record.name || 'Lead').split(/\s+/).slice(1).join(' ') || 'Lead',
+              phone:     record.phone,
+              email:     '',
+              service:   record.interest || 'Form lead',
+              description: 'Form lead (Supabase unavailable). Session: ' + (sessionId || 'unknown'),
+              source:    'form-nodb'
+            }).catch(function(e) { console.error('legacy fallback post failed', e); })
+          ]);
         }
         if (!assistantText) assistantText = "Got it. Texting you now from our line — answer right back and I'll take it from there.";
       }
@@ -556,12 +588,15 @@ async function sendOpeningSms(lead) {
   const interestSnippet = (lead.interest || '').slice(0, 60);
   const body = "Hi " + firstName + ", it's the Velonyx Assistant. Got your note about " + interestSnippet
     + ". Carlos is looped in. Quick — when do you want to be live? Reply STOP to opt out.";
-  try {
-    await twilio.sendSms(lead.phone, body);
-    await supabase.appendTurn(lead.id, { role: 'bot', text: body, ts: new Date().toISOString(), channel: 'sms' });
-  } catch (e) {
-    console.error('opening sms send failed', e);
-    throw e;
+  // Send the SMS first (the part that matters to the lead). Logging the turn to
+  // Supabase is best-effort — skip for fallback leads (synthetic id, no DB row).
+  await twilio.sendSms(lead.phone, body);
+  if (supabase.configured() && lead.id && String(lead.id).indexOf('nodb-') !== 0) {
+    try {
+      await supabase.appendTurn(lead.id, { role: 'bot', text: body, ts: new Date().toISOString(), channel: 'sms' });
+    } catch (e) {
+      console.error('opening sms log to supabase failed (non-fatal)', e);
+    }
   }
 }
 
