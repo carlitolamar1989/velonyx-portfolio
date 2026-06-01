@@ -65,7 +65,7 @@
     "url": "https://velonyxsystems.com",
     "logo": "https://velonyxsystems.com/assets/vs-logo-shield-clean.png",
     "image": "https://velonyxsystems.com/assets/vs-logo-shield-clean.png",
-    "description": "Velonyx engineers one custom-engineered platform that replaces the four-to-six software subscriptions service operators pay for separately. Branded website, 24/7 booking, integrated payments, customer financing (Klarna, Afterpay), SMS automation, owner dashboard, and local SEO — all in a system the operator owns outright. $700 one-time build + $70/month for hosting, maintenance, and support. Premium quality at a budget price. Built for service businesses (HVAC, plumbing, electrical, garage doors, and any service operator) ready to own their infrastructure. Stop renting. Start owning.",
+    "description": "Velonyx engineers AI lead systems for service businesses. An AI chatbot that answers in seconds, a conversational form that captures leads, and instant SMS text-back that qualifies and books — all running 24/7, while the owner works. Built on a premium custom platform with integrated payments, customer financing, and a phone-first owner dashboard. Three tiers: Essentials ($700 build + $70/mo) ships the platform and chatbot. Growth ($900 + $150/mo) adds AI lead automation. Elite ($1,200 + $400/mo) adds an AI voice agent that answers calls 24/7. The site itself is the live demo — visitors experience the AI chatbot and conversational form firsthand.",
     "telephone": "+1-877-317-8643",
     "email": "admin@velonyxsystems.com",
     "slogan": "Your Legacy, Engineered With Precision.",
@@ -105,7 +105,7 @@
         "name": "Velonyx Custom Platform — Core Build",
         "price": "700",
         "priceCurrency": "USD",
-        "description": "One-time $700 build + $70/month Care plan. Premium custom-engineered platform: branded website, 24/7 online booking, integrated payments (Apple Pay, Google Pay, cards, ACH), customer financing (Klarna, Afterpay), automated SMS, owner admin dashboard, and SEO foundation. Full ownership: code, design, data, domain. Yours forever — no monthly rent, no vendor lock-in."
+        "description": "One-time $700 build + $70/month. Custom-engineered website + production hosting + 24/7 AI chatbot trained on the business + integrated payments + customer financing + automated SMS + phone-first owner dashboard. Full code ownership."
       },
       {
         "@type": "Offer",
@@ -207,7 +207,10 @@
     {"@type":"Question","name":"Do I own the system after it's built?","acceptedAnswer":{"@type":"Answer","text":"Yes — fully. Once payment is complete, you own the entire platform. The code is yours. The design is yours. The domain is yours. The customer data is yours. You can modify it, migrate it, sell it, or hand it to your kids. This is the core promise of Velonyx — you build a business asset, not a monthly bill."}},
     {"@type":"Question","name":"Can my customers pay over time?","acceptedAnswer":{"@type":"Answer","text":"Yes. Velonyx wires Klarna and Afterpay directly into your customer payment flow. Customers can split a $2,000 service into 4 payments at no interest. This typically increases close rate 20–30% on bigger-ticket jobs — exactly what HVAC, plumbing, electrical, and garage door operators need to close more bids."}},
     {"@type":"Question","name":"What's your refund policy?","acceptedAnswer":{"@type":"Answer","text":"Refunds are tiered by phase. Within 24 hours of payment and before any build work begins, you receive a full refund. After project kickoff but before design preview, you receive a partial refund less work completed. After preview delivery, refunds are limited to unstarted work. Once the platform is delivered and launched, the build is non-refundable — you own the system. The full policy is on the Refund Policy page at /refund-policy.html."}},
-    {"@type":"Question","name":"Why should I choose Velonyx over SaaS tools like Housecall Pro, ServiceTitan, or Jobber?","acceptedAnswer":{"@type":"Answer","text":"SaaS tools like Housecall Pro, ServiceTitan, Jobber, Wix, and Squarespace are rented software. You pay monthly. You build their business with your payments. You own nothing at the end. When they raise prices, you have no leverage. Velonyx is a custom-engineered platform built specifically for your operation. One payment to build ($700). A flat $70/month to keep it running. You own the code, the design, the customer data, the domain — everything. After three years, you've paid $3,220 total and you walk away with an asset that lives on your balance sheet. The right question isn't 'which software is better?' It's 'do you want to rent forever, or own?'"}},
+    {"@type":"Question","name":"Will the AI know my business?","acceptedAnswer":{"@type":"Answer","text":"Yes. We train it on your services, pricing, hours, and FAQs before launch. By day one it answers the way you would."}},
+    {"@type":"Question","name":"What happens to leads when I'm asleep?","acceptedAnswer":{"@type":"Answer","text":"The AI answers, qualifies, and texts them back within seconds. You wake up to booked calls and a full conversation log."}},
+    {"@type":"Question","name":"What if a customer wants a real person?","acceptedAnswer":{"@type":"Answer","text":"The AI hands off. We text your phone instantly and send you the full conversation so you walk in already knowing the context."}},
+    {"@type":"Question","name":"Can I add the AI Voice Agent later?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upgrade from Growth to Elite any time. We add it in 48 hours."}},
     {"@type":"Question","name":"What happens if I want to leave Velonyx?","acceptedAnswer":{"@type":"Answer","text":"You take everything with you — domain, code, files, customer data, customer list. We'll help you transfer to another developer or self-host. We don't lock customers in. The $70/month Care plan is month-to-month."}}
   ]}
   </script>
@@ -1164,8 +1167,13 @@
       line-height: 1.8;
     }
 
-    /* ── AI Lead System section ── */
-    .ai-system { padding: 88px 0; border-bottom: 1px solid var(--bg-border); }
+    /* ── AI Lead System section ──
+       position+z-index required so the section claims its own stacking context
+       above .cosmos-veil-layer (fixed inset:0 with backdrop-filter). Without
+       these, the section's content sat BEHIND the frosted veil on mobile and
+       was visibly blurred. Matches the pattern used by .problem, .portfolio,
+       .services. */
+    .ai-system { padding: 88px 0; border-bottom: 1px solid var(--bg-border); position: relative; z-index: 3; }
     .ai-system-head { max-width: 760px; margin: 0 auto 48px; text-align: center; padding: 0 24px; }
     .ai-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
     @media (max-width: 1024px) { .ai-steps { grid-template-columns: repeat(2, 1fr); } }
@@ -1177,6 +1185,41 @@
     .ai-step p { color: var(--white-muted); font-size: 0.92rem; line-height: 1.6; }
     .ai-system-cta { text-align: center; margin-top: 44px; padding: 0 24px; }
     .ai-system-note { font-size: 0.85rem; color: var(--white-dim); margin-top: 14px; }
+    /* ── Media placeholders (clearly marked for future drop-in) ── */
+    .media-placeholder {
+      max-width: 880px; margin: 48px auto 0; padding: 0 24px;
+      aspect-ratio: 16/9;
+      position: relative;
+    }
+    .media-placeholder-inner {
+      position: absolute; inset: 0 24px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      gap: 10px; text-align: center; padding: 24px;
+    }
+    .media-placeholder-icon {
+      font-size: 2rem; color: var(--accent);
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .media-placeholder-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      color: var(--white); font-size: 0.92rem; letter-spacing: 0.5px;
+    }
+    .media-placeholder-sub {
+      color: var(--white-muted); font-size: 0.82rem;
+    }
+    .media-placeholder-video {
+      position: absolute; inset: 0 24px; width: calc(100% - 48px); height: 100%;
+      object-fit: cover; border-radius: 18px;
+    }
+    @media (max-width: 560px) {
+      .media-placeholder { padding: 0 16px; }
+      .media-placeholder-inner { inset: 0 16px; }
+    }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
     @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
@@ -1330,6 +1373,14 @@
       position: relative;
       z-index: 3;
     }
+    .process-cta { text-align: center; margin-top: 40px; }
+    .cta-media-placeholder {
+      max-width: 560px; margin: 32px auto 24px; padding: 28px 20px;
+      border: 1px dashed rgba(212,175,55,0.28); border-radius: 14px;
+      background: rgba(8,8,10,0.5); text-align: center;
+    }
+    .cta-media-icon { font-size: 1.6rem; color: var(--accent); margin-bottom: 6px; }
+    .cta-media-label { color: var(--white-dim); font-size: 0.82rem; letter-spacing: 0.5px; }
 
     .process-steps {
       display: grid;
@@ -4378,7 +4429,7 @@
         <span class="line"><span class="gold">Lead.</span></span>
       </h2>
       <p class="hero-subheadline">AI answers in seconds. 24/7. While you work.</p>
-      <p class="hero-sub">Velonyx engineers AI lead systems for service businesses &mdash; an AI chatbot, a conversational lead form, and instant SMS text-back, connected by one brain. The moment someone reaches out, your system answers, captures the lead, and texts them back within seconds. Branded for you, owned by you.</p>
+      <p class="hero-sub">Chat. Form. Text-back. One AI brain. This page IS the demo &mdash; try the chat.</p>
       <div class="hero-buttons">
         <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Hero CTA">Talk to Us &mdash; 30 Seconds</a>
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">Explore the Live Demo &rarr;</a>
@@ -4405,33 +4456,51 @@
       <div class="ai-system-head fade-in">
         <div class="section-label" style="text-align:center;">The Velonyx AI Lead System</div>
         <h2 class="section-title">Your 24/7 AI Front Desk.</h2>
-        <p class="section-subtitle">One connected system that answers, captures, and follows up &mdash; in seconds, around the clock, while you work. You're using it right now: the chat in the corner is the same system we build into your platform.</p>
+        <p class="section-subtitle">Four steps. Run in seconds. While you work.</p>
       </div>
       <div class="ai-steps fade-in">
         <div class="ai-step">
           <div class="ai-step-num">01</div>
-          <h3>AI Chatbot Answers Instantly</h3>
-          <p>A visitor lands on your site and asks a question. The AI answers in seconds &mdash; pricing, availability, services &mdash; trained on your business. No waiting, no missed message.</p>
+          <h3>Answers Instantly</h3>
+          <p>AI replies in seconds. Trained on your business.</p>
         </div>
         <div class="ai-step">
           <div class="ai-step-num">02</div>
-          <h3>Conversational Form Captures the Lead</h3>
-          <p>When the visitor shows interest, the chat turns into a conversational form &mdash; one question at a time. Name, number, what they need. It feels like texting a person, not filling out a form.</p>
+          <h3>Captures the Lead</h3>
+          <p>Name, phone, what they need. One question at a time.</p>
         </div>
         <div class="ai-step">
           <div class="ai-step-num">03</div>
-          <h3>Instant SMS Texts Them Back</h3>
-          <p>The second their number lands, your system texts them &mdash; within seconds. The AI keeps the conversation going by SMS, qualifies them, and moves toward a booking. A real two-way conversation.</p>
+          <h3>Texts Them Back</h3>
+          <p>Real two-way SMS. Within 30 seconds. AI keeps qualifying.</p>
         </div>
         <div class="ai-step">
           <div class="ai-step-num">04</div>
-          <h3>You Get Alerted, Lead in Hand</h3>
-          <p>Every warm lead lands in your inbox and your phone with the full conversation. You step in already knowing what they want &mdash; or let the AI book them while you stay on the job.</p>
+          <h3>Alerts You</h3>
+          <p>Lead in your pocket. Booked, qualified, ready.</p>
         </div>
       </div>
+
+      <!-- [MEDIA PLACEHOLDER 1 — drop a 20-30s screen recording here later]
+           Recommended: chatbot Q&A → form handoff → SMS thread, vertical 1080x1920
+           OR horizontal 1920x1080. MP4 H.264, autoplay muted loop. Drop file at
+           assets/demo-ai-system.mp4 and uncomment the <video> tag below to swap. -->
+      <div class="media-placeholder fade-in" aria-hidden="true">
+        <div class="media-placeholder-inner">
+          <div class="media-placeholder-icon">▶</div>
+          <div class="media-placeholder-label">Demo Video — Coming Soon</div>
+          <div class="media-placeholder-sub">Watch the AI answer, capture, and text back. Live.</div>
+        </div>
+        <!--
+        <video class="media-placeholder-video" autoplay muted loop playsinline poster="assets/demo-ai-system-poster.webp">
+          <source src="assets/demo-ai-system.mp4" type="video/mp4">
+        </video>
+        -->
+      </div>
+
       <div class="ai-system-cta fade-in">
         <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="AI system section">See It Work &mdash; Talk to Us</a>
-        <p class="ai-system-note">Or click the chat bubble in the corner. That's the product, live.</p>
+        <p class="ai-system-note">Or open the chat. Right now. That's the demo.</p>
       </div>
     </div>
   </section>
@@ -4445,8 +4514,8 @@
     <div class="container">
       <div class="section-label">Live Demo Build</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">See a Real Velonyx Build &mdash; Live Demo.</h2>
-      <p class="section-subtitle fade-in">Garage Door Kings is a live demo build engineered to show exactly what a Velonyx system looks and feels like &mdash; full marketing site, lead form, customer portal, and admin dashboard with leads, jobs, SMS log, and reviews. Click through and explore the system that could run your business.</p>
+      <h2 class="section-title shimmer-sweep fade-in">See It Live. Garage Door Kings.</h2>
+      <p class="section-subtitle fade-in">A real Velonyx system. Running 24/7.</p>
 
       <div class="portfolio-grid">
         <!-- Garage Door Kings — live demo on gdk.velonyxsystems.com (real screenshot, captured 2026-05-06) -->
@@ -4460,11 +4529,11 @@
           <div class="portfolio-card-body">
             <div class="client-badge">Demo Build &middot; Home Service</div>
             <h3>Garage Door Kings</h3>
-            <p>Live demo &mdash; full marketing site, lead form, customer portal, and admin dashboard with leads, jobs, SMS log, and reviews. Click through and explore.</p>
+            <p>Site. Chatbot. Form. SMS. Admin. Live and running.</p>
             <div class="portfolio-tags">
+              <span>AI Chatbot</span>
               <span>Lead Form</span>
               <span>Admin CRM</span>
-              <span>Copper &amp; Black</span>
             </div>
           </div>
         </a>
@@ -4479,57 +4548,54 @@
     <div class="container">
       <div class="section-label">What's Included</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Everything in the $700 Build.</h2>
-      <p class="section-subtitle fade-in">One platform. One bill. One brand. All yours.</p>
+      <h2 class="section-title shimmer-sweep fade-in">Built to Win Leads.</h2>
+      <p class="section-subtitle fade-in">Five things. Done instantly. Every time.</p>
 
       <div class="services-grid">
         <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:globe --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-          <h3>Custom-Engineered Website</h3>
-          <p>A custom-engineered website built on modern cloud infrastructure. Fast, mobile-first, and designed to convert visitors into booked jobs. No templates. No look-alike sites. Built to rank locally and compound search authority month over month.</p>
-          <span class="service-tag">Found on Google</span>
+          <div class="service-icon"><!-- lucide:message-square --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Answers Instantly</h3>
+          <p>Every question. Day or night.</p>
+          <span class="service-tag">In Seconds</span>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon"><!-- lucide:user-plus --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg></div>
+          <h3>Captures the Lead</h3>
+          <p>Name, phone, what they need.</p>
+          <span class="service-tag">One Question at a Time</span>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon"><!-- lucide:phone --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <h3>Texts Them Back</h3>
+          <p>Real two-way SMS. In their pocket.</p>
+          <span class="service-tag">Within 30 Seconds</span>
         </div>
 
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:calendar-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-          <h3>24/7 Online Booking</h3>
-          <p>Customers book appointments any time, any day &mdash; from your branded site, on their phone, without calling. Bookings land in your dashboard and trigger the SMS confirmation flow automatically.</p>
-          <span class="service-tag">Always Open</span>
+          <h3>Books the Call</h3>
+          <p>Calendly link. Sent at the right moment.</p>
+          <span class="service-tag">Without You Lifting a Finger</span>
         </div>
 
         <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:credit-card --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
-          <h3>Integrated Payments</h3>
-          <p>Customers complete the booking and payment in one flow &mdash; Apple Pay, Google Pay, credit cards, and ACH Direct Debit. Money hits your account fast. No invoice chasing. No friction at the close.</p>
-          <span class="service-tag">Get Paid Fast</span>
+          <div class="service-icon"><!-- lucide:bell --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+          <h3>Alerts You</h3>
+          <p>The second a hot lead lands.</p>
+          <span class="service-tag">Email + Text</span>
         </div>
+      </div>
 
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:wallet --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></div>
-          <h3>Customer Financing</h3>
-          <p>Klarna and Afterpay built directly into your checkout. Customers say yes to bigger jobs because they can split the payment. You get paid in full, upfront. Higher average ticket. Lower customer drop-off.</p>
-          <a href="financing.html" style="text-decoration:none;"><span class="service-tag" style="cursor:pointer;">See How It Works &rarr;</span></a>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:clipboard-list --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
-          <h3>Job &amp; Invoice Tracking</h3>
-          <p>Every job, every customer, every payment &mdash; one dashboard. Stop hunting through three different apps to answer a customer question. Your business runs from a single screen.</p>
-          <span class="service-tag">One Dashboard</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:message-square --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>SMS Automation</h3>
-          <p>Sub-60-second lead response, automated. Appointment confirmations, payment links, follow-up sequences &mdash; all triggered by the system. Your phone does the work while you're on the job. Speed-to-lead is the single biggest predictor of closing rate.</p>
-          <span class="service-tag">Sub-60-Second Response</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:shield-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <h3>You Own It</h3>
-          <p>Built once. Yours forever. No monthly platform rent. No vendor lock-in. No company raising your rates every year. Your customer data, your code, your domain &mdash; all on your balance sheet.</p>
-          <span class="service-tag">On Your Balance Sheet</span>
+      <!-- [MEDIA PLACEHOLDER 2 — drop an SMS thread screenshot here later]
+           Recommended: 720x1280 vertical image of a real AI SMS conversation
+           (chat thread on iPhone or Android). File: assets/demo-sms-thread.webp -->
+      <div class="media-placeholder media-placeholder-portrait fade-in" aria-hidden="true">
+        <div class="media-placeholder-inner">
+          <div class="media-placeholder-icon">💬</div>
+          <div class="media-placeholder-label">Example SMS Thread</div>
+          <div class="media-placeholder-sub">See how the AI qualifies a lead.</div>
         </div>
       </div>
     </div>
@@ -4538,42 +4604,13 @@
   <!-- PROCESS -->
   <section class="process cyber-reveal" id="process">
     <div class="container">
-      <div class="section-label">Our Process</div>
+      <div class="section-label">The Process</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">From Conversation to Launch</h2>
-      <p class="section-subtitle fade-in">Simple, transparent, and fast. Here's how we work.</p>
+      <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
+      <p class="section-subtitle fade-in">One call. One build. Yours forever.</p>
 
-      <div class="process-steps">
-        <div class="process-step fade-in">
-          <div class="process-num">1</div>
-          <div class="process-when">Day 1</div>
-          <h3>Free Consultation</h3>
-          <p>A 20-minute conversation about your business, your goals, and what your platform should do. No pressure. No commitment. Just a direct conversation.</p>
-        </div>
-        <div class="process-step fade-in">
-          <div class="process-num">2</div>
-          <div class="process-when">Day 1&ndash;2</div>
-          <h3>Secure Your Project</h3>
-          <p>A 50% deposit reserves your build slot and kicks off engineering. The remaining 50% is due at launch.</p>
-        </div>
-        <div class="process-step fade-in">
-          <div class="process-num">3</div>
-          <div class="process-when">Days 3&ndash;10</div>
-          <h3>Design &amp; Build</h3>
-          <p>We engineer your system from scratch. You get a live preview link to review every detail before anything goes public.</p>
-        </div>
-        <div class="process-step fade-in">
-          <div class="process-num">4</div>
-          <div class="process-when">Days 10&ndash;13</div>
-          <h3>Refine</h3>
-          <p>Your feedback shapes the final product. We revise within a capped revision window until every detail is right.</p>
-        </div>
-        <div class="process-step fade-in">
-          <div class="process-num">5</div>
-          <div class="process-when">Day 14</div>
-          <h3>Launch</h3>
-          <p>We deploy your platform, connect payments, and hand you a live link. Your business is online and built to convert.</p>
-        </div>
+      <div class="process-cta fade-in">
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Process section">Talk to Us &mdash; 30 Seconds</a>
       </div>
     </div>
   </section>
@@ -4584,8 +4621,9 @@
       <div class="section-label">Investment</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">Pick Your System.</h2>
+      <!-- (subhead is set immediately below) -->
       <div class="pricing-slogan fade-in">Your Legacy, Engineered With Precision.</div>
-      <p class="section-subtitle fade-in">Every tier ships a custom website, hosting, and an AI chatbot. Step up for the parts that make sure you never miss a lead.</p>
+      <p class="section-subtitle fade-in">Every tier ships the AI. Step up for more reach.</p>
 
       <!-- PAYMENT PARTNERS — shown right under heading -->
       <div class="payment-partners fade-in">
@@ -4704,138 +4742,6 @@
         </div>
       </div>
 
-      <!-- The Rented Stack vs The Velonyx Platform — the math made visual. -->
-      <div class="pricing-comparison fade-in">
-        <div class="comparison-eyebrow">Own It. No Rent. No Lock-In.</div>
-        <h3 class="comparison-heading">Stop Renting. Start Owning.</h3>
-        <p class="comparison-intro">Most operators pay four to six software companies every month for tools that don't connect &mdash; and own nothing at the end of three years. Here's the math, side by side.</p>
-
-        <div class="comparison-grid">
-
-          <!-- LEFT: Agency Build -->
-          <div class="comparison-col agency">
-            <div class="comparison-col-tag">Agency Build</div>
-            <div class="comparison-col-title">Custom Build + Ongoing Bills<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(what an agency quotes for the same platform)</span></div>
-
-            <div class="comparison-row">
-              <span class="row-label">Custom website build<br><span style="font-size:0.78rem;color:var(--white-dim);">(one-time)</span></span>
-              <span class="row-price">$5,000&ndash;$15,000</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Hosting + maintenance<br><span style="font-size:0.78rem;color:var(--white-dim);">(monthly)</span></span>
-              <span class="row-price">$150&ndash;300/mo</span>
-            </div>
-
-            <div class="comparison-divider"></div>
-
-            <div class="comparison-total">
-              <span class="comparison-total-label">Total</span>
-              <span class="comparison-total-value">3-year est.</span>
-            </div>
-
-            <div class="comparison-3yr-label">3-Year Cost</div>
-            <div class="comparison-3yr-value">$10,400&ndash;$25,800</div>
-
-            <div class="comparison-ownership">
-              <span class="own-flag">What you own at the end:</span><br>
-              <strong style="color:var(--white);">The site &mdash; but at 3&ndash;15&times; the price.</strong>
-            </div>
-
-            <p style="margin-top:18px;font-size:0.68rem;color:var(--white-dim);line-height:1.5;letter-spacing:0.2px;opacity:0.75;">
-              Source: agency rate cards and industry pricing surveys (Clutch, Goodfirms), 2025&ndash;2026.
-            </p>
-          </div>
-
-          <!-- MIDDLE: Rented Software -->
-          <div class="comparison-col rented">
-            <div class="comparison-col-tag">Rented Software</div>
-            <div class="comparison-col-title">Four to Six SaaS Bills<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(what most operators pay today)</span></div>
-
-            <div class="comparison-row">
-              <span class="row-label">Job management software<br><span style="font-size:0.78rem;color:var(--white-dim);">(Housecall Pro, Jobber)</span></span>
-              <span class="row-price">$109&ndash;169/mo</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Branded website builder<br><span style="font-size:0.78rem;color:var(--white-dim);">(Squarespace, Wix)</span></span>
-              <span class="row-price">$23&ndash;65/mo</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">SMS automation tool</span>
-              <span class="row-price">$20&ndash;40/mo</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Customer financing integration<br><span style="font-size:0.78rem;color:var(--white-dim);">(BNPL / pay over time)</span></span>
-              <span class="row-price">$8&ndash;16/mo</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Payment processing markup<br><span style="font-size:0.78rem;color:var(--white-dim);">(per-transaction fees)</span></span>
-              <span class="row-price">varies</span>
-            </div>
-
-            <div class="comparison-divider"></div>
-
-            <div class="comparison-total">
-              <span class="comparison-total-label">Total</span>
-              <span class="comparison-total-value">$160&ndash;290/month</span>
-            </div>
-
-            <div class="comparison-3yr-label">3-Year Cost</div>
-            <div class="comparison-3yr-value">$5,760&ndash;$10,440</div>
-
-            <div class="comparison-ownership">
-              <span class="own-flag">What you own at the end:</span><br>
-              <strong style="color:var(--white);">$0.</strong>
-            </div>
-
-            <p style="margin-top:18px;font-size:0.68rem;color:var(--white-dim);line-height:1.5;letter-spacing:0.2px;opacity:0.75;">
-              Source: vendor pricing pages (Housecall Pro Essentials, Jobber Core, Squarespace Business plan, Twilio + SendGrid pricing), accessed May 2026.
-            </p>
-          </div>
-
-          <!-- RIGHT: Velonyx Platform -->
-          <div class="comparison-col velonyx">
-            <div class="comparison-col-tag">The Velonyx Platform</div>
-            <div class="comparison-col-title">One Custom Platform<br><span style="font-size:0.85rem;font-weight:500;color:var(--white-dim);">(replacing both columns to the left)</span></div>
-
-            <div class="comparison-row">
-              <span class="row-label"><strong>Build:</strong> $700 once.</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label"><strong>Care:</strong> $70/month for hosting, security, support, and updates.</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Includes everything in the rented stack &mdash; plus owner dashboard, SEO foundation, integrated payments, and customer financing built in.</span>
-            </div>
-            <div class="comparison-row">
-              <span class="row-label">Premium build engineered to agency standards. Budget price.</span>
-            </div>
-
-            <div class="comparison-divider"></div>
-
-            <div class="comparison-total">
-              <span class="comparison-total-label">Total</span>
-              <span class="comparison-total-value">3-year cost</span>
-            </div>
-
-            <div class="comparison-3yr-label">3-Year Cost</div>
-            <div class="comparison-3yr-value">$3,220</div>
-
-            <div class="comparison-ownership">
-              <span class="own-flag">What you own at the end:</span><br>
-              <strong style="color:var(--white);">The entire platform.</strong>
-            </div>
-
-            <p style="margin-top:18px;font-size:0.68rem;color:var(--white-dim);line-height:1.5;letter-spacing:0.2px;opacity:0.75;">
-              Math: $700 build + ($70 &times; 36 months) = $3,220 total. Code, design, customer data, and domain all stay with you.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="comparison-takeaway">
-          Up to <strong>8&times; less</strong> than an agency. Up to <strong>3&times; less</strong> than the rented stack. <strong>And you own it forever.</strong>
-        </div>
-      </div>
 
     </div>
   </section>
@@ -4855,13 +4761,12 @@
       <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark" width="512" height="590" loading="lazy">
     </picture>
     <div class="container">
-      <div class="section-label">From the Founder</div>
+      <div class="section-label">The Engineer</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Why Velonyx Exists.</h2>
+      <h2 class="section-title shimmer-sweep fade-in">One Operator. One Builder.</h2>
       <div class="about-content fade-in">
-        <p>Founder of Velonyx Systems. Background combining technical engineering with operational discipline — building production cloud systems, payment integrations, and SMS automation infrastructure.</p>
-        <p>I built Velonyx because business owners are running their operations across too many disconnected apps, websites, and spreadsheets. Velonyx engineers everything into one platform that runs faster, runs smoother, and gives owners a single dashboard to see jobs, payments, customers, and search performance — all in one place. Customers book, pay, and stay in sync with the business through the same system.</p>
-        <p>Based in San Diego. Building Velonyx for service-based businesses across the nation.</p>
+        <p>Velonyx is engineered by Carlos Glover in San Diego. AI systems. Built fast. Owned by you.</p>
+        <p>One direct line. No agency overhead. No account managers stacked on project managers stacked on creative directors. You talk to the engineer building your system.</p>
 
         <div class="founder-signature fade-in">
           <picture class="founder-mark">
@@ -5034,13 +4939,41 @@
 
         <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
           <div class="faq-question">
-            <span>Why should I choose Velonyx over SaaS tools like Housecall Pro, ServiceTitan, or Jobber?</span>
+            <span>Will the AI know my business?</span>
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            <p>SaaS tools like Housecall Pro, ServiceTitan, Jobber, Wix, and Squarespace are rented software. You pay monthly. You build their business with your payments. You own nothing at the end. When they raise prices, you have no leverage.</p>
-            <p>Velonyx is a custom-engineered platform built specifically for your operation. One payment to build ($700). A flat $70/month to keep it running. You own the code, the design, the customer data, the domain &mdash; everything. After three years, you've paid $3,220 total and you walk away with an asset that lives on your balance sheet.</p>
-            <p>The right question isn't "which software is better?" It's "do you want to rent forever, or own?"</p>
+            <p>Yes. We train it on your services, pricing, hours, and FAQs before launch. By day one it answers the way you would.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>What happens to leads when I'm asleep?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The AI answers, qualifies, and texts them. You wake up to booked calls.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>What if a customer wants a real person?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The AI hands off. We text your phone instantly and send you the full conversation so you walk in already knowing the context.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>Can I add the AI Voice Agent later?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. Upgrade from Growth to Elite any time. We add it in 48 hours.</p>
           </div>
         </div>
 
@@ -5082,12 +5015,21 @@
   <section class="cta-section" id="contact">
     <div class="container">
       <div class="cta-card fade-in">
-        <div class="section-label">Let's Build</div>
-        <h2>Build Once.<br>Own It <span class="gold">Forever.</span></h2>
-        <p>Premium platform without the premium price. Agencies charge $5,000&ndash;$15,000 for a build like this. We charge $700. The rented SaaS stack costs $5,760&ndash;$10,440 over three years and you own nothing at the end. Velonyx is $3,220 over the same three years &mdash; and you own everything.</p>
-        <p style="font-size:0.95rem;color:var(--white-muted);margin:18px 0 26px;">$700 to build. $70 a month. Yours forever. One platform, branded for you, owned by you.</p>
+        <div class="section-label">Stop Missing Leads</div>
+        <h2>Your AI Front Desk.<br>Live in <span class="gold">7 days.</span></h2>
+        <p style="font-size:1.05rem;color:var(--white-muted);margin:18px 0 26px;">Or open the chat. Right now. That's the demo.</p>
         <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Final CTA section">Talk to Us &mdash; 30 Seconds</a>
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:14px;margin-bottom:0;">Want to see it first? <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.7);text-decoration:none;">Explore the live demo &rarr;</a></p>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:14px;margin-bottom:0;">Prefer to see it first? <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.7);text-decoration:none;">Explore the live build &rarr;</a></p>
+
+        <!-- [MEDIA PLACEHOLDER 4 — drop a chatbot pulse loop here later]
+             Recommended: 15s loop of the chat bubble pulsing → opening → typing.
+             OR a single hero shot of velonyxsystems.com on a phone screen.
+             File: assets/demo-chatbot-loop.mp4 -->
+        <div class="cta-media-placeholder" aria-hidden="true">
+          <div class="cta-media-icon">✦</div>
+          <div class="cta-media-label">Chatbot Pulse Loop &mdash; Coming Soon</div>
+        </div>
+
         <div class="cta-contact-methods">
           <a href="mailto:admin@velonyxsystems.com" class="cta-contact-method">&#9993; admin@velonyxsystems.com</a>
           <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" class="cta-contact-method">&#9733; @velonyxsystems</a>
@@ -5128,42 +5070,6 @@
       <span class="floating-book-pulse"></span>
       Talk Now
     </a>
-  </div>
-
-  <!-- OFFER REVEAL MODAL — auto-opens once per session (sessionStorage guard). Repurposed from the prior Founding Member modal to surface the new $700/$70 core offer with the premium-at-budget framing. -->
-  <div class="founding-modal-overlay" id="foundingModalOverlay" role="dialog" aria-modal="true" aria-labelledby="foundingModalTitle" aria-hidden="true">
-    <div class="founding-modal-backdrop" onclick="closeFoundingModal()" aria-hidden="true"></div>
-    <div class="founding-modal-card">
-      <button class="founding-modal-close" onclick="closeFoundingModal()" aria-label="Close offer" type="button">&times;</button>
-      <div class="founding-modal-tier-tag">The Premium Platform &middot; Without the Premium Price</div>
-      <h2 class="founding-modal-name" id="foundingModalTitle">The Velonyx System</h2>
-      <p class="founding-modal-subhead">One custom platform &mdash; branded for you, owned by you. Agencies charge $5,000&ndash;$15,000. We charge $700.</p>
-      <div class="founding-modal-pricing">
-        <div class="col">
-          <div class="price">$700</div>
-          <span class="sub">one-time build</span>
-        </div>
-        <div class="plus">+</div>
-        <div class="col">
-          <div class="recurring">$70<span class="mo">/month</span></div>
-          <span class="sub">Care plan</span>
-        </div>
-      </div>
-      <span class="founding-modal-trial-pill">Yours Forever</span>
-      <ul class="founding-modal-features">
-        <li>Custom-branded website &mdash; no templates</li>
-        <li>24/7 online booking</li>
-        <li>Integrated payments (Apple Pay, Google Pay, cards, ACH)</li>
-        <li>Customer financing (Klarna, Afterpay)</li>
-        <li>Automated SMS via Twilio</li>
-        <li>Owner admin dashboard &mdash; runs from your phone</li>
-        <li>SEO-ready foundation built in</li>
-        <li>Full ownership &mdash; code, design, data, domain</li>
-      </ul>
-      <a href="/book.html" class="founding-modal-cta" onclick="closeFoundingModal()">Book a 20-Minute Call</a>
-      <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-modal-secondary" onclick="closeFoundingModal()">Explore the Live Demo &rarr;</a>
-      <button class="founding-modal-dismiss" onclick="closeFoundingModal()" type="button">Maybe later &mdash; show me the site</button>
-    </div>
   </div>
 
   <!-- BOOKING MODAL -->
@@ -5540,61 +5446,6 @@
     // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
 
     // ===== OFFER REVEAL POP-UP MODAL (surfaces $700/$70 offer) =====
-    // Auto-opens once per session ~2.6s after page load (after the hero settles).
-    // Scale-in from 0.3→1 with a slight overshoot easing for the "coming at you" entrance.
-    (function() {
-      var FLAG = 'velonyx_founding_modal_seen';
-      var overlay = document.getElementById('foundingModalOverlay');
-      if (!overlay) return;
-      var _foundingLastFocus = null;
-
-      function openFoundingModal() {
-        _foundingLastFocus = document.activeElement;
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        // ADA: focus the close button so screen readers + keyboard users know the dialog is interactive
-        var closeBtn = overlay.querySelector('.founding-modal-close');
-        if (closeBtn) setTimeout(function() { closeBtn.focus(); }, 120);
-      }
-
-      window.closeFoundingModal = function() {
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        try { sessionStorage.setItem(FLAG, '1'); } catch (e) {}
-        if (_foundingLastFocus && typeof _foundingLastFocus.focus === 'function') {
-          _foundingLastFocus.focus();
-        }
-      };
-
-      // ESC closes
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-          window.closeFoundingModal();
-        }
-      });
-
-      // Auto-open on first session visit, after the hero animation settles
-      function maybeAutoOpen() {
-        try {
-          if (sessionStorage.getItem(FLAG) === '1') return;
-        } catch (e) {
-          // Private browsing — sessionStorage throws; skip auto-open in that mode
-          return;
-        }
-        // Delay 4s (was 2.6s) — pushes the modal scale-in animation outside
-        // typical INP/LCP measurement windows on slow Android devices.
-        setTimeout(openFoundingModal, 4000);
-      }
-
-      if (document.readyState === 'complete') {
-        maybeAutoOpen();
-      } else {
-        window.addEventListener('load', maybeAutoOpen);
-      }
-    })();
-
     // ===== BOOKING MODAL =====
     const bookingOverlay = document.getElementById('bookingOverlay');
     const bookingForm = document.getElementById('bookingForm');

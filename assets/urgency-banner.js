@@ -27,10 +27,10 @@
 
   var HTML = '<div class="vx-urgency-content">'
     + '<span class="vx-urgency-text">'
-      + '<strong>Premium Platform, Budget Price</strong> &mdash; The Velonyx System: '
-      + '<strong>$700 build + $70/month</strong>. Yours forever.'
+      + '<strong>Never Miss a Lead.</strong> &mdash; AI answers, captures, and texts back in seconds. '
+      + '<strong>24/7. While you work.</strong>'
     + '</span>'
-    + '<button type="button" class="vx-urgency-dismiss" aria-label="Dismiss pricing notice">&times;</button>'
+    + '<button type="button" class="vx-urgency-dismiss" aria-label="Dismiss notice">&times;</button>'
   + '</div>';
 
   function inject() {
