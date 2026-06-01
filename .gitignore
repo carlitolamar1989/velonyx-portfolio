@@ -18,3 +18,7 @@ velonyx-website/backend/
 *.tfstate
 *.tfstate.backup
 *.tfvars
+
+# Lambda deploy artifacts (generated locally by deploy.sh — not for the repo)
+backend/chatbot-lambda/function.zip
+backend/chatbot-lambda/package-lock.json

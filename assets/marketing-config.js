@@ -11,12 +11,14 @@ window.VELONYX_MARKETING = {
   META_PIXEL_ID: '1486954096175579'
 };
 
-/*
- * Velonyx Assistant chatbot backend URL.
+/* Velonyx Assistant Chatbot + Conversational Lead Form
+ * ==================================================================
+ * Endpoint set 2026-05-31 — points to the AWS Lambda multi-route handler:
+ *   POST /chat        — chatbot Q&A
+ *   POST /form-turn   — conversational lead form (derived as /form-turn)
  *
- * When the Lambda described in backend/chatbot-lambda/README.md is deployed,
- * uncomment the line below and replace the placeholder with the API Gateway
- * invocation URL. While this stays commented out, the chatbot widget runs in
- * fallback mode (lead-capture only, AI disabled).
+ * Both widgets (velonyx-chatbot.js + velonyx-lead-form.js) read this URL.
+ * Lead-form widget swaps /chat → /form-turn at runtime.
+ * ==================================================================
  */
-// window.VELONYX_CHATBOT_API_URL = 'https://<API_GATEWAY_ID>.execute-api.us-east-1.amazonaws.com/chat';
+window.VELONYX_CHATBOT_API_URL = 'https://v8yqczjbdd.execute-api.us-east-1.amazonaws.com/chat';

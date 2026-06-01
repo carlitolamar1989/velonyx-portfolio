@@ -1164,6 +1164,48 @@
       line-height: 1.8;
     }
 
+    /* ── AI Lead System section ── */
+    .ai-system { padding: 88px 0; border-bottom: 1px solid var(--bg-border); }
+    .ai-system-head { max-width: 760px; margin: 0 auto 48px; text-align: center; padding: 0 24px; }
+    .ai-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 1024px) { .ai-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .ai-steps { grid-template-columns: 1fr; } }
+    .ai-step { padding: 30px 26px; background: var(--bg-card-glossy); border: 1px solid var(--bg-border); border-radius: 18px; transition: transform 0.25s, border-color 0.25s; }
+    .ai-step:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.35); }
+    .ai-step-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--accent); margin-bottom: 14px; letter-spacing: 1px; }
+    .ai-step h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.08rem; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+    .ai-step p { color: var(--white-muted); font-size: 0.92rem; line-height: 1.6; }
+    .ai-system-cta { text-align: center; margin-top: 44px; padding: 0 24px; }
+    .ai-system-note { font-size: 0.85rem; color: var(--white-dim); margin-top: 14px; }
+    /* ── 3-tier pricing ── */
+    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
+    @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
+    .tier-card { position: relative; display: flex; flex-direction: column; padding: 36px 28px 30px; background: var(--bg-card-glossy); border: 1px solid var(--bg-border); border-radius: 20px; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+    .tier-card:hover { transform: translateY(-5px); border-color: rgba(212,175,55,0.35); }
+    .tier-featured { border-color: rgba(212,175,55,0.55); background: linear-gradient(165deg, rgba(212,175,55,0.09) 0%, rgba(17,17,20,0.98) 100%); box-shadow: 0 0 40px rgba(212,175,55,0.1); }
+    .tier-elite { border-color: rgba(212,175,55,0.4); background: linear-gradient(165deg, rgba(40,30,10,0.5) 0%, rgba(12,12,15,0.99) 100%); }
+    .tier-flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); font-family: 'Space Grotesk', sans-serif; font-size: 0.66rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #0C0C0F; background: var(--gold-btn); padding: 5px 16px; border-radius: 99px; white-space: nowrap; }
+    .tier-flag-elite { background: linear-gradient(135deg, #F7E17B, #D4AF37); }
+    .tier-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .tier-tagline { font-size: 0.86rem; color: var(--accent); font-weight: 600; letter-spacing: 0.3px; margin-bottom: 20px; }
+    .tier-price { font-family: 'Space Grotesk', sans-serif; font-size: 2.6rem; font-weight: 900; background: var(--gold-shine); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .tier-price-sub { font-size: 0.8rem; font-weight: 600; color: var(--white-dim); -webkit-text-fill-color: var(--white-dim); margin-left: 6px; letter-spacing: 0.5px; }
+    .tier-monthly { font-size: 0.98rem; color: var(--white-muted); margin: 6px 0 22px; font-weight: 500; }
+    .tier-features { list-style: none; padding: 0; margin: 0 0 26px; flex: 1; }
+    .tier-features li { font-size: 0.9rem; color: var(--white-muted); line-height: 1.5; padding: 8px 0 8px 24px; position: relative; }
+    .tier-features li::before { content: "\2713"; position: absolute; left: 0; top: 8px; color: var(--accent); font-weight: 700; }
+    .tier-features li strong { color: var(--white); font-weight: 600; }
+    .tier-cta { display: block; text-align: center; padding: 13px 20px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); border-radius: 11px; color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px; text-decoration: none; transition: background 0.2s, color 0.2s; min-height: 46px; line-height: 20px; }
+    .tier-cta:hover, .tier-cta-primary { background: var(--gold-btn); color: #0C0C0F; border-color: transparent; }
+    .tier-addon { max-width: 1100px; margin: 26px auto 0; background: var(--bg-card-glossy); border: 1px dashed rgba(212,175,55,0.3); border-radius: 18px; padding: 26px 30px; }
+    .tier-addon-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .tier-addon-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .tier-addon-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); padding: 3px 9px; border-radius: 99px; margin-left: 8px; vertical-align: middle; }
+    .tier-addon-desc { font-size: 0.9rem; color: var(--white-muted); line-height: 1.55; max-width: 560px; }
+    .tier-addon-right { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+    .tier-addon-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 900; background: var(--gold-shine); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    @media (max-width: 600px) { .tier-addon-inner { flex-direction: column; align-items: flex-start; } .tier-addon-right { width: 100%; justify-content: space-between; } }
+
     /* ===== SERVICES ===== */
     .services {
       padding: 100px 24px;
@@ -4298,7 +4340,7 @@
       <li><a href="#work" onclick="document.getElementById('navLinks').classList.remove('open')">Portfolio</a></li>
       <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
       <li><a href="#faq" onclick="document.getElementById('navLinks').classList.remove('open')">FAQ</a></li>
-      <li><a href="/book.html" class="nav-cta">Book a 20-Min Call</a></li>
+      <li><a href="#" class="nav-cta" data-vx-form-open data-vx-form-context="Nav CTA">Talk to Us</a></li>
       <!-- Client Login removed from nav 2026-05-19 — was pointing to /platform/portal/
            which is Disallow'd in robots.txt and isn't a real live portal. Will be
            re-added once a real customer portal exists. -->
@@ -4319,9 +4361,9 @@
     <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
-      <div class="hero-eyebrow"><span class="dot"></span> Premium Custom Platforms &middot; Built for Service Businesses</div>
+      <div class="hero-eyebrow"><span class="dot"></span> AI Lead Systems &middot; Engineered for Speed</div>
       <h1 class="hero-h1-top">
-        <span class="line">The Premium Platform</span>
+        <span class="line">Never Miss</span>
       </h1>
       <div class="hero-logo-wrap">
         <div class="hero-logo-line"></div>
@@ -4332,16 +4374,16 @@
         <div class="hero-logo-line"></div>
       </div>
       <h2 class="hero-h2-bottom">
-        <span class="line"><span class="gold">Without the</span></span>
-        <span class="line"><span class="gold">Premium Price.</span></span>
+        <span class="line"><span class="gold">Another</span></span>
+        <span class="line"><span class="gold">Lead.</span></span>
       </h2>
-      <p class="hero-subheadline">$700 to build. $70 a month. Yours forever.</p>
-      <p class="hero-sub">Agencies charge $5,000&ndash;$15,000 to build a platform like this. We charge $700. Custom website, 24/7 booking, integrated payments, customer financing, SMS automation, and an owner dashboard &mdash; engineered into one platform, branded for you, owned by you.</p>
+      <p class="hero-subheadline">AI answers in seconds. 24/7. While you work.</p>
+      <p class="hero-sub">Velonyx engineers AI lead systems for service businesses &mdash; an AI chatbot, a conversational lead form, and instant SMS text-back, connected by one brain. The moment someone reaches out, your system answers, captures the lead, and texts them back within seconds. Branded for you, owned by you.</p>
       <div class="hero-buttons">
-        <a href="/book.html" class="btn-primary">Book a 20-Minute Call</a>
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Hero CTA">Talk to Us &mdash; 30 Seconds</a>
         <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="btn-secondary">Explore the Live Demo &rarr;</a>
       </div>
-      <p class="hero-trust">Custom-Engineered &middot; You Own Everything &middot; Apple Pay, Google Pay, Klarna, Afterpay, ACH &middot; Live in 7&ndash;14 Days</p>
+      <p class="hero-trust">The chat in the corner is the product &mdash; try it &middot; Responds in Seconds &middot; 24/7 &middot; You Own Everything</p>
     </div>
   </section>
 
@@ -4349,8 +4391,47 @@
   <section class="problem">
     <div class="container">
       <div class="problem-text fade-in">
-        <p class="big-quote">Bookings in one app. Payments in another. Customer data in a spreadsheet. Marketing in your DMs.<br><span class="gold">That's not a business. That's a stack of monthly bills with no leverage.</span></p>
-        <p>Most ambitious operators run four to six separate software bills every month. Customers fall through the gaps between them, and at the end of three years you walk away owning nothing. Velonyx engineers one connected platform in their place &mdash; branded as you, owned by you, built to elevate every interaction.</p>
+        <p class="big-quote">A lead fills out your form at 9 PM. You see it at 7 AM. By then they've already called someone else.<br><span class="gold">The business that answers first wins. Every time.</span></p>
+        <p>Studies put it plainly: respond to a lead within five minutes and you're far more likely to close them. Wait an hour and the odds collapse. Most operators can't answer in five minutes &mdash; they're on a job, asleep, or with another customer. Velonyx engineers an AI system that answers in seconds, day or night, captures the lead, and texts them back before your competitor even wakes up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI LEAD SYSTEM — the core offering, explained. The site demonstrates this
+       by running it: the chatbot + conversational form on this very page ARE the
+       product. -->
+  <section class="ai-system" id="ai-system">
+    <div class="container">
+      <div class="ai-system-head fade-in">
+        <div class="section-label" style="text-align:center;">The Velonyx AI Lead System</div>
+        <h2 class="section-title">Your 24/7 AI Front Desk.</h2>
+        <p class="section-subtitle">One connected system that answers, captures, and follows up &mdash; in seconds, around the clock, while you work. You're using it right now: the chat in the corner is the same system we build into your platform.</p>
+      </div>
+      <div class="ai-steps fade-in">
+        <div class="ai-step">
+          <div class="ai-step-num">01</div>
+          <h3>AI Chatbot Answers Instantly</h3>
+          <p>A visitor lands on your site and asks a question. The AI answers in seconds &mdash; pricing, availability, services &mdash; trained on your business. No waiting, no missed message.</p>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">02</div>
+          <h3>Conversational Form Captures the Lead</h3>
+          <p>When the visitor shows interest, the chat turns into a conversational form &mdash; one question at a time. Name, number, what they need. It feels like texting a person, not filling out a form.</p>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">03</div>
+          <h3>Instant SMS Texts Them Back</h3>
+          <p>The second their number lands, your system texts them &mdash; within seconds. The AI keeps the conversation going by SMS, qualifies them, and moves toward a booking. A real two-way conversation.</p>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">04</div>
+          <h3>You Get Alerted, Lead in Hand</h3>
+          <p>Every warm lead lands in your inbox and your phone with the full conversation. You step in already knowing what they want &mdash; or let the AI book them while you stay on the job.</p>
+        </div>
+      </div>
+      <div class="ai-system-cta fade-in">
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="AI system section">See It Work &mdash; Talk to Us</a>
+        <p class="ai-system-note">Or click the chat bubble in the corner. That's the product, live.</p>
       </div>
     </div>
   </section>
@@ -4502,9 +4583,9 @@
     <div class="container">
       <div class="section-label">Investment</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Premium Platform.<br>Budget Price.</h2>
+      <h2 class="section-title shimmer-sweep fade-in">Pick Your System.</h2>
       <div class="pricing-slogan fade-in">Your Legacy, Engineered With Precision.</div>
-      <p class="section-subtitle fade-in">$700 to build. $70 a month. Yours forever.</p>
+      <p class="section-subtitle fade-in">Every tier ships a custom website, hosting, and an AI chatbot. Step up for the parts that make sure you never miss a lead.</p>
 
       <!-- PAYMENT PARTNERS — shown right under heading -->
       <div class="payment-partners fade-in">
@@ -4558,179 +4639,68 @@
           retained only on /checkout.html for any in-flight checkouts.
       -->
 
-      <!-- CORE BUILD CARD ($700 build + $70/mo) -->
-      <div class="founding-grid fade-in">
-        <div class="founding-card">
-          <div class="founding-tier-tag">The Velonyx System &middot; Core Build</div>
-          <div class="founding-name">One Platform. One Price. Yours Forever.</div>
-          <p style="text-align:center;font-size:0.95rem;color:var(--white-muted);max-width:560px;margin:8px auto 0;line-height:1.5;">Premium custom platform, branded for your business, owned by you. Built efficiently with modern tools and a refined process &mdash; not cut corners.</p>
+      <!-- 3-TIER PRICING — Essentials / Growth / Elite + AI Video add-on -->
+      <div class="tiers-grid fade-in">
 
-          <div class="founding-amount-wrap">
-            <div>
-              <div class="founding-amount">$700</div>
-              <div class="founding-amount-sub">one-time build</div>
-            </div>
-            <div class="founding-plus">+</div>
-            <div>
-              <div class="founding-recurring">$70<span class="founding-recurring-mo">/month</span></div>
-              <div class="founding-amount-sub">Care plan &mdash; hosting, security, support</div>
-            </div>
-          </div>
-
-          <div class="founding-features-heading">Everything that ships in the $700 build</div>
-          <ul class="founding-features">
-            <li><div class="founding-check"><span>&#10003;</span></div> Custom-branded website &mdash; no templates</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> 24/7 online booking</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> Integrated payments &mdash; Apple Pay, Google Pay, cards, ACH Direct Debit</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> Customer financing &mdash; Klarna and Afterpay built in</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> Automated SMS via Twilio (confirmations, payment links, follow-ups)</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> Owner admin dashboard &mdash; runs from your phone</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> SEO-ready foundation built in</li>
-            <li><div class="founding-check"><span>&#10003;</span></div> Full ownership &mdash; code, design, customer data, domain</li>
+        <div class="tier-card">
+          <div class="tier-name">Essentials</div>
+          <div class="tier-tagline">Get Online</div>
+          <div class="tier-price">$700<span class="tier-price-sub">build</span></div>
+          <div class="tier-monthly">+ $70/month</div>
+          <ul class="tier-features">
+            <li>Custom-branded website &mdash; engineered, not templated</li>
+            <li>Production hosting, SSL, automated backups</li>
+            <li>24/7 AI Chatbot trained on your business</li>
+            <li>Owner dashboard &mdash; runs from your phone</li>
+            <li>Full code ownership</li>
           </ul>
-
-          <div class="founding-actions">
-            <a href="/book.html" class="btn-primary founding-cta">Book a 20-Minute Call</a>
-            <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-consult-link">See it live first &mdash; explore the demo build &rarr;</a>
-          </div>
-
-          <p class="founding-finance-note">Klarna &amp; Afterpay available at checkout for the build &mdash; instant approval, no account needed. ACH Direct Debit available for low-fee bank pay.</p>
+          <a href="#" class="tier-cta" data-vx-form-open data-vx-form-context="Essentials tier">Talk to Us</a>
         </div>
+
+        <div class="tier-card tier-featured">
+          <div class="tier-flag">Most Popular</div>
+          <div class="tier-name">Growth</div>
+          <div class="tier-tagline">Never Miss a Lead</div>
+          <div class="tier-price">$900<span class="tier-price-sub">build</span></div>
+          <div class="tier-monthly">+ $150/month</div>
+          <ul class="tier-features">
+            <li>Everything in Essentials</li>
+            <li><strong>AI Lead Automation</strong> &mdash; conversational form</li>
+            <li><strong>Instant SMS text-back</strong> &mdash; two-way AI conversation</li>
+            <li>Owner alerts by email + text, full context</li>
+            <li>Leads captured 24/7, even while you work</li>
+          </ul>
+          <a href="#" class="tier-cta tier-cta-primary" data-vx-form-open data-vx-form-context="Growth tier">Talk to Us</a>
+        </div>
+
+        <div class="tier-card tier-elite">
+          <div class="tier-flag tier-flag-elite">Premium</div>
+          <div class="tier-name">Elite</div>
+          <div class="tier-tagline">Your 24/7 AI Front Desk</div>
+          <div class="tier-price">$1,200<span class="tier-price-sub">build</span></div>
+          <div class="tier-monthly">+ $400/month</div>
+          <ul class="tier-features">
+            <li>Everything in Growth</li>
+            <li><strong>AI Voice Agent</strong> &mdash; answers calls 24/7</li>
+            <li>Qualifies callers &amp; books appointments</li>
+            <li>1 AI-produced video per month</li>
+            <li>The complete lead system &mdash; chat, text, and voice</li>
+          </ul>
+          <a href="#" class="tier-cta" data-vx-form-open data-vx-form-context="Elite tier">Talk to Us</a>
+        </div>
+
       </div>
 
-      <!-- WHY SO AFFORDABLE — objection-killer block, anchors the price-suspicion handler -->
-      <div class="why-affordable-block fade-in">
-        <div class="why-affordable-eyebrow">The Math Behind the Price</div>
-        <h3 class="why-affordable-heading">Why So Affordable?</h3>
-        <p class="why-affordable-intro">Agencies quote $5,000&ndash;$15,000 for the same build because their overhead demands it. Velonyx is engineered differently. Premium result, fraction of the price &mdash; not cut corners.</p>
-        <div class="why-affordable-grid">
-          <div class="why-affordable-item">
-            <div class="why-affordable-num">01</div>
-            <h4>Modern Tools</h4>
-            <p>We build on Next.js, Stripe, Twilio, and cloud-native infrastructure. Modern stacks ship in days what legacy agencies bill out as weeks.</p>
+      <div class="tier-addon fade-in">
+        <div class="tier-addon-inner">
+          <div>
+            <div class="tier-addon-name">AI Video <span class="tier-addon-tag">Add-on / Standalone</span></div>
+            <p class="tier-addon-desc">1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto Essentials or Growth.</p>
           </div>
-          <div class="why-affordable-item">
-            <div class="why-affordable-num">02</div>
-            <h4>Refined Process</h4>
-            <p>A repeatable engineering process, not a bespoke discovery slog. We've stripped every billable hour that doesn't make your platform better.</p>
+          <div class="tier-addon-right">
+            <div class="tier-addon-price">$200<span class="tier-price-sub">/month</span></div>
+            <a href="#" class="tier-cta" data-vx-form-open data-vx-form-context="AI Video addon">Talk to Us</a>
           </div>
-          <div class="why-affordable-item">
-            <div class="why-affordable-num">03</div>
-            <h4>No Agency Overhead</h4>
-            <p>No account managers stacked on project managers stacked on creative directors. One engineer, one designer, one founder &mdash; direct line.</p>
-          </div>
-          <div class="why-affordable-item">
-            <div class="why-affordable-num">04</div>
-            <h4>Built to Earn Long-Term</h4>
-            <p>$700 lands you on the platform. $70/month keeps us paid to maintain it for the long run. We win when you stay, so the build is priced to get you here.</p>
-          </div>
-        </div>
-        <p class="why-affordable-close">Premium quality. Budget price. Same outcome &mdash; minus the markup.</p>
-      </div>
-
-      <!-- GROW YOUR BUSINESS — 4-tier monthly growth plans -->
-      <div class="growth-plans-block fade-in" id="growth-plans">
-        <div class="section-label" style="text-align:center;">Optional &middot; Add When Ready</div>
-        <h3 class="growth-plans-heading">Grow Your Business.</h3>
-        <p class="growth-plans-intro">Once the platform is live, optionally add a monthly growth plan. Stack content, ads, and strategy when you're ready to scale &mdash; cancel any time.</p>
-        <div class="growth-plans-grid">
-
-          <div class="growth-plan-card">
-            <div class="growth-plan-name">Care</div>
-            <div class="growth-plan-price">$70<span class="growth-plan-mo">/mo</span></div>
-            <p class="growth-plan-sub">Everything to keep your platform live.</p>
-            <ul class="growth-plan-features">
-              <li>Hosting, security, SSL, backups</li>
-              <li>1 site update per month</li>
-              <li>Basic tech support</li>
-              <li>Dashboard access</li>
-            </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
-          </div>
-
-          <div class="growth-plan-card growth-plan-featured">
-            <div class="growth-plan-name">Growth</div>
-            <div class="growth-plan-price">$250<span class="growth-plan-mo">/mo</span></div>
-            <p class="growth-plan-sub">Care + content + reporting.</p>
-            <ul class="growth-plan-features">
-              <li>Everything in Care</li>
-              <li>1 sales-focused video per month</li>
-              <li>Performance report twice a month</li>
-              <li>2 site updates per month</li>
-            </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
-          </div>
-
-          <div class="growth-plan-card">
-            <div class="growth-plan-name">Accelerate <span class="growth-plan-badge">+ ad spend</span></div>
-            <div class="growth-plan-price">$500<span class="growth-plan-mo">/mo</span></div>
-            <p class="growth-plan-sub">Growth + ad campaign setup &amp; monitoring.</p>
-            <ul class="growth-plan-features">
-              <li>Everything in Growth</li>
-              <li>Ad campaign setup &amp; monitoring on one platform (Meta or Google)</li>
-              <li>Priority support</li>
-              <li><em>You fund ad spend directly to the ad platform.</em></li>
-            </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
-          </div>
-
-          <div class="growth-plan-card growth-plan-partner">
-            <div class="growth-plan-name">Full Partner <span class="growth-plan-badge">+ ad spend</span></div>
-            <div class="growth-plan-price">$1,500<span class="growth-plan-mo">/mo</span></div>
-            <p class="growth-plan-sub">The full marketing engine on top of your platform.</p>
-            <ul class="growth-plan-features">
-              <li>Everything in Accelerate</li>
-              <li>2 sales-focused videos per month</li>
-              <li>Ad campaign setup behind each video (one platform)</li>
-              <li>4 premium images per month (1 per week)</li>
-              <li>1 site update per week</li>
-              <li>Monthly growth strategy session</li>
-              <li>Monthly growth email tailored to your business</li>
-              <li>Featured shout-out on Velonyx social media</li>
-              <li>Performance report twice a month</li>
-              <li><em>You fund ad spend directly to the ad platform.</em></li>
-            </ul>
-            <a href="/book.html" class="growth-plan-cta">Book a Call</a>
-          </div>
-
-        </div>
-        <p class="growth-plans-disclaimer">Site updates are discrete changes &mdash; swap a photo, edit text, update a price, upload a video. Not redesigns or new pages. Ad service is setup, monitoring, and reporting &mdash; not active mid-campaign optimization.</p>
-      </div>
-
-      <!-- JUST NEED ONE THING — standalone subscriptions, no website required -->
-      <div class="standalone-subs-block fade-in" id="standalone">
-        <div class="section-label" style="text-align:center;">Standalone Subscriptions</div>
-        <h3 class="standalone-heading">Just Need One Thing?</h3>
-        <p class="standalone-intro">Two monthly subscriptions for businesses that already have a website but need premium video content or ad firepower. No platform build required.</p>
-        <div class="standalone-grid">
-
-          <div class="standalone-card">
-            <div class="standalone-name">Video</div>
-            <div class="standalone-price">$200<span class="standalone-mo">/mo</span></div>
-            <p class="standalone-sub">1 sales-focused short-form video per month.</p>
-            <ul class="standalone-features">
-              <li>AI-assisted creation + light editing of clips you send</li>
-              <li>Effects, trimming, premium polish</li>
-              <li>Delivered ready to post anywhere you sell</li>
-            </ul>
-            <p class="standalone-fineprint">Does not include multiple videos per month, full production, or custom on-location shoots.</p>
-            <a href="/book.html" class="standalone-cta">Book a Call</a>
-          </div>
-
-          <div class="standalone-card standalone-featured">
-            <div class="standalone-name">Video + Ad Setup &amp; Monitoring <span class="growth-plan-badge">+ ad spend</span></div>
-            <div class="standalone-price">$350<span class="standalone-mo">/mo</span></div>
-            <p class="standalone-sub">Video plus the ad engine behind it.</p>
-            <ul class="standalone-features">
-              <li>Everything in Video</li>
-              <li>Ad campaign setup on one platform (Meta or Google) matched to your business</li>
-              <li>Audience targeting to your clientele</li>
-              <li>Monthly performance report</li>
-              <li><em>You fund ad spend directly to the ad platform.</em></li>
-            </ul>
-            <a href="/book.html" class="standalone-cta">Book a Call</a>
-          </div>
-
         </div>
       </div>
 
@@ -5116,7 +5086,7 @@
         <h2>Build Once.<br>Own It <span class="gold">Forever.</span></h2>
         <p>Premium platform without the premium price. Agencies charge $5,000&ndash;$15,000 for a build like this. We charge $700. The rented SaaS stack costs $5,760&ndash;$10,440 over three years and you own nothing at the end. Velonyx is $3,220 over the same three years &mdash; and you own everything.</p>
         <p style="font-size:0.95rem;color:var(--white-muted);margin:18px 0 26px;">$700 to build. $70 a month. Yours forever. One platform, branded for you, owned by you.</p>
-        <a href="/book.html" class="btn-primary">Book a 20-Minute Call</a>
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Final CTA section">Talk to Us &mdash; 30 Seconds</a>
         <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:14px;margin-bottom:0;">Want to see it first? <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.7);text-decoration:none;">Explore the live demo &rarr;</a></p>
         <div class="cta-contact-methods">
           <a href="mailto:admin@velonyxsystems.com" class="cta-contact-method">&#9993; admin@velonyxsystems.com</a>
@@ -5154,9 +5124,9 @@
 
   <!-- FLOATING BOOK BUTTON -->
   <div class="floating-book" id="floatingBook">
-    <a href="/book.html" class="floating-book-btn">
+    <a href="#" class="floating-book-btn" data-vx-form-open data-vx-form-context="Floating CTA">
       <span class="floating-book-pulse"></span>
-      Book Now
+      Talk Now
     </a>
   </div>
 
@@ -6317,5 +6287,7 @@
   <script src="/assets/urgency-banner.js" defer></script>
   <!-- Velonyx Assistant chatbot (floating bottom-right launcher; first-party, loads pre-consent) -->
   <script src="/assets/velonyx-chatbot.js" defer></script>
+  <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
+  <script src="/assets/velonyx-lead-form.js" defer></script>
 </body>
 </html>

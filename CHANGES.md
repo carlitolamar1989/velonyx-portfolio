@@ -1,3 +1,43 @@
+# Velonyx Systems — Change Log
+
+## 2026-05-31 — Unified AI Lead System + speed repositioning (PR #20)
+
+Built a working AI lead system spanning chatbot → conversational form → two-way SMS → owner notification, all on one AWS Lambda powered by Claude Haiku 4.5. Repositioned the site around AI lead systems + speed — the site sells by being the product.
+
+### Backend — `backend/chatbot-lambda/`
+- **Multi-route Lambda** (`index.js`), one function / three routes:
+  - `POST /chat` — chatbot Q&A; tools: `capture_lead`, `redirect_to_page`, `initiate_lead_capture` (signals widget→form handoff)
+  - `POST /form-turn` — conversational form; tool: `complete_capture`; on completion writes lead to Supabase, fires opening SMS, notifies owner
+  - `POST /sms/inbound` — Twilio webhook; tools: `book_call`, `handoff_to_carlos`; STOP/HELP handled; replies via TwiML
+- **REST clients** (`lib/`): `supabase.js` (PostgREST, service-role), `twilio.js` (Messages API + Messaging Service SID + TwiML), `resend.js`, `http.js`, `intent.js`
+- **Three system prompts** (chat / form / SMS) — banned-words clean, 3-tier pricing inlined
+- **Resilience**: form completion never loses a lead — Supabase down → still SMS + owner notify + legacy endpoint fallback
+- **`provision.sh`**: one-shot AWS (IAM + Lambda + API Gateway + 3 routes + CORS + `$default` stage) + Twilio webhook
+- **`supabase-migrations/001_leads.sql`**: single `leads` table, JSONB conversation_log, RLS on
+
+### Frontend — `assets/`
+- **`velonyx-lead-form.js`** (new): chat-style conversational form modal; opens via `[data-vx-form-open]`, `window.openVelonyxLeadForm()`, or chatbot handoff; posts to `/form-turn`; fallback flow if no API URL
+- **`velonyx-chatbot.js`**: handoff support (`handoff: true` → open form)
+- **`marketing-config.js`**: live API URL wired
+
+### Site — `index.html`
+- Hero: "Never Miss Another Lead. AI answers in seconds. 24/7. While you work."
+- Problem reframed to speed-to-lead; new 4-step AI Lead System section
+- 3-tier pricing: Essentials $700+$70 · Growth $900+$150 (Most Popular) · Elite $1,200+$400 (Premium) · AI Video $200/mo standalone
+- All 10 CTAs open the conversational form
+
+### Deployed + verified live (sandbox curl)
+Chatbot answers ✓ · intent→handoff ✓ · form endpoint ✓ · redirect tool ✓ · Twilio toll-free `TWILIO_APPROVED` ✓ · inbound webhook set ✓
+
+### Pending Carlos (not sandbox-doable)
+- Run `001_leads.sql` in Supabase SQL Editor (two-way SMS lookup needs it)
+- Add Resend sender domain + DNS (owner email needs it)
+- Set `OWNER_PHONE` Lambda env var to personal cell
+- Rotate exposed keys (Anthropic / Twilio / Supabase / Resend / AWS)
+- Merge PR #20
+
+---
+
 # Premium Conversion Overhaul — Changes
 
 Branch: `feat/premium-conversion-overhaul`
