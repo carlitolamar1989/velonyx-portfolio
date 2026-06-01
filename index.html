@@ -5072,42 +5072,6 @@
     </a>
   </div>
 
-  <!-- OFFER REVEAL MODAL — auto-opens once per session (sessionStorage guard). Repurposed from the prior Founding Member modal to surface the new $700/$70 core offer with the premium-at-budget framing. -->
-  <div class="founding-modal-overlay" id="foundingModalOverlay" role="dialog" aria-modal="true" aria-labelledby="foundingModalTitle" aria-hidden="true">
-    <div class="founding-modal-backdrop" onclick="closeFoundingModal()" aria-hidden="true"></div>
-    <div class="founding-modal-card">
-      <button class="founding-modal-close" onclick="closeFoundingModal()" aria-label="Close offer" type="button">&times;</button>
-      <div class="founding-modal-tier-tag">The Premium Platform &middot; Without the Premium Price</div>
-      <h2 class="founding-modal-name" id="foundingModalTitle">The Velonyx System</h2>
-      <p class="founding-modal-subhead">One custom platform &mdash; branded for you, owned by you. Agencies charge $5,000&ndash;$15,000. We charge $700.</p>
-      <div class="founding-modal-pricing">
-        <div class="col">
-          <div class="price">$700</div>
-          <span class="sub">one-time build</span>
-        </div>
-        <div class="plus">+</div>
-        <div class="col">
-          <div class="recurring">$70<span class="mo">/month</span></div>
-          <span class="sub">Care plan</span>
-        </div>
-      </div>
-      <span class="founding-modal-trial-pill">Yours Forever</span>
-      <ul class="founding-modal-features">
-        <li>Custom-branded website &mdash; no templates</li>
-        <li>24/7 online booking</li>
-        <li>Integrated payments (Apple Pay, Google Pay, cards, ACH)</li>
-        <li>Customer financing (Klarna, Afterpay)</li>
-        <li>Automated SMS via Twilio</li>
-        <li>Owner admin dashboard &mdash; runs from your phone</li>
-        <li>SEO-ready foundation built in</li>
-        <li>Full ownership &mdash; code, design, data, domain</li>
-      </ul>
-      <a href="/book.html" class="founding-modal-cta" onclick="closeFoundingModal()">Book a 20-Minute Call</a>
-      <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="founding-modal-secondary" onclick="closeFoundingModal()">Explore the Live Demo &rarr;</a>
-      <button class="founding-modal-dismiss" onclick="closeFoundingModal()" type="button">Maybe later &mdash; show me the site</button>
-    </div>
-  </div>
-
   <!-- BOOKING MODAL -->
   <div class="booking-overlay" id="bookingOverlay" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
     <div class="booking-backdrop" onclick="closeBooking()" aria-hidden="true"></div>
@@ -5482,61 +5446,6 @@
     // Now handled by GSAP (see GSAP PREMIUM ANIMATIONS block below)
 
     // ===== OFFER REVEAL POP-UP MODAL (surfaces $700/$70 offer) =====
-    // Auto-opens once per session ~2.6s after page load (after the hero settles).
-    // Scale-in from 0.3→1 with a slight overshoot easing for the "coming at you" entrance.
-    (function() {
-      var FLAG = 'velonyx_founding_modal_seen';
-      var overlay = document.getElementById('foundingModalOverlay');
-      if (!overlay) return;
-      var _foundingLastFocus = null;
-
-      function openFoundingModal() {
-        _foundingLastFocus = document.activeElement;
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        // ADA: focus the close button so screen readers + keyboard users know the dialog is interactive
-        var closeBtn = overlay.querySelector('.founding-modal-close');
-        if (closeBtn) setTimeout(function() { closeBtn.focus(); }, 120);
-      }
-
-      window.closeFoundingModal = function() {
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        try { sessionStorage.setItem(FLAG, '1'); } catch (e) {}
-        if (_foundingLastFocus && typeof _foundingLastFocus.focus === 'function') {
-          _foundingLastFocus.focus();
-        }
-      };
-
-      // ESC closes
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-          window.closeFoundingModal();
-        }
-      });
-
-      // Auto-open on first session visit, after the hero animation settles
-      function maybeAutoOpen() {
-        try {
-          if (sessionStorage.getItem(FLAG) === '1') return;
-        } catch (e) {
-          // Private browsing — sessionStorage throws; skip auto-open in that mode
-          return;
-        }
-        // Delay 4s (was 2.6s) — pushes the modal scale-in animation outside
-        // typical INP/LCP measurement windows on slow Android devices.
-        setTimeout(openFoundingModal, 4000);
-      }
-
-      if (document.readyState === 'complete') {
-        maybeAutoOpen();
-      } else {
-        window.addEventListener('load', maybeAutoOpen);
-      }
-    })();
-
     // ===== BOOKING MODAL =====
     const bookingOverlay = document.getElementById('bookingOverlay');
     const bookingForm = document.getElementById('bookingForm');
