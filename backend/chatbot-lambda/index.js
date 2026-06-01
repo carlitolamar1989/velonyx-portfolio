@@ -313,7 +313,9 @@ async function tryCaptureLeadFromChat(args, sessionId) {
   try {
     if (supabase.configured()) {
       const lead = await supabase.insertLead(record);
-      notifyOwnerAsync(lead).catch(function(e) { console.error('notify failed', e); });
+      // Must AWAIT — Lambda freezes the container on handler return; dangling
+      // promises never execute. Owner notify takes <2s combined (Resend + Twilio).
+      await notifyOwnerAsync(lead).catch(function(e) { console.error('notify failed', e && e.message ? e.message : e); });
     } else {
       console.warn('supabase not configured — chat lead skipped supabase write');
     }
@@ -401,17 +403,21 @@ async function handleFormTurn(event) {
         completed = true;
         if (lead) {
           // Full path: SMS opener + owner notify off the saved lead (has id for logging)
-          Promise.all([
-            sendOpeningSms(lead).catch(function(e) { console.error('opening sms failed', e); }),
-            notifyOwnerAsync(lead).catch(function(e) { console.error('notify failed', e); })
+          // CRITICAL: must AWAIT — AWS Lambda freezes the container the moment the
+          // handler returns. A dangling Promise.all() never executes. Twilio + Resend
+          // both return in <2s so the visitor-facing latency is fine; the green ✓
+          // already tells them "texting you now" so they expect a brief pause.
+          await Promise.all([
+            sendOpeningSms(lead).catch(function(e) { console.error('opening sms failed', e && e.message ? e.message : e); }),
+            notifyOwnerAsync(lead).catch(function(e) { console.error('notify failed', e && e.message ? e.message : e); })
           ]);
         } else {
           // Degraded path: no Supabase row, but still text the lead + alert owner +
           // drop the lead into the legacy endpoint so nothing is lost.
           const fallbackLead = Object.assign({ id: 'nodb-' + (sessionId || Date.now()) }, record);
-          Promise.all([
-            sendOpeningSms(fallbackLead).catch(function(e) { console.error('fallback opening sms failed', e); }),
-            notifyOwnerAsync(fallbackLead).catch(function(e) { console.error('fallback notify failed', e); }),
+          await Promise.all([
+            sendOpeningSms(fallbackLead).catch(function(e) { console.error('fallback opening sms failed', e && e.message ? e.message : e); }),
+            notifyOwnerAsync(fallbackLead).catch(function(e) { console.error('fallback notify failed', e && e.message ? e.message : e); }),
             postLead({
               firstName: (record.name || 'Form').split(/\s+/)[0],
               lastName:  (record.name || 'Lead').split(/\s+/).slice(1).join(' ') || 'Lead',
@@ -420,7 +426,7 @@ async function handleFormTurn(event) {
               service:   record.interest || 'Form lead',
               description: 'Form lead (Supabase unavailable). Session: ' + (sessionId || 'unknown'),
               source:    'form-nodb'
-            }).catch(function(e) { console.error('legacy fallback post failed', e); })
+            }).catch(function(e) { console.error('legacy fallback post failed', e && e.message ? e.message : e); })
           ]);
         }
         if (!assistantText) assistantText = "Got it. Texting you now from our line — answer right back and I'll take it from there.";
@@ -506,7 +512,7 @@ async function handleSmsInbound(event) {
   const smsLog = (lead.conversation_log || []).filter(function(t) { return t.channel === 'sms'; });
   if (smsLog.length >= MAX_SMS_TURNS_PER_LEAD) {
     await supabase.updateLead(lead.id, { status: 'handed_off' });
-    notifyOwnerAsync(lead, 'SMS thread capped — please call').catch(function(e) { console.error(e); });
+    await notifyOwnerAsync(lead, 'SMS thread capped — please call').catch(function(e) { console.error('notify failed', e && e.message ? e.message : e); });
     return { statusCode: 200, headers: { 'Content-Type': 'text/xml' }, body: twilio.twimlReply("Carlos will follow up by phone shortly.") };
   }
 
@@ -561,7 +567,7 @@ async function handleSmsInbound(event) {
   if (handoff) {
     replyText = replyText || "Carlos will follow up by phone shortly.";
     await supabase.updateLead(lead.id, { status: 'handed_off' });
-    notifyOwnerAsync(lead, handoff.reason + ' — ' + (handoff.summary || '')).catch(function(e) { console.error(e); });
+    await notifyOwnerAsync(lead, handoff.reason + ' — ' + (handoff.summary || '')).catch(function(e) { console.error('notify failed', e && e.message ? e.message : e); });
   }
 
   // Append bot turn to log
