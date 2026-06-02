@@ -1220,6 +1220,113 @@
       .media-placeholder { padding: 0 16px; }
       .media-placeholder-inner { inset: 0 16px; }
     }
+    /* ── Image Placeholders (premium gold-on-dark, ready for drop-in)
+       Mirrors .media-placeholder aesthetic. Each variant reserves its
+       aspect-ratio so the page doesn't shift when a real image lands.
+       Shared inner: .placeholder-icon / .placeholder-label / .placeholder-sub. */
+    .image-bar-row {
+      max-width: 1140px; margin: 0 auto;
+      padding: 56px 24px 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      position: relative; z-index: 3;
+    }
+    .image-bar-slot {
+      aspect-ratio: 4 / 5;
+      position: relative;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; text-align: center;
+      overflow: hidden;
+    }
+    .image-bar-slot > img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit;
+    }
+    .image-placeholder-wide {
+      max-width: 880px; margin: 32px auto;
+      aspect-ratio: 21 / 9;
+      position: relative;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; text-align: center;
+      overflow: hidden;
+    }
+    .image-placeholder-wide > img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit;
+    }
+    .image-placeholder-wide-16-9 {
+      max-width: 880px; margin: 48px auto 0;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; text-align: center;
+      overflow: hidden;
+    }
+    .image-placeholder-wide-16-9 > img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit;
+    }
+    .image-placeholder-side {
+      aspect-ratio: 3 / 4;
+      position: relative;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; text-align: center;
+      overflow: hidden;
+      align-self: center;
+    }
+    .image-placeholder-side > img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit;
+    }
+    .placeholder-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+      color: var(--accent); font-size: 1.6rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .placeholder-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      color: var(--white); font-size: 0.88rem; letter-spacing: 0.4px;
+    }
+    .placeholder-sub {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+      color: var(--white-dim); font-size: 0.74rem;
+      letter-spacing: 0.5px; font-variant-numeric: tabular-nums;
+    }
+    /* Process section 3-col flanking grid — sides hidden on mobile to keep
+       the clean center-only layout. */
+    .process-grid {
+      max-width: 1140px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 32px;
+      align-items: center;
+    }
+    .process-grid .process-center { text-align: center; }
+    @media (max-width: 900px) {
+      .process-grid { grid-template-columns: 1fr; max-width: 720px; }
+      .process-grid .image-placeholder-side { display: none; }
+    }
+    /* Horizontal bar stacks on mobile */
+    @media (max-width: 700px) {
+      .image-bar-row { grid-template-columns: 1fr; padding-top: 40px; }
+      .image-bar-slot { aspect-ratio: 4 / 5; }
+    }
+    @media (max-width: 560px) {
+      .image-placeholder-wide,
+      .image-placeholder-wide-16-9 { margin-left: 16px; margin-right: 16px; padding: 14px; }
+      .placeholder-label { font-size: 0.82rem; }
+      .placeholder-sub { font-size: 0.7rem; }
+    }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
     @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
@@ -4438,6 +4545,32 @@
     </div>
   </section>
 
+  <!-- IMAGE PLACEHOLDER — Anchor A: Horizontal image bar between hero and problem.
+       3 slots, each 4:5 portrait. Drop 1, 2, or 3 images. Recommended per slot:
+       720×900px (or higher) WebP/JPG <250KB. Files: assets/hero-image-1.webp,
+       assets/hero-image-2.webp, assets/hero-image-3.webp. To swap, uncomment
+       the <img> inside the slot. Mobile (≤700px): slots stack to single column. -->
+  <div class="image-bar-row" aria-hidden="true">
+    <div class="image-bar-slot">
+      <!-- <img src="assets/hero-image-1.webp" alt="" loading="lazy" decoding="async"> -->
+      <div class="placeholder-icon">▦</div>
+      <div class="placeholder-label">Image 1 of 3</div>
+      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
+    </div>
+    <div class="image-bar-slot">
+      <!-- <img src="assets/hero-image-2.webp" alt="" loading="lazy" decoding="async"> -->
+      <div class="placeholder-icon">▦</div>
+      <div class="placeholder-label">Image 2 of 3</div>
+      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
+    </div>
+    <div class="image-bar-slot">
+      <!-- <img src="assets/hero-image-3.webp" alt="" loading="lazy" decoding="async"> -->
+      <div class="placeholder-icon">▦</div>
+      <div class="placeholder-label">Image 3 of 3</div>
+      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
+    </div>
+  </div>
+
   <!-- PROBLEM / HOOK -->
   <section class="problem">
     <div class="container">
@@ -4458,6 +4591,17 @@
         <h2 class="section-title">Your 24/7 AI Front Desk.</h2>
         <p class="section-subtitle">Four steps. Run in seconds. While you work.</p>
       </div>
+
+      <!-- IMAGE PLACEHOLDER — Anchor B: Wide banner above the 4 step cards.
+           21:9 cinematic. Recommended drop-in: 1680 × 720px WebP/JPG <200KB.
+           File: assets/ai-system-banner.webp — uncomment <img> to swap. -->
+      <div class="image-placeholder-wide fade-in" aria-hidden="true">
+        <!-- <img src="assets/ai-system-banner.webp" alt="" loading="lazy" decoding="async"> -->
+        <div class="placeholder-icon">▦</div>
+        <div class="placeholder-label">Single Image</div>
+        <div class="placeholder-sub">1680 × 720 · 21:9 BANNER</div>
+      </div>
+
       <div class="ai-steps fade-in">
         <div class="ai-step">
           <div class="ai-step-num">01</div>
@@ -4481,21 +4625,14 @@
         </div>
       </div>
 
-      <!-- [MEDIA PLACEHOLDER 1 — drop a 20-30s screen recording here later]
-           Recommended: chatbot Q&A → form handoff → SMS thread, vertical 1080x1920
-           OR horizontal 1920x1080. MP4 H.264, autoplay muted loop. Drop file at
-           assets/demo-ai-system.mp4 and uncomment the <video> tag below to swap. -->
-      <div class="media-placeholder fade-in" aria-hidden="true">
-        <div class="media-placeholder-inner">
-          <div class="media-placeholder-icon">▶</div>
-          <div class="media-placeholder-label">Demo Video — Coming Soon</div>
-          <div class="media-placeholder-sub">Watch the AI answer, capture, and text back. Live.</div>
-        </div>
-        <!--
-        <video class="media-placeholder-video" autoplay muted loop playsinline poster="assets/demo-ai-system-poster.webp">
-          <source src="assets/demo-ai-system.mp4" type="video/mp4">
-        </video>
-        -->
+      <!-- IMAGE PLACEHOLDER — Anchor C: 16:9 image (replaces former "Demo Video — Coming Soon" placeholder).
+           Recommended drop-in: 1920 × 1080px WebP/JPG <250KB.
+           File: assets/ai-system-image.webp — uncomment <img> to swap. -->
+      <div class="image-placeholder-wide-16-9 fade-in" aria-hidden="true">
+        <!-- <img src="assets/ai-system-image.webp" alt="" loading="lazy" decoding="async"> -->
+        <div class="placeholder-icon">▦</div>
+        <div class="placeholder-label">Single Image</div>
+        <div class="placeholder-sub">1920 × 1080 · 16:9 WIDESCREEN</div>
       </div>
 
       <div class="ai-system-cta fade-in">
@@ -4551,6 +4688,16 @@
       <h2 class="section-title shimmer-sweep fade-in">Built to Win Leads.</h2>
       <p class="section-subtitle fade-in">Five things. Done instantly. Every time.</p>
 
+      <!-- IMAGE PLACEHOLDER — Anchor D: Wide banner above the 5 service cards.
+           21:9 cinematic. Recommended drop-in: 1680 × 720px WebP/JPG <200KB.
+           File: assets/services-banner.webp — uncomment <img> to swap. -->
+      <div class="image-placeholder-wide fade-in" aria-hidden="true">
+        <!-- <img src="assets/services-banner.webp" alt="" loading="lazy" decoding="async"> -->
+        <div class="placeholder-icon">▦</div>
+        <div class="placeholder-label">Single Image</div>
+        <div class="placeholder-sub">1680 × 720 · 21:9 BANNER</div>
+      </div>
+
       <div class="services-grid">
         <div class="service-card fade-in">
           <div class="service-icon"><!-- lucide:message-square --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
@@ -4604,13 +4751,43 @@
   <!-- PROCESS -->
   <section class="process cyber-reveal" id="process">
     <div class="container">
-      <div class="section-label">The Process</div>
-      <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
-      <p class="section-subtitle fade-in">One call. One build. Yours forever.</p>
+      <!-- 3-col grid at ≥900px: [left graphic] [center text + CTA] [right graphic]
+           Below 900px: collapses to centered single column with side graphics hidden. -->
+      <div class="process-grid">
 
-      <div class="process-cta fade-in">
-        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Process section">Talk to Us &mdash; 30 Seconds</a>
+        <!-- IMAGE PLACEHOLDER — Anchor E LEFT: 3:4 portrait flanking graphic.
+             Recommended drop-in: 720 × 960px WebP/PNG <200KB.
+             File: assets/process-side-left.webp — uncomment <img> to swap.
+             Hidden on mobile (<900px) via CSS so layout stays clean. -->
+        <div class="image-placeholder-side" aria-hidden="true">
+          <!-- <img src="assets/process-side-left.webp" alt="" loading="lazy" decoding="async"> -->
+          <div class="placeholder-icon">▦</div>
+          <div class="placeholder-label">Side Graphic L</div>
+          <div class="placeholder-sub">720 × 960 · 3:4 PORTRAIT</div>
+        </div>
+
+        <div class="process-center">
+          <div class="section-label">The Process</div>
+          <div class="section-divider"></div>
+          <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
+          <p class="section-subtitle fade-in">One call. One build. Yours forever.</p>
+
+          <div class="process-cta fade-in">
+            <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Process section">Talk to Us &mdash; 30 Seconds</a>
+          </div>
+        </div>
+
+        <!-- IMAGE PLACEHOLDER — Anchor E RIGHT: 3:4 portrait flanking graphic.
+             Recommended drop-in: 720 × 960px WebP/PNG <200KB.
+             File: assets/process-side-right.webp — uncomment <img> to swap.
+             Hidden on mobile (<900px). -->
+        <div class="image-placeholder-side" aria-hidden="true">
+          <!-- <img src="assets/process-side-right.webp" alt="" loading="lazy" decoding="async"> -->
+          <div class="placeholder-icon">▦</div>
+          <div class="placeholder-label">Side Graphic R</div>
+          <div class="placeholder-sub">720 × 960 · 3:4 PORTRAIT</div>
+        </div>
+
       </div>
     </div>
   </section>
