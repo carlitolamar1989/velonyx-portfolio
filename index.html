@@ -1327,6 +1327,29 @@
       .placeholder-label { font-size: 0.82rem; }
       .placeholder-sub { font-size: 0.7rem; }
     }
+    /* ── Hero crossfade slideshow (Anchor A) — opacity-only, GPU-composited.
+       Pauses off-screen + on hover via assets/velonyx-slideshow.js. ── */
+    .vx-slideshow-wrap { max-width: 1140px; margin: 0 auto; padding: 56px 24px 0; position: relative; z-index: 3; }
+    .vx-slideshow {
+      position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--bg-border);
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+    }
+    .vx-slide {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 0.9s ease; will-change: opacity;
+    }
+    .vx-slide.is-active { opacity: 1; }
+    .vx-slide:first-of-type { opacity: 1; } /* first paints before JS runs — no flash */
+    .vx-slideshow-empty {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px; text-align: center;
+      border: 2px dashed rgba(212,175,55,0.32); border-radius: 18px;
+    }
+    /* Auto-hide the empty placeholder once a real slide exists (modern browsers).
+       Older browsers: the JS controller hides it too, so this is belt-and-suspenders. */
+    .vx-slideshow:has(.vx-slide) .vx-slideshow-empty { display: none; }
+    @media (max-width: 560px) { .vx-slideshow-wrap { padding-top: 40px; } }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
     @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
@@ -4545,29 +4568,26 @@
     </div>
   </section>
 
-  <!-- IMAGE PLACEHOLDER — Anchor A: Horizontal image bar between hero and problem.
-       3 slots, each 4:5 portrait. Drop 1, 2, or 3 images. Recommended per slot:
-       720×900px (or higher) WebP/JPG <250KB. Files: assets/hero-image-1.webp,
-       assets/hero-image-2.webp, assets/hero-image-3.webp. To swap, uncomment
-       the <img> inside the slot. Mobile (≤700px): slots stack to single column. -->
-  <div class="image-bar-row" aria-hidden="true">
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-1.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 1 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
-    </div>
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-2.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 2 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
-    </div>
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-3.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 3 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
+  <!-- IMAGE SLIDESHOW — Anchor A: crossfades through hero images, auto-5s.
+       Drop images by uncommenting the <img> slides below (add as many as you
+       want). 2+ slides = it crossfades; 1 = static; 0 = placeholder shows.
+       Recommended: 1920×1080 (16:9) WebP <250KB each. Files:
+       assets/hero-slide-1..N.webp. First slide eager, rest lazy.
+       Zero-jank: opacity-only crossfade (GPU), pauses off-screen + on hover. -->
+  <div class="vx-slideshow-wrap">
+    <div class="vx-slideshow" data-vx-slideshow aria-label="Velonyx highlights">
+      <!-- Uncomment one line per image — any count works -->
+      <!-- <img class="vx-slide" src="assets/hero-slide-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low"> -->
+      <!-- <img class="vx-slide" src="assets/hero-slide-2.webp" alt="" loading="lazy" decoding="async"> -->
+      <!-- <img class="vx-slide" src="assets/hero-slide-3.webp" alt="" loading="lazy" decoding="async"> -->
+      <!-- <img class="vx-slide" src="assets/hero-slide-4.webp" alt="" loading="lazy" decoding="async"> -->
+
+      <!-- Placeholder shown until images are dropped in -->
+      <div class="vx-slideshow-empty">
+        <div class="placeholder-icon">▦</div>
+        <div class="placeholder-label">Image Slideshow</div>
+        <div class="placeholder-sub">1920 × 1080 · 16:9 · DROP 2+ IMAGES TO CROSSFADE</div>
+      </div>
     </div>
   </div>
 
@@ -6317,5 +6337,7 @@
   <script src="/assets/velonyx-chatbot.js" defer></script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
+  <!-- Hero crossfade slideshow (Anchor A) — opacity-only, IO-gated, zero-jank -->
+  <script src="/assets/velonyx-slideshow.js" defer></script>
 </body>
 </html>
