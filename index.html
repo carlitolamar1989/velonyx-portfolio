@@ -1327,6 +1327,41 @@
       .placeholder-label { font-size: 0.82rem; }
       .placeholder-sub { font-size: 0.7rem; }
     }
+    /* ── Filled-state polish ── When a real <img> sits inside any placeholder,
+       trade the dashed-gold draft border for a thin gold hairline + soft drop
+       shadow (Apple-style). The placeholder icon/label/sub stay in the DOM but
+       sit behind the absolutely-positioned <img> with no border visible. */
+    .image-placeholder-wide:has(img),
+    .image-placeholder-wide-16-9:has(img),
+    .image-placeholder-side:has(img) {
+      border: 1px solid rgba(212,175,55,0.42);
+      background: #06070a;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08);
+      padding: 0;
+    }
+    /* ── Hero crossfade slideshow (Anchor A) — opacity-only, GPU-composited.
+       Pauses off-screen + on hover via assets/velonyx-slideshow.js. ── */
+    .vx-slideshow-wrap { max-width: 1140px; margin: 0 auto; padding: 56px 24px 0; position: relative; z-index: 3; }
+    .vx-slideshow {
+      position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--bg-border);
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+    }
+    .vx-slide {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 0.9s ease; will-change: opacity;
+    }
+    .vx-slide.is-active { opacity: 1; }
+    .vx-slide:first-of-type { opacity: 1; } /* first paints before JS runs — no flash */
+    .vx-slideshow-empty {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px; text-align: center;
+      border: 2px dashed rgba(212,175,55,0.32); border-radius: 18px;
+    }
+    /* Once real slides exist, swap the draft border for the same gold hairline + shadow polish. */
+    .vx-slideshow:has(.vx-slide) { border-color: rgba(212,175,55,0.42); box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08); background: #06070a; }
+    .vx-slideshow:has(.vx-slide) .vx-slideshow-empty { display: none; }
+    @media (max-width: 560px) { .vx-slideshow-wrap { padding-top: 40px; } }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
     @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
@@ -4545,29 +4580,21 @@
     </div>
   </section>
 
-  <!-- IMAGE PLACEHOLDER — Anchor A: Horizontal image bar between hero and problem.
-       3 slots, each 4:5 portrait. Drop 1, 2, or 3 images. Recommended per slot:
-       720×900px (or higher) WebP/JPG <250KB. Files: assets/hero-image-1.webp,
-       assets/hero-image-2.webp, assets/hero-image-3.webp. To swap, uncomment
-       the <img> inside the slot. Mobile (≤700px): slots stack to single column. -->
-  <div class="image-bar-row" aria-hidden="true">
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-1.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 1 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
-    </div>
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-2.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 2 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
-    </div>
-    <div class="image-bar-slot">
-      <!-- <img src="assets/hero-image-3.webp" alt="" loading="lazy" decoding="async"> -->
-      <div class="placeholder-icon">▦</div>
-      <div class="placeholder-label">Image 3 of 3</div>
-      <div class="placeholder-sub">720 × 900 · 4:5 PORTRAIT</div>
+  <!-- IMAGE SLIDESHOW — Anchor A: crossfades through 3 hero scenes (Customers
+       Reach Out → AI Answers in Seconds → Booked While You Work). Auto-advances
+       every 5s, pauses on hover, pauses off-screen (IntersectionObserver).
+       Zero jank: opacity-only crossfade on the GPU compositor thread, never
+       touches layout. Add more slides anytime — controller auto-detects count. -->
+  <div class="vx-slideshow-wrap">
+    <div class="vx-slideshow" data-vx-slideshow aria-label="Velonyx in seconds — customers reach out, AI answers, you get booked">
+      <img class="vx-slide" src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350" loading="eager" decoding="async" fetchpriority="high">
+      <img class="vx-slide" src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350" loading="lazy" decoding="async">
+      <img class="vx-slide" src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350" loading="lazy" decoding="async">
+      <div class="vx-slideshow-empty">
+        <div class="placeholder-icon">▦</div>
+        <div class="placeholder-label">Image Slideshow</div>
+        <div class="placeholder-sub">1920 × 1080 · 16:9 · DROP 2+ IMAGES TO CROSSFADE</div>
+      </div>
     </div>
   </div>
 
@@ -4592,14 +4619,9 @@
         <p class="section-subtitle">Four steps. Run in seconds. While you work.</p>
       </div>
 
-      <!-- IMAGE PLACEHOLDER — Anchor B: Wide banner above the 4 step cards.
-           21:9 cinematic. Recommended drop-in: 1680 × 720px WebP/JPG <200KB.
-           File: assets/ai-system-banner.webp — uncomment <img> to swap. -->
-      <div class="image-placeholder-wide fade-in" aria-hidden="true">
-        <!-- <img src="assets/ai-system-banner.webp" alt="" loading="lazy" decoding="async"> -->
-        <div class="placeholder-icon">▦</div>
-        <div class="placeholder-label">Single Image</div>
-        <div class="placeholder-sub">1680 × 720 · 21:9 BANNER</div>
+      <!-- Anchor B: Wide 16:9 banner above the 4 step cards. -->
+      <div class="image-placeholder-wide-16-9 fade-in">
+        <img src="assets/ai-system-banner.webp" alt="Your front desk never sleeps" width="2400" height="1350" loading="lazy" decoding="async">
       </div>
 
       <div class="ai-steps fade-in">
@@ -4625,14 +4647,9 @@
         </div>
       </div>
 
-      <!-- IMAGE PLACEHOLDER — Anchor C: 16:9 image (replaces former "Demo Video — Coming Soon" placeholder).
-           Recommended drop-in: 1920 × 1080px WebP/JPG <250KB.
-           File: assets/ai-system-image.webp — uncomment <img> to swap. -->
-      <div class="image-placeholder-wide-16-9 fade-in" aria-hidden="true">
-        <!-- <img src="assets/ai-system-image.webp" alt="" loading="lazy" decoding="async"> -->
-        <div class="placeholder-icon">▦</div>
-        <div class="placeholder-label">Single Image</div>
-        <div class="placeholder-sub">1920 × 1080 · 16:9 WIDESCREEN</div>
+      <!-- Anchor C: 16:9 image below the 4 step cards. -->
+      <div class="image-placeholder-wide-16-9 fade-in">
+        <img src="assets/ai-system-image.webp" alt="These are the demos" width="2400" height="1350" loading="lazy" decoding="async">
       </div>
 
       <div class="ai-system-cta fade-in">
@@ -4688,14 +4705,9 @@
       <h2 class="section-title shimmer-sweep fade-in">Built to Win Leads.</h2>
       <p class="section-subtitle fade-in">Five things. Done instantly. Every time.</p>
 
-      <!-- IMAGE PLACEHOLDER — Anchor D: Wide banner above the 5 service cards.
-           21:9 cinematic. Recommended drop-in: 1680 × 720px WebP/JPG <200KB.
-           File: assets/services-banner.webp — uncomment <img> to swap. -->
-      <div class="image-placeholder-wide fade-in" aria-hidden="true">
-        <!-- <img src="assets/services-banner.webp" alt="" loading="lazy" decoding="async"> -->
-        <div class="placeholder-icon">▦</div>
-        <div class="placeholder-label">Single Image</div>
-        <div class="placeholder-sub">1680 × 720 · 21:9 BANNER</div>
+      <!-- Anchor D: Wide 16:9 banner above the 5 service cards. -->
+      <div class="image-placeholder-wide-16-9 fade-in">
+        <img src="assets/services-banner.webp" alt="Every lead answered instantly" width="2400" height="1350" loading="lazy" decoding="async">
       </div>
 
       <div class="services-grid">
@@ -4755,15 +4767,11 @@
            Below 900px: collapses to centered single column with side graphics hidden. -->
       <div class="process-grid">
 
-        <!-- IMAGE PLACEHOLDER — Anchor E LEFT: 3:4 portrait flanking graphic.
-             Recommended drop-in: 720 × 960px WebP/PNG <200KB.
-             File: assets/process-side-left.webp — uncomment <img> to swap.
-             Hidden on mobile (<900px) via CSS so layout stays clean. -->
-        <div class="image-placeholder-side" aria-hidden="true">
-          <!-- <img src="assets/process-side-left.webp" alt="" loading="lazy" decoding="async"> -->
-          <div class="placeholder-icon">▦</div>
-          <div class="placeholder-label">Side Graphic L</div>
-          <div class="placeholder-sub">720 × 960 · 3:4 PORTRAIT</div>
+        <!-- Anchor E LEFT: Gold ribbon flanking graphic. Source is 16:9 landscape
+             with the ribbon on the right side, so object-position: right keeps
+             it visible after the portrait crop — leans toward the center text. -->
+        <div class="image-placeholder-side">
+          <img src="assets/process-side-left.webp" alt="" width="2400" height="1350" loading="lazy" decoding="async" style="object-position: right center;">
         </div>
 
         <div class="process-center">
@@ -4777,15 +4785,11 @@
           </div>
         </div>
 
-        <!-- IMAGE PLACEHOLDER — Anchor E RIGHT: 3:4 portrait flanking graphic.
-             Recommended drop-in: 720 × 960px WebP/PNG <200KB.
-             File: assets/process-side-right.webp — uncomment <img> to swap.
-             Hidden on mobile (<900px). -->
-        <div class="image-placeholder-side" aria-hidden="true">
-          <!-- <img src="assets/process-side-right.webp" alt="" loading="lazy" decoding="async"> -->
-          <div class="placeholder-icon">▦</div>
-          <div class="placeholder-label">Side Graphic R</div>
-          <div class="placeholder-sub">720 × 960 · 3:4 PORTRAIT</div>
+        <!-- Anchor E RIGHT: Mirror of left ribbon. Source ribbon is on the left
+             side of the 16:9 frame, so object-position: left keeps it visible
+             after the portrait crop — leans toward the center text. -->
+        <div class="image-placeholder-side">
+          <img src="assets/process-side-right.webp" alt="" width="2400" height="1350" loading="lazy" decoding="async" style="object-position: left center;">
         </div>
 
       </div>
@@ -6317,5 +6321,7 @@
   <script src="/assets/velonyx-chatbot.js" defer></script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
+  <!-- Hero crossfade slideshow (Anchor A) — opacity-only, IO-gated, zero-jank -->
+  <script src="/assets/velonyx-slideshow.js" defer></script>
 </body>
 </html>
