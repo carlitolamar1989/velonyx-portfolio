@@ -1274,21 +1274,6 @@
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; border-radius: inherit;
     }
-    .image-placeholder-side {
-      aspect-ratio: 3 / 4;
-      position: relative;
-      border: 2px dashed rgba(212,175,55,0.32);
-      border-radius: 18px;
-      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 10px; padding: 20px; text-align: center;
-      overflow: hidden;
-      align-self: center;
-    }
-    .image-placeholder-side > img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; border-radius: inherit;
-    }
     .placeholder-icon {
       width: 56px; height: 56px; border-radius: 50%;
       background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
@@ -1304,18 +1289,8 @@
       color: var(--white-dim); font-size: 0.74rem;
       letter-spacing: 0.5px; font-variant-numeric: tabular-nums;
     }
-    /* Process section 3-col flanking grid — sides hidden on mobile to keep
-       the clean center-only layout. */
-    .process-grid {
-      max-width: 1140px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 32px;
-      align-items: center;
-    }
-    .process-grid .process-center { text-align: center; }
-    @media (max-width: 900px) {
-      .process-grid { grid-template-columns: 1fr; max-width: 720px; }
-      .process-grid .image-placeholder-side { display: none; }
-    }
+    /* Process section: centered single column with the CTA. */
+    .process-center { max-width: 720px; margin: 0 auto; text-align: center; }
     /* Horizontal bar stacks on mobile */
     @media (max-width: 700px) {
       .image-bar-row { grid-template-columns: 1fr; padding-top: 40px; }
@@ -1329,39 +1304,15 @@
     }
     /* ── Filled-state polish ── When a real <img> sits inside any placeholder,
        trade the dashed-gold draft border for a thin gold hairline + soft drop
-       shadow (Apple-style). The placeholder icon/label/sub stay in the DOM but
-       sit behind the absolutely-positioned <img> with no border visible. */
+       shadow (Apple-style). The bar slots and wide banners share this rule. */
+    .image-bar-slot:has(img),
     .image-placeholder-wide:has(img),
-    .image-placeholder-wide-16-9:has(img),
-    .image-placeholder-side:has(img) {
+    .image-placeholder-wide-16-9:has(img) {
       border: 1px solid rgba(212,175,55,0.42);
       background: #06070a;
       box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08);
       padding: 0;
     }
-    /* ── Hero crossfade slideshow (Anchor A) — opacity-only, GPU-composited.
-       Pauses off-screen + on hover via assets/velonyx-slideshow.js. ── */
-    .vx-slideshow-wrap { max-width: 1140px; margin: 0 auto; padding: 56px 24px 0; position: relative; z-index: 3; }
-    .vx-slideshow {
-      position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden;
-      border: 1px solid var(--bg-border);
-      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
-    }
-    .vx-slide {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 0.9s ease; will-change: opacity;
-    }
-    .vx-slide.is-active { opacity: 1; }
-    .vx-slide:first-of-type { opacity: 1; } /* first paints before JS runs — no flash */
-    .vx-slideshow-empty {
-      position: absolute; inset: 0; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 10px; text-align: center;
-      border: 2px dashed rgba(212,175,55,0.32); border-radius: 18px;
-    }
-    /* Once real slides exist, swap the draft border for the same gold hairline + shadow polish. */
-    .vx-slideshow:has(.vx-slide) { border-color: rgba(212,175,55,0.42); box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08); background: #06070a; }
-    .vx-slideshow:has(.vx-slide) .vx-slideshow-empty { display: none; }
-    @media (max-width: 560px) { .vx-slideshow-wrap { padding-top: 40px; } }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
     @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 460px; } }
@@ -1598,15 +1549,15 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: minmax(0, 480px);
+      grid-template-columns: minmax(0, 1040px);
       justify-content: center;
       gap: 24px;
-      max-width: 520px;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
     .portfolio-followup {
-      max-width: 520px;
+      max-width: 1080px;
       margin: 28px auto 0;
       text-align: center;
       color: var(--white-dim);
@@ -1643,13 +1594,16 @@
     }
 
     .portfolio-card-img {
-      height: 200px;
+      aspect-ratio: 16 / 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
+    }
+    @media (max-width: 700px) {
+      .portfolio-card-img { aspect-ratio: 4 / 3; }
     }
 
     .portfolio-card-img img {
@@ -4580,21 +4534,21 @@
     </div>
   </section>
 
-  <!-- IMAGE SLIDESHOW — Anchor A: crossfades through 3 hero scenes (Customers
-       Reach Out → AI Answers in Seconds → Booked While You Work). Auto-advances
-       every 5s, pauses on hover, pauses off-screen (IntersectionObserver).
-       Zero jank: opacity-only crossfade on the GPU compositor thread, never
-       touches layout. Add more slides anytime — controller auto-detects count. -->
-  <div class="vx-slideshow-wrap">
-    <div class="vx-slideshow" data-vx-slideshow aria-label="Velonyx in seconds — customers reach out, AI answers, you get booked">
-      <img class="vx-slide" src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350" loading="eager" decoding="async" fetchpriority="high">
-      <img class="vx-slide" src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350" loading="lazy" decoding="async">
-      <img class="vx-slide" src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350" loading="lazy" decoding="async">
-      <div class="vx-slideshow-empty">
-        <div class="placeholder-icon">▦</div>
-        <div class="placeholder-label">Image Slideshow</div>
-        <div class="placeholder-sub">1920 × 1080 · 16:9 · DROP 2+ IMAGES TO CROSSFADE</div>
-      </div>
+  <!-- IMAGE BAR — Anchor A: 3 portrait slots, horizontally aligned, tell the
+       story left → right (Customers Reach Out → AI Answers in Seconds → Booked
+       While You Work). Each slot 4:5 portrait. Mobile (≤700px): stack to single
+       column. Source images are 16:9 landscape but the artwork is a portrait
+       composition centered inside, so object-fit: cover crops the dark sides
+       cleanly and the artwork fills the portrait frame. -->
+  <div class="image-bar-row">
+    <div class="image-bar-slot">
+      <img src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350" loading="eager" decoding="async" fetchpriority="high">
+    </div>
+    <div class="image-bar-slot">
+      <img src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350" loading="lazy" decoding="async">
+    </div>
+    <div class="image-bar-slot">
+      <img src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350" loading="lazy" decoding="async">
     </div>
   </div>
 
@@ -4763,35 +4717,15 @@
   <!-- PROCESS -->
   <section class="process cyber-reveal" id="process">
     <div class="container">
-      <!-- 3-col grid at ≥900px: [left graphic] [center text + CTA] [right graphic]
-           Below 900px: collapses to centered single column with side graphics hidden. -->
-      <div class="process-grid">
+      <div class="process-center">
+        <div class="section-label">The Process</div>
+        <div class="section-divider"></div>
+        <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
+        <p class="section-subtitle fade-in">One call. One build. Yours forever.</p>
 
-        <!-- Anchor E LEFT: Gold ribbon flanking graphic. Source is 16:9 landscape
-             with the ribbon on the right side, so object-position: right keeps
-             it visible after the portrait crop — leans toward the center text. -->
-        <div class="image-placeholder-side">
-          <img src="assets/process-side-left.webp" alt="" width="2400" height="1350" loading="lazy" decoding="async" style="object-position: right center;">
+        <div class="process-cta fade-in">
+          <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Process section">Talk to Us &mdash; 30 Seconds</a>
         </div>
-
-        <div class="process-center">
-          <div class="section-label">The Process</div>
-          <div class="section-divider"></div>
-          <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
-          <p class="section-subtitle fade-in">One call. One build. Yours forever.</p>
-
-          <div class="process-cta fade-in">
-            <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Process section">Talk to Us &mdash; 30 Seconds</a>
-          </div>
-        </div>
-
-        <!-- Anchor E RIGHT: Mirror of left ribbon. Source ribbon is on the left
-             side of the 16:9 frame, so object-position: left keeps it visible
-             after the portrait crop — leans toward the center text. -->
-        <div class="image-placeholder-side">
-          <img src="assets/process-side-right.webp" alt="" width="2400" height="1350" loading="lazy" decoding="async" style="object-position: left center;">
-        </div>
-
       </div>
     </div>
   </section>
@@ -6321,7 +6255,5 @@
   <script src="/assets/velonyx-chatbot.js" defer></script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
-  <!-- Hero crossfade slideshow (Anchor A) — opacity-only, IO-gated, zero-jank -->
-  <script src="/assets/velonyx-slideshow.js" defer></script>
 </body>
 </html>
