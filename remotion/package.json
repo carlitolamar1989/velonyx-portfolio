@@ -9,7 +9,10 @@
     "render:hero-1": "remotion render HeroSlide1 ../assets/motion/hero-slide-1.mp4 --codec=h264 --crf=25 --scale=0.75",
     "render:hero-2": "remotion render HeroSlide2 ../assets/motion/hero-slide-2.mp4 --codec=h264 --crf=25 --scale=0.75",
     "render:hero-3": "remotion render HeroSlide3 ../assets/motion/hero-slide-3.mp4 --codec=h264 --crf=30 --scale=0.75",
-    "render:all": "npm run render:hero-1 && npm run render:hero-2 && npm run render:hero-3"
+    "render:banner-frontdesk": "remotion render BannerFrontDesk ../assets/motion/ai-system-banner.mp4 --codec=h264 --crf=26 --scale=0.75",
+    "render:banner-everylead": "remotion render BannerEveryLead ../assets/motion/services-banner.mp4 --codec=h264 --crf=26 --scale=0.75",
+    "render:banner-demos": "remotion render BannerDemos ../assets/motion/demos-banner-thin.mp4 --codec=h264 --crf=30 --scale=0.75",
+    "render:all": "npm run render:hero-1 && npm run render:hero-2 && npm run render:hero-3 && npm run render:banner-frontdesk && npm run render:banner-everylead && npm run render:banner-demos"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
