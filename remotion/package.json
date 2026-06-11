@@ -1,0 +1,23 @@
+{
+  "name": "velonyx-remotion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion motion-graphics workspace for velonyxsystems.com. Renders MP4/WebM clips that get embedded back into the static site as autoplaying loops in place of static <img> hero/banner slots.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render",
+    "render:hero-1": "remotion render HeroSlide1 ../assets/motion/hero-slide-1.mp4 --codec=h264 --crf=22",
+    "render:all": "npm run render:hero-1"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.4.0"
+  }
+}
