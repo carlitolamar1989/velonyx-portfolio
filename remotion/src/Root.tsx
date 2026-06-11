@@ -20,8 +20,9 @@ export const Root: React.FC = () => {
       {/* 16:9 banners. */}
       <Composition id="BannerFrontDesk" component={BannerFrontDesk} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
       <Composition id="BannerEveryLead" component={BannerEveryLead} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
-      {/* 21:9 thin banner. */}
-      <Composition id="BannerDemos" component={BannerDemos} durationInFrames={DURATION_FRAMES} fps={FPS} width={2520} height={1080} />
+      {/* 32:9 thin cinematic bar — "These Are The Demos". 3200x896 ≈ 32:8.96,
+          chosen so scale 0.75 yields clean even dims (2400x672) for H.264. */}
+      <Composition id="BannerDemos" component={BannerDemos} durationInFrames={DURATION_FRAMES} fps={FPS} width={3200} height={896} />
     </>
   );
 };
