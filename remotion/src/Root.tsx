@@ -3,6 +3,9 @@ import { Composition } from 'remotion';
 import { HeroSlide1 } from './HeroSlide1';
 import { HeroSlide2 } from './HeroSlide2';
 import { HeroSlide3 } from './HeroSlide3';
+import { BannerFrontDesk } from './BannerFrontDesk';
+import { BannerEveryLead } from './BannerEveryLead';
+import { BannerDemos } from './BannerDemos';
 
 const FPS = 30;
 const DURATION_FRAMES = FPS * 6; // 6-second seamless loop
@@ -10,30 +13,15 @@ const DURATION_FRAMES = FPS * 6; // 6-second seamless loop
 export const Root: React.FC = () => {
   return (
     <>
-      <Composition
-        id="HeroSlide1"
-        component={HeroSlide1}
-        durationInFrames={DURATION_FRAMES}
-        fps={FPS}
-        width={1920}
-        height={1080}
-      />
-      <Composition
-        id="HeroSlide2"
-        component={HeroSlide2}
-        durationInFrames={DURATION_FRAMES}
-        fps={FPS}
-        width={1920}
-        height={1080}
-      />
-      <Composition
-        id="HeroSlide3"
-        component={HeroSlide3}
-        durationInFrames={DURATION_FRAMES}
-        fps={FPS}
-        width={1920}
-        height={1080}
-      />
+      {/* Hero story images — 4:5 portrait slots, but composed 16:9 (CSS crops). */}
+      <Composition id="HeroSlide1" component={HeroSlide1} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
+      <Composition id="HeroSlide2" component={HeroSlide2} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
+      <Composition id="HeroSlide3" component={HeroSlide3} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
+      {/* 16:9 banners. */}
+      <Composition id="BannerFrontDesk" component={BannerFrontDesk} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
+      <Composition id="BannerEveryLead" component={BannerEveryLead} durationInFrames={DURATION_FRAMES} fps={FPS} width={1920} height={1080} />
+      {/* 21:9 thin banner. */}
+      <Composition id="BannerDemos" component={BannerDemos} durationInFrames={DURATION_FRAMES} fps={FPS} width={2520} height={1080} />
     </>
   );
 };
