@@ -1240,7 +1240,8 @@
       gap: 10px; padding: 20px; text-align: center;
       overflow: hidden;
     }
-    .image-bar-slot > img {
+    .image-bar-slot > img,
+    .image-bar-slot > video {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; border-radius: inherit;
     }
@@ -1306,6 +1307,7 @@
        trade the dashed-gold draft border for a thin gold hairline + soft drop
        shadow (Apple-style). The bar slots and wide banners share this rule. */
     .image-bar-slot:has(img),
+    .image-bar-slot:has(video),
     .image-placeholder-wide:has(img),
     .image-placeholder-wide-16-9:has(img) {
       border: 1px solid rgba(212,175,55,0.42);
@@ -4534,21 +4536,45 @@
     </div>
   </section>
 
-  <!-- IMAGE BAR — Anchor A: 3 portrait slots, horizontally aligned, tell the
+  <!-- MOTION BAR — Anchor A: 3 portrait slots, horizontally aligned, tell the
        story left → right (Customers Reach Out → AI Answers in Seconds → Booked
        While You Work). Each slot 4:5 portrait. Mobile (≤700px): stack to single
-       column. Source images are 16:9 landscape but the artwork is a portrait
-       composition centered inside, so object-fit: cover crops the dark sides
-       cleanly and the artwork fills the portrait frame. -->
+       column. Source clips are 16:9 (Remotion, breathing zoom + glow + gold
+       sheen), object-fit: cover crops to the portrait frame.
+
+       Each <video> shows its WebP poster INSTANTLY (zero perceived delay, same
+       as the old static image), then the muted looping clip streams in behind
+       it. preload="none" keeps them off the initial-load critical path; they're
+       paused for prefers-reduced-motion via the script near </body>. The <img>
+       inside each <video> is the fallback for browsers without MP4 support. -->
   <div class="image-bar-row">
     <div class="image-bar-slot">
-      <img src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350" loading="eager" decoding="async" fetchpriority="high">
+      <video class="hero-motion" muted loop playsinline preload="none"
+             poster="assets/hero-slide-1.webp" width="2400" height="1350"
+             aria-label="Customers reach out">
+        <source src="assets/motion/hero-slide-1.webm" type="video/webm">
+        <source src="assets/motion/hero-slide-1.mp4" type="video/mp4">
+        <img src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350">
+      </video>
     </div>
     <div class="image-bar-slot">
-      <img src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350" loading="lazy" decoding="async">
+      <video class="hero-motion" muted loop playsinline preload="none"
+             poster="assets/hero-slide-2.webp" width="2400" height="1350"
+             aria-label="AI answers in seconds">
+        <source src="assets/motion/hero-slide-2.webm" type="video/webm">
+        <source src="assets/motion/hero-slide-2.mp4" type="video/mp4">
+        <img src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350">
+      </video>
     </div>
     <div class="image-bar-slot">
-      <img src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350" loading="lazy" decoding="async">
+      <!-- Slide 3 is MP4-only: the busy gold swirl compressed worse as VP9 and
+           pushing VP9 harder banded the gradients, so H.264 is the better pick. -->
+      <video class="hero-motion" muted loop playsinline preload="none"
+             poster="assets/hero-slide-3.webp" width="2400" height="1350"
+             aria-label="Booked while you work">
+        <source src="assets/motion/hero-slide-3.mp4" type="video/mp4">
+        <img src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350">
+      </video>
     </div>
   </div>
 
@@ -6257,5 +6283,37 @@
   <script src="/assets/velonyx-chatbot.js" defer></script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
+  <!-- Hero motion controller. Gates the 3 looping clips to the viewport: each
+       plays only while on-screen (IntersectionObserver) and pauses when it
+       scrolls away — zero CPU/battery off-screen, and reliable playback (an
+       explicit .play() is far more dependable than the autoplay attribute with
+       preload=none). Honors prefers-reduced-motion: if the visitor asked their
+       OS to reduce motion, nothing plays and the WebP poster stays put. -->
+  <script>
+    (function () {
+      var vids = Array.prototype.slice.call(document.querySelectorAll('video.hero-motion'));
+      if (!vids.length) return;
+      var reduce = false;
+      try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      if (reduce) return; // leave them on their poster — no motion
+      if (!('IntersectionObserver' in window)) {
+        vids.forEach(function (v) { try { v.play(); } catch (e) {} });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            if (v.getAttribute('preload') === 'none') v.preload = 'auto';
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            try { v.pause(); } catch (e) {}
+          }
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
 </body>
 </html>
