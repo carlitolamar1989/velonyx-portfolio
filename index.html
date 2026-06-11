@@ -63,8 +63,8 @@
     "name": "Velonyx Systems",
     "legalName": "Velonyx Systems LLC",
     "url": "https://velonyxsystems.com",
-    "logo": "https://velonyxsystems.com/assets/vs-logo-shield-clean.png",
-    "image": "https://velonyxsystems.com/assets/vs-logo-shield-clean.png",
+    "logo": "https://velonyxsystems.com/assets/vs-logo-shield-512.webp",
+    "image": "https://velonyxsystems.com/assets/vs-logo-shield-512.webp",
     "description": "Velonyx engineers AI lead systems for service businesses. An AI chatbot that answers in seconds, a conversational form that captures leads, and instant SMS text-back that qualifies and books — all running 24/7, while the owner works. Built on a premium custom platform with integrated payments, customer financing, and a phone-first owner dashboard. Three tiers: Essentials ($700 build + $70/mo) ships the platform and chatbot. Growth ($900 + $150/mo) adds AI lead automation. Elite ($1,200 + $400/mo) adds an AI voice agent that answers calls 24/7. The site itself is the live demo — visitors experience the AI chatbot and conversational form firsthand.",
     "telephone": "+1-877-317-8643",
     "email": "admin@velonyxsystems.com",
@@ -219,7 +219,7 @@
   <!-- Preload hero video poster — it's the actual LCP element on the homepage
        because the .hero-logo starts at opacity:0 and only reveals after the JS
        cinematic sequence runs. Preloading the poster gives Chrome a head start. -->
-  <link rel="preload" as="image" href="/assets/velonyx_hero_poster.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/hero-bg-ai-helpdesk.webp" type="image/webp" fetchpriority="high" imagesrcset="/assets/hero-bg-ai-helpdesk-1440.webp 1440w, /assets/hero-bg-ai-helpdesk.webp 2400w" imagesizes="100vw">
   <!-- Preload font CSS so the hero headline (Space Grotesk 700/900) renders without FOIT flash -->
 <style>
     :root {
@@ -385,7 +385,6 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .hero-video { display: none; }
       .speed-line { display: none; }
     }
 
@@ -717,14 +716,18 @@
     }
 
     /* ===== HERO VIDEO ===== */
-    .hero-video {
+    .hero-bg-picture {
       position: absolute;
       inset: 0;
+      z-index: 0;
+      display: block;
+      pointer-events: none;
+    }
+    .hero-bg-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
-      opacity: 0.35;
+      opacity: 0.55;
     }
 
     .hero-video-overlay {
@@ -4401,14 +4404,17 @@
   <!-- HERO -->
   <main id="main-content">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="assets/velonyx_hero_poster.webp" aria-hidden="true" tabindex="-1" preload="metadata" id="heroVideo">
-      <source src="assets/velonyx_hero_web.mp4" type="video/mp4">
-    </video>
+    <!-- Hero background — premium AI helpdesk image. Replaces the 5.9 MB
+         autoplay video that used to sit here. Eager + fetchpriority=high so
+         it lands as the LCP element. Mobile gets the 1440-wide variant. -->
+    <picture class="hero-bg-picture">
+      <source media="(max-width: 1100px)" srcset="assets/hero-bg-ai-helpdesk-1440.webp" type="image/webp">
+      <img class="hero-bg-image" src="assets/hero-bg-ai-helpdesk.webp" alt="" width="2400" height="1350" loading="eager" fetchpriority="high" decoding="async">
+    </picture>
     <div class="hero-video-overlay"></div>
     <div class="hero-bg"></div>
     <div class="hero-gradient-anim"></div>
     <div class="hero-grid"></div>
-    <canvas id="heroParticles"></canvas>
     <div class="hero-content">
       <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
       <div class="hero-eyebrow"><span class="dot"></span> 78% of leads go to whoever answers first</div>
@@ -4419,7 +4425,7 @@
         <div class="hero-logo-line"></div>
         <picture>
           <source srcset="assets/vs-logo-shield-512.webp" type="image/webp">
-          <img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" class="hero-logo" id="heroLogo" width="512" height="590" fetchpriority="high">
+          <img src="assets/vs-logo-shield-512.webp" alt="Velonyx Systems" class="hero-logo" id="heroLogo" width="512" height="590" fetchpriority="high">
         </picture>
         <div class="hero-logo-line"></div>
       </div>
@@ -4809,7 +4815,7 @@
   <section class="about" id="about">
     <picture>
       <source srcset="assets/vs-logo-shield-512.webp" type="image/webp">
-      <img src="assets/vs-logo-shield-clean.png" alt="" class="about-watermark" width="512" height="590" loading="lazy">
+      <img src="assets/vs-logo-shield-512.webp" alt="" class="about-watermark" width="512" height="590" loading="lazy">
     </picture>
     <div class="container">
       <div class="section-label">The Engineer</div>
