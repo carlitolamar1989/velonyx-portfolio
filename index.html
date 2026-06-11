@@ -387,7 +387,6 @@
       }
       .hero-video { display: none; }
       .speed-line { display: none; }
-      .loader { display: none; }
     }
 
     /* ===== ADA ACCESSIBILITY ===== */
@@ -825,13 +824,13 @@
       gap: 8px;
       border: 1px solid rgba(212, 175, 55, 0.4);
       background: rgba(212, 175, 55, 0.06);
-      padding: 8px 20px;
+      padding: 10px 22px;
       border-radius: 50px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 3px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2.6px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       background-image: var(--gold-shine);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -854,18 +853,14 @@
 
     .hero-h1-top, .hero-h2-bottom {
       font-family: 'Space Grotesk', sans-serif;
-      /* max capped at 3.6rem so the longest desktop line ("You've Built the Business.",
-         25 chars) fits inside .hero-content max-width 860px without forcing the
-         .char-wrap inline-block to overflow horizontally. Previous 5rem max caused
-         desktop visual off-center. */
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(3rem, 6.4vw, 4.8rem);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.05;
       margin: 0;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
     }
     .hero-h2-bottom {
-      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-size: clamp(2.6rem, 5.6vw, 4.2rem);
       margin-top: 0;
       margin-bottom: 0;
     }
@@ -889,7 +884,7 @@
 
     .hero-subheadline {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
       font-weight: 600;
       letter-spacing: 0.5px;
       text-align: center;
@@ -899,64 +894,48 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    .hero-subheadline.reveal {
+      /* Visible by default — animation still runs if .reveal fires, but the
+         copy is never invisible if JS is blocked or delayed. */
       opacity: 1;
-      transform: translateY(0);
-      transition: all 0.6s ease-out;
+      transform: none;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 
     .hero-sub {
-      font-size: 1.15rem;
-      color: var(--white-muted);
-      max-width: 580px;
-      margin: 8px auto 14px;
-      font-weight: 300;
-      line-height: 1.7;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-sub.reveal {
+      font-size: 1.18rem;
+      color: var(--white);
+      max-width: 600px;
+      margin: 10px auto 16px;
+      font-weight: 400;
+      line-height: 1.6;
       opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out;
+      transform: none;
     }
-
     .hero-buttons {
       display: flex;
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-buttons.reveal {
       opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out;
+      transform: none;
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     }
 
     .hero-trust {
       margin-top: 22px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.74rem;
-      font-weight: 600;
-      letter-spacing: 1.2px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.42);
+      color: rgba(255, 255, 255, 0.78);
       line-height: 1.6;
-      max-width: 700px;
+      max-width: 740px;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    .hero-trust.reveal {
       opacity: 1;
-      transform: translateY(0);
-      transition: all 0.7s ease-out 0.15s;
+      transform: none;
+      transition: opacity 0.7s ease-out 0.15s, transform 0.7s ease-out 0.15s;
     }
     @media (max-width: 640px) {
       .hero-trust { font-size: 0.66rem; letter-spacing: 0.8px; padding: 0 8px; }
@@ -1163,8 +1142,20 @@
 
     .problem-text p {
       color: var(--white-dim);
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.8;
+    }
+    .problem-text p strong { color: var(--white); font-weight: 700; }
+    .problem-text .problem-pivot {
+      margin-top: 28px;
+      color: var(--white);
+      font-size: 1.12rem;
+      font-weight: 600;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ── AI Lead System section ──
@@ -1272,6 +1263,22 @@
       gap: 10px; padding: 20px; text-align: center;
       overflow: hidden;
     }
+    /* Thin cinematic bar — 32:9. Same look + filled-state polish as the
+       16:9/21:9 banners, just shorter so it reads as a thin strip not a panel. */
+    .image-placeholder-thin-bar {
+      max-width: 1080px; margin: 32px auto;
+      aspect-ratio: 32 / 9;
+      position: relative;
+      border: 2px dashed rgba(212,175,55,0.32);
+      border-radius: 14px;
+      background: linear-gradient(165deg, rgba(212,175,55,0.04) 0%, rgba(8,8,10,0.6) 100%);
+      overflow: hidden;
+    }
+    .image-placeholder-thin-bar > img,
+    .image-placeholder-thin-bar > video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit;
+    }
     .image-placeholder-wide-16-9 > img,
     .image-placeholder-wide-16-9 > video {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -1313,7 +1320,9 @@
     .image-placeholder-wide:has(img),
     .image-placeholder-wide:has(video),
     .image-placeholder-wide-16-9:has(img),
-    .image-placeholder-wide-16-9:has(video) {
+    .image-placeholder-wide-16-9:has(video),
+    .image-placeholder-thin-bar:has(img),
+    .image-placeholder-thin-bar:has(video) {
       border: 1px solid rgba(212,175,55,0.42);
       background: #06070a;
       box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08);
@@ -2183,36 +2192,6 @@
       100% { transform: translateX(100vw); }
     }
 
-    /* Upgraded loader with warp effect */
-    .loader-warp {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-    .warp-line {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.6) 40%, rgba(247, 225, 123, 0.9) 50%, rgba(212, 175, 55, 0.6) 60%, transparent 100%);
-      transform-origin: left center;
-      animation: warpBurst 1.2s ease-in forwards;
-      opacity: 0;
-    }
-    @keyframes warpBurst {
-      0% { width: 0; opacity: 0; }
-      30% { opacity: 1; }
-      100% { width: 150vw; opacity: 0; }
-    }
-
-    .loader-reveal {
-      animation: loaderSlideUp 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-    }
-    @keyframes loaderSlideUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100%); opacity: 0; }
-    }
-
     /* Hero eyebrow spring entrance */
     .hero-eyebrow {
       opacity: 0;
@@ -2419,79 +2398,6 @@
     }
 
     /* ===== LOADING SCREEN ===== */
-    .loader {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, #0a0e1a 0%, #030510 70%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-    }
-
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loader-content {
-      text-align: center;
-    }
-
-    .loader-mark {
-      width: min(400px, 60vw);
-      margin: 0 auto 16px;
-      animation: loaderPulse 1.2s ease-in-out infinite;
-    }
-
-    .loader-mark img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.2));
-    }
-
-    @keyframes loaderPulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
-      50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 40px rgba(56, 189, 248, 0.15)); }
-    }
-
-    .loader-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      background: var(--gold-shine);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .loader-bar {
-      width: 120px;
-      height: 2px;
-      background: var(--bg-border);
-      margin: 16px auto 0;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .loader-bar-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--gold-btn);
-      border-radius: 2px;
-      animation: loaderFill 1.4s ease-out forwards;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-    }
-
-    @keyframes loaderFill {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-
     /* ===== TESTIMONIALS ===== */
     .testimonials {
       padding: 100px 24px;
@@ -4465,16 +4371,6 @@
   <!-- SCROLL PROGRESS BAR -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- LOADING SCREEN -->
-  <div class="loader" id="loader">
-    <div class="loader-warp" id="loaderWarp"></div>
-    <div class="loader-content">
-      <div class="loader-mark"><picture><source srcset="assets/vs-logo-shield-512.webp" type="image/webp"><img src="assets/vs-logo-shield-clean.png" alt="Velonyx Systems" width="512" height="590"></picture></div>
-      <div class="loader-text">Velonyx Systems</div>
-      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-    </div>
-  </div>
-
   <!-- Speed lines background -->
   <div class="speed-lines" id="speedLines"></div>
 
@@ -4541,17 +4437,22 @@
     </div>
   </section>
 
-  <!-- MOTION BAR — Anchor A: 3 portrait slots, horizontally aligned, tell the
-       story left → right (Customers Reach Out → AI Answers in Seconds → Booked
-       While You Work). Each slot 4:5 portrait. Mobile (≤700px): stack to single
-       column. Source clips are 16:9 (Remotion, breathing zoom + glow + gold
-       sheen), object-fit: cover crops to the portrait frame.
+  <!-- PROBLEM / AGITATE — sits between the hero and the 3-image story.
+       Paints the cost of missed leads, then hands off to the 3 images, which
+       show the answer visually. One thesis, one outcome, one action. -->
+  <section class="problem">
+    <div class="container">
+      <div class="problem-text fade-in">
+        <p class="big-quote">A lead fills out your form at 9 PM. You see it at 7 AM. By then they&rsquo;ve already called someone else.<br><span class="gold">The first business to respond wins 78% of the time. Every second you wait, that lead is worth less.</span></p>
+        <p>You&rsquo;re running real work. On a job, under a truck, with a customer, asleep. That&rsquo;s the cost of building a business that actually does the work &mdash; you can&rsquo;t answer in five minutes, and the leads slip. Every day. <strong>This is what stops growing companies from getting to the next level.</strong></p>
+        <p class="problem-pivot">So we built the system that fixes it &mdash; one AI that runs your front desk, captures every lead, and books the call. Here&rsquo;s what that looks like:</p>
+      </div>
+    </div>
+  </section>
 
-       Each <video> shows its WebP poster INSTANTLY (zero perceived delay, same
-       as the old static image), then the muted looping clip streams in behind
-       it. preload="none" keeps them off the initial-load critical path; they're
-       paused for prefers-reduced-motion via the script near </body>. The <img>
-       inside each <video> is the fallback for browsers without MP4 support. -->
+  <!-- MOTION BAR — the visual answer to the problem above. Three portrait slots
+       (Customers Reach Out → AI Answers in Seconds → Booked While You Work)
+       running the same Remotion breathing-zoom + glow + sheen treatment. -->
   <div class="image-bar-row">
     <div class="image-bar-slot">
       <video class="hero-motion" muted loop playsinline preload="none"
@@ -4583,25 +4484,15 @@
     </div>
   </div>
 
-  <!-- PROBLEM / HOOK -->
-  <section class="problem">
-    <div class="container">
-      <div class="problem-text fade-in">
-        <p class="big-quote">A lead fills out your form at 9 PM. You see it at 7 AM. By then they&rsquo;ve already called someone else.<br><span class="gold">The first business to respond wins 78% of the time. Every second you wait, the odds collapse.</span></p>
-        <p>Every operator knows the rule: answer in five minutes or lose the lead. Wait an hour and the close rate drops <strong>10&times;</strong>. But you can&rsquo;t answer in five minutes &mdash; you&rsquo;re on a job, under a truck, or asleep when the form comes in. So leads slip. Every day. Velonyx engineers a system that closes the gap: AI answers in 30 seconds, captures the lead in plain English, and texts them back before your phone even rings.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI LEAD SYSTEM — the core offering, explained. The site demonstrates this
-       by running it: the chatbot + conversational form on this very page ARE the
-       product. -->
+  <!-- AI LEAD SYSTEM — what the buyer is actually purchasing, explained.
+       Heading is intentionally NOT a "front desk" line, because the banner
+       graphic below already says it. Heading sets up the 4-step explanation. -->
   <section class="ai-system" id="ai-system">
     <div class="container">
       <div class="ai-system-head fade-in">
         <div class="section-label" style="text-align:center;">The Velonyx AI Lead System</div>
-        <h2 class="section-title">Your 24/7 AI Front Desk.</h2>
-        <p class="section-subtitle">Four steps. Run in seconds. While you work.</p>
+        <h2 class="section-title">Here&rsquo;s How It Works.</h2>
+        <p class="section-subtitle">One AI. Four steps. Running in seconds &mdash; while you work.</p>
       </div>
 
       <!-- Anchor B: Wide 16:9 banner above the 4 step cards. Motion clip with
@@ -4640,7 +4531,7 @@
       </div>
 
       <div class="ai-system-cta fade-in">
-        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="AI system section">See It Work &mdash; Talk to Us</a>
+        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="AI system section">Talk to Us &mdash; 30 Seconds</a>
         <p class="ai-system-note">Or open the chat. Right now. That's the demo.</p>
       </div>
     </div>
@@ -4661,14 +4552,15 @@
       <!-- "These Are The Demos" — thin 21:9 cinematic banner under the heading,
            above the portfolio card. Source PNG was 16:9 with the text band centered;
            cropped to 21:9 here so it reads as a banner, not a panel. -->
-      <!-- Motion clip (MP4-only — the busy swirl banded under VP9) with WebP
-           poster + IO-gated playback. -->
-      <div class="image-placeholder-wide fade-in">
+      <!-- 32:9 thin cinematic bar — much shorter than a 16:9/21:9 panel so it
+           reads as a strip above the GDK card, not a duplicate hero. Motion
+           clip (MP4-only) with WebP poster + IO-gated playback. -->
+      <div class="image-placeholder-thin-bar fade-in">
         <video class="hero-motion" muted loop playsinline preload="none"
-               poster="assets/demos-banner-thin.webp" width="2400" height="1028"
+               poster="assets/demos-banner-thin.webp" width="2400" height="675"
                aria-label="These are the demos — real sites, real AI, see it live">
           <source src="assets/motion/demos-banner-thin.mp4" type="video/mp4">
-          <img src="assets/demos-banner-thin.webp" alt="These are the demos — real sites, real AI, see it live" width="2400" height="1028">
+          <img src="assets/demos-banner-thin.webp" alt="These are the demos — real sites, real AI, see it live" width="2400" height="675">
         </video>
       </div>
 
@@ -5430,16 +5322,8 @@
       }
     })();
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.classList.add('loader-reveal');
-        loader.addEventListener('animationend', () => {
-          loader.style.display = 'none';
-        });
-        startHeroSequence();
-      }, 1800);
-    });
+    // Loader removed — go straight into the hero reveal as soon as the page loads.
+    window.addEventListener('load', () => { startHeroSequence(); });
 
     // ===== SPEED LINES BACKGROUND =====
     (function() {
