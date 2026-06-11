@@ -5309,19 +5309,8 @@
       window.addEventListener('resize', () => { size(); spawn(); });
     })();
 
-    // ===== CINEMATIC LOADING SEQUENCE =====
-    (function() {
-      const loaderWarp = document.getElementById('loaderWarp');
-      const lineCount = 40;
-      for (let i = 0; i < lineCount; i++) {
-        const line = document.createElement('div');
-        line.className = 'warp-line';
-        const angle = (i / lineCount) * 360;
-        const delay = Math.random() * 0.6;
-        line.style.cssText = `transform: rotate(${angle}deg); animation-delay: ${delay}s; height: ${Math.random() > 0.7 ? 2 : 1}px;`;
-        loaderWarp.appendChild(line);
-      }
-    })();
+    // (Cinematic loading sequence removed — the #loaderWarp element no longer
+    // exists in the markup; the loader splash was deleted in PR #35.)
 
     // Loader removed — go straight into the hero reveal as soon as the page loads.
     window.addEventListener('load', () => { startHeroSequence(); });
