@@ -6176,7 +6176,16 @@
       ScrollTrigger.refresh();
     }
 
-    initGSAP();
+    // Defer GSAP/ScrollTrigger setup until the browser is idle after first paint,
+    // so the hero background (the LCP element) paints without competing for the
+    // main thread. GSAP only drives enhancements here (cursor glow, section and
+    // hero parallax animations); the fade-in reveals run on a separate
+    // IntersectionObserver, so deferring this never hides content.
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initGSAP, { timeout: 2000 });
+    } else {
+      setTimeout(initGSAP, 1);
+    }
   });
   </script>
 
