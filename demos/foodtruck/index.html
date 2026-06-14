@@ -118,6 +118,49 @@
     footer .brand{color:var(--cream);}
     .foot-note{width:100%;text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:.76rem;color:rgba(247,239,224,.5);}
     .foot-note a{color:var(--gold-soft);}
+
+    /* interactive modals */
+    .cw-ovl{position:fixed;inset:0;z-index:2000;background:rgba(8,5,3,.74);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;transition:opacity .2s;}
+    .cw-ovl.open{opacity:1;visibility:visible;}
+    .cw-modal{background:linear-gradient(165deg,#241811,#160e08);border:1px solid var(--line);border-radius:18px;max-width:500px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(12px);transition:transform .2s;}
+    .cw-ovl.open .cw-modal{transform:none;}
+    .cw-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#1d130d;z-index:1;}
+    .cw-head h3{font-size:1.18rem;color:var(--cream);}
+    .cw-head .sub{font-size:.76rem;color:var(--cream-dim);margin-top:2px;}
+    .cw-x{background:transparent;border:none;color:var(--cream-dim);font-size:1.5rem;line-height:1;cursor:pointer;width:34px;height:34px;border-radius:8px;}
+    .cw-x:hover{background:rgba(255,255,255,.08);color:var(--cream);}
+    .cw-body{padding:16px 20px 20px;}
+    .cw-cat{font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--gold);font-size:.95rem;letter-spacing:.04em;margin:16px 0 4px;}
+    .cw-cat:first-child{margin-top:0;}
+    .cw-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed rgba(247,239,224,.1);}
+    .cw-item .nm{color:var(--cream);font-size:.92rem;}
+    .cw-item .pr{color:var(--cream-dim);font-size:.84rem;}
+    .cw-add{background:var(--gold);color:#2a1606;border:none;font-weight:700;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:.82rem;}
+    .cw-add:hover{background:var(--gold-soft);}
+    .cw-qty{display:flex;align-items:center;gap:10px;}
+    .cw-qty button{width:28px;height:28px;border-radius:7px;border:1px solid var(--line);background:#2a1d14;color:var(--cream);cursor:pointer;font-size:1.1rem;line-height:1;}
+    .cw-qty button:hover{border-color:var(--gold);}
+    .cw-qty .n{min-width:16px;text-align:center;color:var(--cream);font-weight:700;}
+    .cw-cart{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;}
+    .cw-total{display:flex;justify-content:space-between;align-items:baseline;font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--cream);margin-bottom:14px;}
+    .cw-total span:last-child{color:var(--gold);}
+    .cw-place{width:100%;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#2a1606;border:none;font-weight:700;font-size:1rem;border-radius:10px;padding:14px;cursor:pointer;}
+    .cw-place:hover:not(:disabled){box-shadow:0 8px 22px rgba(242,177,52,.4);}
+    .cw-place:disabled{opacity:.45;cursor:not-allowed;}
+    .cw-note{font-size:.72rem;color:var(--cream-dim);text-align:center;margin-top:12px;}
+    .cw-field{margin-bottom:12px;}
+    .cw-field label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--cream-dim);margin-bottom:6px;}
+    .cw-field input,.cw-field textarea{width:100%;padding:11px 13px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:9px;color:var(--cream);font-family:inherit;font-size:.92rem;}
+    .cw-field input:focus,.cw-field textarea:focus{outline:none;border-color:var(--gold);}
+    .cw-success{text-align:center;padding:22px 8px 6px;}
+    .cw-success .big{font-size:2.6rem;}
+    .cw-success h3{color:var(--gold);margin:8px 0 6px;font-size:1.3rem;}
+    .cw-success p{color:var(--cream-dim);font-size:.94rem;}
+    .cw-map{height:148px;border-radius:12px;background:linear-gradient(135deg,#27331f,#192414);border:1px solid var(--line);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .cw-map .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:26px 26px;}
+    .cw-map .pin{font-size:2.4rem;position:relative;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5));}
+    .cw-loc-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed rgba(247,239,224,.1);font-size:.9rem;color:var(--cream);}
+    .cw-loc-row .d{color:var(--gold);font-weight:700;}
   </style>
 </head>
 <body>
@@ -140,8 +183,8 @@
     <h1>Real tacos,<br><em>done Carlito's way.</em></h1>
     <p>Al pastor off the trompo, carne asada, milanesa tortas — served fresh from the truck. Our 24/7 AI assistant tells you where we're parked and takes your order before you're even in line.</p>
     <div class="hero-cta">
-      <a class="btn" href="#find">Find the Truck Today</a>
-      <a class="btn-ghost" href="#menu">See the Menu</a>
+      <a class="btn" href="#" data-modal="order">Order Ahead</a>
+      <a class="btn-ghost" href="#" data-modal="location">Where's the Truck?</a>
     </div>
     <div class="trust-row">
       <span><b>$3.50</b> street tacos</span>
@@ -203,9 +246,9 @@
     <h2 class="sec-title">Get it delivered.</h2>
     <p class="sec-sub">Order Carlito's Way straight to your door on your favorite app — across La Mesa &amp; San Diego.</p>
     <div class="delivery-btns">
-      <a class="dlv dlv-dd" href="#" onclick="return false;"><span class="ic">🚗</span> Order on DoorDash</a>
-      <a class="dlv dlv-gh" href="#" onclick="return false;"><span class="ic">🍴</span> Order on Grubhub</a>
-      <a class="dlv dlv-ue" href="#" onclick="return false;"><span class="ic">🛵</span> Order on Uber Eats</a>
+      <a class="dlv dlv-dd" href="#" data-modal="order" data-provider="DoorDash"><span class="ic">🚗</span> Order on DoorDash</a>
+      <a class="dlv dlv-gh" href="#" data-modal="order" data-provider="Grubhub"><span class="ic">🍴</span> Order on Grubhub</a>
+      <a class="dlv dlv-ue" href="#" data-modal="order" data-provider="Uber Eats"><span class="ic">🛵</span> Order on Uber Eats</a>
     </div>
   </div></section>
 
@@ -245,8 +288,9 @@
     <h2>Find us. Order ahead. Cater up.</h2>
     <p>Ask the AI where we're parked today, order ahead so it's ready when you arrive, or get a catering quote for your next 20+ crowd — any hour, any day.</p>
     <div class="cta-actions">
-      <a class="btn" href="#" onclick="return false;">Where's the Truck?</a>
-      <a class="btn-ghost" href="#" onclick="return false;">Get a Catering Quote</a>
+      <a class="btn" href="#" data-modal="order">Order Ahead</a>
+      <a class="btn-ghost" href="#" data-modal="location">Where's the Truck?</a>
+      <a class="btn-ghost" href="#" data-modal="catering">Get a Catering Quote</a>
     </div>
   </div></div></section>
 
@@ -277,5 +321,81 @@
     };
   </script>
   <script src="/assets/velonyx-demo-chat.js" defer></script>
+
+  <!-- Interactive demo: order flow, location, catering (mock — no backend) -->
+  <script>
+  (function(){
+    var MENU={
+      'Tacos — $3.50 each':[['Al Pastor',3.5],['Carne Asada',3.5],['Carnitas',3.5],['Pollo',3.5]],
+      'Tortas':[['Milanesa Torta',10],['Carnitas Torta',9.5],['Asada Torta',9.5]],
+      'Burritos':[['California Burrito',11],['Bean & Cheese',6.5],['Surf & Turf',12]],
+      'Sides':[['Chips & Guacamole',5],['Elote',4.5],['Rice & Beans',4]],
+      'Drinks':[['Horchata',3.5],['Jarritos',3],['Agua Fresca',3.5]]
+    };
+    var cart={};
+    function money(n){return '$'+n.toFixed(2);}
+    function priceOf(name){for(var c in MENU)for(var i=0;i<MENU[c].length;i++)if(MENU[c][i][0]===name)return MENU[c][i][1];return 0;}
+    function total(){var t=0;for(var k in cart)t+=cart[k]*priceOf(k);return t;}
+    function count(){var c=0;for(var k in cart)c+=cart[k];return c;}
+
+    var ovl=document.createElement('div'); ovl.className='cw-ovl'; document.body.appendChild(ovl);
+    function close(){ovl.classList.remove('open');setTimeout(function(){ovl.innerHTML='';},200);}
+    ovl.addEventListener('click',function(e){if(e.target===ovl)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ovl.classList.contains('open'))close();});
+    function open(html){ovl.innerHTML='<div class="cw-modal">'+html+'</div>';ovl.classList.add('open');var x=ovl.querySelector('.cw-x');if(x)x.addEventListener('click',close);return ovl.querySelector('.cw-modal');}
+
+    function renderOrder(provider){
+      var prev=ovl.querySelector('.cw-modal');var sc=prev?prev.scrollTop:0;
+      var rows='';
+      for(var cat in MENU){rows+='<div class="cw-cat">'+cat+'</div>';
+        MENU[cat].forEach(function(it){var nm=it[0],pr=it[1],q=cart[nm]||0;
+          rows+='<div class="cw-item"><div><span class="nm">'+nm+'</span> <span class="pr">'+money(pr)+'</span></div>'+
+          (q>0?'<div class="cw-qty"><button data-dec="'+nm+'" aria-label="remove one">−</button><span class="n">'+q+'</span><button data-inc="'+nm+'" aria-label="add one">+</button></div>':'<button class="cw-add" data-inc="'+nm+'">Add</button>')+'</div>';});}
+      var html='<div class="cw-head"><div><h3>Order Ahead</h3><div class="sub">'+(provider?'via '+provider+' · ':'')+'Pickup at La Mesa Village</div></div><button class="cw-x" aria-label="Close">&times;</button></div>'+
+        '<div class="cw-body">'+rows+'<div class="cw-cart"><div class="cw-total"><span>Total · '+count()+' item'+(count()===1?'':'s')+'</span><span>'+money(total())+'</span></div>'+
+        '<button class="cw-place" id="cwPlace"'+(count()===0?' disabled':'')+'>Place Order</button>'+
+        '<div class="cw-note">Demo only — no real order is placed or charged.</div></div></div>';
+      var m=open(html);if(m)m.scrollTop=sc;
+      ovl.querySelectorAll('[data-inc]').forEach(function(b){b.addEventListener('click',function(){var n=b.getAttribute('data-inc');cart[n]=(cart[n]||0)+1;renderOrder(provider);});});
+      ovl.querySelectorAll('[data-dec]').forEach(function(b){b.addEventListener('click',function(){var n=b.getAttribute('data-dec');cart[n]=(cart[n]||0)-1;if(cart[n]<=0)delete cart[n];renderOrder(provider);});});
+      var p=ovl.querySelector('#cwPlace');if(p)p.addEventListener('click',function(){placeOrder(provider);});
+    }
+    function placeOrder(provider){var num='CW-'+(1000+Math.floor(Math.random()*9000));cart={};
+      open('<div class="cw-head"><div><h3>Order Confirmed</h3></div><button class="cw-x" aria-label="Close">&times;</button></div><div class="cw-body"><div class="cw-success"><div class="big">✅</div><h3>Order '+num+' placed!</h3><p>Ready in ~15 minutes at <strong>La Mesa Village</strong>'+(provider?' (via '+provider+')':'')+'. We\'ll text you when it\'s up.</p></div><div class="cw-note">Demo only — no real order was placed.</div></div>');}
+
+    function renderLocation(){
+      open('<div class="cw-head"><div><h3>Where\'s the Truck?</h3><div class="sub">Today · live</div></div><button class="cw-x" aria-label="Close">&times;</button></div>'+
+        '<div class="cw-body"><div class="cw-map"><div class="grid"></div><div class="pin">📍</div></div>'+
+        '<div style="margin-top:14px;font-weight:700;color:var(--cream);font-size:1.06rem;">La Mesa Village</div>'+
+        '<div style="color:var(--cream-dim);font-size:.9rem;margin-bottom:8px;">La Mesa Blvd · open 11 AM – 2 PM today</div>'+
+        '<div class="cw-cat">Upcoming Stops</div>'+
+        '<div class="cw-loc-row"><span>Sun · La Mesa Farmers Market</span><span class="d">10–3</span></div>'+
+        '<div class="cw-loc-row"><span>Tue · Grossmont Center</span><span class="d">11–1:30</span></div>'+
+        '<div class="cw-loc-row"><span>Thu · SDSU College Area</span><span class="d">5–9</span></div>'+
+        '<button class="cw-place" id="cwNotify" style="margin-top:16px;">🔔 Notify me when you\'re nearby</button>'+
+        '<div class="cw-note">Demo only.</div></div>');
+      var n=ovl.querySelector('#cwNotify');if(n)n.addEventListener('click',function(){n.outerHTML='<div class="cw-success" style="padding:14px 0 0;"><div class="big">🔔</div><p style="color:var(--gold);font-weight:700;margin-top:6px;">We\'ll text you when we\'re close!</p></div>';});
+    }
+
+    function renderCatering(){
+      open('<div class="cw-head"><div><h3>Catering Quote</h3><div class="sub">Parties of 20+</div></div><button class="cw-x" aria-label="Close">&times;</button></div>'+
+        '<div class="cw-body"><form id="cwCater">'+
+        '<div class="cw-field"><label>Name</label><input required placeholder="Your name"></div>'+
+        '<div class="cw-field"><label>Phone</label><input required type="tel" placeholder="(619) 555-0123"></div>'+
+        '<div class="cw-field"><label>Number of guests</label><input required type="number" min="20" placeholder="40"></div>'+
+        '<div class="cw-field"><label>Event date</label><input required type="date"></div>'+
+        '<button class="cw-place" type="submit">Request Quote</button>'+
+        '<div class="cw-note">Demo only — no request is actually sent.</div></form></div>');
+      var f=ovl.querySelector('#cwCater');if(f)f.addEventListener('submit',function(e){e.preventDefault();
+        open('<div class="cw-head"><div><h3>Quote Requested</h3></div><button class="cw-x" aria-label="Close">&times;</button></div><div class="cw-body"><div class="cw-success"><div class="big">🎉</div><h3>Got it!</h3><p>Our AI will text you a catering quote within the hour.</p></div><div class="cw-note">Demo only.</div></div>');});
+    }
+
+    document.addEventListener('click',function(e){var t=e.target.closest('[data-modal]');if(!t)return;e.preventDefault();
+      var k=t.getAttribute('data-modal');
+      if(k==='order')renderOrder(t.getAttribute('data-provider'));
+      else if(k==='location')renderLocation();
+      else if(k==='catering')renderCatering();});
+  })();
+  </script>
 </body>
 </html>

@@ -61,30 +61,34 @@
     .bar small{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:.7rem;color:var(--muted);}
     .demo-note{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center;}
     .demo-note a{color:var(--gold);font-weight:600;}
+    .view[hidden]{display:none;}
+    .nav-item{cursor:pointer;}
+    .sw input{width:38px;height:21px;accent-color:var(--gold);cursor:pointer;}
   </style>
 </head>
 <body>
   <div class="layout">
     <aside class="side">
       <div class="brand"><span class="brand-mark">🌮</span> Carlito's Way</div>
-      <a class="nav-item active"><span class="gi">▦</span> Dashboard</a>
-      <a class="nav-item"><span class="gi">👥</span> Leads</a>
-      <a class="nav-item"><span class="gi">📍</span> Locations</a>
-      <a class="nav-item"><span class="gi">🌮</span> Catering</a>
-      <a class="nav-item"><span class="gi">🧾</span> Orders</a>
-      <a class="nav-item"><span class="gi">⚙️</span> Settings</a>
+      <a class="nav-item active" href="#" data-view="dashboard"><span class="gi">▦</span> Dashboard</a>
+      <a class="nav-item" href="#" data-view="leads"><span class="gi">👥</span> Leads</a>
+      <a class="nav-item" href="#" data-view="locations"><span class="gi">📍</span> Locations</a>
+      <a class="nav-item" href="#" data-view="catering"><span class="gi">🌮</span> Catering</a>
+      <a class="nav-item" href="#" data-view="orders"><span class="gi">🧾</span> Orders</a>
+      <a class="nav-item" href="#" data-view="settings"><span class="gi">⚙️</span> Settings</a>
       <div class="side-foot">Owner: The Reyes Family<br>Powered by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx</a><br><a href="index.html">← Back to site</a></div>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
-          <h1>Taco Truck Dashboard</h1>
-          <div class="sub">Saturday, June 14 · La Mesa Village, 11 AM – 2 PM</div>
+          <h1 id="viewTitle">Taco Truck Dashboard</h1>
+          <div class="sub" id="viewSub">Saturday, June 14 · La Mesa Village, 11 AM – 2 PM</div>
         </div>
         <span class="pill"><span class="dot"></span> AI Assistant connected · capturing orders &amp; leads 24/7</span>
       </div>
 
+      <div class="view" id="view-dashboard">
       <div class="kpis">
         <div class="kpi"><div class="l">Orders today</div><div class="v">142</div><div class="d up">▲ 21 vs last Saturday</div></div>
         <div class="kpi"><div class="l">Catering inquiries (this week)</div><div class="v">9</div><div class="d ai">✦ 6 captured by AI</div></div>
@@ -130,8 +134,110 @@
         </div>
       </div>
 
+      </div><!-- /view-dashboard -->
+
+      <div class="view" id="view-leads" hidden>
+        <div class="panel">
+          <h2>All Leads</h2>
+          <div class="ph-sub">Every inquiry the AI assistant and website captured — newest first.</div>
+          <table>
+            <thead><tr><th>Name</th><th>Source</th><th>Request</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="who">Marcus B.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">11:02 AM</small></td><td>Catering — 40 ppl taco bar, next Sat</td><td><span class="badge b-prog">Quoting</span></td></tr>
+              <tr><td class="who">Sofia R.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">10:40 AM</small></td><td>Order ahead — 6 al pastor, 2 horchata</td><td><span class="badge b-booked">Ready</span></td></tr>
+              <tr><td class="who">Renee Kim</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">9:48 PM</small></td><td>Catering — 25, quinceañera</td><td><span class="badge b-booked">Booked</span></td></tr>
+              <tr><td class="who">Danny S.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">7:31 AM</small></td><td>Order ahead — 4 al pastor + milanesa torta</td><td><span class="badge b-booked">Ready</span></td></tr>
+              <tr><td class="who">Aisha R.</td><td>Website form<br><small style="color:var(--muted)">Yesterday</small></td><td>Catering — office lunch, 30</td><td><span class="badge b-new">New</span></td></tr>
+              <tr><td class="who">Carlos M.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">2 days ago</small></td><td>Catering — block party, 60</td><td><span class="badge b-booked">Booked</span></td></tr>
+              <tr><td class="who">Jorge P.</td><td>DoorDash<br><small style="color:var(--muted)">2 days ago</small></td><td>Delivery — 3 burritos</td><td><span class="badge b-booked">Delivered</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="view" id="view-orders" hidden>
+        <div class="panel">
+          <h2>Today's Orders</h2>
+          <div class="ph-sub">Order-ahead and delivery, captured automatically.</div>
+          <table>
+            <thead><tr><th>Order</th><th>Items</th><th>Channel</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="who">#CW-1042</td><td>4 Al Pastor, 1 Milanesa Torta</td><td><span class="src">Order Ahead</span></td><td>$24.00</td><td><span class="badge b-prog">Cooking</span></td></tr>
+              <tr><td class="who">#CW-1041</td><td>2 California Burritos</td><td>DoorDash</td><td>$22.00</td><td><span class="badge b-booked">Out for delivery</span></td></tr>
+              <tr><td class="who">#CW-1040</td><td>6 Carne Asada, 2 Horchata</td><td><span class="src">Order Ahead</span></td><td>$28.00</td><td><span class="badge b-booked">Picked up</span></td></tr>
+              <tr><td class="who">#CW-1039</td><td>1 Surf &amp; Turf, Elote</td><td>Uber Eats</td><td>$16.50</td><td><span class="badge b-booked">Delivered</span></td></tr>
+              <tr><td class="who">#CW-1038</td><td>3 Pollo, Chips &amp; Guac</td><td>Grubhub</td><td>$15.50</td><td><span class="badge b-booked">Delivered</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="view" id="view-catering" hidden>
+        <div class="panel">
+          <h2>Catering Requests</h2>
+          <div class="ph-sub">Quotes the AI captured — auto-followed up within the hour.</div>
+          <table>
+            <thead><tr><th>Client</th><th>Event</th><th>Guests</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="who">Marcus B.</td><td>Taco bar</td><td>40</td><td>Sat Jun 21</td><td><span class="badge b-prog">Quoting</span></td></tr>
+              <tr><td class="who">Renee Kim</td><td>Quinceañera</td><td>25</td><td>Sat Jun 28</td><td><span class="badge b-booked">Booked</span></td></tr>
+              <tr><td class="who">Aisha R.</td><td>Office lunch</td><td>30</td><td>Wed Jun 18</td><td><span class="badge b-new">New</span></td></tr>
+              <tr><td class="who">Carlos M.</td><td>Block party</td><td>60</td><td>Sun Jul 6</td><td><span class="badge b-booked">Booked</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="view" id="view-locations" hidden>
+        <div class="panel">
+          <h2>Weekly Schedule</h2>
+          <div class="ph-sub">Where the truck is parked — auto-posted to the website &amp; AI assistant.</div>
+          <div class="stop"><div class="t">Mon</div><div><div class="who2">Closed</div><div class="svc">Prep &amp; restock day</div></div></div>
+          <div class="stop"><div class="t">Tue</div><div><div class="who2">Grossmont Center</div><div class="svc">11 AM – 1:30 PM</div></div></div>
+          <div class="stop"><div class="t">Wed</div><div><div class="who2">Downtown La Mesa — 3rd St</div><div class="svc">11 AM – 2 PM</div></div></div>
+          <div class="stop"><div class="t">Thu</div><div><div class="who2">SDSU College Area</div><div class="svc">5 PM – 9 PM</div></div></div>
+          <div class="stop"><div class="t">Fri</div><div><div class="who2">Helix Brewing Lot</div><div class="svc">5 PM – 9 PM</div></div></div>
+          <div class="stop"><div class="t">Sat</div><div><div class="who2">La Mesa Village</div><div class="svc">11 AM – 2 PM · today</div></div></div>
+          <div class="stop"><div class="t">Sun</div><div><div class="who2">La Mesa Farmers Market</div><div class="svc">10 AM – 3 PM</div></div></div>
+        </div>
+      </div>
+
+      <div class="view" id="view-settings" hidden>
+        <div class="panel">
+          <h2>Settings</h2>
+          <div class="ph-sub">AI assistant &amp; truck configuration.</div>
+          <div class="stop"><div style="flex:1"><div class="who2">AI order-ahead</div><div class="svc">Let the AI take pickup orders 24/7</div></div><label class="sw"><input type="checkbox" checked></label></div>
+          <div class="stop"><div style="flex:1"><div class="who2">AI catering quotes</div><div class="svc">Auto-respond to catering inquiries</div></div><label class="sw"><input type="checkbox" checked></label></div>
+          <div class="stop"><div style="flex:1"><div class="who2">SMS text-back</div><div class="svc">Text customers their order status</div></div><label class="sw"><input type="checkbox" checked></label></div>
+          <div class="stop"><div style="flex:1"><div class="who2">Auto-post location</div><div class="svc">Push today's stop to the website</div></div><label class="sw"><input type="checkbox" checked></label></div>
+          <div class="stop"><div style="flex:1"><div class="who2">Delivery integrations</div><div class="svc">DoorDash · Grubhub · Uber Eats</div></div><label class="sw"><input type="checkbox" checked></label></div>
+        </div>
+      </div>
+
       <div class="demo-note">This is a demonstration dashboard built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> — sample data only. <a href="index.html">← Back to the demo site</a></div>
     </main>
   </div>
+  <script>
+  (function(){
+    var titles={
+      dashboard:['Taco Truck Dashboard','Saturday, June 14 · La Mesa Village, 11 AM – 2 PM'],
+      leads:['Leads','Every inquiry the AI captured'],
+      locations:['Locations',"This week's truck schedule"],
+      catering:['Catering','Quote requests & upcoming events'],
+      orders:['Orders',"Today's order-ahead & delivery"],
+      settings:['Settings','AI assistant & truck configuration']
+    };
+    var items=document.querySelectorAll('.nav-item[data-view]');
+    var views=document.querySelectorAll('.view');
+    var title=document.getElementById('viewTitle'),sub=document.getElementById('viewSub');
+    items.forEach(function(it){it.addEventListener('click',function(e){e.preventDefault();
+      var v=it.getAttribute('data-view');
+      items.forEach(function(x){x.classList.toggle('active',x===it);});
+      views.forEach(function(vw){vw.hidden=(vw.id!=='view-'+v);});
+      if(titles[v]){title.textContent=titles[v][0];sub.textContent=titles[v][1];}
+      var m=document.querySelector('.main');if(m)m.scrollTop=0;
+    });});
+  })();
+  </script>
 </body>
 </html>
