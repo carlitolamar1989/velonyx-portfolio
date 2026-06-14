@@ -187,6 +187,36 @@
     }
   }
 
+  function makeDraggable(wrap, handle) {
+    if (!handle) return;
+    handle.style.cursor = 'grab';
+    var sx, sy, sl, st, dragging = false;
+    function down(e) {
+      if (e.target.closest('button')) return; // don't drag when tapping the buttons
+      dragging = true; handle.style.cursor = 'grabbing';
+      var p = e.touches ? e.touches[0] : e, r = wrap.getBoundingClientRect();
+      wrap.style.top = r.top + 'px'; wrap.style.left = r.left + 'px';
+      wrap.style.right = 'auto'; wrap.style.bottom = 'auto';
+      sx = p.clientX; sy = p.clientY; sl = r.left; st = r.top;
+      e.preventDefault();
+    }
+    function move(e) {
+      if (!dragging) return;
+      var p = e.touches ? e.touches[0] : e;
+      var nl = sl + (p.clientX - sx), nt = st + (p.clientY - sy);
+      nl = Math.max(6, Math.min(nl, window.innerWidth - wrap.offsetWidth - 6));
+      nt = Math.max(6, Math.min(nt, window.innerHeight - wrap.offsetHeight - 6));
+      wrap.style.left = nl + 'px'; wrap.style.top = nt + 'px';
+    }
+    function up() { dragging = false; handle.style.cursor = 'grab'; }
+    handle.addEventListener('mousedown', down);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+    handle.addEventListener('touchstart', down, { passive: false });
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', up);
+  }
+
   function init() {
     if (document.getElementById('vx-demo-widget')) return;
     var style = document.createElement('style');
@@ -194,6 +224,7 @@
     style.textContent = CSS;
     document.head.appendChild(style);
     document.body.appendChild(widget.wrap);
+    makeDraggable(widget.wrap, widget.wrap.querySelector('.vx-demo-head'));
     // Slide in after a moment so it doesn't compete with first paint
     setTimeout(function () { widget.wrap.classList.add('is-visible'); }, 700);
 

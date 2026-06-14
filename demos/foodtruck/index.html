@@ -397,5 +397,25 @@
       else if(k==='catering')renderCatering();});
   })();
   </script>
+
+  <!-- Floating action buttons: Talk Now (call) + Chat Bot (opens the AI widget) -->
+  <style>
+    .ft-fab{position:fixed;right:20px;bottom:20px;z-index:1060;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+    .ft-fab a,.ft-fab button{font-family:'Inter',system-ui,sans-serif;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.95rem;border-radius:999px;padding:13px 20px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .15s,box-shadow .15s;text-decoration:none;}
+    .ft-fab a:hover,.ft-fab button:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.5);}
+    .ft-talk{background:linear-gradient(135deg,#f7c95f,#f2b134);color:#2a1606;}
+    .ft-chat{background:#c8312a;color:#fff;}
+    .ft-fab .ic{font-size:1.1rem;line-height:1;}
+    @media(max-width:560px){.ft-fab{right:12px;bottom:12px;}}
+  </style>
+  <div class="ft-fab">
+    <button class="ft-chat" type="button" id="ftChatBtn"><span class="ic">💬</span> Chat Bot</button>
+    <a class="ft-talk" href="tel:+16195550147"><span class="ic">📞</span> Talk Now</a>
+  </div>
+  <script>
+    (function(){var b=document.getElementById('ftChatBtn');if(b)b.addEventListener('click',function(){
+      if(window.VXDemoChat&&window.VXDemoChat.open){window.VXDemoChat.open();}
+    });})();
+  </script>
 </body>
 </html>

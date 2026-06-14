@@ -20,7 +20,6 @@
  * ============================================================================ */
 (function () {
   if (typeof document === 'undefined') return;
-  if (sessionStorage.getItem('vx-demo-dismissed') === '1') return;
 
   var CFG = window.VX_DEMO_CONFIG || {};
   var ACCENT = CFG.accent || '#D4AF37';
@@ -74,7 +73,7 @@
     + '@keyframes vxDots{0%,80%,100%{transform:translateY(0);opacity:0.4;}40%{transform:translateY(-3px);opacity:1;}}'
     + '.vx-demo-foot{padding:8px 14px 10px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.66rem;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:0.3px;}'
     + '.vx-demo-foot strong{color:var(--vxa);font-weight:700;}'
-    + '@media (max-width:560px){#vx-demo-widget{left:12px;right:12px;width:auto;bottom:12px;}'
+    + '@media (max-width:560px){#vx-demo-widget{left:12px;right:auto;width:min(82vw,300px);bottom:88px;}'
     + '.vx-demo-body{height:200px;}}';
 
   function el(tag, cls, html) {
@@ -137,6 +136,36 @@
     else if (stopped) { stopped = false; runLoop(); }
   }
 
+  function makeDraggable(wrap, handle) {
+    if (!handle) return;
+    handle.style.cursor = 'grab';
+    var sx, sy, sl, st, dragging = false;
+    function down(e) {
+      if (e.target.closest('button')) return; // don't drag when tapping the buttons
+      dragging = true; handle.style.cursor = 'grabbing';
+      var p = e.touches ? e.touches[0] : e, r = wrap.getBoundingClientRect();
+      wrap.style.top = r.top + 'px'; wrap.style.left = r.left + 'px';
+      wrap.style.right = 'auto'; wrap.style.bottom = 'auto';
+      sx = p.clientX; sy = p.clientY; sl = r.left; st = r.top;
+      e.preventDefault();
+    }
+    function move(e) {
+      if (!dragging) return;
+      var p = e.touches ? e.touches[0] : e;
+      var nl = sl + (p.clientX - sx), nt = st + (p.clientY - sy);
+      nl = Math.max(6, Math.min(nl, window.innerWidth - wrap.offsetWidth - 6));
+      nt = Math.max(6, Math.min(nt, window.innerHeight - wrap.offsetHeight - 6));
+      wrap.style.left = nl + 'px'; wrap.style.top = nt + 'px';
+    }
+    function up() { dragging = false; handle.style.cursor = 'grab'; }
+    handle.addEventListener('mousedown', down);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+    handle.addEventListener('touchstart', down, { passive: false });
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', up);
+  }
+
   function init() {
     if (document.getElementById('vx-demo-widget')) return;
     var style = document.createElement('style');
@@ -144,15 +173,23 @@
     style.textContent = CSS;
     document.head.appendChild(style);
     document.body.appendChild(widget.wrap);
+    makeDraggable(widget.wrap, widget.wrap.querySelector('.vx-demo-head'));
     setTimeout(function () { widget.wrap.classList.add('is-visible'); }, 700);
     widget.closeBtn.addEventListener('click', function () {
-      stopped = true; if (timer) clearTimeout(timer);
-      widget.wrap.parentNode && widget.wrap.parentNode.removeChild(widget.wrap);
-      try { sessionStorage.setItem('vx-demo-dismissed', '1'); } catch (e) {}
+      widget.wrap.style.display = 'none'; // hide (not remove) so a button can re-open it
     });
     widget.collapseBtn.addEventListener('click', function () { widget.wrap.classList.toggle('is-collapsed'); });
     document.addEventListener('visibilitychange', pauseOnHidden);
     runLoop();
+
+    // Let a page button (e.g. a "Chat Bot" launcher) re-open the widget.
+    window.VXDemoChat = {
+      open: function () {
+        widget.wrap.style.display = '';
+        widget.wrap.classList.remove('is-collapsed');
+        widget.wrap.classList.add('is-visible');
+      }
+    };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
