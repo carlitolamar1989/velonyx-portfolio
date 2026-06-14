@@ -4374,6 +4374,40 @@
 
   <div class="cosmos-backdrop" aria-hidden="true"></div>
   <div class="cosmos-veil-layer" aria-hidden="true"></div>
+
+  <!-- ===== HIGH-TECH LAYER (GPU-only animation, behind all content, reduced-motion safe) ===== -->
+  <div class="vx-tech-bg" aria-hidden="true">
+    <div class="vx-aurora a1"></div>
+    <div class="vx-aurora a2"></div>
+    <div class="vx-aurora a3"></div>
+    <div class="vx-grid"></div>
+  </div>
+  <style id="vx-hightech">
+    .vx-tech-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+    .vx-aurora{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform;}
+    .vx-aurora.a1{width:46vw;height:46vw;left:-8vw;top:-12vh;background:radial-gradient(circle,rgba(212,175,55,.55),transparent 70%);opacity:.20;animation:vxd1 26s ease-in-out infinite alternate;}
+    .vx-aurora.a2{width:42vw;height:42vw;right:-8vw;top:14vh;background:radial-gradient(circle,rgba(46,107,255,.5),transparent 70%);opacity:.14;animation:vxd2 33s ease-in-out infinite alternate;}
+    .vx-aurora.a3{width:40vw;height:40vw;left:26vw;bottom:-14vh;background:radial-gradient(circle,rgba(122,59,255,.5),transparent 70%);opacity:.12;animation:vxd3 40s ease-in-out infinite alternate;}
+    @keyframes vxd1{to{transform:translate3d(7vw,6vh,0) scale(1.15);}}
+    @keyframes vxd2{to{transform:translate3d(-6vw,5vh,0) scale(1.12);}}
+    @keyframes vxd3{to{transform:translate3d(5vw,-6vh,0) scale(1.18);}}
+    .vx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.045) 1px,transparent 1px);background-size:50px 50px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 28%,#000 35%,transparent 78%);mask-image:radial-gradient(ellipse 75% 70% at 50% 28%,#000 35%,transparent 78%);}
+    .vx-pcl{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;background:#d4af37;box-shadow:0 0 8px 1px rgba(212,175,55,.8);opacity:0;will-change:transform,opacity;animation:vxrise linear infinite;}
+    @keyframes vxrise{0%{transform:translateY(0);opacity:0;}8%{opacity:.85;}92%{opacity:.45;}100%{transform:translateY(-104vh);opacity:0;}}
+
+    /* glowing cards — box-shadow only, no layout shift */
+    .tier-card,.portfolio-card,.ai-step,.process-step{box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 0 1px rgba(212,175,55,.10);transition:transform .18s ease,box-shadow .28s ease;}
+    .tier-card:hover,.portfolio-card:hover,.ai-step:hover,.process-step:hover{box-shadow:0 20px 52px rgba(0,0,0,.5),0 0 30px rgba(212,175,55,.22),0 0 0 1px rgba(212,175,55,.5);}
+    .tier-featured{box-shadow:0 0 0 1px rgba(212,175,55,.4),0 20px 56px rgba(0,0,0,.5),0 0 46px rgba(212,175,55,.18) !important;}
+
+    /* CTA glow */
+    .btn-primary{box-shadow:0 8px 26px rgba(212,175,55,.32),0 0 0 1px rgba(212,175,55,.4) !important;}
+    .btn-primary:hover{box-shadow:0 12px 36px rgba(212,175,55,.5),0 0 30px rgba(212,175,55,.4) !important;}
+
+    .vx-tilt{transition:transform .12s ease-out;}
+    @media (prefers-reduced-motion:reduce){.vx-aurora,.vx-pcl{animation:none !important;}}
+    @media (max-width:680px){.vx-aurora{filter:blur(55px);} .vx-grid{background-size:38px 38px;}}
+  </style>
   <div class="cosmos-milkyway-flow" aria-hidden="true">
     <div class="cosmw-band cosmw-band--primary"></div>
     <div class="cosmw-band cosmw-band--secondary"></div>
@@ -5970,6 +6004,41 @@
       }, { threshold: 0.25 });
       vids.forEach(function (v) { io.observe(v); });
     })();
+  </script>
+  <!-- High-tech layer: drifting particles + GPU hover-tilt (lightweight, reduced-motion safe) -->
+  <script>
+  (function(){
+    var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;}catch(e){}
+    var bg=document.querySelector('.vx-tech-bg');
+    if(bg && !reduce){
+      var N = window.innerWidth<680 ? 8 : 16;
+      for(var i=0;i<N;i++){
+        var p=document.createElement('div'); p.className='vx-pcl';
+        p.style.left=(Math.random()*100).toFixed(2)+'%';
+        var dur=(9+Math.random()*12);
+        p.style.animationDuration=dur.toFixed(1)+'s';
+        p.style.animationDelay=(-Math.random()*dur).toFixed(1)+'s';
+        var sz=(2+Math.random()*2.5).toFixed(1);
+        p.style.width=sz+'px'; p.style.height=sz+'px';
+        bg.appendChild(p);
+      }
+    }
+    if(!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
+      document.querySelectorAll('.tier-card,.portfolio-card').forEach(function(c){
+        c.classList.add('vx-tilt'); var raf=null;
+        c.addEventListener('pointermove',function(e){
+          if(raf) return;
+          raf=requestAnimationFrame(function(){
+            raf=null;
+            var r=c.getBoundingClientRect();
+            var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+            c.style.transform='perspective(900px) rotateX('+(-py*5).toFixed(2)+'deg) rotateY('+(px*5).toFixed(2)+'deg) translateY(-5px)';
+          });
+        });
+        c.addEventListener('pointerleave',function(){ c.style.transform=''; });
+      });
+    }
+  })();
   </script>
 </body>
 </html>
