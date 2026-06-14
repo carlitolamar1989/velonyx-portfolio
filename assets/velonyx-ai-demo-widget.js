@@ -190,6 +190,7 @@
   function makeDraggable(wrap, handle) {
     if (!handle) return;
     handle.style.cursor = 'grab';
+    handle.title = 'Drag to move';
     var sx, sy, sl, st, dragging = false;
     function down(e) {
       if (e.target.closest('button')) return; // don't drag when tapping the buttons
