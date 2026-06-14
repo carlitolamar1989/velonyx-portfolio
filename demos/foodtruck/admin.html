@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<!-- PLACEHOLDER NAME/SCHEME — to be finalized with Carlos once AI images are ready -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Owner Dashboard — Smoke &amp; Ember BBQ (Demo)</title>
+  <title>Owner Dashboard — Carlito's Way Tacos &amp; Tortas (Demo)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--char:#15110e;--char-deep:#0e0b09;--orange:#f0712c;--ember:#d6442a;--bg:#13100d;--card:#1c1712;--ink:#f6efe4;--muted:#a99c8c;--line:#2e261f;--green:#4caf6e;--amber:#e0a13a;}
+    :root{--char:#1b110c;--char-deep:#120b07;--gold:#f2b134;--red:#c8312a;--bg:#160e09;--card:#231811;--ink:#f7efe0;--muted:#ab9c8a;--line:#33241a;--green:#4caf6e;--amber:#e0a13a;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
     .display{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;}
     a{text-decoration:none;color:inherit;}
     .layout{display:grid;grid-template-columns:248px 1fr;min-height:100vh;}
-    /* sidebar */
     .side{background:linear-gradient(180deg,var(--char),var(--char-deep));color:var(--ink);padding:22px 16px;display:flex;flex-direction:column;border-right:1px solid var(--line);}
-    .side .brand{display:flex;align-items:center;gap:10px;font-family:'Anton',sans-serif;font-size:1.12rem;text-transform:uppercase;letter-spacing:.02em;padding:0 8px 22px;}
-    .brand-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(140deg,var(--orange),var(--ember));color:#2a1206;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Anton',sans-serif;font-size:.82rem;}
-    .nav-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;color:rgba(246,239,228,.66);font-size:.9rem;font-weight:500;margin-bottom:3px;}
+    .side .brand{display:flex;align-items:center;gap:10px;font-family:'Anton',sans-serif;font-size:1.1rem;text-transform:uppercase;letter-spacing:.02em;padding:0 8px 22px;}
+    .brand-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(140deg,var(--red),#9f231e);border:1px solid rgba(242,177,52,.5);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+    .nav-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;color:rgba(247,239,224,.66);font-size:.9rem;font-weight:500;margin-bottom:3px;}
     .nav-item .gi{width:20px;text-align:center;opacity:.9;}
-    .nav-item:hover{background:rgba(246,239,228,.06);color:var(--ink);}
-    .nav-item.active{background:rgba(240,113,44,.18);color:var(--ink);}
-    .side-foot{margin-top:auto;font-size:.78rem;color:rgba(246,239,228,.5);padding:12px 8px 0;border-top:1px solid var(--line);}
-    .side-foot a{color:var(--orange);}
-    /* main */
+    .nav-item:hover{background:rgba(247,239,224,.06);color:var(--ink);}
+    .nav-item.active{background:rgba(242,177,52,.18);color:var(--ink);}
+    .side-foot{margin-top:auto;font-size:.78rem;color:rgba(247,239,224,.5);padding:12px 8px 0;border-top:1px solid var(--line);}
+    .side-foot a{color:var(--gold);}
     .main{padding:26px 30px 40px;overflow:auto;}
     .topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
-    .topbar h1{font-family:'Anton',sans-serif;font-size:1.7rem;text-transform:uppercase;letter-spacing:.01em;}
+    .topbar h1{font-family:'Anton',sans-serif;font-size:1.65rem;text-transform:uppercase;letter-spacing:.01em;}
     .topbar .sub{color:var(--muted);font-size:.88rem;}
     .pill{display:inline-flex;align-items:center;gap:7px;background:rgba(76,175,110,.14);color:var(--green);font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:999px;}
     .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);}
@@ -40,7 +37,7 @@
     .kpi .v{font-family:'Anton',sans-serif;font-size:2rem;margin-top:6px;line-height:1.05;}
     .kpi .v.text{font-size:1.5rem;}
     .kpi .d{font-size:.78rem;font-weight:600;margin-top:4px;}
-    .kpi .up{color:var(--green);} .kpi .flat{color:var(--muted);} .kpi .ai{color:var(--orange);}
+    .kpi .up{color:var(--green);} .kpi .flat{color:var(--muted);} .kpi .ai{color:var(--gold);}
     .cols{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;}
     @media(max-width:980px){.cols{grid-template-columns:1fr;}}
     .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
@@ -51,48 +48,48 @@
     td{padding:13px 8px;border-bottom:1px solid var(--line);font-size:.88rem;}
     tr:last-child td{border-bottom:none;}
     .who{font-weight:600;}
-    .src{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--orange);font-weight:600;}
+    .src{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--gold);font-weight:600;}
     .badge{font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:999px;}
-    .b-new{background:rgba(224,161,58,.16);color:var(--amber);} .b-booked{background:rgba(76,175,110,.16);color:var(--green);} .b-prog{background:rgba(240,113,44,.16);color:var(--orange);}
+    .b-new{background:rgba(224,161,58,.16);color:var(--amber);} .b-booked{background:rgba(76,175,110,.16);color:var(--green);} .b-prog{background:rgba(242,177,52,.18);color:var(--gold);}
     .stop{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
     .stop:last-child{border-bottom:none;}
-    .stop .t{width:64px;font-weight:700;font-size:.84rem;color:var(--orange);}
+    .stop .t{width:64px;font-weight:700;font-size:.84rem;color:var(--gold);}
     .stop .who2{font-size:.9rem;font-weight:600;} .stop .svc{font-size:.78rem;color:var(--muted);}
     .chart{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:10px;}
-    .bar{flex:1;background:linear-gradient(180deg,var(--orange),var(--ember));border-radius:6px 6px 0 0;position:relative;}
+    .bar{flex:1;background:linear-gradient(180deg,var(--gold),var(--red));border-radius:6px 6px 0 0;position:relative;}
     .bar span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:.72rem;font-weight:700;color:var(--ink);}
     .bar small{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:.7rem;color:var(--muted);}
     .demo-note{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center;}
-    .demo-note a{color:var(--orange);font-weight:600;}
+    .demo-note a{color:var(--gold);font-weight:600;}
   </style>
 </head>
 <body>
   <div class="layout">
     <aside class="side">
-      <div class="brand"><span class="brand-mark">SE</span> Smoke &amp; Ember</div>
+      <div class="brand"><span class="brand-mark">🌮</span> Carlito's Way</div>
       <a class="nav-item active"><span class="gi">▦</span> Dashboard</a>
       <a class="nav-item"><span class="gi">👥</span> Leads</a>
       <a class="nav-item"><span class="gi">📍</span> Locations</a>
-      <a class="nav-item"><span class="gi">🍖</span> Catering</a>
+      <a class="nav-item"><span class="gi">🌮</span> Catering</a>
       <a class="nav-item"><span class="gi">🧾</span> Orders</a>
       <a class="nav-item"><span class="gi">⚙️</span> Settings</a>
-      <div class="side-foot">Owner: Ray Ellis<br>Powered by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx</a><br><a href="index.html">← Back to site</a></div>
+      <div class="side-foot">Owner: The Reyes Family<br>Powered by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx</a><br><a href="index.html">← Back to site</a></div>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
-          <h1>Pit Dashboard</h1>
+          <h1>Taco Truck Dashboard</h1>
           <div class="sub">Saturday, June 14 · Parked at Civic Center Plaza, 11–2</div>
         </div>
-        <span class="pill"><span class="dot"></span> AI Assistant connected · capturing leads 24/7</span>
+        <span class="pill"><span class="dot"></span> AI Assistant connected · capturing orders &amp; leads 24/7</span>
       </div>
 
       <div class="kpis">
-        <div class="kpi"><div class="l">Orders today</div><div class="v">128</div><div class="d up">▲ 18 vs last Saturday</div></div>
+        <div class="kpi"><div class="l">Orders today</div><div class="v">142</div><div class="d up">▲ 21 vs last Saturday</div></div>
         <div class="kpi"><div class="l">Catering inquiries (this week)</div><div class="v">9</div><div class="d ai">✦ 6 captured by AI</div></div>
         <div class="kpi"><div class="l">Today's location</div><div class="v text">Civic Center Plaza</div><div class="d flat">11 AM – 2 PM</div></div>
-        <div class="kpi"><div class="l">Avg ticket</div><div class="v">$21.40</div><div class="d up">▲ 7% vs last week</div></div>
+        <div class="kpi"><div class="l">Avg ticket</div><div class="v">$13.20</div><div class="d up">▲ 6% vs last week</div></div>
       </div>
 
       <div class="cols">
@@ -102,9 +99,9 @@
           <table>
             <thead><tr><th>Name</th><th>Source</th><th>Request</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td class="who">Marcus B.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">11:02 AM</small></td><td>Catering — 40 ppl, next Sat</td><td><span class="badge b-prog">Quoting</span></td></tr>
-              <tr><td class="who">Renee Kim</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">9:48 PM</small></td><td>Catering — 25, graduation</td><td><span class="badge b-booked">Booked</span></td></tr>
-              <tr><td class="who">Danny S.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">7:31 AM</small></td><td>Order ahead — 3 brisket plates</td><td><span class="badge b-booked">Ready</span></td></tr>
+              <tr><td class="who">Marcus B.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">11:02 AM</small></td><td>Catering — 40 ppl taco bar, next Sat</td><td><span class="badge b-prog">Quoting</span></td></tr>
+              <tr><td class="who">Renee Kim</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">9:48 PM</small></td><td>Catering — 25, quinceañera</td><td><span class="badge b-booked">Booked</span></td></tr>
+              <tr><td class="who">Danny S.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">7:31 AM</small></td><td>Order ahead — 4 al pastor + milanesa torta</td><td><span class="badge b-booked">Ready</span></td></tr>
               <tr><td class="who">Aisha R.</td><td>Website form<br><small style="color:var(--muted)">Yesterday</small></td><td>Catering — office lunch, 30</td><td><span class="badge b-new">New</span></td></tr>
               <tr><td class="who">Carlos M.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">2 days ago</small></td><td>Catering — block party, 60</td><td><span class="badge b-booked">Booked</span></td></tr>
             </tbody>
@@ -124,10 +121,10 @@
             <h2>Orders / day</h2>
             <div class="ph-sub">Last 4 days</div>
             <div class="chart">
-              <div class="bar" style="height:58%"><span>74</span><small>Wed</small></div>
-              <div class="bar" style="height:71%"><span>91</span><small>Thu</small></div>
-              <div class="bar" style="height:86%"><span>110</span><small>Fri</small></div>
-              <div class="bar" style="height:100%"><span>128</span><small>Sat</small></div>
+              <div class="bar" style="height:56%"><span>82</span><small>Wed</small></div>
+              <div class="bar" style="height:70%"><span>103</span><small>Thu</small></div>
+              <div class="bar" style="height:85%"><span>124</span><small>Fri</small></div>
+              <div class="bar" style="height:100%"><span>142</span><small>Sat</small></div>
             </div>
           </div>
         </div>
