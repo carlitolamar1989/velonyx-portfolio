@@ -4739,14 +4739,12 @@
       </div>
 
       <!--
-        STRIPE PAYMENT LINKS (TODO — replace before live $700 checkout):
-        - $700 one-time build + $70/mo recurring link: NOT YET CREATED.
-          Create in Stripe dashboard (one-time $700 build + $70/mo
-          subscription, ToS gate to terms.html), then update the link
-          below and the matching link on checkout.html.
-        - Until new link exists, the primary CTA in this card routes
-          to /book.html (Discovery Call) and the old Founding link is
-          retained only on /checkout.html for any in-flight checkouts.
+        FUNNEL: public CTAs route to the lead widget / Book a Call. Payment is
+        intentionally NOT self-serve here. After the discovery call, Carlos sends
+        the private payment page (/checkout.html), which lists all 3 tiers with
+        Pay-in-Full and Pay-Over-Time buttons. The Stripe Payment Links live on
+        that page — see the comment block in checkout.html for the exact 7 links
+        to create. Do not link checkout.html publicly.
       -->
 
       <!-- 3-TIER PRICING — Essentials / Growth / Elite + AI Video add-on -->

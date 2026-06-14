@@ -21,8 +21,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080A">
 
-  <title>Checkout — Velonyx Systems | $700 Build + $70/month</title>
-  <meta name="description" content="Claim your Velonyx custom platform — $700 one-time build + $70/month Care plan. Premium build, budget price. Custom website, 24/7 booking, payments, financing, SMS, owner dashboard. Yours forever.">
+  <title>Complete Your Order — Velonyx Systems</title>
+  <meta name="description" content="Complete your Velonyx order — choose Essentials, Growth, or Elite and pay in full or over time with Klarna or Afterpay. Each plan includes its monthly subscription.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
 
@@ -471,6 +471,54 @@
     @media (max-width: 720px) {
       footer { padding: 22px 20px; justify-content: center; text-align: center; }
     }
+
+    /* ── Payment tiers (the page sent after the discovery call) ── */
+    .pay-tiers { padding: 8px 0 24px; }
+    .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+    @media (max-width: 920px) { .pay-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+    .pay-card {
+      display: flex; flex-direction: column; padding: 26px 24px 24px;
+      background: var(--bg-card-glossy); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; position: relative;
+    }
+    .pay-card.featured { border-color: rgba(212,175,55,0.45); box-shadow: 0 0 0 1px rgba(212,175,55,0.22), 0 18px 50px rgba(0,0,0,0.45); }
+    .pay-flag {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--gold-btn); color: var(--bg-deep);
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.66rem; font-weight: 800;
+      letter-spacing: 0.6px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; white-space: nowrap;
+    }
+    .pay-tier-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); }
+    .pay-tier-tagline { color: var(--accent); font-size: 0.82rem; margin-top: 2px; letter-spacing: 0.3px; }
+    .pay-price { font-family: 'Space Grotesk', sans-serif; font-size: 2.1rem; font-weight: 900; color: var(--white); margin-top: 16px; }
+    .pay-price span { font-size: 0.8rem; font-weight: 500; color: var(--white-dim); margin-left: 4px; }
+    .pay-monthly { color: var(--white-muted); font-size: 0.95rem; margin-top: 2px; }
+    .pay-features { list-style: none; margin: 16px 0 20px; padding: 0; flex: 1; }
+    .pay-features li { color: var(--white-muted); font-size: 0.86rem; line-height: 1.5; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .pay-features li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .pay-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+    .pay-btn {
+      display: block; text-align: center; text-decoration: none; padding: 13px 16px; border-radius: 10px;
+      font-weight: 700; font-size: 0.92rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.2px;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    .pay-btn-full { background: var(--gold-btn); color: var(--bg-deep); box-shadow: 0 8px 24px rgba(212,175,55,0.25); }
+    .pay-btn-full:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(212,175,55,0.35); }
+    .pay-btn-split { background: transparent; color: var(--accent); border: 1px solid rgba(212,175,55,0.5); }
+    .pay-btn-split:hover { background: rgba(212,175,55,0.08); border-color: var(--accent); }
+    .pay-addon {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+      margin-top: 18px; padding: 20px 24px; background: var(--bg-card-glossy);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;
+    }
+    .pay-addon-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--white); font-size: 1.02rem; }
+    .pay-addon-name span { font-size: 0.66rem; font-weight: 700; color: var(--accent); border: 1px solid rgba(212,175,55,0.4); border-radius: 999px; padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
+    .pay-addon p { color: var(--white-muted); font-size: 0.86rem; margin-top: 6px; max-width: 520px; }
+    .pay-addon-right { display: flex; align-items: center; gap: 16px; }
+    .pay-addon-price { font-family: 'Space Grotesk', sans-serif; font-weight: 900; color: var(--white); font-size: 1.4rem; white-space: nowrap; }
+    .pay-addon-price span { font-size: 0.72rem; font-weight: 500; color: var(--white-dim); }
+    .pay-addon .pay-btn { padding: 11px 22px; }
+    .pay-finance-note { margin: 22px auto 0; max-width: 760px; text-align: center; color: var(--white-dim); font-size: 0.8rem; line-height: 1.6; }
   </style>
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -491,91 +539,121 @@
 
   <main>
     <div class="checkout-hero">
-      <div class="checkout-eyebrow">Secure Checkout</div>
-      <h1>Claim Your<br><span class="gold">Velonyx Platform.</span></h1>
-      <p>One platform. One price. Yours forever &mdash; premium build, budget price.</p>
+      <div class="checkout-eyebrow">Complete Your Order</div>
+      <h1>Pick Your Plan.<br><span class="gold">Choose How You Pay.</span></h1>
+      <p>The plan we discussed is below. Pay in full, or split it over time with Klarna or Afterpay &mdash; your build starts the moment payment clears.</p>
     </div>
 
     <div class="container">
 
-      <!-- ORDER SUMMARY -->
-      <section class="order-section">
-        <div class="order-card">
-          <div class="order-tier-tag">The Velonyx System &middot; Core Build</div>
-          <div class="order-name">Premium Platform. Budget Price.</div>
+      <!-- ═══════════════════════════════════════════════════════════════════
+           PAYMENT TIERS — the page Carlos sends AFTER the discovery call.
+           Each tier has two buttons (Pay in Full / Pay Over Time). Each button
+           must point to a Stripe Payment Link that bundles the one-time build
+           amount + that tier's monthly subscription.
 
-          <div class="order-amounts">
-            <div>
-              <div class="order-amount">$700</div>
-              <div class="order-amount-sub">due today (one-time build)</div>
-            </div>
-            <div class="order-plus">+</div>
-            <div>
-              <div class="order-recurring">$70<span class="order-recurring-mo">/month</span></div>
-              <div class="order-amount-sub">Care plan &mdash; cancel any time</div>
+           >>> STRIPE LINKS TO CREATE — paste each URL into the matching href="#" <<<
+             essentials-full : $700 build + $70/mo subscription (cards/Apple/Google Pay/ACH)
+             essentials-bnpl : $700 build via Klarna/Afterpay + $70/mo subscription
+             growth-full     : $900 build + $150/mo subscription
+             growth-bnpl     : $900 build via Klarna/Afterpay + $150/mo subscription
+             elite-full      : $1,200 build + $400/mo subscription
+             elite-bnpl      : $1,200 build via Klarna/Afterpay + $400/mo subscription
+             aivideo-sub     : $200/mo AI Video subscription (add-on)
+           Until a real URL replaces the "#", clicking a button shows a
+           "being set up" message instead of a dead link (see guard script at end).
+      ═══════════════════════════════════════════════════════════════════ -->
+      <section class="pay-tiers">
+        <div class="pay-grid">
+
+          <!-- ESSENTIALS -->
+          <div class="pay-card">
+            <div class="pay-tier-name">Essentials</div>
+            <div class="pay-tier-tagline">Get Online</div>
+            <div class="pay-price">$700 <span>build</span></div>
+            <div class="pay-monthly">+ $70/month</div>
+            <ul class="pay-features">
+              <li>Custom-branded website &mdash; engineered, not templated</li>
+              <li>Production hosting, SSL, automated backups</li>
+              <li>24/7 AI Chatbot trained on your business</li>
+              <li>Owner dashboard &mdash; runs from your phone</li>
+              <li>Full code ownership</li>
+            </ul>
+            <div class="pay-actions">
+              <a href="#" data-stripe="essentials-full" class="pay-btn pay-btn-full">Pay in Full</a>
+              <a href="#" data-stripe="essentials-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
             </div>
           </div>
 
-          <div class="due-today">
-            <div class="due-row">
-              <span class="due-label">One-time build</span>
-              <span class="due-amount">$700.00</span>
+          <!-- GROWTH -->
+          <div class="pay-card featured">
+            <div class="pay-flag">Most Popular</div>
+            <div class="pay-tier-name">Growth</div>
+            <div class="pay-tier-tagline">Never Miss a Lead</div>
+            <div class="pay-price">$900 <span>build</span></div>
+            <div class="pay-monthly">+ $150/month</div>
+            <ul class="pay-features">
+              <li>Everything in Essentials</li>
+              <li>AI Lead Automation &mdash; conversational form</li>
+              <li>Instant SMS text-back &mdash; two-way AI conversation</li>
+              <li>Owner alerts by email + text, full context</li>
+              <li>Leads captured 24/7, even while you work</li>
+            </ul>
+            <div class="pay-actions">
+              <a href="#" data-stripe="growth-full" class="pay-btn pay-btn-full">Pay in Full</a>
+              <a href="#" data-stripe="growth-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
             </div>
-            <div class="due-row">
-              <span class="due-label">Care subscription (separate)</span>
-              <span class="due-amount">$70.00 / month</span>
-            </div>
-            <div class="due-divider"></div>
-            <div class="due-row total">
-              <span class="due-label">Total Due Today</span>
-              <span class="due-amount">$700.00</span>
-            </div>
-            <p class="due-note">Then <strong style="color:var(--white);">$70/month</strong> Care plan keeps the platform live, secure, and maintained. Cancel any time &mdash; you keep the full system.</p>
           </div>
 
-          <h3 class="includes-heading">What ships in the $700 build</h3>
-          <ul class="includes-list">
-            <li><div class="includes-check"><span>&#10003;</span></div> Custom-branded website &mdash; no templates</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> 24/7 online booking</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Integrated payments (Apple Pay, Google Pay, cards, ACH Direct Debit)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Customer financing built in (Klarna, Afterpay)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Automated SMS via Twilio (confirmations, payment links, follow-ups)</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Owner admin dashboard &mdash; runs from your phone</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> SEO-ready foundation built in</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Production hosting, SSL, automated backups</li>
-            <li><div class="includes-check"><span>&#10003;</span></div> Full ownership &mdash; code, design, data, domain. Yours forever.</li>
-          </ul>
+          <!-- ELITE -->
+          <div class="pay-card">
+            <div class="pay-tier-name">Elite</div>
+            <div class="pay-tier-tagline">Your 24/7 AI Front Desk</div>
+            <div class="pay-price">$1,200 <span>build</span></div>
+            <div class="pay-monthly">+ $400/month</div>
+            <ul class="pay-features">
+              <li>Everything in Growth</li>
+              <li>AI Voice Agent &mdash; answers calls 24/7</li>
+              <li>Qualifies callers &amp; books appointments</li>
+              <li>1 AI-produced video per month</li>
+              <li>The complete lead system &mdash; chat, text, and voice</li>
+            </ul>
+            <div class="pay-actions">
+              <a href="#" data-stripe="elite-full" class="pay-btn pay-btn-full">Pay in Full</a>
+              <a href="#" data-stripe="elite-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
+            </div>
+          </div>
 
-          <!--
-            TODO — Stripe Payment Link for $700 build + $70/mo:
-            The $3,000 link below is the legacy founding offer and is
-            kept temporarily so any in-flight checkout sessions still
-            resolve. Create a new Stripe Payment Link in the dashboard
-            ($700 one-time + $70/mo subscription, ToS gate to terms.html),
-            then replace the href below and the matching CTA on index.html.
-            Until then, route new visitors via Book a Call.
-          -->
-          <a href="/book.html" class="btn-stripe">
-            🗓 Book a 20-Minute Call to Start Your Build
-          </a>
-          <div class="security-note">Stripe checkout link for the $700 build is being prepared. Book a call and we'll send you the secure payment link directly.</div>
-          <p class="finance-note">Klarna, Afterpay, and ACH Direct Debit will all be available at Stripe checkout &mdash; instant approval, no account needed.</p>
         </div>
+
+        <!-- AI VIDEO add-on -->
+        <div class="pay-addon">
+          <div>
+            <div class="pay-addon-name">AI Video <span>Add-on / Standalone</span></div>
+            <p>1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto any plan.</p>
+          </div>
+          <div class="pay-addon-right">
+            <div class="pay-addon-price">$200<span>/month</span></div>
+            <a href="#" data-stripe="aivideo-sub" class="pay-btn pay-btn-split">Subscribe</a>
+          </div>
+        </div>
+
+        <p class="pay-finance-note">Pay in full by card, Apple Pay, Google Pay, or ACH &mdash; or split it interest-free with Klarna or Afterpay right inside Stripe checkout (instant approval, no account needed). Each plan includes its monthly subscription, set up automatically at checkout. Cancel the subscription any time &mdash; you keep the system.</p>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->
       <section class="next-steps">
-        <h2>What happens after you book the call</h2>
+        <h2>What happens after you pay</h2>
         <ol class="next-grid">
           <li>
             <span class="next-num">1</span>
-            <h3>20-minute discovery call</h3>
-            <p>We scope your build &mdash; branding, services, integrations, what your business actually needs. No pressure, no upsell.</p>
+            <h3>Payment confirmed</h3>
+            <p>Your plan is locked in and your monthly subscription starts on the same checkout. You get an emailed receipt right away.</p>
           </li>
           <li>
             <span class="next-num">2</span>
-            <h3>Secure your project</h3>
-            <p>You receive a Stripe payment link for the $700 build (split into 50% now / 50% at launch, or pay in full upfront with Klarna / Afterpay / ACH all on the table).</p>
+            <h3>Quick intake</h3>
+            <p>We collect your branding, services, and integrations &mdash; everything we scoped on the call. No surprises.</p>
           </li>
           <li>
             <span class="next-num">3</span>
@@ -585,7 +663,7 @@
           <li>
             <span class="next-num">4</span>
             <h3>Launch + 30 days of free support</h3>
-            <p>Site goes live. First 30 days of support are included. After that, the $70/month Care plan keeps the platform running &mdash; cancel any time and you keep the platform.</p>
+            <p>Your system goes live. First 30 days of support are included, then your monthly plan keeps it running &mdash; cancel any time and you keep the platform.</p>
           </li>
         </ol>
       </section>
@@ -611,7 +689,7 @@
 
         <div class="faq-card">
           <h3>What does the $70/month Care plan cover?</h3>
-          <p>Production hosting, SSL, automated backups, security patches, 1 site update per month, basic tech support, and dashboard access. Care does <strong>not</strong> include weekly updates, content creation, or ad management &mdash; those are covered in higher growth tiers ($250 Growth, $500 Accelerate, $1,500 Full Partner).</p>
+          <p>Production hosting, SSL, automated backups, security patches, 1 site update per month, basic tech support, and dashboard access. The Essentials plan covers the platform itself; AI lead automation, SMS text-back, and the 24/7 AI voice agent come with the Growth ($150/mo) and Elite ($400/mo) plans.</p>
         </div>
 
         <div class="faq-card">
@@ -663,7 +741,18 @@
   <script src="/assets/cookie-consent.js" defer></script>
   <!-- Meta Pixel conversion event wiring (Stripe button → Lead + InitiateCheckout) -->
   <script src="/assets/meta-pixel-events.js" defer></script>
-  <!-- Founding-member urgency banner -->
-  <script src="/assets/urgency-banner.js" defer></script>
+  <!-- Payment-link guard: until a real Stripe URL replaces a button's href="#",
+       clicking it shows a message instead of doing nothing / 404ing. -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-stripe]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href === '#') {
+        e.preventDefault();
+        alert("This payment option is being set up. Please call (877) 317-8643 or email admin@velonyxsystems.com and we'll send your secure link right away.");
+      }
+    });
+  </script>
 </body>
 </html>
