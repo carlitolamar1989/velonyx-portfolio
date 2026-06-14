@@ -20,7 +20,7 @@
     body{font-family:'Inter',system-ui,sans-serif;color:var(--cream);background:var(--char);line-height:1.6;-webkit-font-smoothing:antialiased;}
     h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;}
     a{color:inherit;text-decoration:none;}
-    img{max-width:100%;display:block;}
+    img{max-width:100%;height:auto;display:block;}
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
     .btn{display:inline-block;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#2a1606;font-weight:700;padding:13px 26px;border-radius:8px;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 22px rgba(242,177,52,.32);}
     .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(242,177,52,.42);}
@@ -104,6 +104,14 @@
     .cta h2{font-size:clamp(1.9rem,4.5vw,3rem);color:var(--cream);}
     .cta p{color:var(--cream-dim);margin:14px auto 28px;max-width:540px;}
     .cta-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+    /* delivery buttons */
+    .delivery-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+    .dlv{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:11px;font-weight:700;font-size:1rem;color:#fff;transition:transform .15s,box-shadow .15s;}
+    .dlv:hover{transform:translateY(-2px);}
+    .dlv .ic{font-size:1.1rem;line-height:1;}
+    .dlv-dd{background:#ef2b2d;box-shadow:0 8px 22px rgba(239,43,45,.34);}
+    .dlv-gh{background:#f63440;box-shadow:0 8px 22px rgba(246,52,64,.34);}
+    .dlv-ue{background:#06c167;color:#04241a;box-shadow:0 8px 22px rgba(6,193,103,.34);}
 
     footer{background:var(--char-deep);color:var(--cream-dim);font-size:.86rem;padding:40px 0 32px;margin-top:78px;border-top:1px solid var(--line);}
     .foot-in{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
@@ -119,6 +127,7 @@
     <a class="brand" href="index.html"><span class="brand-mark">🌮</span> Carlito's Way</a>
     <div class="nav-links">
       <a href="#menu">Menu</a>
+      <a href="#delivery">Delivery</a>
       <a href="#about">Our Story</a>
       <a href="#reviews">Reviews</a>
       <a class="nav-admin" href="admin.html">Admin Demo</a>
@@ -186,6 +195,17 @@
           <div class="menu-row"><span class="name">Horchata · Jarritos · Agua Fresca</span><span class="price">$3.00+</span></div>
         </div>
       </div>
+    </div>
+  </div></section>
+
+  <section id="delivery"><div class="wrap">
+    <div class="sec-label">Can't make it to the truck?</div>
+    <h2 class="sec-title">Get it delivered.</h2>
+    <p class="sec-sub">Order Carlito's Way straight to your door on your favorite app — across La Mesa &amp; San Diego.</p>
+    <div class="delivery-btns">
+      <a class="dlv dlv-dd" href="#" onclick="return false;"><span class="ic">🚗</span> Order on DoorDash</a>
+      <a class="dlv dlv-gh" href="#" onclick="return false;"><span class="ic">🍴</span> Order on Grubhub</a>
+      <a class="dlv dlv-ue" href="#" onclick="return false;"><span class="ic">🛵</span> Order on Uber Eats</a>
     </div>
   </div></section>
 
