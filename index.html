@@ -207,26 +207,6 @@
   {"@context":"https://schema.org","@type":"Service","name":"Velonyx Custom Platform","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"One custom-engineered platform that replaces the four-to-six SaaS subscriptions service operators pay for separately ($250–400/month total). Includes branded website, 24/7 online booking, integrated payments (Stripe, Apple Pay, Google Pay, ACH Direct Debit), customer financing (Klarna, Afterpay), automated SMS, owner admin dashboard, and SEO foundation. $700 one-time build + $70/month for hosting, maintenance, and support. Premium quality at a budget price. Built for service businesses (HVAC, plumbing, electrical, garage doors, and any service operator) ready to own their infrastructure.","serviceType":"Custom Digital Platform","offers":{"@type":"Offer","price":"700","priceCurrency":"USD"},"areaServed":{"@type":"Country","name":"United States"}}
   </script>
 
-  <!-- FAQPage schema (matches the existing visible FAQ section on this page) -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Why is the $700 build so much cheaper than what agencies charge?","acceptedAnswer":{"@type":"Answer","text":"We build efficiently with modern tools and a refined process. No bloated agency overhead — no project managers stacked on account managers stacked on creative directors. One engineer, one designer, one process. You get the same premium output, a fraction of the price. The math: we ship fast (7–14 days vs. industry 4–6 weeks), bill once, and earn long-term via the $70/month Care plan and growth tiers. Premium result, NOT cut corners."}},
-    {"@type":"Question","name":"What's included in the $700 build?","acceptedAnswer":{"@type":"Answer","text":"Custom-branded website (no templates), 24/7 online booking, integrated payments (Apple Pay, Google Pay, cards, ACH Direct Debit), customer financing (Klarna, Afterpay), automated SMS via Twilio, owner admin dashboard, SEO-ready foundation, and full ownership of the code, design, customer data, and domain."}},
-    {"@type":"Question","name":"What does the $70/month Care plan cover?","acceptedAnswer":{"@type":"Answer","text":"Production hosting, security, SSL, automated backups, 1 site update per month, basic tech support, and dashboard access. Care does NOT include weekly updates, content creation, or ad management — those are covered in higher growth tiers (Growth $250, Accelerate $500 + ad spend, Full Partner $1,500 + ad spend)."}},
-    {"@type":"Question","name":"What are the growth plans?","acceptedAnswer":{"@type":"Answer","text":"Care $70/mo (maintenance + 1 update/mo). Growth $250/mo (Care + 1 sales video/mo + 2 updates/mo + biweekly reports). Accelerate $500/mo + ad spend (Growth + ad campaign setup & monitoring on one platform). Full Partner $1,500/mo + ad spend (Accelerate + 2 videos/mo + ads behind each + 4 premium images/mo + weekly updates + monthly strategy session + monthly growth email + social shout-out). Ad spend is paid directly to the platform, never to Velonyx."}},
-    {"@type":"Question","name":"Do you offer services without a website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Two standalone subscriptions for businesses that don't need a new website: Video $200/mo (1 sales-focused short-form video per month, AI-assisted creation and light editing of clips you send), or Video + Ad Setup & Monitoring $350/mo + ad spend (the video subscription plus ad campaign setup on one platform with audience targeting and monthly reporting)."}},
-    {"@type":"Question","name":"How long does it take to build my system?","acceptedAnswer":{"@type":"Answer","text":"Most builds launch in 7–14 business days from when your deposit clears and you provide your assets (logo, photos, content). Industry norm is 4–6 weeks. We move fast because we use a refined process and a small team."}},
-    {"@type":"Question","name":"What if I don't like the design?","acceptedAnswer":{"@type":"Answer","text":"Every build includes up to 2 rounds of revisions within a 5 business day revision window after preview delivery. You get a live preview link before anything goes public — every detail reviewable, every round documented. After the revision window closes, additional changes are billed at $100/hour. Most builds reach final approval within those 2 rounds."}},
-    {"@type":"Question","name":"Do I own the system after it's built?","acceptedAnswer":{"@type":"Answer","text":"Yes — fully. Once payment is complete, you own the entire platform. The code is yours. The design is yours. The domain is yours. The customer data is yours. You can modify it, migrate it, sell it, or hand it to your kids. This is the core promise of Velonyx — you build a business asset, not a monthly bill."}},
-    {"@type":"Question","name":"Can my customers pay over time?","acceptedAnswer":{"@type":"Answer","text":"Yes. Velonyx wires Klarna and Afterpay directly into your customer payment flow. Customers can split a $2,000 service into 4 payments at no interest. This typically increases close rate 20–30% on bigger-ticket jobs — exactly what HVAC, plumbing, electrical, and garage door operators need to close more bids."}},
-    {"@type":"Question","name":"What's your refund policy?","acceptedAnswer":{"@type":"Answer","text":"Refunds are tiered by phase. Within 24 hours of payment and before any build work begins, you receive a full refund. After project kickoff but before design preview, you receive a partial refund less work completed. After preview delivery, refunds are limited to unstarted work. Once the platform is delivered and launched, the build is non-refundable — you own the system. The full policy is on the Refund Policy page at /refund-policy.html."}},
-    {"@type":"Question","name":"Will the AI know my business?","acceptedAnswer":{"@type":"Answer","text":"Yes. We train it on your services, pricing, hours, and FAQs before launch. By day one it answers the way you would."}},
-    {"@type":"Question","name":"What happens to leads when I'm asleep?","acceptedAnswer":{"@type":"Answer","text":"The AI answers, qualifies, and texts them back within seconds. You wake up to booked calls and a full conversation log."}},
-    {"@type":"Question","name":"What if a customer wants a real person?","acceptedAnswer":{"@type":"Answer","text":"The AI hands off. We text your phone instantly and send you the full conversation so you walk in already knowing the context."}},
-    {"@type":"Question","name":"Can I add the AI Voice Agent later?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upgrade from Growth to Elite any time. We add it in 48 hours."}},
-    {"@type":"Question","name":"What happens if I want to leave Velonyx?","acceptedAnswer":{"@type":"Answer","text":"You take everything with you — domain, code, files, customer data, customer list. We'll help you transfer to another developer or self-host. We don't lock customers in. The $70/month Care plan is month-to-month."}}
-  ]}
-  </script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- (hero background preload moved to the top of <head> for earlier LCP discovery) -->
@@ -4407,11 +4387,10 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#services" onclick="document.getElementById('navLinks').classList.remove('open')">Services</a></li>
+      <li><a href="#ai-system" onclick="document.getElementById('navLinks').classList.remove('open')">How It Works</a></li>
       <li><a href="#pricing" onclick="document.getElementById('navLinks').classList.remove('open')">Pricing</a></li>
       <li><a href="#work" onclick="document.getElementById('navLinks').classList.remove('open')">Portfolio</a></li>
       <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
-      <li><a href="#faq" onclick="document.getElementById('navLinks').classList.remove('open')">FAQ</a></li>
       <li><a href="#" class="nav-cta" data-vx-form-open data-vx-form-context="Nav CTA">Talk to Us</a></li>
       <!-- Client Login removed from nav 2026-05-19 — was pointing to /platform/portal/
            which is Disallow'd in robots.txt and isn't a real live portal. Will be
@@ -4612,65 +4591,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services cyber-reveal" id="services">
-    <div class="container">
-      <div class="section-label">What's Included</div>
-      <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Built to Win Leads.</h2>
-      <p class="section-subtitle fade-in">Five things. Done instantly. Every time.</p>
-
-      <!-- Anchor D: Wide 16:9 banner above the 5 service cards. Motion clip with
-           WebP poster + IO-gated playback. -->
-      <div class="image-placeholder-wide-16-9 fade-in">
-        <video class="hero-motion" muted loop playsinline preload="none"
-               poster="assets/services-banner.webp" width="2400" height="1350"
-               aria-label="Every lead answered instantly">
-          <source src="assets/motion/services-banner.webm" type="video/webm">
-          <source src="assets/motion/services-banner.mp4" type="video/mp4">
-          <img src="assets/services-banner.webp" alt="Every lead answered instantly" width="2400" height="1350">
-        </video>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:message-square --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>Answers Instantly</h3>
-          <p>Every question. Day or night.</p>
-          <span class="service-tag">In Seconds</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:user-plus --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg></div>
-          <h3>Captures the Lead</h3>
-          <p>Name, phone, what they need.</p>
-          <span class="service-tag">One Question at a Time</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:phone --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <h3>Texts Them Back</h3>
-          <p>Real two-way SMS. In their pocket.</p>
-          <span class="service-tag">Within 30 Seconds</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:calendar-check --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-          <h3>Books the Call</h3>
-          <p>Calendly link. Sent at the right moment.</p>
-          <span class="service-tag">Without You Lifting a Finger</span>
-        </div>
-
-        <div class="service-card fade-in">
-          <div class="service-icon"><!-- lucide:bell --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-          <h3>Alerts You</h3>
-          <p>The second a hot lead lands.</p>
-          <span class="service-tag">Email + Text</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- PROCESS -->
   <section class="process cyber-reveal" id="process">
@@ -4909,219 +4829,7 @@
        section above) is the real social proof until we have authentic, attributed
        customer quotes to publish. -->
 
-  <!-- FAQ -->
-  <section class="faq-section" id="faq" style="padding:80px 24px;position:relative;z-index:3;">
-    <div class="container" style="max-width:800px;">
-      <div class="section-label" style="text-align:center;">Common Questions</div>
-      <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in" style="text-align:center;">Frequently Asked<br>Questions</h2>
-      <p class="section-subtitle fade-in" style="text-align:center;margin:0 auto 40px;">Everything you need to know before getting started.</p>
 
-      <div class="faq-list">
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Why is the $700 build so much cheaper than what agencies charge?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>We build efficiently with modern tools and a refined process. No bloated agency overhead &mdash; no project managers stacked on account managers stacked on creative directors. One engineer, one designer, one process.</p>
-            <p>You get the same premium output, a fraction of the price. The math: we ship fast (7&ndash;14 days vs. industry 4&ndash;6 weeks), bill once, and earn long-term via the $70/month Care plan and growth tiers. Premium result, NOT cut corners.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What's included in the $700 build?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Custom-branded website (no templates), 24/7 online booking, integrated payments (Apple Pay, Google Pay, cards, ACH Direct Debit), customer financing (Klarna, Afterpay), automated SMS via Twilio, owner admin dashboard, SEO-ready foundation, and full ownership of the code, design, customer data, and domain.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What does the $70/month Care plan cover?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Production hosting, security, SSL, automated backups, 1 site update per month, basic tech support, and dashboard access. Care does <strong>not</strong> include weekly updates, content creation, or ad management &mdash; those are covered in higher growth tiers (Growth $250, Accelerate $500 + ad spend, Full Partner $1,500 + ad spend).</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What are the growth plans?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p><strong>Care</strong> $70/mo &mdash; maintenance + 1 update/mo. <strong>Growth</strong> $250/mo &mdash; Care + 1 sales video/mo + 2 updates/mo + biweekly reports. <strong>Accelerate</strong> $500/mo + ad spend &mdash; Growth + ad campaign setup &amp; monitoring on one platform. <strong>Full Partner</strong> $1,500/mo + ad spend &mdash; Accelerate + 2 videos/mo + ads behind each + 4 premium images/mo + weekly updates + monthly strategy session + monthly growth email + social shout-out.</p>
-            <p>Ad spend is paid directly to the platform (Meta or Google), never to Velonyx. See the <a href="#pricing" style="color:var(--gold);">pricing section</a> for the full breakdown.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Do you offer services without a website?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. Two standalone subscriptions for businesses that don't need a new website: <strong>Video</strong> $200/mo (1 sales-focused short-form video per month, AI-assisted creation and light editing of clips you send), or <strong>Video + Ad Setup &amp; Monitoring</strong> $350/mo + ad spend (the video subscription plus ad campaign setup on one platform with audience targeting and monthly reporting).</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Is Velonyx only for home service businesses?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>No. Velonyx engineers custom digital systems for any service business &mdash; we just specialize in home service operators (HVAC, plumbing, electrical, garage doors) because that's where the platform hits the deepest pain. Custom builds are available for any service business ready to scale, brand out, and own their infrastructure.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>How long does it take to build my system?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Most builds launch in 7&ndash;14 business days from when your deposit clears and you provide your assets (logo, photos, content). Industry norm is 4&ndash;6 weeks &mdash; we move faster because we run a refined process with a small team.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What if I don't like the design?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Every build includes up to 2 rounds of revisions within a 5 business day revision window after preview delivery. You get a live preview link before anything goes public &mdash; every detail reviewable, every round documented. After the revision window closes, additional changes are billed at $100/hour. Most builds reach final approval within those 2 rounds.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Do I own the system after it's built?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes &mdash; fully. Once payment is complete, you own the entire platform. The code is yours. The design is yours. The domain is yours. The customer data is yours. You can modify it, migrate it, sell it, or hand it to your kids. This is the core promise of Velonyx &mdash; you build a business asset, not a monthly bill.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Can my customers pay through my system?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. Every Velonyx build includes Stripe payment integration so your customers can pay with credit cards, debit cards, Apple Pay, Google Pay, and ACH Direct Debit &mdash; on your branded payment page, via SMS link, or in person on your tablet. Buy Now, Pay Later financing through Klarna and Afterpay is built in so customers can split payments on bigger jobs and you still get paid in full upfront.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What happens after my system launches?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Every system includes 30 days of free support after launch. After that, the $70/month Care plan keeps your platform live, secure, and improving &mdash; hosting, uptime monitoring, security patches, 1 update per month, and direct access to the founder. Cancel any time; you keep the platform.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Will the AI know my business?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. We train it on your services, pricing, hours, and FAQs before launch. By day one it answers the way you would.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What happens to leads when I'm asleep?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>The AI answers, qualifies, and texts them. You wake up to booked calls.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What if a customer wants a real person?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>The AI hands off. We text your phone instantly and send you the full conversation so you walk in already knowing the context.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Can I add the AI Voice Agent later?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. Upgrade from Growth to Elite any time. We add it in 48 hours.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Can I pay in installments?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. You can pay a 50% deposit to start and the remaining 50% at launch, or pay in full upfront. Financing through Klarna or Afterpay is also available at checkout, and ACH Direct Debit keeps fees low.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>What&rsquo;s your refund policy?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Refunds are tiered by phase. Within 24 hours of payment and before any build work begins, you receive a full refund. After project kickoff but before design preview, you receive a partial refund less work completed. After preview delivery, refunds are limited to unstarted work. Once the platform is delivered and launched, the build is non-refundable &mdash; you own the system. The full policy is on the <a href="/refund-policy.html" style="color:var(--gold);text-decoration:underline;">Refund Policy page</a>.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
-          <div class="faq-question">
-            <span>Do you work with operators outside my area?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Absolutely. Everything we do is remote. We work with service operators across the United States &mdash; HVAC, plumbing, electrical, garage doors, and any service business ready to scale. Consultations are done over video call or phone, and your platform is delivered digitally. Location doesn't matter.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA / CONTACT -->
-  <section class="cta-section" id="contact">
-    <div class="container">
-      <div class="cta-card fade-in">
-        <div class="section-label">Stop Missing Leads</div>
-        <h2>Your AI Front Desk.<br>Live in <span class="gold">7 days.</span></h2>
-        <p style="font-size:1.05rem;color:var(--white-muted);margin:18px 0 26px;">Or open the chat. Right now. That's the demo.</p>
-        <a href="#" class="btn-primary" data-vx-form-open data-vx-form-context="Final CTA section">Talk to Us &mdash; 30 Seconds</a>
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:14px;margin-bottom:0;">Prefer to see it first? <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" style="color:rgba(212,175,55,0.7);text-decoration:none;">Explore the live build &rarr;</a></p>
-
-        <div class="cta-contact-methods">
-          <a href="mailto:admin@velonyxsystems.com" class="cta-contact-method">&#9993; admin@velonyxsystems.com</a>
-          <a href="https://instagram.com/velonyxsystems" target="_blank" rel="noopener" class="cta-contact-method">&#9733; @velonyxsystems</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   </main>
 
