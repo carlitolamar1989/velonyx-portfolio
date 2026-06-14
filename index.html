@@ -4567,6 +4567,75 @@
        see the real Garage Door Kings build before the services / pricing sections.
        The card itself is unchanged; only the placement, the section title, the
        subhead, and the card body description were updated. -->
+  <!-- TRY THE AI — visible, clickable demo of the two flagship features -->
+  <style>
+    .vxai-section{padding:74px 24px;position:relative;z-index:3;}
+    .vxai-wrap{max-width:1000px;margin:0 auto;text-align:center;}
+    .vxai-eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#D4AF37;font-weight:700;}
+    .vxai-title{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.8rem,4.5vw,2.8rem);color:#F0EDE8;margin:10px 0 8px;line-height:1.08;}
+    .vxai-sub{color:rgba(240,237,232,.7);max-width:580px;margin:0 auto 40px;}
+    .vxai-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    @media(max-width:680px){.vxai-cards{grid-template-columns:1fr;}}
+    .vxai-card{text-align:left;cursor:pointer;background:linear-gradient(165deg,rgba(22,22,26,.96),rgba(12,12,15,.99));border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:28px 26px;color:#F0EDE8;font:inherit;transition:transform .15s,box-shadow .15s,border-color .15s;}
+    .vxai-card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.6);box-shadow:0 18px 44px rgba(0,0,0,.5);}
+    .vxai-ic{font-size:2rem;margin-bottom:12px;}
+    .vxai-card-t{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.3rem;color:#F0EDE8;margin-bottom:6px;}
+    .vxai-card-d{color:rgba(240,237,232,.7);font-size:.95rem;margin-bottom:16px;line-height:1.5;}
+    .vxai-go{color:#D4AF37;font-weight:700;font-size:.92rem;}
+
+    .vxm-ovl{position:fixed;inset:0;z-index:3000;background:rgba(4,4,6,.78);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;transition:opacity .2s;}
+    .vxm-ovl.open{opacity:1;visibility:visible;}
+    .vxm{background:linear-gradient(165deg,#15151a,#0a0a0d);border:1px solid rgba(212,175,55,.3);border-radius:18px;max-width:440px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(12px);transition:transform .2s;}
+    .vxm-ovl.open .vxm{transform:none;}
+    .vxm-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(212,175,55,.05);}
+    .vxm-dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;flex:none;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:vxmPulse 2s infinite;}
+    @keyframes vxmPulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.5);}70%{box-shadow:0 0 0 7px rgba(61,220,132,0);}100%{box-shadow:0 0 0 0 rgba(61,220,132,0);}}
+    .vxm-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.92rem;color:#F0EDE8;flex:1;}
+    .vxm-title small{display:block;font-weight:500;font-size:.7rem;color:rgba(240,237,232,.5);margin-top:1px;}
+    .vxm-x{background:transparent;border:none;color:rgba(240,237,232,.5);font-size:1.45rem;line-height:1;cursor:pointer;width:32px;height:32px;border-radius:8px;}
+    .vxm-x:hover{background:rgba(255,255,255,.08);color:#F0EDE8;}
+    .vxm-body{padding:16px 18px;overflow:auto;display:flex;flex-direction:column;gap:10px;min-height:240px;}
+    .vxm-msg{max-width:86%;padding:9px 13px;border-radius:14px;font-size:.9rem;line-height:1.45;animation:vxmIn .25s ease both;}
+    @keyframes vxmIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+    .vxm-msg.bot{align-self:flex-start;background:rgba(255,255,255,.07);color:#F0EDE8;border-bottom-left-radius:5px;}
+    .vxm-msg.user{align-self:flex-end;background:linear-gradient(135deg,#D4AF37,#BF953F);color:#1a1205;font-weight:500;border-bottom-right-radius:5px;}
+    .vxm-typing{align-self:flex-start;background:rgba(255,255,255,.07);padding:10px 13px;border-radius:14px;display:flex;gap:4px;}
+    .vxm-typing span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:vxmDots 1.2s infinite;}
+    .vxm-typing span:nth-child(2){animation-delay:.15s;}.vxm-typing span:nth-child(3){animation-delay:.3s;}
+    @keyframes vxmDots{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-3px);opacity:1;}}
+    .vxm-chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 18px 14px;border-top:1px solid rgba(255,255,255,.08);}
+    .vxm-chip{background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);color:#D4AF37;border-radius:999px;padding:8px 14px;font-size:.82rem;cursor:pointer;font:inherit;}
+    .vxm-chip:hover{background:rgba(212,175,55,.22);}
+    .vxm-note{font-size:.68rem;color:rgba(240,237,232,.45);text-align:center;padding:0 18px 12px;}
+    .vxm-step{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);opacity:.3;transition:opacity .35s,border-color .35s;}
+    .vxm-step.on{opacity:1;border-color:rgba(212,175,55,.4);}
+    .vxm-step .si{font-size:1.3rem;line-height:1;}
+    .vxm-step .st{font-weight:700;color:#F0EDE8;font-size:.9rem;}
+    .vxm-step .sd{color:rgba(240,237,232,.65);font-size:.82rem;margin-top:3px;line-height:1.4;}
+    .vxm-time{margin-left:auto;font-size:.72rem;color:#3ddc84;font-weight:700;white-space:nowrap;}
+  </style>
+  <section class="vxai-section" id="try-ai">
+    <div class="vxai-wrap">
+      <div class="vxai-eyebrow">See it for yourself</div>
+      <h2 class="vxai-title">Try the AI. Right here, right now.</h2>
+      <p class="vxai-sub">This is the exact AI we build into your business. Click and experience what your customers would.</p>
+      <div class="vxai-cards">
+        <button class="vxai-card" type="button" data-aidemo="chat">
+          <div class="vxai-ic">💬</div>
+          <div class="vxai-card-t">AI Chat</div>
+          <div class="vxai-card-d">Ask it anything — it answers like your 24/7 front desk, in seconds.</div>
+          <div class="vxai-go">Open the chat →</div>
+        </button>
+        <button class="vxai-card" type="button" data-aidemo="leadauto">
+          <div class="vxai-ic">⚡</div>
+          <div class="vxai-card-t">AI Lead Automation</div>
+          <div class="vxai-card-d">Watch a lead come in, get answered, qualified &amp; booked — automatically.</div>
+          <div class="vxai-go">Watch it run →</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section class="portfolio cyber-reveal" id="work">
     <div class="container">
       <div class="section-label">Live Demo Build</div>
@@ -6250,6 +6319,70 @@
       }, { threshold: 0.25 });
       vids.forEach(function (v) { io.observe(v); });
     })();
+  </script>
+  <!-- Try-the-AI demos: interactive AI chat + lead-automation walkthrough (mock) -->
+  <script>
+  (function(){
+    var ovl=document.createElement('div'); ovl.className='vxm-ovl'; document.body.appendChild(ovl);
+    var timers=[];
+    function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+    function close(){clearTimers();ovl.classList.remove('open');setTimeout(function(){ovl.innerHTML='';},200);}
+    ovl.addEventListener('click',function(e){if(e.target===ovl)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ovl.classList.contains('open'))close();});
+    function shell(title,sub,body,extra){
+      ovl.innerHTML='<div class="vxm"><div class="vxm-head"><span class="vxm-dot"></span><div class="vxm-title">'+title+'<small>'+sub+'</small></div><button class="vxm-x" aria-label="Close">&times;</button></div><div class="vxm-body" id="vxmBody">'+body+'</div>'+(extra||'')+'</div>';
+      ovl.classList.add('open');
+      ovl.querySelector('.vxm-x').addEventListener('click',close);
+      return ovl.querySelector('#vxmBody');
+    }
+    function addMsg(body,cls,text){var m=document.createElement('div');m.className='vxm-msg '+cls;m.textContent=text;body.appendChild(m);body.scrollTop=body.scrollHeight;return m;}
+
+    // ---- AI Chat demo ----
+    var QA=[
+      ['How does it work?',"We build an AI that answers your calls, texts, and web chats 24/7 — it qualifies leads, books appointments, and texts customers back in seconds, all in your business's name."],
+      ['What does it cost?',"Plans start at $700 to build + $70/month. Growth ($900 + $150/mo) adds full AI lead automation; Elite ($1,200 + $400/mo) adds an AI voice agent that answers calls."],
+      ['Can it book appointments?',"Absolutely — it captures the lead, asks the right questions, books straight into your calendar, and sends a confirmation text. You don't lift a finger."],
+      ["Do I even need a website?","Nope! If you don't have one, we build the whole platform — website, booking, payments, and the AI — all in one. And you own it."]
+    ];
+    function chips(){var h='<div class="vxm-chips" id="vxmChips">';QA.forEach(function(q,i){h+='<button class="vxm-chip" type="button" data-q="'+i+'">'+q[0]+'</button>';});return h+'</div><div class="vxm-note">Demo — on your real site it answers your customers for you.</div>';}
+    function openChat(){
+      var body=shell('Velonyx AI','online · replies instantly','',chips());
+      addMsg(body,'bot',"Hey! I'm the Velonyx AI — the same assistant we'd build into your business. Ask me anything 👇");
+      wireChips();
+    }
+    function wireChips(){var c=ovl.querySelector('#vxmChips');if(!c)return;
+      c.querySelectorAll('[data-q]').forEach(function(b){b.addEventListener('click',function(){
+        var i=+b.getAttribute('data-q');var body=ovl.querySelector('#vxmBody');
+        addMsg(body,'user',QA[i][0]);
+        var t=document.createElement('div');t.className='vxm-typing';t.innerHTML='<span></span><span></span><span></span>';body.appendChild(t);body.scrollTop=body.scrollHeight;
+        timers.push(setTimeout(function(){if(t.parentNode)t.remove();addMsg(body,'bot',QA[i][1]);},950));
+      });});}
+
+    // ---- AI Lead Automation demo ----
+    var STEPS=[
+      ['📥','New lead — 9:42 PM','Maria submitted your web form while you were on a job.','9:42:00'],
+      ['⚡','AI texts back — 8 seconds later','"Hi Maria! Thanks for reaching out. What can we help with?"','9:42:08'],
+      ['💬','Qualifies the lead','Maria: "Garage door stuck, car trapped." AI: "Got it — what city?" → Henderson.','9:43'],
+      ['📅','Books the job','AI offered a same-day window, booked it, and texted a confirmation.','9:44'],
+      ['🔔',"You're notified","You get a text: \"New job booked, 1–3 PM today.\" Nothing slipped through.",'9:44']
+    ];
+    function openLeadAuto(){
+      var rows='';STEPS.forEach(function(s,i){rows+='<div class="vxm-step" id="vxs'+i+'"><div class="si">'+s[0]+'</div><div><div class="st">'+s[1]+'</div><div class="sd">'+s[2]+'</div></div><div class="vxm-time">'+s[3]+'</div></div>';});
+      shell('AI Lead Automation','watch it run','<div style="display:flex;flex-direction:column;gap:10px;">'+rows+'</div><div style="text-align:center;margin-top:16px;"><button class="vxm-chip" type="button" id="vxReplay" style="display:none;">↻ Replay</button></div>','<div class="vxm-note">Demo — this runs automatically on your real site, 24/7.</div>');
+      playSteps();
+    }
+    function playSteps(){
+      STEPS.forEach(function(s,i){timers.push(setTimeout(function(){
+        var el=ovl.querySelector('#vxs'+i);if(el)el.classList.add('on');
+        var b=ovl.querySelector('#vxmBody');if(b)b.scrollTop=b.scrollHeight;
+        if(i===STEPS.length-1){var r=ovl.querySelector('#vxReplay');if(r){r.style.display='inline-block';r.onclick=function(){STEPS.forEach(function(_,j){var e=ovl.querySelector('#vxs'+j);if(e)e.classList.remove('on');});r.style.display='none';clearTimers();playSteps();};}}
+      },700+i*1150));});
+    }
+
+    document.addEventListener('click',function(e){var t=e.target.closest('[data-aidemo]');if(!t)return;e.preventDefault();
+      clearTimers();var k=t.getAttribute('data-aidemo');
+      if(k==='chat')openChat();else if(k==='leadauto')openLeadAuto();});
+  })();
   </script>
 </body>
 </html>
