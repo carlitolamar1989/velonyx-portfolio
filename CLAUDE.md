@@ -3,47 +3,78 @@
 **Local working tree:** `/Users/apple/Cursor-Claude/`
 **GitHub:** [`carlitolamar1989/velonyx-portfolio`](https://github.com/carlitolamar1989/velonyx-portfolio) (default branch: `main`)
 **Live site:** `https://velonyxsystems.com` / `https://www.velonyxsystems.com`
-**Subdomain (live demo):** `https://gdk.velonyxsystems.com` (separate Vercel project — see "Sibling repos" below)
+**Subdomain (live demo):** `https://gdk.velonyxsystems.com` (separate repo — see "Sibling repos")
 **Founder/Operator:** Carlos Glover ([admin@velonyxsystems.com](mailto:admin@velonyxsystems.com), (877) 317-8643, San Diego CA)
+
+> **Last updated: 2026-06-13.** This file was significantly rewritten after the June audit
+> because the previous version was stale (it still described the $3,000 Founding Member model,
+> a Stripe checkout funnel, a hero video, and a `for-barbers.html` page — none of which match
+> the current site). If something here disagrees with the code, trust the code and fix this file.
+
+---
+
+## ⚠️ Repo hygiene — local clone drifts behind `origin/main`
+
+Recent site work has been landing through GitHub PRs (#22–#39). The local clone is easy to leave
+several commits behind, which means editing stale files. **Always `git pull` before starting work**
+and verify `git rev-list --left-right --count main...origin/main` shows `0 0`.
 
 ---
 
 ## What this site is
 
-A revenue-functional marketing site for **Velonyx Systems**. The site leads with **universal positioning** — premium digital systems for ambitious businesses ready to elevate their brand and run more efficiently — and names **home service operators (HVAC, plumbing, electrical, garage doors)** as the current specialty further down the page. Garage Door Kings (Las Vegas) is the live portfolio example. Custom builds are available for any business ready to scale, in any industry.
+A marketing site for **Velonyx Systems**. As of June 2026 the site leads with an **AI lead-capture /
+"AI receptionist"** message: the hero is *"Never Miss Another Lead — AI answers in 30 seconds, books
+the call, 24/7, in your name and voice."* The target buyer is a **service operator** (HVAC, plumbing,
+electrical, garage doors — "under a sink / under a truck") who loses leads because they can't answer
+fast enough.
 
-This is the "specialize in fulfillment, generalize in pitch" approach: the hero doesn't filter out non-home-service prospects (a dentist, a med spa, an e-commerce founder reads it and stays interested), and home service becomes proof — not prison.
-
-Hero copy (canonical, lock these phrases in — elevated-buyer reframe 2026-05):
-- **Eyebrow:** "FOR HOME SERVICE OPERATORS DOING $500K+"
-- **Headline:** white H1 "You've Built the Business." + gold H2 (two .line spans) "Now Build the System / That Runs It."
-- **Sub-headline (gold accent line):** "One custom platform. $3,000 build. $100/month. Yours forever."
-- **Supporting paragraph:** "You don't need another piece of software bolted to the side. You need one custom-engineered platform — website, payments, customer financing, SMS automation, and job tracking, consolidated into a system that scales with you. Built for HVAC, plumbing, electrical, garage doors, and any service operator who's outgrown the rented stack."
-- **Trust strip (below CTAs):** "Stripe-Verified · Klarna / Affirm / Afterpay Built In · 7–14 Day Build · 5 Founding Spots Open"
-- **Primary CTA:** "Book a 20-Minute Discovery Call" → /book.html
-- **Secondary CTA:** "See a Live Build →" → https://gdk.velonyxsystems.com/
-
-Sharper hooks woven throughout:
-- **"You've Built the Business. Now Build the System That Runs It."** (hero)
-- **"Stop Renting. Start Owning."** (comparison block heading)
-- **"Build Once. Own It Forever."** (final CTA heading)
-- **"Your Legacy, Engineered With Precision."** (closing motto, every page)
-
-Voice rule for hero framing: assume the buyer has ALREADY built a successful business. Don't pitch them on whether they need a platform; validate their work and offer the next-tier system. This is the "elevated buyer" voice — Apple-style, premium, never beneath them.
-
-Where home service shows up on the page:
-1. Hero supporting paragraph (one sentence as the named specialty)
-2. Comparison block intro ("Here's what that stack typically costs a home service business" — the math is sharpest here)
-3. Portfolio sub-heading (Garage Door Kings as the live example, with HVAC/plumbing/electrical named as the current specialty)
-4. Pricing card secondary link ("Outside our home service specialty? We build custom for any business ready to scale.")
-5. FAQ entry ("Is Velonyx only for home service businesses?" — No, with home service named as the specialty)
-
-Velonyx replaces a typical SaaS-stitched stack (job management + website builder + SMS tool + financing integration + payment processing markup = $250–400+/mo, owns nothing) with **one integrated, branded, owned platform** at $3,000 build + $100/month.
+Underneath that hook, the actual product is the same **custom business platform**: website + booking +
+payments + customer financing + SMS + an owner dashboard, **built once, owned by the customer**.
 
 The site exists to:
-1. Convert visitors → Stripe Founding Member checkout
-2. Showcase a live demo at `gdk.velonyxsystems.com`
-3. Provide an "in-bio" landing at `/connect/` for QR-code / DM sharing
+1. Capture leads via the floating lead-form widget and route serious prospects to **book a call**.
+2. Showcase the live demo at `gdk.velonyxsystems.com` (Garage Door Kings, Las Vegas).
+3. Provide an "in-bio" landing at `/connect/` for QR-code / DM / SMS sharing.
+
+### ⚠️ Known positioning mismatch (decide before optimizing SEO)
+The **body** leads with AI lead-capture, but the homepage **`<title>` / meta description / keywords /
+JSON-LD** still carry the older "premium platform, $700" framing. They're not wrong, just off-message
+relative to the hero. Aligning them is a **strategic SEO decision for Carlos** (what should the page
+rank for — "AI receptionist for service businesses" or "$700 custom platform"?), not a mechanical fix.
+
+---
+
+## Funnel & pricing (current)
+
+**Funnel = book a call.** There is **no live self-serve payment** on the site right now.
+- Primary CTAs open the floating lead-form widget (`data-vx-form-open`) → POSTs a lead.
+- `book.html` is the real booking step — an inline **Calendly** embed (`calendly.com/admin-velonyxsystems/30min`).
+- `checkout.html` and `financing.html` are informational; their CTAs route to **`/book.html`** ("book a
+  call and we'll send the secure link"). They must **not** present "Pay now / Go to checkout" dead-ends.
+
+**Pricing:** **$700 one-time build + $70/month.** Optional growth add-ons ($250 / $500 / $1,500/mo)
+appear in the pricing/JSON-LD. The old **$3,000 Founding Member + $100/mo** model is **retired** — if you
+still see it anywhere, it's stale.
+
+**Stripe (pending):** Carlos is creating **new Stripe Payment Links for the $700 / $70 prices**. Until
+those exist and are wired in, keep the funnel honest as book-a-call. When the links are ready, wire them
+into `checkout.html` (and anywhere a "pay" CTA belongs) — do not reintroduce "pay" language before then.
+
+---
+
+## Lead capture plumbing
+
+- **Floating lead-form widget:** `assets/velonyx-lead-form.js`, opened by any `data-vx-form-open` element.
+  POSTs to the conversational endpoint `…/form-turn` with a fallback to the leads endpoint:
+  `https://jyo775chsk.execute-api.us-east-1.amazonaws.com/leads`.
+- **Lead payload shape** (reused by `sms-opt-in.html`): `{ firstName, lastName, phone, email, service, description }`;
+  success when the JSON response has `success: true`.
+- **Floating AI demo widget:** `assets/velonyx-ai-demo-widget.js` — a self-contained scripted/canned
+  conversation that demos the product. No live backend.
+- **Orphaned code:** `index.html` still contains the old two-step `bookingForm`/`bookingOverlay` modal +
+  `openBooking()`, which is **defined but never called** (superseded by the widget). Safe to remove when
+  convenient; left in place for now to avoid risk.
 
 ---
 
@@ -51,167 +82,106 @@ The site exists to:
 
 | Layer | Tool | Notes |
 |---|---|---|
-| Markup | Static HTML5 | No framework, no build step, no `package.json` at root |
-| Styling | Vanilla CSS with `:root` custom properties | All inline in `<style>` blocks |
+| Markup | Static HTML5 | No framework, no build step |
+| Styling | Vanilla CSS, `:root` custom properties | Inline in `<style>` blocks (homepage `<style>` is large) |
 | JS | Vanilla JS | GSAP + ScrollTrigger via CDN (homepage only, deferred) |
-| Fonts | Google Fonts — Space Grotesk + DM Sans | Non-blocking preload + onload swap pattern; `<noscript>` fallback |
-| Hosting | GitHub Pages | Auto-deploy on push to `main` via `.github/workflows/deploy.yml` |
-| Custom domain | `velonyxsystems.com` (apex) | CNAME at root; DNS at Namecheap |
-| Payments | Stripe Payment Links | One live link for the Founding Member offer (URL in `index.html` + `checkout.html`) |
-| Booking | Calendly inline | Embedded on `book.html` |
-| Analytics | GA4 (`G-F838ZEJ22J`) + Meta Pixel (`1486954096175579`) | Both **gated by CCPA cookie consent** via `assets/cookie-consent.js` |
-| Image optimization | Pillow (Python) | One-shot scripts in `scripts/` |
+| Fonts | Google Fonts — Space Grotesk + DM Sans | Non-blocking preload + onload swap; `<noscript>` fallback |
+| Hosting | GitHub Pages | Auto-deploy on push to `main` via `.github/workflows/deploy.yml` (~20–30s) |
+| Domain | `velonyxsystems.com` (apex) | CNAME at root; DNS at Namecheap |
+| Booking | Calendly inline | `book.html` |
+| Payments | Stripe Payment Links | **None live right now** (see Funnel & pricing) |
+| Analytics | GA4 (`G-F838ZEJ22J`) + Meta Pixel (`1486954096175579`) | Gated by CCPA cookie consent (`assets/cookie-consent.js`) |
+| Marketing banner | `assets/urgency-banner.js` | Thin fixed top banner. Space is reserved pre-paint (`body.vx-banner-active` + `#vx-banner-reserve` styles) to avoid CLS |
 
 ---
 
-## Folder structure (current, May 2026)
+## Folder structure (current)
 
 ```
 Cursor-Claude/                        ← velonyx-portfolio repo
-├── index.html                        Marketing homepage
-├── checkout.html                     Single Founding Member checkout page
-├── book.html                         Calendly inline booking
-├── financing.html                    BNPL explainer
-├── for-barbers.html                  Vertical landing (legacy, still useful for ads)
-├── privacy.html, terms.html, msa.html, sow.html, sms-terms.html, sms-opt-in.html
+├── index.html                        Homepage (AI lead-capture hero; static AI-helpdesk image bg)
+├── checkout.html                     Offer page — CTA books a call (noindex; NOT in sitemap)
+├── book.html                         Calendly inline booking (the real conversion step)
+├── financing.html                    BNPL explainer — CTAs book a call
+├── privacy.html, terms.html, msa.html, sow.html, sms-terms.html, sms-opt-in.html, refund-policy.html
 ├── 404.html                          Brand-styled 404
-├── humans.txt                        Plain-text team / tech credit
-├── sitemap.xml, robots.txt, CNAME, favicon.ico
-├── connect/index.html                "Link in bio" landing page
-├── contact.vcf                       vCard 3.0 for one-tap contact save
+├── sitemap.xml, robots.txt, CNAME, favicon.ico, humans.txt, contact.vcf
+├── connect/index.html                "Link in bio" landing
 ├── assets/
+│   ├── hero-bg-ai-helpdesk.webp / -1440.webp   Homepage hero background (LCP element)
+│   ├── velonyx-lead-form.js          Floating lead-form widget (data-vx-form-open)
+│   ├── velonyx-ai-demo-widget.js     Floating scripted AI demo
+│   ├── urgency-banner.js             Top marketing banner
 │   ├── cookie-consent.js             CCPA banner — gates GA4 + Meta Pixel
-│   ├── marketing-config.js           Pixel/GA4 IDs (Pixel ID activated: 1486954096175579)
-│   ├── audio/velonyx-pitch.mp3       Pre-rebrand AI audio (unlinked, see assets/audio/README.md)
-│   ├── lead-magnets/                 Barbershop blueprint PDF
-│   ├── connect-qr-velonyx.png        Branded QR → /connect/
-│   ├── gdk-preview.{webp,png}        Homepage portfolio screenshot of gdk.velonyxsystems.com
-│   ├── velonyx_hero_web.mp4          Hero loop video (5.9 MB, optimized May 2026)
-│   ├── velonyx_hero_poster.{jpg,webp}
-│   ├── vs-logo-shield-clean.png      Primary brand mark (181 KB) — original
-│   ├── vs-logo-shield-512.webp       Native-res WebP (~89 KB) — for hero/loader/watermark
-│   ├── vs-logo-shield-240.{webp,png} Smaller variant — for /connect/ logo at 120px
-│   ├── vs-logo-monogram.png + .webp  Nav mark
-│   └── favicon-32.png, favicon-180.png
-├── client-demos/                     Older portfolio demos (4 verticals — legacy, unused on live site)
-├── demos/garage/                     Stripped-down GDK static demo (the live operational demo is on the gdk subdomain)
-├── platform/                         AWS Cognito + Lambda + Terraform LEARNING LAB
-│                                     (designed but unapplied — see platform/README.md)
-├── docs/                             Internal audit, perf, decision, and summary docs
-├── scripts/                          One-off Python + shell tooling
-│   └── refresh-gdk.sh                One-command GDK demo screenshot refresh
-├── content/, business-docs/          .gitignored — drafts, internal docs
-├── .github/workflows/deploy.yml      GitHub Pages deploy
+│   ├── marketing-config.js           Pixel/GA4 IDs
+│   ├── motion/hero-slide-{1,2,3}.{webm,mp4}    Remotion motion clips (3-image story bar; preload=none)
+│   ├── hero-slide-{1,2,3}.webp       Posters for the motion clips
+│   ├── vs-logo-shield-512.webp       Brand mark (hero/logo). NOTE: vs-logo-shield-clean.png is 404 — don't reference it
+│   ├── vs-logo-monogram.{webp,png}   Nav mark
+│   ├── gdk-preview.{webp,png}        Homepage portfolio screenshot of gdk.velonyxsystems.com (<picture>, WebP primary)
+│   └── velonyx_hero_web.mp4          Old hero video — no longer used on the homepage (kept in repo)
+├── demos/garage/                     GDK static demo (live operational demo is on the gdk subdomain)
+├── demos/smp/                        Second demo
+├── client-demos/, platform/          Legacy / learning-lab (unused on live; see platform/README.md)
+├── remotion/                         Remotion workspace for the motion-graphics pipeline
+├── docs/                             Audit, perf, decision, and summary docs
+├── scripts/refresh-gdk.sh            One-command GDK demo screenshot refresh ("refresh GDK")
 └── CLAUDE.md                         This file
 ```
 
-### Sibling working directories (NOT inside the velonyx-portfolio repo)
-
-These were embedded as separate git histories inside the working tree previously. May 2026 cleanup moved them out to siblings to remove the dual-deployment confusion:
+### Sibling working directories (NOT inside this repo)
 
 | Path | What it is |
 |---|---|
-| `/Users/apple/Cursor-Claude-trades-template/` | **The future Velonyx Portal foundation.** Next.js 14 + Supabase + Stripe + Twilio + Resend. Currently deployed at `gdk.velonyxsystems.com`. See `docs/PORTAL_ARCHITECTURE_DECISION.md`. |
-| `/Users/apple/Cursor-Claude-external/` | Cloned third-party SDKs used for tooling (e.g. `notebooklm-py` for AI audio generation). |
-| `/Users/apple/Cursor-Claude-archive/lambda-backups-20260506/` | Lambda handler backups (Stripe + booking + lead intake) preserved before the May 2026 velonyx-website/ deletion. Git history retains them indefinitely too. |
-
----
-
-## Pricing — Single Founding Member tier (May 2026)
-
-**Live offer:** Founding Member System — first 5 customers only.
-
-| Component | Amount | Notes |
-|---|---|---|
-| One-time build | **$3,000** | Charged on Stripe checkout immediately |
-| Monthly Care | **$100/month** | First month free (31-day trial). Cancel anytime. |
-| Stripe Payment Link | `https://buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e` | ToS-gated to `/terms.html` |
-| Lock-in | Pricing locked for life | After 5 founding customers: $5,000 build + $200/mo |
-
-**Founding spots counter:** 5 dots on `index.html` and `checkout.html`. Manually flip `class="founding-dot filled"` → `class="founding-dot empty"` per customer signed.
-
-What's included in the system: custom-built website + admin dashboard (run from phone) + integrated payment system (Stripe + Apple Pay + Google Pay) + customer financing (Klarna/Affirm/Afterpay) + SMS automation + customer management + local SEO + production hosting + ownership in perpetuity.
-
-### Deprecated (preserved in HTML comments for rollback only)
-
-- 4-tier pricing (Starter $1,500 / Growth $3,500 / Premium $6,000 / Enterprise $12,000+) — collapsed to single Founding tier in May 2026
-- 3 monthly Care tier links ($125 / $225 / $325) — bundled into the Founding $100/mo
+| `/Users/apple/Cursor-Claude-trades-template/` | Next.js + Supabase + Stripe + Twilio portal foundation. Deployed at `gdk.velonyxsystems.com`. The `gdk` demo is a **separate codebase** — don't fix gdk bugs by editing this repo. |
+| `/Users/apple/Cursor-Claude-external/` | Cloned third-party SDKs (e.g. `notebooklm-py`). |
+| `/Users/apple/Cursor-Claude-archive/` | Old Lambda handler backups. |
 
 ---
 
 ## Compliance & consent
 
-- **CCPA cookie banner:** loaded on every public page via `/assets/cookie-consent.js`. GA4 + Meta Pixel only fire after explicit accept (`localStorage.velonyx_cookie_consent === 'accepted'`).
-- **Legal pages live + linked from every footer:** `/privacy.html`, `/terms.html`, `/msa.html`, `/sow.html`, `/sms-terms.html`, `/sms-opt-in.html`.
-- **Consent checkboxes (not pre-checked):** `index.html` booking modal + `sms-opt-in.html` form.
-- **Robots:** `velonyxsystems.com/robots.txt` allows root and disallows `/platform/portal/`, `/platform/admin/`. (The old `/velonyx-website/` disallow is now obsolete — that folder was deleted.)
-
----
-
-## Performance baseline (post-cleanup, May 2026)
-
-Lighthouse mobile, median **99/100** Performance across 10 audited public pages.
-
-| Page | Performance |
-|---|---:|
-| `/connect/`, `/checkout.html`, `/sms-opt-in.html`, `/404.html` | **100** |
-| `/financing.html`, `/terms.html`, `/privacy.html` | **99** |
-| `/book.html` | 98 |
-| `/for-barbers.html` | 97 |
-| `/` (homepage) | 80 (LCP 3.1s — held back by hero video + GSAP scroll animations) |
-
-See `docs/PERF_AUDIT_SWEEP.md` for the full before/after.
+- **CCPA cookie banner** on every public page (`assets/cookie-consent.js`); GA4 + Meta Pixel only fire
+  after explicit accept (`localStorage.velonyx_cookie_consent === 'accepted'`).
+- **Legal pages** live + linked from every footer: privacy, terms, msa, sow, sms-terms, sms-opt-in, refund-policy.
+- **SMS consent:** `sms-opt-in.html` has a non-pre-checked SMS consent checkbox + a separate privacy/terms
+  checkbox, and (as of the June audit) the form actually submits to the leads API. Keep STOP/HELP language intact.
+- **robots.txt:** allows root; disallows `/platform/portal/`, `/platform/admin/`; points to sitemap.
 
 ---
 
 ## Common operations
 
-### Deploy
-
-Push to `main`; GitHub Actions auto-deploys to GitHub Pages in ~20-30s. Verify with `curl -sI https://velonyxsystems.com/`.
-
-### Refresh the homepage's GDK demo screenshot
-
-```bash
-bash /Users/apple/Cursor-Claude/scripts/refresh-gdk.sh
-```
-
-Captures via headless Chrome, resizes/optimizes, stages for commit. Or just say "refresh GDK" in chat.
-
-### Re-run sitewide Lighthouse audit
-
-See the snippet at the bottom of `docs/PERF_AUDIT_SWEEP.md`.
-
-### Update founding-spot dots
-
-Edit `index.html` and `checkout.html`. Find `<span class="founding-dot filled">` (or `<span class="spot-dot filled">` on checkout) and change `filled` → `empty` per customer signed.
-
-### When the 5th founding customer signs
-
-1. Create a new Stripe Payment Link: $5,000 setup + $200/mo (ToS gate to `/terms.html`)
-2. Replace the URL `buy.stripe.com/7sYfZjajz5Kq9M2bKOcs80e` everywhere it appears
-3. Update card amounts in `index.html` and `checkout.html`
-4. Remove "Founding Member" framing — change card title to "The Velonyx System"
-5. Mark old Stripe Payment Link as inactive in Stripe dashboard
+- **Deploy:** push to `main` → GitHub Actions deploys in ~20–30s. Verify `curl -sI https://velonyxsystems.com/`.
+- **Refresh the GDK screenshot:** `bash scripts/refresh-gdk.sh` (or say "refresh GDK").
+- **Wire the new Stripe links (when Carlos provides them):** set the link as the CTA on `checkout.html`
+  (replacing the `/book.html` interim CTA + the "link is being prepared" note), and update any pay CTAs.
+- **Sitemap:** keep `checkout.html` OUT of `sitemap.xml` (it's `noindex`). `for-barbers.html` was deleted —
+  don't re-add it.
 
 ---
 
-## Architectural decisions
+## Performance notes
 
-- **Portal foundation:** `velonyx-trades-template/` (Next.js + Supabase + Vercel) is the production portal foundation. `platform/` (AWS Cognito + Lambda + Terraform) is preserved as a documented learning lab. See `docs/PORTAL_ARCHITECTURE_DECISION.md`.
-- **Hosting consolidation:** marketing site is on GitHub Pages; gdk demo is on Vercel. A future migration could consolidate both onto Vercel for single-pane deployment.
-
----
-
-## Pointers for future Claude Code sessions
-
-1. **Default to root files.** All production pages live at the repo root (`index.html`, `checkout.html`, etc.). There's no longer a mirror folder to keep in sync.
-2. **Edit one source of truth per concept.** When changing the Stripe URL, update `index.html` (founding card CTA) AND `checkout.html` (CTA + the live-link comment block). Both should be kept consistent.
-3. **For perf-impacting changes** (new images, new scripts, new fonts), follow the established patterns: WebP first with PNG/JPG fallback in `<picture>`, fonts via the preload + onload + noscript pattern, JS deferred where possible.
-4. **The `gdk` subdomain is a separate codebase.** Don't try to fix gdk-related bugs by editing files in this repo. Open `/Users/apple/Cursor-Claude-trades-template/` for that work.
-5. **Read the docs/ folder first.** `docs/VELONYX_SITE_DIAGNOSTIC.md`, `docs/PERF_AUDIT_SWEEP.md`, `docs/PORTAL_ARCHITECTURE_DECISION.md`, `docs/REBRAND_FIX_SUMMARY.md`, `docs/CONNECT_LIGHTHOUSE.md`, `docs/REPOSITIONING_2026-05-07.md` (the home-service-led pivot), and `docs/UNIVERSAL_HERO_REPOSITIONING_2026-05-07.md` (the corrective universal-hero pivot the same day) collectively answer most "wait, why does this exist / what state is it in?" questions.
-6. **The hero is universal, the specialty is home service.** Voice rules: hero language is universal ("ambitious businesses ready to grow," "look and operate at the next level," "businesses building what's next"); home service appears as the named specialty in supporting copy, comparison block, portfolio sub-heading, pricing secondary link, and FAQ — never in the hero or top section headings; use plain operator language, no jargon; surface "Owned by you. No rent. No lock-in." wherever it fits; close every page with "Your Legacy, Engineered With Precision."
+- Mobile is the dominant profile (QR / DM / SMS shares). The legal/utility pages score 85–100.
+- The **homepage regressed** after the AI-repositioning work (LCP ~5.6s, CLS 0.217 in the June audit).
+  Fixes applied on the audit branch: hero-image preload hoisted to the top of `<head>`; urgency-banner
+  space reserved pre-paint (CLS); footer link contrast raised to pass WCAG AA.
+- **Still open:** homepage LCP render-delay is dominated by main-thread work (large inline `<style>` parse
+  + GSAP/ScrollTrigger init before paint). Reducing it means deferring GSAP init until after LCP and/or
+  splitting the inline CSS — higher-risk changes that should be tested live (a prior loader-script change,
+  PR #39, briefly blanked the page, so be careful with first-paint JS).
+- See `docs/AUDIT_2026-06-13.md` for the full June audit and `docs/PERF_AUDIT_SWEEP.md` for the May baseline.
 
 ---
 
-*Last updated: 2026-05-07 — after the universal-hero repositioning (see `docs/UNIVERSAL_HERO_REPOSITIONING_2026-05-07.md` for the full diff and the rationale for the same-day correction from the home-service-led version). Pricing model, motto, and architecture decisions unchanged; only top-of-funnel language.*
+## Pointers for future sessions
+
+1. `git pull` first (the local clone drifts behind `origin/main`).
+2. The funnel is **book-a-call** until Stripe links exist — never reintroduce "Pay now / Go to checkout"
+   dead-ends.
+3. **Edit the root files** (`index.html`, etc.) — there's no mirror folder.
+4. Follow established perf patterns: WebP-first with `<picture>` fallback, the preload+onload+noscript
+   font pattern, defer JS where possible.
+5. Be careful with first-paint JS on the homepage (see Performance notes / PR #39).
+6. Close every page with the motto **"Your Legacy, Engineered With Precision."**

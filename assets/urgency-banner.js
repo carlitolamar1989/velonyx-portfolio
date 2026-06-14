@@ -44,7 +44,7 @@
     var banner = document.createElement('div');
     banner.id = 'vx-urgency-banner';
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Founding Member Pricing Notice');
+    banner.setAttribute('aria-label', 'Velonyx announcement');
     banner.innerHTML = HTML;
     document.body.insertBefore(banner, document.body.firstChild);
     document.body.classList.add('vx-banner-active');

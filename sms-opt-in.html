@@ -17,6 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMS Opt-In — Velonyx Systems</title>
   <meta name="description" content="Velonyx Systems SMS opt-in consent form. By providing your phone number and checking the consent box, you agree to receive text messages.">
+  <link rel="canonical" href="https://velonyxsystems.com/sms-opt-in.html">
+  <meta name="robots" content="index, follow">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -290,32 +292,31 @@
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" placeholder="John" required>
+            <input type="text" id="optFirst" placeholder="John" required>
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" placeholder="Smith" required>
+            <input type="text" id="optLast" placeholder="Smith" required>
           </div>
         </div>
 
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="tel" placeholder="(555) 123-4567" required>
+          <input type="tel" id="optPhone" placeholder="(555) 123-4567" required>
         </div>
 
         <div class="form-group">
           <label>Email Address</label>
-          <input type="email" placeholder="john@example.com" required>
+          <input type="email" id="optEmail" placeholder="john@example.com" required>
         </div>
 
         <div class="form-group">
           <label>What Service Are You Interested In?</label>
-          <select required>
+          <select id="optService" required>
             <option value="" disabled selected>Select a service...</option>
-            <option>Starter Website ($1,500)</option>
-            <option>Growth Package ($3,500)</option>
-            <option>Premium Package ($6,000)</option>
-            <option>Enterprise (Starting at $12,000)</option>
+            <option>Custom Website / Platform Build</option>
+            <option>AI Lead Capture &amp; Booking</option>
+            <option>Monthly Care &amp; Support</option>
             <option>Not sure yet — I'd like to discuss</option>
           </select>
         </div>
@@ -346,6 +347,11 @@
 
         <button type="submit" class="btn-submit">Send My Request</button>
       </form>
+      <div id="optInSuccess" role="alert" style="display:none;text-align:center;padding:24px 8px;">
+        <div style="font-size:2rem;line-height:1;margin-bottom:10px;color:var(--gold,#D4AF37);">✓</div>
+        <h3 style="margin:0 0 8px;color:var(--gold,#D4AF37);">Request received</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.75);">Thanks — we'll reach out within 24 hours. Reply STOP anytime to opt out of texts.</p>
+      </div>
     </div>
   </main>
 
@@ -367,5 +373,51 @@
   <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
   <script src="/assets/marketing-config.js"></script>
   <script src="/assets/cookie-consent.js" defer></script>
+  <script>
+    // Wire the consultation / SMS opt-in form to the Velonyx leads API
+    // (mirrors the bookingForm POST shape in index.html).
+    (function () {
+      var form = document.getElementById('optInForm');
+      if (!form) return;
+      var btn = form.querySelector('.btn-submit');
+      var success = document.getElementById('optInSuccess');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        var origText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        var val = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        var smsOk = document.getElementById('smsConsent');
+        var payload = {
+          firstName: val('optFirst'),
+          lastName: val('optLast'),
+          phone: val('optPhone'),
+          email: val('optEmail'),
+          service: val('optService'),
+          description: 'SMS opt-in / consultation request. SMS consent: ' + (smsOk && smsOk.checked ? 'yes' : 'no')
+        };
+        fetch('https://jyo775chsk.execute-api.us-east-1.amazonaws.com/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (data) {
+          if (data && data.success) {
+            form.style.display = 'none';
+            if (success) success.style.display = 'block';
+          } else {
+            throw new Error('server');
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = origText;
+          alert('Sorry — something went wrong sending your request. Please call (877) 317-8643 or email admin@velonyxsystems.com.');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
