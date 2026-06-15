@@ -405,9 +405,43 @@
         { who:'ai',       text:'On it. Can I send a same-day window? I just need your name and number.', type:1400, pause:700 },
         { who:'customer', text:'Mike Reyes, 702-555-0184.', type:1100, pause:650 },
         { who:'ai',       text:'Booked - tech arriving 1-3 PM today. Confirmation text on the way.', type:1400, pause:2000 }
-      ]
+      ],
+      greeting: 'Ask about repairs, hours, service areas…',
+      suggestions: ['Do you offer same-day service?', "My door won't open", 'What areas do you serve?', 'How much is a repair?'],
+      knowledge: [
+        { keywords:['hours','open','close','when','today','weekend','sunday','saturday','night'], a:"We're open Mon–Fri 7am–7pm and Sat 8am–3pm, with 24/7 emergency service. Most repairs are same-day — want me to set up a visit?" },
+        { keywords:['same day','today','come','come out','come today','emergency','now','urgent','asap','fast','quick','response','right now'], a:"Yes — most repairs are handled the same day you call, including nights and weekends. Average response across the valley is under 2 hours." },
+        { keywords:['services','service','fix','repair','problem','issue'], a:"We handle broken springs, opener repair & install, off-track and stuck doors, new door installation, and 24/7 emergency repair. What's going on with your door?" },
+        { keywords:['spring','springs','snapped','broke','broken','heavy','loud bang'], a:"Broken springs are our most common call. We replace them with high-cycle springs (25,000+ cycles) — usually done in 60–90 minutes." },
+        { keywords:['opener','motor','liftmaster','chamberlain','genie','remote','wifi','smart','keypad'], a:"We repair and install all major openers — LiftMaster, Chamberlain, Genie — including smart Wi-Fi models you can run from your phone." },
+        { keywords:["won't open","wont open","stuck","not opening","jammed","off track","off-track","trapped","car inside","won't close","wont close"], a:"Sounds like a stuck or off-track door — please don't force it, you could damage the panels. We can get a tech out today. What city are you in?" },
+        { keywords:['area','areas','where','serve','location','city','henderson','summerlin','las vegas','north','paradise','spring valley','enterprise','boulder'], a:"We cover the whole Las Vegas Valley — Las Vegas, Henderson, Summerlin, North Las Vegas, Paradise, Spring Valley, Enterprise and Boulder City." },
+        { keywords:['quote','estimate','free','consultation','price','pricing','cost','how much','fee','charge','expensive'], a:"Quotes are free and up-front. We give you the service-call fee on the phone and a written quote before any work begins — no surprises." },
+        { keywords:['financing','finance','payment plan','afford','monthly','installments'], a:"Yes — we offer financing on bigger jobs like new door installs so you can spread the cost. Want someone to walk you through the options?" },
+        { keywords:['warranty','guarantee','licensed','insured','bonded','trust','reviews','reputable'], a:"Everything we install is backed by a 5-year parts-and-labor warranty. We're licensed by the NV State Contractors Board, bonded, insured, and family-owned since 2015." },
+        { keywords:['new door','install','installation','replace door','replacement','buy'], a:"We install new doors in steel, insulated, and modern glass styles — professionally measured and fitted. Want a free quote on a new door?" }
+      ],
+      fallback: "Good question — let me have a GDK tech follow up with you directly. What's the best number to text you back at?",
+      leadCapture: { confirm: "Got it — a Garage Door Kings tech will text you shortly. Anything else I can help with?", phoneNudge: "Prefer to talk now? Call (702) 555-0184." }
     };
   </script>
   <script src="/assets/velonyx-demo-chat.js" defer></script>
+
+  <!-- Floating launcher: open the demo AI + call (mirrors the food-truck pattern) -->
+  <style>
+    .gdk-fab{position:fixed;right:18px;bottom:18px;z-index:1060;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+    .gdk-fab a,.gdk-fab button{font-family:'Space Grotesk',system-ui,sans-serif;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:0.92rem;border-radius:999px;padding:13px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.45);transition:transform .15s,box-shadow .2s;text-decoration:none;white-space:nowrap;}
+    .gdk-fab a:hover,.gdk-fab button:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.5);}
+    .gdk-fab .gdk-fab-chat{background:linear-gradient(135deg,#D4843A,#B8732E);color:#0A0A0A;}
+    .gdk-fab .gdk-fab-call{background:#161616;color:#F2C998;border:1px solid rgba(184,115,46,0.55);}
+    @media(max-width:560px){.gdk-fab{right:12px;bottom:12px;gap:8px;}.gdk-fab a,.gdk-fab button{padding:11px 16px;font-size:0.85rem;}}
+  </style>
+  <div class="gdk-fab">
+    <button class="gdk-fab-chat" type="button" id="gdkChatBtn">💬 Ask the AI</button>
+    <a class="gdk-fab-call" href="tel:+17025550184">📞 Call Now</a>
+  </div>
+  <script>
+    (function(){var b=document.getElementById('gdkChatBtn');if(b)b.addEventListener('click',function(){if(window.VXDemoChat&&window.VXDemoChat.open)window.VXDemoChat.open();});})();
+  </script>
 </body>
 </html>

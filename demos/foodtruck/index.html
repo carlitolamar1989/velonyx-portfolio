@@ -317,7 +317,23 @@
         { who:'ai',       text:'Order in, Marcus — ready in about 10. Need catering sometime? We do parties of 20+.', type:1500, pause:700 },
         { who:'customer', text:'Actually yeah — about 40 people next Saturday.', type:1100, pause:600 },
         { who:'ai',       text:"Perfect. Drop your number and I'll text a catering quote within the hour.", type:1500, pause:2000 }
-      ]
+      ],
+      greeting: "Ask about today's spot, the menu, or catering…",
+      suggestions: ["Where's the truck today?", 'Do you cater parties?', "What's on the menu?", 'Can I order for pickup?'],
+      knowledge: [
+        { keywords:['where','location','today','find','parked','spot','address','truck','near'], a:"We move around San Diego's East County — today we're in La Mesa Village till 2pm. Check our Instagram for the daily spot, or drop your number and I'll text you when we're nearby." },
+        { keywords:['hours','open','close','when','time','days'], a:"We're usually rolling 11am–8pm Tue–Sun (closed Mondays), but it shifts with the day's location. Want me to text you today's hours and spot?" },
+        { keywords:['menu','food','eat','tacos','taco','options','burrito','quesabirria','torta','tortas','fries','asada','pastor','carnitas'], a:"Street tacos (al pastor, carne asada, pollo, carnitas), tortas, quesabirria, and loaded fries — plus agua frescas. The al pastor off the trompo is the move." },
+        { keywords:['vegetarian','vegan','veggie','meatless','plant','options'], a:"Yes! Grilled veggie & rajas tacos, bean-and-cheese, and veggie tortas — just ask for it veggie." },
+        { keywords:['order','pickup','ahead','reserve','set aside','takeout','to go'], a:"You can order ahead and we'll have it ready for pickup at the truck — just tell me what you'd like and a name." },
+        { keywords:['delivery','deliver','doordash','door dash','grubhub','grub hub','uber eats','ubereats'], a:"We're on DoorDash, Grubhub, and Uber Eats whenever we're parked — search 'Carlito's Way' in your app of choice." },
+        { keywords:['catering','cater','party','event','wedding','group','large','people','headcount','guests'], a:"We cater parties of 20+ — taco bars, tortas, the works, with the truck on-site. Drop your date and headcount and I'll text a quote within the hour." },
+        { keywords:['price','prices','cost','how much','cheap','expensive','combo','deal'], a:"Tacos start around $3.50, tortas around $11, and combos are a deal. Catering is per-person — tell me your headcount for a quote." },
+        { keywords:['payment','pay','card','cash','venmo','apple pay','credit'], a:"We take cards, Apple Pay, and cash right at the truck." },
+        { keywords:['spicy','salsa','hot','mild','heat','sauce'], a:"We've got mild to 'tell-your-friends' hot — roasted tomatillo green, smoky red, and a habanero for the brave." }
+      ],
+      fallback: "Good question — let me have Carlito's team text you back. What's the best number to reach you?",
+      leadCapture: { confirm: "¡Listo! Carlito's will text you shortly. Anything else I can get you?", phoneNudge: "Or call us at (619) 555-0147." }
     };
   </script>
   <script src="/assets/velonyx-demo-chat.js" defer></script>
