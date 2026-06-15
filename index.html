@@ -5965,9 +5965,13 @@
   <script src="/assets/meta-pixel-events.js" defer></script>
   <!-- Founding-member urgency banner (auto-injects at top of body, dismissible per page-load) -->
   <script src="/assets/urgency-banner.js" defer></script>
-  <!-- Chatbot launcher removed: the "Live AI Lead System" widget is the chat/lead entry on desktop.
-       "Book a Call" is hidden on desktop (the widget covers it) and shown raised on mobile, where the
-       widget is hidden and there's no dock to obscure it. -->
+  <!-- TWO distinct, dock-safe entry points:
+       1) Q&A chatbot (velonyx-chatbot.js, blue) — on desktop it's opened from the Live AI widget's
+          "Ask a Quick Question" button (launcher itself hidden >=1024px); on mobile it shows as a
+          raised bottom-right launcher.
+       2) Booking (gold) — the widget's "Book a Call" button on desktop, and the "Book a Call" pill on
+          mobile -> conversational lead form. -->
+  <script src="/assets/velonyx-chatbot.js" defer></script>
   <style>
     .floating-book{display:none !important;}
     @media (max-width:1023.98px){.floating-book{display:block !important;bottom:78px !important;left:16px !important;}}

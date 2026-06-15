@@ -40,13 +40,14 @@
 
   // ── Styles (inline, theme-aware) ──
   var CSS = ''
-    + '#vx-chatbot-launcher{position:fixed;bottom:32px;right:32px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563eb 0%,#60a5fa 35%,#3b82f6 65%,#1d4ed8 100%);border:none;cursor:pointer;z-index:1001;box-shadow:0 8px 32px rgba(37,99,235,0.45),0 2px 8px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,box-shadow 0.25s;font-family:"Space Grotesk",system-ui,sans-serif;}'
+    + '#vx-chatbot-launcher{position:fixed;bottom:84px;right:32px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563eb 0%,#60a5fa 35%,#3b82f6 65%,#1d4ed8 100%);border:none;cursor:pointer;z-index:1001;box-shadow:0 8px 32px rgba(37,99,235,0.45),0 2px 8px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,box-shadow 0.25s;font-family:"Space Grotesk",system-ui,sans-serif;}'
     + '#vx-chatbot-launcher:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 40px rgba(37,99,235,0.6),0 4px 12px rgba(0,0,0,0.6);}'
     + '#vx-chatbot-launcher:focus-visible{outline:2px solid #3b82f6;outline-offset:4px;}'
     + '#vx-chatbot-launcher svg{width:28px;height:28px;color:#ffffff;}'
     + '#vx-chatbot-launcher .vx-pulse{position:absolute;inset:0;border-radius:50%;border:2px solid #3b82f6;opacity:0;animation:vxPulse 2.2s ease-out 5;}'
     + '@keyframes vxPulse{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(1.6);opacity:0;}}'
     + '#vx-chatbot-launcher.open .vx-pulse{display:none;}'
+    + '@media(min-width:1024px){#vx-chatbot-launcher{display:none;}}'
     + '#vx-chatbot-panel{position:fixed;bottom:104px;right:32px;width:380px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 140px);background:#0C0C0F;border:1px solid rgba(212,175,55,0.25);border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,0.7),0 0 0 1px rgba(212,175,55,0.08);z-index:999;display:none;flex-direction:column;overflow:hidden;font-family:"DM Sans",system-ui,sans-serif;transform-origin:bottom right;}'
     + '#vx-chatbot-panel.open{display:flex;animation:vxPanelIn 0.28s cubic-bezier(0.2,0.9,0.3,1.1);}'
     + '@keyframes vxPanelIn{0%{transform:translateY(20px) scale(0.96);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}'
@@ -248,6 +249,8 @@
   launcher.addEventListener('click', function() {
     if (panel.classList.contains('open')) closePanel(); else openPanel();
   });
+  // Exposed so the Live AI widget's "Ask a Quick Question" button can open Q&A directly.
+  window.openVelonyxChat = openPanel;
   closeBtn.addEventListener('click', closePanel);
 
   // ── Send handler ──
