@@ -26,7 +26,6 @@
 (function () {
   if (typeof document === 'undefined') return;
   if (window.matchMedia && window.matchMedia('(max-width: 1023.98px)').matches) return;
-  if (sessionStorage.getItem('vx-demo-dismissed') === '1') return;
 
   var REDUCE_MOTION = false;
   try { REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
@@ -239,7 +238,6 @@
       stopped = true;
       if (timer) clearTimeout(timer);
       widget.wrap.parentNode && widget.wrap.parentNode.removeChild(widget.wrap);
-      try { sessionStorage.setItem('vx-demo-dismissed', '1'); } catch (e) {}
     });
     widget.collapseBtn.addEventListener('click', function () {
       widget.wrap.classList.toggle('is-collapsed');
