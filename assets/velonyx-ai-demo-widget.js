@@ -85,13 +85,8 @@
     + '.vx-demo-typing span:nth-child(2){animation-delay:0.15s;}'
     + '.vx-demo-typing span:nth-child(3){animation-delay:0.3s;}'
     + '@keyframes vxDots{0%,80%,100%{transform:translateY(0);opacity:0.4;}40%{transform:translateY(-3px);opacity:1;}}'
-    + '.vx-demo-foot{padding:10px 14px 12px;border-top:1px solid rgba(212,175,55,0.12);display:flex;flex-direction:column;gap:7px;}'
-    + '.vx-demo-cta{width:100%;display:block;border:none;border-radius:9px;padding:10px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.2px;cursor:pointer;transition:transform .15s,box-shadow .15s;}'
-    + '.vx-demo-cta:hover{transform:translateY(-1px);}'
-    + '.vx-demo-ask{background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;}'
-    + '.vx-demo-ask:hover{box-shadow:0 6px 18px rgba(37,99,235,0.45);}'
-    + '.vx-demo-book{background:linear-gradient(135deg,#F7E17B,#D4AF37);color:#1a1205;}'
-    + '.vx-demo-book:hover{box-shadow:0 6px 18px rgba(212,175,55,0.45);}'
+    + '.vx-demo-foot{padding:8px 14px 10px;border-top:1px solid rgba(212,175,55,0.12);font-size:0.66rem;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:0.3px;}'
+    + '.vx-demo-foot strong{color:#D4AF37;font-weight:700;}'
     + '@media (max-width:1023.98px){#vx-demo-widget{display:none !important;}}';
 
   function el(tag, cls, html) {
@@ -120,10 +115,8 @@
     head.appendChild(closeBtn);
 
     var body = el('div', 'vx-demo-body');
-    var foot = el('div', 'vx-demo-foot');
-    foot.innerHTML =
-      '<button type="button" class="vx-demo-cta vx-demo-ask">&#128172; Ask a Quick Question</button>'
-      + '<button type="button" class="vx-demo-cta vx-demo-book">&#128197; Book a Call</button>';
+    var foot = el('div', 'vx-demo-foot',
+      'Powered by <strong>Velonyx AI</strong> &middot; This is the product.');
 
     wrap.appendChild(head);
     wrap.appendChild(body);
@@ -242,16 +235,7 @@
     widget.collapseBtn.addEventListener('click', function () {
       widget.wrap.classList.toggle('is-collapsed');
     });
-    var askBtn = widget.wrap.querySelector('.vx-demo-ask');
-    if (askBtn) askBtn.addEventListener('click', function () {
-      if (window.openVelonyxChat) { window.openVelonyxChat(); return; }
-      var l = document.getElementById('vx-chatbot-launcher');
-      if (l) l.click();
-    });
-    var bookBtn = widget.wrap.querySelector('.vx-demo-book');
-    if (bookBtn) bookBtn.addEventListener('click', function () {
-      if (window.openVelonyxLeadForm) window.openVelonyxLeadForm({ context: 'Live AI Lead System widget' });
-    });
+    // Action buttons live in the always-visible #vx-ai-actions launchers (index.html), not in the widget.
     document.addEventListener('visibilitychange', pauseOnHidden);
     runLoop();
   }

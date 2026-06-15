@@ -5965,17 +5965,37 @@
   <script src="/assets/meta-pixel-events.js" defer></script>
   <!-- Founding-member urgency banner (auto-injects at top of body, dismissible per page-load) -->
   <script src="/assets/urgency-banner.js" defer></script>
-  <!-- TWO distinct, dock-safe entry points:
-       1) Q&A chatbot (velonyx-chatbot.js, blue) — on desktop it's opened from the Live AI widget's
-          "Ask a Quick Question" button (launcher itself hidden >=1024px); on mobile it shows as a
-          raised bottom-right launcher.
-       2) Booking (gold) — the widget's "Book a Call" button on desktop, and the "Book a Call" pill on
-          mobile -> conversational lead form. -->
+  <!-- AI access = two always-visible launcher pills (Q&A + booking), on EVERY screen size, independent
+       of the demo widget. The chatbot's own round launcher and the old "Book a Call" pill are hidden in
+       favor of these so there's one clear, prominent pair. They sit below the one-time cookie banner. -->
   <script src="/assets/velonyx-chatbot.js" defer></script>
   <style>
     .floating-book{display:none !important;}
-    @media (max-width:1023.98px){.floating-book{display:block !important;bottom:78px !important;left:16px !important;}}
+    #vx-chatbot-launcher{display:none !important;}
+    #vx-ai-actions{position:fixed;right:18px;bottom:20px;z-index:1003;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+    #vx-ai-actions .vx-launch{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:999px;padding:13px 20px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;box-shadow:0 8px 26px rgba(0,0,0,0.45);transition:transform .15s ease,box-shadow .2s ease;white-space:nowrap;}
+    #vx-ai-actions .vx-launch:hover{transform:translateY(-2px);}
+    #vx-ai-actions .vx-ask{background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;box-shadow:0 8px 26px rgba(37,99,235,0.5);}
+    #vx-ai-actions .vx-book{background:linear-gradient(135deg,#F7E17B,#D4AF37);color:#1a1205;box-shadow:0 8px 26px rgba(212,175,55,0.5);}
+    @media (max-width:600px){#vx-ai-actions{right:12px;bottom:14px;gap:8px;}#vx-ai-actions .vx-launch{padding:11px 16px;font-size:0.85rem;}}
   </style>
+  <div id="vx-ai-actions" aria-label="AI assistant and booking">
+    <button type="button" class="vx-launch vx-ask">&#128172; Ask Our AI</button>
+    <button type="button" class="vx-launch vx-book">&#128197; Book a Call</button>
+  </div>
+  <script>
+  (function () {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest) return;
+      if (e.target.closest('#vx-ai-actions .vx-ask')) {
+        if (window.openVelonyxChat) { window.openVelonyxChat(); }
+        else { var l = document.getElementById('vx-chatbot-launcher'); if (l) l.click(); }
+      } else if (e.target.closest('#vx-ai-actions .vx-book')) {
+        if (window.openVelonyxLeadForm) { window.openVelonyxLeadForm({ context: 'AI launcher' }); }
+      }
+    });
+  })();
+  </script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
   <!-- AI lead-system demo widget: floating bottom-LEFT panel that auto-plays a
