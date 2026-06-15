@@ -86,9 +86,9 @@
     + '.vx-demo-typing span:nth-child(2){animation-delay:0.15s;}'
     + '.vx-demo-typing span:nth-child(3){animation-delay:0.3s;}'
     + '@keyframes vxDots{0%,80%,100%{transform:translateY(0);opacity:0.4;}40%{transform:translateY(-3px);opacity:1;}}'
-    + '.vx-demo-foot{padding:8px 14px 10px;border-top:1px solid rgba(212,175,55,0.12);'
-    + 'font-size:0.66rem;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:0.3px;}'
-    + '.vx-demo-foot strong{color:#D4AF37;font-weight:700;}'
+    + '.vx-demo-foot{padding:10px 14px 12px;border-top:1px solid rgba(212,175,55,0.12);}'
+    + '.vx-demo-chatbtn{width:100%;display:block;background:linear-gradient(135deg,#F7E17B,#D4AF37);color:#1a1205;border:none;border-radius:9px;padding:11px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:0.84rem;letter-spacing:0.3px;cursor:pointer;transition:transform .15s,box-shadow .15s;}'
+    + '.vx-demo-chatbtn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(212,175,55,0.45);}'
     + '@media (max-width:1023.98px){#vx-demo-widget{display:none !important;}}';
 
   function el(tag, cls, html) {
@@ -117,8 +117,8 @@
     head.appendChild(closeBtn);
 
     var body = el('div', 'vx-demo-body');
-    var foot = el('div', 'vx-demo-foot',
-      'Powered by <strong>Velonyx AI</strong> &middot; This is the product.');
+    var foot = el('div', 'vx-demo-foot');
+    foot.innerHTML = '<button type="button" class="vx-demo-chatbtn">&#128172; Talk to Our AI &rarr;</button>';
 
     wrap.appendChild(head);
     wrap.appendChild(body);
@@ -237,6 +237,10 @@
     });
     widget.collapseBtn.addEventListener('click', function () {
       widget.wrap.classList.toggle('is-collapsed');
+    });
+    var chatBtn = widget.wrap.querySelector('.vx-demo-chatbtn');
+    if (chatBtn) chatBtn.addEventListener('click', function () {
+      if (window.openVelonyxLeadForm) window.openVelonyxLeadForm({ context: 'Live AI Lead System widget' });
     });
     document.addEventListener('visibilitychange', pauseOnHidden);
     runLoop();
