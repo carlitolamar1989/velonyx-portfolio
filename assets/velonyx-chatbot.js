@@ -40,11 +40,11 @@
 
   // ── Styles (inline, theme-aware) ──
   var CSS = ''
-    + '#vx-chatbot-launcher{position:fixed;bottom:32px;right:32px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#D4AF37 0%,#F7E17B 35%,#D4AF37 65%,#B8860B 100%);border:none;cursor:pointer;z-index:1001;box-shadow:0 8px 32px rgba(212,175,55,0.35),0 2px 8px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,box-shadow 0.25s;font-family:"Space Grotesk",system-ui,sans-serif;}'
-    + '#vx-chatbot-launcher:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 40px rgba(212,175,55,0.5),0 4px 12px rgba(0,0,0,0.6);}'
-    + '#vx-chatbot-launcher:focus-visible{outline:2px solid #D4AF37;outline-offset:4px;}'
-    + '#vx-chatbot-launcher svg{width:28px;height:28px;color:#08080A;}'
-    + '#vx-chatbot-launcher .vx-pulse{position:absolute;inset:0;border-radius:50%;border:2px solid #D4AF37;opacity:0;animation:vxPulse 2.2s ease-out 5;}'
+    + '#vx-chatbot-launcher{position:fixed;bottom:32px;right:32px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563eb 0%,#60a5fa 35%,#3b82f6 65%,#1d4ed8 100%);border:none;cursor:pointer;z-index:1001;box-shadow:0 8px 32px rgba(37,99,235,0.45),0 2px 8px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,box-shadow 0.25s;font-family:"Space Grotesk",system-ui,sans-serif;}'
+    + '#vx-chatbot-launcher:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 40px rgba(37,99,235,0.6),0 4px 12px rgba(0,0,0,0.6);}'
+    + '#vx-chatbot-launcher:focus-visible{outline:2px solid #3b82f6;outline-offset:4px;}'
+    + '#vx-chatbot-launcher svg{width:28px;height:28px;color:#ffffff;}'
+    + '#vx-chatbot-launcher .vx-pulse{position:absolute;inset:0;border-radius:50%;border:2px solid #3b82f6;opacity:0;animation:vxPulse 2.2s ease-out 5;}'
     + '@keyframes vxPulse{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(1.6);opacity:0;}}'
     + '#vx-chatbot-launcher.open .vx-pulse{display:none;}'
     + '#vx-chatbot-panel{position:fixed;bottom:104px;right:32px;width:380px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 140px);background:#0C0C0F;border:1px solid rgba(212,175,55,0.25);border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,0.7),0 0 0 1px rgba(212,175,55,0.08);z-index:999;display:none;flex-direction:column;overflow:hidden;font-family:"DM Sans",system-ui,sans-serif;transform-origin:bottom right;}'
@@ -104,7 +104,8 @@
   var launcher = document.createElement('button');
   launcher.id = 'vx-chatbot-launcher';
   launcher.type = 'button';
-  launcher.setAttribute('aria-label', 'Open Velonyx Assistant chat');
+  launcher.setAttribute('aria-label', 'Chat with our AI — ask a question');
+  launcher.title = 'Questions? Chat with our AI';
   launcher.innerHTML = ''
     + '<span class="vx-pulse" aria-hidden="true"></span>'
     + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
