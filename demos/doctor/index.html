@@ -1,198 +1,290 @@
 <!DOCTYPE html>
-<!-- PLACEHOLDER NAME/SCHEME — to be finalized with Carlos once AI images are ready -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Brightwell Family Medicine — Care That Actually Has Time for You.</title>
-  <meta name="description" content="Demo site built by Velonyx Systems. Brightwell Family Medicine — friendly, modern primary care, same-day sick visits, pediatrics, and telehealth with a 24/7 AI assistant.">
+  <title>Bella Aesthetics — Beverly Hills Medical Aesthetics &amp; Wellness</title>
+  <meta name="description" content="Demo site built by Velonyx Systems. Bella Aesthetics, Beverly Hills — lip fillers, injectables, BBL & body contouring, tummy tucks, beauty & skin, and wellness, with a 24/7 AI assistant that answers questions and books consultations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --teal:#0e6b9c; --teal-deep:#0a4f76; --accent:#16b0c4; --accent-soft:#7fe0ec;
-      --ink:#103040; --paper:#f5fafc; --paper-2:#e9f3f7; --muted:#5b7280; --line:#dce8ee; --white:#ffffff;
+      --rose:#c98a96; --rose-soft:#e6c2c8; --gold:#c2a25e; --gold-soft:#dcc28a;
+      --blush:#f6e3e4; --cream:#faf6f0; --cream-2:#f3e9e0;
+      --ink:#3b2f30; --char:#2e2426; --char-deep:#241c1d; --muted:#8a7a7d; --line:#ecdfd9; --white:#ffffff;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-    body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;}
-    h1,h2,h3{font-family:'Inter',system-ui,sans-serif;font-weight:800;letter-spacing:-.01em;}
+    body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;}
     a{color:inherit;text-decoration:none;}
+    img{max-width:100%;height:auto;display:block;}
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
-    .btn{display:inline-block;background:var(--accent);color:#04232a;font-weight:700;padding:13px 26px;border-radius:10px;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 22px rgba(22,176,196,.32);}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(22,176,196,.42);}
-    .btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-weight:600;padding:11px 24px;border-radius:10px;transition:background .15s,border-color .15s;}
-    .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+    .btn{display:inline-block;background:var(--rose);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;cursor:pointer;border:none;font-size:1rem;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 22px rgba(201,138,150,.34);}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,138,150,.44);}
+    .btn-ghost{display:inline-block;border:1.5px solid var(--ink);color:var(--ink);font-weight:600;padding:11px 26px;border-radius:999px;cursor:pointer;background:transparent;font-size:1rem;transition:background .15s,border-color .15s,color .15s;}
+    .btn-ghost:hover{background:var(--ink);color:#fff;}
 
-    /* demo strip */
-    .demo-strip{background:#072a3d;color:rgba(255,255,255,.84);font-size:.78rem;text-align:center;padding:7px 16px;letter-spacing:.2px;}
-    .demo-strip a{color:var(--accent-soft);font-weight:600;}
+    .demo-strip{background:var(--char-deep);color:rgba(255,255,255,.85);font-size:.78rem;text-align:center;padding:7px 16px;letter-spacing:.2px;}
+    .demo-strip a{color:var(--gold-soft);font-weight:600;}
 
-    /* nav */
-    nav{position:sticky;top:0;z-index:40;background:rgba(245,250,252,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+    nav{position:sticky;top:0;z-index:40;background:rgba(250,246,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
     .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.18rem;color:var(--teal);}
-    .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,var(--teal),var(--teal-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;}
+    .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-weight:700;font-size:1.12rem;color:var(--ink);}
+    .brand small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:1px;}
+    .brand-mark{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,var(--rose),#a96b78);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:.9rem;flex:none;}
     .nav-links{display:flex;align-items:center;gap:28px;}
     .nav-links a{font-size:.92rem;font-weight:500;color:var(--muted);}
-    .nav-links a:hover{color:var(--teal);}
+    .nav-links a:hover{color:var(--ink);}
     .nav-admin{font-size:.78rem;border:1px solid var(--line);padding:6px 12px;border-radius:7px;color:var(--muted)!important;}
-    @media(max-width:780px){.nav-links a:not(.nav-cta):not(.nav-admin){display:none;}}
+    @media(max-width:820px){.nav-links a:not(.nav-cta):not(.nav-admin){display:none;}}
 
-    /* hero */
-    /* HERO IMAGE: layer /assets/demo-doctor-hero.webp behind this hero when ready (add it as a background-image on the hero) */
-    .hero{background:linear-gradient(155deg,var(--teal) 0%,var(--teal-deep) 100%);color:#fff;position:relative;overflow:hidden;}
-    .hero::after{content:"";position:absolute;right:-12%;top:-28%;width:58%;height:160%;background:radial-gradient(ellipse at center,rgba(22,176,196,.28),transparent 64%);}
-    .hero::before{content:"";position:absolute;left:-10%;bottom:-40%;width:46%;height:150%;background:radial-gradient(ellipse at center,rgba(127,224,236,.12),transparent 60%);}
-    .hero-in{position:relative;z-index:1;padding:92px 0 96px;max-width:700px;}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft);font-weight:600;margin-bottom:20px;}
-    .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);}
-    .hero h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.05;font-weight:800;}
-    .hero h1 em{font-style:normal;color:var(--accent-soft);}
-    .hero p{margin:22px 0 30px;font-size:1.12rem;color:rgba(255,255,255,.84);max-width:580px;}
+    .hero{background:radial-gradient(ellipse 70% 80% at 82% -10%,rgba(194,162,94,.16),transparent 60%),linear-gradient(160deg,var(--blush) 0%,var(--cream) 62%);color:var(--ink);position:relative;overflow:hidden;}
+    .hero-in{position:relative;z-index:1;padding:72px 0 80px;display:grid;grid-template-columns:1fr 0.96fr;gap:50px;align-items:center;}
+    @media(max-width:860px){.hero-in{grid-template-columns:1fr;gap:32px;padding:54px 0 62px;}}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin-bottom:18px;}
+    .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);}
+    .hero h1{font-size:clamp(2.4rem,5.6vw,3.9rem);line-height:1.04;font-weight:600;letter-spacing:-.01em;color:var(--ink);}
+    .hero h1 em{font-style:italic;color:var(--rose);}
+    .hero p{margin:20px 0 28px;font-size:1.1rem;color:var(--muted);max-width:540px;}
     .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
-    .trust-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px;color:rgba(255,255,255,.72);font-size:.85rem;}
-    .trust-row b{color:#fff;}
+    .trust-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:36px;color:var(--muted);font-size:.84rem;}
+    .trust-row b{color:var(--ink);}
+    .hero-img{border-radius:18px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(59,47,48,.22);width:100%;}
 
     section{padding:80px 0;}
-    .sec-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;text-align:center;}
-    .sec-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;text-align:center;margin:10px 0 8px;color:var(--teal);}
-    .sec-sub{text-align:center;color:var(--muted);max-width:580px;margin:0 auto 48px;}
+    .sec-label{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;text-align:center;}
+    .sec-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;text-align:center;margin:10px 0 8px;color:var(--ink);}
+    .sec-sub{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 48px;}
 
-    .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-    @media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr);}}
-    @media(max-width:680px){.grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:440px){.grid{grid-template-columns:1fr;}}
-    .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:26px 20px;transition:transform .15s,box-shadow .15s;}
-    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,107,156,.12);}
-    .card .ic{width:46px;height:46px;border-radius:11px;background:var(--paper-2);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;}
-    .card h3{font-size:1.06rem;color:var(--teal);margin-bottom:8px;}
-    .card p{font-size:.9rem;color:var(--muted);}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 22px;transition:transform .15s,box-shadow .15s;}
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(59,47,48,.1);}
+    .card .ic{width:48px;height:48px;border-radius:50%;background:var(--blush);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;}
+    .card h3{font-size:1.08rem;color:var(--ink);margin-bottom:8px;}
+    .card p{font-size:.92rem;color:var(--muted);}
 
-    .stats{background:var(--teal);color:#fff;}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+    @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px;}.split.rev .split-img{order:-1;}}
+    .split-img{border-radius:18px;border:1px solid var(--line);box-shadow:0 22px 54px rgba(59,47,48,.16);width:100%;}
+    .split h2{font-size:clamp(1.7rem,3.6vw,2.4rem);color:var(--ink);margin-bottom:14px;font-weight:600;}
+    .split p{color:var(--muted);margin-bottom:14px;}
+    .split .lead{color:var(--ink);font-size:1.05rem;}
+    .split ul{list-style:none;margin-top:6px;}
+    .split li{position:relative;padding-left:26px;margin-bottom:9px;color:var(--ink);font-size:.96rem;}
+    .split li::before{content:"♥";position:absolute;left:0;color:var(--rose);font-weight:700;}
+
+    .stats{background:linear-gradient(160deg,var(--char),var(--char-deep));color:#fff;}
     .stats .grid{grid-template-columns:repeat(4,1fr);}
     @media(max-width:700px){.stats .grid{grid-template-columns:repeat(2,1fr);}}
     .stat{text-align:center;}
-    .stat .n{font-size:2.6rem;font-weight:800;color:var(--accent-soft);}
-    .stat .l{font-size:.86rem;color:rgba(255,255,255,.78);margin-top:4px;}
+    .stat .n{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--rose-soft);}
+    .stat .l{font-size:.86rem;color:rgba(255,255,255,.75);margin-top:4px;}
 
     .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
     @media(max-width:820px){.quotes{grid-template-columns:1fr;}}
-    .quote{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:26px;}
-    .quote .stars{color:var(--accent);letter-spacing:2px;margin-bottom:12px;}
+    .quote{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px;}
+    .quote .stars{color:var(--gold);letter-spacing:2px;margin-bottom:12px;}
     .quote p{font-size:.96rem;color:var(--ink);}
     .quote .by{margin-top:14px;font-size:.84rem;color:var(--muted);font-weight:600;}
 
-    .cta{background:linear-gradient(155deg,var(--teal),var(--teal-deep));color:#fff;text-align:center;border-radius:20px;padding:64px 28px;margin:0 24px;position:relative;overflow:hidden;}
-    .cta::after{content:"";position:absolute;right:-8%;top:-50%;width:40%;height:180%;background:radial-gradient(ellipse at center,rgba(22,176,196,.22),transparent 62%);}
-    .cta>*{position:relative;z-index:1;}
-    .cta h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;}
-    .cta p{color:rgba(255,255,255,.84);margin:14px auto 28px;max-width:520px;}
+    .cta-band{position:relative;border-radius:22px;overflow:hidden;margin:0 24px;}
+    .cta-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .cta-band .veil{position:absolute;inset:0;background:linear-gradient(120deg,rgba(46,36,38,.86),rgba(46,36,38,.5));}
+    .cta{position:relative;z-index:1;color:#fff;text-align:center;padding:66px 28px;}
+    .cta h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;}
+    .cta p{color:rgba(255,255,255,.9);margin:14px auto 28px;max-width:520px;}
+    .cta .btn{box-shadow:0 8px 28px rgba(0,0,0,.35);}
 
-    footer{background:var(--teal-deep);color:rgba(255,255,255,.72);font-size:.86rem;padding:40px 0 32px;margin-top:80px;}
+    footer{background:var(--char-deep);color:rgba(255,255,255,.74);font-size:.86rem;padding:40px 0 32px;margin-top:80px;}
     .foot-in{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
     footer .brand{color:#fff;}
-    footer .brand .brand-mark{background:rgba(255,255,255,.14);}
-    .foot-note{width:100%;text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:.76rem;color:rgba(255,255,255,.55);}
-    .foot-note a{color:var(--accent-soft);}
+    footer .brand small{color:rgba(255,255,255,.55);}
+    footer a[data-vx-demo]{color:var(--gold-soft);}
+    .foot-note{width:100%;text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:.76rem;color:rgba(255,255,255,.5);}
+    .foot-note a{color:var(--gold-soft);}
+
+    .ba-fab{position:fixed;right:18px;bottom:18px;z-index:1060;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+    .ba-fab button,.ba-fab a{font-family:'Inter',sans-serif;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;border-radius:999px;padding:13px 20px;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .15s,box-shadow .2s;text-decoration:none;white-space:nowrap;}
+    .ba-fab button:hover,.ba-fab a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.35);}
+    .ba-fab .ba-chat{background:linear-gradient(135deg,var(--rose-soft),var(--rose));color:#fff;}
+    .ba-fab .ba-call{background:var(--char);color:var(--rose-soft);border:1px solid rgba(201,138,150,.5);}
+    @media(max-width:560px){.ba-fab{right:12px;bottom:12px;gap:8px;}.ba-fab button,.ba-fab a{padding:11px 16px;font-size:.85rem;}}
   </style>
 </head>
 <body>
-  <div class="demo-strip">Live demo · <strong>Brightwell Family Medicine</strong> — a sample business site built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a>. No real services or bookings. &nbsp;·&nbsp; <a href="admin.html">View the owner dashboard →</a></div>
+  <div class="demo-strip">Live demo · <strong>Bella Aesthetics</strong> — a sample business site built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a>. No real services or bookings. &nbsp;·&nbsp; <a href="admin.html">View the owner dashboard →</a></div>
 
   <nav><div class="wrap nav-in">
-    <a class="brand" href="index.html"><span class="brand-mark">B</span> Brightwell Family Medicine</a>
+    <a class="brand" href="index.html"><span class="brand-mark">BA</span> <span>Bella Aesthetics<small>Beverly Hills</small></span></a>
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#why">Why Brightwell</a>
+      <a href="#services">Treatments</a>
+      <a href="#about">About</a>
       <a href="#reviews">Reviews</a>
       <a class="nav-admin" href="admin.html">Admin Demo</a>
-      <a class="btn nav-cta" href="#book" style="padding:9px 18px;">Book Appointment</a>
+      <a class="btn nav-cta" href="#" data-open-chat style="padding:9px 20px;">Book a Consult</a>
     </div>
   </div></nav>
 
-  <!-- HERO IMAGE: layer /assets/demo-doctor-hero.webp behind this hero when ready (add it as a background-image on the hero) -->
   <header class="hero"><div class="wrap hero-in">
-    <span class="eyebrow">Board-certified primary care · Now accepting new patients</span>
-    <h1>Care that actually <em>has time for you.</em></h1>
-    <p>Friendly, modern primary care that fits your schedule — with a 24/7 AI assistant that answers questions and books appointments instantly.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#book">Book an Appointment</a>
-      <a class="btn-ghost" href="#services">See Our Services</a>
+    <div>
+      <span class="eyebrow">Beverly Hills Medical Aesthetics &amp; Wellness</span>
+      <h1>Your beauty,<br><em>elevated.</em></h1>
+      <p>Lip fillers, body contouring, and skin &amp; wellness — natural-looking results in a private Beverly Hills suite. Plus a 24/7 AI assistant that answers your questions and books your consultation the moment you reach out.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#" data-open-chat>Book a Free Consultation</a>
+        <a class="btn-ghost" href="#services">See Treatments</a>
+      </div>
+      <div class="trust-row">
+        <span><b>Board-certified</b> provider</span>
+        <span><b>Beverly Hills</b></span>
+        <span><b>Natural-looking</b> results</span>
+        <span><b>5★</b> rated</span>
+      </div>
     </div>
-    <div class="trust-row">
-      <span><b>Board-certified</b></span>
-      <span><b>Same-day</b> sick visits</span>
-      <span><b>Most insurance</b> accepted</span>
-      <span><b>Telehealth</b> available</span>
-    </div>
+    <img class="hero-img" src="ba-hero.webp" alt="The founder of Bella Aesthetics in her Beverly Hills medspa" width="1024" height="559">
   </div></header>
 
   <section id="services"><div class="wrap">
-    <div class="sec-label">What We Do</div>
-    <h2 class="sec-title">Whole-family care, all in one place</h2>
-    <p class="sec-sub">From your annual checkup to a same-day sick visit, we make it easy to get the care you need — in person or online.</p>
+    <div class="sec-label">Our Treatments</div>
+    <h2 class="sec-title">Look like you — only more radiant</h2>
+    <p class="sec-sub">Personalized aesthetic and wellness treatments, performed with a natural-looking touch.</p>
     <div class="grid">
-      <div class="card"><div class="ic">🩺</div><h3>Primary Care</h3><p>A dedicated doctor who knows your history and has time to actually listen at every visit.</p></div>
-      <div class="card"><div class="ic">⚡</div><h3>Same-Day Sick Visits</h3><p>Feeling unwell? Get seen the same day — no waiting weeks for an open slot.</p></div>
-      <div class="card"><div class="ic">🧸</div><h3>Pediatrics</h3><p>Gentle, attentive care for kids of every age, from newborn checkups to school physicals.</p></div>
-      <div class="card"><div class="ic">🔬</div><h3>Annual Physicals &amp; Labs</h3><p>Comprehensive yearly exams with on-site labs, so you get answers faster.</p></div>
-      <div class="card"><div class="ic">💻</div><h3>Telehealth Visits</h3><p>Connect with your doctor from home for follow-ups, refills, and quick questions.</p></div>
+      <div class="card"><div class="ic">💋</div><h3>Lip Fillers &amp; Injectables</h3><p>Natural-looking lip filler, Botox, and dermal fillers — customized to your features, never overdone.</p></div>
+      <div class="card"><div class="ic">✨</div><h3>Body Contouring</h3><p>Brazilian butt lift (BBL), tummy tuck, and sculpting to bring out and refine your natural shape.</p></div>
+      <div class="card"><div class="ic">🌸</div><h3>Beauty &amp; Skin</h3><p>Facials, skin rejuvenation, peels, and microneedling — beauty treatments designed for women.</p></div>
+      <div class="card"><div class="ic">🌿</div><h3>Health &amp; Wellness</h3><p>IV therapy and wellness care, so you feel as good on the inside as you look on the outside.</p></div>
+    </div>
+  </div></section>
+
+  <section id="about" style="padding-top:0;"><div class="wrap">
+    <div class="split">
+      <img class="split-img" src="ba-consult.webp" alt="A consultation at Bella Aesthetics" width="1024" height="559">
+      <div>
+        <div class="sec-label" style="text-align:left;">The Bella Difference</div>
+        <h2>Aesthetics, done beautifully</h2>
+        <p class="lead">Bella Aesthetics is a Beverly Hills medspa led by a board-certified aesthetic provider known for natural-looking, confidence-building results.</p>
+        <p>Every treatment starts with a private consultation and an honest plan — and a 24/7 AI assistant makes sure your questions are answered and your appointment is on the books, day or night.</p>
+        <ul>
+          <li>Board-certified, women-focused care</li>
+          <li>Custom plans — never one-size-fits-all</li>
+          <li>Discreet, luxe Beverly Hills suite</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section style="padding-top:0;"><div class="wrap">
+    <div class="split rev">
+      <div>
+        <div class="sec-label" style="text-align:left;">The Experience</div>
+        <h2>Treatments that feel like a getaway</h2>
+        <p class="lead">From the moment you arrive, it should feel calm, private, and entirely about you.</p>
+        <p>Champagne service, gentle technique, and a team that listens — so you leave feeling refreshed, cared for, and genuinely yourself.</p>
+        <ul>
+          <li>Relaxing, spa-like treatment suites</li>
+          <li>Clear pre- and post-care guidance</li>
+          <li>Follow-up to make sure you love your results</li>
+        </ul>
+      </div>
+      <img class="split-img" src="ba-treatment.webp" alt="A treatment in progress at Bella Aesthetics" width="1024" height="559">
     </div>
   </div></section>
 
   <section class="stats"><div class="wrap">
     <div class="grid">
-      <div class="stat"><div class="n">12,000+</div><div class="l">Patients cared for</div></div>
-      <div class="stat"><div class="n">Same-day</div><div class="l">Sick visits available</div></div>
-      <div class="stat"><div class="n">24/7</div><div class="l">AI assistant coverage</div></div>
-      <div class="stat"><div class="n">4.9★</div><div class="l">Average patient rating</div></div>
+      <div class="stat"><div class="n">10k+</div><div class="l">Treatments performed</div></div>
+      <div class="stat"><div class="n">Beverly Hills</div><div class="l">Private suite</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l">AI booking &amp; answers</div></div>
+      <div class="stat"><div class="n">4.9★</div><div class="l">Client rating</div></div>
     </div>
   </div></section>
 
-  <section id="why"><div class="wrap">
-    <div class="sec-label">Why Brightwell</div>
-    <h2 class="sec-title">A doctor who knows you — backed by smart tech</h2>
-    <p class="sec-sub">You get a board-certified physician who remembers your name and history, plus an AI assistant that answers questions and books visits the moment you reach out — day or night.</p>
-    <div class="quotes" id="reviews">
-      <div class="quote"><div class="stars">★★★★★</div><p>"I actually got a same-day appointment when my son spiked a fever. The AI booked it for me at 9pm — no phone tag, no hold music."</p><div class="by">— Megan R., parent of two</div></div>
-      <div class="quote"><div class="stars">★★★★★</div><p>"Dr. Patel never rushes me. For the first time I feel like my doctor actually has time for my questions."</p><div class="by">— James O., new patient</div></div>
-      <div class="quote"><div class="stars">★★★★★</div><p>"Telehealth follow-ups are a lifesaver with my schedule, and they took my insurance with zero hassle."</p><div class="by">— Aisha N.</div></div>
+  <section id="reviews"><div class="wrap">
+    <div class="sec-label">Loved By Clients</div>
+    <h2 class="sec-title">Real results, real glow</h2>
+    <p class="sec-sub">Natural-looking work and an experience that feels like luxury.</p>
+    <div class="quotes">
+      <div class="quote"><div class="stars">★★★★★</div><p>"My lips look like mine — just better. So natural. And the AI booked my consult at midnight when I finally worked up the nerve."</p><div class="by">— Jasmine R.</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"I researched BBL providers for a year. The consultation was honest, the results are stunning, and I felt cared for the whole way."</p><div class="by">— Destiny W.</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"The suite feels like a five-star spa. My skin's never looked better and the team treats you like family."</p><div class="by">— Alicia M.</div></div>
     </div>
   </div></section>
 
-  <section id="book"><div class="wrap"><div class="cta">
-    <h2>Ready to be seen — sooner than you'd expect.</h2>
-    <p>Book a new-patient visit in under a minute. Our AI assistant will find you a time, check your insurance, and answer any quick questions first.</p>
-    <a class="btn" href="#" onclick="return false;">Book an Appointment</a>
+  <section id="book"><div class="wrap"><div class="cta-band">
+    <img src="ba-lounge.webp" alt="" aria-hidden="true">
+    <div class="veil"></div>
+    <div class="cta">
+      <h2>Your glow starts with a consult.</h2>
+      <p>Book a complimentary consultation. Our AI assistant will find you a time — or answer a quick question first.</p>
+      <button class="btn" type="button" data-open-chat>Book a Free Consultation</button>
+    </div>
   </div></div></section>
 
   <footer><div class="wrap">
     <div class="foot-in">
-      <span class="brand"><span class="brand-mark">B</span> Brightwell Family Medicine</span>
-      <span>(555) 018-2240 · hello@brightwellmed.example · Mon–Sat 8–6</span>
+      <span class="brand"><span class="brand-mark">BA</span> <span>Bella Aesthetics<small>Beverly Hills</small></span></span>
+      <span><a href="#" data-vx-demo="📞 On your live site, this calls the suite. (This is a demo.)">(310) 555-0175</a> · hello@bellaaesthetics.example · By appointment</span>
     </div>
     <div class="foot-note">This is a demonstration site built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> to show what your business could look like. Not a real company. <a href="admin.html">See the owner dashboard →</a></div>
   </div></footer>
 
+  <!-- Floating launcher -->
+  <div class="ba-fab">
+    <button class="ba-chat" id="baChat" type="button">💬 Ask the AI</button>
+    <a class="ba-call" href="#" data-vx-demo="📞 On your live site, this calls the suite. (This is a demo.)">📞 Call</a>
+  </div>
+
   <script>
     window.VX_DEMO_CONFIG = {
-      title: 'Brightwell — AI Assistant',
-      subtitle: 'example conversation',
-      accent: '#16b0c4', accentText: '#04232a',
+      title: 'Bella Aesthetics — AI Assistant',
+      subtitle: 'Beverly Hills · always on',
+      accent: '#c98a96', accentText: '#ffffff',
       footer: 'Powered by <strong>Velonyx AI</strong>',
+      greeting: 'Ask about treatments, pricing, or book a consultation…',
+      suggestions: ['Do you do lip fillers?', 'Tell me about BBLs', 'How much does it cost?', 'Book a consultation'],
+      matchThreshold: 0.3,
       turns: [
-        { who:'customer', text:'Hi, are you taking new patients?', type:1000, pause:700 },
-        { who:'ai',       text:'We are! Looking for primary care, or a same-day sick visit?', type:1400, pause:700 },
-        { who:'customer', text:'Primary care. I have Blue Cross.', type:1100, pause:600 },
-        { who:'ai',       text:'We accept Blue Cross. Want me to book a new-patient visit? I just need your name and number.', type:1500, pause:700 },
-        { who:'customer', text:'Sara Lin, 555-0166.', type:1000, pause:600 },
-        { who:'ai',       text:'Booked — Thursday 10:15 AM with Dr. Patel. New-patient forms texted to you.', type:1500, pause:2000 }
-      ]
+        { who:'customer', text:'Hi! Interested in lip filler — is it natural looking?', type:1200, pause:700 },
+        { who:'ai',       text:'Always — natural-looking is our whole approach. Have you had filler before, or would this be your first time?', type:1500, pause:700 },
+        { who:'customer', text:'First time, a little nervous honestly.', type:1000, pause:600 },
+        { who:'ai',       text:'Totally normal! A consultation walks you through everything, no pressure. Want me to book one? Just your name and number.', type:1600, pause:700 },
+        { who:'customer', text:'Yes please — Jasmine, 310-555-0175.', type:1000, pause:600 },
+        { who:'ai',       text:'Booked, Jasmine — Thursday 2 PM. Pre-care tips texted to you. See you soon!', type:1500, pause:2000 }
+      ],
+      knowledge: [
+        { keywords:['lip','lips','filler','fillers','botox','injectable','injectables','dermal','juvederm','wrinkle','tox','plump'], a:"We offer natural-looking lip filler, Botox, and dermal fillers, customized to your features — never overdone. Want to book a consultation?" },
+        { keywords:['bbl','brazilian butt lift','butt','booty','body contouring','contouring','sculpting','fat transfer'], a:"Yes — we do Brazilian butt lifts (BBL) and body contouring to enhance and refine your natural shape. A consultation maps the right plan for you." },
+        { keywords:['tummy tuck','tummy','abdominoplasty','stomach','abdomen','mommy makeover','waist'], a:"We perform tummy tucks (abdominoplasty) to flatten and tone the midsection — often part of a mommy makeover. Want the details?" },
+        { keywords:['facial','facials','skin','skincare','beauty','glow','rejuvenation','peel','microneedling','acne','pores'], a:"Our beauty & skin menu includes facials, skin rejuvenation, chemical peels, and microneedling for a natural, healthy glow." },
+        { keywords:['wellness','health','iv','vitamin','drip','hormone','weight','therapy'], a:"Our health & wellness services include IV therapy and wellness care, so you feel as good as you look." },
+        { keywords:['consultation','consult','appointment','book','booking','schedule','visit','come in'], a:"We offer a complimentary consultation to build your custom plan. Want me to book it? Just your name and a good number." },
+        { keywords:['price','pricing','cost','how much','fee','financing','finance','payment','affirm','cherry','afford'], a:"Pricing depends on your treatment plan — we give clear quotes at your consultation, and we offer financing options. The consultation is complimentary." },
+        { keywords:['safe','safety','results','recovery','downtime','pain','hurt','licensed','board certified','natural','side effects'], a:"Every treatment is performed by a licensed, board-certified provider with a natural-looking approach. We'll walk you through recovery and exactly what to expect." },
+        { keywords:['location','located','where','address','beverly hills','hours','open','when','parking','near','directions','la','los angeles'], a:"We're in Beverly Hills, by appointment — and the AI assistant answers and books 24/7." },
+        { keywords:['candidate','good candidate','first time','first-time','nervous','am i','for me','beginner'], a:"Most healthy adults are wonderful candidates — your consultation covers your goals, history, and the safest options for you. First-timers are very welcome." },
+        { keywords:['experience','about','who','provider','doctor','founder','reviews','trust','reputable'], a:"Bella Aesthetics is a Beverly Hills medspa led by a board-certified aesthetic provider, known for natural-looking results and a private, luxe experience." },
+        { keywords:['services','service','treatments','treatment','everything','offer','menu'], a:"We offer lip fillers & injectables, BBL & body contouring, tummy tucks, beauty & skin treatments, and health & wellness — all in our Beverly Hills suite." }
+      ],
+      fallback: "Great question — let me have our team at Bella Aesthetics follow up with you. What's the best number to reach you?",
+      leadCapture: { confirm: "Thank you — our team at Bella Aesthetics will reach out shortly. Anything else I can help with?", phoneNudge: "Prefer to talk now? Call (310) 555-0175." }
     };
   </script>
   <script src="/assets/velonyx-demo-chat.js" defer></script>
+  <script src="/assets/velonyx-demo-notice.js" defer></script>
+  <script>
+    (function(){
+      var c=document.getElementById('baChat');
+      if(c)c.addEventListener('click',function(){if(window.VXDemoChat&&window.VXDemoChat.open)window.VXDemoChat.open();});
+      document.addEventListener('click',function(e){
+        var t=e.target.closest&&e.target.closest('[data-open-chat]');
+        if(t){e.preventDefault();if(window.VXDemoChat&&window.VXDemoChat.open)window.VXDemoChat.open();}
+      });
+    })();
+  </script>
 </body>
 </html>
