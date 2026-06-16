@@ -679,7 +679,7 @@
             <div class="gdk-today-card-meta">${j.service} · ${j.techName}</div>
             <div class="gdk-today-card-addr">📍 ${addr}</div>
             <div class="gdk-today-card-actions">
-              <a href="tel:${(j.customerPhone || '7025550100').replace(/\D/g,'')}" class="gdk-today-card-action">📞 Call</a>
+              <a href="#" data-vx-demo="📞 In your live dashboard, this calls the customer back. (This is a demo.)" class="gdk-today-card-action">📞 Call</a>
               <a href="https://maps.google.com/?q=${encodeURIComponent(j.address)}" target="_blank" rel="noopener" class="gdk-today-card-action">🗺️ Directions</a>
             </div>
           </div>
@@ -918,5 +918,6 @@
       });
     })();
   </script>
+  <script src="/assets/velonyx-demo-notice.js" defer></script>
 </body>
 </html>
