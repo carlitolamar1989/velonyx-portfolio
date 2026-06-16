@@ -89,6 +89,73 @@ function isHelp(body) {
   return /^\s*(help|info)\s*$/i.test(body);
 }
 
+// ── Voice (Programmable Voice) ───────────────────────────────────────────────
+// Inbound calls hit the Lambda /voice + /voice/turn routes. Twilio's
+// <Gather input="speech"> does the speech-to-text; <Say voice="Polly.*-Neural">
+// does the text-to-speech. Turn-based — fits the request/response Lambda model
+// with no extra infra. TWILIO_VOICE overrides the spoken voice.
+function xmlEsc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+}
+function voiceName() { return process.env.TWILIO_VOICE || 'Polly.Joanna-Neural'; }
+var XML_DECL = '<?xml version="1.0" encoding="UTF-8"?>';
+
+// Parse Twilio voice webhook (form-urlencoded): From, To, CallSid, SpeechResult,
+// CallStatus, plus DialCallStatus on the <Dial> action callback.
+function parseVoice(rawBody) {
+  if (!rawBody) return {};
+  var p = querystring.parse(rawBody);
+  return {
+    from:         p.From || '',
+    to:           p.To || '',
+    callSid:      p.CallSid || '',
+    speechResult: p.SpeechResult || '',
+    confidence:   p.Confidence || '',
+    callStatus:   p.CallStatus || '',
+    dialStatus:   p.DialCallStatus || '',   // present only on a <Dial action> callback
+    raw:          p
+  };
+}
+
+// Speak `sayText`, then listen for the caller's reply and POST it to actionPath.
+// If the caller stays silent, the trailing <Say>+<Redirect> re-prompts via the
+// same route (which re-Gathers when SpeechResult is empty).
+function twimlGather(sayText, actionPath) {
+  var v = voiceName(), a = xmlEsc(actionPath);
+  return XML_DECL
+    + '<Response>'
+    + '<Gather input="speech" speechTimeout="auto" speechModel="phone_call" language="en-US" action="' + a + '" method="POST">'
+    + '<Say voice="' + v + '">' + xmlEsc(sayText) + '</Say>'
+    + '</Gather>'
+    + '<Say voice="' + v + '">Sorry, I didn\'t catch that.</Say>'
+    + '<Redirect method="POST">' + a + '</Redirect>'
+    + '</Response>';
+}
+
+function twimlSay(text) {
+  return XML_DECL + '<Response><Say voice="' + voiceName() + '">' + xmlEsc(text) + '</Say></Response>';
+}
+
+function twimlHangup(sayText) {
+  var v = voiceName();
+  return XML_DECL + '<Response>'
+    + (sayText ? '<Say voice="' + v + '">' + xmlEsc(sayText) + '</Say>' : '')
+    + '<Hangup/></Response>';
+}
+
+// Say `sayText`, then dial `number` (Carlos's cell). When the dial ends Twilio
+// POSTs DialCallStatus to actionPath so we can fall back to a message if missed.
+function twimlDial(number, sayText, actionPath) {
+  var v = voiceName();
+  var dialAttrs = ' timeout="20"' + (actionPath ? ' action="' + xmlEsc(actionPath) + '" method="POST"' : '') + (FROM ? ' callerId="' + xmlEsc(FROM) + '"' : '');
+  return XML_DECL + '<Response>'
+    + (sayText ? '<Say voice="' + v + '">' + xmlEsc(sayText) + '</Say>' : '')
+    + '<Dial' + dialAttrs + '>' + xmlEsc(number) + '</Dial>'
+    + '</Response>';
+}
+
 module.exports = {
   configured: configured,
   sendSms: sendSms,
@@ -97,5 +164,12 @@ module.exports = {
   twimlEmpty: twimlEmpty,
   isStop: isStop,
   isHelp: isHelp,
-  FROM: FROM
+  FROM: FROM,
+  // voice
+  parseVoice: parseVoice,
+  twimlGather: twimlGather,
+  twimlSay: twimlSay,
+  twimlHangup: twimlHangup,
+  twimlDial: twimlDial,
+  voiceName: voiceName
 };

@@ -11,12 +11,14 @@
 #      Timeout: 30 seconds
 #      Env var: ANTHROPIC_API_KEY = <your key from console.anthropic.com>
 #   3. API Gateway HTTP API in front of the Lambda
-#      Route: POST /chat → velonyx-chatbot
+#      Routes (all → velonyx-chatbot): POST /chat, /form-turn, /sms/inbound,
+#        /voice, /voice/turn
 #      CORS: Access-Control-Allow-Origin = https://velonyxsystems.com
+#      Twilio: point the toll-free number's Voice webhook (HTTP POST) at .../voice
 #
 # What this script does:
 #   - Installs production deps via npm
-#   - Zips index.js, system-prompt.md, package.json, and node_modules
+#   - Zips index.js, all system prompts, lib/, package.json, and node_modules
 #   - Uploads to the Lambda function via aws lambda update-function-code
 #
 # Run from this folder (backend/chatbot-lambda/):
@@ -39,7 +41,9 @@ npm install --omit=dev --no-audit --no-fund --silent
 
 echo "→ Zipping function..."
 rm -f function.zip
-zip -rq function.zip index.js system-prompt.md package.json node_modules
+# Include ALL system prompts (chat/form/sms/voice) and the lib/ folder that
+# index.js require()s — omitting either ships a broken or fallback-prompt build.
+zip -rq function.zip index.js system-prompt*.md lib package.json node_modules
 
 echo "→ Uploading to Lambda (function=$FUNCTION_NAME region=$AWS_REGION)..."
 aws lambda update-function-code \

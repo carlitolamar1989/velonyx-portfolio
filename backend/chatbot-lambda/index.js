@@ -36,6 +36,8 @@ const MAX_TOKENS_PER_TURN = 800;
 const MAX_HISTORY_TURNS = 20;
 const MAX_SMS_TURNS_PER_LEAD = 30;
 const MAX_FORM_TURNS = 15;
+const MAX_VOICE_TURNS = 25;
+const CALENDLY_URL = 'https://calendly.com/admin-velonyxsystems';
 
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://velonyxsystems.com';
 const OWNER_EMAIL    = process.env.OWNER_EMAIL || 'admin@velonyxsystems.com';
@@ -43,9 +45,10 @@ const OWNER_PHONE    = process.env.OWNER_PHONE || '';
 
 // Cold-start: load three system prompts from sibling files
 const PROMPTS = {
-  chat: loadPrompt('system-prompt.md',      'You are the Velonyx Assistant. Help prospects understand Velonyx and capture leads.'),
-  form: loadPrompt('system-prompt-form.md', 'You are the Velonyx Assistant in form mode. Collect name + phone + interest.'),
-  sms:  loadPrompt('system-prompt-sms.md',  'You are the Velonyx Assistant via SMS. Continue the conversation, book the call.')
+  chat:  loadPrompt('system-prompt.md',       'You are the Velonyx Assistant. Help prospects understand Velonyx and capture leads.'),
+  form:  loadPrompt('system-prompt-form.md',  'You are the Velonyx Assistant in form mode. Collect name + phone + interest.'),
+  sms:   loadPrompt('system-prompt-sms.md',   'You are the Velonyx Assistant via SMS. Continue the conversation, book the call.'),
+  voice: loadPrompt('system-prompt-voice.md', 'You are the Velonyx Assistant answering a phone call. Keep replies to 1-2 short spoken sentences. Answer questions about Velonyx and book a call.')
 };
 function loadPrompt(file, fallback) {
   try { return fs.readFileSync(path.join(__dirname, file), 'utf8'); }
@@ -135,6 +138,31 @@ const TOOLS_SMS = [
       },
       required: ['reason']
     }
+  }
+];
+
+const TOOLS_VOICE = [
+  {
+    name: 'book_call',
+    description: 'Text the caller a Calendly link to book the 20-minute discovery call, and confirm out loud. Use when they show clear intent ("let\'s set it up", "send me a time", "how do I start").',
+    input_schema: { type: 'object', properties: {}, required: [] }
+  },
+  {
+    name: 'transfer_to_human',
+    description: 'Transfer the live call to Carlos (the owner). Use when the caller explicitly asks for a person, or asks something you should not answer on a call (refunds, custom contracts, pricing exceptions). The owner is also alerted with the conversation summary.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        reason:  { type: 'string', description: 'Why transferring.' },
+        summary: { type: 'string', description: 'What Carlos should know going in.' }
+      },
+      required: ['reason']
+    }
+  },
+  {
+    name: 'end_call',
+    description: 'Politely end the call when the caller says goodbye, is done, or has no more questions.',
+    input_schema: { type: 'object', properties: {}, required: [] }
   }
 ];
 
@@ -576,6 +604,150 @@ async function handleSmsInbound(event) {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
+// Routes: POST /voice (call connects) + POST /voice/turn (each spoken turn)
+// Twilio Programmable Voice webhooks — body is form-urlencoded; reply is TwiML.
+// Same Claude brain + Supabase + tools as SMS; just speaks via <Say>/<Gather>.
+// ──────────────────────────────────────────────────────────────────────────────
+
+function voiceXml(twiml) {
+  return { statusCode: 200, headers: { 'Content-Type': 'text/xml' }, body: twiml };
+}
+// Absolute callback URL so Twilio posts the next turn back to this same API.
+function voiceTurnPath(event) {
+  var host = (event && event.requestContext && event.requestContext.domainName)
+    || (event && event.headers && (event.headers.host || event.headers.Host)) || '';
+  return (host ? 'https://' + host : '') + '/voice/turn';
+}
+async function ensureVoiceLead(from, callSid, via) {
+  if (!from || !supabase.configured()) return null;
+  try {
+    var lead = await supabase.findLeadByPhone(from);
+    if (lead) return lead;
+    return await supabase.insertLead({
+      name: 'Caller ' + String(from).slice(-4),
+      phone: from, email: null, interest: 'Inbound phone call',
+      source: 'voice_inbound', status: 'voice_active', conversation_log: [],
+      meta: { call_sid: callSid || '', captured_via: via || 'voice' }
+    });
+  } catch (e) { console.error('ensureVoiceLead failed', e); return null; }
+}
+
+// POST /voice — the call just connected: greet + open the first speech Gather.
+async function handleVoiceConnect(event) {
+  const parsed = twilio.parseVoice(event.body || '');
+  await ensureVoiceLead(parsed.from, parsed.callSid, 'voice_connect'); // capture the call early
+  const greeting = "Thanks for calling Velonyx Systems. You've reached our A.I. assistant — I can answer questions and get you booked. How can I help?";
+  return voiceXml(twilio.twimlGather(greeting, voiceTurnPath(event)));
+}
+
+// POST /voice/turn — a caller turn (SpeechResult) OR a <Dial> status callback.
+async function handleVoiceTurn(event) {
+  const parsed = twilio.parseVoice(event.body || '');
+  const from = parsed.from;
+  const turnPath = voiceTurnPath(event);
+
+  // <Dial action> callback — the live transfer to Carlos finished.
+  if (parsed.dialStatus) {
+    if (parsed.dialStatus === 'completed') {
+      return voiceXml(twilio.twimlHangup("Thanks for calling Velonyx. Goodbye."));
+    }
+    return voiceXml(twilio.twimlGather(
+      "Sorry, I couldn't reach him just now — he's been notified and will call you right back. Is there anything else I can help you with?",
+      turnPath));
+  }
+
+  if (!from) {
+    return voiceXml(twilio.twimlHangup("Sorry, we hit a problem on our end. Please call back. Goodbye."));
+  }
+
+  const speech = (parsed.speechResult || '').trim();
+  // Silent turn — re-prompt without spending a model call.
+  if (!speech) {
+    return voiceXml(twilio.twimlGather("Are you still there? Tell me what you're looking for and I'll help.", turnPath));
+  }
+
+  const lead = await ensureVoiceLead(from, parsed.callSid, 'voice_turn');
+
+  // Cap call length so a thread can't run forever.
+  const voiceLog = ((lead && lead.conversation_log) || []).filter(function (t) { return t.channel === 'voice'; });
+  if (voiceLog.length >= MAX_VOICE_TURNS) {
+    if (lead) {
+      try { await supabase.updateLead(lead.id, { status: 'handed_off' }); } catch (e) {}
+      notifyOwnerAsync(lead, 'Voice call ran long — please follow up').catch(function (e) { console.error(e); });
+    }
+    return voiceXml(twilio.twimlHangup("I've got your details — Carlos will follow up by phone. Thanks for calling Velonyx. Goodbye."));
+  }
+
+  // Append the caller's turn.
+  const userTurn = { role: 'user', text: speech, ts: new Date().toISOString(), channel: 'voice' };
+  if (lead) { try { await supabase.appendTurn(lead.id, userTurn); } catch (e) { console.error('voice appendTurn user failed', e); } }
+
+  // Build history for Claude.
+  const allTurns = ((lead && lead.conversation_log) || []).concat([userTurn]);
+  const history = allTurns.map(function (t) { return { role: t.role === 'user' ? 'user' : 'assistant', content: t.text }; });
+  const contextLine = "Caller context — name: " + ((lead && lead.name) || 'unknown')
+    + " · phone: " + from + " · interest: " + ((lead && lead.interest) || 'unspecified') + ".";
+  const messages = [{ role: 'user', content: contextLine }].concat(history.slice(-MAX_HISTORY_TURNS));
+
+  let replyText = '';
+  let bookCall = false, transfer = null, endCall = false;
+
+  try {
+    const response = await anthropic.messages.create({
+      model: MODEL,
+      max_tokens: MAX_TOKENS_PER_TURN,
+      system: PROMPTS.voice,
+      tools: TOOLS_VOICE,
+      messages: messages
+    });
+    for (const block of (response.content || [])) {
+      if (block.type === 'text') replyText += block.text;
+      else if (block.type === 'tool_use') {
+        if (block.name === 'book_call') bookCall = true;
+        else if (block.name === 'transfer_to_human') transfer = block.input || { reason: 'unspecified' };
+        else if (block.name === 'end_call') endCall = true;
+      }
+    }
+  } catch (err) {
+    console.error('voice anthropic failed', err);
+    replyText = "Sorry, I'm having a little trouble. Let me connect you with Carlos.";
+    transfer = { reason: 'AI error' };
+  }
+
+  // book_call → text the Calendly link to the caller during the call.
+  if (bookCall) {
+    replyText = (replyText ? replyText + ' ' : "Perfect — ") + "I'm texting you the booking link now; tap it to pick a time.";
+    try { if (twilio.configured()) await twilio.sendSms(from, "Book your Velonyx call here: " + CALENDLY_URL + " — reply STOP to opt out."); }
+    catch (e) { console.error('voice book_call sms failed', e); }
+    if (lead) { try { await supabase.updateLead(lead.id, { status: 'booked' }); } catch (e) {} }
+  }
+
+  // Log the bot turn before any transfer/hangup.
+  if (lead) { try { await supabase.appendTurn(lead.id, { role: 'bot', text: replyText, ts: new Date().toISOString(), channel: 'voice' }); } catch (e) { console.error('voice appendTurn bot failed', e); } }
+
+  // transfer_to_human → alert owner (with transcript) AND dial Carlos's cell.
+  if (transfer) {
+    if (lead) {
+      try { await supabase.updateLead(lead.id, { status: 'handed_off' }); } catch (e) {}
+      notifyOwnerAsync(lead, 'VOICE call — caller wants a human: ' + (transfer.reason || '') + ' ' + (transfer.summary || '')).catch(function (e) { console.error(e); });
+    }
+    const sayBefore = replyText || "Sure — let me connect you with Carlos now. One moment.";
+    if (OWNER_PHONE) {
+      // On no-answer/busy/failed, Twilio POSTs DialCallStatus back to turnPath (handled above).
+      return voiceXml(twilio.twimlDial(OWNER_PHONE, sayBefore, turnPath));
+    }
+    return voiceXml(twilio.twimlGather(sayBefore + " He's been notified and will call you right back. Anything else?", turnPath));
+  }
+
+  if (endCall) {
+    return voiceXml(twilio.twimlHangup(replyText || "Thanks for calling Velonyx Systems. Talk soon — goodbye."));
+  }
+
+  if (!replyText) replyText = "Could you tell me a bit more about what you need?";
+  return voiceXml(twilio.twimlGather(replyText, turnPath));
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
 // Internal: send opening SMS after form completion
 // ──────────────────────────────────────────────────────────────────────────────
 
@@ -673,6 +845,8 @@ exports.handler = async function(event) {
     if (path === '/chat' || path.endsWith('/chat'))                          return await handleChat(event);
     if (path === '/form-turn' || path.endsWith('/form-turn'))                return await handleFormTurn(event);
     if (path === '/sms/inbound' || path.endsWith('/sms/inbound'))            return await handleSmsInbound(event);
+    if (path === '/voice/turn' || path.endsWith('/voice/turn'))              return await handleVoiceTurn(event);
+    if (path === '/voice' || path.endsWith('/voice'))                        return await handleVoiceConnect(event);
   } catch (err) {
     console.error('route handler crashed', path, err);
     return jsonResponse(500, { error: 'internal error', path: path });
