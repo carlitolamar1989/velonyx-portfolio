@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Owner Dashboard — Diana Vega Realty (Demo)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--char:#221b15;--char-deep:#17110b;--gold:#c8a04e;--bg:#f6f3ec;--card:#fff;--ink:#2a2018;--muted:#7a6f60;--line:#e6dcc8;--green:#1f9d5b;--amber:#c98a1f;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+    .serif{font-family:'Fraunces',Georgia,serif;}
+    a{text-decoration:none;color:inherit;}
+    .layout{display:grid;grid-template-columns:248px 1fr;min-height:100vh;}
+    .side{background:linear-gradient(180deg,var(--char),var(--char-deep));color:#fff;padding:22px 16px;display:flex;flex-direction:column;}
+    .side .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;padding:0 8px 22px;}
+    .brand-mark{width:32px;height:32px;border-radius:8px;background:rgba(200,160,78,.16);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:.82rem;}
+    .nav-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;color:rgba(255,255,255,.72);font-size:.9rem;font-weight:500;margin-bottom:3px;}
+    .nav-item .gi{width:20px;text-align:center;opacity:.9;}
+    .nav-item:hover{background:rgba(255,255,255,.06);color:#fff;}
+    .nav-item.active{background:rgba(200,160,78,.16);color:#fff;}
+    .side-foot{margin-top:auto;font-size:.78rem;color:rgba(255,255,255,.5);padding:12px 8px 0;border-top:1px solid rgba(255,255,255,.1);}
+    .side-foot a{color:var(--gold);}
+    .main{padding:26px 30px 40px;overflow:auto;}
+    .topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
+    .topbar h1{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;}
+    .topbar .sub{color:var(--muted);font-size:.88rem;}
+    .pill{display:inline-flex;align-items:center;gap:7px;background:#e9f7ef;color:var(--green);font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:999px;}
+    .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;}
+    @media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr);}}
+    .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+    .kpi .l{font-size:.82rem;color:var(--muted);font-weight:500;}
+    .kpi .v{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;margin-top:6px;}
+    .kpi .d{font-size:.78rem;font-weight:600;margin-top:4px;}
+    .kpi .up{color:var(--green);} .kpi .flat{color:var(--muted);}
+    .cols{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;}
+    @media(max-width:980px){.cols{grid-template-columns:1fr;}}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+    .panel h2{font-size:1.02rem;font-weight:700;margin-bottom:4px;}
+    .panel .ph-sub{font-size:.8rem;color:var(--muted);margin-bottom:16px;}
+    table{width:100%;border-collapse:collapse;}
+    th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:0 8px 10px;border-bottom:1px solid var(--line);}
+    td{padding:13px 8px;border-bottom:1px solid var(--line);font-size:.88rem;}
+    tr:last-child td{border-bottom:none;}
+    .who{font-weight:600;}
+    .src{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--gold);font-weight:600;}
+    .badge{font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:999px;}
+    .b-new{background:#eaf2fb;color:#2b6cb0;} .b-booked{background:#e9f7ef;color:var(--green);} .b-prog{background:#fdf3e3;color:var(--amber);}
+    .appt{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
+    .appt:last-child{border-bottom:none;}
+    .appt .t{width:74px;font-weight:700;font-size:.84rem;color:var(--char);}
+    .appt .who2{font-size:.9rem;font-weight:600;} .appt .svc{font-size:.78rem;color:var(--muted);}
+    .chart{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:10px;}
+    .bar{flex:1;background:linear-gradient(180deg,var(--gold),#a37f33);border-radius:6px 6px 0 0;position:relative;}
+    .bar span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:.72rem;font-weight:700;color:var(--ink);}
+    .bar small{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:.7rem;color:var(--muted);}
+    .demo-note{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center;}
+    .demo-note a{color:var(--char);font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="brand"><span class="brand-mark">DV</span> Diana Vega</div>
+      <a class="nav-item active"><span class="gi">▦</span> Dashboard</a>
+      <a class="nav-item"><span class="gi">👥</span> Leads</a>
+      <a class="nav-item"><span class="gi">🗓</span> Showings</a>
+      <a class="nav-item"><span class="gi">🏠</span> Listings</a>
+      <a class="nav-item"><span class="gi">📁</span> Clients</a>
+      <a class="nav-item"><span class="gi">⚙️</span> Settings</a>
+      <div class="side-foot">Owner: Diana Vega<br>Powered by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx</a><br><a href="index.html">← Back to site</a></div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Brokerage Dashboard</h1>
+          <div class="sub">Tuesday, June 10 · 5 showings on the calendar</div>
+        </div>
+        <span class="pill"><span class="dot"></span> AI Assistant connected · capturing leads 24/7</span>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="l">New leads (this week)</div><div class="v">21</div><div class="d up">▲ 11 captured by AI after hours</div></div>
+        <div class="kpi"><div class="l">Showings booked</div><div class="v">14</div><div class="d up">▲ 5 vs last week</div></div>
+        <div class="kpi"><div class="l">Active listings</div><div class="v">9</div><div class="d flat">3 in escrow</div></div>
+        <div class="kpi"><div class="l">Volume (MTD)</div><div class="v">$6.4M</div><div class="d up">▲ 18% vs last month</div></div>
+      </div>
+
+      <div class="cols">
+        <div class="panel">
+          <h2>AI-Captured Leads</h2>
+          <div class="ph-sub">New buyer &amp; seller inquiries the AI assistant answered and logged automatically.</div>
+          <table>
+            <thead><tr><th>Name</th><th>Source</th><th>Interest</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="who">Marcus Reyes</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">9:41 PM</small></td><td>Buyer · Summerlin ~$750k</td><td><span class="badge b-booked">Showing booked</span></td></tr>
+              <tr><td class="who">The Carter Family</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">7:22 AM</small></td><td>Seller · home valuation</td><td><span class="badge b-booked">Booked</span></td></tr>
+              <tr><td class="who">Priya N.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">Yesterday</small></td><td>Relocation · out of state</td><td><span class="badge b-prog">Nurturing</span></td></tr>
+              <tr><td class="who">Daniel &amp; Lena</td><td>Website form<br><small style="color:var(--muted)">Yesterday</small></td><td>Buyer · Henderson</td><td><span class="badge b-new">New</span></td></tr>
+              <tr><td class="who">Robert K.</td><td><span class="src">✦ AI Assistant</span><br><small style="color:var(--muted)">2 days ago</small></td><td>Investor · rentals</td><td><span class="badge b-booked">Booked</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div class="panel">
+            <h2>Upcoming Showings</h2>
+            <div class="ph-sub">Next tours on the calendar.</div>
+            <div class="appt"><div class="t">Sat 10:00</div><div><div class="who2">Marcus Reyes</div><div class="svc">Summerlin · 3 homes</div></div></div>
+            <div class="appt"><div class="t">Sat 1:30</div><div><div class="who2">Daniel &amp; Lena</div><div class="svc">Henderson · 2 homes</div></div></div>
+            <div class="appt"><div class="t">Sun 11:00</div><div><div class="who2">Carter Family</div><div class="svc">Listing consult</div></div></div>
+          </div>
+          <div class="panel">
+            <h2>Closings</h2>
+            <div class="ph-sub">Last 4 weeks</div>
+            <div class="chart">
+              <div class="bar" style="height:50%"><span>2</span><small>Wk 1</small></div>
+              <div class="bar" style="height:75%"><span>3</span><small>Wk 2</small></div>
+              <div class="bar" style="height:62%"><span>2</span><small>Wk 3</small></div>
+              <div class="bar" style="height:100%"><span>4</span><small>Wk 4</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-note">This is a demonstration dashboard built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> — sample data only. <a href="index.html">← Back to the demo site</a></div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Diana Vega Realty — Las Vegas Luxury Real Estate</title>
+  <meta name="description" content="Demo site built by Velonyx Systems. Diana Vega Realty — buying, selling, and luxury listings across Las Vegas, with a 24/7 AI assistant that answers questions and books showings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --char:#221b15; --char-deep:#17110b; --gold:#c8a04e; --gold-soft:#e4c98a;
+      --ink:#2a2018; --cream:#f7f2e9; --cream-2:#efe7d8; --muted:#7a6f60; --line:#e6dcc8; --white:#ffffff;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+    body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;}
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;height:auto;display:block;}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+    .btn{display:inline-block;background:var(--gold);color:#231a0a;font-weight:700;padding:13px 28px;border-radius:8px;cursor:pointer;border:none;font-size:1rem;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 22px rgba(200,160,78,.3);}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(200,160,78,.4);}
+    .btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-weight:600;padding:11px 26px;border-radius:8px;cursor:pointer;background:transparent;font-size:1rem;transition:background .15s,border-color .15s;}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+
+    .demo-strip{background:var(--char-deep);color:rgba(255,255,255,.84);font-size:.78rem;text-align:center;padding:7px 16px;letter-spacing:.2px;}
+    .demo-strip a{color:var(--gold-soft);font-weight:600;}
+
+    nav{position:sticky;top:0;z-index:40;background:rgba(247,242,233,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+    .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;}
+    .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--char);}
+    .brand small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:1px;}
+    .brand-mark{width:38px;height:38px;border-radius:8px;background:linear-gradient(140deg,var(--char),var(--char-deep));color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;flex:none;}
+    .nav-links{display:flex;align-items:center;gap:28px;}
+    .nav-links a{font-size:.92rem;font-weight:500;color:var(--muted);}
+    .nav-links a:hover{color:var(--char);}
+    .nav-admin{font-size:.78rem;border:1px solid var(--line);padding:6px 12px;border-radius:7px;color:var(--muted)!important;}
+    @media(max-width:820px){.nav-links a:not(.nav-cta):not(.nav-admin){display:none;}}
+
+    .hero{background:linear-gradient(160deg,var(--char) 0%,var(--char-deep) 100%);color:#fff;position:relative;overflow:hidden;}
+    .hero::after{content:"";position:absolute;right:-12%;top:-30%;width:55%;height:160%;background:radial-gradient(ellipse at center,rgba(200,160,78,.18),transparent 62%);}
+    .hero-in{position:relative;z-index:1;padding:74px 0 80px;display:grid;grid-template-columns:1fr 0.92fr;gap:50px;align-items:center;}
+    @media(max-width:860px){.hero-in{grid-template-columns:1fr;gap:32px;padding:56px 0 64px;}}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);font-weight:600;margin-bottom:18px;}
+    .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);}
+    .hero h1{font-size:clamp(2.3rem,5.4vw,3.7rem);line-height:1.05;font-weight:700;letter-spacing:-.01em;}
+    .hero h1 em{font-style:italic;color:var(--gold-soft);}
+    .hero p{margin:20px 0 28px;font-size:1.1rem;color:rgba(255,255,255,.84);max-width:540px;}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+    .trust-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:36px;color:rgba(255,255,255,.72);font-size:.84rem;}
+    .trust-row b{color:#fff;}
+    .hero-img{border-radius:16px;border:1px solid rgba(200,160,78,.3);box-shadow:0 30px 70px rgba(0,0,0,.5);width:100%;}
+
+    section{padding:80px 0;}
+    .sec-label{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;text-align:center;}
+    .sec-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;text-align:center;margin:10px 0 8px;color:var(--char);}
+    .sec-sub{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 48px;}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .15s,box-shadow .15s;}
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(34,27,21,.1);}
+    .card .ic{width:46px;height:46px;border-radius:10px;background:var(--cream-2);color:var(--char);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;}
+    .card h3{font-size:1.1rem;color:var(--char);margin-bottom:8px;}
+    .card p{font-size:.92rem;color:var(--muted);}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+    @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px;}.split.rev .split-img{order:-1;}}
+    .split-img{border-radius:16px;border:1px solid var(--line);box-shadow:0 22px 54px rgba(34,27,21,.16);width:100%;}
+    .split h2{font-size:clamp(1.7rem,3.6vw,2.4rem);color:var(--char);margin-bottom:14px;font-weight:600;}
+    .split p{color:var(--muted);margin-bottom:14px;}
+    .split .lead{color:var(--ink);font-size:1.05rem;}
+    .split ul{list-style:none;margin-top:6px;}
+    .split li{position:relative;padding-left:26px;margin-bottom:9px;color:var(--ink);font-size:.96rem;}
+    .split li::before{content:"✦";position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+    .stats{background:var(--char);color:#fff;}
+    .stats .grid{grid-template-columns:repeat(4,1fr);}
+    @media(max-width:700px){.stats .grid{grid-template-columns:repeat(2,1fr);}}
+    .stat{text-align:center;}
+    .stat .n{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--gold-soft);}
+    .stat .l{font-size:.86rem;color:rgba(255,255,255,.72);margin-top:4px;}
+
+    .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    @media(max-width:820px){.quotes{grid-template-columns:1fr;}}
+    .quote{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:26px;}
+    .quote .stars{color:var(--gold);letter-spacing:2px;margin-bottom:12px;}
+    .quote p{font-size:.96rem;color:var(--ink);}
+    .quote .by{margin-top:14px;font-size:.84rem;color:var(--muted);font-weight:600;}
+
+    .cta-band{position:relative;border-radius:20px;overflow:hidden;margin:0 24px;}
+    .cta-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .cta-band .veil{position:absolute;inset:0;background:linear-gradient(120deg,rgba(23,17,11,.93),rgba(23,17,11,.6));}
+    .cta{position:relative;z-index:1;color:#fff;text-align:center;padding:66px 28px;}
+    .cta h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;}
+    .cta p{color:rgba(255,255,255,.88);margin:14px auto 28px;max-width:520px;}
+
+    footer{background:var(--char-deep);color:rgba(255,255,255,.72);font-size:.86rem;padding:40px 0 32px;margin-top:80px;}
+    .foot-in{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
+    footer .brand{color:#fff;}
+    footer .brand small{color:rgba(255,255,255,.55);}
+    footer a[data-vx-demo]{color:var(--gold-soft);}
+    .foot-note{width:100%;text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:.76rem;color:rgba(255,255,255,.5);}
+    .foot-note a{color:var(--gold-soft);}
+
+    .dv-fab{position:fixed;right:18px;bottom:18px;z-index:1060;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+    .dv-fab button,.dv-fab a{font-family:'Inter',sans-serif;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;border-radius:999px;padding:13px 20px;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .15s,box-shadow .2s;text-decoration:none;white-space:nowrap;}
+    .dv-fab button:hover,.dv-fab a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.4);}
+    .dv-fab .dv-chat{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#231a0a;}
+    .dv-fab .dv-call{background:var(--char);color:var(--gold-soft);border:1px solid rgba(200,160,78,.5);}
+    @media(max-width:560px){.dv-fab{right:12px;bottom:12px;gap:8px;}.dv-fab button,.dv-fab a{padding:11px 16px;font-size:.85rem;}}
+  </style>
+</head>
+<body>
+  <div class="demo-strip">Live demo · <strong>Diana Vega Realty</strong> — a sample business site built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a>. No real services or bookings. &nbsp;·&nbsp; <a href="admin.html">View the owner dashboard →</a></div>
+
+  <nav><div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="brand-mark">DV</span> <span>Diana Vega Realty<small>Luxury Real Estate · Las Vegas</small></span></a>
+    <div class="nav-links">
+      <a href="#services">Buy &amp; Sell</a>
+      <a href="#about">About Diana</a>
+      <a href="#reviews">Reviews</a>
+      <a class="nav-admin" href="admin.html">Admin Demo</a>
+      <a class="btn nav-cta" href="#" data-open-chat style="padding:9px 18px;">Book a Consultation</a>
+    </div>
+  </div></nav>
+
+  <header class="hero"><div class="wrap hero-in">
+    <div>
+      <span class="eyebrow">Las Vegas Luxury Real Estate · Owner &amp; Broker</span>
+      <h1>Find the home<br><em>that's the one.</em></h1>
+      <p>Buying or selling in Las Vegas? Diana Vega guides you start to finish — backed by a 24/7 AI assistant that answers your questions and books your showing the moment you reach out.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#" data-open-chat>Book a Consultation</a>
+        <a class="btn-ghost" href="#services">How Diana Helps</a>
+      </div>
+      <div class="trust-row">
+        <span><b>$120M+</b> sold</span>
+        <span><b>Owner</b> &amp; Broker</span>
+        <span><b>Luxury</b> specialist</span>
+        <span><b>4.9★</b> rated</span>
+      </div>
+    </div>
+    <img class="hero-img" src="dv-hero.webp" alt="Diana Vega, Owner & Broker, outside Diana Vega Realty in Las Vegas" width="1024" height="559">
+  </div></header>
+
+  <section id="services"><div class="wrap">
+    <div class="sec-label">How Diana Helps</div>
+    <h2 class="sec-title">Buying or selling — handled, start to finish</h2>
+    <p class="sec-sub">One trusted broker who knows the Las Vegas market, your goals, and how to get you the best outcome.</p>
+    <div class="grid">
+      <div class="card"><div class="ic">🏡</div><h3>Buying a Home</h3><p>From first-time buyers to luxury estates — Diana finds the right home and negotiates hard on your behalf.</p></div>
+      <div class="card"><div class="ic">💰</div><h3>Selling Your Home</h3><p>Pro photography, staging, and pricing strategy to get you top dollar, fast. Free home valuation included.</p></div>
+      <div class="card"><div class="ic">🌆</div><h3>Luxury Listings</h3><p>Gated communities, custom estates, and high-rise condos — marketed to the right buyers through a private network.</p></div>
+      <div class="card"><div class="ic">🔑</div><h3>Invest &amp; Relocate</h3><p>Investment properties, rentals, and out-of-state moves to Las Vegas — guided every step of the way.</p></div>
+    </div>
+  </div></section>
+
+  <section id="about" style="padding-top:0;"><div class="wrap">
+    <div class="split">
+      <img class="split-img" src="dv-showing.webp" alt="Diana Vega showing a luxury Las Vegas home to clients" width="1024" height="559">
+      <div>
+        <div class="sec-label" style="text-align:left;">Meet Diana Vega</div>
+        <h2>A broker who knows Las Vegas</h2>
+        <p class="lead">Diana Vega is the owner and broker — a Las Vegas luxury specialist with 20+ years and over $120M in homes sold.</p>
+        <p>You work directly with Diana, not a hand-off — and a 24/7 AI assistant makes sure no question or new client ever slips through the cracks.</p>
+        <ul>
+          <li>Licensed broker · luxury specialist</li>
+          <li>Summerlin, Henderson, Green Valley &amp; the Strip corridor</li>
+          <li>Straight answers — no pressure</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section style="padding-top:0;"><div class="wrap">
+    <div class="split rev">
+      <div>
+        <div class="sec-label" style="text-align:left;">Sell for more</div>
+        <h2>Luxury homes, marketed right</h2>
+        <p class="lead">Pricing it right and marketing it beautifully is how homes sell fast — and for more.</p>
+        <p>Diana brings professional photography, staging guidance, targeted digital marketing, and a private buyer network to every listing — so your home reaches the people most likely to fall in love with it.</p>
+        <ul>
+          <li>Pro photography &amp; video</li>
+          <li>Strategic pricing &amp; staging</li>
+          <li>Free, no-obligation home valuation</li>
+        </ul>
+      </div>
+      <img class="split-img" src="dv-listing.webp" alt="A luxury Las Vegas home listed by Diana Vega Realty" width="1024" height="559">
+    </div>
+  </div></section>
+
+  <section class="stats"><div class="wrap">
+    <div class="grid">
+      <div class="stat"><div class="n">$120M+</div><div class="l">In homes sold</div></div>
+      <div class="stat"><div class="n">20+ yrs</div><div class="l">Las Vegas experience</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l">AI assistant coverage</div></div>
+      <div class="stat"><div class="n">4.9★</div><div class="l">Client rating</div></div>
+    </div>
+  </div></section>
+
+  <section id="reviews"><div class="wrap">
+    <div class="sec-label">Happy Clients</div>
+    <h2 class="sec-title">Las Vegas trusts Diana</h2>
+    <p class="sec-sub">Real moves, real results — and an assistant that's always on.</p>
+    <div class="quotes">
+      <div class="quote"><div class="stars">★★★★★</div><p>"Diana sold our Summerlin home in 9 days, over asking. The AI answered my late-night questions and booked our first showing instantly."</p><div class="by">— The Carter Family</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"First-time buyers and totally lost. Diana walked us through everything and got us the keys. Couldn't recommend her more."</p><div class="by">— Marcus &amp; Lena</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"Relocating from out of state was daunting. Diana found us the perfect home before we even landed. True pro."</p><div class="by">— Priya N.</div></div>
+    </div>
+  </div></section>
+
+  <section id="book"><div class="wrap"><div class="cta-band">
+    <img src="dv-keys.webp" alt="" aria-hidden="true">
+    <div class="veil"></div>
+    <div class="cta">
+      <h2>Let's get you to SOLD.</h2>
+      <p>Book a free consultation with Diana. Our AI assistant will find you a time — or answer a quick question first.</p>
+      <button class="btn" type="button" data-open-chat>Book a Free Consultation</button>
+    </div>
+  </div></div></section>
+
+  <footer><div class="wrap">
+    <div class="foot-in">
+      <span class="brand"><span class="brand-mark">DV</span> <span>Diana Vega Realty<small>Luxury Real Estate · Las Vegas</small></span></span>
+      <span><a href="#" data-vx-demo="📞 On your live site, this calls Diana's office. (This is a demo.)">(702) 555-0190</a> · diana@dianavegarealty.example · Las Vegas, NV</span>
+    </div>
+    <div class="foot-note">This is a demonstration site built by <a href="https://velonyxsystems.com" target="_blank" rel="noopener">Velonyx Systems</a> to show what your business could look like. Not a real company. <a href="admin.html">See the owner dashboard →</a></div>
+  </div></footer>
+
+  <!-- Floating launcher -->
+  <div class="dv-fab">
+    <button class="dv-chat" id="dvChat" type="button">💬 Ask the AI</button>
+    <a class="dv-call" href="#" data-vx-demo="📞 On your live site, this calls Diana's office. (This is a demo.)">📞 Call</a>
+  </div>
+
+  <script>
+    window.VX_DEMO_CONFIG = {
+      title: 'Diana Vega Realty — AI Assistant',
+      subtitle: 'Las Vegas · always on',
+      accent: '#c8a04e', accentText: '#231a0a',
+      footer: 'Powered by <strong>Velonyx AI</strong>',
+      greeting: 'Ask about buying, selling, neighborhoods, or book a showing…',
+      suggestions: ['Are you helping buyers or sellers?', "What's my home worth?", 'Which areas do you cover?', 'Book a consultation'],
+      matchThreshold: 0.3,
+      turns: [
+        { who:'customer', text:'Hi — looking to buy in Summerlin, around $750k. Can you help?', type:1200, pause:700 },
+        { who:'ai',       text:'Absolutely — Summerlin is one of Diana\'s specialties. Are you pre-approved yet, or want a lender intro?', type:1500, pause:700 },
+        { who:'customer', text:'Not yet. And I\'d love to see a couple homes this weekend.', type:1100, pause:600 },
+        { who:'ai',       text:'Easy — Diana can line up showings and connect you with a lender. What\'s your name and number?', type:1500, pause:700 },
+        { who:'customer', text:'Marcus Reyes, 702-555-0190.', type:1000, pause:600 },
+        { who:'ai',       text:'Done — Diana will text you Saturday showings + pre-approval steps. Talk soon!', type:1500, pause:2000 }
+      ],
+      knowledge: [
+        { keywords:['buy','buying','buyer','purchase','looking for','find a home','first time','first-time'], a:"Diana helps buyers find the right Las Vegas home — from first-time buyers to luxury estates — and negotiates hard for you. Want to set up a buyer consultation?" },
+        { keywords:['sell','selling','seller','list my','listing my','put on the market','sell my home','sell my house'], a:"Thinking of selling? Diana brings pro photography, staging, and pricing strategy to get you top dollar — plus a free home valuation. Want your home's estimated value?" },
+        { keywords:['worth','value','valuation','appraisal','market value','how much is my home','cma','equity'], a:"Diana offers a free, no-obligation home valuation (a CMA) so you know exactly what your place is worth in today's market. Want me to set that up?" },
+        { keywords:['area','areas','neighborhood','neighborhoods','where','summerlin','henderson','green valley','north las vegas','southwest','downtown','strip','zip','located','location'], a:"Diana covers the whole Las Vegas Valley — Summerlin, Henderson, Green Valley, the Southwest, North Las Vegas, and the Strip corridor. Looking in a specific area?" },
+        { keywords:['luxury','high end','high-end','estate','estates','million','upscale','custom','gated','high-rise','condo'], a:"Luxury is Diana's specialty — gated communities, custom estates, and high-rise condos, marketed with pro photography, staging, and a private buyer network." },
+        { keywords:['commission','fee','fees','cost','price','how much','charge','rate','percent'], a:"Diana's commission is competitive and discussed up-front — and for buyers, the agent is typically free to you (paid from the sale). Want the details for your situation?" },
+        { keywords:['financing','finance','mortgage','loan','pre-approval','preapproval','preapproved','lender','credit','down payment'], a:"Diana connects you with trusted local lenders for pre-approval, so you shop with confidence and make a strong offer. Want a lender intro?" },
+        { keywords:['showing','tour','see the house','see a home','visit','viewing','open house','appointment','consultation','consult','book','booking','schedule','meet'], a:"Happy to set up a private showing or a buyer/seller consultation. Want me to book it? Just your name and a good number." },
+        { keywords:['market','interest rate','interest rates','good time','buyer market','seller market','trends','rates'], a:"The Las Vegas market moves fast — Diana will walk you through exactly where it is right now for your goals, whether you're buying or selling." },
+        { keywords:['investment','invest','rental','rentals','relocate','relocation','moving','out of state','out-of-state','second home','vacation home'], a:"Diana works with investors and out-of-state buyers relocating to Las Vegas — investment properties, rentals, and second homes included." },
+        { keywords:['experience','years','broker','licensed','reviews','trust','who','about diana','reputable'], a:"Diana Vega is the owner & broker — a licensed Las Vegas luxury specialist with 20+ years and $120M+ in homes sold. You work directly with her." },
+        { keywords:['services','service','everything','help','full service'], a:"Diana handles buying, selling, luxury listings, free valuations, and investment/relocation across Las Vegas — all with one broker who knows the market." }
+      ],
+      fallback: "Great question — let me have Diana follow up with you personally. What's the best number to reach you?",
+      leadCapture: { confirm: "Perfect — Diana will reach out to you shortly. Anything else I can help with?", phoneNudge: "Prefer to talk now? Call (702) 555-0190." }
+    };
+  </script>
+  <script src="/assets/velonyx-demo-chat.js" defer></script>
+  <script src="/assets/velonyx-demo-notice.js" defer></script>
+  <script>
+    (function(){
+      var c=document.getElementById('dvChat');
+      if(c)c.addEventListener('click',function(){if(window.VXDemoChat&&window.VXDemoChat.open)window.VXDemoChat.open();});
+      document.addEventListener('click',function(e){
+        var t=e.target.closest&&e.target.closest('[data-open-chat]');
+        if(t){e.preventDefault();if(window.VXDemoChat&&window.VXDemoChat.open)window.VXDemoChat.open();}
+      });
+    })();
+  </script>
+</body>
+</html>
