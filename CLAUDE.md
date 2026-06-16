@@ -23,25 +23,33 @@ and verify `git rev-list --left-right --count main...origin/main` shows `0 0`.
 
 ## What this site is
 
-A marketing site for **Velonyx Systems**. As of June 2026 the site leads with an **AI lead-capture /
-"AI receptionist"** message: the hero is *"Never Miss Another Lead — AI answers in 30 seconds, books
-the call, 24/7, in your name and voice."* The target buyer is a **service operator** (HVAC, plumbing,
-electrical, garage doors — "under a sink / under a truck") who loses leads because they can't answer
-fast enough.
+A marketing site for **Velonyx Systems**. As of **June 16, 2026** the site is **repositioned** around
+an aspirational, worldwide message: the hero is *"The Future of Business Runs on AI."* — eyebrow
+*"The businesses that embrace AI win,"* subhead *"A custom AI that works while you do."* The buyer is
+**any business owner, anywhere in the world** (no industry/geo targeting); the pitch is empowerment, not
+fear. Core promise: a custom AI that does the work of a help desk / assistant — answers chat + phone
+24/7, captures, qualifies, and books leads, and runs the busywork — so owners scale **without hiring**.
 
-Underneath that hook, the actual product is the same **custom business platform**: website + booking +
-payments + customer financing + SMS + an owner dashboard, **built once, owned by the customer**.
+> **⚠️ Retired framing — do NOT reintroduce:** "Never Miss Another Lead" and all fear/loss language
+> ("leads slip," "78% first to respond," "losing money"); home-services / trades targeting (HVAC,
+> plumbing, electrical, garage doors, "under a sink/truck" + those keywords + JSON-LD `serviceType`);
+> San Diego / local / `geo.*` meta (areaServed is now "Worldwide"); and the rent-vs-own angle
+> ("yours to own," "own it," "no rent"). The 6 demo cards (Garage Door Kings, etc.) stay — they're
+> intentional cross-industry *examples* that prove the AI works for any business.
+
+Underneath the message, the actual product is the same **custom platform**: branded website + AI chatbot
++ AI voice agent + lead automation + booking + payments + customer financing + SMS + an owner dashboard.
 
 The site exists to:
 1. Capture leads via the floating lead-form widget and route serious prospects to **book a call**.
 2. Showcase the live demo at `gdk.velonyxsystems.com` (Garage Door Kings, Las Vegas).
 3. Provide an "in-bio" landing at `/connect/` for QR-code / DM / SMS sharing.
 
-### ⚠️ Known positioning mismatch (decide before optimizing SEO)
-The **body** leads with AI lead-capture, but the homepage **`<title>` / meta description / keywords /
-JSON-LD** still carry the older "premium platform, $700" framing. They're not wrong, just off-message
-relative to the hero. Aligning them is a **strategic SEO decision for Carlos** (what should the page
-rank for — "AI receptionist for service businesses" or "$700 custom platform"?), not a mechanical fix.
+### ✅ Positioning alignment (resolved 2026-06-16)
+The old title/meta/JSON-LD vs. body mismatch is **fixed** — the `<title>`, meta description, keywords,
+OG/Twitter, and all JSON-LD now carry the unified "The Future of Business Runs on AI" / worldwide /
+AI-system message. Next marketing step on Carlos's list: **SEO + organic content** built around this
+new positioning (rank for "AI for business / custom AI system," not local/trades terms).
 
 ---
 
