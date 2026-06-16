@@ -2018,37 +2018,35 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    /* ===== Scroll reveals — CONTENT IS VISIBLE BY DEFAULT (no JS dependency; can never blank). =====
+       Supporting browsers animate them in natively via CSS scroll-driven animations (zero JS).
+       Browsers without support — or users with reduced-motion — simply see the content. */
+    .fade-in,.slide-left,.slide-right,.scale-in,.flip-in,.velocity-in,.spring-up{opacity:1;transform:none;}
+    @supports (animation-timeline: view()){
+      @media (prefers-reduced-motion: no-preference){
+        .fade-in,.slide-left,.slide-right,.scale-in,.flip-in,.velocity-in,.spring-up{
+          animation-duration:auto;
+          animation-timing-function:cubic-bezier(0.16,1,0.3,1);
+          animation-fill-mode:both;
+          animation-timeline:view();
+          animation-range:entry 0% entry 55%;
+        }
+        .fade-in{animation-name:vxRevFade;}
+        .slide-left{animation-name:vxRevSlideL;}
+        .slide-right{animation-name:vxRevSlideR;}
+        .scale-in{animation-name:vxRevScale;}
+        .flip-in{animation-name:vxRevFlip;}
+        .velocity-in{animation-name:vxRevVelocity;}
+        .spring-up{animation-name:vxRevSpring;}
+      }
     }
-
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Slide from left */
-    .slide-left {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .slide-left.visible { opacity: 1; transform: translateX(0); }
-
-    /* Slide from right */
-    .slide-right {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .slide-right.visible { opacity: 1; transform: translateX(0); }
-
-    /* Scale in */
-    .scale-in {
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .scale-in.visible { opacity: 1; transform: scale(1); }
+    @keyframes vxRevFade{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+    @keyframes vxRevSlideL{from{opacity:0;transform:translateX(-60px);}to{opacity:1;transform:none;}}
+    @keyframes vxRevSlideR{from{opacity:0;transform:translateX(60px);}to{opacity:1;transform:none;}}
+    @keyframes vxRevScale{from{opacity:0;transform:scale(0.85);}to{opacity:1;transform:none;}}
+    @keyframes vxRevFlip{from{opacity:0;transform:perspective(1000px) rotateY(-30deg) translateX(-40px);}to{opacity:1;transform:none;}}
+    @keyframes vxRevVelocity{from{opacity:0;transform:translateX(-120px) scaleX(1.15);filter:blur(4px);}to{opacity:1;transform:none;filter:none;}}
+    @keyframes vxRevSpring{from{opacity:0;transform:translateY(60px) scale(0.9);}to{opacity:1;transform:none;}}
 
     /* ===== ULTRA ANIMATION SYSTEM ===== */
 
@@ -2110,40 +2108,8 @@
       100% { left: 150%; }
     }
 
-    /* 3D card flip entrance */
-    .flip-in {
-      opacity: 0;
-      transform: perspective(1000px) rotateY(-30deg) translateX(-40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .flip-in.visible {
-      opacity: 1;
-      transform: perspective(1000px) rotateY(0) translateX(0);
-    }
-
-    /* Velocity slide (comes in fast, decelerates) */
-    .velocity-in {
-      opacity: 0;
-      transform: translateX(-120px) scaleX(1.15);
-      filter: blur(4px);
-      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .velocity-in.visible {
-      opacity: 1;
-      transform: translateX(0) scaleX(1);
-      filter: blur(0);
-    }
-
-    /* Spring bounce entrance */
-    .spring-up {
-      opacity: 0;
-      transform: translateY(60px) scale(0.9);
-      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .spring-up.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+    /* flip-in / velocity-in / spring-up reveals are defined with the other scroll reveals
+       above (visible by default + native scroll-driven animation, keyframes vxRev*). */
 
     /* Cyber scan line on sections */
     .cyber-reveal {
@@ -5250,26 +5216,23 @@
       }, totalCharDelay + 800);
     }
 
-    // ===== SCROLL-TRIGGERED ANIMATIONS (UPGRADED) =====
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const parent = entry.target.parentElement;
-          const siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up');
-          let index = Array.from(siblings).indexOf(entry.target);
-          entry.target.style.transitionDelay = (index * 0.15) + 's';
-          entry.target.classList.add('visible');
-
-          if (entry.target.classList.contains('shimmer-sweep')) {
-            setTimeout(() => {
+    // ===== SCROLL REVEALS =====
+    // Reveals are now native CSS scroll-driven animations (see .fade-in et al. in <style>):
+    // content is visible by default, so no JS error can ever blank the page again (PR #39 class
+    // of bug). The only JS left here is the decorative shimmer sweep on section titles, isolated
+    // in its own try/catch so it can never affect content visibility.
+    (function () {
+      try {
+        var shimmerIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.target.classList.contains('shimmer-sweep')) {
               entry.target.classList.add('active');
-            }, index * 150 + 400);
-          }
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .flip-in, .velocity-in, .spring-up').forEach(el => observer.observe(el));
+            }
+          });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.shimmer-sweep').forEach(function (el) { shimmerIO.observe(el); });
+      } catch (e) {}
+    })();
 
     // ===== CYBER SCAN LINE ON SECTIONS =====
     const sectionObserver = new IntersectionObserver((entries) => {
