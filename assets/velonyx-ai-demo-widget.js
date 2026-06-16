@@ -33,14 +33,14 @@
   // ── The script. Each turn: who is talking, the message, and how long to
   //    "type" before the bubble appears. Pause is the gap AFTER the bubble.
   var TURNS = [
-    { who: 'customer', text: 'Hi - garage door snapped this morning. Can someone come out today?',  type: 1100, pause: 700 },
-    { who: 'ai',       text: 'Got it. Sorry about that. What city are you in?',                      type: 900,  pause: 600 },
-    { who: 'customer', text: 'Henderson, near Green Valley.',                                        type: 800,  pause: 500 },
-    { who: 'ai',       text: 'Perfect - we cover Henderson. Is the door fully stuck or partly open?', type: 1300, pause: 600 },
-    { who: 'customer', text: 'Fully stuck. Car is trapped inside.',                                  type: 900,  pause: 600 },
-    { who: 'ai',       text: 'On it. Can I send you a same-day window? Need your name + phone.',     type: 1300, pause: 700 },
-    { who: 'customer', text: 'Mike Reyes - 702-555-0184. Thanks!',                                   type: 1000, pause: 700 },
-    { who: 'ai',       text: 'Booked. Tech arriving 1-3 PM today. Confirmation text on the way.',    type: 1400, pause: 1800 }
+    { who: 'customer', text: 'Hi! Do you have any availability this week?',             type: 1000, pause: 700 },
+    { who: 'ai',       text: 'We do! What are you looking to book?',                    type: 900,  pause: 600 },
+    { who: 'customer', text: 'A consultation - Thursday if possible.',                  type: 900,  pause: 500 },
+    { who: 'ai',       text: 'Thursday works. Morning or afternoon?',                   type: 1000, pause: 600 },
+    { who: 'customer', text: 'Afternoon is better for me.',                            type: 800,  pause: 600 },
+    { who: 'ai',       text: 'Perfect. Can I grab your name and number to lock it in?', type: 1200, pause: 700 },
+    { who: 'customer', text: 'Jordan Lee - 555-0142. Thanks!',                         type: 1000, pause: 700 },
+    { who: 'ai',       text: 'Booked for Thursday 2 PM. Confirmation text on the way!', type: 1300, pause: 1800 }
   ];
 
   var CSS = ''

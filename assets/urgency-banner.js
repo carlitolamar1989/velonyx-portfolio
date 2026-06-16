@@ -27,7 +27,7 @@
 
   var HTML = '<div class="vx-urgency-content">'
     + '<span class="vx-urgency-text">'
-      + '<strong>Never Miss a Lead.</strong> &mdash; AI answers, captures, and texts back in seconds. '
+      + '<strong>The future of business runs on AI.</strong> &mdash; A custom AI that answers, books, and runs the busywork. '
       + '<strong>24/7. While you work.</strong>'
     + '</span>'
     + '<button type="button" class="vx-urgency-dismiss" aria-label="Dismiss notice">&times;</button>'
