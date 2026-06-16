@@ -954,10 +954,10 @@
         requestAnimationFrame(frame);
       }
 
-      size();
-      spawn();
-      frame();
+      // Defer the canvas work off the critical path so it doesn't compete with the
+      // hero paint (LCP) / first interaction (INP). Kicks off once the main thread is idle.
       window.addEventListener('resize', () => { size(); spawn(); });
+      (window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); })(function(){ size(); spawn(); frame(); }, { timeout: 2500 });
     })();
 
     // (Cinematic loading sequence removed — the #loaderWarp element no longer
@@ -966,9 +966,10 @@
     // Loader removed — go straight into the hero reveal as soon as the page loads.
     window.addEventListener('load', () => { startHeroSequence(); });
 
-    // ===== SPEED LINES BACKGROUND =====
-    (function() {
+    // ===== SPEED LINES BACKGROUND (deferred off the critical path) =====
+    (window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); })(function() {
       const container = document.getElementById('speedLines');
+      if (!container) return;
       for (let i = 0; i < 12; i++) {
         const line = document.createElement('div');
         line.className = 'speed-line';
@@ -979,7 +980,7 @@
         line.style.cssText = `top: ${top}%; width: ${width}px; animation-duration: ${duration}s; animation-delay: ${delay}s;`;
         container.appendChild(line);
       }
-    })();
+    }, { timeout: 2500 });
 
     // ===== HERO CINEMATIC ENTRANCE =====
     function splitTextToChars(el) {
@@ -1144,7 +1145,7 @@
   </script>
   <!-- High-tech layer: drifting particles + GPU hover-tilt (lightweight, reduced-motion safe) -->
   <script>
-  (function(){
+  (window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); })(function(){
     var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;}catch(e){}
     var bg=document.querySelector('.vx-tech-bg');
     if(bg && !reduce){
@@ -1175,7 +1176,7 @@
         c.addEventListener('pointerleave',function(){ c.style.transform=''; });
       });
     }
-  })();
+  }, { timeout: 2500 });
   </script>
 </body>
 </html>
