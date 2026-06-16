@@ -5773,19 +5773,8 @@
       var heroGrid = document.querySelector('.hero-grid');
       var heroGradient = document.querySelector('.hero-gradient-anim');
 
-      if (heroContent) {
-        gsap.to(heroContent, {
-          y: 120,
-          opacity: 0.3,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.5
-          }
-        });
-      }
+      // Hero content stays fully solid on scroll — no fade/transparency (per Carlos).
+      // (Removed the scrub animation that faded .hero-content to opacity 0.3 + drifted it down.)
 
       if (heroGrid) {
         gsap.to(heroGrid, {
