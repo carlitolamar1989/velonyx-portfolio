@@ -1091,6 +1091,22 @@
        Customer ↔ AI SMS exchange on loop. Desktop only (≥1024px); shows the
        product running in miniature so visitors see what they get. -->
   <script src="/assets/velonyx-ai-demo-widget.js" defer></script>
+
+  <!-- Speculation Rules: on hover/intent, prerender the booking page and prefetch the
+       demo/industry/financing pages so those clicks open near-instantly. Chromium acts
+       on this; other browsers ignore it safely (pure progressive enhancement). -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      { "where": { "href_matches": "/book.html" }, "eagerness": "moderate" }
+    ],
+    "prefetch": [
+      { "where": { "href_matches": "/demos/*" }, "eagerness": "moderate" },
+      { "where": { "href_matches": "/industries/*" }, "eagerness": "moderate" },
+      { "where": { "href_matches": "/financing.html" }, "eagerness": "moderate" }
+    ]
+  }
+  </script>
   <!-- Hero motion controller. Gates the 3 looping clips to the viewport: each
        plays only while on-screen (IntersectionObserver) and pauses when it
        scrolls away — zero CPU/battery off-screen, and reliable playback (an
