@@ -1570,12 +1570,13 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1040px);
-      justify-content: center;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 24px;
-      max-width: 1080px;
+      max-width: 1160px;
       margin: 0 auto;
     }
+    @media (max-width: 920px) { .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) { .portfolio-grid { grid-template-columns: 1fr; } }
 
     .portfolio-followup {
       max-width: 1080px;
@@ -4614,28 +4615,80 @@
       </div>
 
       <div class="portfolio-grid">
-        <!-- Garage Door Kings — live demo on gdk.velonyxsystems.com (real screenshot, captured 2026-05-06) -->
-        <a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+        <a href="/demos/garage/" target="_blank" rel="noopener" class="portfolio-card scale-in">
           <div class="portfolio-card-img">
-            <picture>
-              <source srcset="assets/gdk-preview.webp" type="image/webp">
-              <img src="assets/gdk-preview.png" alt="Live preview of gdk.velonyxsystems.com — the Garage Door Kings demo built on the Velonyx system" loading="lazy" width="1200" height="750">
-            </picture>
+            <img src="assets/preview-garage.webp" alt="Garage Door Kings demo — Las Vegas garage door repair site built by Velonyx" loading="lazy" width="1024" height="640">
           </div>
           <div class="portfolio-card-body">
-            <div class="client-badge">Demo Build &middot; Home Service</div>
+            <div class="client-badge">Demo &middot; Home Service</div>
             <h3>Garage Door Kings</h3>
-            <p>Site. Chatbot. Form. SMS. Admin. Live and running.</p>
-            <div class="portfolio-tags">
-              <span>AI Chatbot</span>
-              <span>Lead Form</span>
-              <span>Admin CRM</span>
-            </div>
+            <p>Same-day garage door repair — site, AI chatbot, lead form &amp; owner dashboard.</p>
+            <div class="portfolio-tags"><span>AI Chatbot</span><span>Lead Capture</span><span>Dashboard</span></div>
+          </div>
+        </a>
+
+        <a href="/demos/foodtruck/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img">
+            <img src="assets/preview-foodtruck.webp" alt="Carlito's Way Tacos & Tortas demo — La Mesa food truck site built by Velonyx" loading="lazy" width="1024" height="640">
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Demo &middot; Food Truck</div>
+            <h3>Carlito's Way Tacos &amp; Tortas</h3>
+            <p>Order-ahead, live locations &amp; catering — with an AI that takes orders 24/7.</p>
+            <div class="portfolio-tags"><span>AI Ordering</span><span>Catering</span><span>Dashboard</span></div>
+          </div>
+        </a>
+
+        <a href="/demos/tax/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img">
+            <img src="assets/preview-tax.webp" alt="Benjamin Lewis Tax, Accounting & Investments demo — Atlanta CPA site built by Velonyx" loading="lazy" width="1024" height="640">
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Demo &middot; Tax &amp; Finance</div>
+            <h3>Benjamin Lewis Tax</h3>
+            <p>Tax, accounting &amp; investments — with an AI that answers &amp; books consults.</p>
+            <div class="portfolio-tags"><span>AI Assistant</span><span>Lead Capture</span><span>Dashboard</span></div>
+          </div>
+        </a>
+
+        <a href="/demos/gym/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img">
+            <img src="assets/preview-gym.webp" alt="Beach Body Fitness demo — Miami Beach personal training site built by Velonyx" loading="lazy" width="1024" height="640">
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Demo &middot; Fitness</div>
+            <h3>Beach Body Fitness</h3>
+            <p>Personal training in Miami Beach — with an AI that answers &amp; books free sessions.</p>
+            <div class="portfolio-tags"><span>AI Booking</span><span>Lead Capture</span><span>Dashboard</span></div>
+          </div>
+        </a>
+
+        <a href="/demos/realestate/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img">
+            <img src="assets/preview-realestate.webp" alt="Diana Vega Realty demo — Las Vegas luxury real estate site built by Velonyx" loading="lazy" width="1024" height="640">
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Demo &middot; Real Estate</div>
+            <h3>Diana Vega Realty</h3>
+            <p>Las Vegas luxury listings — with an AI that answers &amp; books showings.</p>
+            <div class="portfolio-tags"><span>AI Assistant</span><span>Lead Capture</span><span>Dashboard</span></div>
+          </div>
+        </a>
+
+        <a href="/demos/doctor/" target="_blank" rel="noopener" class="portfolio-card scale-in">
+          <div class="portfolio-card-img">
+            <img src="assets/preview-doctor.webp" alt="Bella Aesthetics demo — Beverly Hills medical aesthetics & wellness site built by Velonyx" loading="lazy" width="1024" height="640">
+          </div>
+          <div class="portfolio-card-body">
+            <div class="client-badge">Demo &middot; Med Spa</div>
+            <h3>Bella Aesthetics</h3>
+            <p>Beverly Hills aesthetics &amp; wellness — with an AI that answers &amp; books consults.</p>
+            <div class="portfolio-tags"><span>AI Assistant</span><span>Lead Capture</span><span>Dashboard</span></div>
           </div>
         </a>
       </div>
 
-      <p class="portfolio-followup fade-in"><a href="https://gdk.velonyxsystems.com/" target="_blank" rel="noopener">Explore the Live Demo &rarr;</a></p>
+      <p class="portfolio-followup fade-in">Each one is a real, working Velonyx system — website, AI assistant, and owner dashboard. Click any demo to explore it live.</p>
     </div>
   </section>
 
