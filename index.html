@@ -2048,6 +2048,16 @@
     @keyframes vxRevVelocity{from{opacity:0;transform:translateX(-120px) scaleX(1.15);filter:blur(4px);}to{opacity:1;transform:none;filter:none;}}
     @keyframes vxRevSpring{from{opacity:0;transform:translateY(60px) scale(0.9);}to{opacity:1;transform:none;}}
 
+    /* Perf: skip rendering off-screen sections until scrolled near. This frees the main
+       thread to paint the hero (LCP) instead of laying out the whole page first, and
+       improves INP. Content stays in the DOM (SEO-safe); intrinsic sizes reserve space. */
+    @supports (content-visibility: auto){
+      .problem,.ai-system,.portfolio,.process,.pricing,.about{
+        content-visibility:auto;
+        contain-intrinsic-size:auto 1000px;
+      }
+    }
+
     /* ===== ULTRA ANIMATION SYSTEM ===== */
 
     /* Character-by-character reveal */
