@@ -189,6 +189,13 @@ function getPath(event) {
 function getMethod(event) {
   return (event && event.requestContext && event.requestContext.http && event.requestContext.http.method) || 'POST';
 }
+// API Gateway HTTP API base64-encodes form-urlencoded bodies (isBase64Encoded:true).
+// Decode before parsing so Twilio's From/Body/SpeechResult fields are readable.
+function rawBody(event) {
+  var b = (event && event.body) || '';
+  if (event && event.isBase64Encoded) { try { return Buffer.from(b, 'base64').toString('utf8'); } catch (e) { return b; } }
+  return b;
+}
 
 // URL whitelist sanitizer for chat replies
 const URL_WHITELIST = ['velonyxsystems.com', 'gdk.velonyxsystems.com', 'buy.stripe.com', 'calendly.com'];
@@ -255,7 +262,7 @@ function buildMessages(history, currentUserMessage) {
 
 async function handleChat(event) {
   let body;
-  try { body = JSON.parse(event.body || '{}'); }
+  try { body = JSON.parse(rawBody(event) || '{}'); }
   catch (e) { return jsonResponse(400, { error: 'invalid json' }); }
 
   const { sessionId, message, history } = body;
@@ -356,7 +363,7 @@ async function tryCaptureLeadFromChat(args, sessionId) {
 
 async function handleFormTurn(event) {
   let body;
-  try { body = JSON.parse(event.body || '{}'); }
+  try { body = JSON.parse(rawBody(event) || '{}'); }
   catch (e) { return jsonResponse(400, { error: 'invalid json' }); }
 
   const { sessionId, message, history, formState } = body;
@@ -491,8 +498,8 @@ function collectFormTranscript(history, latestUser, latestBot) {
 // ──────────────────────────────────────────────────────────────────────────────
 
 async function handleSmsInbound(event) {
-  // Twilio sends application/x-www-form-urlencoded
-  const raw = event.body || '';
+  // Twilio sends application/x-www-form-urlencoded (API GW base64-encodes it)
+  const raw = rawBody(event);
   const parsed = twilio.parseInbound(raw);
   const from = parsed.from;
   const messageBody = (parsed.body || '').trim();
@@ -634,7 +641,7 @@ async function ensureVoiceLead(from, callSid, via) {
 
 // POST /voice — the call just connected: greet + open the first speech Gather.
 async function handleVoiceConnect(event) {
-  const parsed = twilio.parseVoice(event.body || '');
+  const parsed = twilio.parseVoice(rawBody(event));
   await ensureVoiceLead(parsed.from, parsed.callSid, 'voice_connect'); // capture the call early
   const greeting = "Thanks for calling Velonyx Systems. You've reached our A.I. assistant — I can answer questions and get you booked. How can I help?";
   return voiceXml(twilio.twimlGather(greeting, voiceTurnPath(event)));
@@ -642,7 +649,7 @@ async function handleVoiceConnect(event) {
 
 // POST /voice/turn — a caller turn (SpeechResult) OR a <Dial> status callback.
 async function handleVoiceTurn(event) {
-  const parsed = twilio.parseVoice(event.body || '');
+  const parsed = twilio.parseVoice(rawBody(event));
   const from = parsed.from;
   const turnPath = voiceTurnPath(event);
 

@@ -55,4 +55,4 @@ aws lambda update-function-code \
 
 echo "→ Done. Test in the Lambda console or via:"
 echo "    curl -X POST <API_GATEWAY_URL>/chat -H 'Content-Type: application/json' \\"
-echo "      -d '{\"sessionId\":\"test\",\"message\":\"What is the $700 build?\",\"history\":[]}'"
+echo "      -d '{\"sessionId\":\"test\",\"message\":\"What is the \$700 build?\",\"history\":[]}'"
