@@ -3,7 +3,7 @@
 **Local working tree:** `/Users/apple/Cursor-Claude/`
 **GitHub:** [`carlitolamar1989/velonyx-portfolio`](https://github.com/carlitolamar1989/velonyx-portfolio) (default branch: `main`)
 **Live site:** `https://velonyxsystems.com` / `https://www.velonyxsystems.com`
-**Subdomain (live demo):** `https://gdk.velonyxsystems.com` (separate repo — see "Sibling repos")
+**Subdomain (RETIRED 2026-06-16):** `gdk.velonyxsystems.com` is being taken down — the 6 in-site demos (`/demos/*`) replace it. The hero "Explore the Live Demo" button now routes to `/demos/tax/` (Benjamin Lewis). Do not re-link the gdk subdomain.
 **Founder/Operator:** Carlos Glover ([admin@velonyxsystems.com](mailto:admin@velonyxsystems.com), (877) 317-8643, San Diego CA)
 
 > **Last updated: 2026-06-13.** This file was significantly rewritten after the June audit
@@ -42,7 +42,7 @@ Underneath the message, the actual product is the same **custom platform**: bran
 
 The site exists to:
 1. Capture leads via the floating lead-form widget and route serious prospects to **book a call**.
-2. Showcase the live demo at `gdk.velonyxsystems.com` (Garage Door Kings, Las Vegas).
+2. Showcase the 6 in-site live demos under `/demos/*` (the old `gdk.velonyxsystems.com` subdomain is retired).
 3. Provide an "in-bio" landing at `/connect/` for QR-code / DM / SMS sharing.
 
 ### ✅ Positioning alignment (resolved 2026-06-16)

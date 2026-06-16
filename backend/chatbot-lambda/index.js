@@ -238,7 +238,7 @@ function resolveRedirect(input) {
     }
     case 'financing':     return { url: '/financing.html', label: 'See Financing Options' };
     case 'refund-policy': return { url: '/refund-policy.html', label: 'Read the Refund Policy' };
-    case 'demo':          return { url: 'https://gdk.velonyxsystems.com/', label: 'Explore the Live Demo', external: true };
+    case 'demo':          return { url: '/#work', label: 'See Our Live Demos' };
     default:              return null;
   }
 }

@@ -42,7 +42,6 @@
 /* TECHNOLOGY */
   Site: Static HTML / CSS / Vanilla JS
   Hosting: GitHub Pages (apex velonyxsystems.com)
-  Subdomain: gdk.velonyxsystems.com (Vercel · Next.js operational demo)
   Fonts: Space Grotesk + DM Sans (Google Fonts)
   Analytics: GA4 (gated by CCPA cookie consent)
   Pixels: Meta Pixel (gated by CCPA cookie consent)
