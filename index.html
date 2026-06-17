@@ -1071,8 +1071,24 @@
       }, totalCharDelay + 800);
     }
 
-    // ===== SCROLL REVEALS =====
-    // Reveals are now native CSS scroll-driven animations (see .fade-in et al. in <style>#vx-chatbot-launcher{display:none!important}#vx-ai-actions{z-index:1003;flex-direction:column;align-items:flex-end;gap:10px;display:flex;position:fixed;bottom:20px;right:18px}#vx-ai-actions .vx-launch{cursor:pointer;white-space:nowrap;border:none;border-radius:999px;align-items:center;gap:7px;padding:13px 20px;font-family:Space Grotesk,system-ui,sans-serif;font-size:.92rem;font-weight:700;transition:transform .15s,box-shadow .2s;display:inline-flex;box-shadow:0 8px 26px #00000073}#vx-ai-actions .vx-launch:hover{transform:translateY(-2px)}#vx-ai-actions .vx-ask{color:#fff;background:linear-gradient(135deg,#3b82f6,#60a5fa);box-shadow:0 8px 26px #2563eb80}#vx-ai-actions .vx-book{color:#1a1205;background:linear-gradient(135deg,#f7e17b,#d4af37);box-shadow:0 8px 26px #d4af3780}@media (width<=600px){#vx-ai-actions{gap:8px;bottom:14px;right:12px}#vx-ai-actions .vx-launch{padding:11px 16px;font-size:.85rem}}</style>
+    // ===== SCROLL REVEALS — native CSS (animation-timeline:view); no JS needed. =====
+    // Only the decorative shimmer sweep on section titles is JS, isolated in try/catch.
+    (function () {
+      try {
+        var shimmerIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.target.classList.contains('shimmer-sweep')) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.shimmer-sweep').forEach(function (el) { shimmerIO.observe(el); });
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Floating AI launchers: blue "Ask Our AI" (chatbot) + gold "Book a Call" (lead form), every screen size -->
+  <style>#vx-chatbot-launcher{display:none!important}#vx-ai-actions{position:fixed;bottom:20px;right:18px;z-index:1003;display:flex;flex-direction:column;align-items:flex-end;gap:10px}#vx-ai-actions .vx-launch{display:inline-flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap;border:none;border-radius:999px;padding:13px 20px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:.92rem;font-weight:700;transition:transform .15s,box-shadow .2s;box-shadow:0 8px 26px #00000073}#vx-ai-actions .vx-launch:hover{transform:translateY(-2px)}#vx-ai-actions .vx-ask{color:#fff;background:linear-gradient(135deg,#3b82f6,#60a5fa);box-shadow:0 8px 26px #2563eb80}#vx-ai-actions .vx-book{color:#1a1205;background:linear-gradient(135deg,#f7e17b,#d4af37);box-shadow:0 8px 26px #d4af3780}@media (max-width:600px){#vx-ai-actions{gap:8px;bottom:14px;right:12px}#vx-ai-actions .vx-launch{padding:11px 16px;font-size:.85rem}}</style>
   <div id="vx-ai-actions" aria-label="AI assistant and booking">
     <button type="button" class="vx-launch vx-ask">&#128172; Ask Our AI</button>
     <button type="button" class="vx-launch vx-book">&#128197; Book a Call</button>
