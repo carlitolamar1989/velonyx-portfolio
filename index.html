@@ -313,6 +313,17 @@
     </div>
   </section>
 
+  <!-- Explainer video (ADDED) — 16:9, directly below the hero. Poster + lazy (preload=none) + controls. -->
+  <section class="vx-explainer-section">
+    <div class="container">
+      <div class="vx-video-16x9 vx-video-accent">
+        <video controls preload="none" playsinline poster="/assets/explainer-poster.jpg" aria-label="What Velonyx Systems is — explainer video">
+          <source src="/assets/explainer-video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
   <!-- THE SHIFT — sits between the hero and the 3-image story. Frames AI as the
        leverage shift in business, then hands off to the 3 images, which show what
        the AI does visually. One thesis, one outcome, one action. -->
@@ -702,6 +713,13 @@
       <div class="section-label">The Engineer</div>
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep fade-in">One Operator. One Builder.</h2>
+      <!-- About video (ADDED) — 9:16 vertical, beside the about text; stacks above on mobile. -->
+      <div class="about-layout">
+        <div class="about-media vx-video-accent">
+          <video class="vx-video-9x16" controls preload="none" playsinline poster="/assets/about-me-poster.jpg" aria-label="About Velonyx — a message from founder Carlos Glover">
+            <source src="/assets/about-me.mp4" type="video/mp4">
+          </video>
+        </div>
       <div class="about-content fade-in">
         <p>Velonyx is engineered by Carlos Glover &mdash; custom AI systems for businesses anywhere in the world. Built fast. Built to work while you do.</p>
         <p>One direct line. No agency overhead. No account managers stacked on project managers stacked on creative directors. You talk to the engineer building your system.</p>
@@ -743,6 +761,7 @@
             <div class="val-sublabel">On the Care plan</div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </section>
