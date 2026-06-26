@@ -324,9 +324,13 @@ a:focus-visible, button:focus-visible {
 .gdk-hero-bg {
   position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 60% 45% at 50% 30%, rgba(184,115,46,0.18), transparent 60%),
-    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(10,10,10,1), rgba(10,10,10,0.5)),
-    linear-gradient(135deg, #0A0A0A 0%, #1A1208 45%, #0A0A0A 100%);
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(10,10,10,0.74) 0%, rgba(10,10,10,0.42) 52%, rgba(10,10,10,0.12) 82%),
+    radial-gradient(ellipse 60% 45% at 50% 28%, rgba(184,115,46,0.16), transparent 60%),
+    linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.34) 42%, rgba(10,10,10,0.9) 100%),
+    url('/demos/garage/assets/demo-garage-hero.webp');
+  background-size: cover, cover, cover, cover;
+  background-position: center, center, center, center 38%;
+  background-repeat: no-repeat;
 }
 .gdk-hero-bg::after {
   content: '';

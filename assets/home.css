@@ -1075,8 +1075,8 @@
       max-width: 1080px; margin: 32px auto; padding: 40px 24px 36px;
       border-radius: 14px; text-align: center; position: relative; overflow: hidden;
       background:
-        radial-gradient(ellipse 70% 130% at 50% -10%, rgba(70,130,210,0.22) 0%, transparent 62%),
-        linear-gradient(180deg, #0a0c12 0%, #06070a 100%);
+        radial-gradient(ellipse 70% 130% at 50% -10%, rgba(46,107,255,0.20) 0%, transparent 62%),
+        linear-gradient(180deg, #0b1130 0%, #070a1e 100%);
       border: 1px solid rgba(212,175,55,0.42);
       box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08);
     }
@@ -1091,7 +1091,7 @@
       position: relative; z-index: 1;
       font-family: 'Space Grotesk', sans-serif; font-weight: 900;
       font-size: clamp(1.5rem, 5.2vw, 3rem); letter-spacing: 2px; line-height: 1.05;
-      color: #F2EFE9; text-shadow: 0 2px 34px rgba(120,170,255,0.35);
+      color: #F2EFE9; text-shadow: 0 2px 34px rgba(46,107,255,0.42);
     }
     .demos-text-banner-rule {
       position: relative; z-index: 1;
@@ -1102,7 +1102,7 @@
       position: relative; z-index: 1;
       font-family: 'Space Grotesk', sans-serif; font-weight: 800;
       font-size: clamp(0.95rem, 3.3vw, 1.7rem); letter-spacing: 1px;
-      color: #cfe4ff; text-shadow: 0 0 26px rgba(80,150,255,0.55);
+      color: #d8ddff; text-shadow: 0 0 26px rgba(122,59,255,0.50);
     }
     .image-placeholder-wide-16-9 > img,
     .image-placeholder-wide-16-9 > video {
@@ -1152,6 +1152,28 @@
       background: #06070a;
       box-shadow: 0 14px 38px rgba(0,0,0,0.55), 0 2px 10px rgba(212,175,55,0.08);
       padding: 0;
+      isolation: isolate;
+    }
+    /* ── Navy/purple tint over filled media ──
+       The clips Carlos made ("customers reach out", "AI answers", "book while you
+       work", "your front desk never sleeps") are gold-on-pure-black. A screen-blend
+       navy→purple overlay lifts only the blacks toward deep navy/purple so they read
+       cohesive with the site; the gold + white content stays vivid. */
+    .image-bar-slot:has(img)::before, .image-bar-slot:has(video)::before,
+    .image-placeholder-wide:has(img)::before, .image-placeholder-wide:has(video)::before,
+    .image-placeholder-wide-16-9:has(img)::before, .image-placeholder-wide-16-9:has(video)::before,
+    .image-placeholder-thin-bar:has(img)::before, .image-placeholder-thin-bar:has(video)::before {
+      content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(150deg, #112256 0%, #1a1448 52%, #2c1660 100%);
+      mix-blend-mode: screen;
+      opacity: 0.62;
+    }
+    .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
+    .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
+    .image-placeholder-wide-16-9:has(img) > img, .image-placeholder-wide-16-9:has(video) > video,
+    .image-placeholder-thin-bar:has(img) > img, .image-placeholder-thin-bar:has(video) > video {
+      z-index: 1;
     }
     /* ── 3-tier pricing ── */
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
