@@ -321,38 +321,43 @@
     }
     .founder-signature {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      margin: 38px auto 28px;
-      padding-top: 24px;
+      gap: 16px;
+      margin: 40px auto 30px;
+      padding-top: 30px;
       border-top: 1px solid rgba(212, 175, 55, 0.18);
       max-width: 360px;
     }
     .founder-mark {
-      width: 76px;
-      height: 76px;
+      width: 168px;
+      height: 168px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center 28%;
-      border: 2px solid rgba(212, 175, 55, 0.85);
-      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12), 0 6px 18px rgba(0, 0, 0, 0.45);
+      object-position: center 26%;
+      border: 3px solid rgba(212, 175, 55, 0.85);
+      box-shadow: 0 0 0 7px rgba(212, 175, 55, 0.10), 0 14px 36px rgba(0, 0, 0, 0.5);
     }
-    .founder-name-block { text-align: left; }
+    .founder-name-block { text-align: center; }
     .founder-name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 800;
       letter-spacing: 0.3px;
       color: var(--white);
       line-height: 1.1;
     }
     .founder-title {
-      font-size: 0.74rem;
-      letter-spacing: 1.5px;
+      font-size: 0.78rem;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
       color: var(--white-dim);
-      margin-top: 4px;
+      margin-top: 5px;
+    }
+    @media (max-width: 560px) {
+      .founder-mark { width: 128px; height: 128px; border-width: 3px; box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.10), 0 10px 26px rgba(0, 0, 0, 0.5); }
+      .founder-name { font-size: 1.25rem; }
     }
 
     .about-slogan-wrap {
