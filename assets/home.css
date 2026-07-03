@@ -20,6 +20,10 @@
       --success: #34D399;
       --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 22%, #B38728 45%, #FBF5B7 67%, #AA771C 100%);
       --gold-btn: linear-gradient(135deg, #D4AF37 0%, #F7E17B 35%, #D4AF37 65%, #B8860B 100%);
+      /* Aliases — several rules referenced these without a definition, which
+         left e.g. the payment disclaimer link unstyled (2026-07-02 audit). */
+      --gold: var(--accent);
+      --gold-muted: rgba(212, 175, 55, 0.62);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -482,19 +486,16 @@
 
     /* ===== HERO ===== */
     .hero {
-      /* min-height has a floor of 880px so the centered hero-content never
-         clips on shorter viewports (e.g., 720p laptops). On taller screens
-         it stretches to full viewport height for the cinematic feel. */
-      min-height: max(100vh, 880px);
+      /* Fold math (2026-07-02 audit): hero + fixed nav = exactly one viewport,
+         with a floor for short laptops. The compact static composition keeps
+         the FULL headline + CTAs inside the first paint; the explainer video
+         peeking at the fold is the scroll affordance. */
+      min-height: max(calc(100svh - 64px), 640px);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      /* Bottom padding bumped from 30px -> 130px so the [Book Free Consultation]
-         and [See Pricing] CTAs always have breathing room above the fold-line.
-         overflow: hidden remains for the radial gradient + particle canvas, but
-         is no longer needed to clip overflowing content. */
-      padding: 110px 24px 130px;
+      padding: 96px 24px 64px;
       position: relative;
       z-index: 3;
       overflow: hidden;
@@ -521,7 +522,7 @@
       z-index: 1;
       background:
         linear-gradient(180deg, rgba(8, 12, 32, 0.72) 0%, rgba(8, 12, 32, 0.50) 40%, rgba(8, 12, 32, 0.70) 80%, rgba(6, 10, 28, 0.96) 100%),
-        radial-gradient(ellipse at center, transparent 38%, rgba(8, 12, 32, 0.55) 75%);
+        radial-gradient(ellipse 120% 90% at 50% 42%, transparent 30%, rgba(8, 12, 32, 0.72) 68%, rgba(6, 10, 28, 0.92) 100%);
     }
 
     .hero-bg {
@@ -605,6 +606,27 @@
       margin-right: auto;
       z-index: 3;
     }
+    /* Pure-CSS hero entrance — no JS, content is at full opacity when the
+       animation ends (or instantly under reduced-motion / no support). */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-content { animation: vxHeroIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+      @keyframes vxHeroIn {
+        from { opacity: 0; transform: translateY(22px); }
+        to   { opacity: 1; transform: none; }
+      }
+    }
+    /* Compact crest — the shield opens the stack instead of splitting the
+       headline in half at 500px wide. */
+    .hero-crest {
+      display: block;
+      width: 118px;
+      height: auto;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 10px 34px rgba(212, 175, 55, 0.35));
+    }
+    @media (max-width: 640px) {
+      .hero-crest { width: 88px; margin-bottom: 16px; }
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -641,11 +663,11 @@
 
     .hero-h1-top, .hero-h2-bottom {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(3rem, 6.4vw, 4.8rem);
+      font-size: clamp(2.7rem, 5.6vw, 4.4rem);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.06;
       margin: 0;
-      letter-spacing: -1px;
+      letter-spacing: -0.02em;
     }
     .hero-h2-bottom {
       font-size: clamp(2.6rem, 5.6vw, 4.2rem);
@@ -1853,7 +1875,10 @@
           animation-timing-function:cubic-bezier(0.16,1,0.3,1);
           animation-fill-mode:both;
           animation-timeline:view();
-          animation-range:entry 0% entry 55%;
+          /* Tightened 55% -> 30% (2026-07-02 audit): content reaches full
+             opacity almost as soon as it enters, so nothing lingers half-faded
+             mid-viewport on tall sections or fast scrolls. */
+          animation-range:entry 0% entry 30%;
         }
         .fade-in{animation-name:vxRevFade;}
         .slide-left{animation-name:vxRevSlideL;}
@@ -1878,8 +1903,16 @@
     @supports (content-visibility: auto){
       .problem,.ai-system,.portfolio,.process,.pricing,.about{
         content-visibility:auto;
-        contain-intrinsic-size:auto 1000px;
       }
+      /* Per-section intrinsic sizes (2026-07-02 audit): the old flat 1000px
+         under/over-reserved by up to 1300px, causing scrollbar jumps and the
+         phantom blank stretches. Values ≈ real rendered heights at 1280w. */
+      .problem  { contain-intrinsic-size: auto 700px; }
+      .ai-system{ contain-intrinsic-size: auto 1900px; }
+      .portfolio{ contain-intrinsic-size: auto 2300px; }
+      .process  { contain-intrinsic-size: auto 1100px; }
+      .pricing  { contain-intrinsic-size: auto 2300px; }
+      .about    { contain-intrinsic-size: auto 1500px; }
     }
 
     /* ===== ULTRA ANIMATION SYSTEM ===== */
@@ -1992,18 +2025,8 @@
     }
 
     /* Hero eyebrow spring entrance */
-    .hero-eyebrow {
-      opacity: 0;
-      transform: scale(0) translateY(20px);
-    }
-    .hero-eyebrow.pop-in {
-      animation: springPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-    @keyframes springPop {
-      0% { opacity: 0; transform: scale(0) translateY(20px); }
-      60% { opacity: 1; transform: scale(1.15) translateY(-4px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
+    /* (Eyebrow opacity-0 + .pop-in JS gate removed 2026-07-02 — the entrance JS
+       is gone, and content must never wait on JS to become visible.) */
 
     /* ===== LOGO THROUGHOUT SITE ===== */
 

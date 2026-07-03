@@ -7,9 +7,10 @@
        preload scanner requests it before the inline scripts and JSON-LD below. -->
   <link rel="preload" as="image" href="/assets/hero-bg-ai-helpdesk.webp" type="image/webp" fetchpriority="high" imagesrcset="/assets/hero-bg-ai-helpdesk-1440.webp 1440w, /assets/hero-bg-ai-helpdesk.webp 2400w" imagesizes="100vw">
 
-  <!-- Reserve urgency-banner space pre-paint so its JS injection doesn't shift
-       layout (fixes CLS). Mirrors the rules in assets/urgency-banner.js. -->
-  <style id="vx-banner-reserve">body.vx-banner-active nav{top:var(--vx-banner-h,40px)!important}body.vx-banner-active main,body.vx-banner-active .hero{padding-top:calc(var(--vx-banner-h,40px) + 110px)}@media (width<=768px){body.vx-banner-active main,body.vx-banner-active .hero{padding-top:calc(var(--vx-banner-h,52px) + 100px)}}</style>
+  <!-- Urgency banner removed 2026-07-02 (design audit): a countdown strip
+       contradicts the premium positioning, and its reserved padding pushed the
+       hero headline below the fold. assets/urgency-banner.js stays in the repo
+       for other pages / future campaigns. -->
 
   <!-- Google tag (gtag.js) — gated by cookie consent -->
   <script>
@@ -202,9 +203,8 @@
   <!-- Preload font CSS so the hero headline (Space Grotesk 700/900) renders without FOIT flash -->
 <link rel="stylesheet" href="/assets/home.css">
 
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- GSAP removed 2026-07-02 (design audit): loaded from CDN but referenced by
+       zero code — ~120KB of dead weight on the critical page. -->
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <!-- Self-hosted variable fonts (latin woff2) — no third-party Google Fonts request -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-latin.woff2" crossorigin>
@@ -214,7 +214,7 @@
   @font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url('/assets/fonts/dm-sans-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
   </style>
 </head>
-<body class="vx-banner-active">
+<body>
 
   <!-- ADA: Skip Navigation -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -285,23 +285,18 @@
     <div class="hero-gradient-anim"></div>
     <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-slogan">Your Legacy, Engineered With Precision.</div>
+      <!-- Static hero (2026-07-02 design audit): shield as a compact crest, one
+           eyebrow, one static H1 — no char-split / typewriter JS. Full headline +
+           CTAs land inside the first viewport, painted by CSS alone. -->
+      <picture>
+        <source srcset="assets/vs-logo-shield-512.webp" type="image/webp">
+        <img src="assets/vs-logo-shield-512.webp" alt="Velonyx Systems" class="hero-crest" id="heroLogo" width="512" height="590" fetchpriority="high">
+      </picture>
       <div class="hero-eyebrow"><span class="dot"></span> The businesses that embrace AI win</div>
       <h1 class="hero-h1-top">
-        <span class="line">The Future</span>
-        <span class="line">of Business</span>
-      </h1>
-      <div class="hero-logo-wrap">
-        <div class="hero-logo-line"></div>
-        <picture>
-          <source srcset="assets/vs-logo-shield-512.webp" type="image/webp">
-          <img src="assets/vs-logo-shield-512.webp" alt="Velonyx Systems" class="hero-logo" id="heroLogo" width="512" height="590" fetchpriority="high">
-        </picture>
-        <div class="hero-logo-line"></div>
-      </div>
-      <h2 class="hero-h2-bottom">
+        <span class="line">The Future of Business</span>
         <span class="line"><span class="gold">Runs on AI.</span></span>
-      </h2>
+      </h1>
       <p class="hero-subheadline">A custom AI that works while you do.</p>
       <p class="hero-sub">Velonyx builds you an AI that answers customers, books jobs, and runs the busywork &mdash; 24/7, for any business, anywhere. Embrace it now and leave the competition behind.</p>
       <div class="hero-buttons">
@@ -433,7 +428,7 @@
     <div class="container">
       <div class="section-label">Live Demo Build</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">See Live Demos.</h2>
+      <h2 class="section-title shimmer-sweep">See Live Demos.</h2>
       <p class="section-subtitle fade-in">Real Velonyx systems. Running 24/7.</p>
 
       <!-- "These Are The Demos" — thin 21:9 cinematic banner under the heading,
@@ -533,7 +528,7 @@
       <div class="process-center">
         <div class="section-label">The Process</div>
         <div class="section-divider"></div>
-        <h2 class="section-title shimmer-sweep fade-in">Live in 7&ndash;14 Days.</h2>
+        <h2 class="section-title shimmer-sweep">Live in 7&ndash;14 Days.</h2>
         <p class="section-subtitle fade-in">One call. One build. Live in days. Here&rsquo;s exactly how it goes.</p>
       </div>
 
@@ -571,7 +566,7 @@
     <div class="container">
       <div class="section-label">Investment</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">Pick Your System.</h2>
+      <h2 class="section-title shimmer-sweep">Pick Your System.</h2>
       <!-- (subhead is set immediately below) -->
       <div class="pricing-slogan fade-in">Your Legacy, Engineered With Precision.</div>
       <p class="section-subtitle fade-in">Every tier ships the AI. Step up for more reach.</p>
@@ -629,7 +624,7 @@
       -->
 
       <!-- 3-TIER PRICING — Essentials / Growth / Elite + AI Video add-on -->
-      <div class="tiers-grid fade-in">
+      <div class="tiers-grid">
 
         <div class="tier-card">
           <div class="tier-name">Essentials</div>
@@ -714,7 +709,7 @@
     <div class="container">
       <div class="section-label">The Engineer</div>
       <div class="section-divider"></div>
-      <h2 class="section-title shimmer-sweep fade-in">One Operator. One Builder.</h2>
+      <h2 class="section-title shimmer-sweep">One Operator. One Builder.</h2>
       <!-- About video (ADDED) — 9:16 vertical, beside the about text; stacks above on mobile. -->
       <div class="about-layout">
         <div class="about-media vx-video-accent">
@@ -799,13 +794,8 @@
     <p class="footer-copy">&copy; 2026 Velonyx Systems. All rights reserved.</p>
   </footer>
 
-  <!-- FLOATING BOOK BUTTON -->
-  <div class="floating-book" id="floatingBook">
-    <a href="#" class="floating-book-btn" data-vx-form-open data-vx-form-context="Floating CTA" title="Ready to start? Book a call">
-      <span class="floating-book-pulse"></span>
-      Book a Call
-    </a>
-  </div>
+  <!-- (Old floating "Book a Call" pill removed 2026-07-02 — it sat at opacity:0
+       with no JS to reveal it; the #vx-ai-actions pills are the live launchers.) -->
 
   <!-- BOOKING MODAL -->
   <div class="booking-overlay" id="bookingOverlay" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
@@ -979,11 +969,9 @@
       (window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); })(function(){ size(); spawn(); frame(); }, { timeout: 2500 });
     })();
 
-    // (Cinematic loading sequence removed — the #loaderWarp element no longer
-    // exists in the markup; the loader splash was deleted in PR #35.)
-
-    // Loader removed — go straight into the hero reveal as soon as the page loads.
-    window.addEventListener('load', () => { startHeroSequence(); });
+    // (Hero char-split / typewriter entrance removed 2026-07-02, design audit:
+    // it erased and re-typed the headline + subhead on every load, so first
+    // paint looked broken. The hero is now static HTML with a pure-CSS rise-in.)
 
     // ===== SPEED LINES BACKGROUND (deferred off the critical path) =====
     (window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); })(function() {
@@ -1000,94 +988,6 @@
         container.appendChild(line);
       }
     }, { timeout: 2500 });
-
-    // ===== HERO CINEMATIC ENTRANCE =====
-    function splitTextToChars(el) {
-      const text = el.textContent;
-      el.innerHTML = '';
-      const wrap = document.createElement('span');
-      wrap.className = 'char-wrap';
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
-        wrap.appendChild(span);
-      }
-      el.appendChild(wrap);
-      return wrap.querySelectorAll('.char');
-    }
-
-    function startHeroSequence() {
-      const eyebrow = document.querySelector('.hero-eyebrow');
-      eyebrow.classList.add('pop-in');
-
-      const heroLines = document.querySelectorAll('.hero-h1-top .line, .hero-h2-bottom .line');
-      let totalCharDelay = 0;
-
-      heroLines.forEach((line, lineIdx) => {
-        const goldSpan = line.querySelector('.gold');
-        const targets = goldSpan || line;
-        const chars = splitTextToChars(targets);
-
-        setTimeout(() => {
-          chars.forEach((char, ci) => {
-            setTimeout(() => {
-              char.classList.add('revealed');
-            }, ci * 25);
-          });
-        }, 300 + lineIdx * 300);
-
-        totalCharDelay = 300 + lineIdx * 300 + chars.length * 25;
-      });
-
-      // Hero logo reveal (3D flip-in with glow)
-      setTimeout(() => {
-        document.getElementById('heroLogo').classList.add('revealed');
-      }, totalCharDelay + 50);
-
-      // Typewriter subtitle
-      const heroSub = document.querySelector('.hero-sub');
-      const subText = heroSub.textContent;
-      heroSub.textContent = '';
-      heroSub.style.opacity = '1';
-      heroSub.style.transform = 'translateY(0)';
-
-      const cursor = document.createElement('span');
-      cursor.className = 'typewriter-cursor';
-
-      setTimeout(() => {
-        heroSub.appendChild(cursor);
-        let charIdx = 0;
-        const typeSpeed = 18;
-        function typeNext() {
-          if (charIdx < subText.length) {
-            heroSub.insertBefore(document.createTextNode(subText[charIdx]), cursor);
-            charIdx++;
-            setTimeout(typeNext, typeSpeed);
-          } else {
-            setTimeout(() => { cursor.style.display = 'none'; }, 2000);
-          }
-        }
-        typeNext();
-      }, totalCharDelay + 200);
-
-      // Sub-headline reveal (gold accent line between H2 and supporting paragraph)
-      setTimeout(() => {
-        const subhead = document.querySelector('.hero-subheadline');
-        if (subhead) subhead.classList.add('reveal');
-      }, totalCharDelay + 150);
-
-      // Buttons spring in
-      setTimeout(() => {
-        document.querySelector('.hero-buttons').classList.add('reveal');
-      }, totalCharDelay + 600);
-
-      // Trust strip fades in just after the buttons
-      setTimeout(() => {
-        const trust = document.querySelector('.hero-trust');
-        if (trust) trust.classList.add('reveal');
-      }, totalCharDelay + 800);
-    }
 
     // ===== SCROLL REVEALS — native CSS (animation-timeline:view); no JS needed. =====
     // Only the decorative shimmer sweep on section titles is JS, isolated in try/catch.
