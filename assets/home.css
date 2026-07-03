@@ -1157,10 +1157,46 @@
     }
     /* Process section: centered single column with the CTA. */
     .process-center { max-width: 720px; margin: 0 auto; text-align: center; }
-    /* Horizontal bar stacks on mobile */
+    /* ── Live captions over the story clips (2026-07-02 audit) ──
+       The Remotion clips carry baked-in thumbnail-style text; a navy scrim +
+       live Space Grotesk caption replaces it visually: brand type, numbered
+       gold step markers, and it reads as one system with the section cards. */
+    .story-cap {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 64px 18px 16px;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 9, 26, 0.82) 38%, rgba(6, 9, 26, 0.97) 100%);
+      border-radius: 0 0 inherit inherit;
+      text-align: left;
+    }
+    .story-cap-num {
+      font-family: 'Space Grotesk', monospace, sans-serif;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--accent);
+    }
+    .story-cap-num::after {
+      content: ""; display: inline-block; width: 18px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-left: 8px; vertical-align: 3px;
+    }
+    .story-cap-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(0.95rem, 1.4vw, 1.12rem); font-weight: 700;
+      letter-spacing: 0.2px; color: var(--white); line-height: 1.25;
+    }
+    /* Mobile: horizontal scroll-snap strip instead of a tall stack — cuts the
+       page length and adds the one lateral gesture on the page. */
     @media (max-width: 700px) {
-      .image-bar-row { grid-template-columns: 1fr; padding-top: 40px; }
-      .image-bar-slot { aspect-ratio: 4 / 5; }
+      .image-bar-row {
+        display: flex; grid-template-columns: none;
+        overflow-x: auto; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        padding: 40px 20px 8px; gap: 14px;
+      }
+      .image-bar-row::-webkit-scrollbar { display: none; }
+      .image-bar-slot {
+        aspect-ratio: 4 / 5; flex: 0 0 76%; scroll-snap-align: center;
+      }
     }
     @media (max-width: 560px) {
       .image-placeholder-wide,
@@ -1220,13 +1256,37 @@
     .tier-price { font-family: 'Space Grotesk', sans-serif; font-size: 2.6rem; font-weight: 900; background: var(--gold-shine); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
     .tier-price-sub { font-size: 0.8rem; font-weight: 600; color: var(--white-dim); -webkit-text-fill-color: var(--white-dim); margin-left: 6px; letter-spacing: 0.5px; }
     .tier-monthly { font-size: 0.98rem; color: var(--white-muted); margin: 6px 0 22px; font-weight: 500; }
-    .tier-features { list-style: none; padding: 0; margin: 0 0 26px; flex: 1; }
-    .tier-features li { font-size: 0.9rem; color: var(--white-muted); line-height: 1.5; padding: 8px 0 8px 24px; position: relative; }
-    .tier-features li::before { content: "\2713"; position: absolute; left: 0; top: 8px; color: var(--accent); font-weight: 700; }
+    /* Hairline between the price block and the features — pricing reads as a
+       machined spec sheet, not a flyer (2026-07-02 audit). */
+    .tier-features { list-style: none; padding: 18px 0 0; margin: 14px 0 26px; flex: 1; border-top: 1px solid rgba(212, 175, 55, 0.14); }
+    .tier-features li { font-size: 0.9rem; color: var(--white-muted); line-height: 1.5; padding: 8px 0 8px 26px; position: relative; }
+    .tier-features li::before {
+      content: ""; position: absolute; left: 0; top: 11px; width: 15px; height: 15px;
+      background-color: var(--accent);
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7-8" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+              mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7-8" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+    }
     .tier-features li strong { color: var(--white); font-weight: 600; }
-    .tier-cta { display: block; text-align: center; padding: 13px 20px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); border-radius: 11px; color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px; text-decoration: none; transition: background 0.2s, color 0.2s; min-height: 46px; line-height: 20px; }
+    .tier-cta { display: block; text-align: center; padding: 13px 20px; background: rgba(212,175,55,0.14); border: 1px solid rgba(212,175,55,0.38); border-radius: 11px; color: var(--accent-light); font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px; text-decoration: none; transition: background 0.2s, color 0.2s; min-height: 46px; line-height: 20px; }
     .tier-cta:hover, .tier-cta-primary { background: var(--gold-btn); color: #0C0C0F; border-color: transparent; }
-    .tier-addon { max-width: 1100px; margin: 26px auto 0; background: var(--bg-card-glossy); border: 1px dashed rgba(212,175,55,0.3); border-radius: 18px; padding: 26px 30px; }
+    /* Elite out-ranks Growth visually: gold-dominant gradient border crown with
+       a whisper of purple (2026-07-02 audit). */
+    .tier-elite {
+      border: 1px solid transparent;
+      background:
+        var(--bg-card-glossy) padding-box,
+        linear-gradient(165deg, rgba(212,175,55,0.85) 0%, rgba(212,175,55,0.25) 40%, rgba(122,59,255,0.28) 78%, rgba(212,175,55,0.5) 100%) border-box;
+      box-shadow: 0 0 34px rgba(212, 175, 55, 0.10), 0 18px 50px rgba(0,0,0,0.5);
+    }
+    /* Add-on: solid hairline + offset outline (the dashed "coupon" border read
+       flea-market on a $200/mo product). */
+    .tier-addon { max-width: 1100px; margin: 26px auto 0; background: var(--bg-card-glossy); border: 1px solid rgba(212,175,55,0.34); outline: 1px solid rgba(212,175,55,0.10); outline-offset: 4px; border-radius: 18px; padding: 26px 30px; }
+    /* Quiet payment-methods line below the plans — the trust marks whisper. */
+    .pay-methods-line { max-width: 760px; margin: 34px auto 0; text-align: center; line-height: 1.9; }
+    .pay-methods-brands { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.86rem; font-weight: 600; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,0.58); }
+    .pay-methods-note { display: block; font-size: 0.8rem; color: rgba(255,255,255,0.42); letter-spacing: 0.4px; }
+    .pay-methods-note a { color: var(--gold-muted); text-decoration: none; }
+    .pay-methods-note a:hover { color: var(--accent); }
     .tier-addon-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
     .tier-addon-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .tier-addon-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); padding: 3px 9px; border-radius: 99px; margin-left: 8px; vertical-align: middle; }
@@ -1832,14 +1892,58 @@
       background-clip: text;
     }
 
+    /* ── Closing CTA band + three-zone footer (2026-07-02 audit) ── */
+    .close-band {
+      position: relative; z-index: 3; text-align: center;
+      padding: clamp(64px, 9vw, 110px) 24px;
+      background: radial-gradient(70% 120% at 50% 0%, rgba(212, 175, 55, 0.07), transparent 60%);
+    }
+    .close-band::before {
+      content: ""; position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.55), transparent);
+    }
+    .close-band-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.9rem, 4.4vw, 3.1rem); font-weight: 900;
+      letter-spacing: -0.02em; line-height: 1.1; color: var(--white);
+      margin-bottom: 14px;
+    }
+    .close-band-sub {
+      font-size: 1.02rem; color: var(--white-muted); max-width: 520px;
+      margin: 0 auto 30px; line-height: 1.6;
+    }
+    /* Metallic gold text — static 3-stop foil, no animation (GPU rule). */
+    .gold-metal {
+      background: linear-gradient(180deg, #8a6d1f 0%, #D4AF37 38%, #f6e7a9 62%, #B8860B 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
     footer {
-      padding: 40px 24px 28px;
+      padding: 48px 24px 30px;
       background: transparent;
-      border-top: 1px solid rgba(212, 175, 55, 0.12);
-      text-align: center;
+      border-top: 0;
       position: relative;
+      text-align: center;
       z-index: 3;
     }
+    footer::before {
+      content: ""; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.35), transparent);
+    }
+    .footer-contact {
+      display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
+      margin: 18px 0 10px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.98rem; font-weight: 600;
+    }
+    .footer-contact a { color: var(--accent); text-decoration: none; letter-spacing: 0.4px; padding: 6px 0; }
+    .footer-contact a:hover { color: var(--accent-light); }
+    .footer-sep { color: rgba(212, 175, 55, 0.4); }
+    .footer-social { display: flex; justify-content: center; gap: 22px; margin-bottom: 18px; }
+    .footer-social a { color: rgba(255, 255, 255, 0.55); font-size: 0.8rem; letter-spacing: 0.6px; text-decoration: none; padding: 4px 0; }
+    .footer-social a:hover { color: var(--accent); }
+    .footer-legal { display: flex; justify-content: center; gap: 6px 18px; flex-wrap: wrap; margin-bottom: 14px; }
+    .footer-legal a { color: rgba(255, 255, 255, 0.44); font-size: 0.74rem; letter-spacing: 0.5px; text-decoration: none; padding: 4px 0; min-height: 32px; display: inline-flex; align-items: center; }
+    .footer-legal a:hover { color: rgba(255, 255, 255, 0.75); }
 
     .footer-copy {
       color: var(--white-dim);
