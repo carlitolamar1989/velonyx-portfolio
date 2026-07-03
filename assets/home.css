@@ -11,9 +11,9 @@
       --cosmos-veil: rgba(5, 8, 24, 0.68);
       --cosmos-fade: rgba(4, 8, 26, 0.93);
       --cosmos-section-blur: blur(6px) saturate(1.08);
-      --bg-card: #111114;
-      --bg-card-glossy: linear-gradient(165deg, rgba(22,22,26,0.97) 0%, rgba(12,12,15,0.99) 100%);
-      --bg-border: #1E1E22;
+      --bg-card: #0d1330;
+      --bg-card-glossy: linear-gradient(165deg, rgba(18,25,54,0.96) 0%, rgba(9,13,32,0.99) 100%);
+      --bg-border: #212a4e;
       --white: #F0EDE8;
       --white-muted: #B0AEA6;
       --white-dim: #8F8D87;
@@ -825,6 +825,10 @@
     }
 
     /* ===== SECTION COMMON ===== */
+    .section-label::before {
+      content: attr(data-num) "\2009/\2009";
+      letter-spacing: 2px;
+    }
     .section-label {
       font-size: 0.72rem;
       font-weight: 600;
@@ -938,9 +942,9 @@
     }
 
     .problem-text {
-      max-width: 700px;
+      max-width: 62ch;
       margin: 0 auto;
-      text-align: center;
+      text-align: left;
     }
 
     .problem-text .big-quote {
@@ -950,7 +954,6 @@
       line-height: 1.5;
       color: var(--white);
       margin-bottom: 24px;
-      font-style: italic;
     }
 
     .problem-text .big-quote .gold {
@@ -1165,7 +1168,7 @@
       position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
       display: flex; align-items: baseline; gap: 10px;
       padding: 64px 18px 16px;
-      background: linear-gradient(180deg, transparent 0%, rgba(6, 9, 26, 0.82) 38%, rgba(6, 9, 26, 0.97) 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 9, 26, 0.72) 42%, rgba(6, 9, 26, 0.95) 100%);
       border-radius: 0 0 inherit inherit;
       text-align: left;
     }

@@ -45,7 +45,7 @@
 
   var CSS = ''
     + '#vx-demo-widget{position:fixed;left:20px;bottom:104px;width:320px;z-index:1050;'
-    + 'background:linear-gradient(165deg,#0c0c10 0%,#040508 100%);'
+    + 'background:linear-gradient(165deg,rgba(16,22,48,0.97) 0%,rgba(8,11,28,0.99) 100%);'
     + 'border:1px solid rgba(212,175,55,0.32);border-radius:16px;'
     + 'box-shadow:0 18px 48px rgba(0,0,0,0.55),0 2px 12px rgba(212,175,55,0.06);'
     + 'font-family:"DM Sans",system-ui,-apple-system,sans-serif;color:#fff;overflow:hidden;'
