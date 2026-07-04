@@ -59,7 +59,7 @@
     "provider": {
       "@id": "https://velonyxsystems.com/#organization"
     },
-    "description": "Premium custom digital platform — one-time $700 build plus $70/month Care plan for hosting, security, backups, and 1 site update per month. Custom website, 24/7 online booking, integrated payments (Apple Pay, Google Pay, debit and credit cards), customer financing (Klarna, Afterpay), automated SMS via Twilio, owner admin dashboard, and SEO foundation. Full ownership of code, design, customer data, and domain.",
+    "description": "Premium custom digital platform — one-time $700 build plus $70/month Care plan for hosting, security, backups, and 1 site update per month. Custom website, 24/7 online booking, integrated payments (Apple Pay, Google Pay, debit and credit cards), customer financing (Affirm, Klarna, Afterpay), automated SMS via Twilio, owner admin dashboard, and SEO foundation. Full ownership of code, design, customer data, and domain.",
     "offers": {
       "@type": "Offer",
       "price": "700",
@@ -519,7 +519,21 @@
     .pay-addon-price span { font-size: 0.72rem; font-weight: 500; color: var(--white-dim); }
     .pay-addon .pay-btn { padding: 11px 22px; }
     .pay-finance-note { margin: 22px auto 0; max-width: 760px; text-align: center; color: var(--white-dim); font-size: 0.8rem; line-height: 1.6; }
-  </style>
+  
+    .pay-step-note { margin-top: 10px; font-size: 0.78rem; line-height: 1.55; color: rgba(255,255,255,0.55); }
+    .pay-step-note strong { color: #D4AF37; }
+    .pay-step2 { max-width: 860px; margin: 34px auto 0; padding: 28px 30px; text-align: center;
+      background: linear-gradient(165deg, rgba(18,25,54,0.96), rgba(9,13,32,0.99));
+      border: 1px solid rgba(212,175,55,0.3); border-radius: 16px; }
+    .pay-step2-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: #D4AF37; border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 999px; padding: 5px 13px; margin-bottom: 14px; }
+    .pay-step2 h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; margin-bottom: 10px; color: #F0EDE8; }
+    .pay-step2 p { font-size: 0.92rem; color: rgba(255,255,255,0.62); max-width: 640px; margin: 0 auto 10px; line-height: 1.6; }
+    .pay-step2-annual { font-size: 0.84rem !important; color: rgba(255,255,255,0.5) !important; }
+    .pay-step2-link { display: inline-block; margin-top: 8px; color: #D4AF37; font-size: 0.86rem; font-weight: 600; text-decoration: none; }
+    .pay-step2-link:hover { color: #F7E17B; }
+</style>
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -552,14 +566,14 @@
            must point to a Stripe Payment Link that bundles the one-time build
            amount + that tier's monthly subscription.
 
-           >>> STRIPE LINKS TO CREATE — paste each URL into the matching href="#" <<<
-             essentials-full : $700 build + $70/mo subscription (debit/credit cards/Apple Pay/Google Pay)
-             essentials-bnpl : $700 build via Klarna/Afterpay + $70/mo subscription
-             growth-full     : $900 build + $150/mo subscription
-             growth-bnpl     : $900 build via Klarna/Afterpay + $150/mo subscription
-             elite-full      : $1,200 build + $400/mo subscription
-             elite-bnpl      : $1,200 build via Klarna/Afterpay + $400/mo subscription
-             aivideo-sub     : $200/mo AI Video subscription (add-on)
+           >>> STRIPE LINKS TO CREATE (2026-07-04 verified architecture) <<<
+           BUILD (one-time; enable card + Klarna + Afterpay + Affirm; after-payment
+           redirect -> https://velonyxsystems.com/activate.html?plan=<tier>):
+             essentials-build : $700 one-time
+             growth-build     : $900 one-time
+             elite-build      : $1,200 one-time
+           CARE (subscriptions live on /activate.html, not this page):
+             care links + AI Video are wired in activate.html
            Until a real URL replaces the "#", clicking a button shows a
            "being set up" message instead of a dead link (see guard script at end).
       ═══════════════════════════════════════════════════════════════════ -->
@@ -580,8 +594,8 @@
               <li>Full code ownership</li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="essentials-full" class="pay-btn pay-btn-full">Pay in Full</a>
-              <a href="#" data-stripe="essentials-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
+              <a href="#" data-stripe="essentials-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
+              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
             </div>
           </div>
 
@@ -600,8 +614,8 @@
               <li>Leads captured 24/7, even while you work</li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="growth-full" class="pay-btn pay-btn-full">Pay in Full</a>
-              <a href="#" data-stripe="growth-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
+              <a href="#" data-stripe="growth-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
+              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
             </div>
           </div>
 
@@ -619,11 +633,20 @@
               <li>The complete lead system &mdash; chat, text, and voice</li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="elite-full" class="pay-btn pay-btn-full">Pay in Full</a>
-              <a href="#" data-stripe="elite-bnpl" class="pay-btn pay-btn-split">Pay Over Time &middot; Klarna / Afterpay</a>
+              <a href="#" data-stripe="elite-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
+              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
             </div>
           </div>
 
+        </div>
+
+        <!-- STEP 2 — care plan activation (links live on /activate.html) -->
+        <div class="pay-step2">
+          <div class="pay-step2-badge">Step 2 &middot; After your build payment</div>
+          <h3>Activate your Care Plan &mdash; <span class="gold-text">$0 due today</span></h3>
+          <p>Right after your build payment you&rsquo;ll be taken to activate your monthly care plan. Your card is saved but <strong>your first month is free</strong> &mdash; the first charge lands about one month later, and we email you before it does. Cancel anytime.</p>
+          <p class="pay-step2-annual">Prefer annual? Pay for 10 months, get 12 &mdash; full refund within 14 days of purchase.</p>
+          <a class="pay-step2-link" href="/activate.html">Already paid your build? Activate your care plan &rarr;</a>
         </div>
 
         <!-- AI VIDEO add-on -->
@@ -638,7 +661,7 @@
           </div>
         </div>
 
-        <p class="pay-finance-note">Pay in full by debit or credit card, Apple Pay, or Google Pay &mdash; or split it interest-free with Klarna or Afterpay right inside Stripe checkout (instant approval, no account needed). Each plan includes its monthly subscription, set up automatically at checkout. Cancel the subscription any time &mdash; you keep the system.</p>
+        <p class="pay-finance-note">Build fee: pay in full by debit or credit card, Apple Pay, or Google Pay &mdash; or finance it with Affirm or Klarna monthly payments (as low as $0 due today, subject to credit approval; down payment may be required; rates from 0&ndash;36% APR). Afterpay and Klarna Pay-in-4 are also available at checkout. Your monthly care plan is a separate card subscription with the first month free &mdash; cancel anytime.</p>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->
