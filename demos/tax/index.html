@@ -257,10 +257,11 @@
         { who:'ai',       text:'Booked — Tuesday 9:30 AM. Intake checklist texted to you.', type:1500, pause:2000 }
       ],
       matchThreshold: 0.3,
+      booking: { offer: 'consult', yes: "\\b(yes|yeah|yep|sure|ok|okay|sounds good|book it|let|works|morning|mornings|afternoon|please)\\b", confirm: 'Booked — Tuesday 9:30 AM. Intake checklist texted to you. Anything else I can help with?' },
       knowledge: [
         { keywords:['tax prep','taxes','tax','file','filing','return','returns','1040','prepare'], a:"We prepare individual, LLC, S-corp, and partnership returns — filed accurately and on time, maximizing every deduction." },
         { keywords:['business','small business','llc','s-corp','scorp','corporation','self employed','self-employed','freelance','1099','partnership'], a:"Yes — we work with LLCs, S-corps, partnerships, and the self-employed, including entity setup and quarterly planning." },
-        { keywords:['irs','back taxes','behind','late','audit','notice','owe','penalty','resolution','unfiled','never filed','filed','prior year'], a:"We handle back taxes, IRS notices, audits, and payment plans — even if you're several years behind or never filed. We deal with the IRS so you don't have to." },
+        { keywords:['irs','back taxes','behind','late','audit','notice','owe','penalty','resolution','unfiled','never filed','filed','prior year'], a:"We handle back taxes, IRS notices, audits, and payment plans — even if you're several years behind or never filed. We deal with the IRS so you don't have to. Want a free 20-minute consult with Benjamin to map it out?" },
         { keywords:['bookkeeping','books','accounting','monthly','quickbooks','payroll','ledger'], a:"We keep your books clean and current month to month, so you always know where your business stands." },
         { keywords:['investment','investments','invest','investing','wealth','portfolio','retirement','401k','ira','roth','financial planning','stocks','market','management','manage','wealth management'], a:"On the investment side we build tax-smart portfolios, retirement and 401(k)/IRA strategy, and long-term planning aligned with your tax picture." },
         { keywords:['consultation','consult','appointment','book','booking','meeting','schedule','free consult'], a:"We offer a free 20-minute consultation. Want me to set one up? I just need your name and a good number." },

@@ -146,6 +146,14 @@
   var timer = null;
   var userEngaged = false;   // interactive: visitor has typed/tapped — stop the teaser
   var awaitingPhone = false; // interactive: next message treated as a phone number
+  // Opt-in booking flow (CFG.booking = { offer, yes, confirm } — regex strings):
+  // when a bot reply matches `offer`, an affirmative next user turn ("yes",
+  // "mornings work", ...) confirms the booking instead of hitting the fallback.
+  var BOOKING = null;
+  if (CFG.booking && CFG.booking.offer && CFG.booking.yes && CFG.booking.confirm) {
+    try { BOOKING = { offerRe: new RegExp(CFG.booking.offer, 'i'), yesRe: new RegExp(CFG.booking.yes, 'i'), confirm: CFG.booking.confirm }; } catch (e) { BOOKING = null; }
+  }
+  var bookingOffered = false;
   var busy = false;          // interactive: a reply is being shown
   var history = [];          // [{role,content}] — for the optional AI upgrade hook
   var sessionId;
@@ -229,6 +237,9 @@
   function kwHas(map, token) {
     if (map[token]) return true;
     if (token.length >= 4) { for (var k in map) { if (map.hasOwnProperty(k) && k.length >= 4 && (k.indexOf(token) === 0 || token.indexOf(k) === 0)) return true; } }
+    // Short stems (e.g. "filing" -> "fil") may prefix-match longer keyword tokens
+    // one-directionally, so "filing/filed/file" all connect. (2026-07-19 fix)
+    else if (token.length === 3) { for (var k2 in map) { if (map.hasOwnProperty(k2) && k2.length >= 4 && k2.indexOf(token) === 0) return true; } }
     return false;
   }
   function bestMatch(text) {
@@ -248,7 +259,7 @@
   }
 
   function setSend(on) { if (widget._send) widget._send.disabled = !on; }
-  function pushAI(text) { var m = el('div', 'vx-demo-msg ai'); m.textContent = text; widget.body.appendChild(m); history.push({ role: 'assistant', content: text }); scrollBottom(); maybeSpeak(text); }
+  function pushAI(text) { var m = el('div', 'vx-demo-msg ai'); m.textContent = text; widget.body.appendChild(m); history.push({ role: 'assistant', content: text }); scrollBottom(); if (BOOKING) bookingOffered = BOOKING.offerRe.test(text); maybeSpeak(text); }
 
   function botSay(text) {
     busy = true; setSend(false);
@@ -295,6 +306,10 @@
     var u = el('div', 'vx-demo-msg customer'); u.textContent = text; widget.body.appendChild(u); scrollBottom();
     history.push({ role: 'user', content: text });
     if (awaitingPhone) { handlePhone(text); return; }
+    if (BOOKING && bookingOffered) {
+      bookingOffered = false;
+      if (BOOKING.yesRe.test(text)) { botSay(BOOKING.confirm); return; }
+    }
     if (AI.apiUrl) { askApi(text); } else { askLocal(text); }
   }
 
