@@ -2,7 +2,7 @@
   "name": "velonyx-chatbot-lambda",
   "version": "1.0.0",
   "private": true,
-  "description": "AWS Lambda backend for the Velonyx Assistant chatbot widget on velonyxsystems.com. Calls Claude Haiku 4.5 via the Anthropic SDK.",
+  "description": "AWS Lambda backend for the Velonyx Assistant chatbot widget on velonyxsystems.com. Calls Claude Sonnet 5 via the Anthropic SDK.",
   "main": "index.js",
   "engines": {
     "node": ">=20"

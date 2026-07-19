@@ -6,7 +6,7 @@ This Lambda is the brain behind the entire Velonyx AI lead system on `velonyxsys
 2. **Conversational lead form** (intent-driven intake) — `POST /form-turn`
 3. **Two-way SMS** (Twilio webhook) — `POST /sms/inbound`
 
-The same Anthropic model (Claude Haiku 4.5) + the same business-context prompts power all three. Conversation state stitches together in one Supabase row per lead.
+The same Anthropic model (Claude Sonnet 5) + the same business-context prompts power all three. Conversation state stitches together in one Supabase row per lead.
 
 ---
 
@@ -176,7 +176,7 @@ Browser (velonyxsystems.com)
 
 ## Costs
 
-**Claude Haiku 4.5 (per turn):** ~$0.0001-0.0005
+**Claude Sonnet 5 (per turn):** ~$0.001-0.005
 **Per full lead lifecycle** (5 chat + 3 form + 8 SMS turns): ~$0.012
 **Twilio SMS** (US, A2P 10DLC): ~$0.008 per outbound + $0.008 per inbound = ~$0.13 per lead lifecycle
 **Resend:** free under 3,000 emails/month

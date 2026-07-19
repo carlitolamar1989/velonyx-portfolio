@@ -31,8 +31,12 @@ const twilio   = require('./lib/twilio');
 const resend   = require('./lib/resend');
 const intent   = require('./lib/intent');
 
-const MODEL = 'claude-haiku-4-5-20251001';
-const MAX_TOKENS_PER_TURN = 800;
+// Sonnet 5 has adaptive thinking ON by default — thinking tokens count against
+// max_tokens, so the cap must leave room for both thinking and the visible reply.
+// The voice route passes thinking:{type:'disabled'} (a silent "thinking" pause
+// reads as dead air on a live phone call).
+const MODEL = 'claude-sonnet-5';
+const MAX_TOKENS_PER_TURN = 2048;
 const MAX_HISTORY_TURNS = 20;
 const MAX_SMS_TURNS_PER_LEAD = 30;
 const MAX_FORM_TURNS = 15;
@@ -703,6 +707,7 @@ async function handleVoiceTurn(event) {
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: MAX_TOKENS_PER_TURN,
+      thinking: { type: 'disabled' },
       system: PROMPTS.voice,
       tools: TOOLS_VOICE,
       messages: messages
