@@ -30,6 +30,7 @@ const supabase = require('./lib/supabase');
 const twilio   = require('./lib/twilio');
 const resend   = require('./lib/resend');
 const intent   = require('./lib/intent');
+const demoBusinesses = require('./lib/demo-businesses');
 
 // Sonnet 5 has adaptive thinking ON by default — thinking tokens count against
 // max_tokens, so the cap must leave room for both thinking and the visible reply.
@@ -261,6 +262,65 @@ function buildMessages(history, currentUserMessage) {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
+// Demo-site AI (rides POST /chat, selected by body.businessId)
+// Stateless on purpose: no Supabase writes, no tools, no owner alerts — these
+// are public showcase bots, so the only cost surface is the model call itself.
+// ──────────────────────────────────────────────────────────────────────────────
+
+const DEMO_MAX_MESSAGE_CHARS = 600;   // longest reasonable customer question
+const DEMO_MAX_HISTORY_ENTRIES = 40;  // ~20 exchanges, then wrap up (abuse cap)
+
+async function handleDemoChat(body) {
+  const biz = demoBusinesses.get(body.businessId);
+  const message = (typeof body.message === 'string' ? body.message : '').trim().slice(0, DEMO_MAX_MESSAGE_CHARS);
+  if (!message) return jsonResponse(400, { error: 'message required' });
+
+  if (isJailbreak(message)) {
+    return jsonResponse(200, { reply: "I can help with anything about " + biz.name + " — services, pricing, hours, or booking. What would you like to know?" });
+  }
+
+  let hist = Array.isArray(body.history) ? body.history : [];
+  if (hist.length >= DEMO_MAX_HISTORY_ENTRIES) {
+    return jsonResponse(200, { reply: "Let's get you personal attention from here — call us at " + biz.phone + " or leave your number and we'll reach right out. Anything else quick I can answer?" });
+  }
+  // Cost-abuse cap: the entry COUNT is capped above, but a scripted caller could
+  // stuff megabytes into each entry. Clamp per-entry content length too.
+  hist = hist.map(function (t) {
+    return (t && typeof t.content === 'string')
+      ? { role: t.role, content: t.content.slice(0, DEMO_MAX_MESSAGE_CHARS * 2) }
+      : t;
+  });
+
+  try {
+    const response = await anthropic.messages.create({
+      model: MODEL,
+      max_tokens: MAX_TOKENS_PER_TURN,
+      // Demos are public FAQ-style chat: thinking off keeps replies snappy
+      // (<4s target) and predictable; the per-business prompt does the work.
+      thinking: { type: 'disabled' },
+      system: biz.systemPrompt,
+      messages: buildMessages(hist, message)
+    });
+
+    let reply = '';
+    for (const block of (response.content || [])) {
+      if (block.type === 'text') reply += block.text;
+    }
+    // The demo businesses are fictional — any URL the model produced would be fake.
+    reply = reply.replace(/https?:\/\/[^\s)]+/gi, '').replace(/\s{2,}/g, ' ').trim();
+    if (!reply) throw new Error('empty demo reply');
+
+    return jsonResponse(200, { reply: reply });
+  } catch (err) {
+    console.error('demo-chat error (' + body.businessId + '):', err && err.message ? err.message : err);
+    // Deliberately NOT JSON: the widget's fetch(...).json() throws on this,
+    // which drops it into its built-in local-knowledge fallback — the visitor
+    // still gets a scripted on-brand answer instead of an error bubble.
+    return { statusCode: 502, headers: corsHeaders('text/plain'), body: 'demo upstream error' };
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
 // Route: POST /chat
 // ──────────────────────────────────────────────────────────────────────────────
 
@@ -268,6 +328,12 @@ async function handleChat(event) {
   let body;
   try { body = JSON.parse(rawBody(event) || '{}'); }
   catch (e) { return jsonResponse(400, { error: 'invalid json' }); }
+
+  // Demo-site AI: the six /demos/* sites send a businessId on the same route
+  // and get that business's persona instead of the Velonyx sales assistant.
+  if (body && typeof body.businessId === 'string' && demoBusinesses.get(body.businessId)) {
+    return handleDemoChat(body);
+  }
 
   const { sessionId, message, history } = body;
   if (!message || typeof message !== 'string') return jsonResponse(400, { error: 'message required' });
