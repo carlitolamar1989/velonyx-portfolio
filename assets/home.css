@@ -1227,6 +1227,14 @@
     /* (Tint overlay removed 2026-07-22 — the story banner and the "front desk
        never sleeps" banner are now single pre-colored Gemini images that already
        match the navy/gold/blue brand, so no screen-blend tint is applied.) */
+    /* Safeguard (2026-07-22): these two large media banners must NEVER scroll-fade.
+       Even if a cached older index.html still carries the .fade-in class, force full
+       opacity + no reveal animation so the image always renders solid, never washed out. */
+    .image-placeholder-wide-16-9,
+    .image-placeholder-wide-16-9 > img {
+      opacity: 1 !important;
+      animation: none !important;
+    }
     .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
     .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
     .image-placeholder-wide-16-9:has(img) > img, .image-placeholder-wide-16-9:has(video) > video,
