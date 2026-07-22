@@ -1166,26 +1166,26 @@
        gold step markers, and it reads as one system with the section cards. */
     .story-cap {
       position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-      display: flex; align-items: baseline; gap: 10px;
-      padding: 64px 18px 16px;
+      display: flex; align-items: baseline; gap: 12px;
+      padding: 72px 22px 22px;
       background: linear-gradient(180deg, transparent 0%, rgba(6, 9, 26, 0.72) 42%, rgba(6, 9, 26, 0.95) 100%);
       border-radius: 0 0 inherit inherit;
       text-align: left;
     }
     .story-cap-num {
       font-family: 'Space Grotesk', monospace, sans-serif;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      font-size: 1.02rem; font-weight: 700; letter-spacing: 1.5px;
       color: var(--accent);
     }
     .story-cap-num::after {
-      content: ""; display: inline-block; width: 18px; height: 2px;
+      content: ""; display: inline-block; width: 22px; height: 2px;
       background: linear-gradient(90deg, var(--accent), transparent);
-      margin-left: 8px; vertical-align: 3px;
+      margin-left: 8px; vertical-align: 4px;
     }
     .story-cap-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(0.95rem, 1.4vw, 1.12rem); font-weight: 700;
-      letter-spacing: 0.2px; color: var(--white); line-height: 1.25;
+      font-size: clamp(1.3rem, 2.7vw, 1.9rem); font-weight: 800;
+      letter-spacing: 0.2px; color: var(--white); line-height: 1.2;
     }
     /* Mobile: horizontal scroll-snap strip instead of a tall stack — cuts the
        page length and adds the one lateral gesture on the page. */
@@ -1224,20 +1224,21 @@
       padding: 0;
       isolation: isolate;
     }
-    /* ── Navy/purple tint over filled media ──
+    /* ── Deep-navy/blue tint over filled media ──
        The clips Carlos made ("customers reach out", "AI answers", "book while you
        work", "your front desk never sleeps") are gold-on-pure-black. A screen-blend
-       navy→purple overlay lifts only the blacks toward deep navy/purple so they read
-       cohesive with the site; the gold + white content stays vivid. */
+       overlay lifts only the blacks toward the SAME deep-navy + blue palette as the
+       "THESE ARE THE DEMOS" banner (#0b1130 base + #2e6bff blue glow) so all four read
+       as one system; the gold + white content stays vivid. No purple. */
     .image-bar-slot:has(img)::before, .image-bar-slot:has(video)::before,
     .image-placeholder-wide:has(img)::before, .image-placeholder-wide:has(video)::before,
     .image-placeholder-wide-16-9:has(img)::before, .image-placeholder-wide-16-9:has(video)::before,
     .image-placeholder-thin-bar:has(img)::before, .image-placeholder-thin-bar:has(video)::before {
       content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
       border-radius: inherit;
-      background: linear-gradient(150deg, #112256 0%, #1a1448 52%, #2c1660 100%);
+      background: linear-gradient(155deg, #0b1130 0%, #12245c 52%, #244aa0 100%);
       mix-blend-mode: screen;
-      opacity: 0.62;
+      opacity: 0.58;
     }
     .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
     .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
@@ -4316,16 +4317,7 @@
     }
     .portfolio-view span { transition: transform 0.25s; }
     .portfolio-card:hover .portfolio-view span { transform: translateX(5px); }
-    /* Flagship demo card — hierarchy without breaking the 3x2 grid */
-    .portfolio-flagship { position: relative; }
-    .portfolio-flagship::after {
-      content: "Flagship Demo"; position: absolute; top: 14px; right: 14px; z-index: 2;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 1.4px; text-transform: uppercase; color: #14100a;
-      background: var(--gold-btn); padding: 5px 11px; border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
-    }
-    .portfolio-flagship { border-color: rgba(212, 175, 55, 0.32); }
+    /* (Flagship-demo card treatment removed 2026-07-22 — no flagship demo.) */
     /* Process: connected gold timeline rail (desktop) */
     @media (min-width: 761px) {
       .process-step .process-step-rail { position: relative; }
