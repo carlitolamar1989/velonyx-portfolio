@@ -1235,6 +1235,14 @@
       opacity: 1 !important;
       animation: none !important;
     }
+    /* THE actual washed-out bug (2026-07-22b): the fixed high-tech background
+       (.vx-tech-bg, z-index:1 — blur(90px) auroras + grid + particles) paints OVER
+       any in-flow element without a higher z-index. The old .image-bar-row carried
+       z-index:3 for exactly this reason; the swapped-in single-image banner didn't,
+       so the glow layer rendered on top and blurred it. Lift the banners above it. */
+    .image-placeholder-wide-16-9 {
+      z-index: 3;
+    }
     .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
     .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
     .image-placeholder-wide-16-9:has(img) > img, .image-placeholder-wide-16-9:has(video) > video,
