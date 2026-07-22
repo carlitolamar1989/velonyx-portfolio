@@ -513,16 +513,22 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.55;
+      /* Hologram-receptionist art (2026-07-22) is already deep navy/indigo with a
+         near-black left half under the headline — it can run brighter than the old
+         office photo without hurting text contrast. */
+      opacity: 0.8;
     }
 
     .hero-video-overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
+      /* Lightened (2026-07-22) for the hologram-receptionist art: the figure sits
+         right-of-center, so edge-heavy darkening hid it. Keep the top (nav) and
+         bottom (fold transition) anchored dark; let the middle breathe. */
       background:
-        linear-gradient(180deg, rgba(8, 12, 32, 0.72) 0%, rgba(8, 12, 32, 0.50) 40%, rgba(8, 12, 32, 0.70) 80%, rgba(6, 10, 28, 0.96) 100%),
-        radial-gradient(ellipse 120% 90% at 50% 42%, transparent 30%, rgba(8, 12, 32, 0.72) 68%, rgba(6, 10, 28, 0.92) 100%);
+        linear-gradient(180deg, rgba(8, 12, 32, 0.55) 0%, rgba(8, 12, 32, 0.22) 38%, rgba(8, 12, 32, 0.38) 78%, rgba(6, 10, 28, 0.94) 100%),
+        radial-gradient(ellipse 130% 100% at 50% 45%, transparent 48%, rgba(8, 12, 32, 0.38) 78%, rgba(6, 10, 28, 0.66) 100%);
     }
 
     .hero-bg {
