@@ -1236,9 +1236,9 @@
     .image-placeholder-thin-bar:has(img)::before, .image-placeholder-thin-bar:has(video)::before {
       content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
       border-radius: inherit;
-      background: linear-gradient(155deg, #0b1130 0%, #12245c 52%, #244aa0 100%);
+      background: linear-gradient(150deg, #123a8a 0%, #1e52c8 48%, #2e6bff 100%);
       mix-blend-mode: screen;
-      opacity: 0.58;
+      opacity: 0.64;
     }
     .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
     .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
