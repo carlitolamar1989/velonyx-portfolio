@@ -240,6 +240,10 @@
 
   <script>
     window.VX_DEMO_CONFIG = {
+      /* Real AI mode: free text goes to the shared Velonyx Lambda (Claude Sonnet 5)
+         with this business's persona; the local knowledge base below stays as the
+         offline fallback if the API is unreachable. */
+      ai: { apiUrl: 'https://v8yqczjbdd.execute-api.us-east-1.amazonaws.com/chat', businessId: 'realestate' },
       title: 'Diana Vega Realty — AI Assistant',
       subtitle: 'Las Vegas · always on',
       accent: '#c8a04e', accentText: '#231a0a',

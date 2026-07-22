@@ -383,6 +383,10 @@
   <!-- ═══════════════ AI CHAT (Velonyx demo convention) ═══════════════ -->
   <script>
     window.VX_DEMO_CONFIG = {
+      /* Real AI mode: free text goes to the shared Velonyx Lambda (Claude Sonnet 5)
+         with this business's persona; the local knowledge base below stays as the
+         offline fallback if the API is unreachable. */
+      ai: { apiUrl: 'https://v8yqczjbdd.execute-api.us-east-1.amazonaws.com/chat', businessId: 'garage' },
       title: 'Garage Door Kings — AI Assistant',
       subtitle: 'example conversation',
       accent: '#B8732E', accentText: '#0A0A0A',

@@ -237,11 +237,15 @@
   <!-- Floating launcher -->
   <div class="bl-fab">
     <button class="bl-chat" id="blChat" type="button">💬 Ask the AI</button>
-    <a class="bl-call" href="#" data-vx-demo="📞 On your live site, this calls the office. (This is a demo.)">📞 Call</a>
+    <a class="bl-call" href="https://velonyxsystems.com/" target="_blank" rel="noopener">📞 Talk to a Voice Agent</a>
   </div>
 
   <script>
     window.VX_DEMO_CONFIG = {
+      /* Real AI mode: free text goes to the shared Velonyx Lambda (Claude Sonnet 5)
+         with this business's persona; the local knowledge base below stays as the
+         offline fallback if the API is unreachable. */
+      ai: { apiUrl: 'https://v8yqczjbdd.execute-api.us-east-1.amazonaws.com/chat', businessId: 'tax' },
       title: 'Benjamin Lewis — AI Assistant',
       subtitle: 'tax · accounting · investments',
       accent: '#c9a24b', accentText: '#1a1205',
@@ -257,7 +261,8 @@
         { who:'ai',       text:'Booked — Tuesday 9:30 AM. Intake checklist texted to you.', type:1500, pause:2000 }
       ],
       matchThreshold: 0.3,
-      booking: { offer: 'consult', yes: "\\b(yes|yeah|yep|sure|ok|okay|sounds good|book it|let|works|morning|mornings|afternoon|please)\\b", confirm: 'Booked — Tuesday 9:30 AM. Intake checklist texted to you. Anything else I can help with?' },
+      /* (scripted booking intercept removed — the live AI now owns the booking
+         flow: it offers real slot choices and confirms in the same format) */
       knowledge: [
         { keywords:['tax prep','taxes','tax','file','filing','return','returns','1040','prepare'], a:"We prepare individual, LLC, S-corp, and partnership returns — filed accurately and on time, maximizing every deduction." },
         { keywords:['business','small business','llc','s-corp','scorp','corporation','self employed','self-employed','freelance','1099','partnership'], a:"Yes — we work with LLCs, S-corps, partnerships, and the self-employed, including entity setup and quarterly planning." },

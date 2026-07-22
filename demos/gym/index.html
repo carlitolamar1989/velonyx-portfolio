@@ -238,6 +238,10 @@
 
   <script>
     window.VX_DEMO_CONFIG = {
+      /* Real AI mode: free text goes to the shared Velonyx Lambda (Claude Sonnet 5)
+         with this business's persona; the local knowledge base below stays as the
+         offline fallback if the API is unreachable. */
+      ai: { apiUrl: 'https://v8yqczjbdd.execute-api.us-east-1.amazonaws.com/chat', businessId: 'gym' },
       title: 'Beach Body Fitness — AI Assistant',
       subtitle: 'Miami Beach · always on',
       accent: '#ff6a3d', accentText: '#ffffff',
