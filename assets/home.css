@@ -1224,22 +1224,9 @@
       padding: 0;
       isolation: isolate;
     }
-    /* ── Deep-navy/blue tint over filled media ──
-       The clips Carlos made ("customers reach out", "AI answers", "book while you
-       work", "your front desk never sleeps") are gold-on-pure-black. A screen-blend
-       overlay lifts only the blacks toward the SAME deep-navy + blue palette as the
-       "THESE ARE THE DEMOS" banner (#0b1130 base + #2e6bff blue glow) so all four read
-       as one system; the gold + white content stays vivid. No purple. */
-    .image-bar-slot:has(img)::before, .image-bar-slot:has(video)::before,
-    .image-placeholder-wide:has(img)::before, .image-placeholder-wide:has(video)::before,
-    .image-placeholder-wide-16-9:has(img)::before, .image-placeholder-wide-16-9:has(video)::before,
-    .image-placeholder-thin-bar:has(img)::before, .image-placeholder-thin-bar:has(video)::before {
-      content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      border-radius: inherit;
-      background: linear-gradient(150deg, #123a8a 0%, #1e52c8 48%, #2e6bff 100%);
-      mix-blend-mode: screen;
-      opacity: 0.64;
-    }
+    /* (Tint overlay removed 2026-07-22 — the story banner and the "front desk
+       never sleeps" banner are now single pre-colored Gemini images that already
+       match the navy/gold/blue brand, so no screen-blend tint is applied.) */
     .image-bar-slot:has(img) > img, .image-bar-slot:has(video) > video,
     .image-placeholder-wide:has(img) > img, .image-placeholder-wide:has(video) > video,
     .image-placeholder-wide-16-9:has(img) > img, .image-placeholder-wide-16-9:has(video) > video,

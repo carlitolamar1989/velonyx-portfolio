@@ -332,39 +332,12 @@
     </div>
   </section>
 
-  <!-- MOTION BAR — the visual answer to the problem above. Three portrait slots
-       (Customers Reach Out → AI Answers in Seconds → Booked While You Work)
-       running the same Remotion breathing-zoom + glow + sheen treatment. -->
-  <div class="image-bar-row">
-    <div class="image-bar-slot vx-hover vx-hover-media">
-      <video class="hero-motion" muted loop playsinline preload="none"
-             poster="assets/hero-slide-1.webp" width="2400" height="1350"
-             aria-label="Customers reach out">
-        <source src="assets/motion/hero-slide-1.mp4" type="video/mp4">
-        <img src="assets/hero-slide-1.webp" alt="Customers reach out" width="2400" height="1350">
-      </video>
-      <div class="story-cap" aria-hidden="true"><span class="story-cap-num">01</span><span class="story-cap-label">Customers reach out.</span></div>
-    </div>
-    <div class="image-bar-slot vx-hover vx-hover-media">
-      <video class="hero-motion" muted loop playsinline preload="none"
-             poster="assets/hero-slide-2.webp" width="2400" height="1350"
-             aria-label="AI answers in seconds">
-        <source src="assets/motion/hero-slide-2.mp4" type="video/mp4">
-        <img src="assets/hero-slide-2.webp" alt="AI answers in seconds" width="2400" height="1350">
-      </video>
-      <div class="story-cap" aria-hidden="true"><span class="story-cap-num">02</span><span class="story-cap-label">AI answers in seconds.</span></div>
-    </div>
-    <div class="image-bar-slot vx-hover vx-hover-media">
-      <!-- Slide 3 is MP4-only: the busy gold swirl compressed worse as VP9 and
-           pushing VP9 harder banded the gradients, so H.264 is the better pick. -->
-      <video class="hero-motion" muted loop playsinline preload="none"
-             poster="assets/hero-slide-3.webp" width="2400" height="1350"
-             aria-label="Booked while you work">
-        <source src="assets/motion/hero-slide-3.mp4" type="video/mp4">
-        <img src="assets/hero-slide-3.webp" alt="Booked while you work" width="2400" height="1350">
-      </video>
-      <div class="story-cap" aria-hidden="true"><span class="story-cap-num">03</span><span class="story-cap-label">Booked while you work.</span></div>
-    </div>
+  <!-- STORY BANNER (2026-07-22): the three steps are now ONE cohesive high-tech
+       image (01 Customers reach out → 02 AI answers in seconds → 03 Booked while
+       you work). Text + numbers are baked into the image; navy/gold/blue premium. -->
+  <div class="image-placeholder-wide-16-9 fade-in vx-hover vx-hover-media" style="max-width:1140px;">
+    <img src="assets/story-flow.webp" width="2000" height="1116" loading="lazy"
+         alt="How your AI works: customers reach out, the AI answers in seconds, and the appointment is booked while you work.">
   </div>
 
   <!-- AI LEAD SYSTEM — what the buyer is actually purchasing, explained.
@@ -381,13 +354,8 @@
       <!-- Anchor B: Wide 16:9 banner above the 4 step cards. Motion clip with
            WebP poster (instant paint) + IO-gated playback (see script near </body>). -->
       <div class="image-placeholder-wide-16-9 fade-in vx-hover vx-hover-media">
-        <video class="hero-motion" muted loop playsinline preload="none"
-               poster="assets/ai-system-banner.webp" width="2400" height="1350"
-               aria-label="Your front desk never sleeps">
-          <source src="assets/motion/ai-system-banner.webm" type="video/webm">
-          <source src="assets/motion/ai-system-banner.mp4" type="video/mp4">
-          <img src="assets/ai-system-banner.webp" alt="Your front desk never sleeps" width="2400" height="1350">
-        </video>
+        <img src="assets/ai-system-banner.webp" width="2000" height="1116" loading="lazy"
+             alt="Your front desk never sleeps — your AI receptionist works 24/7.">
       </div>
 
       <div class="ai-steps fade-in">
