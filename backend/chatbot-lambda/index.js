@@ -42,7 +42,8 @@ const MAX_HISTORY_TURNS = 20;
 const MAX_SMS_TURNS_PER_LEAD = 30;
 const MAX_FORM_TURNS = 15;
 const MAX_VOICE_TURNS = 25;
-const CALENDLY_URL = 'https://calendly.com/admin-velonyxsystems';
+// Booking moved to the Velonyx platform (in-conversation AI booking).
+const CALENDLY_URL = 'https://velonyx-platform.vercel.app';
 
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://velonyxsystems.com';
 const OWNER_EMAIL    = process.env.OWNER_EMAIL || 'admin@velonyxsystems.com';
