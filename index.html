@@ -340,6 +340,39 @@
          alt="How your AI works: customers reach out, the AI answers in seconds, and the appointment is booked while you work.">
   </div>
 
+  <!-- MEET VELONYX LIVE (2026-08-12): the golden orb from the story banner,
+       rendered ALIVE in code (assets/velonyx-live-chat.js mounts it). Chat CTA
+       opens the live widget (real platform AI); phone CTA is the same brain on
+       the 877; playground link is the full be-your-own-customer experience. -->
+  <section id="meet-velonyx" aria-label="Talk to the Velonyx AI live">
+    <style>
+      #meet-velonyx{max-width:1140px;margin:56px auto 8px;padding:0 20px}
+      .vxmv-card{display:flex;align-items:center;gap:40px;background:linear-gradient(135deg,#0D1020 0%,#08080A 70%);border:1px solid rgba(212,175,55,.28);border-radius:22px;padding:40px 44px;overflow:hidden;position:relative}
+      .vxmv-card::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 18% 50%,rgba(212,175,55,.10),transparent 60%);pointer-events:none}
+      .vxmv-orb{flex:0 0 auto;width:200px;height:200px;position:relative;z-index:1}
+      .vxmv-orb canvas{width:200px;height:200px;display:block}
+      .vxmv-copy{position:relative;z-index:1}
+      .vxmv-copy h2{font-family:'Space Grotesk',sans-serif;color:#F0EDE8;font-size:clamp(1.5rem,3.4vw,2.1rem);margin:0 0 10px;letter-spacing:.01em}
+      .vxmv-copy p{color:rgba(240,237,232,.62);font-size:1.02rem;line-height:1.6;margin:0 0 22px;max-width:560px}
+      .vxmv-ctas{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+      .vxmv-alt{display:inline-block;padding:13px 20px;border-radius:10px;border:1px solid rgba(212,175,55,.45);color:#D4AF37;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;transition:background .15s ease}
+      .vxmv-alt:hover{background:rgba(212,175,55,.1)}
+      @media (max-width:760px){.vxmv-card{flex-direction:column;gap:20px;padding:30px 22px;text-align:center}.vxmv-ctas{justify-content:center}.vxmv-orb,.vxmv-orb canvas{width:150px;height:150px}}
+    </style>
+    <div class="vxmv-card">
+      <div class="vxmv-orb"><canvas data-vx-orb width="200" height="200" aria-hidden="true"></canvas></div>
+      <div class="vxmv-copy">
+        <h2>Meet your AI. It&rsquo;s awake right now.</h2>
+        <p>This orb isn&rsquo;t a mockup &mdash; it&rsquo;s connected to the exact AI we sell, live. Chat with it here, call it on our real business line, or step into the playground and watch it become <em>your</em> receptionist.</p>
+        <div class="vxmv-ctas">
+          <a href="#" class="btn-primary" data-vx-chat-open>Chat with it now</a>
+          <a href="tel:+18773178643" class="vxmv-alt">Call it &mdash; (877)&nbsp;317&#8209;8643</a>
+          <a href="https://velonyx-playground.vercel.app" class="vxmv-alt" target="_blank" rel="noopener">Open the playground &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- AI LEAD SYSTEM — what the buyer is actually purchasing, explained.
        Heading is intentionally NOT a "front desk" line, because the banner
        graphic below already says it. Heading sets up the 4-step explanation. -->
@@ -976,10 +1009,11 @@
   </script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
-  <!-- AI lead-system demo widget: floating bottom-LEFT panel that auto-plays a
-       Customer ↔ AI SMS exchange on loop. Desktop only (≥1024px); shows the
-       product running in miniature so visitors see what they get. -->
-  <script src="/assets/velonyx-ai-demo-widget.js" defer></script>
+  <!-- LIVE AI chat (2026-08-12): the golden-orb widget wired to the REAL
+       platform brain (same AI that answers the 877 line). Replaces the old
+       canned auto-play demo widget (velonyx-ai-demo-widget.js stays in the
+       repo unused). Also animates the #meet-velonyx section orb. -->
+  <script src="/assets/velonyx-live-chat.js" defer></script>
   <!-- "$0 down" offer pop-up REMOVED at Carlos's request (2026-07-22).
        The file assets/velonyx-offer-popup.js stays in the repo unused —
        re-add this one script tag if he ever wants it back. -->
