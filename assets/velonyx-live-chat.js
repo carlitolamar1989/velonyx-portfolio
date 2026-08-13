@@ -21,8 +21,8 @@
 
   var API_URL = "https://velonyx-platform.vercel.app/api/chat";
   var GOLD = "#D4AF37";
-  var BLUE = "#4DA3FF";
-  var CYAN = "#6EE7FF";
+  var PURPLE = "#7C63F6";
+  var VIOLET = "#B7A8FF";
   var NAVY = "#0B0E1A";
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -43,9 +43,9 @@
 
     var RIBBONS = [
       { color: GOLD, rx: 0.42, ry: 0.16, tilt: 0.5, speed: 1.0, width: 2.2 },
-      { color: CYAN, rx: 0.40, ry: 0.20, tilt: 2.1, speed: -1.35, width: 1.6 },
+      { color: VIOLET, rx: 0.40, ry: 0.20, tilt: 2.1, speed: -1.35, width: 1.6 },
       { color: GOLD, rx: 0.36, ry: 0.24, tilt: 3.9, speed: 1.7, width: 1.4 },
-      { color: BLUE, rx: 0.43, ry: 0.13, tilt: 5.2, speed: -0.8, width: 1.8 },
+      { color: PURPLE, rx: 0.43, ry: 0.13, tilt: 5.2, speed: -0.8, width: 1.8 },
       { color: "#F5DFA0", rx: 0.30, ry: 0.27, tilt: 1.2, speed: 2.2, width: 1.0 },
     ];
 
@@ -63,7 +63,7 @@
       var g = ctx.createRadialGradient(c, c, 0, c, c, c * 0.5 * breathe);
       g.addColorStop(0, "rgba(255,236,170," + 0.85 * glow * 0.7 + ")");
       g.addColorStop(0.45, "rgba(212,175,55," + 0.4 * glow * 0.7 + ")");
-      g.addColorStop(1, "rgba(77,163,255,0)");
+      g.addColorStop(1, "rgba(124,99,246,0)");
       ctx.fillStyle = g;
       ctx.beginPath();
       ctx.arc(c, c, c * 0.5 * breathe, 0, Math.PI * 2);
@@ -95,7 +95,7 @@
         var rad = c * (0.62 + 0.1 * Math.sin(t + p));
         var px = c + Math.cos(a) * rad;
         var py = c + Math.sin(a) * rad * 0.55;
-        ctx.fillStyle = p % 2 ? CYAN : GOLD;
+        ctx.fillStyle = p % 2 ? VIOLET : GOLD;
         ctx.shadowColor = ctx.fillStyle;
         ctx.shadowBlur = 8 * (s / 128);
         ctx.beginPath();
@@ -162,7 +162,7 @@
     "#vxlc-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}" +
     ".vxlc-m{max-width:85%;padding:9px 13px;border-radius:14px;font-size:14px;line-height:1.45;color:#F0EDE8;white-space:pre-wrap;word-wrap:break-word}" +
     ".vxlc-ai{align-self:flex-start;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.22);border-bottom-left-radius:4px}" +
-    ".vxlc-me{align-self:flex-end;background:rgba(77,163,255,.14);border:1px solid rgba(77,163,255,.28);border-bottom-right-radius:4px}" +
+    ".vxlc-me{align-self:flex-end;background:rgba(124,99,246,.16);border:1px solid rgba(124,99,246,.34);border-bottom-right-radius:4px}" +
     ".vxlc-dots{align-self:flex-start;color:rgba(240,237,232,.6);font-size:18px;letter-spacing:3px;padding:4px 13px}" +
     "#vxlc-consent{display:flex;gap:8px;align-items:flex-start;padding:8px 14px 0;font-size:11px;color:rgba(240,237,232,.55);line-height:1.4}" +
     "#vxlc-consent input{margin-top:2px;accent-color:" + GOLD + "}" +
