@@ -2,6 +2,9 @@
 *.swp
 *.swo
 .env
+.env.local
+.env.*
+!.env.example
 node_modules/
 
 # Sensitive business documents (not for public repo)
@@ -23,3 +26,4 @@ velonyx-website/backend/
 backend/chatbot-lambda/function.zip
 backend/chatbot-lambda/package-lock.json
 velonyx-platform/
+_site/

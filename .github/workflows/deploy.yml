@@ -25,10 +25,23 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # SECURITY: publish ONLY the public site. Uploading '.' served the whole
+      # repo from velonyxsystems.com — Lambda source, AI system prompts,
+      # internal docs, the AWS console URL — all publicly downloadable.
+      - name: Assemble public site
+        run: |
+          set -euo pipefail
+          rm -rf _site && mkdir _site
+          cp -R assets demos industries connect _site/
+          cp *.html CNAME robots.txt sitemap.xml favicon.ico humans.txt contact.vcf _site/
+          # Belt-and-braces: never ship these even if a future edit re-adds them
+          find _site -name '*.md' -delete
+          find _site -type d \( -name node_modules -o -name .git -o -name .claude \) -prune -exec rm -rf {} + || true
+          echo "Publishing:"; ls _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

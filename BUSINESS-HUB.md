@@ -23,7 +23,7 @@ The booking system runs on a serverless AWS backend:
 | **Twilio** | Sends SMS confirmation texts to clients from (877) 317-8643 |
 | **IAM User** | `velonyx-admin` — admin user (root key deleted, best practice) |
 
-**AWS Console Login:** `https://964604399458.signin.aws.amazon.com/console`
+**AWS Console Login:** `https://<ACCOUNT-ID>.signin.aws.amazon.com/console  (ID in the password manager — not in this file)`
 **Twilio Dashboard:** `https://console.twilio.com`
 
 ### Client Demo Sites

@@ -192,6 +192,23 @@ function jsonResponse(status, payload) {
 function getPath(event) {
   return (event && (event.rawPath || (event.requestContext && event.requestContext.http && event.requestContext.http.path))) || '';
 }
+
+// Reconstruct the exact public URL Twilio posted to (it signs the full URL incl.
+// query string). API Gateway HTTP API: host + rawPath + rawQueryString.
+function publicUrl(event) {
+  const h = (event && event.headers) || {};
+  const host = h['x-forwarded-host'] || h['X-Forwarded-Host'] || h.host || h.Host || '';
+  const proto = h['x-forwarded-proto'] || h['X-Forwarded-Proto'] || 'https';
+  const qs = event && event.rawQueryString ? ('?' + event.rawQueryString) : '';
+  return proto + '://' + host + getPath(event) + qs;
+}
+function twilioAuthorized(event) {
+  const h = (event && event.headers) || {};
+  const sig = h['x-twilio-signature'] || h['X-Twilio-Signature'] || null;
+  return twilio.verifySignature(publicUrl(event), rawBody(event), sig);
+}
+const TWILIO_REJECT = { statusCode: 403, headers: { 'Content-Type': 'text/plain' }, body: 'invalid signature' };
+
 function getMethod(event) {
   return (event && event.requestContext && event.requestContext.http && event.requestContext.http.method) || 'POST';
 }
@@ -569,6 +586,7 @@ function collectFormTranscript(history, latestUser, latestBot) {
 // ──────────────────────────────────────────────────────────────────────────────
 
 async function handleSmsInbound(event) {
+  if (!twilioAuthorized(event)) { console.error('[sms/inbound] rejected: bad X-Twilio-Signature'); return TWILIO_REJECT; }
   // Twilio sends application/x-www-form-urlencoded (API GW base64-encodes it)
   const raw = rawBody(event);
   const parsed = twilio.parseInbound(raw);
@@ -712,14 +730,16 @@ async function ensureVoiceLead(from, callSid, via) {
 
 // POST /voice — the call just connected: greet + open the first speech Gather.
 async function handleVoiceConnect(event) {
+  if (!twilioAuthorized(event)) { console.error('[voice] rejected: bad X-Twilio-Signature'); return TWILIO_REJECT; }
   const parsed = twilio.parseVoice(rawBody(event));
   await ensureVoiceLead(parsed.from, parsed.callSid, 'voice_connect'); // capture the call early
-  const greeting = "Thanks for calling Velonyx Systems. You've reached our A.I. assistant — I can answer questions and get you booked. How can I help?";
+  const greeting = "Thanks for calling Velonyx Systems. You've reached our A.I. assistant, and this call is transcribed so I can help you and so our team can follow up. I can answer questions and get you booked. How can I help?";
   return voiceXml(twilio.twimlGather(greeting, voiceTurnPath(event)));
 }
 
 // POST /voice/turn — a caller turn (SpeechResult) OR a <Dial> status callback.
 async function handleVoiceTurn(event) {
+  if (!twilioAuthorized(event)) { console.error('[voice/turn] rejected: bad X-Twilio-Signature'); return TWILIO_REJECT; }
   const parsed = twilio.parseVoice(rawBody(event));
   const from = parsed.from;
   const turnPath = voiceTurnPath(event);

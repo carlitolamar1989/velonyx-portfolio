@@ -74,11 +74,12 @@
       <h1 class="page-title">Privacy <span>Policy</span></h1>
       <p class="page-subtitle">How we collect, use, and protect your information.</p>
     </div>
-    <p class="effective-date">Last updated: August 1, 2026</p>
+    <p class="effective-date">Last updated: August 15, 2026</p>
     <div class="content">
 
       <h3>1. Who We Are</h3>
-      <p><strong>Velonyx Systems LLC</strong> ("we," "us," "our") is a web design and digital infrastructure company. This privacy policy explains how we collect, use, and protect your personal information when you visit our website at <a href="https://velonyxsystems.com">velonyxsystems.com</a>, use our client portal, or engage our services.</p>
+      <p><strong>Velonyx Systems LLC</strong> ("we," "us," "our") builds and operates AI front-desk systems for businesses &mdash; an AI assistant that answers customer questions by website chat, text message, phone, and social media messaging, and books appointments. This privacy policy explains how we collect, use, and protect your personal information when you visit <a href="https://velonyxsystems.com">velonyxsystems.com</a>, talk to our AI assistant (by chat, text, phone, or on our playground), use a client portal, or engage our services.</p>
+      <p><strong>Two roles.</strong> When you interact with Velonyx directly (our website, our own AI assistant, our sales process), we are the business responsible for your data. When you interact with the AI front desk of one of <em>our clients</em> (a business that uses our platform), that business is responsible for your data and we process it only on their behalf and under their instructions &mdash; contact that business for privacy requests about those conversations.</p>
       <p>Contact: <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> | (877) 317-8643</p>
 
       <div class="section-divider"></div>
@@ -87,9 +88,11 @@
       <p>We collect the following types of information:</p>
       <p><strong>Information you provide directly:</strong></p>
       <ul>
-        <li>Name, email address, and phone number (via booking forms)</li>
+        <li>Name, email address, and phone number (via booking forms, our website chat, or by texting or calling us)</li>
         <li>Business name and description (via consultation requests)</li>
-        <li>Files you upload to the client portal (logos, photos, videos, documents)</li>
+        <li><strong>Conversation content:</strong> the messages you exchange with our AI assistant by website chat, SMS, or social media messaging, and <strong>phone calls</strong> with our AI assistant, which are transcribed to text so the assistant can respond. Transcripts and message history are stored so we can follow up, book your appointment, and let a human on our team review the conversation.</li>
+        <li>Appointment details you book (date, time, what it&rsquo;s about)</li>
+        <li>Files you upload to a client portal (logos, photos, videos, documents)</li>
         <li>Payment information (processed securely by Stripe &mdash; we never store your card details)</li>
       </ul>
       <p><strong>Information collected automatically:</strong></p>
@@ -99,19 +102,21 @@
         <li>IP address and general location (city/country)</li>
         <li>Referring website (how you found us)</li>
       </ul>
-      <p>We use <strong>Google Analytics (GA4)</strong> to collect anonymous usage data. This helps us understand how visitors use our site so we can improve it.</p>
+      <p>With your consent (see Cookies below), we use <strong>Google Analytics (GA4)</strong> to understand how visitors use our site, and the <strong>Meta (Facebook) Pixel</strong> to measure whether our advertising works and to show our ads to people who visited our site.</p>
 
       <div class="section-divider"></div>
 
       <h3>3. How We Use Your Information</h3>
       <ul>
-        <li>To respond to your consultation requests and provide our services</li>
-        <li>To send booking confirmations, project updates, and appointment reminders via email and SMS</li>
+        <li>To answer your questions and respond to your requests through our AI assistant and our team</li>
+        <li>To qualify your inquiry, book appointments, and send booking confirmations, reminders, and follow-ups via email and SMS</li>
+        <li>To let a human on our team review and, when needed, take over a conversation the AI is handling</li>
         <li>To process payments through Stripe</li>
-        <li>To manage your project through our client portal</li>
-        <li>To improve our website and services based on usage patterns</li>
+        <li>To manage your project through a client portal</li>
+        <li>To improve our website, our AI assistant, and our services based on usage patterns and conversation outcomes</li>
       </ul>
-      <p>We do <strong>not</strong> sell, rent, or share your personal information with third parties for marketing purposes.</p>
+      <p><strong>You are talking to an AI.</strong> Our website chat, text-message line, phone line, and playground are answered by an AI assistant. It tells you so, and you can ask for a person at any time.</p>
+      <p>We do <strong>not</strong> sell your personal information. With your cookie consent, we share website-usage and conversion data with Google and Meta for analytics and advertising measurement, as described in Cookies below.</p>
 
       <div class="section-divider"></div>
 
@@ -126,8 +131,8 @@
       <h3>5. How We Protect Your Information</h3>
       <ul>
         <li><strong>Encryption:</strong> All data transmitted between your browser and our servers is encrypted using SSL/TLS (HTTPS).</li>
-        <li><strong>Secure storage:</strong> Client files are stored in Amazon Web Services (AWS) S3 with server-side encryption. Access is restricted to authorized personnel only.</li>
-        <li><strong>Authentication:</strong> Client portal accounts are protected by AWS Cognito with password policies requiring minimum 8 characters, uppercase letters, and numbers.</li>
+        <li><strong>Secure storage:</strong> Conversation data, leads, and bookings are stored in encrypted-at-rest databases (Supabase) with row-level access controls; client files are stored in Amazon Web Services (AWS) S3 with server-side encryption. Access is restricted to authorized personnel only.</li>
+        <li><strong>Authentication:</strong> Portal accounts require a password and are limited to an allowlist of authorized owners.</li>
         <li><strong>Payment security:</strong> All payment processing is handled by Stripe, which is PCI-DSS Level 1 compliant. We never see or store your credit card information.</li>
       </ul>
 
@@ -135,12 +140,18 @@
 
       <h3>6. Third-Party Services</h3>
       <p>We use the following third-party services to operate our business:</p>
+      <p>These providers process data only to deliver the service to us and are not permitted to use it for their own purposes.</p>
       <ul>
+        <li><strong>Anthropic</strong> &mdash; the AI model that powers our assistant; your conversation messages and call transcripts are sent to Anthropic to generate replies (<a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a>)</li>
+        <li><strong>Twilio</strong> &mdash; SMS messaging and phone calls (<a href="https://www.twilio.com/legal/privacy" target="_blank" rel="noopener">Twilio Privacy Policy</a>)</li>
+        <li><strong>Deepgram</strong> and <strong>ElevenLabs</strong> &mdash; speech-to-text and text-to-speech for phone calls with our AI assistant (<a href="https://deepgram.com/privacy" target="_blank" rel="noopener">Deepgram Privacy</a>, <a href="https://elevenlabs.io/privacy" target="_blank" rel="noopener">ElevenLabs Privacy</a>)</li>
+        <li><strong>Meta Platforms</strong> &mdash; Instagram, Facebook Messenger, and WhatsApp messaging when you contact us on those channels; and the Meta Pixel for advertising measurement, with your cookie consent (<a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>)</li>
+        <li><strong>Google</strong> &mdash; Google Analytics (with consent) and Google Calendar for appointment booking (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>)</li>
+        <li><strong>Supabase</strong> &mdash; database hosting for conversations, leads, and bookings (<a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase Privacy Policy</a>)</li>
+        <li><strong>Vercel</strong> &mdash; application hosting (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a>)</li>
+        <li><strong>Resend</strong> &mdash; transactional email delivery (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">Resend Privacy Policy</a>)</li>
         <li><strong>Stripe</strong> &mdash; Payment processing (<a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe Privacy Policy</a>)</li>
-        <li><strong>Google Analytics</strong> &mdash; Website analytics (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>)</li>
-        <li><strong>Calendly</strong> &mdash; Appointment scheduling (<a href="https://calendly.com/privacy" target="_blank" rel="noopener">Calendly Privacy Policy</a>)</li>
-        <li><strong>Twilio</strong> &mdash; SMS messaging (<a href="https://www.twilio.com/legal/privacy" target="_blank" rel="noopener">Twilio Privacy Policy</a>)</li>
-        <li><strong>Amazon Web Services (AWS)</strong> &mdash; Cloud infrastructure and data storage (<a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">AWS Privacy Policy</a>)</li>
+        <li><strong>Amazon Web Services (AWS)</strong> &mdash; Cloud infrastructure and file storage (<a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">AWS Privacy Policy</a>)</li>
       </ul>
 
       <div class="section-divider"></div>
@@ -148,10 +159,11 @@
       <h3>7. Cookies</h3>
       <p>Our website uses cookies for:</p>
       <ul>
-        <li><strong>Analytics:</strong> Google Analytics uses cookies to track anonymous usage data (pages visited, session duration, device type).</li>
-        <li><strong>Authentication:</strong> Session cookies are used to keep you logged in to the client portal.</li>
+        <li><strong>Essential:</strong> session storage to keep you logged in to a portal and to remember your cookie choice.</li>
+        <li><strong>Analytics (optional):</strong> Google Analytics cookies that measure pages visited, session duration, and device type.</li>
+        <li><strong>Advertising measurement (optional):</strong> the Meta Pixel, which sets cookies to measure conversions from our ads and to show our ads to people who have visited our site.</li>
       </ul>
-      <p>We do not use advertising or tracking cookies. You can disable cookies in your browser settings at any time.</p>
+      <p>Analytics and advertising cookies are <strong>off until you click &ldquo;Accept&rdquo;</strong> on our cookie banner; choosing &ldquo;Reject non-essential&rdquo; keeps them off. To change your choice later, clear this site&rsquo;s data in your browser (or the <code>velonyx_cookie_consent</code> item in local storage) and you will be asked again. You can also block cookies in your browser settings at any time.</p>
 
       <div class="section-divider"></div>
 
@@ -169,7 +181,7 @@
       <div class="section-divider"></div>
 
       <h3>9. Data Retention</h3>
-      <p>We retain your personal information for as long as necessary to provide our services and fulfill the purposes described in this policy. Client project files are retained in our system for 1 year after project completion, after which they are moved to archival storage. You may request deletion of your data at any time.</p>
+      <p>We retain your personal information for as long as necessary to provide our services and fulfill the purposes described in this policy. Conversation transcripts, leads, and bookings are kept while the relationship is active and for a reasonable period afterward for follow-up and record-keeping; playground (demo) conversations are cleared daily. Client project files are retained for 1 year after project completion, after which they are moved to archival storage. You may request deletion of your data at any time by emailing <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a>, and we will delete it unless we are required to keep it (for example, SMS consent and opt-out records, which we retain as legally required evidence).</p>
 
       <div class="section-divider"></div>
 

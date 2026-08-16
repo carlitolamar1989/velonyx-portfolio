@@ -67,7 +67,7 @@ try {
     banner.setAttribute('role','dialog');
     banner.setAttribute('aria-label','Cookie consent');
     banner.innerHTML = ''
-      + '<div class="vx-cb-text">We use cookies for analytics and site functionality. You can accept all cookies or reject non-essential cookies. See our <a href="/privacy.html">Privacy Policy</a> for details.</div>'
+      + '<div class="vx-cb-text">We use cookies for site functionality, analytics, and advertising measurement (Google Analytics and the Meta Pixel). You can accept all cookies or reject non-essential cookies. See our <a href="/privacy.html">Privacy Policy</a> for details.</div>'
       + '<div class="vx-cb-actions">'
         + '<button type="button" class="vx-cb-reject" id="vx-cb-reject">Reject Non-Essential</button>'
         + '<button type="button" class="vx-cb-accept" id="vx-cb-accept">Accept Cookies</button>'

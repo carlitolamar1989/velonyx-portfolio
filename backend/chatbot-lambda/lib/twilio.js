@@ -14,6 +14,7 @@
  */
 const http = require('./http');
 const querystring = require('querystring');
+const crypto = require('crypto');
 
 const SID         = process.env.TWILIO_ACCOUNT_SID || '';
 const TOKEN       = process.env.TWILIO_AUTH_TOKEN  || '';
@@ -156,7 +157,30 @@ function twimlDial(number, sayText, actionPath) {
     + '</Response>';
 }
 
+
+// ── Webhook authentication ────────────────────────────────────────────────────
+// Twilio signs every webhook: HMAC-SHA1 over (full public URL + POST params
+// concatenated key+value in sorted key order), keyed with the auth token,
+// base64, sent as X-Twilio-Signature. Without this check, anyone who learns
+// the webhook URL can POST a fake inbound SMS/call and make this account SEND
+// texts (the AI replies) to a number of their choosing — toll fraud and brand
+// abuse on our own number. Fails CLOSED when the auth token is configured;
+// when it isn't (local dev), the check is skipped with a log line.
+function verifySignature(fullUrl, rawFormBody, signatureHeader) {
+  if (!TOKEN) { console.log('[twilio] no TWILIO_AUTH_TOKEN — signature check skipped (local only)'); return true; }
+  if (!signatureHeader) return false;
+  const params = querystring.parse(rawFormBody || '');
+  const data = fullUrl + Object.keys(params).sort().map(function (k) {
+    const v = params[k]; return k + (Array.isArray(v) ? v.join('') : (v == null ? '' : String(v)));
+  }).join('');
+  const expected = crypto.createHmac('sha1', TOKEN).update(data, 'utf8').digest();
+  let provided;
+  try { provided = Buffer.from(String(signatureHeader), 'base64'); } catch (e) { return false; }
+  return provided.length === expected.length && crypto.timingSafeEqual(provided, expected);
+}
+
 module.exports = {
+  verifySignature: verifySignature,
   configured: configured,
   sendSms: sendSms,
   parseInbound: parseInbound,

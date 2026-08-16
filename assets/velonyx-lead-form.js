@@ -76,7 +76,8 @@
     + '#vx-form-send:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,175,55,0.4);}'
     + '#vx-form-send:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}'
     + '#vx-form-send svg{width:18px;height:18px;}'
-    + '#vx-form-footnote{padding:9px 16px 13px;font-size:0.68rem;color:rgba(240,237,232,0.42);text-align:center;border-top:1px solid rgba(212,175,55,0.05);background:#08080A;letter-spacing:0.2px;}'
+    + '#vx-form-footnote{display:flex;gap:9px;align-items:flex-start;padding:10px 16px 13px;font-size:0.74rem;line-height:1.4;color:rgba(240,237,232,0.72);text-align:left;border-top:1px solid rgba(212,175,55,0.08);background:#08080A;letter-spacing:0.2px;cursor:pointer;}'
+    + '#vx-form-footnote input{margin:2px 0 0;width:16px;height:16px;flex:0 0 auto;accent-color:#D4AF37;cursor:pointer;}'
     + '#vx-form-footnote a{color:rgba(212,175,55,0.7);text-decoration:none;}';
 
   // ── DOM build ──────────────────────────────────────────────────────────────
@@ -106,7 +107,10 @@
     + '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>'
     + '    </button>'
     + '  </div>'
-    + '  <div id="vx-form-footnote">By continuing you consent to be contacted by SMS &amp; email. Reply STOP to opt out. <a href="/privacy.html">Privacy</a></div>'
+    + '  <label id="vx-form-footnote" for="vx-form-consent">'
+    + '    <input type="checkbox" id="vx-form-consent" aria-describedby="vx-form-consent-text">'
+    + '    <span id="vx-form-consent-text">I agree to receive text messages and email from Velonyx Systems at the number I provide (this chat is an AI assistant). Consent is not a condition of purchase. Msg frequency varies; msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. <a href="/sms-terms.html">SMS Terms</a> &middot; <a href="/privacy.html">Privacy</a></span>'
+    + '  </label>'
     + '</div>';
 
   var root = document.createElement('div');
@@ -222,8 +226,18 @@
     inputEl.style.height = Math.min(90, inputEl.scrollHeight) + 'px';
   });
 
+  // ── SMS consent gate (TCPA: express written consent BEFORE any text is sent) ─
+  var consentEl = document.getElementById('vx-form-consent');
+  function hasConsent() { return !!(consentEl && consentEl.checked); }
+  function syncSendState() { sendBtn.disabled = !hasConsent(); }
+  if (consentEl) { consentEl.addEventListener('change', syncSendState); syncSendState(); }
+
   // ── AI mode: POST to Lambda /form-turn ────────────────────────────────────
   function sendToLambda(text) {
+    if (!hasConsent()) {
+      appendMessage('bot', "Please tick the consent box below first — I can only text you with your OK.");
+      return;
+    }
     showTyping();
     fetch(FORM_API_URL, {
       method: 'POST',
@@ -232,7 +246,7 @@
         sessionId: sessionId,
         message: text,
         history: history.slice(-20),
-        formState: { context: pendingContext },
+        formState: { context: pendingContext, smsConsent: true, consentTextVersion: '2026-08-15' },
         chatbot_meta: {
           turns: turnCount,
           session_duration_ms: Date.now() - sessionStartMs,
@@ -259,14 +273,14 @@
         inputEl.placeholder = "Conversation continues over SMS";
         sendBtn.disabled = true;
       } else {
-        sendBtn.disabled = false;
+        syncSendState();
       }
     })
     .catch(function(err) {
       hideTyping();
       console.warn('form-turn failed:', err);
       appendMessage('bot', "I'm having trouble — drop your phone number and we'll text you within 60 seconds.", { error: true });
-      sendBtn.disabled = false;
+      syncSendState();
     });
   }
 
@@ -275,6 +289,10 @@
   // deployed). Mirrors the old booking modal's contract so leads keep landing.
   var FALLBACK_STATE = { step: 0, name: '', phone: '', interest: '' };
   function sendToFallback(text) {
+    if (!hasConsent()) {
+      appendMessage('bot', "Please tick the consent box below first — I can only text you with your OK.");
+      return;
+    }
     showTyping();
     setTimeout(function() {
       hideTyping();
