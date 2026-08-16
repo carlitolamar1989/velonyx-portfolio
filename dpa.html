@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Processing Agreement — Velonyx Systems</title>
+  <meta name="description" content="Velonyx Systems Data Processing Agreement / CCPA service-provider addendum: roles, processing instructions, subprocessor list, security measures, breach notification, deletion and return.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/dpa.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-light);margin:24px 0 8px;}
+    .content table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 16px;margin:14px 0 18px;background:rgba(255,255,255,0.02);}
+    .content blockquote p{margin-bottom:6px;}
+    .content code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--white);}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .content em{color:rgba(255,255,255,0.75);}
+    .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Legal</div>
+      <h1 class="page-title">Data Processing <span>Agreement</span></h1>
+      <p class="page-subtitle">How Velonyx processes your customers' data on your behalf — roles, subprocessors, security, breach notice, deletion.</p>
+    </div>
+    <p class="effective-date">Last updated: August 16, 2026</p>
+    <p class="vx-status">Velonyx Systems LLC · San Diego County, California · <a href="mailto:admin@velonyxsystems.com" style="color:var(--gold);text-decoration:none;">admin@velonyxsystems.com</a> · (877) 317-8643</p>
+    <div class="content">
+<p>This Data Processing Agreement (&quot;DPA&quot;) forms part of the Master Services Agreement (or, for Customers without a signed MSA, the Terms of Service) between <strong>Velonyx Systems LLC</strong> (&quot;Velonyx,&quot; &quot;Processor,&quot; &quot;Service Provider&quot;) and the customer named in that agreement (&quot;Client,&quot; &quot;Controller,&quot; &quot;Business&quot;). It applies whenever Velonyx processes Client Data to provide the Service.</p>
+<hr>
+<h2>1. Roles</h2>
+<p>1.1 <strong>Client Data</strong> means personal information of Client&#39;s customers, prospects, and staff processed through Client&#39;s Instance: names, phone numbers, email addresses, message content on all channels, voice-call audio (transient) and transcripts, appointment details, lead qualification answers, consent and opt-out records, and portal usage by Client&#39;s owners.</p>
+<p>1.2 For Client Data, <strong>Client is the controller</strong> (GDPR) / <strong>business</strong> (CCPA) and <strong>Velonyx is the processor / service provider.</strong> Velonyx processes Client Data only on Client&#39;s documented instructions.</p>
+<p>1.3 For Velonyx&#39;s own website visitors and Velonyx&#39;s own sales conversations, Velonyx is the controller; that processing is governed by Velonyx&#39;s Privacy Policy, not this DPA.</p>
+<p>1.4 Client&#39;s customers may also interact with Client via Meta platforms (Instagram, Messenger, WhatsApp) and carriers; those platforms are independent controllers for their own processing under their own terms.</p>
+<h2>2. Processing instructions</h2>
+<p>2.1 <strong>Instructions.</strong> Client instructs Velonyx to process Client Data to: receive and answer inbound messages and calls with the AI assistant; transcribe calls; qualify leads; book and confirm appointments; send SMS/DM confirmations, reminders, follow-ups, and Client-initiated campaigns; display conversations in the portal; generate the monthly report; enforce opt-outs and spend limits; and maintain, secure, back up, and support the Instance. Additional instructions must be in writing (email suffices) and within the scope of the Service.</p>
+<p>2.2 <strong>Nature, purpose, duration:</strong> automated and human-assisted processing to operate an AI front desk for Client&#39;s business, for the term of the subscription plus the 30-day transition period.</p>
+<p>2.3 <strong>Categories of data subjects:</strong> Client&#39;s prospective and existing customers, callers, and messaging contacts; Client&#39;s owners and staff using the portal.</p>
+<p>2.4 <strong>Categories of data:</strong> Section 1.1. <strong>Prohibited categories:</strong> the sensitive data listed in Section 9 — Client instructs Velonyx <strong>not</strong> to process them and will not knowingly submit them.</p>
+<p>2.5 Velonyx will inform Client if, in its opinion, an instruction infringes applicable data-protection law, and may suspend that instruction until resolved.</p>
+<p>2.6 <strong>No AI training.</strong> Velonyx does not use Client Data to train or fine-tune AI models. Its AI provider (Anthropic) does not train on API inputs or outputs under its commercial terms; for speech vendors Velonyx opts out of any model-improvement program the vendor offers.</p>
+<h2>3. Subprocessors</h2>
+<p>3.1 Client authorizes the subprocessors below. Velonyx has a written agreement with each (their published data-processing terms, accepted on Velonyx&#39;s account) imposing data-protection obligations no less protective than this DPA, and flows down the CCPA service-provider terms in Section 10 to each subcontractor on the same terms.</p>
+<table>
+<thead>
+<tr>
+<th>Subprocessor</th>
+<th>Purpose</th>
+<th>Data</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anthropic, PBC</td>
+<td>AI model that generates the assistant&#39;s replies</td>
+<td>Message text, call transcripts, knowledge base</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Twilio Inc.</td>
+<td>SMS delivery, voice calls, phone numbers</td>
+<td>Phone numbers, message text, call audio/metadata</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Deepgram, Inc.</td>
+<td>Speech-to-text for voice calls</td>
+<td>Call audio (transient), transcripts</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>ElevenLabs, Inc.</td>
+<td>Text-to-speech for the AI voice</td>
+<td>Reply text</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Meta Platforms, Inc.</td>
+<td>Instagram DM, Facebook Messenger, WhatsApp delivery</td>
+<td>Message text, sender IDs</td>
+<td>USA / global</td>
+</tr>
+<tr>
+<td>Google LLC</td>
+<td>Google Calendar (booking); Google Analytics on Client&#39;s site if enabled</td>
+<td>Appointment details, contact name/phone in events; site usage</td>
+<td>USA / global</td>
+</tr>
+<tr>
+<td>Supabase, Inc.</td>
+<td>Database and authentication for the Instance</td>
+<td>All Client Data at rest</td>
+<td>USA (Oregon, us-west-2)</td>
+</tr>
+<tr>
+<td>Vercel Inc.</td>
+<td>Application hosting and serverless functions</td>
+<td>All Client Data in transit / processing</td>
+<td>USA / global edge</td>
+</tr>
+<tr>
+<td>Resend, Inc.</td>
+<td>Transactional email (owner alerts, reports)</td>
+<td>Owner email addresses, report content</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Stripe, Inc.</td>
+<td>Payments (when live) — Client&#39;s payments to Velonyx only</td>
+<td>Client&#39;s billing details (not end-customer data)</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Amazon Web Services, Inc.</td>
+<td>Legacy chatbot backend and file storage (Velonyx marketing site; some legacy instances)</td>
+<td>Message text, uploaded files</td>
+<td>USA (us-east-1)</td>
+</tr>
+<tr>
+<td>Fly.io</td>
+<td>Voice relay server (real-time audio between Twilio and the speech services)</td>
+<td>Call audio (transient), transcripts in flight</td>
+<td>USA (Virginia, iad)</td>
+</tr>
+</tbody></table>
+<p>3.2 <strong>Changes.</strong> Velonyx will give Client at least <strong>30 days&#39; notice</strong> by email before adding or replacing a subprocessor that processes Client Data (the current list is also published at velonyxsystems.com/privacy.html §6). Client may object on reasonable data-protection grounds within that period; if the Parties cannot resolve the objection, Client may cancel the affected Service without penalty and receive a pro-rated refund of prepaid fees.</p>
+<p>3.3 Velonyx remains responsible for its subprocessors&#39; performance.</p>
+<h2>4. Security measures</h2>
+<p>Velonyx maintains, and will not materially reduce during the term, the following (as implemented in the Template as of this draft):</p>
+<ul>
+<li><strong>Isolation:</strong> each Client has a dedicated Instance — separate deployment, separate database project, separate configuration; no shared multi-tenant database.</li>
+<li><strong>Access control in the database:</strong> row-level security on every table holding Client Data; read/write limited to an explicit <strong>owner allowlist</strong> (<code>portal_owners</code>) — a valid login is not enough; the email must be allowlisted. Public sign-ups disabled on the Instance&#39;s auth. Server-side API routes use service credentials that never reach the browser.</li>
+<li><strong>Encryption:</strong> TLS for all data in transit (browser, webhooks, subprocessor APIs); encryption at rest for the database and file storage.</li>
+<li><strong>Secrets:</strong> all credentials in environment variables / secret store; never in code or repositories (verified by history scan); rotated at Transfer and on personnel change.</li>
+<li><strong>Webhook authenticity:</strong> inbound Twilio and Meta webhooks are cryptographically signature-verified; requests with missing or invalid signatures are rejected in production. Scheduled-job endpoints require a secret and fail closed if it is missing; constant-time comparisons.</li>
+<li><strong>Abuse and spend limits:</strong> per-Instance daily caps on AI usage and SMS with alert-and-pause; per-sender rate limits; outbound SMS restricted to valid North American numbers to prevent toll fraud via injected numbers.</li>
+<li><strong>Logging hygiene:</strong> hosted logs mask phone numbers and do not include message bodies.</li>
+<li><strong>Consent and opt-out:</strong> STOP/HELP handled automatically; suppression list checked before every automated send; campaigns require a recorded consent attestation.</li>
+<li><strong>Personnel:</strong> access to Client Data limited to Velonyx personnel who need it for support; bound by confidentiality.</li>
+<li><strong>Backups:</strong> daily database backups retained for 7 days.</li>
+<li><strong>Testing:</strong> internal security review of the Template (most recent 2026-08-15) with findings remediated; no third-party audit or certification (SOC 2 / ISO 27001) is held, and none is represented.</li>
+</ul>
+<h2>5. Confidentiality and personnel</h2>
+<p>Velonyx ensures persons authorized to process Client Data are bound by confidentiality and receive appropriate instruction. Velonyx will not disclose Client Data to third parties other than subprocessors, or as required by law (with notice to Client where lawful).</p>
+<h2>6. Assistance to Client</h2>
+<p>6.1 <strong>Data subject / consumer requests.</strong> If Velonyx receives a request from Client&#39;s customer (access, deletion, correction, portability, opt-out), it will forward it to Client within 5 business days and not respond substantively except to direct the person to Client. On Client&#39;s request Velonyx will, within 10 business days, locate, export, correct, or delete the individual&#39;s Client Data across the Instance (conversations, leads, bookings, transcripts) and confirm in writing. Consent and opt-out records are retained as legally required evidence even after deletion.
+6.2 <strong>DPIAs and consultations.</strong> Reasonable assistance, at Client&#39;s cost if material.
+6.3 <strong>Audits.</strong> Once per year, on 30 days&#39; notice, Velonyx will answer a reasonable written security questionnaire and provide relevant documentation (this DPA, the security measures, subprocessor DPAs). On-site audits only where required by law or a supervisory authority, at Client&#39;s cost.</p>
+<h2>7. Personal-data breach</h2>
+<p>Velonyx will notify Client <strong>without undue delay and no later than 72 hours</strong> after becoming aware of a breach of security affecting Client Data, by email to Client&#39;s owner contacts, with what is known at the time (nature, categories and approximate numbers of individuals and records, likely consequences, measures taken and proposed), and will update as more is known. Velonyx will cooperate reasonably with Client&#39;s notifications to individuals and regulators. Notification is not an admission of fault. Client remains responsible for its own notices to individuals and regulators (for example under Cal. Civ. Code §1798.82).</p>
+<h2>8. Deletion and return</h2>
+<p>8.1 <strong>During the term:</strong> deletion of specific individuals&#39; data on Client&#39;s verified request under 6.1.
+8.2 <strong>On termination or expiry:</strong> for <strong>30 days</strong> after the subscription ends, Client may export Client Data from the portal or receive it as CSV/JSON on request; if the month-12 Transfer applies, the entire database project is transferred to Client instead. After the 30 days Velonyx <strong>deletes</strong> Client Data and the Instance (including subprocessor-side data it controls, such as call recordings/transcripts, and by instructing subprocessors to delete where they retain copies), and confirms in writing on request. Exceptions: SMS consent/opt-out logs and billing records kept as legally required, and residual copies in backups until they age out (7 days) — protected and not restored to production.
+8.3 Retention during the term: conversation data is retained for the life of the subscription so the AI, follow-ups, and reports work. Client may at any time delete an individual&#39;s data from the portal (Settings → Delete a customer&#39;s data) or ask Velonyx to purge older conversations in bulk.</p>
+<h2>9. Prohibited (sensitive) data</h2>
+<p>Client instructs Velonyx <strong>not</strong> to process, and will not knowingly submit through the Instance: protected health information (HIPAA); personal information of children under 16; payment-card numbers or financial account credentials; Social Security or government ID numbers; biometric identifiers; precise geolocation; or &quot;sensitive personal information&quot; (CPRA §1798.140(ae)) / special-category data (GDPR Art. 9). <strong>Velonyx does not sign HIPAA Business Associate Agreements.</strong> Client will configure the knowledge base and prompt so the AI redirects volunteered sensitive details rather than eliciting them, and will not use the Instance for these categories absent a <strong>separate written agreement</strong>. If Velonyx becomes aware such data has been submitted, it may delete it and will notify Client.</p>
+<h2>10. CCPA / CPRA — service-provider terms</h2>
+<p>To the extent the CCPA applies to Client Data, Velonyx: (a) will not <strong>sell</strong> or <strong>share</strong> (for cross-context behavioral advertising) Client Data; (b) will not retain, use, or disclose Client Data for any purpose other than the specific business purposes in Section 2 or as permitted by CCPA regulations, including not for Velonyx&#39;s commercial purposes or outside the direct business relationship; (c) will not combine Client Data with personal information from other sources except as permitted for service providers; (d) will comply with the CCPA and provide the same level of privacy protection; (e) grants Client the right to take reasonable steps to ensure Velonyx uses Client Data consistently with Client&#39;s obligations, and to stop and remediate unauthorized use; (f) will notify Client within 5 business days if it determines it can no longer meet its CCPA obligations; (g) will cooperate with Client in responding to consumer requests (Section 6); (h) engages subcontractors only under a written contract imposing these same obligations; and (i) certifies it understands and will comply with these restrictions.</p>
+<h2>11. International transfers (EU / UK / other)</h2>
+<p>11.1 Velonyx and its subprocessors process data in the United States. <strong>The Service is currently offered to Clients established outside the EEA, UK, and Switzerland.</strong> Velonyx has not executed EU Standard Contractual Clauses or the UK Addendum and does not represent that the Service meets GDPR/UK GDPR transfer requirements; Client must not route personal data of EEA/UK/Swiss residents through the Instance. If Velonyx later offers the Service to those regions, it will incorporate the SCCs (Module 2) and UK Addendum by amendment before onboarding.</p>
+<h2>12. Liability and precedence</h2>
+<p>Liability under this DPA is subject to the limitation of liability in the MSA / Terms, including the Enhanced Cap (three times the General Cap) that applies to Velonyx&#39;s breach of this DPA. In a conflict about the processing of Client Data, this DPA prevails over the MSA and Terms; the SCCs (once incorporated) prevail over this DPA.</p>
+<h2>13. Term</h2>
+<p>This DPA lasts as long as Velonyx processes Client Data, including the 30-day transition period, and Section 8 survives until deletion or transfer is complete.</p>
+<hr>
+<p><strong>Contact for data-protection matters:</strong> <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> (Carlos Glover), (877) 317-8643. (No EU/UK representative or DPO is required while the Service is not offered in those regions.)</p>
+
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

@@ -16,7 +16,7 @@ This SOW is issued under the Master Services Agreement dated [DATE] between Velo
 | Client business | [Trade name, industry, website if any] |
 | Client contact | [Name, role, email, mobile] |
 | Velonyx contact | Carlos Glover, admin@velonyxsystems.com, (877) 317-8643 |
-| Plan | [ ] Essentials — USD 700 build + USD 70/mo · [ ] Growth — USD 900 build + USD 150/mo · [ ] Elite — USD 1,200 build + USD 400/mo |
+| Plan | [ ] Essentials · [ ] Growth · [ ] Elite — at the monthly price published on velonyxsystems.com/#pricing on this date (below) |
 | Add-ons selected | [None / AI Video add-on — USD 200 per month] |
 | Target Go-Live | [DATE] (subject to Section 5) |
 | Sensitive-data screen | Client confirms it is / is not a HIPAA-covered entity or business associate: [IS / IS NOT]. If IS, this SOW is not valid without the separate agreement referenced in MSA §13. |
@@ -77,10 +77,11 @@ Delays in Client inputs extend the timeline day-for-day. If inputs are more than
 
 | Item | Amount | Due |
 |---|---|---|
-| Build fee | USD [700 / 900 / 1,200] per the plan above | On SOW signature; build starts on receipt |
-| Subscription | USD [70 / 150 / 400] / month (or 10 months' price for a prepaid year) | First charge at Go-Live; then monthly on the same calendar day |
+| Monthly price (months 1–12) | USD [amount] / month, comprising Build Portion USD [amount] + Service Portion USD [amount] | First charge at Go-Live; then monthly on the same calendar day |
+| Monthly price (month 13 onward) | USD [Service Portion] / month, month to month | — |
+| Early cancellation (months 1–12) | Unpaid Build Portion balance = USD [Build Portion] × months remaining; no other fee | Within 15 days of cancellation |
 | Add-on(s) | USD 200 / month (AI Video) | From the month enabled |
-| Included usage | Essentials: 300 AI conversations/mo · Growth: 1,000 conversations + 1,000 SMS segments/mo · Elite: Growth allowance + 500 voice minutes/mo. Above that: [ ] pause at daily cap and alert (default) · [ ] pass through at cost + 20% on next invoice | — |
+| Included usage | [per plan — conversations / SMS segments / voice minutes per month]. Above that: [ ] pause at daily cap and alert (default) · [ ] pass through at cost + 20% on next invoice | — |
 | Change requests | USD 95 / hour, quoted before work | Per change request |
 
 Third-party accounts in Client's name (domain registration, Meta, and after Transfer: hosting, database, telephony, AI usage) are Client's cost.

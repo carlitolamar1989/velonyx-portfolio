@@ -51,27 +51,23 @@ The **Service** is a done-for-you AI front desk: a branded website plus an AI as
 
 The Service is delivered as an **isolated instance** stamped from Velonyx's master template: your own deployment, your own database, your own configuration.
 
-### 10. Fees
+### 10. Fees — one monthly price, no large upfront fee
 
-| Plan | Build fee (one-time) | Subscription | What is included |
-|---|---|---|---|
-| **Essentials** | **USD 700** | **USD 70 / month** | Branded website; AI on web chat; booking on your Google Calendar with SMS confirmations to booked customers; owner portal + monthly report |
-| **Growth** | **USD 900** | **USD 150 / month** | Everything in Essentials + two-way AI on SMS, Instagram DM, and Facebook Messenger; automatic follow-ups; owner alerts |
-| **Elite** | **USD 1,200** | **USD 400 / month** | Everything in Growth + AI voice agent that answers calls; WhatsApp; one AI-produced short video per month |
-| **AI Video add-on** | — | **USD 200 / month** | One sales-focused short-form video per month; standalone or added to Essentials/Growth |
+You choose a plan — **Essentials, Growth, or Elite** — and pay **one monthly price**. The plans, what each includes, and their prices are those published at velonyxsystems.com/#pricing when you order, and they are restated in your Statement of Work (SOW), which controls.
 
-The build fee is due before build work starts. The subscription's first charge is at go-live, then monthly on the same calendar day. Prepay 12 months and pay for 10 (annual option, when offered). All prices in US dollars, exclusive of taxes.
-
-**Included usage (fair use).** Each plan includes generous monthly usage — Essentials: 300 AI conversations; Growth: 1,000 AI conversations and 1,000 SMS segments; Elite: Growth's allowance plus 500 voice minutes. Above that, third-party usage (SMS segments, voice minutes, AI tokens) is passed through at cost plus 20% with notice on your next invoice — or, if you prefer, your instance simply pauses at its daily spend cap and you are alerted (this is the default). Prices for existing subscriptions change only with 30 days' written notice, and you may cancel before the change applies.
-
-**Billing is not yet self-serve.** Until online checkout is live, fees are invoiced and paid by the method agreed on your call. When Stripe checkout is live, card payments are processed by Stripe; we never store card numbers.
+- **How the monthly price is made up during your first 12 months.** Each of your first 12 monthly payments covers two things: your share of the one-time build of your instance (the **"Build Portion"**) and that month's hosting, AI usage, and support (the **"Service Portion"**). Your SOW states both amounts. After 12 monthly payments the Build Portion is fully paid; you may take ownership of your instance (Section 12), and if you keep the Service the price drops to the **Service Portion alone**, month to month.
+- **Add-ons** (for example the AI Video add-on) are added to the monthly charge and can be dropped at the end of any billing period. **Annual prepay**, when offered: pay 10 months' price for 12.
+- **Included usage (fair use).** Each plan includes a generous monthly allowance of AI conversations, text segments, and (Elite) voice minutes, stated in your SOW. Above it, your instance pauses at its daily spend cap and alerts you (the default) or, if you elect in the SOW, the extra third-party usage is passed through at cost plus 20% on your next invoice.
+- All prices in US dollars, exclusive of taxes. Prices for existing subscriptions change only with 30 days' written notice, and you may cancel before a change applies.
+- **Billing is not yet self-serve.** Until online checkout is live, fees are invoiced and paid by the method agreed on your call. When Stripe checkout is live, card payments are processed by Stripe; we never store card numbers.
 
 ### 11. Term, renewal, and cancellation
 
-- The subscription starts at go-live and renews **automatically each month** (or each year, if you chose annual prepay) until cancelled. Before you pay we show the renewal terms — amount, frequency, and how to cancel — next to the checkbox where you agree to them, separately from your agreement to these Terms, and we email you a copy you can keep.
-- **You can cancel online at any time** with the Cancel button in the owner portal (Settings → Subscription) or by emailing admin@velonyxsystems.com from your account email — no phone call, no notice period, no reason required, and we will not make you jump through hoops. If you email, we confirm within one business day.
-- Cancellation takes effect at the **end of the billing period you have already paid for**. You keep full service until then. We do not prorate partial months.
-- Once a year we email you a reminder of what you are subscribed to, what it costs, and how to cancel. If we ever change your price we tell you at least 30 days before it applies, in writing, with cancellation instructions.
+- **Initial term: 12 months** from go-live, paid monthly. Then the subscription continues **month to month** until cancelled. Before you pay we show these terms — the monthly amount, the 12-month initial term, what happens if you cancel early, and how to cancel — next to a checkbox where you agree to them, separately from your agreement to these Terms, and we email you a copy you can keep.
+- **You can cancel online at any time** with the Cancel button in the owner portal (Settings → Subscription) or by emailing admin@velonyxsystems.com from your account email — no phone call, no reason required, no hoops. If you email, we confirm within one business day.
+- **Cancelling during the first 12 months.** Your service runs to the end of the period you have paid for and then stops. Because the build of your instance was financed into your monthly price, the **unpaid balance of the Build Portion** becomes due (Build Portion × months remaining in the 12) — that is the only early-termination amount; no further Service Portion is charged. Example: if your Build Portion is $58 and you cancel after month 4, the balance is 8 × $58 = $464.
+- **Cancelling after month 12.** Cancel any time; nothing further is owed after your current period. We do not prorate partial months.
+- **Reminders.** We email you 15–45 days before your 12-month term ends to remind you what you are subscribed to, what it costs afterward, and how to cancel; and once a year after that. If we ever change your price we tell you at least 30 days before it applies, in writing, with cancellation instructions.
 - Velonyx may suspend the Service for non-payment after 10 days' written notice, and may terminate for a material breach not cured within 15 days of notice.
 - What happens to your data and your instance after cancellation is in Section 13.
 
@@ -81,14 +77,14 @@ The build fee is due before build work starts. The subscription's first charge i
 
 **Ours:** the Velonyx master template — the platform code, prompts, architecture, portal, and know-how — and the Velonyx brand. During the subscription you have a non-exclusive, non-transferable license to use your instance for your business.
 
-**The month-12 transfer.** After **12 consecutive months of paid subscription** (starting at go-live, no unpaid gaps), you may request that Velonyx transfer your instance to you. Within 30 days of your request Velonyx will:
+**The month-12 transfer.** After your **12th monthly payment** (the Build Portion fully paid, account current), you may request that Velonyx transfer your instance to you. Within 30 days of your request Velonyx will:
 
 1. transfer the code repository for your instance to your GitHub account (full history);
 2. transfer the database (your Supabase project — data, auth users, scheduled jobs) to your Supabase organization;
 3. hand over your configuration and walk you through re-hosting on your own Vercel account, your own Google Cloud service account, and, if you are leaving Velonyx entirely, porting your Twilio number and moving your Meta app;
 4. rotate or delete every credential Velonyx held for your instance, on a screen-share.
 
-You then **own** that stamped copy outright, and Velonyx grants you a **perpetual, royalty-free, non-exclusive license** to the Velonyx template code embodied in it — you may run it, modify it, and hire anyone to maintain it. You may not resell the template as a product to others. Velonyx keeps the master template and may keep using it for other clients. After transfer, third-party costs (hosting, database, telephony, AI usage — roughly USD 15–40 per month at typical volumes, more with heavy voice use) are yours; you may keep paying Velonyx for a maintenance plan instead. **Counting the 12 months:** a month counts when its fee is paid; if you pause or fall behind, the count pauses and resumes when you are current — it does not reset. Transfer requires your account to be paid up at the time of the request.
+You then **own** that stamped copy outright, and Velonyx grants you a **perpetual, royalty-free, non-exclusive license** to the Velonyx template code embodied in it — you may run it, modify it, and hire anyone to maintain it. You may not resell the template as a product to others. Velonyx keeps the master template and may keep using it for other clients. After transfer, third-party costs (hosting, database, telephony, AI usage — roughly USD 15–40 per month at typical volumes, more with heavy voice use) are yours; you may keep paying Velonyx for a maintenance plan instead. **Counting the 12 payments:** a payment counts when made in full; if you fall behind, the count pauses and resumes when you are current — it does not reset. Transfer requires your account to be paid up at the time of the request. Paying the remaining Build Portion balance early also completes the count.
 
 ### 13. What happens when you cancel before month 12
 
@@ -99,8 +95,10 @@ You then **own** that stamped copy outright, and Velonyx grants you a **perpetua
 ### 14. Refunds
 
 Summarized here; the Refund Policy controls.
-- Build fee: fully refundable if you cancel **within 48 hours of paying and before kickoff**. Once build work starts (kickoff call held or assets received), the build fee is **non-refundable**, because the engineering hours are spent.
-- Monthly fee: not refunded for partial months. If we fail to deliver a paid month of Service (instance down for more than 72 consecutive hours for reasons within our control), we credit that month.
+- **Within 48 hours of your first payment and before kickoff:** cancel and everything you paid is refunded; nothing further is owed.
+- **After kickoff:** you can cancel any time (Section 11); months already used are not refunded, and during the first 12 months the unpaid Build Portion balance is due because the engineering hours were spent building your instance.
+- **If we fail to deliver** an instance that meets your SOW within 30 days after the target date for reasons within our control, you may cancel and receive a **full refund** of everything paid.
+- If we fail to deliver a paid month of Service (instance down for more than 72 consecutive hours for reasons within our control), we credit that month.
 - Ask us before you file a chargeback; we will make it right where the policy applies. Nothing here limits rights you have under consumer-protection law that cannot be waived.
 
 ### 15. Your responsibilities as the business using the AI

@@ -33,16 +33,16 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 
 3.1 This Agreement starts on the Effective Date and continues while any SOW or subscription is active, plus the transition period in Section 12.
 
-3.2 **Subscription.** The monthly subscription starts at Go-Live and **renews automatically month to month** until cancelled under Section 12.1.
+3.2 **Initial Term and renewal.** The subscription starts at Go-Live, runs for an **Initial Term of 12 months** paid monthly, and then **renews automatically month to month** until cancelled under Section 12.1. Velonyx sends a reminder 15–45 days before the Initial Term ends and annually thereafter.
 
-3.3 **Consecutive Paid Months.** For Section 6.3, a "Consecutive Paid Month" is a subscription month for which the fee was paid in full by its due date (or within the 10-day cure period). A lapse **pauses** the count; it resumes when Client is current again. Transfer requires all fees to be paid at the time of the request.
+3.3 **Monthly Payments.** For Section 6.3, a "Monthly Payment" counts when paid in full by its due date (or within the 10-day cure period). A lapse **pauses** the count; it resumes when Client is current again. Paying the remaining Build Portion balance early completes the count. Transfer requires all fees to be paid at the time of the request.
 
 ## 4. Fees and Payment
 
-4.1 **Plans.** Client selects a plan in the SOW: **Essentials** (USD 700 build + USD 70/month), **Growth** (USD 900 build + USD 150/month), or **Elite** (USD 1,200 build + USD 400/month), and optionally the **AI Video add-on** (USD 200/month). Plan contents are as published at velonyxsystems.com on the SOW date and restated in the SOW.
-4.2 **Build fee** is one-time, invoiced on SOW signature, due before build work starts. **Subscription** first charge is at Go-Live, then monthly (or annually at ten months' price if Client prepays a year). Add-ons are added to the monthly charge and may be dropped at the end of any billing period. Plan upgrades take effect immediately (prorated); downgrades at the next billing period.
-4.3 **Included usage and pass-through.** Each plan includes the monthly usage allowance stated in the SOW (Essentials 300 AI conversations; Growth 1,000 conversations and 1,000 SMS segments; Elite additionally 500 voice minutes). Usage above the allowance is either (a) paused by the Instance's daily spend cap with an alert to Client (default), or (b) if Client elects in the SOW, passed through at Velonyx's cost plus 20% on the next invoice. Velonyx never overruns a cap without Client's written election.
-4.4 **Auto-renewal disclosure.** Before Client first pays, Velonyx presents the renewal terms (amount, frequency, cancellation method) adjacent to a separate affirmative consent to those terms, sends a retainable acknowledgment, sends an annual reminder of the terms and how to cancel, and gives 30 days' written notice of any price change.
+4.1 **Plans and price.** Client selects a plan in the SOW — **Essentials, Growth, or Elite** — at the monthly price published at velonyxsystems.com/#pricing on the SOW date and restated in the SOW. Optional add-ons (e.g., AI Video) are added to the monthly charge and may be dropped at the end of any billing period. Plan upgrades take effect immediately (prorated); downgrades at the next billing period. Annual prepay, when offered, is 10 months' price for 12.
+4.2 **Build Portion and Service Portion.** During the Initial Term each Monthly Payment comprises (a) the **Build Portion** — one-twelfth of the one-time build fee for the plan, stated in the SOW — and (b) the **Service Portion** — that month's hosting, AI usage, and support. After 12 Monthly Payments the Build Portion is fully paid and the price becomes the Service Portion alone. If Client cancels during the Initial Term, the unpaid balance of the Build Portion (Build Portion × months remaining) is due within 15 days; no further Service Portion is charged. No other early-termination fee applies.
+4.3 **Included usage and pass-through.** Each plan includes the monthly usage allowance stated in the SOW. Usage above the allowance is either (a) paused by the Instance's daily spend cap with an alert to Client (default), or (b) if Client elects in the SOW, passed through at Velonyx's cost plus 20% on the next invoice. Velonyx never overruns a cap without Client's written election.
+4.4 **Auto-renewal disclosure.** Before Client first pays, Velonyx presents the renewal terms (monthly amount, 12-month Initial Term, early-cancellation balance, cancellation method) adjacent to a separate affirmative consent to those terms, sends a retainable acknowledgment, sends the reminders in 3.2, and gives 30 days' written notice of any price change.
 4.5 **Taxes** are Client's responsibility except taxes on Velonyx's income.
 4.6 **Late payment.** Fees unpaid 10 days after the due date accrue interest at 1.0% per month or the maximum lawful rate, whichever is lower, and Velonyx may suspend the Instance after written notice.
 4.7 **Price changes** to the subscription require 30 days' notice and apply from the next billing period; Client may cancel before they apply.
@@ -63,7 +63,7 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 
 6.2 **Velonyx owns, at all times:** the Template, all improvements to it (including improvements suggested by or arising from work for Client, without identifying Client), and the Velonyx brand. **During the subscription** Velonyx grants Client a non-exclusive, non-transferable, revocable license to use the Instance for Client's own business.
 
-6.3 **Month-12 Transfer.** After **twelve (12) Consecutive Paid Months**, Client may request transfer of the Instance. Within 30 days of the request Velonyx will, following its Handoff procedure:
+6.3 **Month-12 Transfer.** After **twelve (12) Monthly Payments** (Build Portion fully paid, account current), Client may request transfer of the Instance. Within 30 days of the request Velonyx will, following its Handoff procedure:
 
   (a) transfer the Instance's code repository, including history, to a GitHub account controlled by Client;
   (b) transfer the Instance's Supabase project (data, auth users, scheduled jobs) to a Supabase organization controlled by Client, after which Client takes over that project's billing;
@@ -115,7 +115,7 @@ Each Party will protect the other's Confidential Information (non-public busines
 
 ## 12. Termination and Transition
 
-12.1 **Cancellation by Client.** Client may cancel the subscription at any time **online from the portal** or by email to admin@velonyxsystems.com; effective at the end of the current paid billing period; no notice period; no proration. Client may terminate a build before kickoff under the Refund Policy.
+12.1 **Cancellation by Client.** Client may cancel at any time **online from the portal** or by email to admin@velonyxsystems.com; effective at the end of the current paid billing period; no notice period; no proration. During the Initial Term the unpaid Build Portion balance is due under Section 4.2. Client may cancel within 48 hours of first payment and before kickoff for a full refund under the Refund Policy.
 12.2 **Termination for cause.** Either Party may terminate for material breach not cured within 15 days of written notice. Velonyx may suspend immediately for unlawful use, Section 13 violations, or unpaid fees after Section 4.6 notice.
 12.3 **Transition (30 days).** For 30 days after the subscription ends, Velonyx will: (a) make Client Data available for export from the portal or as CSV/JSON on request; (b) release Client's domain, phone number, and Meta assets to Client's control; (c) if the Section 6.3 conditions are met, perform the Transfer. After the 30 days Velonyx deletes the Instance and Client Data per the DPA, retaining only what law requires (SMS consent and opt-out records) and billing records.
 12.4 **Survival.** Sections 6.1, 6.2, 6.4 (if Transfer occurred), 7, 8, 9.5, 10, 11, 12.3–12.4, 13, 14, 15.

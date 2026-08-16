@@ -15,8 +15,8 @@
     if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Statement of Work Template — Velonyx Systems</title>
-  <meta name="description" content="Velonyx Systems Statement of Work template. Reference copy of the SOW structure used in client engagements.">
+  <title>Statement of Work — Velonyx Systems</title>
+  <meta name="description" content="Velonyx Systems Statement of Work template: deliverables, channels, client inputs, timeline, acceptance tests, change requests, go-live checklist.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://velonyxsystems.com/sow.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -35,32 +35,39 @@
     .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
     .nav-back:hover{color:var(--gold);}
     main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
-    .page-header{text-align:center;max-width:720px;margin:0 auto 36px;padding:0 24px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
     .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
     .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
     .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
-    .disclaimer-banner{max-width:720px;margin:0 auto 40px;padding:16px 22px;border:1px solid rgba(212,175,55,0.35);background:rgba(212,175,55,0.06);border-radius:12px;font-size:0.85rem;color:rgba(255,255,255,0.8);line-height:1.6;}
-    .disclaimer-banner strong{color:var(--gold);}
-    .content{max-width:760px;margin:0 auto;padding:0 24px;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
     .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
-    .content h4{font-family:'Space Grotesk',sans-serif;font-size:0.92rem;font-weight:600;color:rgba(255,255,255,0.9);margin:20px 0 8px;letter-spacing:0.3px;}
-    .content p,.content li{font-size:0.93rem;color:var(--white-dim);line-height:1.75;margin-bottom:10px;}
-    .content ul{padding-left:20px;margin-bottom:14px;}
-    .content li{margin-bottom:6px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
     .content strong{color:var(--white);}
-    .content em{color:rgba(255,255,255,0.5);}
     .content a{color:var(--gold);text-decoration:none;}
     .content a:hover{color:var(--gold-light);}
-    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:32px 0;}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
     .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
-    .sow-block{background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:18px 22px;margin-bottom:22px;}
-    .sow-block p{margin-bottom:8px;}
     footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
     footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
     footer a:hover{color:var(--gold);}
     a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
     @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-light);margin:24px 0 8px;}
+    .content table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 16px;margin:14px 0 18px;background:rgba(255,255,255,0.02);}
+    .content blockquote p{margin-bottom:6px;}
+    .content code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--white);}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .content em{color:rgba(255,255,255,0.75);}
+    .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
   </style>
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,161 +83,290 @@
   </nav>
   <main>
     <div class="page-header">
-      <div class="page-label">Legal Reference</div>
-      <h1 class="page-title">Statement of Work <span>Template</span></h1>
-      <p class="page-subtitle">Each engagement receives a personalized Statement of Work. This is the template structure.</p>
+      <div class="page-label">Legal</div>
+      <h1 class="page-title">Statement of <span>Work</span></h1>
+      <p class="page-subtitle">The template Statement of Work completed for each Velonyx AI Front Desk build.</p>
     </div>
-
-    <div class="disclaimer-banner">
-      <strong>This document is displayed for reference.</strong> Clients receive and sign a personalized version of this Statement of Work via e-signature before services begin. The version you sign is the legally binding document for your specific project.
-    </div>
-
-    <p class="effective-date">Template updated: April 18, 2026</p>
-
+    <p class="effective-date">Last updated: August 16, 2026</p>
+    <p class="vx-status">Velonyx Systems LLC · San Diego County, California · <a href="mailto:admin@velonyxsystems.com" style="color:var(--gold);text-decoration:none;">admin@velonyxsystems.com</a> · (877) 317-8643</p>
     <div class="content">
-
-      <p><strong>Velonyx Systems LLC</strong></p>
-      <p><em>This is a template. Each engagement receives a personalized Statement of Work.</em></p>
-
-      <div class="section-divider"></div>
-
-      <p><strong>SOW # [NUMBER] &mdash; [PROJECT NAME]</strong></p>
-      <p>This Statement of Work is issued under and incorporates by reference the Master Services Agreement dated [DATE] between Velonyx Systems LLC ("Velonyx") and [CLIENT LEGAL NAME] ("Client").</p>
-
-      <div class="section-divider"></div>
-
-      <h3>1. Project Summary</h3>
-      <div class="sow-block">
-        <p><strong>Project Name:</strong> [e.g., "Johnson's Barbershop Premium Website Build"]</p>
-        <p><strong>Selected Package:</strong> [Starter / Growth / Premium / Enterprise]</p>
-        <p><strong>Project Description:</strong> [Brief description of what will be built]</p>
-        <p><strong>Primary Contact (Client):</strong> [Name, email, phone]</p>
-        <p><strong>Primary Contact (Velonyx):</strong> Carlos [LAST NAME], carlos@velonyxsystems.com</p>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <h3>2. Deliverables</h3>
-
-      <h4>Included</h4>
-      <p><em>List all deliverables specific to the selected tier. Example shown below for Growth tier:</em></p>
-      <ul>
-        <li>Multi-page custom website design, up to five (5) pages</li>
-        <li>Custom logo design, up to two (2) concepts</li>
-        <li>Premium scroll animations and interactive design</li>
-        <li>Stripe payment integration (cards, Apple Pay, Google Pay)</li>
-        <li>Buy Now Pay Later integration (Klarna, Afterpay)</li>
-        <li>Third-party booking integration with Client's existing platform</li>
-        <li>Twilio SMS confirmations and automation</li>
-        <li>Google Analytics 4 setup</li>
-        <li>Full SEO optimization</li>
-        <li>Custom domain, SSL, and hosting setup</li>
-        <li>Three (3) revision rounds within a two (2) week revision window</li>
-        <li>Delivery within 10-14 business days from project start</li>
-      </ul>
-
-      <h4>Not Included</h4>
-      <ul>
-        <li>Additional pages beyond the tier limit</li>
-        <li>Additional logo concepts beyond those specified</li>
-        <li>Custom copywriting beyond brief edits (add-on at $150/page)</li>
-        <li>Ongoing content creation or blog writing</li>
-        <li>Paid advertising management</li>
-        <li>Email marketing campaigns</li>
-        <li>Third-party services requiring Client's own paid subscriptions</li>
-      </ul>
-
-      <div class="section-divider"></div>
-
-      <h3>3. Project Timeline</h3>
-      <div class="sow-block">
-        <p><strong>Estimated Start Date:</strong> [DATE, upon receipt of deposit and signed SOW]</p>
-        <p><strong>Estimated Delivery:</strong> [DATE]</p>
-      </div>
-      <p><strong>Milestones:</strong></p>
-      <ul>
-        <li>Day 1: Project kickoff and brand/content intake</li>
-        <li>Day 3-5: Initial design concepts delivered</li>
-        <li>Day 6-10: Development and integrations</li>
-        <li>Day 11-13: Revisions and QA</li>
-        <li>Day 14: Launch</li>
-      </ul>
-      <p>Timeline contingent on Client providing materials and feedback within three (3) business days of each request.</p>
-
-      <div class="section-divider"></div>
-
-      <h3>4. Fees and Payment Schedule</h3>
-      <div class="sow-block">
-        <p><strong>Total Project Fee:</strong> $[AMOUNT]</p>
-        <p><strong>Payment Schedule:</strong></p>
-        <ul>
-          <li>Deposit (50%): $[AMOUNT] due upon signing</li>
-          <li>Balance (50%): $[AMOUNT] due upon delivery before site goes live</li>
-        </ul>
-        <p><strong>Paid-in-Full Discount:</strong> 10% discount if paid in full upfront.</p>
-        <p><strong>Financing:</strong> Through Stripe, Klarna, or Afterpay (subject to approval).</p>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <h3>5. Monthly Subscription (Velonyx Care)</h3>
-      <p>Continued operation requires an active Velonyx Care subscription.</p>
-      <div class="sow-block">
-        <p><strong>Selected Care Tier:</strong> [Standard / Growth / Premium / Enterprise]</p>
-        <p><strong>Monthly Fee:</strong> $[125 / 225 / 325 / Custom]/month</p>
-      </div>
-      <p>First month included with the build. Monthly billing begins 30 days after launch.</p>
-      <p><strong>Annual Prepay:</strong> 15% discount for 12 months prepaid upfront.</p>
-
-      <div class="section-divider"></div>
-
-      <h3>6. Revision Terms</h3>
-      <p>Revision limits by tier:</p>
-      <ul>
-        <li><strong>Starter:</strong> 2 revision rounds within a 1-week revision window</li>
-        <li><strong>Growth:</strong> 3 revision rounds within a 2-week revision window</li>
-        <li><strong>Premium:</strong> 3 revision rounds within a 3-week revision window</li>
-        <li><strong>Enterprise:</strong> 5 revision rounds within a 4-week revision window (custom per engagement)</li>
-      </ul>
-      <p>Select the tier applicable to this engagement:</p>
-      <ul>
-        <li>Revision rounds: [2 / 3 / 3 / 5]</li>
-        <li>Revision window: [1 / 2 / 3 / 4] week(s) from initial draft delivery</li>
-        <li>Additional changes after window close or round limit: $100/hour (custom rate for Enterprise, defined below)</li>
-      </ul>
-      <p><strong>Revision windows are time-boxed per tier. After the window closes OR the revision round limit is reached, additional revisions are billed at $100/hour.</strong> Enterprise engagements use a custom hourly rate specified in Section 8 (Special Terms).</p>
-
-      <div class="section-divider"></div>
-
-      <h3>7. Client Responsibilities</h3>
-      <ul>
-        <li>Brand materials within 2 business days of kickoff</li>
-        <li>Content and copy within 3 business days of kickoff</li>
-        <li>Image/photo assets within 3 business days of kickoff</li>
-        <li>Feedback on drafts within 3 business days of delivery</li>
-        <li>Access to third-party accounts as needed</li>
-      </ul>
-
-      <div class="section-divider"></div>
-
-      <h3>8. Special Terms</h3>
-      <p><em>[Any client-specific terms &mdash; or "None"]</em></p>
-
-      <div class="section-divider"></div>
-
-      <h3>9. Agreement</h3>
-      <p>By signing, Client agrees to the Statement of Work and confirms the Master Services Agreement applies.</p>
-
-      <div class="section-divider"></div>
-
-      <p style="text-align:center;color:var(--gold);font-weight:500;">For engagement, both parties sign a personalized version of this Statement of Work.</p>
+<p>This SOW is issued under the Master Services Agreement dated [DATE] between Velonyx Systems LLC (&quot;Velonyx&quot;) and [CLIENT LEGAL NAME] (&quot;Client&quot;) and incorporates its terms, including the Data Processing Agreement (Exhibit A) and Refund Policy (Exhibit B). Capitalized terms are defined in the MSA.</p>
+<hr>
+<h2>1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Client business</td>
+<td>[Trade name, industry, website if any]</td>
+</tr>
+<tr>
+<td>Client contact</td>
+<td>[Name, role, email, mobile]</td>
+</tr>
+<tr>
+<td>Velonyx contact</td>
+<td>Carlos Glover, <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a>, (877) 317-8643</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>[ ] Essentials · [ ] Growth · [ ] Elite — at the monthly price published on velonyxsystems.com/#pricing on this date (below)</td>
+</tr>
+<tr>
+<td>Add-ons selected</td>
+<td>[None / AI Video add-on — USD 200 per month]</td>
+</tr>
+<tr>
+<td>Target Go-Live</td>
+<td>[DATE] (subject to Section 5)</td>
+</tr>
+<tr>
+<td>Sensitive-data screen</td>
+<td>Client confirms it is / is not a HIPAA-covered entity or business associate: [IS / IS NOT]. If IS, this SOW is not valid without the separate agreement referenced in MSA §13.</td>
+</tr>
+</tbody></table>
+<h2>2. Deliverables (what &quot;done&quot; looks like)</h2>
+<h3>2.1 Branded website</h3>
+<ul>
+<li>One custom-branded site on Client&#39;s domain (Client-owned domain; Velonyx configures DNS/SSL) with: [home / services / about / contact / booking — list pages, typically 1–5].</li>
+<li>Mobile-first, HTTPS, hosted on Velonyx&#39;s Vercel account until Transfer.</li>
+<li>Embedded AI web-chat widget with SMS-consent checkbox (CTIA language) and AI disclosure.</li>
+</ul>
+<h3>2.2 AI assistant — channels enabled for this Client</h3>
+<p>Tick what is in scope. Each channel requires the Client inputs in Section 3.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>In scope</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web chat</td>
+<td>[x]</td>
+<td>Always included</td>
+</tr>
+<tr>
+<td>SMS (two-way, text-back, confirmations, follow-ups)</td>
+<td>[ ]</td>
+<td>Requires toll-free verification or A2P 10DLC registration under Client&#39;s brand; carrier approval typically [X–Y] business days and outside Velonyx&#39;s control</td>
+</tr>
+<tr>
+<td>Voice (AI answers calls, transcribes, books)</td>
+<td>[ ]</td>
+<td>Greeting discloses AI + transcription; number [new Twilio number / port Client&#39;s existing number]</td>
+</tr>
+<tr>
+<td>Instagram DM</td>
+<td>[ ]</td>
+<td>Requires Client&#39;s Instagram professional account linked to a Facebook Page and Meta Business Manager access</td>
+</tr>
+<tr>
+<td>Facebook Messenger</td>
+<td>[ ]</td>
+<td>As above</td>
+</tr>
+<tr>
+<td>WhatsApp</td>
+<td>[ ]</td>
+<td>Requires WhatsApp Business account under Client&#39;s Meta Business portfolio</td>
+</tr>
+</tbody></table>
+<p>Behavior on all channels: answers from Client&#39;s approved knowledge base; identifies itself as an AI in the first reply and when asked; qualifies leads one question at a time; offers real free slots and books them; sends SMS confirmation (if SMS in scope); hands off to a human when asked or when uncertain; honors STOP.</p>
+<h3>2.3 Booking</h3>
+<ul>
+<li>Google Calendar integration on Client&#39;s calendar [calendar name / new booking calendar provisioned by Velonyx].</li>
+<li>Booking rules: services [list], durations [x min], buffer [x min], business hours [see 3.3], lead time [x hours], time zone [TZ].</li>
+<li>SMS confirmation at booking; reminders at [24h / 1h] before (SMS in scope required).</li>
+</ul>
+<h3>2.4 Follow-ups</h3>
+<ul>
+<li>Automatic nudges to leads that go quiet: [sequence, e.g., 1h / 24h / 72h], within Meta&#39;s 24-hour window rules for DMs.</li>
+<li>Reactivation campaigns to Client&#39;s existing contact list are <strong>available but off</strong> until Client completes the consent attestation in the portal (MSA §5.4).</li>
+</ul>
+<h3>2.5 Owner portal</h3>
+<ul>
+<li>Installable PWA; unified inbox across enabled channels; Take Over button; push notifications on new lead / booking; monthly plain-English report; campaign screen; subscription management (including <strong>online cancel</strong>).</li>
+<li>Owner allowlist: [owner emails].</li>
+</ul>
+<h3>2.6 Not included (unless added by change request)</h3>
+<ul>
+<li>Additional pages beyond 2.1; copywriting beyond editing what Client supplies; logo design; paid ads; SEO content programs; custom integrations (CRM, POS, EHR); phone-system replacement beyond the AI line; multilingual voice ; anything in MSA §13 (sensitive data).</li>
+</ul>
+<h2>3. Client inputs (needed before the build clock starts)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Input</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3.1</td>
+<td>Brand assets: logo (SVG/PNG), colors, fonts if any, 5–10 photos</td>
+<td>Kickoff + 2 business days</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Business facts: legal name, trade name, address, service area, services and prices, policies (cancellation, deposits), FAQ answers</td>
+<td>Kickoff + 3 business days</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Business hours and holidays; booking rules (2.3)</td>
+<td>Kickoff + 2 business days</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Knowledge base review: Client reviews and approves the AI&#39;s answer set and greetings in writing before Go-Live</td>
+<td>On delivery of preview</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Access: Google account for calendar sharing; Meta Business Manager admin invite (if DMs/WhatsApp in scope); Twilio account or porting authorization (if bringing a number); domain registrar access or DNS records</td>
+<td>Kickoff + 3 business days</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>Legal: Client&#39;s own privacy policy / terms for its site, or authorization for Velonyx to place Velonyx&#39;s standard client-site privacy notice (AI use, transcription, Velonyx as processor)</td>
+<td>Before Go-Live</td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>Consent posture: how Client currently collects SMS consent, and confirmation Client will only campaign to consented contacts</td>
+<td>Before any campaign</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>Owner emails for the portal allowlist</td>
+<td>Kickoff</td>
+</tr>
+</tbody></table>
+<p>Delays in Client inputs extend the timeline day-for-day. If inputs are more than 30 days late, Velonyx may pause the build; the build fee remains non-refundable per the Refund Policy, and the project resumes when inputs arrive.</p>
+<h2>4. Fees</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Amount</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Monthly price (months 1–12)</td>
+<td>USD [amount] / month, comprising Build Portion USD [amount] + Service Portion USD [amount]</td>
+<td>First charge at Go-Live; then monthly on the same calendar day</td>
+</tr>
+<tr>
+<td>Monthly price (month 13 onward)</td>
+<td>USD [Service Portion] / month, month to month</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Early cancellation (months 1–12)</td>
+<td>Unpaid Build Portion balance = USD [Build Portion] × months remaining; no other fee</td>
+<td>Within 15 days of cancellation</td>
+</tr>
+<tr>
+<td>Add-on(s)</td>
+<td>USD 200 / month (AI Video)</td>
+<td>From the month enabled</td>
+</tr>
+<tr>
+<td>Included usage</td>
+<td>[per plan — conversations / SMS segments / voice minutes per month]. Above that: [ ] pause at daily cap and alert (default) · [ ] pass through at cost + 20% on next invoice</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Change requests</td>
+<td>USD 95 / hour, quoted before work</td>
+<td>Per change request</td>
+</tr>
+</tbody></table>
+<p>Third-party accounts in Client&#39;s name (domain registration, Meta, and after Transfer: hosting, database, telephony, AI usage) are Client&#39;s cost.</p>
+<h2>5. Timeline</h2>
+<p>Target: <strong>[N] business days from &quot;build start&quot;</strong> (build fee received <strong>and</strong> inputs 3.1–3.3, 3.5, 3.8 received).</p>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kickoff call; inputs collected</td>
+<td>Day 0</td>
+</tr>
+<tr>
+<td>Instance stamped; site + knowledge base preview link</td>
+<td>Day [3]</td>
+</tr>
+<tr>
+<td>Client review round 1 (feedback within 3 business days)</td>
+<td>Day [3–6]</td>
+</tr>
+<tr>
+<td>Channels connected; test conversations; review round 2</td>
+<td>Day [6–9]</td>
+</tr>
+<tr>
+<td>Go-Live checklist (Section 8) complete; switch on</td>
+<td>Day [10]</td>
+</tr>
+</tbody></table>
+<p>Carrier (A2P/toll-free) and Meta approvals are external and may land after Go-Live; the affected channel goes live when approved. Go-Live is not delayed for them unless Client requests.</p>
+<h2>6. Acceptance</h2>
+<p>The build is accepted when <strong>all</strong> of the following are demonstrated on a call or in a written test log and Client confirms by email — or 7 days after Velonyx delivers the go-live report with no written objection:</p>
+<ol>
+<li>Site loads on Client&#39;s domain over HTTPS on phone and desktop.</li>
+<li>On each in-scope channel: a test message gets an AI reply that identifies itself as an AI; the AI answers 3 sample questions correctly from the knowledge base; the AI books a real test slot that appears on Client&#39;s Google Calendar; a confirmation SMS is received (if SMS in scope).</li>
+<li>Voice (if in scope): a test call is answered, the greeting discloses AI + transcription, and the transcript appears in the portal.</li>
+<li>Portal: Client logs in on their phone, sees the test conversation, uses Take Over, receives a push notification.</li>
+<li>STOP test: replying STOP suppresses further texts.</li>
+<li>Smoke test script passes on all subsystems.</li>
+</ol>
+<p>Cosmetic preferences after acceptance are change requests, not defects. Defects (deliverable does not do what this SOW says) are fixed at no charge.</p>
+<h2>7. Revisions and change requests</h2>
+<ul>
+<li>Two consolidated review rounds are included during the build (Section 5). Additional rounds before Go-Live, or scope changes at any time, are change requests at the Section 4 rate, quoted before work.</li>
+<li>After Go-Live, Client edits business facts, hours, prices, and FAQ answers directly in the portal at no charge; structural changes (new pages, new channels, new integrations) are change requests.</li>
+<li>Enabling an additional channel later: included if it is part of Client&#39;s plan; otherwise upgrade to the plan that includes it (build-fee difference + new monthly rate), or USD 150 one-time for a single extra channel where offered.</li>
+</ul>
+<h2>8. Go-Live checklist (Velonyx completes; Client sees the result)</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Owner allowlist created; public sign-ups disabled on the Instance&#39;s auth</li>
+<li><input disabled="" type="checkbox"> Webhook signature verification confirmed on Twilio and Meta endpoints</li>
+<li><input disabled="" type="checkbox"> Spend caps set (AI tokens, SMS/day) and alert email set to Client + Velonyx</li>
+<li><input disabled="" type="checkbox"> AI + transcription disclosure present in every greeting variant</li>
+<li><input disabled="" type="checkbox"> STOP/HELP handling tested; suppression list active</li>
+<li><input disabled="" type="checkbox"> Web-chat SMS consent checkbox present and required</li>
+<li><input disabled="" type="checkbox"> Knowledge base approved by Client in writing (3.4)</li>
+<li><input disabled="" type="checkbox"> Sensitive-data instruction in the prompt: AI redirects health/financial/child details rather than collecting them</li>
+<li><input disabled="" type="checkbox"> Client&#39;s site privacy notice mentions AI, transcription, and processing by Velonyx and its subprocessors (3.6)</li>
+<li><input disabled="" type="checkbox"> Calendar booking round-trip verified; time zone correct</li>
+<li><input disabled="" type="checkbox"> Portal cancel path visible to Client</li>
+<li><input disabled="" type="checkbox"> Monthly report scheduled; first report date [DATE]</li>
+<li><input disabled="" type="checkbox"> Backup/export path verified (Client Data exportable from portal)</li>
+</ul>
+<h2>9. Special terms</h2>
+<p>[None / client-specific — e.g., bring-your-own Twilio number, additional owner seats, custom greeting script, staged channel rollout.]</p>
+<h2>10. Signatures</h2>
+<p>By signing, Client agrees to this SOW under the MSA and confirms the sensitive-data screen in Section 1.</p>
+<p><strong>Velonyx Systems LLC</strong> — ______________________ Carlos Glover, Founder — Date ________
+<strong>[CLIENT LEGAL NAME]</strong> — ______________________ Name / Title — Date ________</p>
 
     </div>
   </main>
   <footer>
     <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
     <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
-    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
   </footer>
   <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
   <script src="/assets/marketing-config.js"></script>
