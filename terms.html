@@ -12,7 +12,7 @@
       s.setAttribute('data-ga4','1'); document.head.appendChild(s);
       gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
     };
-    if(localStorage.getItem('velonyx_cookie_consent')==='accepted'){ window.__loadGA4(); }
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service — Velonyx Systems</title>

@@ -16,13 +16,13 @@
       gtag('js', new Date());
       gtag('config', 'G-F838ZEJ22J');
     };
-    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') { window.__loadGA4(); }
+    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted' && navigator.globalPrivacyControl !== true && localStorage.getItem('velonyx_do_not_sell') !== '1') { window.__loadGA4(); }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080A">
 
   <title>Complete Your Order — Velonyx Systems</title>
-  <meta name="description" content="Complete your Velonyx order — choose Essentials, Growth, or Elite and pay in full or over time with Klarna or Afterpay. Each plan includes its monthly subscription.">
+  <meta name="description" content="Complete your Velonyx order — choose Essentials, Growth, or Elite. Pay in full, or over time where Stripe offers Klarna or Afterpay. Each plan includes its monthly subscription.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
 
@@ -59,7 +59,7 @@
     "provider": {
       "@id": "https://velonyxsystems.com/#organization"
     },
-    "description": "Premium custom digital platform — one-time $700 build plus $70/month Care plan for hosting, security, backups, and 1 site update per month. Custom website, 24/7 online booking, integrated payments (Apple Pay, Google Pay, debit and credit cards), customer financing (Affirm, Klarna, Afterpay), automated SMS via Twilio, owner admin dashboard, and SEO foundation. Full ownership of code, design, customer data, and domain.",
+    "description": "Premium custom digital platform — one-time $700 build plus $70/month Care plan for hosting, security, backups, and 1 site update per month. Custom website, 24/7 online booking, integrated payments (Apple Pay, Google Pay, debit and credit cards), pay-over-time options where offered at checkout, automated SMS via Twilio, owner admin dashboard, and SEO foundation. Full ownership of code, design, customer data, and domain.",
     "offers": {
       "@type": "Offer",
       "price": "700",
@@ -567,7 +567,7 @@
            amount + that tier's monthly subscription.
 
            >>> STRIPE LINKS TO CREATE (2026-07-04 verified architecture) <<<
-           BUILD (one-time; enable card + Klarna + Afterpay + Affirm; after-payment
+           BUILD (one-time; enable card + Klarna + Afterpay; after-payment
            redirect -> https://velonyxsystems.com/activate.html?plan=<tier>):
              essentials-build : $700 one-time
              growth-build     : $900 one-time
@@ -595,7 +595,7 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="essentials-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
+              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
             </div>
           </div>
 
@@ -615,7 +615,7 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="growth-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
+              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
             </div>
           </div>
 
@@ -634,7 +634,7 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="elite-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full &mdash; or finance monthly with Affirm or Klarna: <strong>as low as $0 today</strong>, first payment in about a month. You pick at checkout.</p>
+              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
             </div>
           </div>
 
@@ -661,7 +661,7 @@
           </div>
         </div>
 
-        <p class="pay-finance-note">Build fee: pay in full by debit or credit card, Apple Pay, or Google Pay &mdash; or finance it with Affirm or Klarna monthly payments (as low as $0 due today, subject to credit approval; down payment may be required; rates from 0&ndash;36% APR). Afterpay and Klarna Pay-in-4 are also available at checkout. Your monthly care plan is a separate card subscription with the first month free &mdash; cancel anytime.</p>
+        <p class="pay-finance-note">Build fee: pay in full by debit or credit card, Apple Pay, or Google Pay. Where available, Stripe may also offer pay-over-time options from third-party providers such as Klarna or Afterpay; whether one is offered, and its terms, are set by that provider and subject to its approval &mdash; Velonyx does not extend credit. Your monthly plan is a separate card subscription you can cancel any time from your portal or by email, effective at the end of the billing period.</p>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->

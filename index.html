@@ -26,7 +26,7 @@
       gtag('js', new Date());
       gtag('config', 'G-F838ZEJ22J');
     };
-    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') {
+    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted' && navigator.globalPrivacyControl !== true && localStorage.getItem('velonyx_do_not_sell') !== '1') {
       window.__loadGA4();
     }
   </script>
@@ -194,7 +194,7 @@
 
   <!-- Service schema — Velonyx Custom Platform Core Build -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Service","name":"Velonyx Custom AI Platform","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"One custom-engineered AI platform: an AI chatbot and AI voice agent that answer 24/7, conversational lead automation that captures and books customers, plus a branded website, 24/7 online booking, integrated payments (Stripe, Apple Pay, Google Pay, debit and credit cards), customer financing (Affirm, Klarna, Afterpay), automated SMS, and an owner dashboard. $700 one-time build + $70/month for hosting, maintenance, and support. Premium quality at a budget price. Built for any business, anywhere in the world.","serviceType":"Custom AI System","offers":{"@type":"Offer","price":"700","priceCurrency":"USD"},"areaServed":"Worldwide"}
+  {"@context":"https://schema.org","@type":"Service","name":"Velonyx Custom AI Platform","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"One custom-engineered AI platform: an AI chatbot and AI voice agent that answer 24/7, conversational lead automation that captures and books customers, plus a branded website, 24/7 online booking, integrated payments (Stripe, Apple Pay, Google Pay, debit and credit cards), pay-over-time options where offered at checkout, automated SMS, and an owner dashboard. $700 one-time build + $70/month for hosting, maintenance, and support. Premium quality at a budget price. Built for any business, anywhere in the world.","serviceType":"Custom AI System","offers":{"@type":"Offer","price":"700","priceCurrency":"USD"},"areaServed":"Worldwide"}
   </script>
 
 
@@ -655,8 +655,8 @@
       </div>
 
       <p class="pay-methods-line fade-in">
-        <span class="pay-methods-brands">Stripe &middot; Affirm &middot; Klarna &middot; Afterpay &middot; Debit Card</span>
-        <span class="pay-methods-note">Finance your build &mdash; as low as $0 down today &middot; First month of care free &middot; <a href="financing.html">How financing works &rarr;</a></span>
+        <span class="pay-methods-brands">Stripe &middot; Klarna &middot; Afterpay &middot; Debit Card</span>
+        <span class="pay-methods-note">Pay in full, or over time where offered at checkout &middot; <a href="financing.html">How payment works &rarr;</a></span>
       </p>
 
 

@@ -12,7 +12,7 @@
       s.setAttribute('data-ga4','1'); document.head.appendChild(s);
       gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
     };
-    if(localStorage.getItem('velonyx_cookie_consent')==='accepted'){ window.__loadGA4(); }
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Velonyx Systems</title>
@@ -74,7 +74,7 @@
       <h1 class="page-title">Privacy <span>Policy</span></h1>
       <p class="page-subtitle">How we collect, use, and protect your information.</p>
     </div>
-    <p class="effective-date">Last updated: August 15, 2026</p>
+    <p class="effective-date">Last updated: August 16, 2026</p>
     <div class="content">
 
       <h3>1. Who We Are</h3>
@@ -163,11 +163,27 @@
         <li><strong>Analytics (optional):</strong> Google Analytics cookies that measure pages visited, session duration, and device type.</li>
         <li><strong>Advertising measurement (optional):</strong> the Meta Pixel, which sets cookies to measure conversions from our ads and to show our ads to people who have visited our site.</li>
       </ul>
-      <p>Analytics and advertising cookies are <strong>off until you click &ldquo;Accept&rdquo;</strong> on our cookie banner; choosing &ldquo;Reject non-essential&rdquo; keeps them off. To change your choice later, clear this site&rsquo;s data in your browser (or the <code>velonyx_cookie_consent</code> item in local storage) and you will be asked again. You can also block cookies in your browser settings at any time.</p>
+      <p>Analytics and advertising cookies are <strong>off until you click &ldquo;Accept&rdquo;</strong> on our cookie banner; choosing &ldquo;Reject non-essential&rdquo; keeps them off. To change your choice later, use the opt-out button in Section 8, or clear this site&rsquo;s data in your browser (or the <code>velonyx_cookie_consent</code> item in local storage) and you will be asked again. You can also block cookies in your browser settings at any time.</p>
 
       <div class="section-divider"></div>
 
-      <h3>8. Your Rights</h3>
+      <h3 id="your-privacy-choices">8. Your Privacy Choices &mdash; Do Not Sell or Share My Personal Information</h3>
+      <p>We do not sell your personal information for money. However, when advertising cookies are on, the Meta Pixel sends information about your visit (pages viewed, device, and a cookie ID) to Meta so we can measure our ads and show our ads to people who visited our site. California law (CCPA/CPRA) treats that kind of cross-context advertising as &ldquo;sharing,&rdquo; and you have the right to opt out of it. Residents of other U.S. states with similar laws, and visitors anywhere, may use the same controls.</p>
+      <p>
+        <button type="button" id="vx-do-not-sell-btn" onclick="if(window.vxOptOut){window.vxOptOut();this.textContent='✓ You are opted out on this browser';this.disabled=true;}else{localStorage.setItem('velonyx_cookie_consent','rejected');localStorage.setItem('velonyx_do_not_sell','1');this.textContent='✓ You are opted out on this browser';this.disabled=true;}" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:12px 22px;border-radius:8px;cursor:pointer;background:transparent;color:#D4AF37;border:1px solid #D4AF37;min-height:44px;">Do Not Sell or Share My Personal Information</button>
+      </p>
+      <script>(function(){try{if((navigator.globalPrivacyControl===true)||localStorage.getItem('velonyx_do_not_sell')||localStorage.getItem('velonyx_cookie_consent')==='rejected'){var b=document.getElementById('vx-do-not-sell-btn');if(b){b.textContent='✓ You are opted out on this browser';b.disabled=true;}}}catch(e){}})();</script>
+      <ul>
+        <li><strong>What the button does:</strong> turns off Google Analytics and the Meta Pixel on this browser, expires the cookies they set, and remembers your choice. It is browser-specific &mdash; repeat it on other devices or after clearing site data.</li>
+        <li><strong>Global Privacy Control:</strong> if your browser or extension sends the <a href="https://globalprivacycontrol.org/" target="_blank" rel="noopener">Global Privacy Control</a> signal, we treat it as a valid opt-out automatically &mdash; advertising and analytics stay off and you will not see the cookie banner.</li>
+        <li><strong>By email:</strong> you can also opt out, or ask us to delete or correct your information, by emailing <a href="mailto:admin@velonyxsystems.com?subject=Privacy%20request">admin@velonyxsystems.com</a>. We do not require an account to make a request and we will not discriminate against you for exercising your rights.</li>
+        <li><strong>Authorized agents:</strong> an agent may submit a request on your behalf with your written permission; we may verify the request with you directly.</li>
+      </ul>
+      <p>We have not sold or shared personal information of consumers under 16, and we do not knowingly collect it.</p>
+
+      <div class="section-divider"></div>
+
+      <h3>9. Your Rights</h3>
       <p>You have the right to:</p>
       <ul>
         <li><strong>Access</strong> the personal information we hold about you</li>
@@ -180,22 +196,22 @@
 
       <div class="section-divider"></div>
 
-      <h3>9. Data Retention</h3>
+      <h3>10. Data Retention</h3>
       <p>We retain your personal information for as long as necessary to provide our services and fulfill the purposes described in this policy. Conversation transcripts, leads, and bookings are kept while the relationship is active and for a reasonable period afterward for follow-up and record-keeping; playground (demo) conversations are cleared daily. Client project files are retained for 1 year after project completion, after which they are moved to archival storage. You may request deletion of your data at any time by emailing <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a>, and we will delete it unless we are required to keep it (for example, SMS consent and opt-out records, which we retain as legally required evidence).</p>
 
       <div class="section-divider"></div>
 
-      <h3>10. Children's Privacy</h3>
+      <h3>11. Children's Privacy</h3>
       <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children.</p>
 
       <div class="section-divider"></div>
 
-      <h3>11. Changes to This Policy</h3>
+      <h3>12. Changes to This Policy</h3>
       <p>We may update this privacy policy from time to time. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this page periodically.</p>
 
       <div class="section-divider"></div>
 
-      <h3>12. Contact Us</h3>
+      <h3>13. Contact Us</h3>
       <p>If you have any questions about this privacy policy or our data practices, contact us at:</p>
       <p>Velonyx Systems LLC<br>
       Email: <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a><br>

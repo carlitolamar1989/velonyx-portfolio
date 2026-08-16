@@ -16,7 +16,7 @@
       gtag('js', new Date());
       gtag('config', 'G-F838ZEJ22J');
     };
-    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') {
+    if (localStorage.getItem('velonyx_cookie_consent') === 'accepted' && navigator.globalPrivacyControl !== true && localStorage.getItem('velonyx_do_not_sell') !== '1') {
       window.__loadGA4();
     }
   </script>
@@ -316,6 +316,7 @@
       <p class="vx-footer-tagline">Your Legacy, Engineered With Precision.</p>
       <p class="vx-footer-line">Premium digital systems built for ambitious businesses.</p>
       <p class="vx-footer-copy">&copy; Velonyx Systems</p>
+      <p class="vx-footer-copy" style="margin-top:6px;"><a href="/privacy.html" style="color:rgba(212,175,55,0.7);text-decoration:none;">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html" style="color:rgba(212,175,55,0.7);text-decoration:none;">Terms</a></p>
     </footer>
   </main>
 

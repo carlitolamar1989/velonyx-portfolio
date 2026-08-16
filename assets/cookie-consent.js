@@ -29,17 +29,78 @@ window.vxTrack = function(eventName, params){
   if (window.gtag) { try { window.gtag('event', eventName, params || {}); } catch(e) {} }
 };
 
-// If consent was previously granted, load the Meta Pixel right away.
+// ---------------------------------------------------------------------------
+// CCPA/CPRA "Do Not Sell or Share" + Global Privacy Control (GPC).
+// The Meta Pixel is cross-context behavioral advertising, which CPRA treats as
+// "sharing". A browser sending the GPC signal (navigator.globalPrivacyControl)
+// is a legally valid opt-out, so we honor it automatically: no pixel, no GA4,
+// no banner nag. window.vxOptOut() is the manual opt-out used by the
+// "Do Not Sell or Share My Personal Information" link/button.
+// ---------------------------------------------------------------------------
+window.vxHasGPC = function(){
+  try { return navigator.globalPrivacyControl === true || navigator.globalPrivacyControl === '1'; } catch(e) { return false; }
+};
+window.vxOptOut = function(){
+  try { localStorage.setItem('velonyx_cookie_consent','rejected'); localStorage.setItem('velonyx_do_not_sell','1'); } catch(e) {}
+  // Best-effort: expire the pixel/analytics first-party cookies we may have set.
+  try {
+    var host = location.hostname.replace(/^www\./,'');
+    ['_fbp','_fbc','_ga','_gid','_gat'].forEach(function(n){
+      document.cookie = n + '=; Max-Age=0; path=/';
+      document.cookie = n + '=; Max-Age=0; path=/; domain=.' + host;
+    });
+    document.cookie.split(';').forEach(function(c){ var n = c.split('=')[0].trim(); if (/^_ga_/.test(n)) { document.cookie = n + '=; Max-Age=0; path=/; domain=.' + host; } });
+  } catch(e) {}
+  try { if (window.fbq) window.fbq('consent','revoke'); } catch(e) {}
+  try { window['ga-disable-' + ((window.VELONYX_MARKETING||{}).GA4_ID || '')] = true; } catch(e) {}
+  var b = document.getElementById('vx-cookie-banner'); if (b && b.parentNode) b.parentNode.removeChild(b);
+  return true;
+};
+window.vxIsOptedOut = function(){
+  try { return window.vxHasGPC() || localStorage.getItem('velonyx_do_not_sell') === '1' || localStorage.getItem('velonyx_cookie_consent') === 'rejected'; } catch(e) { return false; }
+};
+
+// GPC = opt-out. Record it once so the inline GA4 stub and everything else see "rejected".
+try {
+  if (window.vxHasGPC() && !localStorage.getItem('velonyx_cookie_consent')) {
+    localStorage.setItem('velonyx_cookie_consent','rejected');
+    localStorage.setItem('velonyx_do_not_sell','gpc');
+  }
+} catch (e) {}
+
+// If consent was previously granted (and no opt-out signal), load the Meta Pixel right away.
 // (The inline GA4 stub already handles GA4 the same way.)
 try {
-  if (localStorage.getItem('velonyx_cookie_consent') === 'accepted') {
+  if (localStorage.getItem('velonyx_cookie_consent') === 'accepted' && !window.vxIsOptedOut()) {
     window.__loadMetaPixel();
   }
 } catch (e) {}
 
+// Put a "Do Not Sell or Share My Personal Information" link in every footer,
+// right after the Privacy Policy link, so it is one click from any page.
+(function(){
+  function addLink(){
+    if (document.getElementById('vx-do-not-sell')) return;
+    var anchors = document.querySelectorAll('footer a[href*="privacy.html"], .footer a[href*="privacy.html"], [class*="footer"] a[href*="privacy.html"]');
+    var ref = anchors.length ? anchors[anchors.length - 1] : null;
+    if (!ref || !ref.parentNode) return;
+    var a = document.createElement('a');
+    a.id = 'vx-do-not-sell';
+    a.href = '/privacy.html#your-privacy-choices';
+    a.textContent = 'Do Not Sell or Share My Personal Information';
+    a.className = ref.className;
+    if (ref.getAttribute('style')) a.setAttribute('style', ref.getAttribute('style'));
+    // Copy the separator pattern if the footer uses text separators (e.g. " · ")
+    var sep = ref.nextSibling && ref.nextSibling.nodeType === 3 && /^\s*[·|•\-]\s*$/.test(ref.nextSibling.nodeValue) ? ref.nextSibling.cloneNode() : null;
+    if (sep) { ref.parentNode.insertBefore(sep, ref.nextSibling); ref.parentNode.insertBefore(a, sep.nextSibling); }
+    else { ref.parentNode.insertBefore(a, ref.nextSibling); if (ref.previousSibling && ref.previousSibling.nodeType === 3 && ref.previousSibling.nodeValue.trim() === '' && ref.previousSibling.nodeValue.length) { ref.parentNode.insertBefore(document.createTextNode(ref.previousSibling.nodeValue), a); } }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addLink); else addLink();
+})();
+
 (function(){
   try {
-    if (localStorage.getItem('velonyx_cookie_consent')) return; // already decided
+    if (localStorage.getItem('velonyx_cookie_consent')) return; // already decided (incl. GPC)
   } catch(e) { return; }
 
   var css = ''
