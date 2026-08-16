@@ -194,7 +194,7 @@
 
   <!-- Service schema — Velonyx Custom Platform Core Build -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Service","name":"Velonyx Custom AI Platform","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"One custom-engineered AI platform: an AI chatbot and AI voice agent that answer 24/7, conversational lead automation that captures and books customers, plus a branded website, 24/7 online booking, integrated payments (Stripe, Apple Pay, Google Pay, debit and credit cards), pay-over-time options where offered at checkout, automated SMS, and an owner dashboard. $700 one-time build + $70/month for hosting, maintenance, and support. Premium quality at a budget price. Built for any business, anywhere in the world.","serviceType":"Custom AI System","offers":{"@type":"Offer","price":"700","priceCurrency":"USD"},"areaServed":"Worldwide"}
+  {"@context":"https://schema.org","@type":"Service","name":"Velonyx Custom AI Platform","provider":{"@id":"https://velonyxsystems.com/#organization"},"description":"One custom-engineered AI platform: an AI chatbot and AI voice agent that answer 24/7, conversational lead automation that captures and books customers, plus a branded website, 24/7 online booking, integrated payments (Stripe, Apple Pay, Google Pay, debit and credit cards, Affirm at checkout where offered), automated SMS, and an owner dashboard. One monthly price — Essentials $129, Growth $229, Elite $499 per month for 12 months, then $70 / $150 / $400 per month or take ownership; pay the year in full for $1,400 / $2,400 / $5,200. Built for any business, anywhere in the world.","serviceType":"Custom AI System","offers":[{"@type":"Offer","name":"Essentials","price":"129","priceCurrency":"USD","priceSpecification":{"@type":"UnitPriceSpecification","price":"129","priceCurrency":"USD","billingDuration":"P1M","billingIncrement":1,"unitText":"MON"}},{"@type":"Offer","name":"Growth","price":"229","priceCurrency":"USD","priceSpecification":{"@type":"UnitPriceSpecification","price":"229","priceCurrency":"USD","billingDuration":"P1M","billingIncrement":1,"unitText":"MON"}},{"@type":"Offer","name":"Elite","price":"499","priceCurrency":"USD","priceSpecification":{"@type":"UnitPriceSpecification","price":"499","priceCurrency":"USD","billingDuration":"P1M","billingIncrement":1,"unitText":"MON"}}],"areaServed":"Worldwide"}
   </script>
 
 
@@ -574,7 +574,7 @@
       <div class="section-divider"></div>
       <h2 class="section-title shimmer-sweep">Pick Your System.</h2>
       <!-- (subhead is set immediately below) -->
-      <p class="section-subtitle fade-in">Every tier ships the AI. Step up for more reach.</p>
+      <p class="section-subtitle fade-in">One monthly price. No big upfront fee. After 12 months the price drops &mdash; and the system is yours.</p>
 
       <!-- Payment methods: quiet monochrome line BELOW the plans (2026-07-02
            audit — hand-drawn logo tiles above the prices read counterfeit at the
@@ -589,20 +589,26 @@
         to create. Do not link checkout.html publicly.
       -->
 
-      <!-- 3-TIER PRICING — Essentials / Growth / Elite + AI Video add-on -->
+      <!-- 3-TIER PRICING — Essentials / Growth / Elite + AI Video add-on
+           Model (2026-08-16): ONE monthly price for 12 months (build financed
+           in at 0%), then the price drops to the service price and the client
+           can take ownership. Pay-in-full = 2 months free. Numbers must match
+           core/pricing.ts in the platform and docs/PRICING-2026-08.md. -->
       <div class="tiers-grid">
 
         <div class="tier-card">
           <div class="tier-name">Essentials</div>
           <div class="tier-tagline">Get Online</div>
-          <div class="tier-price">$700<span class="tier-price-sub">build</span></div>
-          <div class="tier-monthly">+ $70/month</div>
+          <div class="tier-price">$129<span class="tier-price-sub">/month</span></div>
+          <div class="tier-monthly">for 12 months &middot; then <strong>$70/mo</strong> &mdash; or it&rsquo;s yours</div>
+          <div class="tier-paidfull">Pay the year in full: <strong>$1,400</strong> <span>(2 months free)</span></div>
           <ul class="tier-features">
             <li>Custom-branded website &mdash; engineered, not templated</li>
-            <li>Production hosting, SSL, automated backups</li>
-            <li>24/7 AI Chatbot trained on your business</li>
-            <li>Owner dashboard &mdash; runs from your phone</li>
-            <li>Full code ownership</li>
+            <li>24/7 AI web chat trained on your business</li>
+            <li>Books appointments on your calendar, texts confirmations</li>
+            <li>Owner dashboard + monthly report &mdash; runs from your phone</li>
+            <li>Includes 300 AI conversations a month</li>
+            <li>After 12 payments you <strong>own it</strong> &mdash; code, data, everything</li>
           </ul>
           <a href="#" class="tier-cta" data-vx-form-open data-vx-form-context="Essentials tier">Book Your Call</a>
         </div>
@@ -611,14 +617,16 @@
           <div class="tier-flag">Most Popular</div>
           <div class="tier-name">Growth</div>
           <div class="tier-tagline">Leads on Autopilot</div>
-          <div class="tier-price">$900<span class="tier-price-sub">build</span></div>
-          <div class="tier-monthly">+ $150/month</div>
+          <div class="tier-price">$229<span class="tier-price-sub">/month</span></div>
+          <div class="tier-monthly">for 12 months &middot; then <strong>$150/mo</strong> &mdash; or it&rsquo;s yours</div>
+          <div class="tier-paidfull">Pay the year in full: <strong>$2,400</strong> <span>(2 months free)</span></div>
           <ul class="tier-features">
             <li>Everything in Essentials</li>
-            <li><strong>AI Lead Automation</strong> &mdash; conversational form</li>
-            <li><strong>Instant SMS text-back</strong> &mdash; two-way AI conversation</li>
-            <li>Owner alerts by email + text, full context</li>
-            <li>Leads captured 24/7, even while you work</li>
+            <li><strong>Two-way AI texting</strong> &mdash; instant SMS text-back</li>
+            <li><strong>Instagram + Messenger DMs</strong> answered by the AI</li>
+            <li>Automatic follow-ups when a lead goes quiet</li>
+            <li>Owner alerts by text + email, full context</li>
+            <li>Includes 1,000 conversations + 1,000 texts a month</li>
           </ul>
           <a href="#" class="tier-cta tier-cta-primary" data-vx-form-open data-vx-form-context="Growth tier">Book Your Call</a>
         </div>
@@ -627,25 +635,40 @@
           <div class="tier-flag tier-flag-elite">Premium</div>
           <div class="tier-name">Elite</div>
           <div class="tier-tagline">Your 24/7 AI Front Desk</div>
-          <div class="tier-price">$1,200<span class="tier-price-sub">build</span></div>
-          <div class="tier-monthly">+ $400/month</div>
+          <div class="tier-price">$499<span class="tier-price-sub">/month</span></div>
+          <div class="tier-monthly">for 12 months &middot; then <strong>$400/mo</strong> &mdash; or it&rsquo;s yours</div>
+          <div class="tier-paidfull">Pay the year in full: <strong>$5,200</strong> <span>(2 months free)</span></div>
           <ul class="tier-features">
             <li>Everything in Growth</li>
-            <li><strong>AI Voice Agent</strong> &mdash; answers calls 24/7</li>
-            <li>Qualifies callers &amp; books appointments</li>
+            <li><strong>AI Voice Agent</strong> &mdash; answers your calls 24/7</li>
+            <li>Qualifies callers &amp; books appointments on the phone</li>
+            <li><strong>WhatsApp</strong> answered by the AI</li>
             <li>1 AI-produced video per month</li>
-            <li>The complete lead system &mdash; chat, text, and voice</li>
+            <li>Includes 500 voice minutes a month on top of Growth</li>
           </ul>
           <a href="#" class="tier-cta" data-vx-form-open data-vx-form-context="Elite tier">Book Your Call</a>
         </div>
 
       </div>
 
+      <div class="tier-founders fade-in">
+        <div class="tier-founders-inner">
+          <div>
+            <div class="tier-addon-name">Founders&rsquo; Offer <span class="tier-addon-tag">First 2 clients only</span></div>
+            <p class="tier-addon-desc"><strong>Growth or Elite at half price for your first six months, with the AI Video add-on included free.</strong> Growth: $114/mo &middot; Elite: $249/mo for months 1&ndash;6, then the regular rate. In return we ask for a case study and a testimonial. Two seats &mdash; ask about it on your call.</p>
+          </div>
+          <div class="tier-addon-right">
+            <div class="tier-addon-price">50%<span class="tier-price-sub">off &middot; 6 months</span></div>
+            <a href="#" class="tier-cta tier-cta-primary" data-vx-form-open data-vx-form-context="Founders offer">Claim a Seat</a>
+          </div>
+        </div>
+      </div>
+
       <div class="tier-addon fade-in">
         <div class="tier-addon-inner">
           <div>
             <div class="tier-addon-name">AI Video <span class="tier-addon-tag">Add-on / Standalone</span></div>
-            <p class="tier-addon-desc">1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto Essentials or Growth.</p>
+            <p class="tier-addon-desc">1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto Essentials or Growth (included in Elite). Need just one channel &mdash; WhatsApp only, Facebook only, voice only? <a href="#" data-vx-form-open data-vx-form-context="Custom single channel">Talk to us</a> for a custom quote; most businesses find a full plan is the better deal.</p>
           </div>
           <div class="tier-addon-right">
             <div class="tier-addon-price">$200<span class="tier-price-sub">/month</span></div>
@@ -654,11 +677,16 @@
         </div>
       </div>
 
-      <p class="pay-methods-line fade-in">
-        <span class="pay-methods-brands">Stripe &middot; Klarna &middot; Afterpay &middot; Debit Card</span>
-        <span class="pay-methods-note">Pay in full, or over time where offered at checkout &middot; <a href="financing.html">How payment works &rarr;</a></span>
-      </p>
+      <div class="pay-ways fade-in">
+        <div class="pay-way"><b>Monthly plan</b><span>Your first 12 payments cover the build and the service &mdash; 0% interest from us, no credit check. Price locked for the year. Cancel any time online.</span></div>
+        <div class="pay-way"><b>Pay in full</b><span>Pay the year up front and get 2 months free. After year one, stay on for the monthly service price &mdash; or prepay another year at 10 months&rsquo; price.</span></div>
+        <div class="pay-way"><b>Affirm at checkout</b><span>Split the pay-in-full amount with Affirm &mdash; 6-month 0% APR plans available for qualified customers, longer terms with interest. Rates from 0&ndash;36% APR. Payment options through Affirm are subject to an eligibility check and may not be available everywhere.</span></div>
+      </div>
 
+      <p class="pay-methods-line fade-in">
+        <span class="pay-methods-brands">Stripe &middot; Affirm &middot; Apple Pay &middot; Google Pay &middot; Debit / Credit</span>
+        <span class="pay-methods-note">Secure checkout by Stripe &middot; <a href="financing.html">How payment works &rarr;</a> &middot; <a href="/terms.html#11-term-renewal-and-cancellation">Cancellation terms</a></span>
+      </p>
 
     </div>
   </section>

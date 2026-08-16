@@ -16,7 +16,7 @@ This SOW is issued under the Master Services Agreement dated [DATE] between Velo
 | Client business | [Trade name, industry, website if any] |
 | Client contact | [Name, role, email, mobile] |
 | Velonyx contact | Carlos Glover, admin@velonyxsystems.com, (877) 317-8643 |
-| Plan | [ ] Essentials · [ ] Growth · [ ] Elite — at the monthly price published on velonyxsystems.com/#pricing on this date (below) |
+| Plan | [ ] Essentials ($129/mo × 12, then $70/mo) · [ ] Growth ($229/mo × 12, then $150/mo) · [ ] Elite ($499/mo × 12, then $400/mo) — or pay year 1 in full: $1,400 / $2,400 / $5,200 |
 | Add-ons selected | [None / AI Video add-on — USD 200 per month] |
 | Target Go-Live | [DATE] (subject to Section 5) |
 | Sensitive-data screen | Client confirms it is / is not a HIPAA-covered entity or business associate: [IS / IS NOT]. If IS, this SOW is not valid without the separate agreement referenced in MSA §13. |
@@ -77,10 +77,10 @@ Delays in Client inputs extend the timeline day-for-day. If inputs are more than
 
 | Item | Amount | Due |
 |---|---|---|
-| Monthly price (months 1–12) | USD [amount] / month, comprising Build Portion USD [amount] + Service Portion USD [amount] | First charge at Go-Live; then monthly on the same calendar day |
-| Monthly price (month 13 onward) | USD [Service Portion] / month, month to month | — |
-| Early cancellation (months 1–12) | Unpaid Build Portion balance = USD [Build Portion] × months remaining; no other fee | Within 15 days of cancellation |
-| Add-on(s) | USD 200 / month (AI Video) | From the month enabled |
+| Monthly price (months 1–12) | USD [129 / 229 / 499] / month, comprising Build Portion USD [59 / 79 / 99] + Service Portion USD [70 / 150 / 400] — OR pay year 1 in full: USD [1,400 / 2,400 / 5,200] (2 months free; Affirm available at checkout) | First charge at Go-Live; then monthly on the same calendar day |
+| Monthly price (month 13 onward) | USD [70 / 150 / 400] / month, month to month (or 10 months' price for a prepaid year) | — |
+| Early cancellation (months 1–12) | Unpaid Build Portion balance = USD [59 / 79 / 99] × months remaining; no other fee | Within 15 days of cancellation |
+| Add-on(s) | USD 200 / month (AI Video) · Founders' Offer (first 2 clients, Growth/Elite): [ ] yes — 50% off months 1–6 + AI Video included, case study + testimonial in return | From the month enabled |
 | Included usage | [per plan — conversations / SMS segments / voice minutes per month]. Above that: [ ] pause at daily cap and alert (default) · [ ] pass through at cost + 20% on next invoice | — |
 | Change requests | USD 95 / hour, quoted before work | Per change request |
 

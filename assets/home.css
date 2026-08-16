@@ -1294,6 +1294,21 @@
     /* Add-on: solid hairline + offset outline (the dashed "coupon" border read
        flea-market on a $200/mo product). */
     .tier-addon { max-width: 1100px; margin: 26px auto 0; background: var(--bg-card-glossy); border: 1px solid rgba(212,175,55,0.34); outline: 1px solid rgba(212,175,55,0.10); outline-offset: 4px; border-radius: 18px; padding: 26px 30px; }
+    /* Monthly-plan layout (2026-08-16): "then $X/mo" line + pay-in-full line + founders + ways-to-pay strip */
+    .tier-monthly strong { color: var(--white); font-weight: 600; }
+    .tier-paidfull { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin: -12px 0 6px; letter-spacing: 0.2px; }
+    .tier-paidfull strong { color: var(--accent-light); font-weight: 700; }
+    .tier-paidfull span { color: rgba(255,255,255,0.4); }
+    .tier-founders { max-width: 1100px; margin: 26px auto 0; background: linear-gradient(165deg, rgba(212,175,55,0.14) 0%, rgba(17,17,20,0.98) 100%); border: 1px solid rgba(212,175,55,0.55); border-radius: 18px; padding: 26px 30px; box-shadow: 0 0 40px rgba(212,175,55,0.10); }
+    .tier-founders-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .tier-founders .tier-addon-desc strong { color: var(--white); font-weight: 600; }
+    @media (max-width: 760px) { .tier-founders-inner { flex-direction: column; align-items: flex-start; } }
+    .tier-addon-desc a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
+    .pay-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1100px; margin: 26px auto 0; }
+    @media (max-width: 900px) { .pay-ways { grid-template-columns: 1fr; max-width: 460px; } }
+    .pay-way { background: rgba(255,255,255,0.025); border: 1px solid rgba(212,175,55,0.16); border-radius: 14px; padding: 18px 20px; }
+    .pay-way b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.86rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 8px; }
+    .pay-way span { display: block; font-size: 0.84rem; line-height: 1.6; color: rgba(255,255,255,0.6); }
     /* Quiet payment-methods line below the plans — the trust marks whisper. */
     .pay-methods-line { max-width: 760px; margin: 34px auto 0; text-align: center; line-height: 1.9; }
     .pay-methods-brands { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.86rem; font-weight: 600; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,0.58); }

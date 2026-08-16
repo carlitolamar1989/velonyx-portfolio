@@ -68,6 +68,32 @@
     .content ol{padding-left:22px;margin-bottom:16px;}
     .content em{color:rgba(255,255,255,0.75);}
     .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
+
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-light);margin:24px 0 8px;}
+    .content table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 16px;margin:14px 0 18px;background:rgba(255,255,255,0.02);}
+    .content blockquote p{margin-bottom:6px;}
+    .content code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--white);}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .content em{color:rgba(255,255,255,0.75);}
+    .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
+
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-light);margin:24px 0 8px;}
+    .content table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 16px;margin:14px 0 18px;background:rgba(255,255,255,0.02);}
+    .content blockquote p{margin-bottom:6px;}
+    .content code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--white);}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .content em{color:rgba(255,255,255,0.75);}
+    .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
   </style>
   <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,7 +118,7 @@
     <div class="content">
 <p>This Master Services Agreement (&quot;Agreement&quot;) is entered into on the date of last electronic signature (&quot;Effective Date&quot;) between <strong>Velonyx Systems LLC</strong>, a California limited liability company (&quot;Velonyx&quot;), and <strong>[CLIENT LEGAL NAME]</strong>, [entity type and state/country] with its principal place of business at [ADDRESS] (&quot;Client&quot;). Each is a &quot;Party.&quot;</p>
 <hr>
-<h2>1. Definitions</h2>
+<h2 id="1-definitions">1. Definitions</h2>
 <ul>
 <li><strong>Service</strong> — the Velonyx AI Front Desk described in Section 2 and the applicable SOW.</li>
 <li><strong>Template</strong> — Velonyx&#39;s master platform: source code, prompts, database schema, portal, scripts, runbooks, architecture, and know-how, as it exists and as Velonyx improves it. Owned by Velonyx.</li>
@@ -104,16 +130,16 @@
 <li><strong>Go-Live</strong> — the date the Instance is switched to serve real traffic on Client&#39;s channels, confirmed by email.</li>
 <li><strong>Transfer Date</strong> — the date the Instance is transferred to Client under Section 6.3.</li>
 </ul>
-<h2>2. Services</h2>
+<h2 id="2-services">2. Services</h2>
 <p>2.1 <strong>What Velonyx provides.</strong> A done-for-you AI front desk: (a) a branded website; (b) an AI assistant that answers on the channels enabled in the SOW (web chat, SMS, voice calls with transcription, Instagram DM, Facebook Messenger, WhatsApp), qualifies leads, books appointments on Client&#39;s Google Calendar, sends SMS confirmations, and runs automatic follow-ups; (c) an owner portal (installable as a PWA) with unified inbox, Take Over, push notifications, and a monthly report; (d) hosting, monitoring, and maintenance of the Instance during the subscription.</p>
 <p>2.2 <strong>How.</strong> Velonyx stamps a dedicated Instance from the Template and configures it from Client Content. Nothing in the Instance is shared with other Velonyx clients: separate deployment, separate database, separate configuration. Certain third-party accounts Velonyx uses to operate Instances (for example its AI-provider key, telephony account, and calendar service account) may be shared across Velonyx-operated Instances until Transfer; Client Data is never commingled, and at Transfer Client-specific credentials are issued and Velonyx&#39;s are rotated.</p>
 <p>2.3 <strong>SOWs.</strong> Each SOW states deliverables, enabled channels, timeline, fees, and acceptance criteria. If a SOW conflicts with this Agreement, the SOW controls for that engagement only, except that a SOW cannot change Sections 6 (Ownership), 7 (Data), 11 (Liability), or 13 (Sensitive Data).</p>
 <p>2.4 <strong>Changes.</strong> Scope changes after SOW signature require a written change request accepted by both Parties (email is fine), stating the change, any fee, and any timeline impact.</p>
-<h2>3. Term and Renewal</h2>
+<h2 id="3-term-and-renewal">3. Term and Renewal</h2>
 <p>3.1 This Agreement starts on the Effective Date and continues while any SOW or subscription is active, plus the transition period in Section 12.</p>
 <p>3.2 <strong>Initial Term and renewal.</strong> The subscription starts at Go-Live, runs for an <strong>Initial Term of 12 months</strong> paid monthly, and then <strong>renews automatically month to month</strong> until cancelled under Section 12.1. Velonyx sends a reminder 15–45 days before the Initial Term ends and annually thereafter.</p>
 <p>3.3 <strong>Monthly Payments.</strong> For Section 6.3, a &quot;Monthly Payment&quot; counts when paid in full by its due date (or within the 10-day cure period). A lapse <strong>pauses</strong> the count; it resumes when Client is current again. Paying the remaining Build Portion balance early completes the count. Transfer requires all fees to be paid at the time of the request.</p>
-<h2>4. Fees and Payment</h2>
+<h2 id="4-fees-and-payment">4. Fees and Payment</h2>
 <p>4.1 <strong>Plans and price.</strong> Client selects a plan in the SOW — <strong>Essentials, Growth, or Elite</strong> — at the monthly price published at velonyxsystems.com/#pricing on the SOW date and restated in the SOW. Optional add-ons (e.g., AI Video) are added to the monthly charge and may be dropped at the end of any billing period. Plan upgrades take effect immediately (prorated); downgrades at the next billing period. Annual prepay, when offered, is 10 months&#39; price for 12.
 4.2 <strong>Build Portion and Service Portion.</strong> During the Initial Term each Monthly Payment comprises (a) the <strong>Build Portion</strong> — one-twelfth of the one-time build fee for the plan, stated in the SOW — and (b) the <strong>Service Portion</strong> — that month&#39;s hosting, AI usage, and support. After 12 Monthly Payments the Build Portion is fully paid and the price becomes the Service Portion alone. If Client cancels during the Initial Term, the unpaid balance of the Build Portion (Build Portion × months remaining) is due within 15 days; no further Service Portion is charged. No other early-termination fee applies.
 4.3 <strong>Included usage and pass-through.</strong> Each plan includes the monthly usage allowance stated in the SOW. Usage above the allowance is either (a) paused by the Instance&#39;s daily spend cap with an alert to Client (default), or (b) if Client elects in the SOW, passed through at Velonyx&#39;s cost plus 20% on the next invoice. Velonyx never overruns a cap without Client&#39;s written election.
@@ -122,14 +148,14 @@
 4.6 <strong>Late payment.</strong> Fees unpaid 10 days after the due date accrue interest at 1.0% per month or the maximum lawful rate, whichever is lower, and Velonyx may suspend the Instance after written notice.
 4.7 <strong>Price changes</strong> to the subscription require 30 days&#39; notice and apply from the next billing period; Client may cancel before they apply.
 4.8 <strong>Payment method.</strong> Until online checkout is live, by invoice. When live, by card through Stripe under Stripe&#39;s terms.</p>
-<h2>5. Client Obligations</h2>
+<h2 id="5-client-obligations">5. Client Obligations</h2>
 <p>5.1 Provide Client Content, access (Google Calendar, Meta Business Manager, phone-number porting or Twilio access if bringing a number), business hours, and a decision-maker within the timelines in the SOW.
 5.2 Review and approve the AI&#39;s knowledge base and greetings before Go-Live; keep them accurate afterward through the portal.
 5.3 Keep portal credentials secure. The portal only admits emails on Client&#39;s owner allowlist; Client tells Velonyx who to allow.
 5.4 <strong>Lawful messaging.</strong> Client is the sender of every SMS, DM, and call placed through the Instance and is responsible for: (a) obtaining and retaining <em>prior express written consent</em> before any marketing text or DM campaign (TCPA, CTIA, and local equivalents); (b) truthfully completing the consent attestation the portal requires before a campaign starts; (c) honoring the STOP/opt-out list (the Instance enforces it automatically — Client must not bypass it); (d) call-recording and transcription consent laws where Client and its callers are located; (e) any AI or bot-disclosure law applicable to Client. Velonyx provides the tooling (consent checkboxes, STOP/HELP handling, suppression list, campaign attestation, AI and transcription disclosures in every greeting) and Client must not disable it.
 5.5 <strong>Accuracy.</strong> Client is responsible for the truth and legality of Client Content and of what the AI says based on it. The AI does not give professional advice on Client&#39;s behalf.
 5.6 Not use the Instance for unlawful, deceptive, harassing, or infringing purposes, or to send unsolicited bulk messages.</p>
-<h2>6. Ownership and Intellectual Property</h2>
+<h2 id="6-ownership-and-intellectual-property">6. Ownership and Intellectual Property</h2>
 <p>6.1 <strong>Client owns, at all times:</strong> Client Content, Client Data, Client&#39;s domain name, Client&#39;s phone number(s), Client&#39;s social accounts and Meta assets, and Client&#39;s Google Calendar. Velonyx uses them only to perform the Service.</p>
 <p>6.2 <strong>Velonyx owns, at all times:</strong> the Template, all improvements to it (including improvements suggested by or arising from work for Client, without identifying Client), and the Velonyx brand. <strong>During the subscription</strong> Velonyx grants Client a non-exclusive, non-transferable, revocable license to use the Instance for Client&#39;s own business.</p>
 <p>6.3 <strong>Month-12 Transfer.</strong> After <strong>twelve (12) Monthly Payments</strong> (Build Portion fully paid, account current), Client may request transfer of the Instance. Within 30 days of the request Velonyx will, following its Handoff procedure:</p>
@@ -144,41 +170,41 @@
 <p>6.6 <strong>Before month 12</strong>, no transfer of code or database occurs; Section 12.3 governs data export.</p>
 <p>6.7 <strong>Feedback</strong> Client gives about the Template may be used by Velonyx freely.</p>
 <p>6.8 <strong>Portfolio.</strong> Velonyx may identify Client as a customer and show Client&#39;s public website, unless Client opts out in writing. Velonyx will not display Client Data.</p>
-<h2>7. Data Protection</h2>
+<h2 id="7-data-protection">7. Data Protection</h2>
 <p>7.1 The Parties agree that for Client Data, <strong>Client is the controller / business and Velonyx is the processor / service provider.</strong> The DPA (Exhibit A) governs Velonyx&#39;s processing of Client Data, the subprocessor list, security measures, breach notice, and deletion.
 7.2 Velonyx will not sell or share Client Data, will use it only to provide the Service, and will not use Client Data to train AI models. Velonyx&#39;s AI provider (Anthropic) does not train on API inputs or outputs under its commercial terms; for its speech vendors Velonyx opts out of any model-improvement program the vendor offers.
 7.3 Client is responsible for its own privacy notices to its customers, including disclosure that an AI answers, that calls are transcribed, and that Velonyx and its subprocessors process the data.</p>
-<h2>8. Confidentiality</h2>
+<h2 id="8-confidentiality">8. Confidentiality</h2>
 <p>Each Party will protect the other&#39;s Confidential Information (non-public business, technical, and financial information, marked or reasonably understood as confidential) with at least reasonable care, use it only for this Agreement, and disclose it only to personnel and subprocessors who need it and are bound by similar obligations. Excludes information that is public, already known, independently developed, or lawfully received from a third party. Compelled disclosure allowed with notice where lawful. Survives 3 years after termination; trade secrets, indefinitely. Client Data is governed by the DPA rather than this Section.</p>
-<h2>9. Warranties and Disclaimers</h2>
+<h2 id="9-warranties-and-disclaimers">9. Warranties and Disclaimers</h2>
 <p>9.1 <strong>Velonyx warrants</strong> that (a) it will perform the Services in a professional and workmanlike manner; (b) the Instance at Go-Live will materially conform to the SOW; (c) the AI will identify itself as an AI and voice greetings will disclose transcription; (d) the Instance will honor STOP/opt-out requests automatically. Client&#39;s exclusive remedy for breach of (a)–(b) is re-performance, or if Velonyx cannot re-perform within 30 days, a refund of the fees for the non-conforming Service.
 9.2 <strong>AI disclaimer.</strong> Client acknowledges the AI can be wrong, can misunderstand, and can produce inaccurate or unexpected output. Velonyx does not warrant the accuracy of any individual AI response or booking. Client is responsible for monitoring conversations through the portal.
 9.3 <strong>Third parties.</strong> The Service depends on third-party providers (listed in the DPA). Velonyx is not liable for their outages, changes, or decisions (including carrier registration outcomes and Meta App Review), but will use reasonable efforts to work around them.
 9.4 <strong>Client warrants</strong> it has the rights to Client Content, that it will comply with Section 5.4, and that it will not route data described in Section 13 through the Instance.
 9.5 EXCEPT AS STATED, THE SERVICE IS PROVIDED &quot;AS IS,&quot; AND VELONYX DISCLAIMS ALL IMPLIED WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT, TO THE EXTENT PERMITTED BY LAW.</p>
-<h2>10. Indemnification</h2>
+<h2 id="10-indemnification">10. Indemnification</h2>
 <p>10.1 <strong>By Client.</strong> Client will defend, indemnify, and hold Velonyx harmless from third-party claims, fines, and penalties (including TCPA statutory damages and regulatory fines) arising from: (a) messages, calls, or campaigns sent by or through the Instance without required consent or in violation of law; (b) Client Content or Client&#39;s knowledge base; (c) Client&#39;s breach of Sections 5.4, 5.5, or 13; (d) Client&#39;s violation of law.
 10.2 <strong>By Velonyx.</strong> Velonyx will defend, indemnify, and hold Client harmless from third-party claims that the Template code as delivered by Velonyx (unmodified, and excluding Client Content and third-party services) infringes a US copyright, trademark, trade secret, or patent. If such a claim arises Velonyx may modify or replace the affected code or, if not commercially reasonable, terminate and refund prepaid unused fees.
 10.3 <strong>Procedure.</strong> Prompt notice, control of the defense by the indemnifying Party, reasonable cooperation, no settlement admitting fault by the indemnified Party without consent.</p>
-<h2>11. Limitation of Liability</h2>
+<h2 id="11-limitation-of-liability">11. Limitation of Liability</h2>
 <p>11.1 NEITHER PARTY IS LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR LOST PROFITS, REVENUE, OR DATA, HOWEVER CAUSED.
 11.2 EACH PARTY&#39;S TOTAL LIABILITY UNDER THIS AGREEMENT IS LIMITED TO <strong>THE FEES PAID OR PAYABLE BY CLIENT TO VELONYX IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM</strong> (the &quot;General Cap&quot;).
 11.3 <strong>Enhanced Cap.</strong> For claims arising from Velonyx&#39;s breach of its security or data-processing obligations under the DPA, Velonyx&#39;s total liability is limited to <strong>three (3) times</strong> the General Cap.
 11.4 The exclusions in 11.1 and the caps in 11.2–11.3 do not apply to: Client&#39;s payment obligations; either Party&#39;s indemnity obligations under Section 10; breach of Section 8; or gross negligence, fraud, or wilful misconduct.</p>
-<h2>12. Termination and Transition</h2>
+<h2 id="12-termination-and-transition">12. Termination and Transition</h2>
 <p>12.1 <strong>Cancellation by Client.</strong> Client may cancel at any time <strong>online from the portal</strong> or by email to <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a>; effective at the end of the current paid billing period; no notice period; no proration. During the Initial Term the unpaid Build Portion balance is due under Section 4.2. Client may cancel within 48 hours of first payment and before kickoff for a full refund under the Refund Policy.
 12.2 <strong>Termination for cause.</strong> Either Party may terminate for material breach not cured within 15 days of written notice. Velonyx may suspend immediately for unlawful use, Section 13 violations, or unpaid fees after Section 4.6 notice.
 12.3 <strong>Transition (30 days).</strong> For 30 days after the subscription ends, Velonyx will: (a) make Client Data available for export from the portal or as CSV/JSON on request; (b) release Client&#39;s domain, phone number, and Meta assets to Client&#39;s control; (c) if the Section 6.3 conditions are met, perform the Transfer. After the 30 days Velonyx deletes the Instance and Client Data per the DPA, retaining only what law requires (SMS consent and opt-out records) and billing records.
 12.4 <strong>Survival.</strong> Sections 6.1, 6.2, 6.4 (if Transfer occurred), 7, 8, 9.5, 10, 11, 12.3–12.4, 13, 14, 15.</p>
-<h2>13. Sensitive Data — Prohibited Without a Separate Agreement</h2>
+<h2 id="13-sensitive-data-prohibited-without-a-separate-agreement">13. Sensitive Data — Prohibited Without a Separate Agreement</h2>
 <p>13.1 The Service is <strong>not</strong> designed, and Velonyx does not offer it, for: protected health information under HIPAA; personal information of children under 16; payment-card data (PCI-DSS); biometric identifiers; precise geolocation; government IDs; financial account credentials; or other &quot;sensitive personal information&quot; as defined by the CCPA/CPRA or GDPR special categories.
 13.2 <strong>Velonyx does not sign HIPAA Business Associate Agreements.</strong> Client must not configure the Instance to request, and must instruct its customers not to provide, the categories in 13.1, unless the Parties have signed a <strong>separate written agreement</strong> covering that data. Client accepts that customers may volunteer such information in free-text; the SOW records how the AI is instructed to redirect such disclosures. <strong>HIPAA-covered entities</strong> (medical, dental, mental-health, and other providers that bill health insurance electronically) are outside the Service as offered today: because Velonyx does not sign Business Associate Agreements, Velonyx will not onboard a covered entity unless and until a HIPAA-eligible configuration and a BAA are in place under a separate agreement. Cosmetic, wellness, and other businesses that are not covered entities may use the Service with the AI configured to take appointment requests without collecting health details.
 13.3 Breach of this Section is a material breach and is indemnified by Client under Section 10.1.</p>
-<h2>14. Dispute Resolution and Governing Law</h2>
+<h2 id="14-dispute-resolution-and-governing-law">14. Dispute Resolution and Governing Law</h2>
 <p>California law governs, without regard to conflicts principles; the UN Convention on Contracts for the International Sale of Goods is excluded. The Parties will negotiate in good faith for 30 days, then mediate in San Diego County before litigation. Exclusive venue: state and federal courts in San Diego County, California; each Party consents to jurisdiction, waives objection to venue, and — for a Client outside the United States — agrees that service of process by email to the notice address is effective. Each Party waives any right to bring or participate in a class or representative action against the other. Prevailing Party recovers reasonable attorneys&#39; fees. Either Party may seek injunctive relief for IP or confidentiality breaches without waiting.</p>
-<h2>15. General</h2>
+<h2 id="15-general">15. General</h2>
 <p>Independent contractors; no agency. Entire agreement — this Agreement, its Exhibits (A: DPA; B: Refund Policy), and SOWs; order of precedence: DPA (for data matters), then this Agreement, then SOW, then Refund Policy. Amendments in writing (email suffices for change requests under 2.4). Assignment: Client may assign to a successor of substantially all its business on notice; Velonyx may assign to a successor. Force majeure. Severability. Notices by email to the addresses in the signature block, effective on send during business days. Electronic signatures binding. Counterparts. (The prior MSA&#39;s Freelance Worker Protection Act and ABC-test recitals are dropped — Velonyx contracts as an LLC and those provisions add nothing.)</p>
-<h2>Exhibits</h2>
+<h2 id="exhibits">Exhibits</h2>
 <ul>
 <li><strong>Exhibit A — Data Processing Agreement</strong> </li>
 <li><strong>Exhibit B — Refund Policy</strong> </li>
@@ -193,7 +219,7 @@
   <footer>
     <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
     <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
-    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
   </footer>
   <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
   <script src="/assets/marketing-config.js"></script>

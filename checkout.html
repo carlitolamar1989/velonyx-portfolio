@@ -22,7 +22,7 @@
   <meta name="theme-color" content="#08080A">
 
   <title>Complete Your Order — Velonyx Systems</title>
-  <meta name="description" content="Complete your Velonyx order — choose Essentials, Growth, or Elite. Pay in full, or over time where Stripe offers Klarna or Afterpay. Each plan includes its monthly subscription.">
+  <meta name="description" content="Complete your Velonyx order — Essentials, Growth, or Elite. Start the monthly plan, or pay the year in full (2 months free) by card or with Affirm at checkout.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
 
@@ -555,105 +555,105 @@
     <div class="checkout-hero">
       <div class="checkout-eyebrow">Complete Your Order</div>
       <h1>Pick Your Plan.<br><span class="gold">Choose How You Pay.</span></h1>
-      <p>The plan we discussed is below. Pay in full, or split it over time with Klarna or Afterpay &mdash; your build starts the moment payment clears.</p>
+      <p>The plan we discussed is below. Start the monthly plan (nothing big up front), or pay the year in full and get two months free &mdash; by card, or with Affirm at checkout. Your build starts the moment payment clears.</p>
     </div>
 
     <div class="container">
 
-      <!-- ═══════════════════════════════════════════════════════════════════
-           PAYMENT TIERS — the page Carlos sends AFTER the discovery call.
-           Each tier has two buttons (Pay in Full / Pay Over Time). Each button
-           must point to a Stripe Payment Link that bundles the one-time build
-           amount + that tier's monthly subscription.
-
-           >>> STRIPE LINKS TO CREATE (2026-07-04 verified architecture) <<<
-           BUILD (one-time; enable card + Klarna + Afterpay; after-payment
-           redirect -> https://velonyxsystems.com/activate.html?plan=<tier>):
-             essentials-build : $700 one-time
-             growth-build     : $900 one-time
-             elite-build      : $1,200 one-time
-           CARE (subscriptions live on /activate.html, not this page):
-             care links + AI Video are wired in activate.html
-           Until a real URL replaces the "#", clicking a button shows a
-           "being set up" message instead of a dead link (see guard script at end).
-      ═══════════════════════════════════════════════════════════════════ -->
+      <!-- ═══════════════════════════════════════════════════════════════
+           PAYMENT — the page Carlos sends AFTER the discovery call.
+           Model (2026-08-16): monthly plan (12 months, then price drops) OR pay
+           the year in full (2 months free; Affirm available). Each button points
+           to a Stripe Payment Link (see docs/PRICING-2026-08.md).
+             essentials-monthly : $129/mo recurring      essentials-full : $1,400 one-time
+             growth-monthly     : $229/mo recurring      growth-full     : $2,400 one-time
+             elite-monthly      : $499/mo recurring      elite-full      : $5,200 one-time
+             aivideo-sub        : $200/mo recurring
+           Until a real URL replaces "#", clicking shows a "being set up" message
+           (guard script at the end of the page).
+      ═══════════════════════════════════════════════════════════════ -->
       <section class="pay-tiers">
         <div class="pay-grid">
 
-          <!-- ESSENTIALS -->
           <div class="pay-card">
             <div class="pay-tier-name">Essentials</div>
             <div class="pay-tier-tagline">Get Online</div>
-            <div class="pay-price">$700 <span>build</span></div>
-            <div class="pay-monthly">+ $70/month</div>
+            <div class="pay-price">$129 <span>/month</span></div>
+            <div class="pay-monthly">for 12 months &middot; then $70/mo &mdash; or it&rsquo;s yours</div>
             <ul class="pay-features">
               <li>Custom-branded website &mdash; engineered, not templated</li>
-              <li>Production hosting, SSL, automated backups</li>
-              <li>24/7 AI Chatbot trained on your business</li>
-              <li>Owner dashboard &mdash; runs from your phone</li>
-              <li>Full code ownership</li>
+              <li>24/7 AI web chat trained on your business</li>
+              <li>Books appointments on your calendar, texts confirmations</li>
+              <li>Owner dashboard + monthly report</li>
+              <li>300 AI conversations a month included</li>
+              <li>After 12 payments you <strong>own it</strong></li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="essentials-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
+              <a href="#" data-stripe="essentials-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $129/mo</a>
+              <a href="#" data-stripe="essentials-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $1,400</a>
+              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
             </div>
           </div>
 
-          <!-- GROWTH -->
           <div class="pay-card featured">
             <div class="pay-flag">Most Popular</div>
             <div class="pay-tier-name">Growth</div>
             <div class="pay-tier-tagline">Leads on Autopilot</div>
-            <div class="pay-price">$900 <span>build</span></div>
-            <div class="pay-monthly">+ $150/month</div>
+            <div class="pay-price">$229 <span>/month</span></div>
+            <div class="pay-monthly">for 12 months &middot; then $150/mo &mdash; or it&rsquo;s yours</div>
             <ul class="pay-features">
               <li>Everything in Essentials</li>
-              <li>AI Lead Automation &mdash; conversational form</li>
-              <li>Instant SMS text-back &mdash; two-way AI conversation</li>
-              <li>Owner alerts by email + text, full context</li>
-              <li>Leads captured 24/7, even while you work</li>
+              <li><strong>Two-way AI texting</strong> &mdash; instant SMS text-back</li>
+              <li><strong>Instagram + Messenger DMs</strong> answered by the AI</li>
+              <li>Automatic follow-ups when a lead goes quiet</li>
+              <li>Owner alerts by text + email</li>
+              <li>1,000 conversations + 1,000 texts a month included</li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="growth-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
+              <a href="#" data-stripe="growth-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $229/mo</a>
+              <a href="#" data-stripe="growth-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $2,400</a>
+              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
             </div>
           </div>
 
-          <!-- ELITE -->
           <div class="pay-card">
             <div class="pay-tier-name">Elite</div>
             <div class="pay-tier-tagline">Your 24/7 AI Front Desk</div>
-            <div class="pay-price">$1,200 <span>build</span></div>
-            <div class="pay-monthly">+ $400/month</div>
+            <div class="pay-price">$499 <span>/month</span></div>
+            <div class="pay-monthly">for 12 months &middot; then $400/mo &mdash; or it&rsquo;s yours</div>
             <ul class="pay-features">
               <li>Everything in Growth</li>
-              <li>AI Voice Agent &mdash; answers calls 24/7</li>
-              <li>Qualifies callers &amp; books appointments</li>
+              <li><strong>AI Voice Agent</strong> &mdash; answers your calls 24/7</li>
+              <li>Qualifies callers &amp; books on the phone</li>
+              <li><strong>WhatsApp</strong> answered by the AI</li>
               <li>1 AI-produced video per month</li>
-              <li>The complete lead system &mdash; chat, text, and voice</li>
+              <li>500 voice minutes a month on top of Growth</li>
             </ul>
             <div class="pay-actions">
-              <a href="#" data-stripe="elite-build" class="pay-btn pay-btn-full">Step 1 &middot; Pay the Build</a>
-              <p class="pay-step-note">Pay in full by card, Apple Pay, or Google Pay &mdash; or, where Stripe offers it, split it over time with a provider such as Klarna or Afterpay. You pick at checkout.</p>
+              <a href="#" data-stripe="elite-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $499/mo</a>
+              <a href="#" data-stripe="elite-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $5,200</a>
+              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
             </div>
           </div>
 
         </div>
 
-        <!-- STEP 2 — care plan activation (links live on /activate.html) -->
-        <div class="pay-step2">
-          <div class="pay-step2-badge">Step 2 &middot; After your build payment</div>
-          <h3>Activate your Care Plan &mdash; <span class="gold-text">$0 due today</span></h3>
-          <p>Right after your build payment you&rsquo;ll be taken to activate your monthly care plan. Your card is saved but <strong>your first month is free</strong> &mdash; the first charge lands about one month later, and we email you before it does. Cancel anytime.</p>
-          <p class="pay-step2-annual">Prefer annual? Pay for 10 months, get 12 &mdash; full refund within 14 days of purchase.</p>
-          <a class="pay-step2-link" href="/activate.html">Already paid your build? Activate your care plan &rarr;</a>
+        <!-- FOUNDERS -->
+        <div class="pay-addon">
+          <div>
+            <div class="pay-addon-name">Founders&rsquo; Offer <span>First 2 clients</span></div>
+            <p>Growth or Elite at <strong>half price for months 1&ndash;6</strong> ($114/mo or $249/mo) with the AI Video add-on included free, then the regular rate. In return: a case study and a testimonial. If Carlos offered you a seat, enter the promotion code from your call at checkout.</p>
+          </div>
+          <div class="pay-addon-right">
+            <div class="pay-addon-price">50%<span> off &middot; 6 mo</span></div>
+          </div>
         </div>
 
         <!-- AI VIDEO add-on -->
         <div class="pay-addon">
           <div>
             <div class="pay-addon-name">AI Video <span>Add-on / Standalone</span></div>
-            <p>1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto any plan.</p>
+            <p>1 sales-focused short-form video per month &mdash; engineered to convert. Works on its own, or stacked onto Essentials or Growth (included in Elite).</p>
           </div>
           <div class="pay-addon-right">
             <div class="pay-addon-price">$200<span>/month</span></div>
@@ -661,7 +661,7 @@
           </div>
         </div>
 
-        <p class="pay-finance-note">Build fee: pay in full by debit or credit card, Apple Pay, or Google Pay. Where available, Stripe may also offer pay-over-time options from third-party providers such as Klarna or Afterpay; whether one is offered, and its terms, are set by that provider and subject to its approval &mdash; Velonyx does not extend credit. Your monthly plan is a separate card subscription you can cancel any time from your portal or by email, effective at the end of the billing period.</p>
+        <p class="pay-finance-note"><strong>Monthly plan:</strong> your first 12 payments cover the build and the service &mdash; 0% interest from us, no credit check, price locked for the year; cancel any time online (during the first 12 months the unpaid build portion &mdash; $59 / $79 / $99 per remaining month &mdash; is due; see the <a href="/refund-policy.html">Refund Policy</a>). After 12 payments the price drops to $70 / $150 / $400 a month, or take the system &mdash; it&rsquo;s yours. <strong>Pay in full:</strong> 2 months free; after year one, stay on for the monthly service price or prepay another year at 10 months&rsquo; price. <strong>Affirm:</strong> available at checkout on the pay-in-full amount for qualified customers &mdash; rates from 0&ndash;36% APR; payment options through Affirm are subject to an eligibility check and may not be available everywhere; Velonyx does not extend credit.</p>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->
@@ -671,7 +671,7 @@
           <li>
             <span class="next-num">1</span>
             <h3>Payment confirmed</h3>
-            <p>Your plan is locked in and your monthly subscription starts on the same checkout. You get an emailed receipt right away.</p>
+            <p>Your plan is locked in &mdash; monthly or paid in full &mdash; and you get an emailed receipt and a copy of the terms right away.</p>
           </li>
           <li>
             <span class="next-num">2</span>
@@ -686,7 +686,7 @@
           <li>
             <span class="next-num">4</span>
             <h3>Launch + 30 days of free support</h3>
-            <p>Your system goes live. First 30 days of support are included, then your monthly plan keeps it running &mdash; cancel any time and you keep the platform.</p>
+            <p>Your system goes live and your plan keeps it running, hosted, and supported. After 12 monthly payments (or your paid year) it&rsquo;s yours &mdash; keep us on at the service price, or take it.</p>
           </li>
         </ol>
       </section>
@@ -697,22 +697,22 @@
 
         <div class="faq-card">
           <h3>Do I really own the system?</h3>
-          <p>Yes. Code, design, customer list, domain &mdash; all yours. Cancel the $70/month Care any time and you still keep everything. Unlike Housecall Pro, ServiceTitan, Jobber, or Wix, your platform isn't rented.</p>
+          <p>Yes. Your content, customer data, domain, and phone number are yours from day one. After 12 monthly payments (or a paid year) we transfer the whole system &mdash; code repository, database, configuration &mdash; to accounts you control. Unlike Housecall Pro, ServiceTitan, Jobber, GoHighLevel, or Wix, it isn't rented forever.</p>
         </div>
 
         <div class="faq-card">
-          <h3>Why is $700 so much cheaper than an agency?</h3>
-          <p>Modern stack (Next.js, Stripe, Twilio, cloud-native). Refined process. No agency overhead. Same premium build, fraction of the price &mdash; not cut corners. We earn long-term on the $70/month Care plan and growth tiers, so the build is priced to get you on the platform.</p>
+          <h3>Why is this so much cheaper than an agency?</h3>
+          <p>One master platform, engineered once and configured for you &mdash; modern stack, refined process, no agency overhead. Same premium build, a fraction of the price. We earn over time on the monthly service, so the build is priced to get you live, not to pad a quote.</p>
         </div>
 
         <div class="faq-card">
-          <h3>What if I cancel before the build is delivered?</h3>
-          <p>Refunds are tiered by phase. Within 24 hours of payment and before any work begins, full refund (minus processing fees). After kickoff, partial refund less work completed. After preview, refund limited to unstarted work. After launch, the build is non-refundable. Full policy on the <a href="/refund-policy.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(212,175,55,0.4);">Refund Policy page</a>.</p>
+          <h3>What if I cancel?</h3>
+          <p>Within 48 hours of your first payment and before kickoff: everything refunded, nothing owed. After that you can cancel any time online; during the first 12 months the unpaid build portion ($59 / $79 / $99 per remaining month) is due because the system was built for you, and no further service fee is charged. After month 12, cancel any time with nothing further owed. Full details in the <a href="/refund-policy.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(212,175,55,0.4);">Refund Policy</a>.</p>
         </div>
 
         <div class="faq-card">
-          <h3>What does the $70/month Care plan cover?</h3>
-          <p>Production hosting, SSL, automated backups, security patches, 1 site update per month, basic tech support, and dashboard access. The Essentials plan covers the platform itself; AI lead automation, SMS text-back, and the 24/7 AI voice agent come with the Growth ($150/mo) and Elite ($400/mo) plans.</p>
+          <h3>What does the monthly service price cover?</h3>
+          <p>Hosting, SSL, backups, security updates, the AI usage included in your plan, support, and your owner portal. Essentials covers web chat and booking; Growth adds two-way texting, Instagram/Messenger DMs, and follow-ups; Elite adds the AI voice agent, WhatsApp, and a monthly AI video.</p>
         </div>
 
         <div class="faq-card">
@@ -725,7 +725,7 @@
       <div class="trust-bar">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Encrypted</div>
         <div class="trust-item"><span class="trust-icon">⚡</span> 24-Hour Response</div>
-        <div class="trust-item"><span class="trust-icon">✓</span> 30 Days Free Support Included</div>
+        <div class="trust-item"><span class="trust-icon">✓</span> 48-Hour Cooling-Off, No Questions</div>
         <div class="trust-item"><span class="trust-icon">💬</span> Direct Line to Founder</div>
         <div class="trust-item"><span class="trust-icon">🏆</span> Premium Build, Budget Price</div>
       </div>

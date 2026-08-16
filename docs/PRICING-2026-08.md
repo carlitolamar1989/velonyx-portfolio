@@ -1,6 +1,6 @@
 # Velonyx Pricing — proposal v3 (2026-08-16)
 
-**Status:** proposed to Carlos; not yet on the site. Service portions ($70 / $150 / $400) confirmed by Carlos. Everything else below is Claude's recommendation for approval.
+**Status:** APPROVED by Carlos 2026-08-16 and LIVE on velonyxsystems.com (homepage #pricing, checkout, financing, JSON-LD), in `core/pricing.ts`, and in the SOW template. Changes from v3 proposal: Founders' Offer applies to **Growth and Elite**; Growth badged "Most popular"; annual 10-for-12 offered after year 1; **Affirm** is the featured financing partner (Afterpay may stay enabled in Stripe as a silent extra for Essentials pay-in-4).
 
 ## The idea in one line
 No big upfront fee. One monthly price for 12 months (the build is spread into it, 0% from Velonyx). After 12 payments the price drops to the service price — or take the system and go, it's yours. Pay the year up front and get two months free.
@@ -33,11 +33,11 @@ No big upfront fee. One monthly price for 12 months (the build is spread into it
 
 ## 3. Founders' offer — first two clients only
 
-**Elite at half price for six months, AI Video included.**
-- Months 1–6: **$249/mo** (instead of $499) **+ AI Video add-on free** ($200/mo value)
-- Months 7–12: $499/mo (video optional at $200)
-- Month 13+: $400/mo — or take ownership
-- Value: **$2,700 off** year 1. Standard 12-month term (build portion $99 if they leave early).
+**Growth or Elite at half price for six months, AI Video included.**
+- Growth: months 1–6 **$114/mo** (instead of $229) · Elite: months 1–6 **$249/mo** (instead of $499) — **+ AI Video add-on free** ($200/mo value) for those 6 months
+- Months 7–12: regular rate ($229 / $499); video optional at $200
+- Month 13+: $150 / $400 — or take ownership
+- Value: Growth **$1,890 off**, Elite **$2,700 off** year 1. Standard 12-month term (build portion $79 / $99 if they leave early).
 - In return: a case study + testimonial + logo/portfolio permission, and 30-minute feedback call at month 3.
 - Only 2 seats; goes away when both are signed. Handled personally by Carlos (no code on the site — "Ask about the Founders' offer").
 - If a founder wants to pay in full: Carlos quotes (suggest $3,900).
