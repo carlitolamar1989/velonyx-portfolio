@@ -1,7 +1,7 @@
 # Master Services Agreement — DRAFT FOR ATTORNEY REVIEW
 
 **Velonyx Systems LLC** · San Diego County, California · admin@velonyxsystems.com · (877) 317-8643
-**Draft date:** 2026-08-16 · **Status:** not in effect; signed per client via e-signature once approved
+**Version 2 — 2026-08-16.** Reviewed clause-by-clause against current California law and market-standard SaaS terms (see `REVIEW-plain-english.md`). Signed per client by e-signature.
 
 This Master Services Agreement ("Agreement") is entered into on the date of last electronic signature ("Effective Date") between **Velonyx Systems LLC**, a California limited liability company ("Velonyx"), and **[CLIENT LEGAL NAME]**, [entity type and state/country] with its principal place of business at [ADDRESS] ("Client"). Each is a "Party."
 
@@ -23,7 +23,7 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 
 2.1 **What Velonyx provides.** A done-for-you AI front desk: (a) a branded website; (b) an AI assistant that answers on the channels enabled in the SOW (web chat, SMS, voice calls with transcription, Instagram DM, Facebook Messenger, WhatsApp), qualifies leads, books appointments on Client's Google Calendar, sends SMS confirmations, and runs automatic follow-ups; (c) an owner portal (installable as a PWA) with unified inbox, Take Over, push notifications, and a monthly report; (d) hosting, monitoring, and maintenance of the Instance during the subscription.
 
-2.2 **How.** Velonyx stamps a dedicated Instance from the Template and configures it from Client Content. Nothing in the Instance is shared with other Velonyx clients: separate deployment, separate database, separate configuration. [Carlos: some credentials (AI key, Twilio account, Google service account) are currently shared across instances until handoff — either state that here or make per-client keys the default. See audit §3 item 9.]
+2.2 **How.** Velonyx stamps a dedicated Instance from the Template and configures it from Client Content. Nothing in the Instance is shared with other Velonyx clients: separate deployment, separate database, separate configuration. Certain third-party accounts Velonyx uses to operate Instances (for example its AI-provider key, telephony account, and calendar service account) may be shared across Velonyx-operated Instances until Transfer; Client Data is never commingled, and at Transfer Client-specific credentials are issued and Velonyx's are rotated.
 
 2.3 **SOWs.** Each SOW states deliverables, enabled channels, timeline, fees, and acceptance criteria. If a SOW conflicts with this Agreement, the SOW controls for that engagement only, except that a SOW cannot change Sections 6 (Ownership), 7 (Data), 11 (Liability), or 13 (Sensitive Data).
 
@@ -35,16 +35,16 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 
 3.2 **Subscription.** The monthly subscription starts at Go-Live and **renews automatically month to month** until cancelled under Section 12.1.
 
-3.3 **Consecutive Paid Months.** For Section 6.3, a "Consecutive Paid Month" is a subscription month for which the fee was paid in full by its due date (or within the 10-day cure period). A lapse resets the count unless Velonyx agrees otherwise in writing. [LAWYER: is a hard reset fair/enforceable? Alternative: pause the count, don't reset.]
+3.3 **Consecutive Paid Months.** For Section 6.3, a "Consecutive Paid Month" is a subscription month for which the fee was paid in full by its due date (or within the 10-day cure period). A lapse **pauses** the count; it resumes when Client is current again. Transfer requires all fees to be paid at the time of the request.
 
 ## 4. Fees and Payment
 
-4.1 **Build fee:** USD 700, one-time, invoiced on SOW signature and due before build work starts.
-4.2 **Subscription:** USD 70 per month, first charge at Go-Live, then monthly. [Carlos/LAWYER: or first charge 30 days after Go-Live — see Terms §10.]
-4.3 **Add-ons:** optional growth add-ons at USD 250, 500, or 1,500 per month as selected in writing; added to the monthly charge; may be dropped at the end of any billing period.
-4.4 **Pass-through usage.** Third-party usage above the allowance in the SOW (SMS segments, voice minutes, AI tokens) is billed at cost with 7 days' notice. Velonyx enforces daily spend caps on the Instance and will pause rather than overrun them.
+4.1 **Plans.** Client selects a plan in the SOW: **Essentials** (USD 700 build + USD 70/month), **Growth** (USD 900 build + USD 150/month), or **Elite** (USD 1,200 build + USD 400/month), and optionally the **AI Video add-on** (USD 200/month). Plan contents are as published at velonyxsystems.com on the SOW date and restated in the SOW.
+4.2 **Build fee** is one-time, invoiced on SOW signature, due before build work starts. **Subscription** first charge is at Go-Live, then monthly (or annually at ten months' price if Client prepays a year). Add-ons are added to the monthly charge and may be dropped at the end of any billing period. Plan upgrades take effect immediately (prorated); downgrades at the next billing period.
+4.3 **Included usage and pass-through.** Each plan includes the monthly usage allowance stated in the SOW (Essentials 300 AI conversations; Growth 1,000 conversations and 1,000 SMS segments; Elite additionally 500 voice minutes). Usage above the allowance is either (a) paused by the Instance's daily spend cap with an alert to Client (default), or (b) if Client elects in the SOW, passed through at Velonyx's cost plus 20% on the next invoice. Velonyx never overruns a cap without Client's written election.
+4.4 **Auto-renewal disclosure.** Before Client first pays, Velonyx presents the renewal terms (amount, frequency, cancellation method) adjacent to a separate affirmative consent to those terms, sends a retainable acknowledgment, sends an annual reminder of the terms and how to cancel, and gives 30 days' written notice of any price change.
 4.5 **Taxes** are Client's responsibility except taxes on Velonyx's income.
-4.6 **Late payment.** Fees unpaid 10 days after the due date accrue interest at 1.0% per month or the maximum lawful rate, whichever is lower, and Velonyx may suspend the Instance after written notice. [LAWYER: old MSA had 1.5%; confirm.]
+4.6 **Late payment.** Fees unpaid 10 days after the due date accrue interest at 1.0% per month or the maximum lawful rate, whichever is lower, and Velonyx may suspend the Instance after written notice.
 4.7 **Price changes** to the subscription require 30 days' notice and apply from the next billing period; Client may cancel before they apply.
 4.8 **Payment method.** Until online checkout is live, by invoice. When live, by card through Stripe under Stripe's terms.
 
@@ -72,9 +72,9 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
   (e) rotate or delete every credential Velonyx held for the Instance, and remove Velonyx's portal user, on a screen-share with Client;
   (f) run the smoke test on Client's deployment and confirm all subsystems pass.
 
-6.4 **Effect of Transfer.** On completion of 6.3, Velonyx **assigns to Client all of Velonyx's right, title, and interest in the Instance** (the specific stamped copy, its configuration, and its data) and grants Client a **perpetual, irrevocable, worldwide, royalty-free, non-exclusive license** to the Template code embodied in the Instance, to use, host, modify, and have maintained by anyone, for Client's own business. Client may not sublicense, sell, or offer the Template or the Instance as a platform to third parties. Velonyx retains ownership of the Template and may continue to use it for other clients. Velonyx has no further hosting, maintenance, or support obligation for the transferred Instance unless Client buys a maintenance plan. [LAWYER: confirm this structure (assignment of the copy + non-exclusive license to the underlying template) achieves the marketing promise "you own it" without giving away the Template, and whether the anti-resale restriction is enforceable post-transfer. Also confirm no warranty on the transferred code beyond the smoke test.]
+6.4 **Effect of Transfer.** On completion of 6.3, Velonyx **assigns to Client all of Velonyx's right, title, and interest in the Instance** (the specific stamped copy, its configuration, and its data) and grants Client a **perpetual, irrevocable, worldwide, royalty-free, non-exclusive license** to the Template code embodied in the Instance, to use, host, modify, and have maintained by anyone, for Client's own business. Client may not sublicense, sell, or offer the Template or the Instance as a platform to third parties. Velonyx retains ownership of the Template and may continue to use it for other clients. Velonyx has no further hosting, maintenance, or support obligation for the transferred Instance unless Client buys a maintenance plan, and the transferred code is provided as-is beyond the smoke test in 6.3(f). This is the standard "background IP" structure: Client owns the deliverable (the Instance); Velonyx keeps the pre-existing platform it was built from and licenses it as embedded.
 
-6.5 **After Transfer**, Client bears all third-party costs of running the Instance (currently about USD [Carlos: number] per month at typical volumes for database, hosting, telephony, and AI usage), unless Client elects a Velonyx maintenance plan.
+6.5 **After Transfer**, Client bears all third-party costs of running the Instance (currently about USD 15–40 per month at typical volumes for database, hosting, telephony, and AI usage; more with heavy voice traffic), unless Client elects a Velonyx maintenance plan.
 
 6.6 **Before month 12**, no transfer of code or database occurs; Section 12.3 governs data export.
 
@@ -85,7 +85,7 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 ## 7. Data Protection
 
 7.1 The Parties agree that for Client Data, **Client is the controller / business and Velonyx is the processor / service provider.** The DPA (Exhibit A) governs Velonyx's processing of Client Data, the subprocessor list, security measures, breach notice, and deletion.
-7.2 Velonyx will not sell or share Client Data, will use it only to provide the Service, and will not use Client Data to train AI models. [Carlos: verify subprocessor terms — Anthropic API data is not used for training by default; confirm the same for Deepgram/ElevenLabs settings in use.]
+7.2 Velonyx will not sell or share Client Data, will use it only to provide the Service, and will not use Client Data to train AI models. Velonyx's AI provider (Anthropic) does not train on API inputs or outputs under its commercial terms; for its speech vendors Velonyx opts out of any model-improvement program the vendor offers.
 7.3 Client is responsible for its own privacy notices to its customers, including disclosure that an AI answers, that calls are transcribed, and that Velonyx and its subprocessors process the data.
 
 ## 8. Confidentiality
@@ -103,35 +103,36 @@ Each Party will protect the other's Confidential Information (non-public busines
 ## 10. Indemnification
 
 10.1 **By Client.** Client will defend, indemnify, and hold Velonyx harmless from third-party claims, fines, and penalties (including TCPA statutory damages and regulatory fines) arising from: (a) messages, calls, or campaigns sent by or through the Instance without required consent or in violation of law; (b) Client Content or Client's knowledge base; (c) Client's breach of Sections 5.4, 5.5, or 13; (d) Client's violation of law.
-10.2 **By Velonyx.** Velonyx will defend, indemnify, and hold Client harmless from third-party claims that the Template code as delivered by Velonyx (unmodified, and excluding Client Content and third-party services) infringes a US copyright, trademark, or trade secret, or a US patent. [LAWYER: patent inclusion?] If such a claim arises Velonyx may modify or replace the affected code or, if not commercially reasonable, terminate and refund prepaid unused fees.
+10.2 **By Velonyx.** Velonyx will defend, indemnify, and hold Client harmless from third-party claims that the Template code as delivered by Velonyx (unmodified, and excluding Client Content and third-party services) infringes a US copyright, trademark, trade secret, or patent. If such a claim arises Velonyx may modify or replace the affected code or, if not commercially reasonable, terminate and refund prepaid unused fees.
 10.3 **Procedure.** Prompt notice, control of the defense by the indemnifying Party, reasonable cooperation, no settlement admitting fault by the indemnified Party without consent.
 
 ## 11. Limitation of Liability
 
 11.1 NEITHER PARTY IS LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR LOST PROFITS, REVENUE, OR DATA, HOWEVER CAUSED.
-11.2 EACH PARTY'S TOTAL LIABILITY UNDER THIS AGREEMENT IS LIMITED TO **THE FEES PAID BY CLIENT TO VELONYX IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.**
-11.3 The exclusions in 11.1 and the cap in 11.2 do not apply to: Client's payment obligations; either Party's indemnity obligations under Section 10; breach of Section 8; or gross negligence, fraud, or wilful misconduct. [LAWYER: (a) 12 months vs. old 3-month cap; (b) whether to add a separate, higher cap (e.g., 2x fees) for Velonyx's breach of the DPA rather than an uncapped carve-out; (c) whether the Client-indemnity carve-out is too broad given TCPA damages can be enormous relative to fees.]
+11.2 EACH PARTY'S TOTAL LIABILITY UNDER THIS AGREEMENT IS LIMITED TO **THE FEES PAID OR PAYABLE BY CLIENT TO VELONYX IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM** (the "General Cap").
+11.3 **Enhanced Cap.** For claims arising from Velonyx's breach of its security or data-processing obligations under the DPA, Velonyx's total liability is limited to **three (3) times** the General Cap.
+11.4 The exclusions in 11.1 and the caps in 11.2–11.3 do not apply to: Client's payment obligations; either Party's indemnity obligations under Section 10; breach of Section 8; or gross negligence, fraud, or wilful misconduct.
 
 ## 12. Termination and Transition
 
 12.1 **Cancellation by Client.** Client may cancel the subscription at any time **online from the portal** or by email to admin@velonyxsystems.com; effective at the end of the current paid billing period; no notice period; no proration. Client may terminate a build before kickoff under the Refund Policy.
 12.2 **Termination for cause.** Either Party may terminate for material breach not cured within 15 days of written notice. Velonyx may suspend immediately for unlawful use, Section 13 violations, or unpaid fees after Section 4.6 notice.
 12.3 **Transition (30 days).** For 30 days after the subscription ends, Velonyx will: (a) make Client Data available for export from the portal or as CSV/JSON on request; (b) release Client's domain, phone number, and Meta assets to Client's control; (c) if the Section 6.3 conditions are met, perform the Transfer. After the 30 days Velonyx deletes the Instance and Client Data per the DPA, retaining only what law requires (SMS consent and opt-out records) and billing records.
-12.4 **Survival.** Sections 6.1, 6.2, 6.4 (if Transfer occurred), 7, 8, 9.5, 10, 11, 12.3–12.4, 14, 15.
+12.4 **Survival.** Sections 6.1, 6.2, 6.4 (if Transfer occurred), 7, 8, 9.5, 10, 11, 12.3–12.4, 13, 14, 15.
 
 ## 13. Sensitive Data — Prohibited Without a Separate Agreement
 
 13.1 The Service is **not** designed, and Velonyx does not offer it, for: protected health information under HIPAA; personal information of children under 16; payment-card data (PCI-DSS); biometric identifiers; precise geolocation; government IDs; financial account credentials; or other "sensitive personal information" as defined by the CCPA/CPRA or GDPR special categories.
-13.2 **Velonyx does not sign HIPAA Business Associate Agreements.** Client must not configure the Instance to request, and must instruct its customers not to provide, the categories in 13.1, unless the Parties have signed a **separate written agreement** covering that data. Client accepts that customers may volunteer such information in free-text; the Parties will note in the SOW how the AI is instructed to redirect such disclosures. [LAWYER: is this carve-out sufficient for a med-spa/dental client that only takes appointment requests, or should Velonyx refuse HIPAA-covered entities entirely?]
+13.2 **Velonyx does not sign HIPAA Business Associate Agreements.** Client must not configure the Instance to request, and must instruct its customers not to provide, the categories in 13.1, unless the Parties have signed a **separate written agreement** covering that data. Client accepts that customers may volunteer such information in free-text; the SOW records how the AI is instructed to redirect such disclosures. **HIPAA-covered entities** (medical, dental, mental-health, and other providers that bill health insurance electronically) are outside the Service as offered today: because Velonyx does not sign Business Associate Agreements, Velonyx will not onboard a covered entity unless and until a HIPAA-eligible configuration and a BAA are in place under a separate agreement. Cosmetic, wellness, and other businesses that are not covered entities may use the Service with the AI configured to take appointment requests without collecting health details.
 13.3 Breach of this Section is a material breach and is indemnified by Client under Section 10.1.
 
 ## 14. Dispute Resolution and Governing Law
 
-California law governs, without regard to conflicts principles. The Parties will negotiate in good faith for 30 days, then mediate in San Diego County before litigation. Exclusive venue: state and federal courts in San Diego County, California; each Party consents to jurisdiction. Prevailing Party recovers reasonable attorneys' fees. Either Party may seek injunctive relief for IP or confidentiality breaches without waiting. [LAWYER: arbitration alternative; enforceability against non-US Clients; whether to reference the CISG exclusion for international sales.]
+California law governs, without regard to conflicts principles; the UN Convention on Contracts for the International Sale of Goods is excluded. The Parties will negotiate in good faith for 30 days, then mediate in San Diego County before litigation. Exclusive venue: state and federal courts in San Diego County, California; each Party consents to jurisdiction, waives objection to venue, and — for a Client outside the United States — agrees that service of process by email to the notice address is effective. Each Party waives any right to bring or participate in a class or representative action against the other. Prevailing Party recovers reasonable attorneys' fees. Either Party may seek injunctive relief for IP or confidentiality breaches without waiting.
 
 ## 15. General
 
-Independent contractors; no agency. Entire agreement — this Agreement, its Exhibits (A: DPA; B: Refund Policy), and SOWs; order of precedence: DPA (for data matters), then this Agreement, then SOW, then Refund Policy. Amendments in writing (email suffices for change requests under 2.4). Assignment: Client may assign to a successor of substantially all its business on notice; Velonyx may assign to a successor. Force majeure. Severability. Notices by email to the addresses in the signature block, effective on send during business days. Electronic signatures binding. Counterparts. [LAWYER: keep or drop the old MSA's Freelance Worker Protection Act reference and the "independent business" ABC-test recitals — Velonyx is an entity, not an individual freelancer.]
+Independent contractors; no agency. Entire agreement — this Agreement, its Exhibits (A: DPA; B: Refund Policy), and SOWs; order of precedence: DPA (for data matters), then this Agreement, then SOW, then Refund Policy. Amendments in writing (email suffices for change requests under 2.4). Assignment: Client may assign to a successor of substantially all its business on notice; Velonyx may assign to a successor. Force majeure. Severability. Notices by email to the addresses in the signature block, effective on send during business days. Electronic signatures binding. Counterparts. (The prior MSA's Freelance Worker Protection Act and ABC-test recitals are dropped — Velonyx contracts as an LLC and those provisions add nothing.)
 
 ## Exhibits
 

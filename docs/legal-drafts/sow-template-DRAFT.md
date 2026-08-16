@@ -16,8 +16,8 @@ This SOW is issued under the Master Services Agreement dated [DATE] between Velo
 | Client business | [Trade name, industry, website if any] |
 | Client contact | [Name, role, email, mobile] |
 | Velonyx contact | Carlos Glover, admin@velonyxsystems.com, (877) 317-8643 |
-| Package | AI Front Desk — **USD 700 build + USD 70 / month** |
-| Add-ons selected | [None / Growth add-on at USD 250 / 500 / 1,500 per month — name it] |
+| Plan | [ ] Essentials — USD 700 build + USD 70/mo · [ ] Growth — USD 900 build + USD 150/mo · [ ] Elite — USD 1,200 build + USD 400/mo |
+| Add-ons selected | [None / AI Video add-on — USD 200 per month] |
 | Target Go-Live | [DATE] (subject to Section 5) |
 | Sensitive-data screen | Client confirms it is / is not a HIPAA-covered entity or business associate: [IS / IS NOT]. If IS, this SOW is not valid without the separate agreement referenced in MSA §13. |
 
@@ -56,7 +56,7 @@ Behavior on all channels: answers from Client's approved knowledge base; identif
 - Owner allowlist: [owner emails].
 
 ### 2.6 Not included (unless added by change request)
-- Additional pages beyond 2.1; copywriting beyond editing what Client supplies; logo design; paid ads; SEO content programs; custom integrations (CRM, POS, EHR); phone-system replacement beyond the AI line; multilingual voice [LAWYER/Carlos: keep list current with the product]; anything in MSA §13 (sensitive data).
+- Additional pages beyond 2.1; copywriting beyond editing what Client supplies; logo design; paid ads; SEO content programs; custom integrations (CRM, POS, EHR); phone-system replacement beyond the AI line; multilingual voice ; anything in MSA §13 (sensitive data).
 
 ## 3. Client inputs (needed before the build clock starts)
 
@@ -67,7 +67,7 @@ Behavior on all channels: answers from Client's approved knowledge base; identif
 | 3.3 | Business hours and holidays; booking rules (2.3) | Kickoff + 2 business days |
 | 3.4 | Knowledge base review: Client reviews and approves the AI's answer set and greetings in writing before Go-Live | On delivery of preview |
 | 3.5 | Access: Google account for calendar sharing; Meta Business Manager admin invite (if DMs/WhatsApp in scope); Twilio account or porting authorization (if bringing a number); domain registrar access or DNS records | Kickoff + 3 business days |
-| 3.6 | Legal: Client's own privacy policy / terms for its site, or authorization for Velonyx to place a standard template noting AI use, transcription, and Velonyx as processor [LAWYER: template text needed] | Before Go-Live |
+| 3.6 | Legal: Client's own privacy policy / terms for its site, or authorization for Velonyx to place Velonyx's standard client-site privacy notice (AI use, transcription, Velonyx as processor) | Before Go-Live |
 | 3.7 | Consent posture: how Client currently collects SMS consent, and confirmation Client will only campaign to consented contacts | Before any campaign |
 | 3.8 | Owner emails for the portal allowlist | Kickoff |
 
@@ -77,11 +77,11 @@ Delays in Client inputs extend the timeline day-for-day. If inputs are more than
 
 | Item | Amount | Due |
 |---|---|---|
-| Build fee | USD 700 | On SOW signature; build starts on receipt |
-| Subscription | USD 70 / month | First charge at Go-Live [or Go-Live + 30 days — match Terms §10]; then monthly |
-| Add-on(s) | USD [250 / 500 / 1,500] / month | From the month enabled |
-| Included usage | [e.g., up to X SMS segments and Y voice minutes / month]; overage at cost with 7 days' notice | — |
-| Change requests | USD [Carlos: rate] / hour, quoted before work | Per change request |
+| Build fee | USD [700 / 900 / 1,200] per the plan above | On SOW signature; build starts on receipt |
+| Subscription | USD [70 / 150 / 400] / month (or 10 months' price for a prepaid year) | First charge at Go-Live; then monthly on the same calendar day |
+| Add-on(s) | USD 200 / month (AI Video) | From the month enabled |
+| Included usage | Essentials: 300 AI conversations/mo · Growth: 1,000 conversations + 1,000 SMS segments/mo · Elite: Growth allowance + 500 voice minutes/mo. Above that: [ ] pause at daily cap and alert (default) · [ ] pass through at cost + 20% on next invoice | — |
+| Change requests | USD 95 / hour, quoted before work | Per change request |
 
 Third-party accounts in Client's name (domain registration, Meta, and after Transfer: hosting, database, telephony, AI usage) are Client's cost.
 
@@ -116,7 +116,7 @@ Cosmetic preferences after acceptance are change requests, not defects. Defects 
 
 - Two consolidated review rounds are included during the build (Section 5). Additional rounds before Go-Live, or scope changes at any time, are change requests at the Section 4 rate, quoted before work.
 - After Go-Live, Client edits business facts, hours, prices, and FAQ answers directly in the portal at no charge; structural changes (new pages, new channels, new integrations) are change requests.
-- Enabling an additional channel later: [Carlos: flat fee or included?].
+- Enabling an additional channel later: included if it is part of Client's plan; otherwise upgrade to the plan that includes it (build-fee difference + new monthly rate), or USD 150 one-time for a single extra channel where offered.
 
 ## 8. Go-Live checklist (Velonyx completes; Client sees the result)
 

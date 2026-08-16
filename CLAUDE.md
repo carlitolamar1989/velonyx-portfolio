@@ -61,9 +61,11 @@ new positioning (rank for "AI for business / custom AI system," not local/trades
 - `checkout.html` and `financing.html` are informational; their CTAs route to **`/book.html`** ("book a
   call and we'll send the secure link"). They must **not** present "Pay now / Go to checkout" dead-ends.
 
-**Pricing:** **$700 one-time build + $70/month.** Optional growth add-ons ($250 / $500 / $1,500/mo)
-appear in the pricing/JSON-LD. The old **$3,000 Founding Member + $100/mo** model is **retired** — if you
-still see it anywhere, it's stale.
+**Pricing (three tiers, as shown on the homepage and in `core/pricing.ts` of the platform):**
+**Essentials $700 build + $70/mo · Growth $900 build + $150/mo · Elite $1,200 build + $400/mo**, plus an
+optional **AI Video add-on $200/mo**. The old **$3,000 Founding Member + $100/mo** model and the
+"$250 / $500 / $1,500 add-ons" wording are **retired** — if you see either, it's stale. The platform's
+former in-code prices ($197/$347/$497) were wrong and were aligned on 2026-08-16.
 
 **Stripe (pending):** Carlos is creating **new Stripe Payment Links for the $700 / $70 prices**. Until
 those exist and are wired in, keep the funnel honest as book-a-call. When the links are ready, wire them
