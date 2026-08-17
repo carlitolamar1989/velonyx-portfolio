@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What You Own — Velonyx Systems</title>
+  <meta name="description" content="What Velonyx clients own after 12 monthly payments: the code repository, database, configuration, phone number, and every credential — what you would manage, what it costs to run yourself, and how the transfer works.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/ownership.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;}
+    .content h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--gold-light);margin:24px 0 8px;}
+    .content table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 16px;margin:14px 0 18px;background:rgba(255,255,255,0.02);}
+    .content blockquote p{margin-bottom:6px;}
+    .content code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--white);}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .content em{color:rgba(255,255,255,0.75);}
+    .vx-status{font-size:0.82rem;color:rgba(255,255,255,0.45);text-align:center;max-width:720px;margin:-18px auto 30px;padding:0 24px;line-height:1.6;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Ownership</div>
+      <h1 class="page-title">What <span>&ldquo;You Own It&rdquo;</span> Means</h1>
+      <p class="page-subtitle">After 12 payments your AI front desk is yours — here is exactly what that means, what you would manage, and how it works.</p>
+    </div>
+    <p class="effective-date">Last updated: August 16, 2026</p>
+    <p class="vx-status">Velonyx Systems LLC · San Diego County, California · <a href="mailto:admin@velonyxsystems.com" style="color:var(--gold);text-decoration:none;">admin@velonyxsystems.com</a> · (877) 317-8643</p>
+    <div class="content">
+<blockquote>
+<p>Every Velonyx plan ends the same way: after your 12th monthly payment (or a paid year), your AI front desk is <strong>yours</strong> — legally and technically. This page answers the questions people ask about that, honestly.</p>
+</blockquote>
+<h2 id="1-what-exactly-do-i-own">1. What exactly do I own?</h2>
+<p>After 12 payments you can ask us to transfer your system to accounts you control. You receive:</p>
+<ul>
+<li><strong>The code</strong> — the private code repository for your system, moved to your own GitHub account with its full history.</li>
+<li><strong>The database</strong> — your own Supabase project (every conversation, lead, booking, login, and scheduled job), transferred live with zero downtime.</li>
+<li><strong>Your configuration</strong> — branding, knowledge base, hours, prices, greetings, and settings.</li>
+<li><strong>Your accounts</strong> — your phone number (ported to a Twilio account in your name, or to any carrier), your Google Calendar, your Facebook/Instagram/WhatsApp assets.</li>
+<li><strong>Every password and key</strong>, rotated on a screen-share so Velonyx keeps nothing.</li>
+</ul>
+<p>Your customer data, content, domain, and phone number are yours from day one regardless. What you don&#39;t get: Velonyx&#39;s master template (you receive a perpetual license to the copy inside your system) and the right to resell the platform to others.</p>
+<h2 id="2-do-i-have-to-take-it">2. Do I have to take it?</h2>
+<p>No. Most clients keep Velonyx running it after year one — <strong>$70 / $150 / $350 a month</strong> covers hosting, security updates, the AI usage in your plan, support, and improvements. Taking it is your right, not a requirement. Think of the promise as <strong>insurance</strong>: nobody can switch off your front desk — not a platform, and not us.</p>
+<h2 id="3-if-i-take-it-what-do-i-have-to-manage">3. If I take it, what do I have to manage?</h2>
+<p>Being your own hosting company. Concretely, four or five accounts and bills:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What it does</th>
+<th>Typical cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vercel</td>
+<td>Hosts the website and the AI&#39;s brain-to-channels plumbing</td>
+<td>~$20 / month</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Your database and portal logins</td>
+<td>$0–25 / month</td>
+</tr>
+<tr>
+<td>Twilio</td>
+<td>Your phone number, texts, and calls</td>
+<td>~$5–15 / month plus usage</td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>The AI model itself, billed on usage</td>
+<td>~$5–20 / month at typical volumes</td>
+</tr>
+<tr>
+<td>Voice relay server (Elite only)</td>
+<td>Real-time audio for the phone agent</td>
+<td>~$5–10 / month</td>
+</tr>
+</tbody></table>
+<p>So roughly <strong>$30–60 a month</strong> in third-party bills, plus someone to keep the knowledge base current and to handle the occasional vendor change (an expired card, an API update). Two one-time chores are unavoidable when a phone number or Meta app changes hands: re-verifying the toll-free number under your brand, and possibly re-submitting Meta&#39;s app review. We walk you through both on the transfer call.</p>
+<h2 id="4-how-would-i-run-it-day-to-day">4. How would I run it day to day?</h2>
+<p>Exactly as you do now. The AI keeps answering; you use the same portal on your phone; bookings still land on your calendar. Nothing changes in the running of it — only who pays the vendor bills and who fixes things when they break.</p>
+<h2 id="5-who-fixes-it-if-something-breaks">5. Who fixes it if something breaks?</h2>
+<p>Any web developer. Your system is a standard <strong>Next.js / TypeScript</strong> application in a normal GitHub repository — the most common web stack in the world, not a proprietary black box. Options: hire a freelancer, ask Velonyx at our hourly rate ($95/hr), or simply come back onto a maintenance plan.</p>
+<h2 id="6-can-i-change-it-or-build-on-it">6. Can I change it or build on it?</h2>
+<p>Yes. Everyday changes — hours, prices, FAQ answers, greetings, who gets alerts — are settings, not code. Bigger changes (new pages, new integrations, a different AI model) are ordinary development work any developer or AI coding assistant can do in the repo. You may modify it freely for your own business; you may not resell it as a platform.</p>
+<h2 id="7-what-does-the-transfer-actually-look-like">7. What does the transfer actually look like?</h2>
+<p>One call, about an hour, plus a few free accounts you create beforehand (GitHub, Supabase, Vercel, Google, Twilio). We move the repo, transfer the database live, deploy on your Vercel, re-point your domain, hand over the calendar, port the number if you&#39;re leaving entirely, move or recreate the Meta app, rotate every secret while you watch, run the full smoke test on <em>your</em> deployment, remove our login — and shake hands. The procedure is written down and followed step by step.</p>
+<h2 id="8-what-if-i-stop-paying-before-month-12">8. What if I stop paying before month 12?</h2>
+<p>Then the transfer hasn&#39;t been earned yet — your service ends at the end of the paid period, and during the first 12 months the unpaid build portion of your plan is due (see the Refund Policy). Your data stays exportable for 30 days either way, and your domain, number, and social accounts are released to you.</p>
+<h2 id="9-why-does-velonyx-do-this">9. Why does Velonyx do this?</h2>
+<p>Because every other AI-receptionist company rents you a system that disappears the day you stop paying. We&#39;d rather earn the monthly fee by being worth it — and let you own the asset you paid to build. Clients who know they can leave are the ones who stay.</p>
+<p>Questions? <a href="mailto:admin@velonyxsystems.com">admin@velonyxsystems.com</a> · (877) 317-8643</p>
+
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/dpa.html">DPA</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

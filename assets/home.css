@@ -1296,6 +1296,8 @@
     .tier-addon { max-width: 1100px; margin: 26px auto 0; background: var(--bg-card-glossy); border: 1px solid rgba(212,175,55,0.34); outline: 1px solid rgba(212,175,55,0.10); outline-offset: 4px; border-radius: 18px; padding: 26px 30px; }
     /* Monthly-plan layout (2026-08-16): "then $X/mo" line + pay-in-full line + founders + ways-to-pay strip */
     .tier-monthly strong { color: var(--white); font-weight: 600; }
+    .tier-own-link { color: var(--accent-light); text-decoration: underline dotted; text-underline-offset: 3px; }
+    .tier-own-link:hover { color: var(--accent); }
     .tier-paidfull { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin: -12px 0 6px; letter-spacing: 0.2px; }
     .tier-paidfull strong { color: var(--accent-light); font-weight: 700; }
     .tier-paidfull span { color: rgba(255,255,255,0.4); }
