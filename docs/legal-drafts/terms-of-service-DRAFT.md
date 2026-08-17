@@ -86,6 +86,10 @@ You choose a plan — **Essentials, Growth, or Elite** — and pay **one monthly
 
 You then **own** that stamped copy outright, and Velonyx grants you a **perpetual, royalty-free, non-exclusive license** to the Velonyx template code embodied in it — you may run it, modify it, and hire anyone to maintain it. You may not resell the template as a product to others. Velonyx keeps the master template and may keep using it for other clients. After transfer, third-party costs (hosting, database, telephony, AI usage — roughly USD 15–40 per month at typical volumes, more with heavy voice use) are yours; you may keep paying Velonyx for a maintenance plan instead. **Counting the 12 payments:** a payment counts when made in full; if you fall behind, the count pauses and resumes when you are current — it does not reset. Transfer requires your account to be paid up at the time of the request. Paying the remaining Build Portion balance early also completes the count.
 
+### 12A. Business continuity — if Velonyx cannot continue
+
+Velonyx is a small company, and you deserve to know what happens if it cannot carry on. If Velonyx ceases operations, or is unable to operate your Service for more than 30 consecutive days for reasons within its control (for example the founder's incapacity), then **regardless of how many payments you have made**: (a) your instance is transferred to you under Section 12 **at no charge**, and any unpaid Build Portion balance is **waived**; (b) your data remains exportable throughout; (c) Velonyx's designated continuity contact — a person holding emergency access to Velonyx's credentials and the written handoff procedure — will contact you within 14 days and complete the transfer within 30 days, or, at your request, hand your instance to a developer you name. Your domain, phone number, social accounts, calendar, and customer data are yours at all times and are never part of Velonyx's estate.
+
 ### 13. What happens when you cancel before month 12
 
 - Your instance stops serving at the end of the paid period.

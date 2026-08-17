@@ -11,6 +11,8 @@
 | `sow-template-DRAFT.md` | Fill-in Statement of Work for a $700 build | `sow.html` |
 | `dpa-DRAFT.md` | Data Processing Agreement / CCPA service-provider addendum, with subprocessor list | (none existed) |
 | `refund-policy-DRAFT.md` | Short refund policy aligned with the above | `refund-policy.html` |
+| `ownership-explainer.md` | Plain-English "what you own it means" page (public) | `ownership.html` |
+| `continuity-plan.md` | INTERNAL business-continuity plan (backup key-holder, steps, client register) — sign and keep with records; not published | — |
 
 `privacy.html` was already rewritten on 2026-08-15 and is the reference these drafts are kept consistent with (processor list, roles, retention, "you are talking to an AI").
 

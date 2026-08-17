@@ -82,6 +82,8 @@ This Master Services Agreement ("Agreement") is entered into on the date of last
 
 6.8 **Portfolio.** Velonyx may identify Client as a customer and show Client's public website, unless Client opts out in writing. Velonyx will not display Client Data.
 
+6.9 **Business continuity.** If Velonyx ceases operations, or is unable to operate the Instance for more than 30 consecutive days for reasons within its control (including the incapacity of its principal), then regardless of the number of Monthly Payments made: (a) Velonyx will transfer the Instance to Client under Section 6.3 at no charge and any unpaid Build Portion balance is waived; (b) Client Data remains exportable throughout; (c) Velonyx's designated continuity contact — a person holding emergency access to Velonyx's credentials and the written Handoff procedure — will contact Client within 14 days and complete the transfer within 30 days, or at Client's election deliver the Instance and credentials to a developer Client names. Client's domain, phone number(s), Meta assets, calendar, and Client Data are Client's at all times and never form part of Velonyx's estate. Velonyx maintains a written continuity plan naming the continuity contact and will confirm its existence on request.
+
 ## 7. Data Protection
 
 7.1 The Parties agree that for Client Data, **Client is the controller / business and Velonyx is the processor / service provider.** The DPA (Exhibit A) governs Velonyx's processing of Client Data, the subprocessor list, security measures, breach notice, and deletion.

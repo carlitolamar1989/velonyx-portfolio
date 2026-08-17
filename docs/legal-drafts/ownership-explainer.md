@@ -54,6 +54,10 @@ One call, about an hour, plus a few free accounts you create beforehand (GitHub,
 
 Then the transfer hasn't been earned yet — your service ends at the end of the paid period, and during the first 12 months the unpaid build portion of your plan is due (see the Refund Policy). Your data stays exportable for 30 days either way, and your domain, number, and social accounts are released to you.
 
+## 8A. What if something happens to Velonyx?
+
+Fair question to ask a small company. Your system runs on big cloud providers, not on our laptop, so nothing stops by itself. And it is written into your contract (Terms §12A / MSA §6.9): if Velonyx cannot continue — for any reason, at any point, even in your first month — your system is handed to you **at no charge**, with any remaining build balance waived, by a named continuity contact who holds emergency access to our credentials and our written handoff procedure. You are contacted within 14 days and the transfer is completed within 30. Your phone number, web address, social accounts, calendar, and customer data are yours the whole time and can never be taken by anyone else.
+
 ## 9. Why does Velonyx do this?
 
 Because every other AI-receptionist company rents you a system that disappears the day you stop paying. We'd rather earn the monthly fee by being worth it — and let you own the asset you paid to build. Clients who know they can leave are the ones who stay.
