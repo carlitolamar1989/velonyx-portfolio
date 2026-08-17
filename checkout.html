@@ -22,7 +22,7 @@
   <meta name="theme-color" content="#08080A">
 
   <title>Complete Your Order — Velonyx Systems</title>
-  <meta name="description" content="Complete your Velonyx order — Essentials, Growth, or Elite. Start the monthly plan, or pay the year in full (2 months free) by card or with Affirm at checkout.">
+  <meta name="description" content="Complete your Velonyx order — Essentials, Growth, or Elite. Start the monthly plan, or take the annual price (2 months free) paid at once or in three 0% payments.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://velonyxsystems.com/checkout.html">
 
@@ -555,7 +555,7 @@
     <div class="checkout-hero">
       <div class="checkout-eyebrow">Complete Your Order</div>
       <h1>Pick Your Plan.<br><span class="gold">Choose How You Pay.</span></h1>
-      <p>The plan we discussed is below. Start the monthly plan (nothing big up front), or pay the year in full and get two months free &mdash; by card, or with Affirm at checkout. Your build starts the moment payment clears.</p>
+      <p>The plan we discussed is below. Start the monthly plan (nothing big up front), or take the annual price and get two months free &mdash; paid at once, or in three monthly payments at 0%. Your build starts the moment payment clears.</p>
     </div>
 
     <div class="container">
@@ -563,11 +563,11 @@
       <!-- ═══════════════════════════════════════════════════════════════
            PAYMENT — the page Carlos sends AFTER the discovery call.
            Model (2026-08-16): monthly plan (12 months, then price drops) OR pay
-           the year in full (2 months free; Affirm available). Each button points
+           the year in full (2 months free; at once or 3 payments). Each button points
            to a Stripe Payment Link (see docs/PRICING-2026-08.md).
-             essentials-monthly : $129/mo recurring      essentials-full : $1,400 one-time
-             growth-monthly     : $229/mo recurring      growth-full     : $2,400 one-time
-             elite-monthly      : $499/mo recurring      elite-full      : $5,200 one-time
+             essentials-monthly : $129/mo recurring   essentials-full : $1,400 one-time   essentials-full3 : $467/mo x3 (cancel after 3)
+             growth-monthly     : $229/mo recurring   growth-full     : $2,400 one-time   growth-full3     : $800/mo x3
+             elite-monthly      : $499/mo recurring   elite-full      : $5,200 one-time   elite-full3      : $1,734/mo x3
              aivideo-sub        : $200/mo recurring
            Until a real URL replaces "#", clicking shows a "being set up" message
            (guard script at the end of the page).
@@ -590,8 +590,9 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="essentials-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $129/mo</a>
-              <a href="#" data-stripe="essentials-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $1,400</a>
-              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
+              <a href="#" data-stripe="essentials-full" class="pay-btn pay-btn-split">Annual, pay at once &middot; $1,400</a>
+              <a href="#" data-stripe="essentials-full3" class="pay-btn pay-btn-split">Annual, 3 payments &middot; 3 &times; $467</a>
+              <p class="pay-step-note">Annual = 2 months free, either way. Card, Apple&nbsp;Pay, Google&nbsp;Pay, or bank transfer; the 3-payment option is 0% interest, no credit check.</p>
             </div>
           </div>
 
@@ -611,8 +612,9 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="growth-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $229/mo</a>
-              <a href="#" data-stripe="growth-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $2,400</a>
-              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
+              <a href="#" data-stripe="growth-full" class="pay-btn pay-btn-split">Annual, pay at once &middot; $2,400</a>
+              <a href="#" data-stripe="growth-full3" class="pay-btn pay-btn-split">Annual, 3 payments &middot; 3 &times; $800</a>
+              <p class="pay-step-note">Annual = 2 months free, either way. Card, Apple&nbsp;Pay, Google&nbsp;Pay, or bank transfer; the 3-payment option is 0% interest, no credit check.</p>
             </div>
           </div>
 
@@ -631,8 +633,9 @@
             </ul>
             <div class="pay-actions">
               <a href="#" data-stripe="elite-monthly" class="pay-btn pay-btn-full">Start monthly &middot; $499/mo</a>
-              <a href="#" data-stripe="elite-full" class="pay-btn pay-btn-split">Pay the year in full &middot; $5,200</a>
-              <p class="pay-step-note">Pay in full = 2 months free. Card, Apple&nbsp;Pay, Google&nbsp;Pay &mdash; or split it with <strong>Affirm</strong> at checkout (6-month 0% APR plans for qualified customers; longer terms with interest).</p>
+              <a href="#" data-stripe="elite-full" class="pay-btn pay-btn-split">Annual, pay at once &middot; $5,200</a>
+              <a href="#" data-stripe="elite-full3" class="pay-btn pay-btn-split">Annual, 3 payments &middot; 3 &times; $1,734</a>
+              <p class="pay-step-note">Annual = 2 months free, either way. Card, Apple&nbsp;Pay, Google&nbsp;Pay, or bank transfer; the 3-payment option is 0% interest, no credit check.</p>
             </div>
           </div>
 
@@ -661,7 +664,7 @@
           </div>
         </div>
 
-        <p class="pay-finance-note"><strong>Monthly plan:</strong> your first 12 payments cover the build and the service &mdash; 0% interest from us, no credit check, price locked for the year; cancel any time online (during the first 12 months the unpaid build portion &mdash; $59 / $79 / $99 per remaining month &mdash; is due; see the <a href="/refund-policy.html">Refund Policy</a>). After 12 payments the price drops to $70 / $150 / $400 a month, or take the system &mdash; it&rsquo;s yours. <strong>Pay in full:</strong> 2 months free; after year one, stay on for the monthly service price or prepay another year at 10 months&rsquo; price. <strong>Affirm:</strong> available at checkout on the pay-in-full amount for qualified customers &mdash; rates from 0&ndash;36% APR; payment options through Affirm are subject to an eligibility check and may not be available everywhere; Velonyx does not extend credit.</p>
+        <p class="pay-finance-note"><strong>Monthly plan:</strong> your first 12 payments cover the build and the service &mdash; 0% interest from us, no credit check, price locked for the year; cancel any time online (during the first 12 months the unpaid build portion &mdash; $59 / $79 / $99 per remaining month &mdash; is due; see the <a href="/refund-policy.html">Refund Policy</a>). After 12 payments the price drops to $70 / $150 / $400 a month, or take the system &mdash; it&rsquo;s yours. <strong>Annual:</strong> 2 months free, paid at once or in three monthly payments at 0% (no third-party lender &mdash; consumer pay-later apps don&rsquo;t cover business purchases, so we finance it ourselves through Stripe); after year one, stay on for the monthly service price or prepay another year at 10 months&rsquo; price. Business credit cards with their own 0% intro periods work at checkout too.</p>
       </section>
 
       <!-- WHAT HAPPENS NEXT -->

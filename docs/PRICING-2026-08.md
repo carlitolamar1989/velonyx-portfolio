@@ -1,6 +1,6 @@
 # Velonyx Pricing — proposal v3 (2026-08-16)
 
-**Status:** APPROVED by Carlos 2026-08-16 and LIVE on velonyxsystems.com (homepage #pricing, checkout, financing, JSON-LD), in `core/pricing.ts`, and in the SOW template. Changes from v3 proposal: Founders' Offer applies to **Growth and Elite**; Growth badged "Most popular"; annual 10-for-12 offered after year 1; **Affirm** is the featured financing partner (Afterpay may stay enabled in Stripe as a silent extra for Essentials pay-in-4).
+**Status:** APPROVED by Carlos 2026-08-16 and LIVE on velonyxsystems.com (homepage #pricing, checkout, financing, JSON-LD), in `core/pricing.ts`, and in the SOW template. Changes from v3 proposal: Founders' Offer applies to **Growth and Elite**; Growth badged "Most popular"; annual 10-for-12 offered after year 1; **No third-party BNPL** — Affirm/Afterpay/Klarna exclude B2B and Stripe has no US B2B pay-later method as of Aug 2026 (Capchase Pay was withdrawn); financing is built in via Stripe: monthly plan, or annual price paid at once or in 3 monthly payments at 0% (Stripe subscription-schedule installments).
 
 ## The idea in one line
 No big upfront fee. One monthly price for 12 months (the build is spread into it, 0% from Velonyx). After 12 payments the price drops to the service price — or take the system and go, it's yours. Pay the year up front and get two months free.
@@ -27,9 +27,9 @@ No big upfront fee. One monthly price for 12 months (the build is spread into it
 
 1. **Monthly plan (default)** — Velonyx finances the build at 0% into 12 payments. Card on file via Stripe. This is the headline: *no upfront, no interest, own it in a year.*
 2. **Pay in full** — 2 months free (~10–13% off). Card, Apple Pay, Google Pay.
-3. **Pay in full, financed by a third party at checkout** — where Stripe offers it: **Affirm** (Essentials $1,400 → about $233/mo × 6 at 0% APR under Affirm's standard package; Growth $2,400 → ~$400 × 6 at 0%; Elite $5,200 → ~$867 × 6 at 0%, or 12/36 months with interest) or **Afterpay** (Essentials: 4 × $350 interest-free; Growth: 6/12-month installments; Elite is over Afterpay's $4,000 cap). Terms, approval, and rates are Affirm's/Afterpay's; Velonyx is paid in full up front by Stripe.
+3. **Annual in 3 payments** — same 2-months-free price split into three monthly card payments (Essentials 3 × $467 · Growth 3 × $800 · Elite 3 × $1,734), 0% interest, no credit check; implemented as a Stripe subscription that stops after 3 payments (Stripe's own recommended "installment plan" mechanism).
 
-**Caveat (verified in Stripe's docs 2026-08-16):** Affirm and Afterpay both list "B2B" as a prohibited business model on Stripe and reserve post-activation review. It's enabled on the account, so it may work case by case — but the site should say "may be offered at checkout," never promise it, and the monthly plan is the real financing story.
+**Why no Affirm/Afterpay/Klarna (verified 2026-08-16):** all three prohibit B2B on Stripe; Stripe's current pay-later list has no US B2B method (Capchase Pay withdrawn; Billie/Mondu/Kriya are EU/UK only); off-Stripe B2B lenders (Credit Key, Resolve, Two) require wholesale volume. Business buyers who want outside financing can use a business credit card (0% intro offers) at checkout — we accept cards + ACH.
 
 ## 3. Founders' offer — first two clients only
 

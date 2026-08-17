@@ -77,7 +77,7 @@ Delays in Client inputs extend the timeline day-for-day. If inputs are more than
 
 | Item | Amount | Due |
 |---|---|---|
-| Monthly price (months 1–12) | USD [129 / 229 / 499] / month, comprising Build Portion USD [59 / 79 / 99] + Service Portion USD [70 / 150 / 400] — OR pay year 1 in full: USD [1,400 / 2,400 / 5,200] (2 months free; Affirm available at checkout) | First charge at Go-Live; then monthly on the same calendar day |
+| Monthly price (months 1–12) | USD [129 / 229 / 499] / month, comprising Build Portion USD [59 / 79 / 99] + Service Portion USD [70 / 150 / 400] — OR pay year 1 in full: USD [1,400 / 2,400 / 5,200] (2 months free; paid at once or in 3 monthly payments at 0%) | First charge at Go-Live; then monthly on the same calendar day |
 | Monthly price (month 13 onward) | USD [70 / 150 / 400] / month, month to month (or 10 months' price for a prepaid year) | — |
 | Early cancellation (months 1–12) | Unpaid Build Portion balance = USD [59 / 79 / 99] × months remaining; no other fee | Within 15 days of cancellation |
 | Add-on(s) | USD 200 / month (AI Video) · Founders' Offer (first 2 clients, Growth/Elite): [ ] yes — 50% off months 1–6 + AI Video included, case study + testimonial in return | From the month enabled |
