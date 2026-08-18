@@ -1034,8 +1034,16 @@
     });
   })();
   </script>
+  <!-- Marketing config + CCPA cookie consent (GA4/Meta Pixel gate, "Do Not Sell or Share" footer link, GPC).
+       Restored on the homepage 2026-08-16 — it had been missing here, so the consent banner and the
+       Do-Not-Sell link were only appearing on inner pages. -->
+  <script src="/assets/marketing-config.js" defer></script>
+  <script src="/assets/cookie-consent.js" defer></script>
   <!-- Conversational AI lead form (chat-style modal) — opens via [data-vx-form-open] or window.openVelonyxLeadForm() -->
   <script src="/assets/velonyx-lead-form.js" defer></script>
+  <!-- Founders' Offer pop-up (2026-08-16, Carlos's request): once per visitor, dismissible, off switch in
+       marketing-config.js (VELONYX_FOUNDERS.enabled). Different from the "$0 down" pop-up removed in July. -->
+  <script src="/assets/founders-popup.js" defer></script>
   <!-- LIVE AI chat (2026-08-12): the golden-orb widget wired to the REAL
        platform brain (same AI that answers the 877 line). Replaces the old
        canned auto-play demo widget (velonyx-ai-demo-widget.js stays in the
