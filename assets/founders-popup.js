@@ -3,7 +3,7 @@
  * + AI Video included, first 2 clients. Shows once after a short delay, on a
  * deep scroll, or on exit intent; remembered for 7 days when dismissed and 30
  * days when claimed. Never shows on legal/checkout pages, never twice in a
- * session, never if the URL has ?nopop.
+ * session, never if the URL has ?nopop. Force it for review with ?founders.
  *
  * Config (optional, in marketing-config.js):
  *   window.VELONYX_FOUNDERS = { enabled: true, seats: 2, delayMs: 7000 };
@@ -15,10 +15,14 @@
   if (/nopop/.test(location.search)) return;
   if (/\/(terms|msa|sow|dpa|refund-policy|privacy|sms-terms|sms-opt-in|checkout|activate|book|ownership)\.html/.test(location.pathname)) return;
   var KEY = 'velonyx_founders_popup';
+  // Preview switch: any URL with ?founders (or #founders) forces the pop-up right now,
+  // ignoring earlier dismissals — for Carlos to review it: https://velonyxsystems.com/?founders
+  var force = /(\?|&)founders(=|&|$)/.test(location.search) || location.hash === '#founders';
+  if (force) { try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY + '_shown'); } catch (e) {} cfg.delayMs = 0; }
   try {
     var until = Number(localStorage.getItem(KEY) || 0);
-    if (until && Date.now() < until) return;
-    if (sessionStorage.getItem(KEY + '_shown')) return;
+    if (!force && until && Date.now() < until) return;
+    if (!force && sessionStorage.getItem(KEY + '_shown')) return;
   } catch (e) { return; }
 
   var css = ''
