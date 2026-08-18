@@ -10,7 +10,7 @@
  * Turn it off when both seats are gone: set enabled:false (or seats:0).
  */
 (function () {
-  var cfg = Object.assign({ enabled: true, seats: 2, delayMs: 7000 }, window.VELONYX_FOUNDERS || {});
+  var cfg = Object.assign({ enabled: true, seats: 2, delayMs: 2000 }, window.VELONYX_FOUNDERS || {});
   if (!cfg.enabled || cfg.seats <= 0) return;
   if (/nopop/.test(location.search)) return;
   if (/\/(terms|msa|sow|dpa|refund-policy|privacy|sms-terms|sms-opt-in|checkout|activate|book|ownership)\.html/.test(location.pathname)) return;
@@ -107,7 +107,7 @@
     function onScroll() {
       var h = document.documentElement;
       var pct = (window.scrollY || h.scrollTop) / Math.max(1, h.scrollHeight - h.clientHeight);
-      if (pct > 0.35) { clearTimeout(timer); show(); cleanup(); }
+      if (pct > 0.15) { clearTimeout(timer); show(); cleanup(); }
     }
     function onLeave(e) { if (e.clientY <= 0) { clearTimeout(timer); show(); cleanup(); } }
     function cleanup() { window.removeEventListener('scroll', onScroll); document.removeEventListener('mouseout', onLeave); }
