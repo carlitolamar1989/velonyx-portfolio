@@ -52,3 +52,23 @@ No big upfront fee. One monthly price for 12 months (the build is spread into it
 
 ## 5. Where this shows up once approved
 Homepage `#pricing` (three cards + "ways to pay" strip + founders' callout), `checkout.html`, `financing.html` (Affirm/Afterpay described truthfully), JSON-LD offers, `core/pricing.ts` (buildUsd/monthlyUsd already aligned; add payInFull), SOW template numbers, `terms.html §10` example figures.
+
+## 6. Stripe Payment Links (created by Carlos 2026-08-23; each verified in-browser: product + price)
+
+| Product | Link | Verified | Wired on checkout.html |
+|---|---|---|---|
+| 1 Essentials — Monthly $129/mo | https://buy.stripe.com/14AdRbbnD7Sy0bs9CGcs80f | ✅ | ✅ `essentials-monthly` |
+| 2 Growth — Monthly $229/mo | https://buy.stripe.com/fZu4gB63j7SyaQ6eX0cs80g | ✅ | ✅ `growth-monthly` |
+| 3 Elite — Monthly $499/mo | https://buy.stripe.com/8x27sN63jegW9M2dSWcs80h | ✅ | ✅ `elite-monthly` |
+| 4 Essentials — Annual at once $1,400 | https://buy.stripe.com/14AaEZ2R7egW3nEbKOcs80j | ✅ | ✅ `essentials-full` |
+| 5 Growth — Annual at once $2,400 | https://buy.stripe.com/14A8wR2R78WC8HYbKOcs80k | ✅ | ✅ `growth-full` |
+| 6 Elite — Annual at once $5,200 | https://buy.stripe.com/28E6oJajzgp40bseX0cs80l | ✅ | ✅ `elite-full` |
+| 7 Essentials — Annual, 3 payments $467 | https://buy.stripe.com/3cI28tbnD7SybUa5mqcs80m | ⚠️ billed **every 4 months** — must be Monthly + limit 3 | ⏸ held |
+| 8 Growth — Annual, 3 payments $800 | https://buy.stripe.com/14A28t0IZ2yecYe026cs80n | ⚠️ same | ⏸ held |
+| 9 Elite — Annual, 3 payments $1,734 | https://buy.stripe.com/28EfZj9fv3Ci2jAcOScs80o | ⚠️ same | ⏸ held |
+| 10 AI Video add-on $200/mo | https://buy.stripe.com/9B6dRbdvL3Cif6m16acs80i | ✅ | ✅ `aivideo-sub` |
+| 11 Essentials — Service (13+) $70/mo | https://buy.stripe.com/bJedRbajzfl0aQ62aecs80p | ✅ | — (send at month 13) |
+| 12 Growth — Service (13+) $150/mo | https://buy.stripe.com/7sYaEZajz7Sy4rI6qucs80q | ✅ (no terms checkbox) | — |
+| 13 Elite — Service (13+) $350/mo | https://buy.stripe.com/5kQfZj0IZgp42jAdSWcs80r | ✅ (no terms checkbox) | — |
+
+Open items on Carlos's side: (a) fix 7–9 to Monthly + "Limit the number of payments: 3"; (b) "Allow promotion codes" was not on — needed on 2, 3, 10 (and 1) for FOUNDER / FOUNDERVIDEO; (c) Customer-portal link (billing.stripe.com/p/login/…) still needed for the portal Cancel button; (d) optional: terms checkbox on 12–13.
