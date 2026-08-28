@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Velonyx — Let's Build Your AI Front Desk</title>
+  <meta name="description" content="Welcome aboard. Tell us about your business and we start building your AI front desk today.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://velonyxsystems.com/welcome.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .wl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:860px;margin:8px auto 40px;padding:0 24px;}
+    @media(max-width:760px){.wl-steps{grid-template-columns:1fr;}}
+    .wl-step{background:var(--glass);border:1px solid rgba(212,175,55,0.22);border-radius:16px;padding:20px;}
+    .wl-step b{display:block;font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .wl-step p{font-size:0.88rem;color:var(--white-dim);line-height:1.6;margin:0;}
+    .wl-form{max-width:720px;margin:0 auto;padding:0 24px 40px;}
+    .wl-form label{display:block;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.6px;color:var(--gold-light);margin:18px 0 6px;}
+    .wl-form label span{color:rgba(255,255,255,0.4);font-weight:400;text-transform:none;letter-spacing:0;}
+    .wl-form input,.wl-form select,.wl-form textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.25);border-radius:10px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;padding:12px 14px;}
+    .wl-form textarea{min-height:96px;resize:vertical;line-height:1.5;}
+    .wl-form input:focus,.wl-form select:focus,.wl-form textarea:focus{outline:none;border-color:var(--gold);}
+    .wl-submit{margin-top:26px;width:100%;font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:16px;border:0;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#D4AF37 0%,#F7E17B 35%,#D4AF37 65%,#B8860B 100%);color:#0C0C0F;min-height:52px;}
+    .wl-submit:disabled{opacity:0.55;cursor:wait;}
+    .wl-msg{margin-top:14px;font-size:0.9rem;line-height:1.6;text-align:center;color:var(--white-dim);}
+    .wl-msg.ok{color:#7ee2a0;}
+    .wl-msg.err{color:#ffb0b0;}
+    .wl-hp{position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Welcome Aboard</div>
+      <h1 class="page-title">You&rsquo;re In. <span>Let&rsquo;s Build.</span></h1>
+      <p class="page-subtitle">Payment received &mdash; your AI front desk starts here. Ten minutes on this form is all we need to begin.</p>
+    </div>
+
+    <div class="wl-steps">
+      <div class="wl-step"><b>1 &middot; Today</b><p>Fill in the form below &mdash; your business, hours, services, and the questions customers always ask. This is what your AI learns from.</p></div>
+      <div class="wl-step"><b>2 &middot; Days 1&ndash;14</b><p>We engineer your system. You get a private preview link and approve everything before it goes public.</p></div>
+      <div class="wl-step"><b>3 &middot; Launch</b><p>Your AI starts answering, booking, and texting confirmations &mdash; and you run it all from a portal on your phone.</p></div>
+    </div>
+
+    <div class="content" style="max-width:720px;">
+      <h3 id="intake" style="margin-top:0;">Tell us about your business</h3>
+      <p>Short answers are fine &mdash; we&rsquo;ll go deeper on your kickoff call. Prefer to talk instead? Call or text <a href="tel:+18773178643">(877) 317-8643</a>.</p>
+    </div>
+
+    <form class="wl-form" id="wl-form" novalidate>
+      <div class="wl-hp" aria-hidden="true"><label>Company URL<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label></div>
+
+      <label>Business name *</label>
+      <input name="business_name" required maxlength="200" autocomplete="organization">
+      <label>Your name</label>
+      <input name="contact_name" maxlength="200" autocomplete="name">
+      <label>Email * <span>&mdash; where your preview link goes</span></label>
+      <input name="email" type="email" required maxlength="320" autocomplete="email">
+      <label>Phone</label>
+      <input name="phone" type="tel" maxlength="40" autocomplete="tel">
+      <label>Current website <span>(if you have one)</span></label>
+      <input name="website" maxlength="300" autocomplete="url">
+      <label>Plan you purchased</label>
+      <select name="plan">
+        <option value="">Choose&hellip;</option>
+        <option value="essentials">Essentials</option>
+        <option value="growth">Growth</option>
+        <option value="elite">Elite</option>
+        <option value="founders-growth">Founders&rsquo; &mdash; Growth</option>
+        <option value="founders-elite">Founders&rsquo; &mdash; Elite</option>
+        <option value="unsure">Not sure / paying later</option>
+      </select>
+      <label>What do you sell, and at what prices? <span>&mdash; your AI quotes from this</span></label>
+      <textarea name="services" maxlength="4000" placeholder="e.g. Haircut $40 · Color $120 · Consultations free&hellip;"></textarea>
+      <label>Business hours</label>
+      <textarea name="hours" maxlength="1000" placeholder="e.g. Mon–Fri 9–6, Sat 10–2, closed Sunday"></textarea>
+      <label>The questions customers always ask <span>&mdash; and the answers you give</span></label>
+      <textarea name="faq" maxlength="6000" placeholder="e.g. Do you take walk-ins? — Yes, before 4pm&hellip;"></textarea>
+      <label>Instagram / Facebook / WhatsApp <span>(handles or links, whichever apply)</span></label>
+      <input name="socials" maxlength="1000">
+      <label>Google account for your booking calendar <span>(the email you use for Google Calendar)</span></label>
+      <input name="calendar_email" type="email" maxlength="320">
+      <label>Anything else we should know</label>
+      <textarea name="notes" maxlength="4000"></textarea>
+
+      <button class="wl-submit" type="submit" id="wl-btn">Start My Build &rarr;</button>
+      <p class="wl-msg" id="wl-msg" role="status"></p>
+    </form>
+
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/ownership.html">What You Own</a> &nbsp;&middot;&nbsp; <a href="https://billing.stripe.com/p/login/6oU3cx0IZfl0e2i6qucs800" target="_blank" rel="noopener">Manage Billing</a></span>
+  </footer>
+  <script>
+  (function(){
+    var form = document.getElementById('wl-form');
+    var btn = document.getElementById('wl-btn');
+    var msg = document.getElementById('wl-msg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = {};
+      new FormData(form).forEach(function(v,k){ data[k]=v; });
+      if (!data.business_name || !data.email) { msg.textContent='Business name and email are required.'; msg.className='wl-msg err'; return; }
+      btn.disabled = true; msg.textContent='Sending\u2026'; msg.className='wl-msg';
+      fetch('https://velonyx-platform.vercel.app/api/onboarding', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+      }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
+      .then(function(res){
+        if (res.ok) {
+          form.reset();
+          msg.textContent = 'Got it \u2014 your build starts today. Watch your inbox for your kickoff details and preview link.';
+          msg.className = 'wl-msg ok';
+          btn.textContent = '\u2713 Received';
+          if (window.vxTrack) { try { window.vxTrack('CompleteRegistration', {content_name:'Onboarding intake'}); } catch(err){} }
+        } else {
+          btn.disabled = false;
+          msg.textContent = (res.j && res.j.error ? res.j.error + '. ' : '') + 'If it keeps failing, call or text (877) 317-8643 \u2014 we\u2019ll take it by phone.';
+          msg.className = 'wl-msg err';
+        }
+      }).catch(function(){
+        btn.disabled = false;
+        msg.textContent = 'Connection problem \u2014 try again, or call/text (877) 317-8643.';
+        msg.className = 'wl-msg err';
+      });
+    });
+  })();
+  </script>
+  <script src="/assets/marketing-config.js" defer></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>
