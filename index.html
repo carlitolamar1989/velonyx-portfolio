@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- Preload hero background — the LCP element. Hoisted to the top of <head> so the
-       preload scanner requests it before the inline scripts and JSON-LD below. -->
-  <link rel="preload" as="image" href="/assets/hero-bg-hologram-1440.webp" type="image/webp" fetchpriority="high" imagesrcset="/assets/hero-bg-hologram-1440.webp 1440w, /assets/hero-bg-hologram.webp 2400w" imagesizes="100vw">
+  <!-- LCP hero: NO preload tag on purpose (2026-08-29). The <img> with srcset +
+       fetchpriority=high is discovered by the preload scanner immediately, and a
+       preload here made Chrome download BOTH size candidates (measured). Do not
+       re-add one. -->
 
   <!-- Urgency banner removed 2026-07-02 (design audit): a countdown strip
        contradicts the premium positioning, and its reserved padding pushed the
