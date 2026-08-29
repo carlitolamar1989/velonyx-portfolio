@@ -44,6 +44,14 @@ const EXTRA_CSS = `
     .g-card em{display:block;font-style:normal;font-size:0.76rem;color:rgba(212,175,55,0.7);margin-top:10px;letter-spacing:0.6px;}
 `;
 
+function absolutize(html) {
+  // The shell template uses relative asset paths; guides live two levels deep.
+  return html
+    .replace(/src="assets\//g, 'src="/assets/')
+    .replace(/href="assets\//g, 'href="/assets/')
+    .replace(/href="favicon\.ico"/g, 'href="/favicon.ico"');
+}
+
 function parseFrontmatter(md) {
   const m = md.match(/^---\n([\s\S]*?)\n---\n/);
   const meta = {};
@@ -127,7 +135,7 @@ ${html}
 ` + tpl.slice(tpl.indexOf("  <footer>"));
 
   fs.mkdirSync(path.join(ROOT, "guides", slug), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, "guides", slug, "index.html"), page);
+  fs.writeFileSync(path.join(ROOT, "guides", slug, "index.html"), absolutize(page));
   guides.push({ slug, ...meta });
   console.log("built guides/" + slug + "/  (faq items: " + faq.length + ")");
 }
@@ -150,5 +158,5 @@ ${cards}
   </main>
 ` + tpl.slice(tpl.indexOf("  <footer>"));
 fs.mkdirSync(path.join(ROOT, "guides"), { recursive: true });
-fs.writeFileSync(path.join(ROOT, "guides/index.html"), idx);
+fs.writeFileSync(path.join(ROOT, "guides/index.html"), absolutize(idx));
 console.log("built guides/index.html with " + guides.length + " cards");
