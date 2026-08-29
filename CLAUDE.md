@@ -174,13 +174,13 @@ Cursor-Claude/                        ← velonyx-portfolio repo
 ## Performance notes
 
 - Mobile is the dominant profile (QR / DM / SMS shares). The legal/utility pages score 85–100.
-- The **homepage regressed** after the AI-repositioning work (LCP ~5.6s, CLS 0.217 in the June audit).
-  Fixes applied on the audit branch: hero-image preload hoisted to the top of `<head>`; urgency-banner
-  space reserved pre-paint (CLS); footer link contrast raised to pass WCAG AA.
-- **Still open:** homepage LCP render-delay is dominated by main-thread work (large inline `<style>` parse
-  + GSAP/ScrollTrigger init before paint). Reducing it means deferring GSAP init until after LCP and/or
-  splitting the inline CSS — higher-risk changes that should be tested live (a prior loader-script change,
-  PR #39, briefly blanked the page, so be careful with first-paint JS).
+- **Homepage perf FIXED 2026-08-29** (mobile Lighthouse 45 → 88; LCP 5.4→3.4s, TBT 1,000→80ms,
+  SI 14.7→4.5s, CLS 0): (1) `velonyx-live-chat.js` (1.7s of script) now lazy-loads after
+  window.load+1.5s or first scroll/touch — do NOT put it back on plain defer; (2) hero is a single
+  `<img srcset>` with **no preload tag on purpose** — a preload made Chrome download BOTH size
+  candidates (measured); do not re-add one; (3) aurora/particles start paused, `body.vx-anim` added
+  after load+1s; (4) video posters are WebP; (5) deploy workflow minifies `home.css` in the artifact
+  only (source stays readable). Measure with `npx lighthouse` before/after any perf-touching change.
 - See `docs/AUDIT_2026-06-13.md` for the full June audit and `docs/PERF_AUDIT_SWEEP.md` for the May baseline.
 
 ---
