@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them — Velonyx Systems</title>
+  <meta name="description" content="Do AI receptionists work? An honest answer from a team that builds them: what they do well, where they fail, and how to test one yourself in 30 seconds.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/guides/do-ai-receptionists-work/">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content{max-width:760px;}
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;line-height:1.25;}
+    .content h3{font-size:1.12rem;}
+    .content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);white-space:nowrap;}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 18px;margin:18px 0;background:rgba(255,255,255,0.02);font-size:1.02rem;}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .g-byline{font-size:0.84rem;color:rgba(255,255,255,0.45);text-align:center;margin:-18px auto 34px;max-width:720px;padding:0 24px;}
+    .g-byline a{color:var(--gold);text-decoration:none;}
+    .g-cta{max-width:760px;margin:40px auto;padding:26px 28px;background:linear-gradient(165deg,rgba(212,175,55,0.12) 0%,rgba(12,12,16,0.98) 60%);border:1px solid rgba(212,175,55,0.45);border-radius:18px;}
+    .g-cta b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:#fff;margin-bottom:8px;}
+    .g-cta p{color:var(--white-dim);font-size:0.94rem;line-height:1.65;margin:0 0 16px;}
+    .g-cta .row{display:flex;gap:10px;flex-wrap:wrap;}
+    .g-cta a.btn{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:13px 20px;border-radius:11px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    .g-cta a.gold{background:linear-gradient(135deg,#D4AF37,#F7E17B 35%,#D4AF37 65%,#B8860B);color:#0C0C0F;}
+    .g-cta a.ghost{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);}
+    .g-related{max-width:760px;margin:12px auto 0;padding:0 24px;}
+    .g-related h4{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 12px;}
+    .g-related a{display:block;color:var(--white-dim);text-decoration:none;padding:9px 0;border-top:1px solid rgba(212,175,55,0.12);font-size:0.94rem;}
+    .g-related a:hover{color:var(--gold-light);}
+    .g-card{display:block;background:var(--glass);border:1px solid rgba(212,175,55,0.22);border-radius:16px;padding:22px 24px;margin-bottom:14px;text-decoration:none;transition:border-color .2s;}
+    .g-card:hover{border-color:rgba(212,175,55,0.55);}
+    .g-card b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.08rem;color:#fff;margin-bottom:6px;line-height:1.35;}
+    .g-card span{font-size:0.9rem;color:var(--white-dim);line-height:1.6;}
+    .g-card em{display:block;font-style:normal;font-size:0.76rem;color:rgba(212,175,55,0.7);margin-top:10px;letter-spacing:0.6px;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them","description":"Do AI receptionists work? An honest answer from a team that builds them: what they do well, where they fail, and how to test one yourself in 30 seconds.","author":{"@type":"Person","name":"Carlos Glover","url":"https://velonyxsystems.com/connect/"},"publisher":{"@type":"Organization","name":"Velonyx Systems","url":"https://velonyxsystems.com"},"datePublished":"2026-08-29","dateModified":"2026-08-29","mainEntityOfPage":"https://velonyxsystems.com/guides/do-ai-receptionists-work/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://velonyxsystems.com/guides/"},{"@type":"ListItem","position":3,"name":"Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them","item":"https://velonyxsystems.com/guides/do-ai-receptionists-work/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can callers tell it's an AI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and they should, because it tells them. A modern AI voice is natural enough that some callers forget mid-conversation, but every Velonyx receptionist identifies itself as an AI at the start of the call. That&#39;s partly a legal requirement in several states and partly common sense: the goodwill from an instant, useful answer evaporates the moment a customer feels tricked. Judge the realism yourself in the playground."}},{"@type":"Question","name":"What happens when it doesn't know the answer?","acceptedAnswer":{"@type":"Answer","text":"A well-built one says so, plainly, and then does something useful: takes a detailed message, offers to have the owner follow up, or hands the conversation to a human. What it must never do is guess. During setup, unknown-question behavior is configured deliberately, and week-one transcript review catches the questions nobody predicted so they can be added to the knowledge base permanently."}},{"@type":"Question","name":"Can it really book appointments by itself?","acceptedAnswer":{"@type":"Answer","text":"Yes, and this is the least appreciated part. It connects to the owner&#39;s real Google Calendar, reads actual availability, offers open slots during the conversation, books the one the caller picks, and sends a text confirmation. There is no  someone will call you back to schedule  step. The booking exists on the calendar before the caller hangs up."}},{"@type":"Question","name":"How long does setup take?","acceptedAnswer":{"@type":"Answer","text":"The build itself is fast; the teaching is what matters. Expect the knowledge base and calendar connection inside the first couple of days, going live shortly after, and then roughly a week of transcript review and pruning before it feels fully dialed in. Businesses with clear, written policies get there fastest. Businesses where the answers live only in the owner&#39;s head take a little longer, because we have to get them out first."}},{"@type":"Question","name":"What does an AI receptionist cost?","acceptedAnswer":{"@type":"Answer","text":"Across the market, as of August 2026 and per vendor pricing pages, chat-only tools run roughly $39–99 per month, multi-channel setups $99–299, and done-for-you services with voice $297–997. Velonyx runs $129–$499 per month depending on channels, with pricing that drops sharply after month twelve because at that point you own the entire system outright. For the full breakdown, including the usage fees and overage charges that quietly inflate other vendors&#39; advertised prices, see our complete cost guide."}}]}</script>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Honest Answer</div>
+      <h1 class="page-title">Do AI Receptionists <span>Actually Work?</span> An Honest Answer From Someone Who Builds Them</h1>
+      <p class="page-subtitle">We build these for a living. Here is the unvarnished version, including the parts vendors skip.</p>
+    </div>
+    <p class="g-byline">By <a href="/connect/">Carlos Glover</a>, founder of Velonyx Systems · Published 2026-08-29</p>
+    <div class="content">
+<p>We build AI receptionists for a living, which means we have every financial incentive to tell you they work flawlessly. They don&#39;t. They work very well at a specific set of jobs, fail at a predictable set of others, and the difference between a deployment that quietly earns its keep and one that embarrasses the business usually comes down to decisions made in the first week. This article is the unvarnished version, written by people who read the transcripts every day.</p>
+<h2 id="don39t-take-our-word-for-it-test-one-in-30-seconds">Don&#39;t take our word for it, test one in 30 seconds</h2>
+<p>Most articles asking &quot;do AI receptionists work&quot; are written by people who have never spoken to one. You don&#39;t have that problem. The <a href="https://velonyx-playground.vercel.app">Velonyx Playground</a> is a live AI receptionist you can call, text, or chat with right now, no signup, no email address, no sales call afterward.</p>
+<p>Try to break it. Ask about pricing. Change your mind mid-sentence. Mumble. Ask something it couldn&#39;t possibly know. Everything in the rest of this article will make more sense once you&#39;ve heard one handle a real conversation, and heard what happens when it can&#39;t.</p>
+<h2 id="what-a-2026-ai-receptionist-genuinely-does-well">What a 2026 AI receptionist genuinely does well</h2>
+<p>These aren&#39;t marketing claims. They follow directly from what the software is.</p>
+<p><strong>It answers instantly, at any hour.</strong> A call at 2am gets picked up on the first ring with the same energy as a call at 2pm. Software doesn&#39;t sleep, doesn&#39;t step away, and doesn&#39;t have a Tuesday it would rather forget.</p>
+<p><strong>It is never annoyed.</strong> The fortieth &quot;how much do you charge?&quot; of the day gets the same patient, complete answer as the first. There is no sighing, no rushing, no bad mood after a difficult caller. This sounds small until you remember that tone is most of what customers remember about a phone call.</p>
+<p><strong>It remembers everything it was taught.</strong> Your cancellation policy, your service area, the question you always get about parking, the thing you tell every new customer. Once it&#39;s in the knowledge base, it never gets recalled wrong and never gets skipped because someone was in a hurry.</p>
+<p><strong>It books real appointments mid-conversation.</strong> A well-built one doesn&#39;t take a message about booking. It checks the actual calendar, offers real open slots, books the appointment while the caller is still on the line, and texts a confirmation. The caller hangs up with a time, not a promise.</p>
+<p><strong>It handles every channel at once.</strong> The same brain can be answering a phone call, three text threads, a website chat, and an Instagram DM simultaneously. No human receptionist can do that, at any salary.</p>
+<h2 id="where-they-genuinely-fail-and-sometimes-embarrass-themselves">Where they genuinely fail (and sometimes embarrass themselves)</h2>
+<p>Now the part vendors don&#39;t lead with.</p>
+<p><strong>Transcription isn&#39;t perfect.</strong> Heavy accents, a caller on speakerphone in a moving truck, a noisy kitchen or job site: sometimes the AI mishears, and its reply to what it <em>thought</em> it heard can be confusing or unintentionally funny. Modern speech recognition is good, but it is not a human ear, and anyone who claims otherwise is selling you something.</p>
+<p><strong>It doesn&#39;t know what it wasn&#39;t taught.</strong> Ask a question outside its knowledge base and one of two things happens. A well-designed one says so plainly and takes a message or hands off. A badly designed one guesses, and a confident wrong answer about your prices or policies is worse than no answer at all.</p>
+<p><strong>Multi-step judgment calls are beyond it.</strong> &quot;Can you squeeze me in before my flight if I skip the consultation but my daughter comes instead?&quot; involves exceptions, tradeoffs, and reading the situation. That&#39;s an owner decision, and a good AI knows to route it to one rather than improvise.</p>
+<p><strong>Emotionally charged calls need a human.</strong> Someone who is upset, grieving, or angry about a real mistake deserves a person. An AI can be polite in those moments, but polite isn&#39;t the same as present, and customers can tell.</p>
+<p><strong>Some callers simply want a human.</strong> Not because the AI failed, just as a preference. The correct design honors that immediately: transfer, take a message, or trigger the owner&#39;s takeover, without arguing and without pretending. An AI that tries to talk a caller out of reaching a person has already lost the call.</p>
+<h2 id="what-separates-a-good-deployment-from-a-bad-one">What separates a good deployment from a bad one</h2>
+<p>Almost every AI receptionist horror story we&#39;ve seen traces back to one of five setup decisions, not to the underlying technology.</p>
+<table>
+<thead>
+<tr>
+<th>Setup decision</th>
+<th>A good deployment</th>
+<th>A bad one</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge base</td>
+<td>Written from the owner&#39;s real FAQs, real prices, real policies</td>
+<td>A generic template with the business name pasted in</td>
+</tr>
+<tr>
+<td>Disclosure</td>
+<td>Identifies itself as an AI up front</td>
+<td>Pretends to be a human named &quot;Jessica&quot;</td>
+</tr>
+<tr>
+<td>Handoff</td>
+<td>Has a real path to a human and uses it early</td>
+<td>Loops forever rather than admit defeat</td>
+</tr>
+<tr>
+<td>Cost controls</td>
+<td>Spend and rate limits set before launch</td>
+<td>Open-ended usage and a surprise bill</td>
+</tr>
+<tr>
+<td>Week one</td>
+<td>Owner reads transcripts and prunes bad answers</td>
+<td>Set-and-forget from day one</td>
+</tr>
+</tbody></table>
+<p>The knowledge base is the big one. An AI receptionist is only as good as what it was taught, and the teaching has to come from the person who actually answers these questions today. When we onboard a business, the most valuable hour is the one spent asking the owner &quot;what do people actually call about?&quot; and writing those answers down verbatim.</p>
+<p>The takeover path matters almost as much. Velonyx builds a Take-Over button into the owner&#39;s phone portal for exactly this reason: the AI handles the routine, and a human can step into any conversation the moment it stops being routine.</p>
+<h2 id="will-customers-hate-it">Will customers hate it?</h2>
+<p>Here&#39;s the straight answer: people hate being deceived, and people hate voicemail. They do not hate getting an instant, useful answer at 9pm.</p>
+<p>The resentment you&#39;ve heard about AI on the phone almost always comes from one of two experiences: a bot pretending to be human, or a rigid phone-tree bot that traps callers away from the person they need. Both are design failures, not arguments against the technology. A receptionist that says &quot;I&#39;m an AI assistant for the salon, I can book you in or grab a message for the owner&quot; and then actually does one of those things gives the caller nothing to resent.</p>
+<p>Disclosure isn&#39;t just good manners, either. Several states now legally require bots to identify themselves in certain conversations, which is why every Velonyx receptionist says it&#39;s an AI up front, no exceptions. The businesses that try to hide it are taking a legal risk to gain a deception their customers will eventually notice.</p>
+<h2 id="what-week-one-actually-looks-like">What week one actually looks like</h2>
+<p>Anyone promising perfection on day one hasn&#39;t done this before. Here is the honest timeline.</p>
+<table>
+<thead>
+<tr>
+<th>Days</th>
+<th>What actually happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1–2</td>
+<td>The knowledge base gets built from your real FAQs. You read the AI&#39;s draft answers and correct anything that doesn&#39;t sound like your business.</td>
+</tr>
+<tr>
+<td>3–4</td>
+<td>It goes live on one or two channels. Most conversations go fine. One or two go sideways: a mangled name, an answer that was technically right but oddly worded.</td>
+</tr>
+<tr>
+<td>5–7</td>
+<td>You (or we) read the transcripts, fix the wobbly answers, and add the questions nobody predicted. Accuracy climbs fast because every correction is permanent.</td>
+</tr>
+<tr>
+<td>Week 2+</td>
+<td>It&#39;s boring, in the best sense. New edge cases still appear occasionally and get folded in the same way.</td>
+</tr>
+</tbody></table>
+<p>The transcript review in days five through seven is the whole game. An AI receptionist doesn&#39;t drift or forget, so every pruned bad answer is gone for good. Owners who skip this step are the source of most &quot;AI receptionists don&#39;t work&quot; stories.</p>
+<h2 id="when-you-should-not-buy-one">When you should not buy one</h2>
+<p>Honesty cuts both ways, so here is who should keep their money.</p>
+<p><strong>Your inquiry volume is very low.</strong> If you get a handful of calls and messages a week and you&#39;re reachable for most of them, an AI receptionist will be idle most of the time. The math doesn&#39;t work yet. Revisit it when volume grows.</p>
+<p><strong>You&#39;re single-channel and already answering.</strong> If the phone is your only channel and someone competent picks it up every time it rings, you don&#39;t have the problem this solves. Don&#39;t buy software to fix a problem you don&#39;t have.</p>
+<p><strong>You won&#39;t review transcripts early on.</strong> If the idea of spending twenty minutes in week one reading conversations and flagging bad answers sounds like too much, the deployment will underperform and you&#39;ll blame the tool. Fair warning given.</p>
+<p>If you&#39;re genuinely unsure which side of the line you&#39;re on, <a href="/book.html">book a call</a> and ask. We&#39;ll tell you if the answer is &quot;not yet,&quot; because a customer who churns in month three helps nobody.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="can-callers-tell-it39s-an-ai">Can callers tell it&#39;s an AI?</h3>
+<p>Yes, and they should, because it tells them. A modern AI voice is natural enough that some callers forget mid-conversation, but every Velonyx receptionist identifies itself as an AI at the start of the call. That&#39;s partly a legal requirement in several states and partly common sense: the goodwill from an instant, useful answer evaporates the moment a customer feels tricked. Judge the realism yourself in the <a href="https://velonyx-playground.vercel.app">playground</a>.</p>
+<h3 id="what-happens-when-it-doesn39t-know-the-answer">What happens when it doesn&#39;t know the answer?</h3>
+<p>A well-built one says so, plainly, and then does something useful: takes a detailed message, offers to have the owner follow up, or hands the conversation to a human. What it must never do is guess. During setup, unknown-question behavior is configured deliberately, and week-one transcript review catches the questions nobody predicted so they can be added to the knowledge base permanently.</p>
+<h3 id="can-it-really-book-appointments-by-itself">Can it really book appointments by itself?</h3>
+<p>Yes, and this is the least appreciated part. It connects to the owner&#39;s real Google Calendar, reads actual availability, offers open slots during the conversation, books the one the caller picks, and sends a text confirmation. There is no &quot;someone will call you back to schedule&quot; step. The booking exists on the calendar before the caller hangs up.</p>
+<h3 id="how-long-does-setup-take">How long does setup take?</h3>
+<p>The build itself is fast; the teaching is what matters. Expect the knowledge base and calendar connection inside the first couple of days, going live shortly after, and then roughly a week of transcript review and pruning before it feels fully dialed in. Businesses with clear, written policies get there fastest. Businesses where the answers live only in the owner&#39;s head take a little longer, because we have to get them out first.</p>
+<h3 id="what-does-an-ai-receptionist-cost">What does an AI receptionist cost?</h3>
+<p>Across the market, as of August 2026 and per vendor pricing pages, chat-only tools run roughly $39–99 per month, multi-channel setups $99–299, and done-for-you services with voice $297–997. Velonyx runs $129–$499 per month depending on channels, with <a href="/#pricing">pricing</a> that drops sharply after month twelve because at that point you own the entire system outright. For the full breakdown, including the usage fees and overage charges that quietly inflate other vendors&#39; advertised prices, see our <a href="/guides/ai-receptionist-cost/">complete cost guide</a>.</p>
+
+    </div>
+    <div class="g-cta">
+      <b>Hear an AI front desk for yourself — right now</b>
+      <p>The fastest way to judge this technology is to talk to one. Our playground is a live AI receptionist you can text, call, or chat with — no signup, no sales follow-up.</p>
+      <div class="row">
+        <a class="btn gold" href="https://velonyx-playground.vercel.app" rel="noopener">Try the live playground</a>
+        <a class="btn ghost" href="/#pricing">See plans &amp; pricing</a>
+        <a class="btn ghost" href="/book.html">Book a 20-min call</a>
+      </div>
+    </div>
+    <div class="g-related">
+      <h4>Keep reading</h4>
+        <a href="/guides/ai-receptionist-cost/">AI Receptionist Cost in 2026: Real Prices From 10 Providers</a>
+        <a href="/guides/ai-receptionist-vs-answering-service/">AI Receptionist vs. Answering Service: Which One Actually Books the Appointment?</a>
+        <a href="/guides/own-your-ai-receptionist/">Rent vs. Own: The Case for Owning Your AI Receptionist</a>
+        <a href="/guides/smith-ai-cost/">How Much Does Smith.ai Cost? Plans, Overages, and What a Month Really Runs</a>
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

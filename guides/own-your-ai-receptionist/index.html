@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent vs. Own: The Case for Owning Your AI Receptionist — Velonyx Systems</title>
+  <meta name="description" content="Most AI receptionists are rentals: stop paying and everything disappears. The case for an AI receptionist you own, from the code to your phone number.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/guides/own-your-ai-receptionist/">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content{max-width:760px;}
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;line-height:1.25;}
+    .content h3{font-size:1.12rem;}
+    .content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);white-space:nowrap;}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 18px;margin:18px 0;background:rgba(255,255,255,0.02);font-size:1.02rem;}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .g-byline{font-size:0.84rem;color:rgba(255,255,255,0.45);text-align:center;margin:-18px auto 34px;max-width:720px;padding:0 24px;}
+    .g-byline a{color:var(--gold);text-decoration:none;}
+    .g-cta{max-width:760px;margin:40px auto;padding:26px 28px;background:linear-gradient(165deg,rgba(212,175,55,0.12) 0%,rgba(12,12,16,0.98) 60%);border:1px solid rgba(212,175,55,0.45);border-radius:18px;}
+    .g-cta b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:#fff;margin-bottom:8px;}
+    .g-cta p{color:var(--white-dim);font-size:0.94rem;line-height:1.65;margin:0 0 16px;}
+    .g-cta .row{display:flex;gap:10px;flex-wrap:wrap;}
+    .g-cta a.btn{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:13px 20px;border-radius:11px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    .g-cta a.gold{background:linear-gradient(135deg,#D4AF37,#F7E17B 35%,#D4AF37 65%,#B8860B);color:#0C0C0F;}
+    .g-cta a.ghost{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);}
+    .g-related{max-width:760px;margin:12px auto 0;padding:0 24px;}
+    .g-related h4{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 12px;}
+    .g-related a{display:block;color:var(--white-dim);text-decoration:none;padding:9px 0;border-top:1px solid rgba(212,175,55,0.12);font-size:0.94rem;}
+    .g-related a:hover{color:var(--gold-light);}
+    .g-card{display:block;background:var(--glass);border:1px solid rgba(212,175,55,0.22);border-radius:16px;padding:22px 24px;margin-bottom:14px;text-decoration:none;transition:border-color .2s;}
+    .g-card:hover{border-color:rgba(212,175,55,0.55);}
+    .g-card b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.08rem;color:#fff;margin-bottom:6px;line-height:1.35;}
+    .g-card span{font-size:0.9rem;color:var(--white-dim);line-height:1.6;}
+    .g-card em{display:block;font-style:normal;font-size:0.76rem;color:rgba(212,175,55,0.7);margin-top:10px;letter-spacing:0.6px;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Rent vs. Own: The Case for Owning Your AI Receptionist","description":"Most AI receptionists are rentals: stop paying and everything disappears. The case for an AI receptionist you own, from the code to your phone number.","author":{"@type":"Person","name":"Carlos Glover","url":"https://velonyxsystems.com/connect/"},"publisher":{"@type":"Organization","name":"Velonyx Systems","url":"https://velonyxsystems.com"},"datePublished":"2026-08-29","dateModified":"2026-08-29","mainEntityOfPage":"https://velonyxsystems.com/guides/own-your-ai-receptionist/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://velonyxsystems.com/guides/"},{"@type":"ListItem","position":3,"name":"Rent vs. Own: The Case for Owning Your AI Receptionist","item":"https://velonyxsystems.com/guides/own-your-ai-receptionist/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What exactly do I own after the 12 payments?","acceptedAnswer":{"@type":"Answer","text":"Everything the system is made of: the code repository, the database containing every conversation and customer record, the phone number, the calendar integration, and the login credentials for every underlying account (hosting, telephony, AI provider). All of it is transferred into accounts registered to you. The complete inventory is documented on the ownership page."}},{"@type":"Question","name":"Do I need to be technical to own it?","acceptedAnswer":{"@type":"Answer","text":"No. The system runs the same way the day after transfer as it did the day before; ownership changes whose name is on the accounts, not how anything works day to day. You&#39;d need a developer only if something breaks or a connected service changes its rules, and most owners simply keep a maintenance plan so that&#39;s never their problem. Owning it just means the plan is a choice, not a requirement."}},{"@type":"Question","name":"What does it cost to run after I take it?","acceptedAnswer":{"@type":"Answer","text":"Roughly $30 to $60 per month in direct bills from the underlying providers: the phone line, the AI usage, and the hosting. Those are the same utility costs that exist inside any vendor&#39;s subscription price; you&#39;re just paying them at cost instead of with a markup. If you&#39;d rather not manage those accounts, the $150/mo maintenance option covers them and keeps a team on call."}},{"@type":"Question","name":"What if Velonyx disappears?","acceptedAnswer":{"@type":"Answer","text":"The contract includes a continuity clause for exactly this scenario: if the company couldn&#39;t continue, the transfer of your system into your accounts is contractually provided for. That&#39;s the difference between a promise and a structure. And once ownership has transferred, the question stops mattering entirely, because your system doesn&#39;t need Velonyx to exist in order to run."}},{"@type":"Question","name":"Can I sell my business with the AI receptionist included?","acceptedAnswer":{"@type":"Answer","text":"Yes, and this is one of the quieter benefits of ownership. A rented subscription usually can&#39;t be assigned to a buyer, but an owned system is a business asset like your equipment or your customer list. It transfers with the business, along with its phone number and its full history of customer conversations. If a sale is somewhere in your future, that&#39;s worth a conversation before you sign up to rent anything."}}]}</script>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Ownership Manifesto</div>
+      <h1 class="page-title">Rent vs. Own: The Case for <span>Owning Your AI Receptionist</span></h1>
+      <p class="page-subtitle">Almost every AI receptionist on the market is a rental. Here's what changes when the system, the data, and the phone number actually belong to you.</p>
+    </div>
+    <p class="g-byline">By <a href="/connect/">Carlos Glover</a>, founder of Velonyx Systems · Published 2026-08-29</p>
+    <div class="content">
+<p>Think about the software your business runs on. The scheduler, the website, the payment system, the phone line. Now ask a simple question: which of those do you actually own?</p>
+<p>For most business owners, the honest answer is none. You rent all of it, month after month, and the moment you stop paying, it stops existing for you. That arrangement is so normal that nobody questions it anymore. This article questions it, specifically for one system: the AI receptionist that answers your calls, texts, and chats.</p>
+<p>We should be upfront: Velonyx sells owned AI receptionists, so we have a horse in this race. But every claim below is factual, the trade-offs are laid out honestly, and there are situations where renting is genuinely the right call. We&#39;ll cover those too.</p>
+<h2 id="everything-became-a-subscription-and-something-got-lost">Everything became a subscription, and something got lost</h2>
+<p>Twenty years ago, buying business software meant buying it. You paid once, it was yours, and it ran until you replaced it. The subscription model changed that, and to be fair, it fixed real problems: no big upfront cost, updates included, cancel when you want.</p>
+<p>But it also quietly changed what you get for your money. When you rent an AI receptionist, you are not building anything. You&#39;re paying for access, and access is the one thing that can be revoked. Stop paying, and your receptionist is gone. So are your call flows, your greeting scripts, your conversation history, and every customer record the system collected. In many setups, even the phone number your customers know belongs to the vendor.</p>
+<p>That&#39;s not a scandal. It&#39;s just the deal. The problem is that almost nobody reading the checkout page realizes that&#39;s the deal.</p>
+<h2 id="what-owning-an-ai-receptionist-actually-means">What owning an AI receptionist actually means</h2>
+<p>&quot;Ownership&quot; gets used loosely in software marketing, so here is the concrete version. When you own your AI receptionist, these things sit in accounts registered to you, under passwords you control:</p>
+<ul>
+<li><strong>The code repository.</strong> The actual software that runs your receptionist, in your own account, readable and portable.</li>
+<li><strong>The database.</strong> Every conversation, every customer record, every booking the system has ever handled. Yours to keep, export, or analyze.</li>
+<li><strong>The phone number.</strong> Registered to you, so it moves where you move.</li>
+<li><strong>The calendar connection.</strong> Bookings land on your own Google Calendar, not a vendor&#39;s copy of it.</li>
+<li><strong>Every login and password.</strong> The hosting account, the telephony account, the AI provider account. All transferred.</li>
+</ul>
+<p>At Velonyx, that transfer happens after 12 monthly payments, and the full inventory of what changes hands is listed on <a href="/ownership.html">the ownership page</a>. The test for real ownership is simple: if the vendor vanished tomorrow, would your system keep running? For an owned system, the answer is yes.</p>
+<h2 id="why-vendors-don39t-offer-this">Why vendors don&#39;t offer this</h2>
+<p>If ownership is so good for customers, why doesn&#39;t anyone else sell it? Because recurring revenue is the entire business model of modern software. Investors value software companies on subscription income, and a customer who owns their system is a customer who can leave. A renter never truly can, because leaving means starting over from zero.</p>
+<p>There&#39;s nothing sinister about this. It&#39;s rational business design. But it means the incentives run one direction: vendors are structurally motivated to keep you renting, and the switching costs (lost history, retraining, a new number, new integrations) do the retention work for them.</p>
+<p>As of August 2026, we haven&#39;t found another vendor in this category that transfers ownership. Everyone rents. That&#39;s not a knock on any particular company; it&#39;s an observation about the model.</p>
+<h2 id="the-honest-trade-offs-of-owning">The honest trade-offs of owning</h2>
+<p>Ownership is not free of obligations, and pretending otherwise would break our own rules. Here&#39;s what you take on when the system becomes yours:</p>
+<p><strong>Direct provider bills.</strong> The phone line, the AI usage, and the hosting each bill you directly once the accounts are yours. For a typical small business, that runs about $30 to $60 per month total. So the phrase &quot;AI receptionist without monthly fees forever&quot; is not quite literal. What ownership removes is the vendor&#39;s margin and the vendor&#39;s leverage, not the raw utility costs.</p>
+<p><strong>Occasional maintenance.</strong> Software needs a developer only if something breaks or a connected service changes. In practice, most owners keep a maintenance plan anyway, because they&#39;d rather pay a known monthly amount than think about it. That&#39;s a perfectly good choice. The point of ownership isn&#39;t to eliminate the relationship; it&#39;s that the relationship becomes optional. Ownership is leverage, not homework.</p>
+<p><strong>And here&#39;s when you don&#39;t need it:</strong> if you&#39;re still testing whether AI answering fits your business at all, rent something inexpensive first. If your business might close or pivot within a year, ownership math never gets a chance to work. And if you want absolutely zero involvement forever, a rental with a good vendor is a defensible choice. Ownership pays off over years, not weeks.</p>
+<h2 id="ownership-as-insurance">Ownership as insurance</h2>
+<p>Here&#39;s the frame that makes the decision clear. Ask yourself what happens in three ordinary scenarios:</p>
+<p><strong>Your vendor raises prices 40%.</strong> Renters pay or migrate under duress, losing their history and retraining a new system. Owners already hold the system; a price change in someone else&#39;s catalog doesn&#39;t touch them.</p>
+<p><strong>Your vendor gets acquired.</strong> Acquisitions often mean plan changes, feature sunsets, or forced migrations. Renters ride along. Owners keep running exactly what they have.</p>
+<p><strong>Your vendor shuts down.</strong> This is the hard one. A rented system simply ends, sometimes with weeks of notice. An owned system keeps answering the phone the next morning, because it never depended on the vendor being alive.</p>
+<p>None of these are rare events in software. You don&#39;t buy insurance because disaster is likely; you buy it because the downside is yours alone. Ownership is the same purchase, except it also happens to cost less over time.</p>
+<h2 id="how-the-velonyx-model-works-mechanically">How the Velonyx model works, mechanically</h2>
+<p>The structure is straightforward. You pick a plan: Essentials at $129/mo, Growth at $229/mo, or Elite at $499/mo. There&#39;s no setup fee, because the build cost is financed into the first 12 payments at 0%. The details are on <a href="/#pricing">the pricing section</a> and <a href="/financing.html">the financing page</a>.</p>
+<p>After the 12th payment, ownership transfers and you choose your path. Either the price drops to $70, $150, or $350 per month and Velonyx keeps maintaining, improving, and hosting everything, or you take the whole system into your own accounts and pay only the direct provider costs.</p>
+<p>Two protections are built into the contract. If you cancel early, you owe only the remaining build portion, not the future subscription months. And a continuity clause covers the scenario where Velonyx itself couldn&#39;t continue: the transfer process is contractually defined, so your path to ownership doesn&#39;t depend on the company&#39;s fortunes.</p>
+<p>If you want to see what you&#39;d actually be buying before any of this, <a href="https://velonyx-playground.vercel.app">the Velonyx Playground</a> is a live AI receptionist you can call, text, or chat with right now, no signup.</p>
+<h2 id="rent-vs-own-the-math-after-24-months">Rent vs. own: the math after 24 months</h2>
+<p>Here&#39;s the comparison at the two-year mark. The rental column uses roughly $300/mo, which sits at the bottom of the done-for-you-with-voice market band of about $297 to $997 per month, as of August 2026, per vendor pricing pages. The Velonyx column uses the Growth plan.</p>
+<table>
+<thead>
+<tr>
+<th>After 24 months</th>
+<th>Renting at ~$300/mo</th>
+<th>Velonyx Growth client</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total paid</td>
+<td>$7,200</td>
+<td>$4,548 with maintenance ($2,748 year one, then $150/mo), or about $3,100–$3,500 if you took the system and pay only direct costs</td>
+</tr>
+<tr>
+<td>What you own</td>
+<td>Nothing</td>
+<td>The code, the database, the phone number, every account</td>
+</tr>
+<tr>
+<td>Monthly cost going forward</td>
+<td>~$300, and the vendor can raise it</td>
+<td>$150 by choice, or $0 plus ~$30–60 in direct provider bills</td>
+</tr>
+<tr>
+<td>If you stop paying</td>
+<td>The system and its history end</td>
+<td>The system keeps running in your accounts</td>
+</tr>
+<tr>
+<td>If the vendor raises prices or shuts down</td>
+<td>Migrate and start over</td>
+<td>Shrug</td>
+</tr>
+<tr>
+<td>When you sell your business</td>
+<td>Nothing to hand over</td>
+<td>A working system transfers as an asset</td>
+</tr>
+</tbody></table>
+<p>The gap keeps widening after month 24, because the renter&#39;s meter never stops and the owner&#39;s already did.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="what-exactly-do-i-own-after-the-12-payments">What exactly do I own after the 12 payments?</h3>
+<p>Everything the system is made of: the code repository, the database containing every conversation and customer record, the phone number, the calendar integration, and the login credentials for every underlying account (hosting, telephony, AI provider). All of it is transferred into accounts registered to you. The complete inventory is documented on <a href="/ownership.html">the ownership page</a>.</p>
+<h3 id="do-i-need-to-be-technical-to-own-it">Do I need to be technical to own it?</h3>
+<p>No. The system runs the same way the day after transfer as it did the day before; ownership changes whose name is on the accounts, not how anything works day to day. You&#39;d need a developer only if something breaks or a connected service changes its rules, and most owners simply keep a maintenance plan so that&#39;s never their problem. Owning it just means the plan is a choice, not a requirement.</p>
+<h3 id="what-does-it-cost-to-run-after-i-take-it">What does it cost to run after I take it?</h3>
+<p>Roughly $30 to $60 per month in direct bills from the underlying providers: the phone line, the AI usage, and the hosting. Those are the same utility costs that exist inside any vendor&#39;s subscription price; you&#39;re just paying them at cost instead of with a markup. If you&#39;d rather not manage those accounts, the $150/mo maintenance option covers them and keeps a team on call.</p>
+<h3 id="what-if-velonyx-disappears">What if Velonyx disappears?</h3>
+<p>The contract includes a continuity clause for exactly this scenario: if the company couldn&#39;t continue, the transfer of your system into your accounts is contractually provided for. That&#39;s the difference between a promise and a structure. And once ownership has transferred, the question stops mattering entirely, because your system doesn&#39;t need Velonyx to exist in order to run.</p>
+<h3 id="can-i-sell-my-business-with-the-ai-receptionist-included">Can I sell my business with the AI receptionist included?</h3>
+<p>Yes, and this is one of the quieter benefits of ownership. A rented subscription usually can&#39;t be assigned to a buyer, but an owned system is a business asset like your equipment or your customer list. It transfers with the business, along with its phone number and its full history of customer conversations. If a sale is somewhere in your future, that&#39;s worth <a href="/book.html">a conversation</a> before you sign up to rent anything.</p>
+
+    </div>
+    <div class="g-cta">
+      <b>Hear an AI front desk for yourself — right now</b>
+      <p>The fastest way to judge this technology is to talk to one. Our playground is a live AI receptionist you can text, call, or chat with — no signup, no sales follow-up.</p>
+      <div class="row">
+        <a class="btn gold" href="https://velonyx-playground.vercel.app" rel="noopener">Try the live playground</a>
+        <a class="btn ghost" href="/#pricing">See plans &amp; pricing</a>
+        <a class="btn ghost" href="/book.html">Book a 20-min call</a>
+      </div>
+    </div>
+    <div class="g-related">
+      <h4>Keep reading</h4>
+        <a href="/guides/ai-receptionist-cost/">AI Receptionist Cost in 2026: Real Prices From 10 Providers</a>
+        <a href="/guides/do-ai-receptionists-work/">Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them</a>
+        <a href="/guides/ai-receptionist-vs-answering-service/">AI Receptionist vs. Answering Service: Which One Actually Books the Appointment?</a>
+        <a href="/guides/smith-ai-cost/">How Much Does Smith.ai Cost? Plans, Overages, and What a Month Really Runs</a>
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _site && mkdir _site
-          cp -R assets demos industries connect _site/
+          cp -R assets demos industries connect guides _site/
           cp *.html CNAME robots.txt sitemap.xml favicon.ico humans.txt contact.vcf _site/
           # Belt-and-braces: never ship these even if a future edit re-adds them
           find _site -name '*.md' -delete
