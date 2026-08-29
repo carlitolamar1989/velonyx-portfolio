@@ -149,6 +149,19 @@ Cursor-Claude/                        ← velonyx-portfolio repo
 
 ---
 
+## Guides (SEO content engine, added 2026-08-29)
+
+- Articles live at `/guides/<slug>/`; index at `/guides/`. Written as Markdown in
+  `docs/guides-src/NN-slug.md` (front-matter: title/titleHtml/slug/description/subtitle/
+  heroLabel/datePublished/readMinutes; a `## FAQ` section with `### question` blocks becomes
+  FAQPage JSON-LD automatically). Build with `node scripts/build-guides.mjs` (needs `npm i marked`),
+  then commit BOTH the .md and the generated guides/ HTML. The deploy workflow copies `guides`.
+- House rules for new articles: plain English, no fear-framing, no trades targeting, no invented
+  statistics, competitor prices only with "as of <month year>, per vendor pricing pages",
+  one-line disclosure when Velonyx appears in a comparison. Five cornerstones shipped 2026-08-29
+  (cost, do-they-work, vs-answering-service, rent-vs-own, smith-ai-cost).
+- FAQPage schema also on ownership.html + financing.html (generated from their markup).
+
 ## Compliance & consent
 
 - **CCPA cookie banner** on every public page (`assets/cookie-consent.js`); GA4 + Meta Pixel only fire
