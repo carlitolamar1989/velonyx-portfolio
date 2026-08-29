@@ -38,6 +38,9 @@ jobs:
           find _site -name '*.md' -delete
           find _site -type d \( -name node_modules -o -name .git -o -name .claude \) -prune -exec rm -rf {} + || true
           echo "Publishing:"; ls _site
+      - name: Minify CSS (deploy artifact only — the source stays readable)
+        run: npx -y lightningcss-cli --minify _site/assets/home.css -o _site/assets/home.css || true
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
