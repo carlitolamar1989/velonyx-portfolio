@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.__loadGA4 = function(){
+      if(document.querySelector('script[data-ga4]')) return;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-F838ZEJ22J';
+      s.setAttribute('data-ga4','1'); document.head.appendChild(s);
+      gtag('js',new Date()); gtag('config','G-F838ZEJ22J');
+    };
+    if(localStorage.getItem('velonyx_cookie_consent')==='accepted' && navigator.globalPrivacyControl!==true && localStorage.getItem('velonyx_do_not_sell')!=='1'){ window.__loadGA4(); }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Receptionist for Restaurants: The Phone That Rings During the Dinner Rush — Velonyx Systems</title>
+  <meta name="description" content="What an AI receptionist for restaurants really handles: dinner-rush calls, catering leads, menu questions, and the honest fit with OpenTable and Resy.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://velonyxsystems.com/guides/ai-receptionist-for-restaurants/">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+    :root{--deep-space:#020408;--gold:#D4AF37;--gold-light:#F0D060;--white:#fff;--white-dim:rgba(255,255,255,0.55);--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.07);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--deep-space);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(56,189,248,0.04) 0%,transparent 60%),linear-gradient(180deg,#020408 0%,#040810 100%);}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 32px;background:rgba(2,4,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo img{height:44px;width:33px;object-fit:cover;object-position:right center;filter:drop-shadow(0 0 10px rgba(212,175,55,0.35));}
+    .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--gold);}
+    main{position:relative;z-index:1;padding-top:100px;padding-bottom:40px;}
+    .page-header{text-align:center;max-width:600px;margin:0 auto 48px;padding:0 24px;}
+    .page-label{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;color:var(--white);margin-bottom:16px;}
+    .page-title span{background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:1rem;color:var(--white-dim);line-height:1.65;}
+    .content{max-width:720px;margin:0 auto;padding:0 24px;}
+    .content h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--gold);margin:36px 0 12px;letter-spacing:0.5px;}
+    .content p,.content li{font-size:0.95rem;color:var(--white-dim);line-height:1.8;margin-bottom:12px;}
+    .content ul{padding-left:20px;margin-bottom:16px;}
+    .content li{margin-bottom:8px;}
+    .content strong{color:var(--white);}
+    .content a{color:var(--gold);text-decoration:none;}
+    .content a:hover{color:var(--gold-light);}
+    .section-divider{height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .effective-date{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:32px;text-align:center;}
+    footer{position:relative;z-index:1;padding:28px 32px;margin-top:64px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.25);}
+    footer a{color:rgba(212,175,55,0.5);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--gold);}
+    a:focus-visible{outline:2px solid #D4AF37;outline-offset:3px;}
+    @media(max-width:768px){nav{padding:14px 20px;}main{padding-top:80px;}footer{flex-direction:column;text-align:center;}}
+
+    .content{max-width:760px;}
+    .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);margin:44px 0 14px;letter-spacing:0.3px;line-height:1.25;}
+    .content h3{font-size:1.12rem;}
+    .content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:0.88rem;display:block;overflow-x:auto;}
+    .content th,.content td{border:1px solid rgba(212,175,55,0.18);padding:9px 12px;vertical-align:top;color:var(--white-dim);line-height:1.6;text-align:left;}
+    .content th{color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:600;background:rgba(212,175,55,0.05);white-space:nowrap;}
+    .content blockquote{border-left:3px solid rgba(212,175,55,0.5);padding:6px 18px;margin:18px 0;background:rgba(255,255,255,0.02);font-size:1.02rem;}
+    .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
+    .content ol{padding-left:22px;margin-bottom:16px;}
+    .g-byline{font-size:0.84rem;color:rgba(255,255,255,0.45);text-align:center;margin:-18px auto 34px;max-width:720px;padding:0 24px;}
+    .g-byline a{color:var(--gold);text-decoration:none;}
+    .g-cta{max-width:760px;margin:40px auto;padding:26px 28px;background:linear-gradient(165deg,rgba(212,175,55,0.12) 0%,rgba(12,12,16,0.98) 60%);border:1px solid rgba(212,175,55,0.45);border-radius:18px;}
+    .g-cta b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:#fff;margin-bottom:8px;}
+    .g-cta p{color:var(--white-dim);font-size:0.94rem;line-height:1.65;margin:0 0 16px;}
+    .g-cta .row{display:flex;gap:10px;flex-wrap:wrap;}
+    .g-cta a.btn{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:13px 20px;border-radius:11px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    .g-cta a.gold{background:linear-gradient(135deg,#D4AF37,#F7E17B 35%,#D4AF37 65%,#B8860B);color:#0C0C0F;}
+    .g-cta a.ghost{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);}
+    .g-related{max-width:760px;margin:12px auto 0;padding:0 24px;}
+    .g-related h4{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 12px;}
+    .g-related a{display:block;color:var(--white-dim);text-decoration:none;padding:9px 0;border-top:1px solid rgba(212,175,55,0.12);font-size:0.94rem;}
+    .g-related a:hover{color:var(--gold-light);}
+    .g-card{display:block;background:var(--glass);border:1px solid rgba(212,175,55,0.22);border-radius:16px;padding:22px 24px;margin-bottom:14px;text-decoration:none;transition:border-color .2s;}
+    .g-card:hover{border-color:rgba(212,175,55,0.55);}
+    .g-card b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.08rem;color:#fff;margin-bottom:6px;line-height:1.35;}
+    .g-card span{font-size:0.9rem;color:var(--white-dim);line-height:1.6;}
+    .g-card em{display:block;font-style:normal;font-size:0.76rem;color:rgba(212,175,55,0.7);margin-top:10px;letter-spacing:0.6px;}
+  </style>
+  <!-- Fonts (non-render-blocking: preload + onload swap, noscript fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI Receptionist for Restaurants: The Phone That Rings During the Dinner Rush","description":"What an AI receptionist for restaurants really handles: dinner-rush calls, catering leads, menu questions, and the honest fit with OpenTable and Resy.","author":{"@type":"Person","name":"Carlos Glover","url":"https://velonyxsystems.com/connect/"},"publisher":{"@type":"Organization","name":"Velonyx Systems","url":"https://velonyxsystems.com"},"datePublished":"2026-08-30","dateModified":"2026-08-30","mainEntityOfPage":"https://velonyxsystems.com/guides/ai-receptionist-for-restaurants/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://velonyxsystems.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://velonyxsystems.com/guides/"},{"@type":"ListItem","position":3,"name":"AI Receptionist for Restaurants: The Phone That Rings During the Dinner Rush","item":"https://velonyxsystems.com/guides/ai-receptionist-for-restaurants/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it integrate with OpenTable or Resy?","acceptedAnswer":{"@type":"Answer","text":"Not in the sense of writing reservations into your OpenTable or Resy book, and you should be skeptical of any vendor who&#39;s vague about this. Velonyx books onto your Google Calendar, so per-table reservation management stays in your reservation system where it belongs.\nWhat it does instead: answers the phone and DM questions around the book, texts callers your reservation link so they complete the booking themselves, captures event and catering leads with real intake, and covers every hour you&#39;re closed."}},{"@type":"Question","name":"Can it take takeout orders over the phone?","acceptedAnswer":{"@type":"Answer","text":"Taking orders and pushing them into a POS is a different integration than answering the phone, and it&#39;s worth being direct about that. Out of the box, the AI can answer menu questions, text the caller your online ordering link, or take a message for the kitchen, depending on how you configure it.\nIf full phone ordering into your POS is the main thing you need, raise it on the first call so it gets scoped honestly rather than promised loosely."}},{"@type":"Question","name":"What happens when five calls come in at once during the dinner rush?","acceptedAnswer":{"@type":"Answer","text":"They all get answered. The AI isn&#39;t one person at a host stand; it&#39;s software that holds each conversation separately, so three calls at 7:04 become three simultaneous conversations instead of a hold queue. This is the one thing no amount of front-of-house staffing can replicate, because you&#39;d never hire five people to sit by the phone for a 20-minute spike."}},{"@type":"Question","name":"Can it speak Spanish?","acceptedAnswer":{"@type":"Answer","text":"Yes. The AI can hold conversations in multiple languages, including Spanish, and you configure which languages it offers. For the calls restaurants actually get, hours, menu questions, and bookings, it converses naturally, though you should test it in your language of choice on the playground before relying on it."}},{"@type":"Question","name":"What does an AI receptionist cost for a restaurant?","acceptedAnswer":{"@type":"Answer","text":"As of August 2026, per vendor pricing pages, voice-inclusive done-for-you services run about $297 to $997 per month, while text-and-chat tools run $99 to $299. Velonyx Elite, which includes AI voice answering, is $499 per month with no setup fee, dropping to $350 after 12 payments, at which point you own the system outright.\nThe honest budget question isn&#39;t the monthly number alone; it&#39;s whether the plan&#39;s channels match where your customers actually reach you. A restaurant whose phone rarely rings doesn&#39;t need a voice tier, and a restaurant whose phone rings off the hook during service shouldn&#39;t economize on the one channel that&#39;s the problem."}}]}</script>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="/assets/vs-logo-monogram.png" alt="Velonyx Systems"><span class="nav-logo-text">Velonyx Systems</span></a>
+    <a href="/" class="nav-back">&larr; Back to Home</a>
+  </nav>
+  <main>
+    <div class="page-header">
+      <div class="page-label">Industry Guide</div>
+      <h1 class="page-title"><span>AI Receptionist for Restaurants</span>: The Phone That Rings During the Dinner Rush</h1>
+      <p class="page-subtitle">Restaurant phones ring hardest at the exact moments nobody can answer them. Here's what an AI receptionist actually handles, and where it honestly fits.</p>
+    </div>
+    <p class="g-byline">By <a href="/connect/">Carlos Glover</a>, founder of Velonyx Systems · Published 2026-08-30</p>
+    <div class="content">
+<p>Restaurant phones have a scheduling problem no other business quite shares: they ring hardest at the exact moments nobody can answer them. Friday at 7pm the dining room is full, every server is mid-table, and the person closest to the host stand is carrying three plates. The phone rings anyway.</p>
+<p>An AI receptionist for restaurants answers that phone every time it rings, including the four calls that land at once during the rush. This guide walks through what restaurant calls actually are, which ones deserve the most care, how an AI answering service fits (and doesn&#39;t fit) alongside OpenTable or Resy, and what it honestly costs.</p>
+<h2 id="what-restaurant-calls-actually-are">What restaurant calls actually are</h2>
+<p>Most restaurant calls are short questions with fast answers. That&#39;s exactly why they&#39;re frustrating to staff mid-service: each one is easy, but each one pulls a person away from a table.</p>
+<table>
+<thead>
+<tr>
+<th>The call</th>
+<th>How an AI receptionist handles it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Are you open Monday?&quot; &quot;Where do we park?&quot;</td>
+<td>Answers instantly from the hours, location, and parking info you configure</td>
+</tr>
+<tr>
+<td>&quot;Do you have gluten-free options?&quot;</td>
+<td>Answers from the menu information you give it, including allergens and substitutions you&#39;ve spelled out</td>
+</tr>
+<tr>
+<td>&quot;How long&#39;s the wait right now?&quot;</td>
+<td>Reports whatever you&#39;ve told it to say, and only that (more on this below)</td>
+</tr>
+<tr>
+<td>&quot;Can you fit a party of 12 Saturday?&quot;</td>
+<td>Routes it as a booking or takes a detailed message, depending on how you set it up</td>
+</tr>
+<tr>
+<td>&quot;Do you do private events? Catering?&quot;</td>
+<td>Runs intake questions and books a call-back on your calendar</td>
+</tr>
+</tbody></table>
+<p>One honest note on wait times, because this is where a restaurant AI can quietly overpromise. The AI cannot see your floor. It knows what you&#39;ve told it, so the right setup is an honest standing answer, something like &quot;weekend waits typically run 30 to 45 minutes, and we&#39;ll text you when your table is close.&quot; It should set expectations, not invent a number, and a good vendor will say so up front.</p>
+<p>Large-party requests deserve their own rule. A 12-top on a Saturday isn&#39;t a normal booking, so you decide the routing: the AI can book it into a slot you&#39;ve defined, or capture the details and flag it for a human to confirm. Either way the caller gets a real answer instead of a ring-out.</p>
+<h2 id="the-calls-worth-the-most-private-events-and-catering">The calls worth the most: private events and catering</h2>
+<p>A rehearsal dinner for 40. An office holiday party. Weekly catering for a job site. These calls come in on the same line as &quot;are you open Monday,&quot; and they&#39;re worth many times more, which makes them the strongest single argument for answering every call well.</p>
+<p>An AI receptionist can run a proper intake on these: date, headcount, budget range, occasion, and contact details. Then, instead of promising that someone will call back eventually, it books a call-back or a site-visit slot directly on the owner&#39;s Google Calendar during the conversation and texts a confirmation. The lead arrives on your phone as a scheduled appointment with notes, not a voicemail.</p>
+<p>That workflow is worth testing before you buy anything. Call a vendor&#39;s demo line, pretend to be planning a party for 35, and see whether you end the call with an actual time on a calendar.</p>
+<h2 id="the-honest-fit-if-your-reservations-live-on-opentable-resy-or-toast">The honest fit: if your reservations live on OpenTable, Resy, or Toast</h2>
+<p>Here&#39;s the part most vendor pages skip. If you run reservations through OpenTable, Resy, Toast, or a similar system, an AI receptionist does not replace that book, and you shouldn&#39;t want it to. Velonyx books appointments onto your Google Calendar, which is a different tool than a per-table reservation system that manages turn times, table assignments, and cover counts. That management stays where it is.</p>
+<p>So what&#39;s left for the AI to do in a reservation-system restaurant? Everything around the book, which is most of what your phone actually carries:</p>
+<table>
+<thead>
+<tr>
+<th>Your setup</th>
+<th>Where an AI receptionist fits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reservations on OpenTable, Resy, or Toast</td>
+<td>Answers the questions, texts callers your reservation link so they book themselves, captures event and catering leads, covers every hour you&#39;re closed</td>
+</tr>
+<tr>
+<td>Counter service, food trucks, small BYOB spots</td>
+<td>The calendar booking is the whole fit: the AI books tastings, pickups, and reservations directly</td>
+</tr>
+<tr>
+<td>Event-driven rooms (private dining, catering-first)</td>
+<td>Intake plus a call-back or site visit booked straight onto your calendar</td>
+</tr>
+</tbody></table>
+<p>For reservation-light spots, the math is simpler. A food truck taking catering inquiries, a counter-service spot booking large-group pickups, a 30-seat BYOB that just needs a name and a time: for these, booking onto a calendar mid-call is exactly the job.</p>
+<p>And to say it plainly: if all you want is after-hours question answering and a texted reservation link, you may only need part of what a full AI front desk does. A cheaper tier, or a leaner product, might serve you fine. An honest vendor should tell you that on the first call.</p>
+<h2 id="phone-first-then-the-dms">Phone first, then the DMs</h2>
+<p>Restaurants are a phone-first industry, and that shapes which product tier makes sense. Voice is the expensive, hard-to-do-well channel, and it&#39;s the one that rings during service. If the phone is your problem, buy the phone solution.</p>
+<p>Instagram is the quiet second channel. Diners DM restaurants the same questions they call about, usually at 10pm while looking at your food photos, and those messages sit unanswered for the same staffing reasons the phone does. An AI that answers DMs with the same configured information closes that gap without anyone standing at the pass checking a phone.</p>
+<p>Texting rounds it out: confirmations for booked call-backs, your reservation link sent mid-call, and a follow-up if an event lead goes quiet. One more thing worth a sentence: the AI can hold these conversations in multiple languages, which matters when a real share of your callers are more comfortable in Spanish or another language. And by design it always identifies itself as an AI, so nobody feels tricked into thinking they reached a person.</p>
+<h2 id="what-an-ai-receptionist-costs-for-a-restaurant">What an AI receptionist costs for a restaurant</h2>
+<p>As of August 2026, per vendor pricing pages, the market falls into rough bands: chat-only tools run about $39 to $99 per month, chat plus texting and social DMs runs $99 to $299, and done-for-you services that include AI voice calls run about $297 to $997 per month. Per-minute voice plans (Rosie at $49 to $299, Dialzara at $29 to $349) look cheap until a busy Friday burns through the minutes, so check overage rates, which run around $0.25 per minute on several of them.</p>
+<p>Velonyx is our product, so weigh this paragraph accordingly. For restaurants where the phone is the point, the honest fit is Elite at $499 per month, which includes AI voice calls along with texting, web chat, Instagram, Messenger, and WhatsApp, with no setup fee. After 12 monthly payments the price drops to $350 and you own the entire system, code, phone number, and all, which no competitor we&#39;ve found offers (<a href="/ownership.html">details here</a>). If you&#39;re a DM-and-text-first spot that doesn&#39;t need voice, Growth at $229 covers it. Full tier breakdown is at <a href="/#pricing">our pricing section</a>, and we&#39;ve written a broader <a href="/guides/ai-receptionist-cost/">cost guide</a> that compares vendors in more depth.</p>
+<h2 id="how-to-check-the-fit-before-you-spend-anything">How to check the fit before you spend anything</h2>
+<p>You don&#39;t have to take any of this on faith. The <a href="https://velonyx-playground.vercel.app">Velonyx Playground</a> is a live AI receptionist you can call, text, or chat with right now, no signup. Ask it the questions your restaurant actually gets: &quot;do you have gluten-free options,&quot; &quot;can you do a party of 30,&quot; &quot;what&#39;s parking like.&quot; Judge the answers like a customer would.</p>
+<p>Then look at your own week. Count the calls that ring during service, note how many are questions versus bookings versus event inquiries, and match that against the fit table above. Our <a href="/industries/restaurants/">restaurants page</a> shows how the setup works end to end if the shape looks right.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="does-it-integrate-with-opentable-or-resy">Does it integrate with OpenTable or Resy?</h3>
+<p>Not in the sense of writing reservations into your OpenTable or Resy book, and you should be skeptical of any vendor who&#39;s vague about this. Velonyx books onto your Google Calendar, so per-table reservation management stays in your reservation system where it belongs.</p>
+<p>What it does instead: answers the phone and DM questions around the book, texts callers your reservation link so they complete the booking themselves, captures event and catering leads with real intake, and covers every hour you&#39;re closed.</p>
+<h3 id="can-it-take-takeout-orders-over-the-phone">Can it take takeout orders over the phone?</h3>
+<p>Taking orders and pushing them into a POS is a different integration than answering the phone, and it&#39;s worth being direct about that. Out of the box, the AI can answer menu questions, text the caller your online ordering link, or take a message for the kitchen, depending on how you configure it.</p>
+<p>If full phone ordering into your POS is the main thing you need, raise it on the first call so it gets scoped honestly rather than promised loosely.</p>
+<h3 id="what-happens-when-five-calls-come-in-at-once-during-the-dinner-rush">What happens when five calls come in at once during the dinner rush?</h3>
+<p>They all get answered. The AI isn&#39;t one person at a host stand; it&#39;s software that holds each conversation separately, so three calls at 7:04 become three simultaneous conversations instead of a hold queue. This is the one thing no amount of front-of-house staffing can replicate, because you&#39;d never hire five people to sit by the phone for a 20-minute spike.</p>
+<h3 id="can-it-speak-spanish">Can it speak Spanish?</h3>
+<p>Yes. The AI can hold conversations in multiple languages, including Spanish, and you configure which languages it offers. For the calls restaurants actually get, hours, menu questions, and bookings, it converses naturally, though you should test it in your language of choice on the playground before relying on it.</p>
+<h3 id="what-does-an-ai-receptionist-cost-for-a-restaurant">What does an AI receptionist cost for a restaurant?</h3>
+<p>As of August 2026, per vendor pricing pages, voice-inclusive done-for-you services run about $297 to $997 per month, while text-and-chat tools run $99 to $299. Velonyx Elite, which includes AI voice answering, is $499 per month with no setup fee, dropping to $350 after 12 payments, at which point you own the system outright.</p>
+<p>The honest budget question isn&#39;t the monthly number alone; it&#39;s whether the plan&#39;s channels match where your customers actually reach you. A restaurant whose phone rarely rings doesn&#39;t need a voice tier, and a restaurant whose phone rings off the hook during service shouldn&#39;t economize on the one channel that&#39;s the problem.</p>
+
+    </div>
+    <div class="g-cta">
+      <b>Hear an AI front desk for yourself — right now</b>
+      <p>The fastest way to judge this technology is to talk to one. Our playground is a live AI receptionist you can text, call, or chat with — no signup, no sales follow-up.</p>
+      <div class="row">
+        <a class="btn gold" href="https://velonyx-playground.vercel.app" rel="noopener">Try the live playground</a>
+        <a class="btn ghost" href="/#pricing">See plans &amp; pricing</a>
+        <a class="btn ghost" href="/book.html">Book a 20-min call</a>
+      </div>
+    </div>
+    <div class="g-related">
+      <h4>Keep reading</h4>
+        <a href="/guides/ai-receptionist-cost/">AI Receptionist Cost in 2026: Real Prices From 10 Providers</a>
+        <a href="/guides/do-ai-receptionists-work/">Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them</a>
+        <a href="/guides/ai-receptionist-vs-answering-service/">AI Receptionist vs. Answering Service: Which One Actually Books the Appointment?</a>
+        <a href="/guides/own-your-ai-receptionist/">Rent vs. Own: The Case for Owning Your AI Receptionist</a>
+    </div>
+  </main>
+  <footer>
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.2em;font-weight:300;text-align:center;margin-bottom:8px;width:100%;">Your Legacy, Engineered With Precision.</div>
+    <span>&copy; 2026 Velonyx Systems. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/msa.html">MSA</a> &nbsp;&middot;&nbsp; <a href="/sow.html">SOW</a> &nbsp;&middot;&nbsp; <a href="/sms-terms.html">SMS Terms</a> &nbsp;&middot;&nbsp; <a href="/refund-policy.html">Refund Policy</a></span>
+  </footer>
+  <!-- Cookie consent banner (GA4 + Meta Pixel gate) -->
+  <script src="/assets/marketing-config.js"></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>
