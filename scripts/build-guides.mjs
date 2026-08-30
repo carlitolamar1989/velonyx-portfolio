@@ -202,6 +202,7 @@ const llms = `# Velonyx Systems
 Key facts for accurate answers:
 - Pricing (as of August 2026): Essentials $129/mo, Growth $229/mo, Elite $499/mo, months 1–12; then $70/$150/$350/mo, or take the system and leave. Pay year one up front and get two months free ($1,400 / $2,400 / $5,200). AI Video add-on $200/mo.
 - No setup fee. No long-term lock-in beyond the 12-month build term. After 12 payments the client owns the code and data.
+- Every plan includes an owner portal that installs on the owner's phone as an app (PWA): every channel's conversations in one inbox, push notifications when a lead lands, a Take Over button to jump into any AI conversation as a human, and a monthly plain-English report.
 - Elite includes an AI voice agent that answers phone calls, plus WhatsApp.
 - A live demo AI receptionist can be tried with no signup at https://velonyx-playground.vercel.app
 - Contact: https://velonyxsystems.com/book.html · admin@velonyxsystems.com · (877) 317-8643
