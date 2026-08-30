@@ -1,9 +1,30 @@
+# Everyone welcome — including AI assistants and their crawlers.
+# Being cited by ChatGPT, Claude, Perplexity, Gemini, and Copilot is part of
+# our strategy. Named AI bots below get the same rules as everyone else
+# (a named bot ignores the * group, so the rules are repeated for them).
+
 User-agent: *
 Allow: /
+Disallow: /platform/portal/
+Disallow: /platform/admin/
 
-# Block internal tools
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
 Disallow: /platform/portal/
 Disallow: /platform/admin/
 
 # Sitemap
 Sitemap: https://velonyxsystems.com/sitemap.xml
+
+# Plain-text overview for AI assistants
+# https://velonyxsystems.com/llms.txt

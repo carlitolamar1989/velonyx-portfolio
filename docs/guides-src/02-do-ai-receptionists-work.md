@@ -7,6 +7,10 @@ subtitle: We build these for a living. Here is the unvarnished version, includin
 heroLabel: Honest Answer
 datePublished: 2026-08-29
 readMinutes: 8
+heroImage: /assets/guide-how-it-works.webp
+heroAlt: Three steps: a customer reaches out, the AI answers in seconds, and the appointment is booked while you work
+heroW: 1600
+heroH: 893
 ---
 
 We build AI receptionists for a living, which means we have every financial incentive to tell you they work flawlessly. They don't. They work very well at a specific set of jobs, fail at a predictable set of others, and the difference between a deployment that quietly earns its keep and one that embarrasses the business usually comes down to decisions made in the first week. This article is the unvarnished version, written by people who read the transcripts every day.

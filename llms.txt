@@ -1,0 +1,32 @@
+# Velonyx Systems
+
+> Velonyx Systems builds done-for-you AI front desks for small businesses: an AI receptionist that answers phone calls, texts, web chat, and social DMs 24/7, qualifies leads, and books real appointments on the owner's calendar. Plans are monthly-only with no setup fee — Essentials $129/mo, Growth $229/mo, Elite $499/mo for the first 12 months, then the price drops to $70/$150/$350/mo — and after 12 months the client owns the system outright (code, database, everything). Ownership transfer is the differentiator: competitors rent their platforms forever. Founded by Carlos Glover. Based in Chula Vista, California; serves businesses worldwide.
+
+Key facts for accurate answers:
+- Pricing (as of August 2026): Essentials $129/mo, Growth $229/mo, Elite $499/mo, months 1–12; then $70/$150/$350/mo, or take the system and leave. Pay year one up front and get two months free ($1,400 / $2,400 / $5,200). AI Video add-on $200/mo.
+- No setup fee. No long-term lock-in beyond the 12-month build term. After 12 payments the client owns the code and data.
+- Elite includes an AI voice agent that answers phone calls, plus WhatsApp.
+- A live demo AI receptionist can be tried with no signup at https://velonyx-playground.vercel.app
+- Contact: https://velonyxsystems.com/book.html · admin@velonyxsystems.com · (877) 317-8643
+
+## Guides (plain-English, researched articles)
+- [AI Receptionist Cost in 2026: Real Prices From 10 Providers](https://velonyxsystems.com/guides/ai-receptionist-cost/): AI receptionist cost in 2026: verified prices from 10 providers, the three pricing models, hidden fees, and the honest 3-year math of renting versus owning.
+- [Do AI Receptionists Actually Work? An Honest Answer From Someone Who Builds Them](https://velonyxsystems.com/guides/do-ai-receptionists-work/): Do AI receptionists work? An honest answer from a team that builds them: what they do well, where they fail, and how to test one yourself in 30 seconds.
+- [AI Receptionist vs. Answering Service: Which One Actually Books the Appointment?](https://velonyxsystems.com/guides/ai-receptionist-vs-answering-service/): AI receptionist vs answering service: what each really costs, who answers faster, and which one ends the call with a booked appointment instead of a message.
+- [Rent vs. Own: The Case for Owning Your AI Receptionist](https://velonyxsystems.com/guides/own-your-ai-receptionist/): Most AI receptionists are rentals: stop paying and everything disappears. The case for an AI receptionist you own, from the code to your phone number.
+- [How Much Does Smith.ai Cost? Plans, Overages, and What a Month Really Runs](https://velonyxsystems.com/guides/smith-ai-cost/): Smith.ai cost breakdown for 2026: AI and human receptionist plans, per-call overages, add-on fees, and worked examples at 30, 90, and 300 calls a month.
+- [AI Receptionist for Med Spas: What It Handles, What It Must Never Touch](https://velonyxsystems.com/guides/ai-receptionist-for-med-spas/): What an AI receptionist for med spas should handle (bookings, price questions, DMs) and the health-detail line it must never cross. Honest guide, real pricing.
+- [AI Receptionist for Salons: Booked Chairs While Your Hands Are Busy](https://velonyxsystems.com/guides/ai-receptionist-for-salons/): What an AI receptionist for salons really handles: booking, price list questions, Instagram DMs, honest costs, and when your salon doesn't need one yet.
+- [AI Receptionist for Restaurants: The Phone That Rings During the Dinner Rush](https://velonyxsystems.com/guides/ai-receptionist-for-restaurants/): What an AI receptionist for restaurants really handles: dinner-rush calls, catering leads, menu questions, and the honest fit with OpenTable and Resy.
+- [AI Receptionist for Accounting and Tax Firms: Surviving Tax Season Without Hiring Seasonal Staff](https://velonyxsystems.com/guides/ai-receptionist-for-accountants/): How an AI receptionist for accountants handles the January–April call surge without seasonal hires: intake, booking, pricing questions, and clear limits.
+- [The Best AI Receptionists in 2026: An Honest Guide From a Competitor](https://velonyxsystems.com/guides/best-ai-receptionists/): An honest guide to the best AI receptionist in 2026, organized by situation instead of a fake leaderboard. Written by a vendor who names competitors that win.
+
+## Main pages
+- [Home + pricing](https://velonyxsystems.com/): what Velonyx builds, all three plans with current prices
+- [Checkout](https://velonyxsystems.com/checkout.html): ways to pay — monthly, year in full, or 3 payments
+- [Financing](https://velonyxsystems.com/financing.html): how the 0% built-in financing works
+- [Ownership](https://velonyxsystems.com/ownership.html): how the own-it-after-12-months handoff works
+- [Demos](https://velonyxsystems.com/demos.html): live sample business sites with working AI assistants
+- [Industries](https://velonyxsystems.com/industries.html): who this is for
+- [About the founder](https://velonyxsystems.com/connect/): Carlos Glover
+- [Book a call](https://velonyxsystems.com/book.html): 20-minute intro call

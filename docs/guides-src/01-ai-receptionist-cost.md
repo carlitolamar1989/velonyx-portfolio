@@ -7,6 +7,10 @@ subtitle: The three pricing models, verified prices from ten providers, and the 
 heroLabel: Pricing Guide
 datePublished: 2026-08-29
 readMinutes: 8
+heroImage: /assets/ai-system-banner.webp
+heroAlt: An AI front desk that answers calls, chats, and bookings around the clock
+heroW: 2000
+heroH: 1116
 ---
 An AI receptionist costs anywhere from $20 a month for a bare-bones voice bot to $800 or more for a full done-for-you service. As of August 2026, per vendor pricing pages, chat-only tools run about $39 to $99 a month, chat plus texting and social DMs runs $99 to $299, and done-for-you services with real voice calls run $297 to $997. The spread is that wide because providers charge in completely different ways, and the sticker price often isn't the price you'll pay.
 

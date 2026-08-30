@@ -7,6 +7,10 @@ subtitle: Restaurant phones ring hardest at the exact moments nobody can answer 
 heroLabel: Industry Guide
 datePublished: 2026-08-30
 readMinutes: 7
+heroImage: /assets/preview-foodtruck.webp
+heroAlt: Carlito's Way, a sample food-truck site built by Velonyx where the AI takes orders and answers questions
+heroW: 1024
+heroH: 640
 ---
 Restaurant phones have a scheduling problem no other business quite shares: they ring hardest at the exact moments nobody can answer them. Friday at 7pm the dining room is full, every server is mid-table, and the person closest to the host stand is carrying three plates. The phone rings anyway.
 

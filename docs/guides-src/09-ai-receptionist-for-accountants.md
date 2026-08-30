@@ -7,6 +7,10 @@ subtitle: Tax season floods the phones and summer empties them. Software can sca
 heroLabel: Industry Guide
 datePublished: 2026-08-30
 readMinutes: 8
+heroImage: /assets/preview-tax.webp
+heroAlt: Benjamin Lewis Tax, a sample accounting-firm site built by Velonyx with an AI assistant that books consultations
+heroW: 1024
+heroH: 640
 ---
 
 An accounting firm's phone has two modes. From January through mid-April it rings constantly: new clients shopping for a preparer, existing clients asking what to bring, everyone with a deadline and a question. From May through November it's quiet enough that you wonder why you pay for the line. An AI receptionist for accountants exists for exactly this shape of demand, because software scales with the season and payroll doesn't.

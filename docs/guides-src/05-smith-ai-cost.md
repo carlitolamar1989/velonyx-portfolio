@@ -7,6 +7,10 @@ subtitle: Smith.ai's published plans, decoded: how per-call billing works, which
 heroLabel: Pricing Guide
 datePublished: 2026-08-29
 readMinutes: 8
+heroImage: /assets/hero-bg-ai-helpdesk-1440.webp
+heroAlt: An AI receptionist rendered in golden light working at a front desk
+heroW: 1440
+heroH: 810
 ---
 
 Smith.ai is one of the most respected names in call answering, and its pricing is refreshingly public. The short answer: their AI receptionist runs $0 to $500 per month depending on call volume, and their human virtual receptionist service runs $300 to $2,100 per month, with everything billed per call rather than per minute (per Smith.ai's published pricing, August 2026).

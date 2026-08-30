@@ -7,6 +7,10 @@ subtitle: Med spas are a near-perfect fit for AI answering, as long as the AI is
 heroLabel: Industry Guide
 datePublished: 2026-08-30
 readMinutes: 8
+heroImage: /assets/preview-doctor.webp
+heroAlt: Bella Aesthetics, a sample med-spa site built by Velonyx with a 24/7 AI assistant that books consultations
+heroW: 1024
+heroH: 640
 ---
 A med spa runs on consults. Someone sees a before-and-after on Instagram, wonders what lip filler costs, and messages three places at 9pm. The first one to answer usually gets the consult. That simple mechanic makes med spas one of the best natural fits for an AI receptionist, and one of the easiest industries for a vendor to oversell.
 

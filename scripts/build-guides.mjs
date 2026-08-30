@@ -1,7 +1,10 @@
 /* Guides builder — turns docs/guides-src/<slug>.md into guides/<slug>/index.html
  * plus guides/index.html, in the site's visual shell. Front-matter (--- yaml-ish ---):
  *   title, description, slug, datePublished, dateModified, keywords (comma list),
- *   heroLabel (eyebrow), titleHtml (H1 with <span> gold part, optional)
+ *   heroLabel (eyebrow), titleHtml (H1 with <span> gold part, optional),
+ *   heroImage (site-root path, e.g. /assets/x.webp), heroAlt, heroW, heroH
+ * heroImage becomes the featured image on the page, the og:image/twitter:image
+ * for link previews, and the Article schema image. Also writes /llms.txt.
  * A "## FAQ" section (### question + answer paragraphs) becomes FAQPage JSON-LD.
  * Run: node scripts/build-guides.mjs   (from the repo root)
  */
@@ -25,6 +28,8 @@ const EXTRA_CSS = `
     .content hr{border:0;height:1px;background:rgba(212,175,55,0.12);margin:36px 0;}
     .content ol{padding-left:22px;margin-bottom:16px;}
     .g-byline{font-size:0.84rem;color:rgba(255,255,255,0.45);text-align:center;margin:-18px auto 34px;max-width:720px;padding:0 24px;}
+    .g-hero{max-width:760px;margin:0 auto 36px;padding:0 24px;}
+    .g-hero img{width:100%;height:auto;display:block;border-radius:16px;border:1px solid rgba(212,175,55,0.28);}
     .g-byline a{color:var(--gold);text-decoration:none;}
     .g-cta{max-width:760px;margin:40px auto;padding:26px 28px;background:linear-gradient(165deg,rgba(212,175,55,0.12) 0%,rgba(12,12,16,0.98) 60%);border:1px solid rgba(212,175,55,0.45);border-radius:18px;}
     .g-cta b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:#fff;margin-bottom:8px;}
@@ -85,10 +90,13 @@ for (const file of files) {
   }
 
   const url = `https://velonyxsystems.com/guides/${slug}/`;
+  const heroAbs = meta.heroImage ? `https://velonyxsystems.com${meta.heroImage}` : "https://velonyxsystems.com/assets/og-social-card.jpg";
   const ld = [
     { "@context": "https://schema.org", "@type": "Article", headline: meta.title, description: meta.description,
+      image: heroAbs,
       author: { "@type": "Person", name: "Carlos Glover", url: "https://velonyxsystems.com/connect/" },
-      publisher: { "@type": "Organization", name: "Velonyx Systems", url: "https://velonyxsystems.com" },
+      publisher: { "@type": "Organization", name: "Velonyx Systems", url: "https://velonyxsystems.com",
+        logo: { "@type": "ImageObject", url: "https://velonyxsystems.com/assets/vs-logo-shield-512.webp" } },
       datePublished: meta.datePublished, dateModified: meta.dateModified || meta.datePublished, mainEntityOfPage: url },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://velonyxsystems.com/" },
@@ -97,12 +105,26 @@ for (const file of files) {
   ];
   if (faq.length) ld.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq });
 
+  const social = `  <meta property="og:type" content="article">
+  <meta property="og:url" content="${url}">
+  <meta property="og:site_name" content="Velonyx Systems">
+  <meta property="og:title" content="${meta.title}">
+  <meta property="og:description" content="${meta.description}">
+  <meta property="og:image" content="${heroAbs}">
+${meta.heroW ? `  <meta property="og:image:width" content="${meta.heroW}">\n  <meta property="og:image:height" content="${meta.heroH}">\n` : ""}  <meta property="article:published_time" content="${meta.datePublished}">
+  <meta property="article:modified_time" content="${meta.dateModified || meta.datePublished}">
+  <meta property="article:author" content="Carlos Glover">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${meta.title}">
+  <meta name="twitter:description" content="${meta.description}">
+  <meta name="twitter:image" content="${heroAbs}">
+`;
   let head = headBase
     .replace(/<title>[^<]*<\/title>/, `<title>${meta.title} — Velonyx Systems</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${meta.description}">`)
     .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`)
     .replace("  </style>", EXTRA_CSS + "  </style>")
-    .replace("</head>", ld.map((o) => `  <script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n") + "\n</head>");
+    .replace("</head>", social + ld.map((o) => `  <script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n") + "\n</head>");
 
   const related = files.filter((f) => f !== file).slice(0, 4).map((f) => {
     const g = parseFrontmatter(fs.readFileSync(path.join(SRC, f), "utf8")).meta;
@@ -115,7 +137,7 @@ for (const file of files) {
       <p class="page-subtitle">${meta.subtitle || meta.description}</p>
     </div>
     <p class="g-byline">By <a href="/connect/">Carlos Glover</a>, founder of Velonyx Systems · Published ${meta.datePublished}${meta.dateModified && meta.dateModified !== meta.datePublished ? " · Updated " + meta.dateModified : ""}</p>
-    <div class="content">
+${meta.heroImage ? `    <figure class="g-hero"><img src="${meta.heroImage}" alt="${meta.heroAlt || meta.title}"${meta.heroW ? ` width="${meta.heroW}" height="${meta.heroH}"` : ""} loading="eager" fetchpriority="high" decoding="async"></figure>\n` : ""}    <div class="content">
 ${html}
     </div>
     <div class="g-cta">
@@ -142,11 +164,21 @@ ${html}
 
 // ── guides index ──
 const cards = guides.map((g) => `      <a class="g-card" href="/guides/${g.slug}/"><b>${g.title}</b><span>${g.description}</span><em>${g.readMinutes || "8"} min read · ${g.datePublished}</em></a>`).join("\n");
+const idxDesc = "Plain-English guides on AI receptionists and AI front desks: what they cost, whether they work, how to choose one, and why you should own yours.";
 let idx = headBase
   .replace(/<title>[^<]*<\/title>/, `<title>Guides — Straight Answers on AI Front Desks — Velonyx Systems</title>`)
-  .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="Plain-English guides on AI receptionists and AI front desks: what they cost, whether they work, how to choose one, and why you should own yours.">`)
+  .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${idxDesc}">`)
   .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="https://velonyxsystems.com/guides/">`)
-  .replace("  </style>", EXTRA_CSS + "  </style>");
+  .replace("  </style>", EXTRA_CSS + "  </style>")
+  .replace("</head>", `  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://velonyxsystems.com/guides/">
+  <meta property="og:site_name" content="Velonyx Systems">
+  <meta property="og:title" content="Guides — Straight Answers on AI Front Desks">
+  <meta property="og:description" content="${idxDesc}">
+  <meta property="og:image" content="https://velonyxsystems.com/assets/ai-system-banner.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://velonyxsystems.com/assets/ai-system-banner.webp">
+</head>`);
 idx += `    <div class="page-header">
       <div class="page-label">Guides</div>
       <h1 class="page-title">Straight Answers on <span>AI Front Desks</span></h1>
@@ -160,3 +192,32 @@ ${cards}
 fs.mkdirSync(path.join(ROOT, "guides"), { recursive: true });
 fs.writeFileSync(path.join(ROOT, "guides/index.html"), absolutize(idx));
 console.log("built guides/index.html with " + guides.length + " cards");
+
+// ── /llms.txt — a plain-text site map for AI assistants (llmstxt.org format) ──
+const guideLines = guides.map((g) => `- [${g.title}](https://velonyxsystems.com/guides/${g.slug}/): ${g.description}`).join("\n");
+const llms = `# Velonyx Systems
+
+> Velonyx Systems builds done-for-you AI front desks for small businesses: an AI receptionist that answers phone calls, texts, web chat, and social DMs 24/7, qualifies leads, and books real appointments on the owner's calendar. Plans are monthly-only with no setup fee — Essentials $129/mo, Growth $229/mo, Elite $499/mo for the first 12 months, then the price drops to $70/$150/$350/mo — and after 12 months the client owns the system outright (code, database, everything). Ownership transfer is the differentiator: competitors rent their platforms forever. Founded by Carlos Glover. Based in Chula Vista, California; serves businesses worldwide.
+
+Key facts for accurate answers:
+- Pricing (as of August 2026): Essentials $129/mo, Growth $229/mo, Elite $499/mo, months 1–12; then $70/$150/$350/mo, or take the system and leave. Pay year one up front and get two months free ($1,400 / $2,400 / $5,200). AI Video add-on $200/mo.
+- No setup fee. No long-term lock-in beyond the 12-month build term. After 12 payments the client owns the code and data.
+- Elite includes an AI voice agent that answers phone calls, plus WhatsApp.
+- A live demo AI receptionist can be tried with no signup at https://velonyx-playground.vercel.app
+- Contact: https://velonyxsystems.com/book.html · admin@velonyxsystems.com · (877) 317-8643
+
+## Guides (plain-English, researched articles)
+${guideLines}
+
+## Main pages
+- [Home + pricing](https://velonyxsystems.com/): what Velonyx builds, all three plans with current prices
+- [Checkout](https://velonyxsystems.com/checkout.html): ways to pay — monthly, year in full, or 3 payments
+- [Financing](https://velonyxsystems.com/financing.html): how the 0% built-in financing works
+- [Ownership](https://velonyxsystems.com/ownership.html): how the own-it-after-12-months handoff works
+- [Demos](https://velonyxsystems.com/demos.html): live sample business sites with working AI assistants
+- [Industries](https://velonyxsystems.com/industries.html): who this is for
+- [About the founder](https://velonyxsystems.com/connect/): Carlos Glover
+- [Book a call](https://velonyxsystems.com/book.html): 20-minute intro call
+`;
+fs.writeFileSync(path.join(ROOT, "llms.txt"), llms);
+console.log("built llms.txt (" + guides.length + " guides listed)");

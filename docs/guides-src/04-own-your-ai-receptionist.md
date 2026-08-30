@@ -7,6 +7,10 @@ subtitle: Almost every AI receptionist on the market is a rental. Here's what ch
 heroLabel: Ownership Manifesto
 datePublished: 2026-08-29
 readMinutes: 8
+heroImage: /assets/explainer-poster.webp
+heroAlt: Carlos Glover, founder of Velonyx Systems, explaining the AI front desk he builds
+heroW: 1280
+heroH: 720
 ---
 Think about the software your business runs on. The scheduler, the website, the payment system, the phone line. Now ask a simple question: which of those do you actually own?
 
