@@ -7,10 +7,10 @@ subtitle: Every vendor list ranks the vendor first. So does this one. The differ
 heroLabel: Buyer's Guide
 datePublished: 2026-08-30
 readMinutes: 8
-heroImage: /assets/hero-bg-hologram-1440.webp
-heroAlt: An AI receptionist rendered in violet light at a front desk
-heroW: 1440
-heroH: 804
+heroImage: /assets/guide-best-ranked.webp
+heroAlt: Five holographic AI receptionists on a ranking podium, number one glowing gold, under the words 'Ranked. Honestly.'
+heroW: 1600
+heroH: 893
 ---
 Every "best AI receptionist" list on the internet was written by a company that sells one, and every one of those companies ranked itself first. This list is no exception. We sell an AI receptionist, and you will find it below.
 

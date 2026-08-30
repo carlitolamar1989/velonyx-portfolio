@@ -7,10 +7,10 @@ subtitle: Both pick up the phone. Only one of them can put a real appointment on
 heroLabel: Honest Comparison
 datePublished: 2026-08-29
 readMinutes: 8
-heroImage: /assets/services-banner.webp
-heroAlt: Every lead answered instantly — the promise an AI receptionist makes that an answering service can't
-heroW: 2400
-heroH: 1350
+heroImage: /assets/guide-vs-answering.webp
+heroAlt: Split scene: a dark, empty call center with a phone on hold versus a glowing AI answering many chats at once, under the words 'Instant wins.'
+heroW: 1600
+heroH: 893
 ---
 You already know the phone needs coverage. The question is what kind: an AI receptionist that answers and acts on its own, or an answering service staffed by people who take messages. The two get lumped together, but they are different tools that end in different places. One ends with a note about the call. The other ends with an appointment on your calendar.
 

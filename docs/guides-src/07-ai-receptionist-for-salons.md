@@ -7,10 +7,10 @@ subtitle: The salon front desk problem is structural, not personal. Here's what 
 heroLabel: Industry Guide
 datePublished: 2026-08-30
 readMinutes: 8
-heroImage: /assets/hero-slide-3.webp
-heroAlt: Gold light swirling inside a frame — Velonyx brand artwork
-heroW: 2400
-heroH: 783
+heroImage: /assets/guide-salon.webp
+heroAlt: An upscale salon in navy and gold with a glowing booked calendar at the front desk, under the words 'Your chair stays booked.'
+heroW: 1600
+heroH: 893
 ---
 Every salon has the same front desk problem, and it has nothing to do with how hard anyone works. The person who answers the phone is usually the same person whose hands are in someone's hair. When the phone rings mid-foil, you get a choice: pause the service for the client in front of you, or let the call go to voicemail. Neither answer is good, and you make that choice a dozen times a day.
 
