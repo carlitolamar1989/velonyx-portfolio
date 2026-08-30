@@ -153,9 +153,14 @@ Cursor-Claude/                        ← velonyx-portfolio repo
 
 - Articles live at `/guides/<slug>/`; index at `/guides/`. Written as Markdown in
   `docs/guides-src/NN-slug.md` (front-matter: title/titleHtml/slug/description/subtitle/
-  heroLabel/datePublished/readMinutes; a `## FAQ` section with `### question` blocks becomes
-  FAQPage JSON-LD automatically). Build with `node scripts/build-guides.mjs` (needs `npm i marked`),
-  then commit BOTH the .md and the generated guides/ HTML. The deploy workflow copies `guides`.
+  heroLabel/datePublished/readMinutes, plus heroImage/heroAlt/heroW/heroH — site-root path to a
+  featured image that becomes the on-page hero, the og:image/twitter:image, and the Article
+  schema image; a `## FAQ` section with `### question` blocks becomes FAQPage JSON-LD
+  automatically). Build with `node scripts/build-guides.mjs` (needs `npm i marked`), then commit
+  BOTH the .md and the generated guides/ HTML **and /llms.txt** (the builder regenerates it — a
+  plain-text site overview for AI assistants, llmstxt.org format; deploy.yml copies it).
+  Every new article MUST have a heroImage (brand look: deep navy/black, gold, violet, no text
+  overlays, landscape ~16:9).
 - House rules for new articles: plain English, no fear-framing, no trades targeting, no invented
   statistics, competitor prices only with "as of <month year>, per vendor pricing pages",
   one-line disclosure when Velonyx appears in a comparison. Five cornerstones shipped 2026-08-29
